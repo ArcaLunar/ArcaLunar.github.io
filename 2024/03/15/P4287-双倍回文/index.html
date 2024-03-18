@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目  题解 显然双倍回文字符串的长度一定是 $4$ 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 #，然后算完每个字符的 d[] 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 d[i-ans&#x2F;2]&gt;&#x3D;ans&#x2F;2 即可，ans&#x2F;2">
+    <meta name="description" content="题目   题解 显然双倍回文字符串的长度一定是 444 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 #，然后算完每个字符的 d[] 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 d[i-ans&#x2F;2]&gt;&#x3D;ans&#x2F;2 即可，ans&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P4287 - 双倍回文">
 <meta property="og:url" content="http://arcalunar.github.io/2024/03/15/P4287-%E5%8F%8C%E5%80%8D%E5%9B%9E%E6%96%87/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
-<meta property="og:description" content="题目  题解 显然双倍回文字符串的长度一定是 $4$ 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 #，然后算完每个字符的 d[] 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 d[i-ans&#x2F;2]&gt;&#x3D;ans&#x2F;2 即可，ans&#x2F;2">
+<meta property="og:description" content="题目   题解 显然双倍回文字符串的长度一定是 444 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 #，然后算完每个字符的 d[] 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 d[i-ans&#x2F;2]&gt;&#x3D;ans&#x2F;2 即可，ans&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-15T05:22:43.000Z">
 <meta property="article:modified_time" content="2024-03-15T05:22:43.144Z">
@@ -106,7 +106,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text"> 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text"> 题解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -209,12 +209,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4287">题目</a></h2>
-<hr>
-<h2 id="题解"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/150909459">题解</a></h2>
-<p>显然双倍回文字符串的长度一定是 $4$ 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 <code>#</code>，然后算完每个字符的 <code>d[]</code> 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 <code>d[i-ans/2]&gt;=ans/2</code> 即可，<code>ans/2</code> 即 <code>i</code> 的前半部分的长度，<code>d[i-ans/2]</code> 即前半部分的回文中心对应的最大回文长度）。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4287">题目</a></h2>
+<hr />
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/150909459">题解</a></h2>
+<p>显然双倍回文字符串的长度一定是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 的倍数，而且其前半段和后半段都是回文串，我们可以首先用 manacher 算法处理回文串。由于长度是偶数，这意味着双倍回文串的回文中心一定是 <code>#</code>，然后算完每个字符的 <code>d[]</code> 后，我们枚举双倍回文串的长度（并通过长度倒推前半部分的回文中心），判断前半部分是不是也是回文串（具体来说，只要 <code>d[i-ans/2]&gt;=ans/2</code> 即可，<code>ans/2</code> 即 <code>i</code> 的前半部分的长度，<code>d[i-ans/2]</code> 即前半部分的回文中心对应的最大回文长度）。</p>
 <p>本题比较重要的模型是，从长度倒推回文中心，并利用 <code>d[]</code> 的意义判断答案的合法性。</p>
-<p>时间复杂度 $O(N)$。</p>
+<p>时间复杂度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
 <details>
 <summary>AC Code</summary>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N;</span><br><span class="line">    cin &gt;&gt; N;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line"></span><br><span class="line">    string tmp = <span class="string">&quot;#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;ch : s) &#123;</span><br><span class="line">        tmp += ch;</span><br><span class="line">        tmp += <span class="string">&quot;#&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> n = tmp.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">d</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">2</span> * j - i &gt;= <span class="number">0</span> &amp;&amp; j + d[j] &gt; i)</span><br><span class="line">            d[i] = <span class="built_in">min</span>(j + d[j] - i, d[<span class="number">2</span> * j - i]);</span><br><span class="line">        <span class="keyword">while</span> (i - d[i] &gt;= <span class="number">0</span> &amp;&amp; i + d[i] &lt; n &amp;&amp;</span><br><span class="line">               tmp[i - d[i]] == tmp[i + d[i]]) &#123;</span><br><span class="line">            d[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i + d[i] &gt; j + d[j]) &#123;</span><br><span class="line">            j = i;</span><br><span class="line">            <span class="keyword">if</span> (tmp[i] == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 枚举答案的长度</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = ans / <span class="number">4</span> * <span class="number">4</span> + <span class="number">1</span>; k &lt;= d[i]; k += <span class="number">4</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (d[i - k / <span class="number">2</span>] &gt;= k / <span class="number">2</span>) ans = <span class="built_in">max</span>(ans, k - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -268,13 +268,19 @@
     </span>
     <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
   </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
   <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
@@ -287,7 +293,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
