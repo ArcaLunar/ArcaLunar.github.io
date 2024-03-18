@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目描述  题解 因为本题既需要求 $a$ 的最大值，又需要求 $b$ 的最大值，如果 $a$ 的最大值是固定的，那么找 $b$ 的最大值并更新答案就会方便许多。 所以顺着这个思路，我们对 department 按 $a$ 排序，然后从左向右枚举 $a_i$ 作为给第一个人的礼物的最大值。那么，对于 $a_{i+1}\ldots a_{n}$ 这些礼物只能给第二个人，而对于 $a_{1}\ldot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1802D - Buying Gifts">
+<meta property="og:url" content="http://arcalunar.github.io/2024/03/11/CF1802D-Buying-Gifts/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
+<meta property="og:description" content="题目描述  题解 因为本题既需要求 $a$ 的最大值，又需要求 $b$ 的最大值，如果 $a$ 的最大值是固定的，那么找 $b$ 的最大值并更新答案就会方便许多。 所以顺着这个思路，我们对 department 按 $a$ 排序，然后从左向右枚举 $a_i$ 作为给第一个人的礼物的最大值。那么，对于 $a_{i+1}\ldots a_{n}$ 这些礼物只能给第二个人，而对于 $a_{1}\ldot">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-11T07:56:09.000Z">
+<meta property="article:modified_time" content="2024-03-14T09:20:20.440Z">
+<meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="STL">
+<meta property="article:tag" content="ST 表">
+<meta property="article:tag" content="思维">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arcalunar.github.io/2024/03/11/CF1802D-Buying-Gifts/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arcalunar.github.io/2024/03/11/CF1802D-Buying-Gifts/","path":"2024/03/11/CF1802D-Buying-Gifts/","title":"CF1802D - Buying Gifts"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CF1802D - Buying Gifts | Arca Lunar's Mini Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arca Lunar's Mini Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ow<</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arca Lunar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/11/CF1802D-Buying-Gifts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CF1802D - Buying Gifts | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF1802D - Buying Gifts
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-11 15:56:09" itemprop="dateCreated datePublished" datetime="2024-03-11T15:56:09+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-14 17:20:20" itemprop="dateModified" datetime="2024-03-14T17:20:20+08:00">2024-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/1802/" itemprop="url" rel="index"><span itemprop="name">1802</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题目描述"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1802/problem/D">题目描述</a></h2>
+<hr>
+<h2 id="题解">题解</h2>
+<p>因为本题既需要求 $a$ 的最大值，又需要求 $b$ 的最大值，如果 $a$ 的最大值是固定的，那么找 $b$ 的最大值并更新答案就会方便许多。</p>
+<p>所以顺着这个思路，我们对 department 按 $a$ 排序，然后从左向右枚举 $a_i$ 作为给第一个人的礼物的最大值。那么，对于 $a_{i+1}\ldots a_{n}$ 这些礼物只能给第二个人，而对于 $a_{1}\ldots a_{i-1}$ 这些礼物既可以给第一个人，也可以给第二个人。</p>
+<p>我们分开来讨论：对于 $a_{i+1}\ldots a_{n}$，因为必须选择这些礼物给第二个人，所以我们去找 $b_{i+1}\ldots b_n$ 的最大值 $max_b$。</p>
+<ul>
+<li>如果 $max_b\ge a_i$，那么即使 $b_1\ldots b_{i-1}$ 有更接近 $a_i$ 的数，也会小于 $max_b$；而如果 $b_1\ldots b_{i-1}$ 中最接近 $a_i$ 的数也超过了 $max_b$，那就不如 $max_b$ 接近 $a_i$</li>
+<li>否则 $max_b\lt a_i$，那么我们在 $b_1\ldots b_{i-1}$ 中找最接近 $a_i$ 的数，可以用 <code>it = lower_bound()</code> 然后判断 <code>it</code> 和 <code>prev(it)</code>，这里要注意边界判断（<code>it</code> 与 <code>prev(it)</code> 是否存在）。</li>
+</ul>
+<p>在我个人的代码里，我用 ST 表查找 $max_b$，用 <code>multiset.lower_bound()</code> 来查找 $b_1\ldots b_{i-1}$。</p>
+<details>
+<summary>个人使用的 ST 表模板</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SparseTable</span> &#123;</span><br><span class="line">    <span class="keyword">using</span> __func = function&lt;<span class="built_in">T</span>(<span class="type">const</span> T &amp;, <span class="type">const</span> T &amp;)&gt;;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;T&gt;&gt; ST_table;</span><br><span class="line">    vector&lt;ll&gt; log2n;</span><br><span class="line"></span><br><span class="line">    __func opt;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">static</span> T <span class="title">default_func</span><span class="params">(<span class="type">const</span> T &amp;a, <span class="type">const</span> T &amp;b)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">max</span>(a, b); &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SparseTable</span>(<span class="type">const</span> vector&lt;T&gt; &amp;v, __func op = default_func) &#123;</span><br><span class="line">        opt = op;</span><br><span class="line">        ll len = v.<span class="built_in">size</span>(), rmax = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(len)) + <span class="number">1</span>;</span><br><span class="line">        log2n.<span class="built_in">assign</span>(len + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (ll i = <span class="number">2</span>; i &lt;= len; i++) &#123;</span><br><span class="line">            log2n[i] = log2n[i / <span class="number">2</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ST_table.<span class="built_in">assign</span>(len, <span class="built_in">vector</span>&lt;T&gt;(rmax, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) ST_table[i][<span class="number">0</span>] = v[i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; rmax; j++) &#123;</span><br><span class="line">            ll offset = <span class="number">1</span> &lt;&lt; (j - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len - offset; i++) &#123;</span><br><span class="line">                ST_table[i][j] =</span><br><span class="line">                    <span class="built_in">opt</span>(ST_table[i][j - <span class="number">1</span>], ST_table[i + offset][j - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">T <span class="title">query</span><span class="params">(ll l, ll r)</span> </span>&#123;</span><br><span class="line">        ll range_len = log2n[r - l + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">opt</span>(ST_table[l][range_len],</span><br><span class="line">                   ST_table[r - (<span class="number">1</span> &lt;&lt; range_len) + <span class="number">1</span>][range_len]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</details>
+<details>
+<summary>排序，并预处理 ST 表</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;array&lt;ll, 2&gt;&gt; <span class="built_in">g</span>(N);</span><br><span class="line">vector&lt;ll&gt; b;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : g) cin &gt;&gt; x[<span class="number">0</span>] &gt;&gt; x[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">ranges::<span class="built_in">sort</span>(g);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> [a, x] : g) b.<span class="built_in">push_back</span>(x);</span><br><span class="line"><span class="function">SparseTable&lt;ll&gt; <span class="title">st</span><span class="params">(b)</span></span>;</span><br></pre></td></tr></table></figure>
+</details>
+<details>
+<summary>枚举，并计算答案</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">multiset&lt;ll&gt; lf;</span><br><span class="line">ll ans = INF;</span><br><span class="line"><span class="comment">// [0,i] for A, [i+1,N-1] for B</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">    <span class="comment">// Max of right side</span></span><br><span class="line">    ll mxb = -INF;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; N - <span class="number">1</span>) mxb = st.<span class="built_in">query</span>(i + <span class="number">1</span>, N - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mxb &gt;= g[i][<span class="number">0</span>]) &#123;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, <span class="built_in">abs</span>(mxb - g[i][<span class="number">0</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, <span class="built_in">abs</span>(mxb - g[i][<span class="number">0</span>]));</span><br><span class="line">        <span class="keyword">auto</span> it = lf.<span class="built_in">lower_bound</span>(g[i][<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">if</span> (it != lf.<span class="built_in">end</span>()) ans = <span class="built_in">min</span>(&#123;<span class="built_in">abs</span>(*it - g[i][<span class="number">0</span>]), ans&#125;);</span><br><span class="line">        <span class="keyword">if</span> (it != lf.<span class="built_in">begin</span>()) ans = <span class="built_in">min</span>(ans, <span class="built_in">abs</span>(*<span class="built_in">prev</span>(it) - g[i][<span class="number">0</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">    lf.<span class="built_in">insert</span>(g[i][<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/STL/" rel="tag"># STL</a>
+              <a href="/tags/ST-%E8%A1%A8/" rel="tag"># ST 表</a>
+              <a href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag"># 思维</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/11/CF1860E-Fast-Travel-Text-Editor/" rel="prev" title="CF1860E - Fast Travel Text Editor">
+                  <i class="fa fa-angle-left"></i> CF1860E - Fast Travel Text Editor
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/11/CF1941G-Subway/" rel="next" title="CF1941G - Subway">
+                  CF1941G - Subway <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>

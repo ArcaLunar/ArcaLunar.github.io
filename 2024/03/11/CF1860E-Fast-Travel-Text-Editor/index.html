@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目描述  题解 因为要求从 $a$ 到 $b$ 的最小步数，我们容易想到最短路，所以，我们思考如何建图。 显而易见的，如果我们暴力枚举相邻字符 $ab$ 与 $a’b’$，最坏情况下，复杂度是 $O(N^2)$ 的。所以，我们转换思路，建立包含两个字符的虚点，例如，如果 $ab&#x3D;$&quot;az&quot; 且 $cd&#x3D;$&quot;az&quot;，那么我们建立无向边 $w_{\text{“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1860E - Fast Travel Text Editor">
+<meta property="og:url" content="http://arcalunar.github.io/2024/03/11/CF1860E-Fast-Travel-Text-Editor/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
+<meta property="og:description" content="题目描述  题解 因为要求从 $a$ 到 $b$ 的最小步数，我们容易想到最短路，所以，我们思考如何建图。 显而易见的，如果我们暴力枚举相邻字符 $ab$ 与 $a’b’$，最坏情况下，复杂度是 $O(N^2)$ 的。所以，我们转换思路，建立包含两个字符的虚点，例如，如果 $ab&#x3D;$&quot;az&quot; 且 $cd&#x3D;$&quot;az&quot;，那么我们建立无向边 $w_{\text{“">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-11T07:11:49.000Z">
+<meta property="article:modified_time" content="2024-03-14T09:20:29.993Z">
+<meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="最短路">
+<meta property="article:tag" content="虚点">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arcalunar.github.io/2024/03/11/CF1860E-Fast-Travel-Text-Editor/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arcalunar.github.io/2024/03/11/CF1860E-Fast-Travel-Text-Editor/","path":"2024/03/11/CF1860E-Fast-Travel-Text-Editor/","title":"CF1860E - Fast Travel Text Editor"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CF1860E - Fast Travel Text Editor | Arca Lunar's Mini Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arca Lunar's Mini Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ow<</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arca Lunar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/11/CF1860E-Fast-Travel-Text-Editor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CF1860E - Fast Travel Text Editor | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF1860E - Fast Travel Text Editor
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-11 15:11:49" itemprop="dateCreated datePublished" datetime="2024-03-11T15:11:49+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-14 17:20:29" itemprop="dateModified" datetime="2024-03-14T17:20:29+08:00">2024-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/1860/" itemprop="url" rel="index"><span itemprop="name">1860</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题目描述"><a target="_blank" rel="noopener" href="https://vjudge.net/problem/CodeForces-1860E#author=GPT_zh">题目描述</a></h2>
+<hr>
+<h2 id="题解">题解</h2>
+<p>因为要求从 $a$ 到 $b$ 的最小步数，我们容易想到最短路，所以，我们思考如何建图。</p>
+<p>显而易见的，如果我们暴力枚举相邻字符 $ab$ 与 $a’b’$，最坏情况下，复杂度是 $O(N^2)$ 的。所以，我们转换思路，建立包含两个字符的虚点，例如，如果 $ab=$<code>&quot;az&quot;</code> 且 $cd=$<code>&quot;az&quot;</code>，那么我们建立无向边 $w_{\text{“az”}, ab},w_{\text{“az”}, cd}$，这样的话 $ab$ 可以通过 <code>&quot;az&quot;</code> 这个虚点中转到 $cd$。这样建图的时间复杂度就是 $O(N)$</p>
+<details>
+<summary>建立虚点并记录那些点需要连边</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">idx</span>(<span class="number">26</span> * <span class="number">26</span>); <span class="comment">// 虚点，表示相邻的两个字符</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    idx[S[i] + <span class="number">26</span> * S[i + <span class="number">1</span>]].<span class="built_in">push_back</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<details>
+<summary>建图，同时包含实点和虚点</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;array&lt;<span class="type">int</span>, 2&gt;&gt;&gt; <span class="built_in">adj</span>(N + <span class="number">26</span> * <span class="number">26</span>); <span class="comment">// 包含实点和虚点的图</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N - <span class="number">1</span>; i++) &#123;               <span class="comment">// 实点</span></span><br><span class="line">    adj[i].<span class="built_in">push_back</span>(&#123;i + <span class="number">1</span>, <span class="number">2</span>&#125;);</span><br><span class="line">    adj[i + <span class="number">1</span>].<span class="built_in">push_back</span>(&#123;i, <span class="number">2</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> id = <span class="number">0</span>; id &lt; <span class="number">26</span> * <span class="number">26</span>; id++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> i : idx[id]) &#123;</span><br><span class="line">        adj[i].<span class="built_in">push_back</span>(&#123;N + id, <span class="number">1</span>&#125;);</span><br><span class="line">        adj[N + id].<span class="built_in">push_back</span>(&#123;i, <span class="number">1</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p>所以，最少步数可以用最短路来求解了。但是问题在于，如果对每个实点跑一次 Dijkstra 的话，时间复杂度是 $O(MN\log N)$。我们还需要优化一下。我们把所有操作方案分成两种，一种是不使用光标跳转（只左右移动），另一种是使用了光标跳转的。如果在字符 <code>&quot;xy&quot;</code> 处进行光标跳转，那么 $d_{u\to v}=d_{u\to \text{xy}}+d_{\text{xy}\to v}$，所以，我们转化成对所有虚点跑最短路，每次询问 $d_{u\to v}$ 遍历所有虚点找最小值。</p>
+<details>
+<summary style="font-family: Fira Code">Dijkstra 最短路算法预处理虚点到实点的全源最短路</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> dijkstra = [&amp;](<span class="type">int</span> src) &#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; <span class="built_in">dis</span>(gSize, INF);</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">vis</span><span class="params">(gSize, <span class="literal">false</span>)</span></span>;</span><br><span class="line">    __gnu_pbds::priority_queue&lt;array&lt;<span class="type">int</span>, 2&gt;, greater&lt;array&lt;<span class="type">int</span>, 2&gt;&gt;&gt; q;</span><br><span class="line">    dis[src] = <span class="number">0</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;<span class="number">0</span>, src&#125;);</span><br><span class="line">    <span class="keyword">while</span> (q.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="keyword">auto</span> [D, u] = q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (vis[u]) <span class="keyword">continue</span>;</span><br><span class="line">        vis[u] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;[to, w] : adj[u]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dis[to] &gt; dis[u] + w) &#123;</span><br><span class="line">                dis[to] = dis[u] + w;</span><br><span class="line">                <span class="keyword">if</span> (vis[to]) <span class="keyword">continue</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(&#123;dis[to], to&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dis;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">disAll</span>(<span class="number">26</span> * <span class="number">26</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (idx[i + <span class="number">26</span> * j].<span class="built_in">empty</span>()) <span class="keyword">continue</span>;</span><br><span class="line">        disAll[i + <span class="number">26</span> * j] = <span class="built_in">dijkstra</span>(i + <span class="number">26</span> * j + N);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<details>
+<summary>读入询问，查询最短路</summary>
+由于实点之间的边权设置为 2，虚点到实点的边权为 1，所以求出最短路之后还需要除以 2。
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cin &gt;&gt; M;</span><br><span class="line"><span class="keyword">while</span> (M--) &#123;</span><br><span class="line">    <span class="type">int</span> u, v;</span><br><span class="line">    cin &gt;&gt; u &gt;&gt; v;</span><br><span class="line">    u--, v--;</span><br><span class="line">    <span class="type">int</span> ans2 = <span class="number">2</span> * <span class="built_in">abs</span>(u - v);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">            <span class="type">int</span> vpoint = i + <span class="number">26</span> * j;</span><br><span class="line">            <span class="keyword">if</span> (idx[vpoint].<span class="built_in">empty</span>()) <span class="keyword">continue</span>;</span><br><span class="line">            ans2 = <span class="built_in">min</span>(ans2, disAll[vpoint][u] + disAll[vpoint][v]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; (ans2 &gt;&gt; <span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1860/submission/250572275">Submission</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="tag"># 最短路</a>
+              <a href="/tags/%E8%99%9A%E7%82%B9/" rel="tag"># 虚点</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/11/%E6%B4%9B%E8%B0%B7P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" rel="prev" title="洛谷P2146 - [NOI2015] 软件包管理器">
+                  <i class="fa fa-angle-left"></i> 洛谷P2146 - [NOI2015] 软件包管理器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/11/CF1802D-Buying-Gifts/" rel="next" title="CF1802D - Buying Gifts">
+                  CF1802D - Buying Gifts <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>

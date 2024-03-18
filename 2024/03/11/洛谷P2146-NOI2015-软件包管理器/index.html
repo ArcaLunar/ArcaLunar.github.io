@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目 题目背景 Linux 用户和 OSX 用户一定对软件包管理器不会陌生。通过软件包管理器，你可以通过一行命令安装某一个软件包，然后软件包管理器会帮助你从软件源下载软件包，同时自动解决所有的依赖（即下载安装这个软件包的安装所依赖的其它软件包），完成所有的配置。Debian&#x2F;Ubuntu 使用的 apt-get，Fedora&#x2F;CentOS 使用的 yum，以及 OSX 下可用的 homebrew">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷P2146 - [NOI2015] 软件包管理器">
+<meta property="og:url" content="http://arcalunar.github.io/2024/03/11/%E6%B4%9B%E8%B0%B7P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
+<meta property="og:description" content="题目 题目背景 Linux 用户和 OSX 用户一定对软件包管理器不会陌生。通过软件包管理器，你可以通过一行命令安装某一个软件包，然后软件包管理器会帮助你从软件源下载软件包，同时自动解决所有的依赖（即下载安装这个软件包的安装所依赖的其它软件包），完成所有的配置。Debian&#x2F;Ubuntu 使用的 apt-get，Fedora&#x2F;CentOS 使用的 yum，以及 OSX 下可用的 homebrew">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/pic/1505.png">
+<meta property="article:published_time" content="2024-03-11T05:15:03.000Z">
+<meta property="article:modified_time" content="2024-03-14T09:21:16.910Z">
+<meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="树链剖分">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/pic/1505.png">
+
+
+<link rel="canonical" href="http://arcalunar.github.io/2024/03/11/%E6%B4%9B%E8%B0%B7P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arcalunar.github.io/2024/03/11/%E6%B4%9B%E8%B0%B7P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/","path":"2024/03/11/洛谷P2146-NOI2015-软件包管理器/","title":"洛谷P2146 - [NOI2015] 软件包管理器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>洛谷P2146 - [NOI2015] 软件包管理器 | Arca Lunar's Mini Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arca Lunar's Mini Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ow<</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4%E3%80%91"><span class="nav-number">1.5.</span> <span class="nav-text">【数据范围】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arca Lunar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/11/%E6%B4%9B%E8%B0%B7P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="洛谷P2146 - [NOI2015] 软件包管理器 | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          洛谷P2146 - [NOI2015] 软件包管理器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-11 13:15:03" itemprop="dateCreated datePublished" datetime="2024-03-11T13:15:03+08:00">2024-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-14 17:21:16" itemprop="dateModified" datetime="2024-03-14T17:21:16+08:00">2024-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/%E6%B4%9B%E8%B0%B7/" itemprop="url" rel="index"><span itemprop="name">洛谷</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2146">题目</a></h2>
+<h3 id="题目背景">题目背景</h3>
+<p>Linux 用户和 OSX 用户一定对软件包管理器不会陌生。通过软件包管理器，你可以通过一行命令安装某一个软件包，然后软件包管理器会帮助你从软件源下载软件包，同时自动解决所有的依赖（即下载安装这个软件包的安装所依赖的其它软件包），完成所有的配置。Debian/Ubuntu 使用的 apt-get，Fedora/CentOS 使用的 yum，以及 OSX 下可用的 homebrew 都是优秀的软件包管理器。</p>
+<h3 id="题目描述">题目描述</h3>
+<p>你决定设计你自己的软件包管理器。不可避免地，你要解决软件包之间的依赖问题。如果软件包 $a$ 依赖软件包 $b$，那么安装软件包 $a$ 以前，必须先安装软件包 $b$。同时，如果想要卸载软件包 $b$，则必须卸载软件包 $a$。</p>
+<p>现在你已经获得了所有的软件包之间的依赖关系。而且，由于你之前的工作，除 $0$ 号软件包以外，在你的管理器当中的软件包都会依赖一个且仅一个软件包，而 $0$ 号软件包不依赖任何一个软件包。且依赖关系不存在环（即不会存在 $m$ 个软件包 $a_1,a_2, \dots , a_m$，对于 $i&lt;m$，$a_i$ 依赖 $a_{i+1}$，而 $a_m$ 依赖 $a_1$ 的情况）。</p>
+<p>现在你要为你的软件包管理器写一个依赖解决程序。根据反馈，用户希望在安装和卸载某个软件包时，快速地知道这个操作实际上会改变多少个软件包的安装状态（即安装操作会安装多少个未安装的软件包，或卸载操作会卸载多少个已安装的软件包），你的任务就是实现这个部分。</p>
+<p>注意，安装一个已安装的软件包，或卸载一个未安装的软件包，都不会改变任何软件包的安装状态，即在此情况下，改变安装状态的软件包数为 $0$。</p>
+<h3 id="输入格式">输入格式</h3>
+<p>第一行一个正整数 $n$，表示软件包个数，从 $0$ 开始编号。<br>
+第二行有 $n-1$ 个整数，第 $i$ 个表示 $i$ 号软件包依赖的软件包编号。<br>
+然后一行一个正整数 $q$，表示操作个数，格式如下：</p>
+<ul>
+<li><code>install x</code> 表示安装 $x$ 号软件包</li>
+<li><code>uninstall x</code> 表示卸载 $x$ 号软件包</li>
+</ul>
+<p>一开始所有软件包都是未安装的。</p>
+<p>对于每个操作，你需要输出这步操作会改变多少个软件包的安装状态，随后应用这个操作（即改变你维护的安装状态）。</p>
+<h3 id="输出格式">输出格式</h3>
+<p>输出 $q$ 行，每行一个整数，表示每次询问的答案。</p>
+<h3 id="【数据范围】">【数据范围】</h3>
+<p><img src="https://cdn.luogu.com.cn/upload/pic/1505.png" alt=""></p>
+<hr>
+<h2 id="题解">题解</h2>
+<p>
+<p>我们比较容易想到的是，安装一个软件需要所有前置依赖，而每个软件只有一个前置依赖，所以整个软件包管理系统构成了一棵<strong>有根树</strong>，安装一个软件 $p$ 在这棵依赖树上对应的操作是<strong>把 $p\to 0$ 的路径上所有软件设置成 $1$</strong>（这里假定 $1$ 表示已安装，$0$ 表示未安装）。而删除一个软件对应的是，<strong>把以 $p$ 为根节点的子树都设置成 $0$</strong>。所以，我们可以结合<strong>树链剖分</strong>和<strong>区修区查线段树</strong>（要注意的是，由于软件下标从 $0$ 开始，所以代表懒标记的 <code>tag[]</code> 的默认值应该设置成 $-1$，而不是 $0$）来完成这些操作。</p>
+<details><summary>树链剖分基操</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reserved for HLD</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; dep, top, hson, siz, dfn, fa;</span><br><span class="line"><span class="type">int</span> idx;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> node, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">    dep[node] = dep[f] + <span class="number">1</span>;</span><br><span class="line">    siz[node] = <span class="number">1</span>;</span><br><span class="line">    fa[node] = f;</span><br><span class="line">    <span class="type">int</span> maxsize = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;v : adj[node]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs1</span>(v, node);</span><br><span class="line">        siz[node] += siz[v];</span><br><span class="line">        <span class="keyword">if</span> (siz[v] &gt; maxsize) &#123;</span><br><span class="line">            maxsize = siz[v];</span><br><span class="line">            hson[node] = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">    dfn[u] = idx++;</span><br><span class="line">    top[u] = f;</span><br><span class="line">    <span class="keyword">if</span> (hson[u] == <span class="number">-1</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">dfs2</span>(hson[u], f);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;v : adj[u]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (v == fa[u] || v == hson[u]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs2</span>(v, v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<details><summary>区修区查线段树基操（这里是区间设置为特定值）</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (tag[p] != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="type">int</span> ls = p &lt;&lt; <span class="number">1</span>, rs = ls + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        tree[ls] = tag[p] * (m - l + <span class="number">1</span>);</span><br><span class="line">        tree[rs] = tag[p] * (r - m);</span><br><span class="line">        tag[ls] = tag[p];</span><br><span class="line">        tag[rs] = tag[p];</span><br><span class="line">        tag[p] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123; tree[p] = tree[p &lt;&lt; <span class="number">1</span>] + tree[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]; &#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> ql, <span class="type">int</span> qr, <span class="type">int</span> v, <span class="type">int</span> p = <span class="number">1</span>, <span class="type">int</span> l = <span class="number">0</span>, <span class="type">int</span> r = N - <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= l &amp;&amp; r &lt;= qr) &#123;</span><br><span class="line">        tree[p] = (r - l + <span class="number">1</span>) * v;</span><br><span class="line">        tag[p] = v;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">pushdown</span>(p, l, r);</span><br><span class="line">    <span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= m) <span class="built_in">modify</span>(ql, qr, v, p &lt;&lt; <span class="number">1</span>, l, m);</span><br><span class="line">    <span class="keyword">if</span> (m &lt; qr) <span class="built_in">modify</span>(ql, qr, v, p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, m + <span class="number">1</span>, r);</span><br><span class="line">    <span class="built_in">pushup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">enquire</span><span class="params">(<span class="type">int</span> ql, <span class="type">int</span> qr, <span class="type">int</span> p = <span class="number">1</span>, <span class="type">int</span> l = <span class="number">0</span>, <span class="type">int</span> r = N - <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= l &amp;&amp; r &lt;= qr) <span class="keyword">return</span> tree[p];</span><br><span class="line">    <span class="built_in">pushdown</span>(p, l, r);</span><br><span class="line">    <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (ql &lt;= m) s += <span class="built_in">enquire</span>(ql, qr, p &lt;&lt; <span class="number">1</span>, l, m);</span><br><span class="line">    <span class="keyword">if</span> (m &lt; qr) s += <span class="built_in">enquire</span>(ql, qr, p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, m + <span class="number">1</span>, r);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+</p>
+<p>
+<p>当我们要安装的时候，我们暴力跳链，并用线段树把链上的节点都设置成 $1$。不过我们还需要统计有多少软件没安装（也就是值为 $0$），我们可以通过 <code>dep[x]-dep[top[x]]+1-enquire(dfn[top[x]], dfn[x])</code> 来计算。<code>dep[x]-dep[top[x]]+1</code> 计算这条链上有多少点（包含链首和 <code>x</code>），<code>enquire(dfn[top[x]], dfn[x])</code> 计算有多少软件已经被安装过了，那么相减就是还没安装的软件个数。</p>
+<details><summary>安装软件包（暴力跳链并统计）</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">installPackage</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> y = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (top[x] != top[y]) &#123;</span><br><span class="line">        cnt += dep[x] - dep[top[x]] + <span class="number">1</span> - <span class="built_in">enquire</span>(dfn[top[x]], dfn[x]);</span><br><span class="line">        <span class="built_in">modify</span>(dfn[top[x]], dfn[x], <span class="number">1</span>);</span><br><span class="line">        x = fa[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    cnt += dep[x] - dep[y] + <span class="number">1</span> - <span class="built_in">enquire</span>(dfn[y], dfn[x]);</span><br><span class="line">    <span class="built_in">modify</span>(dfn[<span class="number">0</span>], dfn[x], <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+</p>
+<p>
+<p>当我们要删除软件包 $p$ 的时候，因为所有依赖于 $p$ 的包都要被删掉，所以在依赖树上对应的是 $p$ 为根的子树，而 $\text{DFS}$ 序的一个性质就是，以 $p$ 为根的子树在 $\text{DFS}$ 序数组中是连续的，也就是 $DFS_{dfn[p]}\to DFS_{dfn[p]+size[p]-1}$（$size[p]$ 表示子树大小）。所以，要删除几个包，就是 <code>enquire(dfn[p], dfn[p]+size[p]-1)</code>，然后执行 <code>modify(dfn[p], dfn[p]+size[p]-1, 0)</code> 区间修改成 $0$ 表示删除。</p>
+<details><summary>删除软件包（树链剖分维护子树）</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">uninstallPackage</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="built_in">enquire</span>(dfn[x], dfn[x] + siz[x] - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">modify</span>(dfn[x], dfn[x] + siz[x] - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+</p>
+------
+<p><a target="_blank" rel="noopener" href="https://vjudge.net/solution/49734124/xqL7Pl9BARqH1lbRCfIP">Submission 记录</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 树链剖分</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/07/CF1796D-Maximum-Subarray/" rel="prev" title="CF1796D - Maximum Subarray">
+                  <i class="fa fa-angle-left"></i> CF1796D - Maximum Subarray
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/11/CF1860E-Fast-Travel-Text-Editor/" rel="next" title="CF1860E - Fast Travel Text Editor">
+                  CF1860E - Fast Travel Text Editor <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>

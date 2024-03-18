@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目  题解 本题考查König 定理的运用以及 bitmask 的技巧。 König 定理的内容是：二分图中，最大匹配&#x3D;最小点覆盖。 所以，题目中的成本可以转化为 $c\times$ 最小点覆盖中点的个数加上最小生成树的边权和。 因为 $n\le 20$，我们考虑用 bitmask 枚举最小点覆盖，然后对每个最小点覆盖跑一次 Kruskal 最小生成树算法，看看解是否合法（是否联通）。即使这里枚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1948 - [G] MST with Matching">
+<meta property="og:url" content="http://arcalunar.github.io/2024/03/17/CF1948-G-MST-with-Matching/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
+<meta property="og:description" content="题目  题解 本题考查König 定理的运用以及 bitmask 的技巧。 König 定理的内容是：二分图中，最大匹配&#x3D;最小点覆盖。 所以，题目中的成本可以转化为 $c\times$ 最小点覆盖中点的个数加上最小生成树的边权和。 因为 $n\le 20$，我们考虑用 bitmask 枚举最小点覆盖，然后对每个最小点覆盖跑一次 Kruskal 最小生成树算法，看看解是否合法（是否联通）。即使这里枚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-16T20:06:13.000Z">
+<meta property="article:modified_time" content="2024-03-16T20:06:15.044Z">
+<meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="König 定理">
+<meta property="article:tag" content="最大匹配">
+<meta property="article:tag" content="最小支配集">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arcalunar.github.io/2024/03/17/CF1948-G-MST-with-Matching/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arcalunar.github.io/2024/03/17/CF1948-G-MST-with-Matching/","path":"2024/03/17/CF1948-G-MST-with-Matching/","title":"CF1948 - [G] MST with Matching"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CF1948 - [G] MST with Matching | Arca Lunar's Mini Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arca Lunar's Mini Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ow<</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AC-Code"><span class="nav-number">2.1.</span> <span class="nav-text">AC Code</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arca Lunar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/17/CF1948-G-MST-with-Matching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CF1948 - [G] MST with Matching | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF1948 - [G] MST with Matching
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-17 04:06:13 / 修改时间：04:06:15" itemprop="dateCreated datePublished" datetime="2024-03-17T04:06:13+08:00">2024-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/Codeforces/1948/" itemprop="url" rel="index"><span itemprop="name">1948</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1948/problem/G">题目</a></h2>
+<hr>
+<h2 id="题解"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1948/submission/251813712">题解</a></h2>
+<p>本题考查<strong>König 定理</strong>的运用以及 <strong>bitmask</strong> 的技巧。</p>
+<p>König 定理的内容是：二分图中，最大匹配=最小点覆盖。</p>
+<p>所以，题目中的成本可以转化为 $c\times$ 最小点覆盖中点的个数加上最小生成树的边权和。</p>
+<p>因为 $n\le 20$，我们考虑用 bitmask 枚举最小点覆盖，然后对每个最小点覆盖跑一次 Kruskal 最小生成树算法，看看解是否合法（是否联通）。即使这里枚举的 bitmask 包含了最小点覆盖，那么，这个点覆盖的最小生成树一定和最小点覆盖的最小生成树是一样的，而且一定在之前 bitmask 字面值更小的时候已经枚举过了，所以可以照常计算，然后对答案取 $\min$</p>
+<h3 id="AC-Code">AC Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span> &#123;</span><br><span class="line">    <span class="type">int</span> u, v, w;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;a) <span class="type">const</span> &#123; <span class="keyword">return</span> w &lt; a.w; &#125;</span><br><span class="line">    <span class="built_in">Edge</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) : <span class="built_in">u</span>(a), <span class="built_in">v</span>(b), <span class="built_in">w</span>(c) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N, C;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; C;</span><br><span class="line"></span><br><span class="line">    vector&lt;Edge&gt; e;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 存边，这里通过 if 语句保证每一条边只存一边</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="type">int</span> w;</span><br><span class="line">            cin &gt;&gt; w;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; j &amp;&amp; w) e.<span class="built_in">push_back</span>(<span class="built_in">Edge</span>(i, j, w));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按边权排序，准备 Kruskal 算法</span></span><br><span class="line">    <span class="built_in">sort</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">    ll ans = INF;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// S bitmask 枚举支配集，用了 Konig 定理转化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> S = <span class="number">0</span>; S &lt; (<span class="number">1</span> &lt;&lt; N); S++) &#123;</span><br><span class="line">        <span class="comment">// Kruskal 用的并查集</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">fa</span><span class="params">(N)</span></span>;</span><br><span class="line">        <span class="built_in">iota</span>(fa.<span class="built_in">begin</span>(), fa.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">auto</span> root = [&amp;, helper = [&amp;](<span class="keyword">auto</span> self, <span class="type">int</span> x) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> x == fa[x] ? x : fa[x] = <span class="built_in">self</span>(self, fa[x]);</span><br><span class="line">        &#125;](<span class="type">int</span> x) &#123; <span class="keyword">return</span> <span class="built_in">helper</span>(helper, x); &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// sum 计算当前支配集方案的成本</span></span><br><span class="line">        ll sum = __builtin_popcount(S) * C;</span><br><span class="line">        <span class="comment">// Kruskal</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; e.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> u = e[i].u, v = e[i].v, w = e[i].w;</span><br><span class="line">            <span class="comment">// 如果这条边被支配集覆盖到，那么纳入最小生成树的考量中</span></span><br><span class="line">            <span class="keyword">if</span> ((((S &gt;&gt; u) &amp; <span class="number">1</span>) || ((S &gt;&gt; v) &amp; <span class="number">1</span>)) &amp;&amp; <span class="built_in">root</span>(u) != <span class="built_in">root</span>(v)) &#123;</span><br><span class="line">                sum += w;</span><br><span class="line">                <span class="comment">// unite</span></span><br><span class="line">                fa[<span class="built_in">root</span>(u)] = <span class="built_in">root</span>(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 检查合法性，是否联通</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">root</span>(i) != <span class="built_in">root</span>(<span class="number">0</span>)) &#123;</span><br><span class="line">                sum = INF;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, sum);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Konig-%E5%AE%9A%E7%90%86/" rel="tag"># König 定理</a>
+              <a href="/tags/%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D/" rel="tag"># 最大匹配</a>
+              <a href="/tags/%E6%9C%80%E5%B0%8F%E6%94%AF%E9%85%8D%E9%9B%86/" rel="tag"># 最小支配集</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/16/CF1948-D-Tandem-Repeats/" rel="prev" title="CF1948 - [D] Tandem Repeats">
+                  <i class="fa fa-angle-left"></i> CF1948 - [D] Tandem Repeats
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/17/CF1943-1B-2D-Non-Palindromic-Substring/" rel="next" title="CF1943 - [1B/2D] Non-Palindromic Substring">
+                  CF1943 - [1B/2D] Non-Palindromic Substring <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>
