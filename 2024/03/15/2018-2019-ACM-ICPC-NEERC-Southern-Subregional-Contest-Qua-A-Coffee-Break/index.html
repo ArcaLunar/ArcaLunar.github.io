@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目  题解 我的错误主要是题意读错了，题意其实是每天结束之后，喝咖啡间隔会刷新，我以为是仍然生效。 这题可以直接 STL，用 set 保存喝咖啡的时间点，用 last 记录上次喝咖啡的时间点，用贪心的思想，希望在一天内喝尽可能多的咖啡，就是每次 upper_bound(last+D) 找下一次能喝咖啡的时间点，如果到达 set.end() 就重设 last，然后 day++，否则，这个时间点的咖">
+    <meta name="description" content="题目   题解 我的错误主要是题意读错了，题意其实是每天结束之后，喝咖啡间隔会刷新，我以为是仍然生效。 这题可以直接 STL，用 set 保存喝咖啡的时间点，用 last 记录上次喝咖啡的时间点，用贪心的思想，希望在一天内喝尽可能多的咖啡，就是每次 upper_bound(last+D) 找下一次能喝咖啡的时间点，如果到达 set.end() 就重设 last，然后 day++，否则，这个时间点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [A] Coffee Break">
 <meta property="og:url" content="http://arcalunar.github.io/2024/03/15/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-A-Coffee-Break/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
-<meta property="og:description" content="题目  题解 我的错误主要是题意读错了，题意其实是每天结束之后，喝咖啡间隔会刷新，我以为是仍然生效。 这题可以直接 STL，用 set 保存喝咖啡的时间点，用 last 记录上次喝咖啡的时间点，用贪心的思想，希望在一天内喝尽可能多的咖啡，就是每次 upper_bound(last+D) 找下一次能喝咖啡的时间点，如果到达 set.end() 就重设 last，然后 day++，否则，这个时间点的咖">
+<meta property="og:description" content="题目   题解 我的错误主要是题意读错了，题意其实是每天结束之后，喝咖啡间隔会刷新，我以为是仍然生效。 这题可以直接 STL，用 set 保存喝咖啡的时间点，用 last 记录上次喝咖啡的时间点，用贪心的思想，希望在一天内喝尽可能多的咖啡，就是每次 upper_bound(last+D) 找下一次能喝咖啡的时间点，如果到达 set.end() 就重设 last，然后 day++，否则，这个时间点">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-15T08:18:17.000Z">
 <meta property="article:modified_time" content="2024-03-15T08:26:12.419Z">
@@ -107,7 +107,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text"> 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text"> 题解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,9 +215,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/problem/A">题目</a></h2>
-<hr>
-<h2 id="题解"><a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/251364530">题解</a></h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/problem/A">题目</a></h2>
+<hr />
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/251364530">题解</a></h2>
 <p>我的错误主要是题意读错了，题意其实是每天结束之后，喝咖啡间隔会刷新，我以为是仍然生效。</p>
 <p>这题可以直接 STL，用 <code>set</code> 保存喝咖啡的时间点，用 <code>last</code> 记录上次喝咖啡的时间点，用贪心的思想，希望在一天内喝尽可能多的咖啡，就是每次 <code>upper_bound(last+D)</code> 找下一次能喝咖啡的时间点，如果到达 <code>set.end()</code> 就重设 <code>last</code>，然后 <code>day++</code>，否则，这个时间点的咖啡就是在第 <code>day</code> 天喝的，并且更新 <code>last</code>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ll N, M, D;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; M &gt;&gt; D;</span><br><span class="line">    map&lt;ll, ll&gt; ans;</span><br><span class="line"></span><br><span class="line">    set&lt;ll&gt; cof;</span><br><span class="line">    <span class="function">vector&lt;ll&gt; <span class="title">arr</span><span class="params">(N)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        cin &gt;&gt; arr[i];</span><br><span class="line">        cof.<span class="built_in">insert</span>(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll last = -INF;</span><br><span class="line">    ll day = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (cof.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="keyword">auto</span> it = cof.<span class="built_in">upper_bound</span>(last + D);</span><br><span class="line">        <span class="keyword">if</span> (it == cof.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            day++;</span><br><span class="line">            last = -INF;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans[*it] = day;</span><br><span class="line">            last = *it;</span><br><span class="line">            cof.<span class="built_in">erase</span>(it);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; day &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> ch : arr) &#123;</span><br><span class="line">        cout &lt;&lt; ans[ch] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -271,19 +271,13 @@
     </span>
     <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
   </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-  <div class="sidebar-dimmer"></div>
   <div class="back-to-top" role="button" aria-label="返回顶部">
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
@@ -296,23 +290,25 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
 
   
 
 
 
 
-
-
   
 
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
   <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
   <script src="/js/third-party/math/katex.js"></script>
 
