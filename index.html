@@ -113,7 +113,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -122,7 +122,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -139,6 +139,112 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/" class="post-title-link" itemprop="url">2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-20 21:08:24" itemprop="dateCreated datePublished" datetime="2024-03-20T21:08:24+08:00">2024-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-21 00:28:49" itemprop="dateModified" datetime="2024-03-21T00:28:49+08:00">2024-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/NEERC/" itemprop="url" rel="index"><span itemprop="name">NEERC</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/NEERC/2018-2019/" itemprop="url" rel="index"><span itemprop="name">2018-2019</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/problem/B">题目</a></h2>
+<hr />
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
+<h3 id="思路一贪心-滑动窗口"><a class="markdownIt-Anchor" href="#思路一贪心-滑动窗口"></a> 思路一：贪心 + 滑动窗口</h3>
+<p>飞机飞过的区间一定是连续的，而且贪心地想，如果飞机能跨过下坠区间，那么就能在动力区间继续飞行更远的距离，所以，我们可以使用滑动窗口贪心地加入区间，只要还能继续飞行，就继续飞行；否则，弹出最前面的下坠区间（和对应的动力区间），直到能够跨过这段下坠区间继续飞行。然后加入滑窗。</p>
+<blockquote>
+<p>最重要的是发现可以连续贪心的性质</p>
+</blockquote>
+<h4 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/252475438">AC Code</a></h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N, HP;</span><br><span class="line">vector&lt;pii&gt; air;</span><br><span class="line">vector&lt;ll&gt; req;</span><br><span class="line">vector&lt;ll&gt; dis;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; HP;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        ll a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        req.<span class="built_in">emplace_back</span>(i == <span class="number">0</span> ? <span class="number">0</span> : a - air.<span class="built_in">back</span>().second);</span><br><span class="line">        air.<span class="built_in">emplace_back</span>(a, b);</span><br><span class="line">        dis.<span class="built_in">emplace_back</span>(b - a);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; line;</span><br><span class="line">    ll ans = <span class="number">0</span>, sum = <span class="number">0</span>, shp = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// line.push(0);</span></span><br><span class="line">    <span class="comment">// sum = dis[0];</span></span><br><span class="line">    <span class="comment">// 这里不能先 push 0，因为有可能答案是出第一个区间后就降落，放在 for 循环里一起计算</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// If might fall, pop leftmost airline</span></span><br><span class="line">        <span class="keyword">while</span> (line.<span class="built_in">size</span>() &amp;&amp; shp + req[i] &gt;= HP) &#123;</span><br><span class="line">            HP += req[line.<span class="built_in">front</span>() + <span class="number">1</span>];</span><br><span class="line">            sum -= req[line.<span class="built_in">front</span>() + <span class="number">1</span>] + dis[line.<span class="built_in">front</span>()];</span><br><span class="line">            line.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        line.<span class="built_in">push</span>(i);</span><br><span class="line">        HP -= req[i];</span><br><span class="line">        sum += req[i] + dis[i];</span><br><span class="line">        <span class="keyword">if</span> (sum + HP &gt;= ans) &#123; <span class="comment">// 如果出了当前区间就开始降落的距离</span></span><br><span class="line">            ans = sum + HP;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路二二分"><a class="markdownIt-Anchor" href="#思路二二分"></a> 思路二：二分</h3>
+<p>我们肯定是从某个动力区间的左端点出发（这样才不浪费下坠距离），所以我们用前缀和处理从区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 飞到区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> 要下坠多少距离，二分找到最后一个不会下坠坠地的区间右端点，计算答案。</p>
+<h4 id="ac-code-2"><a class="markdownIt-Anchor" href="#ac-code-2"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/252473340">AC Code</a></h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N, HP;</span><br><span class="line">vector&lt;pii&gt; air;</span><br><span class="line">vector&lt;ll&gt; req;</span><br><span class="line">vector&lt;ll&gt; dis;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; HP;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        ll a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        req.<span class="built_in">emplace_back</span>(i == <span class="number">0</span> ? <span class="number">0</span> : a - air.<span class="built_in">back</span>().second);</span><br><span class="line">        air.<span class="built_in">emplace_back</span>(a, b);</span><br><span class="line">        dis.<span class="built_in">emplace_back</span>(b - a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">        req[i] += req[i - <span class="number">1</span>];</span><br><span class="line">        dis[i] += dis[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> mid, <span class="type">int</span> base) &#123; <span class="keyword">return</span> req[mid] - req[base] &gt;= HP; &#125;;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="type">int</span> l = i, r = N;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(m, i))</span><br><span class="line">                r = m;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                l = m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        l--; <span class="comment">// air[l] 是最后一个合法的动力区间</span></span><br><span class="line">        ans = <span class="built_in">max</span>(ans, HP - req[l] + req[i] + air[l].second - air[i].first); <span class="comment">// 如果出了 air[l] 就开始降落的距离</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1139,100 +1245,6 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>本身是不是回文串（可以用马拉车预处理）</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N, Q;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; Q;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a1</span><span class="params">(N + <span class="number">1</span>, <span class="number">0</span>)</span>, <span class="title">a2</span><span class="params">(N + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s[i] == s[i + <span class="number">1</span>]) a1[i + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">2</span> &lt; N &amp;&amp; s[i] == s[i + <span class="number">2</span>]) a2[i + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) &#123;</span><br><span class="line">        a1[i] += a1[i - <span class="number">1</span>];</span><br><span class="line">        a2[i] += a2[i - <span class="number">1</span>];</span><br><span class="line">    &#125; <span class="comment">// 这里把“相等”的信息存在前一个点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> d = <span class="built_in">manacher</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (Q--) &#123;</span><br><span class="line">        <span class="type">int</span> l, r;</span><br><span class="line">        cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        <span class="comment">// 判断是不是所有字符都相等，是的话 a1[l]...a1[r-1] 均为 1，前缀和就是 r-l</span></span><br><span class="line">        <span class="keyword">if</span> (a1[r - <span class="number">1</span>] - a1[l - <span class="number">1</span>] == r - l) cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">        <span class="comment">// 判断奇数位偶数位是不是各自相等，是的话（除去最后两位）其余均为 1，前缀和是 r-l-1</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (a2[r - <span class="number">2</span>] - a2[l - <span class="number">1</span>] == r - l - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 合法的是所有偶数长度子串</span></span><br><span class="line">            ll len = r - l + <span class="number">1</span>;</span><br><span class="line">            ll tmp = len - len % <span class="number">2</span>;</span><br><span class="line">            cout &lt;&lt; (<span class="number">2</span> + tmp) * ((tmp - <span class="number">2</span>) / <span class="number">2</span> + <span class="number">1</span>) / <span class="number">2</span> &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否则均合法</span></span><br><span class="line">            ll len = r - l + <span class="number">1</span>;</span><br><span class="line">            ll c = (len + <span class="number">1</span>) * (len - <span class="number">2</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="comment">// 判断一下自己是不是回文串</span></span><br><span class="line">            <span class="comment">// 这里，[l,r] 对应到 添加 # 的字符串里，回文中心是 (r+l-1)=1/2*((l-1)*2+1+(r-1)*2+1)，回文长度是 d[r+l-1]-1</span></span><br><span class="line">            <span class="keyword">if</span> (d[r + l - <span class="number">1</span>] &lt; r - l + <span class="number">2</span>) c += len;</span><br><span class="line">            cout &lt;&lt; c &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/17/CF1948-G-MST-with-Matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Arca Lunar">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/17/CF1948-G-MST-with-Matching/" class="post-title-link" itemprop="url">CF1948 - [G] MST with Matching</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-17 04:06:13 / 修改时间：04:06:15" itemprop="dateCreated datePublished" datetime="2024-03-17T04:06:13+08:00">2024-03-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/Codeforces/1948/" itemprop="url" rel="index"><span itemprop="name">1948</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1948/problem/G">题目</a></h2>
-<hr />
-<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1948/submission/251813712">题解</a></h2>
-<p>本题考查<strong>König 定理</strong>的运用以及 <strong>bitmask</strong> 的技巧。</p>
-<p>König 定理的内容是：二分图中，最大匹配=最小点覆盖。</p>
-<p>所以，题目中的成本可以转化为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>×</mo></mrow><annotation encoding="application/x-tex">c\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">c</span><span class="mord">×</span></span></span></span> 最小点覆盖中点的个数加上最小生成树的边权和。</p>
-<p>因为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≤</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">n\le 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，我们考虑用 bitmask 枚举最小点覆盖，然后对每个最小点覆盖跑一次 Kruskal 最小生成树算法，看看解是否合法（是否联通）。即使这里枚举的 bitmask 包含了最小点覆盖，那么，这个点覆盖的最小生成树一定和最小点覆盖的最小生成树是一样的，而且一定在之前 bitmask 字面值更小的时候已经枚举过了，所以可以照常计算，然后对答案取 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66786em;vertical-align:0em;"></span><span class="mop">min</span></span></span></span></p>
-<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC Code</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span> &#123;</span><br><span class="line">    <span class="type">int</span> u, v, w;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edge &amp;a) <span class="type">const</span> &#123; <span class="keyword">return</span> w &lt; a.w; &#125;</span><br><span class="line">    <span class="built_in">Edge</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) : <span class="built_in">u</span>(a), <span class="built_in">v</span>(b), <span class="built_in">w</span>(c) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N, C;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; C;</span><br><span class="line"></span><br><span class="line">    vector&lt;Edge&gt; e;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 存边，这里通过 if 语句保证每一条边只存一边</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="type">int</span> w;</span><br><span class="line">            cin &gt;&gt; w;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; j &amp;&amp; w) e.<span class="built_in">push_back</span>(<span class="built_in">Edge</span>(i, j, w));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按边权排序，准备 Kruskal 算法</span></span><br><span class="line">    <span class="built_in">sort</span>(e.<span class="built_in">begin</span>(), e.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">    ll ans = INF;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// S bitmask 枚举支配集，用了 Konig 定理转化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> S = <span class="number">0</span>; S &lt; (<span class="number">1</span> &lt;&lt; N); S++) &#123;</span><br><span class="line">        <span class="comment">// Kruskal 用的并查集</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">fa</span><span class="params">(N)</span></span>;</span><br><span class="line">        <span class="built_in">iota</span>(fa.<span class="built_in">begin</span>(), fa.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">auto</span> root = [&amp;, helper = [&amp;](<span class="keyword">auto</span> self, <span class="type">int</span> x) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> x == fa[x] ? x : fa[x] = <span class="built_in">self</span>(self, fa[x]);</span><br><span class="line">        &#125;](<span class="type">int</span> x) &#123; <span class="keyword">return</span> <span class="built_in">helper</span>(helper, x); &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// sum 计算当前支配集方案的成本</span></span><br><span class="line">        ll sum = __builtin_popcount(S) * C;</span><br><span class="line">        <span class="comment">// Kruskal</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; e.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> u = e[i].u, v = e[i].v, w = e[i].w;</span><br><span class="line">            <span class="comment">// 如果这条边被支配集覆盖到，那么纳入最小生成树的考量中</span></span><br><span class="line">            <span class="keyword">if</span> ((((S &gt;&gt; u) &amp; <span class="number">1</span>) || ((S &gt;&gt; v) &amp; <span class="number">1</span>)) &amp;&amp; <span class="built_in">root</span>(u) != <span class="built_in">root</span>(v)) &#123;</span><br><span class="line">                sum += w;</span><br><span class="line">                <span class="comment">// unite</span></span><br><span class="line">                fa[<span class="built_in">root</span>(u)] = <span class="built_in">root</span>(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 检查合法性，是否联通</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">root</span>(i) != <span class="built_in">root</span>(<span class="number">0</span>)) &#123;</span><br><span class="line">                sum = INF;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="built_in">min</span>(ans, sum);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 

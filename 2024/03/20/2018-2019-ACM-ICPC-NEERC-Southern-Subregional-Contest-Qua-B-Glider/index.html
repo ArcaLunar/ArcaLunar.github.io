@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目   题解  思路一：贪心 + 滑动窗口 飞机飞过的区间一定是连续的，而且贪心地想，如果飞机能跨过下坠区间，那么就能在动力区间继续飞行更远的距离，所以，我们可以使用滑动窗口贪心地加入区间，只要还能继续飞行，就继续飞行；否则，弹出最前面的下坠区间（和对应的动力区间），直到能够跨过这段下坠区间继续飞行。然后加入滑窗。  最重要的是发现可以连续贪心的性质   AC Code 12345678910">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider">
+<meta property="og:url" content="http://arcalunar.github.io/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
+<meta property="og:description" content="题目   题解  思路一：贪心 + 滑动窗口 飞机飞过的区间一定是连续的，而且贪心地想，如果飞机能跨过下坠区间，那么就能在动力区间继续飞行更远的距离，所以，我们可以使用滑动窗口贪心地加入区间，只要还能继续飞行，就继续飞行；否则，弹出最前面的下坠区间（和对应的动力区间），直到能够跨过这段下坠区间继续飞行。然后加入滑窗。  最重要的是发现可以连续贪心的性质   AC Code 12345678910">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-20T13:08:24.000Z">
+<meta property="article:modified_time" content="2024-03-20T16:28:49.298Z">
+<meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="二分">
+<meta property="article:tag" content="滑动窗口">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arcalunar.github.io/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arcalunar.github.io/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/","path":"2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/","title":"2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider | Arca Lunar's Mini Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arca Lunar's Mini Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ow<</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text"> 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text"> 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80%E8%B4%AA%E5%BF%83-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="nav-number">2.1.</span> <span class="nav-text"> 思路一：贪心 + 滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ac-code"><span class="nav-number">2.1.1.</span> <span class="nav-text"> AC Code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%BA%8C%E4%BA%8C%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text"> 思路二：二分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ac-code-2"><span class="nav-number">2.2.1.</span> <span class="nav-text"> AC Code</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Arca Lunar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/20/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-B-Glider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [B] Glider
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-20 21:08:24" itemprop="dateCreated datePublished" datetime="2024-03-20T21:08:24+08:00">2024-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-21 00:28:49" itemprop="dateModified" datetime="2024-03-21T00:28:49+08:00">2024-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/NEERC/" itemprop="url" rel="index"><span itemprop="name">NEERC</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/NEERC/2018-2019/" itemprop="url" rel="index"><span itemprop="name">2018-2019</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/problem/B">题目</a></h2>
+<hr />
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
+<h3 id="思路一贪心-滑动窗口"><a class="markdownIt-Anchor" href="#思路一贪心-滑动窗口"></a> 思路一：贪心 + 滑动窗口</h3>
+<p>飞机飞过的区间一定是连续的，而且贪心地想，如果飞机能跨过下坠区间，那么就能在动力区间继续飞行更远的距离，所以，我们可以使用滑动窗口贪心地加入区间，只要还能继续飞行，就继续飞行；否则，弹出最前面的下坠区间（和对应的动力区间），直到能够跨过这段下坠区间继续飞行。然后加入滑窗。</p>
+<blockquote>
+<p>最重要的是发现可以连续贪心的性质</p>
+</blockquote>
+<h4 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/252475438">AC Code</a></h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N, HP;</span><br><span class="line">vector&lt;pii&gt; air;</span><br><span class="line">vector&lt;ll&gt; req;</span><br><span class="line">vector&lt;ll&gt; dis;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; HP;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        ll a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        req.<span class="built_in">emplace_back</span>(i == <span class="number">0</span> ? <span class="number">0</span> : a - air.<span class="built_in">back</span>().second);</span><br><span class="line">        air.<span class="built_in">emplace_back</span>(a, b);</span><br><span class="line">        dis.<span class="built_in">emplace_back</span>(b - a);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; line;</span><br><span class="line">    ll ans = <span class="number">0</span>, sum = <span class="number">0</span>, shp = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// line.push(0);</span></span><br><span class="line">    <span class="comment">// sum = dis[0];</span></span><br><span class="line">    <span class="comment">// 这里不能先 push 0，因为有可能答案是出第一个区间后就降落，放在 for 循环里一起计算</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// If might fall, pop leftmost airline</span></span><br><span class="line">        <span class="keyword">while</span> (line.<span class="built_in">size</span>() &amp;&amp; shp + req[i] &gt;= HP) &#123;</span><br><span class="line">            HP += req[line.<span class="built_in">front</span>() + <span class="number">1</span>];</span><br><span class="line">            sum -= req[line.<span class="built_in">front</span>() + <span class="number">1</span>] + dis[line.<span class="built_in">front</span>()];</span><br><span class="line">            line.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        line.<span class="built_in">push</span>(i);</span><br><span class="line">        HP -= req[i];</span><br><span class="line">        sum += req[i] + dis[i];</span><br><span class="line">        <span class="keyword">if</span> (sum + HP &gt;= ans) &#123; <span class="comment">// 如果出了当前区间就开始降落的距离</span></span><br><span class="line">            ans = sum + HP;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路二二分"><a class="markdownIt-Anchor" href="#思路二二分"></a> 思路二：二分</h3>
+<p>我们肯定是从某个动力区间的左端点出发（这样才不浪费下坠距离），所以我们用前缀和处理从区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 飞到区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span> 要下坠多少距离，二分找到最后一个不会下坠坠地的区间右端点，计算答案。</p>
+<h4 id="ac-code-2"><a class="markdownIt-Anchor" href="#ac-code-2"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/252473340">AC Code</a></h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N, HP;</span><br><span class="line">vector&lt;pii&gt; air;</span><br><span class="line">vector&lt;ll&gt; req;</span><br><span class="line">vector&lt;ll&gt; dis;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; HP;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        ll a, b;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        req.<span class="built_in">emplace_back</span>(i == <span class="number">0</span> ? <span class="number">0</span> : a - air.<span class="built_in">back</span>().second);</span><br><span class="line">        air.<span class="built_in">emplace_back</span>(a, b);</span><br><span class="line">        dis.<span class="built_in">emplace_back</span>(b - a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">        req[i] += req[i - <span class="number">1</span>];</span><br><span class="line">        dis[i] += dis[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> mid, <span class="type">int</span> base) &#123; <span class="keyword">return</span> req[mid] - req[base] &gt;= HP; &#125;;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="type">int</span> l = i, r = N;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(m, i))</span><br><span class="line">                r = m;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                l = m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        l--; <span class="comment">// air[l] 是最后一个合法的动力区间</span></span><br><span class="line">        ans = <span class="built_in">max</span>(ans, HP - req[l] + req[i] + air[l].second - air[i].first); <span class="comment">// 如果出了 air[l] 就开始降落的距离</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%8C%E5%88%86/" rel="tag"># 二分</a>
+              <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag"># 滑动窗口</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/20/LGR-174-%E6%B4%9B%E8%B0%B7%E4%BA%8C%E6%9C%88%E6%9C%88%E8%B5%9B-FanOI-R1-2D-1B-P10180-%E5%8D%8A%E5%BD%A9%E4%B8%89%E9%87%8D%E5%A5%8F/" rel="prev" title="LGR-174 洛谷二月月赛/FanOI R1 - [2D/1B] P10180 半彩三重奏">
+                  <i class="fa fa-angle-left"></i> LGR-174 洛谷二月月赛/FanOI R1 - [2D/1B] P10180 半彩三重奏
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Arca Lunar</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>
