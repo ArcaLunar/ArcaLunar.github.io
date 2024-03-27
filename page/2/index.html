@@ -120,7 +120,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -131,7 +131,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -148,6 +148,107 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/20/LGR-174-%E6%B4%9B%E8%B0%B7%E4%BA%8C%E6%9C%88%E6%9C%88%E8%B5%9B-FanOI-R1-2B-%E9%99%8C%E8%B7%AF%E5%AF%BB%E8%AF%97%E7%A4%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/20/LGR-174-%E6%B4%9B%E8%B0%B7%E4%BA%8C%E6%9C%88%E6%9C%88%E8%B5%9B-FanOI-R1-2B-%E9%99%8C%E8%B7%AF%E5%AF%BB%E8%AF%97%E7%A4%BC/" class="post-title-link" itemprop="url">LGR-174 洛谷二月月赛/FanOI R1 - [2B] 陌路寻诗礼</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-20 09:55:56 / 修改时间：11:00:50" itemprop="dateCreated datePublished" datetime="2024-03-20T09:55:56+08:00">2024-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/%E6%B4%9B%E8%B0%B7%E6%9C%88%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">洛谷月赛</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/%E6%B4%9B%E8%B0%B7%E6%9C%88%E8%B5%9B/174/" itemprop="url" rel="index"><span itemprop="name">174</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P10178">题目</a></h2>
+<hr />
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/147570627">题解</a></h2>
+<p>我们考虑如何构造。</p>
+<ol>
+<li>有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">20\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">%</span></span></span></span> 的数据是一棵树，我们先考虑如果是一棵树该怎么构造，显然，因为一棵树上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>→</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u\to v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> 的简单路径有且仅有一条，我们让所有边权都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 即可。</li>
+<li>有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">20\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">%</span></span></span></span> 的数据是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，此时所有边的边权都只能是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，那么是否存在合法解，只需要看 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>→</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u\to v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> 是不是有两条不同的路径，是的话就无解，否则可以。</li>
+</ol>
+<p>至此，我们有了大致构造思路：先全部赋值为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，然后找是不是有第二条路径，有就修改边权。</p>
+<p>那么我们怎么去做这回事呢？我们可以用 BFS 生成树做，从一个点出发，沿着树边的路径就是最短路，包含非树边的路径就不是最短路。</p>
+<blockquote>
+<p>BFS 生成树的性质：对于非树边 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">e_{(u,v)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7857599999999999em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">u</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>v</mi></msub><mo>≤</mo><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>u</mi></msub><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">dep_v\le dep_u+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
+</blockquote>
+<p>我们考虑非树边，当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k&gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 时，设非树边 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，那么 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>v</mi></msub><mo>≤</mo><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>u</mi></msub><mo>+</mo><mn>1</mn><mo>&lt;</mo><mi>d</mi><mi>e</mi><msub><mi>p</mi><mi>u</mi></msub><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">dep_v\le dep_u+1\lt dep_u+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>，把边权设置为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 即可满足条件。</p>
+<h3 id="ac-code"><a class="markdownIt-Anchor" href="#ac-code"></a> AC Code</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N, M, K;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; M &gt;&gt; K;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 构建有向图，同时保存边的编号 */</span></span><br><span class="line">    vector&lt;vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;&gt; <span class="built_in">G</span>(N);</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dep</span><span class="params">(N, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">vis</span><span class="params">(M, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, a, b; i &lt; M; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        a--, b--;</span><br><span class="line">        G[a].<span class="built_in">emplace_back</span>(b, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 以 1 为根，找一棵BFS树，树边权值为 1，否则为 2 (if K&gt;=2) */</span></span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="type">bool</span> alternative = <span class="literal">false</span>;</span><br><span class="line">    dep[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;[v, id] : G[u]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dep[v] == <span class="number">-1</span>) &#123;</span><br><span class="line">                dep[v] = dep[u] + <span class="number">1</span>;</span><br><span class="line">                vis[id] = <span class="number">1</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(v);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// find a second shortest path</span></span><br><span class="line">                <span class="keyword">if</span> (dep[v] == dep[u] + <span class="number">1</span>) &#123;</span><br><span class="line">                    alternative = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (K == <span class="number">1</span> &amp;&amp; alternative)</span><br><span class="line">        NO;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        YES;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; M; i++) cout &lt;&lt; <span class="number">1</span> + !vis[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1154,103 +1255,6 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Z ib = <span class="built_in">Mint</span>(<span class="number">1</span>) / (<span class="built_in">Z</span>(<span class="number">2</span>) ^ b[N]);</span><br><span class="line"><span class="comment">// cout &lt;&lt; ib &lt;&lt; endl;</span></span><br><span class="line"><span class="keyword">while</span> (Q--) &#123;</span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">    l--;</span><br><span class="line">    <span class="type">int</span> ain = a[r] - a[l];</span><br><span class="line">    <span class="type">int</span> bin = b[r] - b[l];</span><br><span class="line">    <span class="type">int</span> aout = a[N] - ain;</span><br><span class="line">    <span class="type">int</span> bout = b[N] - bin;</span><br><span class="line">    <span class="comment">// x+P</span></span><br><span class="line">    <span class="type">int</span> d = bin + ain - aout - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (d &lt; <span class="number">0</span>)</span><br><span class="line">        cout &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (d &gt;= b[N])</span><br><span class="line">        cout &lt;&lt; <span class="number">1</span> &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cout &lt;&lt; ans[d] * ib &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/15/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-K-Medians-and-Partitions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Arca Lunar">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/15/2018-2019-ACM-ICPC-NEERC-Southern-Subregional-Contest-Qua-K-Medians-and-Partitions/" class="post-title-link" itemprop="url">2018-2019 ACM-ICPC, NEERC, Southern Subregional Contest, Qua - [K] Medians and Partitions</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-15 18:13:20 / 修改时间：19:05:18" itemprop="dateCreated datePublished" datetime="2024-03-15T18:13:20+08:00">2024-03-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/NEERC/" itemprop="url" rel="index"><span itemprop="name">NEERC</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/NEERC/2018-2019/" itemprop="url" rel="index"><span itemprop="name">2018-2019</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/problem/K">题目</a></h2>
-<hr />
-<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://codeforces.com/group/rFPEPIopiD/contest/101911/submission/251385365">题解</a></h2>
-<p>一个分段的合法条件是，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">\ge M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 的数的个数超过区间的一半，因为这里只关心与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 的大小关系和个数，所以我们用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1/-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">+</span><span class="mord">1</span><span class="mord">/</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 建模，那么一个合法区间的条件就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><msubsup><mi>a</mi><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msubsup><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sum a_i&#x27;&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.010556em;vertical-align:-0.258664em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
-<p>还有一点是，子数组一定是连续的。所以我们可以线性扫描，尝试将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 分段：我们看 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\sum [l,i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\sum [i+1,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 是否都 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 是的话，我们贪心分段，然后更新 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mo>=</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">l=i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 表示下次要尝试分段的区间是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[i+1,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span>；否则就不动，继续扫描。</p>
-<blockquote>
-<p>模型：贪心分段 + 前缀和（检查合法性）</p>
-</blockquote>
-<details>
-<summary>AC Code</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> N, M;</span><br><span class="line">    cin &gt;&gt; N &gt;&gt; M;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(N)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : a) cin &gt;&gt; x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x : a) x = (x &gt;= M ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pre;</span><br><span class="line"></span><br><span class="line">    pre[<span class="number">-1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        pre[i] = pre[i - <span class="number">1</span>] + a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pre[N - <span class="number">1</span>] &lt;= <span class="number">0</span>) <span class="keyword">return</span> cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl, <span class="built_in">void</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 贪心分段，两段 m-good 合并完后也一定是 m-good</span></span><br><span class="line">    <span class="type">int</span> num = <span class="number">0</span>, last = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="comment">// 尝试把 [last+1, N-1] 分成两段</span></span><br><span class="line">        <span class="keyword">if</span> (pre[i] - pre[last] &gt; <span class="number">0</span> &amp;&amp; pre[N - <span class="number">1</span>] - pre[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            num++;</span><br><span class="line">            last = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; num + <span class="number">1</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
       
     </div>
 
