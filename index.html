@@ -120,7 +120,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -148,6 +148,122 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/04/09/%E6%B4%9B%E8%B0%B7P4092-HEOI2016-TJOI2016-%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arca Lunar">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/09/%E6%B4%9B%E8%B0%B7P4092-HEOI2016-TJOI2016-%E6%A0%91/" class="post-title-link" itemprop="url">洛谷P4092 - [HEOI2016/TJOI2016] 树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-09 00:14:50 / 修改时间：01:01:59" itemprop="dateCreated datePublished" datetime="2024-04-09T00:14:50+08:00">2024-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ACM/%E6%B4%9B%E8%B0%B7/" itemprop="url" rel="index"><span itemprop="name">洛谷</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4092">题目</a></h2>
+<h3 id="题目描述">题目描述</h3>
+<p>在 2016 年，佳媛姐姐刚刚学习了树，非常开心。现在他想解决这样一个问题：给定一颗有根树，根为 $1$ ，有以下两种操作：</p>
+<ol>
+<li>
+<p>标记操作：对某个结点打上标记。（在最开始，只有结点 $1$ 有标记，其他结点均无标记，而且对于某个结点，可以打多次标记。）</p>
+</li>
+<li>
+<p>询问操作：询问某个结点最近的一个打了标记的祖先。（这个结点本身也算自己的祖先）</p>
+</li>
+</ol>
+<p>你能帮帮她吗?</p>
+<h3 id="输入格式">输入格式</h3>
+<p>第一行两个正整数 $N$ 和 $Q$ 分别表示节点个数和操作次数。</p>
+<p>接下来 $N-1$ 行，每行两个正整数 $u,v ,, (1 \leqslant u,v \leqslant n)$ 表示 $u$ 到 $v$ 有一条有向边。</p>
+<p>接下来 $Q$ 行，形如 <code>oper num</code> ，<code>oper</code>  为 <code>C</code> 时表示这是一个标记操作, <code>oper</code> 为 <code>Q</code> 时表示这是一个询问操作。</p>
+<h3 id="输出格式">输出格式</h3>
+<p>输出一个正整数，表示结果</p>
+<h3 id="提示">提示</h3>
+<p>$30%$ 的数据，$1 \leqslant N, Q \leqslant 1000$ ；</p>
+<p>$70%$ 的数据，$1 \leqslant N, Q \leqslant 10000$ ；</p>
+<p>$100%$ 的数据，$1 \leqslant N, Q \leqslant 100000$ 。</p>
+<hr>
+<h2 id="题解"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/154980954">题解</a></h2>
+<p>比较裸的树链剖分题。直接用树链剖分处理出 $\text{dfn}$ 序后，用线段树维护哪些点被打上了标记（用 $1$ 表示）。那么 <code>enquire(L, R) == 0</code> 就说明 $[L,R]$ 之间都没有被打上标记。在一条链上，我们可以用二分查找找出深度最大的、被打上标记的点。</p>
+<details>
+<summary>树链剖分</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	fa[u] = f;</span><br><span class="line">	siz[u] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> v : adj[u]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">		dep[v] = dep[u] + <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">dfs1</span>(v, u);</span><br><span class="line">		siz[u] += siz[v];</span><br><span class="line">		<span class="keyword">if</span> (siz[v] &gt; siz[son[u]]) son[u] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> tm = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	dfn[u] = ++tm;</span><br><span class="line">	top[u] = f;</span><br><span class="line">	tag[dfn[u]] = u;</span><br><span class="line">	<span class="keyword">if</span> (!son[u]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">dfs2</span>(son[u], f);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> v : adj[u]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (v == fa[u] || v == son[u]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs2</span>(v, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<details>
+<details>
+<summary>线段树</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SegTree</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pullup</span><span class="params">(<span class="type">int</span> p)</span> </span>&#123; tr[p] = tr[p &lt;&lt; <span class="number">1</span>] + tr[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]; &#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> pos, <span class="type">int</span> p = <span class="number">1</span>, <span class="type">int</span> l = <span class="number">1</span>, <span class="type">int</span> r = N)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l == r) <span class="keyword">return</span> <span class="built_in">void</span>(tr[p] = <span class="number">1</span>);</span><br><span class="line">	<span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (pos &lt;= m)</span><br><span class="line">		<span class="built_in">modify</span>(pos, p &lt;&lt; <span class="number">1</span>, l, m);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">modify</span>(pos, p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, m + <span class="number">1</span>, r);</span><br><span class="line">	<span class="built_in">pullup</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> ql, <span class="type">int</span> qr, <span class="type">int</span> p = <span class="number">1</span>, <span class="type">int</span> l = <span class="number">1</span>, <span class="type">int</span> r = N)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ql &lt;= l &amp;&amp; r &lt;= qr) &#123;</span><br><span class="line">		<span class="keyword">return</span> tr[p];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">	<span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (ql &lt;= m) s += <span class="built_in">ask</span>(ql, qr, p &lt;&lt; <span class="number">1</span>, l, m);</span><br><span class="line">	<span class="keyword">if</span> (m &lt; qr) s += <span class="built_in">ask</span>(ql, qr, p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, m + <span class="number">1</span>, r);</span><br><span class="line">	<span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p>跳链查找</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">jump</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> findL = [&amp;](<span class="type">int</span> al, <span class="type">int</span> ar) &#123;</span><br><span class="line">		<span class="type">int</span> l = al, r = ar + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> mid) &#123; <span class="keyword">return</span> <span class="built_in">ask</span>(mid, ar) == <span class="number">0</span>; &#125;;</span><br><span class="line">		<span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">			<span class="type">int</span> m = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">check</span>(m))</span><br><span class="line">				r = m;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				l = m + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">check</span>(l))</span><br><span class="line">			cout &lt;&lt; tag[l - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; tag[l] &lt;&lt; endl;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (top[x] != <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">ask</span>(dfn[top[x]], dfn[x]) == <span class="number">0</span>) &#123;</span><br><span class="line">			x = fa[top[x]];</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">findL</span>(dfn[top[x]], dfn[x]);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">findL</span>(dfn[<span class="number">1</span>], dfn[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1268,109 +1384,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arcalunar.github.io/2024/03/22/LibreOJ-6281-%E6%95%B0%E5%88%97%E5%88%86%E5%9D%97%E5%85%A5%E9%97%A8-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Arca Lunar">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Arca Lunar's Mini Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/22/LibreOJ-6281-%E6%95%B0%E5%88%97%E5%88%86%E5%9D%97%E5%85%A5%E9%97%A8-5/" class="post-title-link" itemprop="url">LibreOJ [6281] - 数列分块入门 5</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-22 00:19:15 / 修改时间：00:36:32" itemprop="dateCreated datePublished" datetime="2024-03-22T00:19:15+08:00">2024-03-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ACM/LibreOJ/" itemprop="url" rel="index"><span itemprop="name">LibreOJ</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://loj.ac/p/6281">题目</a></h2>
-<hr />
-<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://loj.ac/s/2030482">题解</a></h2>
-<p>毕竟标题时“分块入门”，我们考虑怎么用<strong>分块</strong>做。</p>
-<p>我这里用 <code>struct Block&#123;&#125;;</code> 表示一个块，很显然，我们需要 <code>sum</code> 表示块内的和，<code>L R</code> 表示块的范围。每次我们修改 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span> 时，我们直接进入区间对应的块里暴力修改开根号，然后重新计算 <code>sum</code>。很显然，这样的复杂度是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>q</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nq)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mclose">)</span></span></span></span> 的。</p>
-<p>我们要考虑优化，实际上，当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 时，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>a</mi></msqrt><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">\sqrt{a}=a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">a</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
-c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
-c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
-c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
-s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
-c69,-144,104.5,-217.7,106.5,-221
-l0 -0
-c5.3,-9.3,12,-14,20,-14
-H400000v40H845.2724
-s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
-c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span>，这个时候即使修改 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 也不会对答案产生影响。而从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span> 通过开根号是可以快速下降到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的，因为每次根号至少让值减半（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msup><mi>a</mi><mn>2</mn></msup><mn>4</mn></mfrac><mo>&gt;</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi><mo>&gt;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\frac{a^2}{4}\gt a, a\gt 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>）。我们用一个块内变量 <code>cnt</code> 记录块内 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">0/1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span></span></span></span> 的个数，如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>n</mi><mi>t</mi><mo>=</mo><mtext>块长</mtext></mrow><annotation encoding="application/x-tex">cnt=块长</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">块</span><span class="mord cjk_fallback">长</span></span></span></span>，就说明这个块的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi mathvariant="normal">/</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">0/1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span></span></span></span> 即使再开根号，值也不会变，块内总和也不会变，可以直接跳过。</p>
-<p>时间复杂度不会证明，但就是挺快的（总用时 118ms）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> N;</span><br><span class="line"><span class="type">int</span> blockLen;</span><br><span class="line">vector&lt;ll&gt; val;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; belong;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Block</span> &#123;</span><br><span class="line">    <span class="type">int</span> all; <span class="comment">// 为 0/1 时，开方没用，记录个数</span></span><br><span class="line">    ll sum;</span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">rebuild</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (all == blockLen) <span class="comment">// 如果已经全是 0/1，开方没用，直接返回</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123; <span class="comment">// 否则暴力开方</span></span><br><span class="line">            <span class="keyword">if</span> (val[i] == <span class="number">0</span> || val[i] == <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            sum -= val[i];</span><br><span class="line">            val[i] = <span class="built_in">sqrt</span>(val[i]);</span><br><span class="line">            sum += val[i]; <span class="comment">// 更新 sum，并暴力开方</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (val[i] == <span class="number">1</span> || val[i] == <span class="number">0</span>) <span class="comment">// 更新 0/1 的个数</span></span><br><span class="line">                all++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ll <span class="title">ask</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123; <span class="comment">// 查询区间的和</span></span><br><span class="line">        <span class="keyword">if</span> (l == <span class="keyword">this</span>-&gt;l &amp;&amp; r == <span class="keyword">this</span>-&gt;r) <span class="comment">// 如果是整块，那么返回预处理的 sum</span></span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">        ll t = <span class="number">0</span>; <span class="comment">// 如果是散块，那么需要暴力加</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++)</span><br><span class="line">            t += val[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;Block&gt; b;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; N;</span><br><span class="line">    belong.<span class="built_in">resize</span>(N);</span><br><span class="line">    val.<span class="built_in">resize</span>(N);</span><br><span class="line">    b.<span class="built_in">resize</span>(N);</span><br><span class="line"></span><br><span class="line">    blockLen = <span class="built_in">sqrt</span>(N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        cin &gt;&gt; val[i];</span><br><span class="line">        belong[i] = i / blockLen + <span class="number">1</span>; <span class="comment">// 每个点属于哪个块</span></span><br><span class="line">        b[belong[i]].sum += val[i];</span><br><span class="line">        b[belong[i]].all += (val[i] == <span class="number">0</span> || val[i] == <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= belong[N - <span class="number">1</span>]; i++) &#123; <span class="comment">// 计算每个块所管辖的范围</span></span><br><span class="line">        b[i].l = (i - <span class="number">1</span>) * blockLen;</span><br><span class="line">        b[i].r = i * blockLen - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    b[belong[N - <span class="number">1</span>]].r = N - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> s = belong[l], e = belong[r];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (s == e) &#123;</span><br><span class="line">        b[s].<span class="built_in">rebuild</span>(l, r); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        b[s].<span class="built_in">rebuild</span>(l, b[s].r);</span><br><span class="line">        b[e].<span class="built_in">rebuild</span>(b[e].l, r); <span class="comment">/* 修改散块 */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = s + <span class="number">1</span>; i &lt; e; i++)</span><br><span class="line">            b[i].<span class="built_in">rebuild</span>(b[i].l, b[i].r); <span class="comment">/* 修改整块 */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">enquire</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> s = belong[l], e = belong[r];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (s == e) &#123;</span><br><span class="line">        <span class="keyword">return</span> b[s].<span class="built_in">ask</span>(l, r);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ll t = <span class="number">0</span>;</span><br><span class="line">        t += b[s].<span class="built_in">ask</span>(l, b[s].r);</span><br><span class="line">        t += b[e].<span class="built_in">ask</span>(b[e].l, r); <span class="comment">/* 查询散块 */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = s + <span class="number">1</span>; i &lt; e; i++) <span class="comment">/* 查询整块 */</span></span><br><span class="line">            t += b[i].sum;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, opt, l, r, v; i &lt; N; i++) &#123;</span><br><span class="line">        cin &gt;&gt; opt &gt;&gt; l &gt;&gt; r &gt;&gt; v;</span><br><span class="line">        l--, r--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (opt == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">modify</span>(l, r);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; <span class="built_in">enquire</span>(l, r) &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
