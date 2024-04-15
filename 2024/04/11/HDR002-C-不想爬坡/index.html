@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"arcalunar.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目   题解 显而易见，此题分成两个部分：  求 1→n1\to n1→n 的最短路 求某个满足限制条件的最短路  第一个小问题就是纯送，套一下 Dijkstra 就可以。主要考虑一下第二个小问题。 12345678910111213141516171819202122232425262728&#x2F;&#x2F; Dijkstra 算法	auto d &#x3D; [&amp;](int _s) &#123;	usin">
+    <meta name="description" content="题目  题解 显而易见，此题分成两个部分：  求 $1\to n$ 的最短路 求某个满足限制条件的最短路  第一个小问题就是纯送，套一下 Dijkstra 就可以。主要考虑一下第二个小问题。 12345678910111213141516171819202122232425262728&#x2F;&#x2F; Dijkstra 算法	auto d &#x3D; [&amp;](int _s) &#123;	using Verd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDR002 - [C] 不想爬坡">
 <meta property="og:url" content="http://arcalunar.github.io/2024/04/11/HDR002-C-%E4%B8%8D%E6%83%B3%E7%88%AC%E5%9D%A1/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Mini Blog">
-<meta property="og:description" content="题目   题解 显而易见，此题分成两个部分：  求 1→n1\to n1→n 的最短路 求某个满足限制条件的最短路  第一个小问题就是纯送，套一下 Dijkstra 就可以。主要考虑一下第二个小问题。 12345678910111213141516171819202122232425262728&#x2F;&#x2F; Dijkstra 算法	auto d &#x3D; [&amp;](int _s) &#123;	usin">
+<meta property="og:description" content="题目  题解 显而易见，此题分成两个部分：  求 $1\to n$ 的最短路 求某个满足限制条件的最短路  第一个小问题就是纯送，套一下 Dijkstra 就可以。主要考虑一下第二个小问题。 12345678910111213141516171819202122232425262728&#x2F;&#x2F; Dijkstra 算法	auto d &#x3D; [&amp;](int _s) &#123;	using Verd">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-10T19:32:34.000Z">
 <meta property="article:modified_time" content="2024-04-11T02:53:41.959Z">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text"> 题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text"> 题解</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -224,12 +224,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> <a target="_blank" rel="noopener" href="https://hydro.ac/p/HDR002C">题目</a></h2>
-<hr />
-<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> <a target="_blank" rel="noopener" href="https://hydro.ac/record/66174b703ffdbb8aa76a00c5">题解</a></h2>
+    <div class="post-body" itemprop="articleBody"><h2 id="题目"><a target="_blank" rel="noopener" href="https://hydro.ac/p/HDR002C">题目</a></h2>
+<hr>
+<h2 id="题解"><a target="_blank" rel="noopener" href="https://hydro.ac/record/66174b703ffdbb8aa76a00c5">题解</a></h2>
 <p>显而易见，此题分成两个部分：</p>
 <ol>
-<li>求 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>→</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1\to n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 的最短路</li>
+<li>求 $1\to n$ 的最短路</li>
 <li>求某个满足限制条件的最短路</li>
 </ol>
 <p>第一个小问题就是纯送，套一下 Dijkstra 就可以。主要考虑一下第二个小问题。</p>
