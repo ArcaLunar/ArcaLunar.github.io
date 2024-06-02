@@ -28,7 +28,7 @@
 <meta property="og:description" content="斯坦福大学 CS229 机器学习公开课学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-31T06:08:52.000Z">
-<meta property="article:modified_time" content="2024-06-02T06:20:53.970Z">
+<meta property="article:modified_time" content="2024-06-02T06:26:33.154Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -76,7 +76,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/CS/">CS</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/CS/ML/">ML</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-05-31T06:08:52.000Z">2024-05-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-06-02T06:20:53.970Z">2024-06-02</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-05-31T06:08:52.000Z">2024-05-31</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-06-02T06:26:33.154Z">2024-06-02</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -136,7 +136,7 @@ c-16-25.333-24-45-24-59z'/></svg></span></span></span></span><span class="vlist-
 <p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: align* at position 7: \begin{̲a̲l̲i̲g̲n̲*̲}̲
 L(\theta)=L(\t…'>\begin{align*}
 L(\theta)=L(\theta|X,\vec y)&amp;=p(\vec y|X;\theta)\\
-&amp;=\prod_{i=1}^n p(y^{(i)}|x^{(i)};\theta)\tag{Expand \(X,Y\) into Vectors}\\
+&amp;=\prod_{i=1}^n p(y^{(i)}|x^{(i)};\theta)\tag{Expand \(X,Y\)}\\
 &amp;=\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\theta^Tx^{(i)})^2}{2\sigma^2})
 \end{align*}
 </p>
@@ -202,8 +202,8 @@ l(\theta)&amp;=\sum_{i=1}^n \Big(y^{(i)}\ln h(x^{(i)})+(1-y^{(i)})\ln\big(1-h(x^
 <p class='katex-block katex-error' title='ParseError: KaTeX parse error: No such environment: align* at position 7: \begin{̲a̲l̲i̲g̲n̲*̲}̲
 \nabla_{\theta…'>\begin{align*}
 \nabla_{\theta_j}l(\theta)&amp;=\nabla_{\theta_j}(y\ln h(x)+(1-y)\ln(1-h(x)))\\
-&amp;=\nabla_{\theta_j}(y\ln g(\theta^Tx)+(1-y)\ln(1-g(\theta^Tx)))\tag*{\(h_\theta(x)=g(\theta^Tx)\)}\\
-&amp;=(\frac{y}{g(\theta^Tx)}+\frac{1-y}{1-g(\theta^Tx)})g(\theta^Tx)(1-g(\theta^Tx))x_j ,\tag*{\(g&#039;(z)=g(z)(1-g(z))\)}\\
+&amp;=\nabla_{\theta_j}(y\ln g(\theta^Tx)+(1-y)\ln(1-g(\theta^Tx)))\tag{\(h_\theta(x)=g(\theta^Tx)\)}\\
+&amp;=(\frac{y}{g(\theta^Tx)}+\frac{1-y}{1-g(\theta^Tx)})g(\theta^Tx)(1-g(\theta^Tx))x_j ,\tag{\(g&#039;(z)=g(z)(1-g(z))\)}\\
 &amp;=(y-h_\theta(x))x_j
 \end{align*}
 </p>
@@ -238,6 +238,7 @@ p(y;\phi)&amp;=\phi^y(1-\phi)^{1-y}\\
 </blockquote>
 <blockquote>
 <h4 id="正态分布是-exponential-family"><a class="markdownIt-Anchor" href="#正态分布是-exponential-family"></a> 正态分布是 Exponential Family</h4>
+<p>略。</p>
 </blockquote>
 
 <div class="article-footer fs14">
