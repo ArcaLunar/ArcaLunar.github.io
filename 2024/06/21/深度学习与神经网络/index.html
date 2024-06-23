@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s2.loli.net/2024/06/21/ej5FUxwznoYvS7P.png">
 <meta property="og:image" content="https://s2.loli.net/2024/06/22/CKGoOI7RMxiBX9N.png">
 <meta property="article:published_time" content="2024-06-21T03:28:31.000Z">
-<meta property="article:modified_time" content="2024-06-23T09:13:30.742Z">
+<meta property="article:modified_time" content="2024-06-23T09:23:56.619Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Deep Learning">
@@ -84,7 +84,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/CS/">CS</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/CS/AI/">AI</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-06-21T03:28:31.000Z">2024-06-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-06-23T09:13:30.742Z">2024-06-23</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-06-21T03:28:31.000Z">2024-06-21</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-06-23T09:23:56.619Z">2024-06-23</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -285,8 +285,8 @@ A --> D'(h_t, output);</pre>
 <p>Gate 门结构，控制输入的数据经过门之后还剩多少</p>
 </blockquote>
 <pre class="mermaid">graph LR;
-A[Input] --> B((Gate));
-B -.->|x 0.0~1.0| C[Output];</pre>
+A[Input] --> B([Gate]);
+B -. times 0~1 .-> C[Output];</pre>
 <p>在 LSTM 中，我们对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tanh()</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mclose">)</span></span></span></span> 使用门结构，输出变为</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>o</mi><mi>G</mi></msub><mo>⊙</mo><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>c</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_t=o_G\odot\tanh(c_t)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊙</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
