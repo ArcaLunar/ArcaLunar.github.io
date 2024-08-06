@@ -28,7 +28,7 @@
 <meta property="og:description" content="当下很火热的 Transformer 模块的底层原理解析">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-02T02:46:46.000Z">
-<meta property="article:modified_time" content="2024-08-02T02:53:11.733Z">
+<meta property="article:modified_time" content="2024-08-06T09:29:56.398Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="Attention">
 <meta name="twitter:card" content="summary_large_image">
@@ -64,7 +64,7 @@
 <div class="widgets">
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Topic: AI-Architecture</span></div><div class="widget-body"><a class="item active" href="/2024/08/02/Attention-Mechanism-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/"><span class="title">Attention Mechanism 注意力机制</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/08/01/Resilient-Binary-Neural-Network/"><span class="title">Resilient Binary Neural Network</span></a><a class="item title" href="/2024/08/06/cf1991/"><span class="title">cf1991</span></a><a class="item title" href="/2024/08/05/comp2120/"><span class="title">comp2120</span></a><a class="item title" href="/2024/08/04/build-graph-optim/"><span class="title">build-graph-optim</span></a><a class="item title" href="/2024/08/04/abc365/"><span class="title">abc365</span></a><a class="item title" href="/2024/08/04/2024-icpc-shaanxi-provincial/"><span class="title">2024-icpc-shaanxi-provincial</span></a><a class="item title" href="/2024/08/03/2019-2020-icpc-neerc-nwrrc/"><span class="title">2019-2020-icpc-neerc-nwrrc</span></a><a class="item title" href="/2024/08/02/Attention-Mechanism-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/"><span class="title">Attention Mechanism 注意力机制</span></a><a class="item title" href="/2024/08/01/centroid-decomposition/"><span class="title">centroid-decomposition</span></a><a class="item title" href="/2024/08/01/Kalman-Filter-%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/"><span class="title">Kalman Filter 卡尔曼滤波器</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/08/01/Resilient-Binary-Neural-Network/"><span class="title">Resilient Binary Neural Network</span></a><a class="item title" href="/2024/08/02/Attention-Mechanism-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/"><span class="title">Attention Mechanism 注意力机制</span></a><a class="item title" href="/2024/08/06/cf1995/"><span class="title">cf1995</span></a><a class="item title" href="/2024/08/06/cf1991/"><span class="title">cf1991</span></a><a class="item title" href="/2024/08/05/comp2120/"><span class="title">comp2120</span></a><a class="item title" href="/2024/08/04/build-graph-optim/"><span class="title">build-graph-optim</span></a><a class="item title" href="/2024/08/04/abc365/"><span class="title">abc365</span></a><a class="item title" href="/2024/08/04/2024-icpc-shaanxi-provincial/"><span class="title">2024-icpc-shaanxi-provincial</span></a><a class="item title" href="/2024/08/03/2019-2020-icpc-neerc-nwrrc/"><span class="title">2019-2020-icpc-neerc-nwrrc</span></a><a class="item title" href="/2024/08/01/centroid-decomposition/"><span class="title">centroid-decomposition</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -77,7 +77,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/2024/08/02/Attention-Mechanism-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">AI-Architecture</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-08-02T02:46:46.000Z">2024-08-02</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-08-02T02:53:11.733Z">2024-08-02</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-08-02T02:46:46.000Z">2024-08-02</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-08-06T09:29:56.398Z">2024-08-06</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -88,7 +88,8 @@
     </div>
     
   </div>
-  </div><article class="md-text content">
+  </div><article class="md-text content"><h1 id="attention-mechanism"><a class="markdownIt-Anchor" href="#attention-mechanism"></a> Attention Mechanism</h1>
+
 <div class="article-footer fs14">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -108,7 +109,14 @@
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel blur'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#attention-mechanism"><span class="toc-text"> Attention Mechanism</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
