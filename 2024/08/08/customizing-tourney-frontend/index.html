@@ -46,6 +46,10 @@
   
 
   
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/monokai-sublime.min.css">
+
+  
 
   
 </head>
@@ -96,7 +100,7 @@
 <p>以下用 <code>tosu.exe</code> 为例子</p>
 </blockquote>
 <p>由于是使用 <code>WebSocket</code> 建立连接，我们首先在 <code>index.js</code> 里导入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create connection to the WebSocket server</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">WebSocketManager</span> <span class="keyword">from</span> <span class="string">&quot;../common/lib/socket.js&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> socket = <span class="title class_">WebSocketManager</span>(<span class="string">&#x27;127.0.0.1:24050&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Create connection to the WebSocket server</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">WebSocketManager</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../common/lib/socket.js&quot;</span>;<br><span class="hljs-keyword">const</span> socket = <span class="hljs-title class_">WebSocketManager</span>(<span class="hljs-string">&#x27;127.0.0.1:24050&#x27;</span>);<br></code></pre></td></tr></table></figure>
 <div class="article-footer fs14">
     <section id="license">
       <div class="header"><span>License</span></div>
