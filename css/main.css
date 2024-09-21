@@ -142,7 +142,7 @@
 }
 pre {
   font-family: Consolas, system-ui, "Courier New", monospace, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -513,7 +513,7 @@ code {
 }
 p>code:not([class]),
 li>code:not([class]) {
-  font-size: 95%;
+  font-size: 80%;
   background: var(--block);
   padding: 0.2em;
   border-radius: 4px;
@@ -542,7 +542,7 @@ pre:not([class]):has(>code) {
 }
 .md-text .highlight figcaption {
   color: var(--text-p2);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
   margin-left: 0.5rem;
   display: inline-block;
@@ -568,8 +568,8 @@ pre:not([class]):has(>code) {
   line-height: 1.5;
 }
 .md-text .highlight >table::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
+  height: 8px;
+  width: 8px;
 }
 .md-text .highlight >table::-webkit-scrollbar-track-piece {
   background: transparent;
