@@ -17,20 +17,22 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>HKU 课程: COMP2396 Java - ArcaLunar's Blog</title>
+  <title>HKU 课程: 【COMP3230 补充知识】 C 语言里的进程 - ArcaLunar's Blog</title>
 
   
-    <meta name="description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法 自己看吧，没啥好说的。多敲多记，This is coding">
+    <meta name="description" content="【COMP3230】 fork(), wait(), exec() C 语言里和进程相关的函数有一些类别：  fork() wait() exec() getrusage()  我们来学习一下这些函数~ 学习资源：GNU C Library  fork()  原型： 12#include &lt;unistd.h&gt;pid_t fork(void);  当 fork() 被调用了之后，系统克">
 <meta property="og:type" content="website">
-<meta property="og:title" content="COMP2396 Java">
-<meta property="og:url" content="http://example.com/wiki/hku/comp2396.html">
+<meta property="og:title" content="【COMP3230 补充知识】 C 语言里的进程">
+<meta property="og:url" content="http://example.com/wiki/hku/comp3230-aux-fork-wait.html">
 <meta property="og:site_name" content="ArcaLunar&#39;s Blog">
-<meta property="og:description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法 自己看吧，没啥好说的。多敲多记，This is coding">
+<meta property="og:description" content="【COMP3230】 fork(), wait(), exec() C 语言里和进程相关的函数有一些类别：  fork() wait() exec() getrusage()  我们来学习一下这些函数~ 学习资源：GNU C Library  fork()  原型： 12#include &lt;unistd.h&gt;pid_t fork(void);  当 fork() 被调用了之后，系统克">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-09-01T06:40:29.000Z">
-<meta property="article:modified_time" content="2024-09-18T14:28:00.573Z">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/acm/lab1-01.6t733r8geg.svg">
+<meta property="article:published_time" content="2024-09-25T02:49:13.000Z">
+<meta property="article:modified_time" content="2024-09-25T03:13:21.790Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arcalunar.github.io/picx-images-hosting/acm/lab1-01.6t733r8geg.svg">
   
   
   
@@ -68,7 +70,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Computer Science Compulsory</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2119.html#start"><span class="toc-text">COMP2119 Data Structures and Algorithms</span></a><a class="link" href="/wiki/hku/comp2120.html"><span class="toc-text">COMP2120 计算机组成原理</span></a><a class="link" href="/wiki/hku/comp2121.html"><span class="toc-text">COMP2121 离散数学</span></a><a class="link active" href="/wiki/hku/comp2396.html"><span class="toc-text">COMP2396 Java</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/hku/comp3230.html"><span class="toc-text">COMP3230 操作系统</span></a><a class="link" href="/wiki/hku/comp3230-aux-fork-wait.html"><span class="toc-text">【COMP3230 补充知识】 C 语言里的进程</span></a><a class="link" href="/wiki/hku/comp3234.html"><span class="toc-text">COMP3234 计算机网络</span></a><a class="link" href="/wiki/hku/comp3271.html"><span class="toc-text">COMP3271 Computer Graphics</span></a><a class="link" href="/wiki/hku/comp3322.html"><span class="toc-text">COMP3322 WWW 网络技术</span></a></div><div class="widget-header dis-select"><span class="name">UG5</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/cund9003.html"><span class="toc-text">CUND9003 粤语课</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/index.html"><span class="toc-text">HKU 课程笔记</span></a><a class="link" href="/wiki/hku/math1853.html"><span class="toc-text">MATH1853 基础线性代数、基础概率论</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Computer Science Compulsory</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2119.html#start"><span class="toc-text">COMP2119 Data Structures and Algorithms</span></a><a class="link" href="/wiki/hku/comp2120.html"><span class="toc-text">COMP2120 计算机组成原理</span></a><a class="link" href="/wiki/hku/comp2121.html"><span class="toc-text">COMP2121 离散数学</span></a><a class="link" href="/wiki/hku/comp2396.html"><span class="toc-text">COMP2396 Java</span></a><a class="link" href="/wiki/hku/comp3230.html"><span class="toc-text">COMP3230 操作系统</span></a><a class="link active" href="/wiki/hku/comp3230-aux-fork-wait.html"><span class="toc-text">【COMP3230 补充知识】 C 语言里的进程</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/hku/comp3234.html"><span class="toc-text">COMP3234 计算机网络</span></a><a class="link" href="/wiki/hku/comp3271.html"><span class="toc-text">COMP3271 Computer Graphics</span></a><a class="link" href="/wiki/hku/comp3322.html"><span class="toc-text">COMP3322 WWW 网络技术</span></a></div><div class="widget-header dis-select"><span class="name">UG5</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/cund9003.html"><span class="toc-text">CUND9003 粤语课</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/index.html"><span class="toc-text">HKU 课程笔记</span></a><a class="link" href="/wiki/hku/math1853.html"><span class="toc-text">MATH1853 基础线性代数、基础概率论</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -81,24 +83,39 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/hku/comp2119.html">HKU 课程</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-09-18T14:28:00.573Z">2024-09-18</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-09-25T03:13:21.790Z">2024-09-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>COMP2396 Java</span></h1>
+        <h1 class="text title"><span>【COMP3230 补充知识】 C 语言里的进程</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="comp2396-java-与面对对象编程"><a class="markdownIt-Anchor" href="#comp2396-java-与面对对象编程"></a> COMP2396: Java 与面对对象编程</h1>
-<h2 id="part-1-java-语法"><a class="markdownIt-Anchor" href="#part-1-java-语法"></a> Part 1. Java 语法</h2>
-<p>自己看吧，没啥好说的。多敲多记，This is coding</p>
-
+  </div><article class="md-text content"><h1 id="comp3230-fork-wait-exec"><a class="markdownIt-Anchor" href="#comp3230-fork-wait-exec"></a> 【COMP3230】 fork(), wait(), exec()</h1>
+<p>C 语言里和进程相关的函数有一些类别：</p>
+<ol>
+<li><code>fork()</code></li>
+<li><code>wait()</code></li>
+<li><code>exec()</code></li>
+<li><code>getrusage()</code></li>
+</ol>
+<p>我们来学习一下这些函数~</p>
+<p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/libc/manual/html_node/index.html">学习资源：GNU C Library</a></p>
+<h2 id="fork"><a class="markdownIt-Anchor" href="#fork"></a> fork()</h2>
+<blockquote>
+<p>原型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-type">pid_t</span> <span class="hljs-title function_">fork</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>当 <code>fork()</code> 被调用了之后，系统<strong>克隆</strong>当前的进程 (调用了 <code>fork()</code> 的这个进程)，克隆出来的子进程与父进程<strong>并发 (concurrently)<strong>运行，并且</strong>子进程开始运行的位置就是 <code>fork()</code> 的位置</strong>。然后 <code>fork()</code> 函数返回这个子进程的 <code>pid</code> (Process ID)</p>
+<p>这个子进程运行的代码，和父进程是一样的 (因为是克隆出来的)，并且<strong>拥有的资源 (变量等) 在内容上相同</strong>，但他们的<strong>资源分属不同的内存空间 (private memory space)</strong>。</p>
+<p>可以理解成，父进程调用 <code>fork()</code> 后，系统把变量等复制了一份放到一块新内存里，然后把这块新内存交给子进程。所以，父子进程的 <code>pid</code> 不同，变量地址不同，但是变量内容相同。</p>
+<details class="tag-plugin colorful folding" color="light"><summary><span>例一.&nbsp;fork()</span></summary><div class="body"><div class="tag-plugin colorful note" color="red" child="codeblock"><div class="title"><strong>fork() 的示例代码</strong></div><div class="body"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Process (%d) starts up\n&quot;</span>, (<span class="hljs-type">int</span>)getpid());<br>    fork();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My ID is %d\n&quot;</span>, (<span class="hljs-type">int</span>)getpid());<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></div></div><blockquote><p>输出结果</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">Process (52398) starts up<br>My ID is 52398<br>My ID is 52399<br></code></pre></td></tr></table></figure></blockquote><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/acm/lab1-01.6t733r8geg.svg" alt="fork" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">fork</span></div></div></div></details>
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/hku/comp2121.html">COMP2121 离散数学</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/hku/comp3230.html">COMP3230 操作系统</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/hku/comp3230.html">COMP3230 操作系统</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/hku/comp3234.html">COMP3234 计算机网络</a></div></section></div>
 
 
 
@@ -111,7 +128,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comp2396-java-%E4%B8%8E%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-text"> COMP2396: Java 与面对对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-1-java-%E8%AF%AD%E6%B3%95"><span class="toc-text"> Part 1. Java 语法</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comp3230-fork-wait-exec"><span class="toc-text"> 【COMP3230】 fork(), wait(), exec()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fork"><span class="toc-text"> fork()</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
