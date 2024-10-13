@@ -20,15 +20,15 @@
   <title>HKU 课程: 【COMP3230 补充知识】 系统信号处理 - ArcaLunar's Blog</title>
 
   
-    <meta name="description" content="Signal Handling  Blocking Signals 有的时候，如果多个信号在 sigaction 结构体被创建之前被程序接收的话，sigaction 就只能触发一次。因此我们需要机制来阻塞信号  用 mask 过滤 Signal 我们也可以选择用 mask 来过滤要处理的信号。 函数原型：sigprocmask(int how, const sigset_t *set, sigs">
+    <meta name="description" content="Signal Handling  Simple Signal Handler  signal() Function 1sighandler_t signal(int signum, sighandler_t handler);   signum: 要处理的 signal sighandler_t  可以是一个函数，签名是 void handler(int signum); SIG_IGN: 忽略">
 <meta property="og:type" content="website">
 <meta property="og:title" content="【COMP3230 补充知识】 系统信号处理">
 <meta property="og:url" content="http://example.com/wiki/hku/comp3230-aux-signal.html">
 <meta property="og:site_name" content="ArcaLunar&#39;s Blog">
-<meta property="og:description" content="Signal Handling  Blocking Signals 有的时候，如果多个信号在 sigaction 结构体被创建之前被程序接收的话，sigaction 就只能触发一次。因此我们需要机制来阻塞信号  用 mask 过滤 Signal 我们也可以选择用 mask 来过滤要处理的信号。 函数原型：sigprocmask(int how, const sigset_t *set, sigs">
+<meta property="og:description" content="Signal Handling  Simple Signal Handler  signal() Function 1sighandler_t signal(int signum, sighandler_t handler);   signum: 要处理的 signal sighandler_t  可以是一个函数，签名是 void handler(int signum); SIG_IGN: 忽略">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-09-30T04:01:32.000Z">
-<meta property="article:modified_time" content="2024-10-08T03:51:36.256Z">
+<meta property="article:modified_time" content="2024-10-11T09:46:42.647Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
   
@@ -68,7 +68,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">计算机专业的数学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2119.html#start"><span class="toc-text">COMP2119 Data Structures and Algorithms</span></a><a class="link" href="/wiki/hku/comp2121.html"><span class="toc-text">COMP2121 离散数学</span></a></div><div class="widget-header dis-select"><span class="name">Java</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2396.html"><span class="toc-text">COMP2396 Java</span></a></div><div class="widget-header dis-select"><span class="name">计算机架构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2120.html"><span class="toc-text">COMP2120 计算机组成原理</span></a></div><div class="widget-header dis-select"><span class="name">操作系统</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3230.html"><span class="toc-text">COMP3230 操作系统</span></a><a class="link active" href="/wiki/hku/comp3230-aux-signal.html"><span class="toc-text">【COMP3230 补充知识】 系统信号处理</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/hku/comp3230-aux-fork-wait.html"><span class="toc-text">【COMP3230 补充知识】 C 语言里的进程</span></a><a class="link" href="/wiki/hku/comp3230-aux-thread.html"><span class="toc-text">【COMP3230 补充知识】 POSIX Thread 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机网络</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3234.html"><span class="toc-text">COMP3234 计算机网络</span></a><a class="link" href="/wiki/hku/comp3234-aux-socket.html"><span class="toc-text">【COMP3234 补充知识】 Socket 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机图形学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3271.html"><span class="toc-text">COMP3271 Computer Graphics</span></a></div><div class="widget-header dis-select"><span class="name">前端</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3322.html"><span class="toc-text">COMP3322 WWW 网络技术</span></a></div><div class="widget-header dis-select"><span class="name">UG5</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/cund9003.html"><span class="toc-text">CUND9003 粤语课</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/math1853.html"><span class="toc-text">MATH1853 基础线性代数、基础概率论</span></a><a class="link" href="/wiki/hku/index.html"><span class="toc-text">HKU 课程笔记</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">计算机专业的数学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2119.html#start"><span class="toc-text">COMP2119 Data Structures and Algorithms</span></a><a class="link" href="/wiki/hku/comp2121.html"><span class="toc-text">COMP2121 离散数学</span></a></div><div class="widget-header dis-select"><span class="name">Java</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2396.html"><span class="toc-text">COMP2396 Java</span></a></div><div class="widget-header dis-select"><span class="name">计算机架构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2120.html"><span class="toc-text">COMP2120 计算机组成原理</span></a></div><div class="widget-header dis-select"><span class="name">操作系统</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3230.html"><span class="toc-text">COMP3230 操作系统</span></a><a class="link active" href="/wiki/hku/comp3230-aux-signal.html"><span class="toc-text">【COMP3230 补充知识】 系统信号处理</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/hku/comp3230-aux-fork-wait.html"><span class="toc-text">【COMP3230 补充知识】 C 语言里的进程</span></a><a class="link" href="/wiki/hku/comp3230-aux-thread.html"><span class="toc-text">【COMP3230 补充知识】 POSIX Thread 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机网络</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3234.html"><span class="toc-text">COMP3234 计算机网络</span></a><a class="link" href="/wiki/hku/comp3234-aux-socket.html"><span class="toc-text">【COMP3234 补充知识】 Socket 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机图形学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3271.html"><span class="toc-text">COMP3271 Computer Graphics</span></a></div><div class="widget-header dis-select"><span class="name">前端</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3322.html"><span class="toc-text">COMP3322 WWW 网络技术</span></a></div><div class="widget-header dis-select"><span class="name">UG5</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/cund9003.html"><span class="toc-text">CUND9003 粤语课</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/index.html"><span class="toc-text">HKU 课程笔记</span></a><a class="link" href="/wiki/hku/math1853.html"><span class="toc-text">MATH1853 基础线性代数、基础概率论</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -81,7 +81,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/hku/comp2119.html">HKU 课程</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-10-08T03:51:36.256Z">2024-10-08</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-10-11T09:46:42.647Z">2024-10-11</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -93,11 +93,67 @@
     
   </div>
   </div><article class="md-text content"><h1 id="signal-handling"><a class="markdownIt-Anchor" href="#signal-handling"></a> Signal Handling</h1>
+<h2 id="simple-signal-handler"><a class="markdownIt-Anchor" href="#simple-signal-handler"></a> Simple Signal Handler</h2>
+<h3 id="signal-function"><a class="markdownIt-Anchor" href="#signal-function"></a> signal() Function</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">sighandler_t</span> <span class="hljs-title function_">signal</span><span class="hljs-params">(<span class="hljs-type">int</span> signum, <span class="hljs-type">sighandler_t</span> handler)</span>;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><code>signum</code>: 要处理的 signal</li>
+<li><code>sighandler_t</code>
+<ul>
+<li>可以是一个函数，签名是 <code>void handler(int signum);</code></li>
+<li><code>SIG_IGN</code>: 忽略信号</li>
+<li><code>SIG_DFL</code>: 设为系统默认</li>
+</ul>
+</li>
+<li>返回: <strong>系统先前如何处理这个信号</strong></li>
+<li>如果失败了的话，返回 <code>SIG_ERR</code></li>
+</ul>
+</blockquote>
+<h3 id="signaction-function"><a class="markdownIt-Anchor" href="#signaction-function"></a> signaction() Function</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">sigaction</span><span class="hljs-params">(<span class="hljs-type">int</span> signum, <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> sigaction *act, <span class="hljs-keyword">struct</span> sigaction *oldact)</span>;<br></code></pre></td></tr></table></figure>
+<p>三步设置信号处理：</p>
+<ol>
+<li>获取旧信号处理：<code>sigaction(signum, NULL, &amp;act)</code></li>
+<li>修改信号处理器 <code>act</code></li>
+<li>设置信号处理器为新的：<code>sigaction(signum, &amp;act, NULL)</code></li>
+</ol>
+<blockquote>
+<p><strong>关于 <code>struct sigaction</code></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Member</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>void (*sa_handler)(int);</code></td>
+<td style="text-align:center">sa_handler 函数指针，指向处理信号的函数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>void (*sa_sigaction)(int, siginfo_t *, void *);</code></td>
+<td style="text-align:center">也是处理信号的函数，但是可以从系统获取更多信息。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sigset_t sa_mask;</code></td>
+<td style="text-align:center">保存过滤出来的信号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int sa_flags;</code></td>
+<td style="text-align:center">Specifies a set of flags which modify the behavior of the signal</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<div class="tag-plugin colorful note" color="light"><div class="title"><strong>Method 1</strong></div><div class="body"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">sigint_handler1</span><span class="hljs-params">(<span class="hljs-type">int</span> signum)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br><br>sigaction(SIGINT, <span class="hljs-literal">NULL</span>, &amp;sa);<br>sa.sa_handler = sigint_handler1;<br>sigaction(SIGINT, &amp;sa, <span class="hljs-literal">NULL</span>);<br></code></pre></td></tr></table></figure></div></div>
 <h2 id="blocking-signals"><a class="markdownIt-Anchor" href="#blocking-signals"></a> Blocking Signals</h2>
 <p>有的时候，如果多个信号在 <code>sigaction</code> 结构体被创建之前被程序接收的话，<code>sigaction</code> 就只能触发一次。因此我们需要机制来<strong>阻塞信号</strong></p>
 <h3 id="用-mask-过滤-signal"><a class="markdownIt-Anchor" href="#用-mask-过滤-signal"></a> 用 mask 过滤 Signal</h3>
 <p>我们也可以选择用 mask 来过滤要处理的信号。</p>
 <p>函数原型：<code>sigprocmask(int how, const sigset_t *set, sigset_t *oldset);</code></p>
+<blockquote>
 <ul>
 <li>参数说明
 <ul>
@@ -124,6 +180,7 @@
 </ul>
 </li>
 </ul>
+</blockquote>
 <details class="tag-plugin colorful folding" color="yellow" open><summary><span>示例代码</span></summary><div class="body"><p>在下面的这个例子里，<code>sigset_t blkset</code> 定义了 <code>sigset</code> 变量，用来控制过滤 signal。</p><p>通过调用 <code>signal(SIGINT, sigint_handler);</code> 在程序的前 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> 分钟，代表程序终止的 <code>SIGINT</code> 信号被程序捕获后不会按系统默认那样自动退出，而是转而执行 <code>sigint_handler(int signum)</code> 函数</p><p>之后，通过 <code>sigemptyset(&amp;blkset);</code> 先清空 signal mask，方便加入要过滤的 signal；然后通过 <code>sigaddset(&amp;blkset, SIGINT);</code> 把 <code>SIGINT</code> 信号放入要过滤的信号集合里；最后调用 <code>sigprocmask(SIG_BLOCK, &amp;blkset, NULL);</code> 阻塞所有的 <code>SIGINT</code> 信号</p><blockquote><p>值得注意的是，在 Linux 内核里，如果有多个 <code>SIGINT</code> 信号，那么 <code>sigaction()</code> 会自动对后续的 <code>SIGINT</code> 作<strong>合并</strong>处理。</p></blockquote><p>等待 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> 秒后（这 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> 秒里按 <kbd>Ctrl</kbd> + <kbd>C</kbd> 不会退出程序），<code>sigprocmask(SIG_UNBLOCK, &amp;blkset, NULL);</code> 将 <code>blkset</code> 设置为 <code>SIG_UNBLOCK</code>，于是程序重新开始接收 <code>SIGINT</code> 信号并交由 <code>sigint_handler()</code> 处理。</p><p>随后 <code>signal(SIGINT, SIG_DFL);</code> 又重新把 <code>SIGINT</code> 的处理设为系统默认（即退出）。此时按下 <kbd>Ctrl</kbd> + <kbd>C</kbd> 即可退出程序</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">sigint_handler</span><span class="hljs-params">(<span class="hljs-type">int</span> signum)</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nA signal SIGINT is caught\n\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-type">sigset_t</span> blkset;<br>  <br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;SIGINT can be CAUGHT once in the coming 10 seconds.\n&quot;</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Press Ctrl-c to try\n&quot;</span>);<br>  signal(SIGINT, sigint_handler); <br>  <br>  sleep(<span class="hljs-number">10</span>);<br>  <br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;SIGINT is masked in the coming 10 seconds.\n&quot;</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Press Ctrl-c to try\n&quot;</span>);<br>  sigemptyset(&amp;blkset);<br>  sigaddset(&amp;blkset, SIGINT);<br>  sigprocmask(SIG_BLOCK, &amp;blkset, <span class="hljs-literal">NULL</span>);<br>  <br>  sleep(<span class="hljs-number">10</span>);<br>  <br>  sigprocmask(SIG_UNBLOCK, &amp;blkset, <span class="hljs-literal">NULL</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n\nSIGINT is set to default action.\n&quot;</span>);<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Press Ctrl-c to kill me\n&quot;</span>);<br>  signal(SIGINT, SIG_DFL);<br>  <br>  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>    sleep(<span class="hljs-number">10</span>);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure></div></details>
 <div class="article-footer fs14"></div>
 </article>
@@ -140,7 +197,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#signal-handling"><span class="toc-text"> Signal Handling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#blocking-signals"><span class="toc-text"> Blocking Signals</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-mask-%E8%BF%87%E6%BB%A4-signal"><span class="toc-text"> 用 mask 过滤 Signal</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#signal-handling"><span class="toc-text"> Signal Handling</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#simple-signal-handler"><span class="toc-text"> Simple Signal Handler</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#signal-function"><span class="toc-text"> signal() Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#signaction-function"><span class="toc-text"> signaction() Function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blocking-signals"><span class="toc-text"> Blocking Signals</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-mask-%E8%BF%87%E6%BB%A4-signal"><span class="toc-text"> 用 mask 过滤 Signal</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
