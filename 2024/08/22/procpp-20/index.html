@@ -20,15 +20,15 @@
   <title>C++ 20 高级编程（第五版） - Arca's Blog</title>
 
   
-    <meta name="description" content="Pro C++ 20  Chapter 01. C++ 入门 语言层面推荐使用 std::byte 来表示单字节（8 bits），而非 char推荐使用 &lt;limits&gt; 库里的数值极限 std::numeric_limits对浮点数而言，numeric_limits&lt;double&gt;::min() 表示最小正数，numeric_limits&lt;double&gt;::">
+    <meta name="description" content="Pro C++ 20  Chapter 01. C++ 入门 内置变量__func__ 返回当前所在的函数的名称标准库std::bytes 字节表示推荐使用 std::byte 来表示单字节（8 bits），而非 charstd::limits 最大值、最小值的 API推荐使用 &lt;limits&gt; 库里的数值极限 std::numeric_limits对浮点数而言，numeric_li">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 20 高级编程（第五版）">
 <meta property="og:url" content="http://example.com/2024/08/22/procpp-20/index.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Pro C++ 20  Chapter 01. C++ 入门 语言层面推荐使用 std::byte 来表示单字节（8 bits），而非 char推荐使用 &lt;limits&gt; 库里的数值极限 std::numeric_limits对浮点数而言，numeric_limits&lt;double&gt;::min() 表示最小正数，numeric_limits&lt;double&gt;::">
+<meta property="og:description" content="Pro C++ 20  Chapter 01. C++ 入门 内置变量__func__ 返回当前所在的函数的名称标准库std::bytes 字节表示推荐使用 std::byte 来表示单字节（8 bits），而非 charstd::limits 最大值、最小值的 API推荐使用 &lt;limits&gt; 库里的数值极限 std::numeric_limits对浮点数而言，numeric_li">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-08-22T05:19:15.000Z">
-<meta property="article:modified_time" content="2024-08-25T15:11:57.346Z">
+<meta property="article:modified_time" content="2024-10-25T11:23:54.085Z">
 <meta property="article:author" content="ArcaLunar">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -68,7 +68,7 @@
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/08/21/EGZ-theorem/"><span class="title">Erdos-Ginzburg-Ziv 定理的证明和线性对数时间的求解算法</span></a><a class="item title" href="/2024/08/25/cpp-high-performance-optim/"><span class="title">C++ 高性能编程</span></a><a class="item title" href="/2024/10/04/finetuning-20241004/"><span class="title">finetuning-20241004</span></a><a class="item title" href="/2024/10/04/ue5-tutorial-20241004/"><span class="title">Unreal Engine 5 Tutorial</span></a><a class="item title" href="/2024/10/02/fine-tuning-intro/"><span class="title">【AI 技术】 Fine Tuning 微调技术</span></a><a class="item title" href="/2024/09/06/fullstack-open/"><span class="title">Helsinki Fullstack-Open: Web Development</span></a><a class="item title" href="/2024/08/29/pro-git/"><span class="title">Git 版本控制</span></a><a class="item title" href="/2024/08/29/squeeze-excitation/"><span class="title">Squeeze and Excitation 模块</span></a><a class="item title" href="/2024/08/29/chaos-and-cause/"><span class="title">Aeon Essay: Chaos and Cause</span></a><a class="item title" href="/2024/08/28/pokebnn/"><span class="title">PokeBNN：一种二值化网络模块的设计</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/10/25/comp3234-pa1-summary/"><span class="title">comp3234-pa1-summary</span></a><a class="item title" href="/2024/08/22/procpp-20/"><span class="title">C++ 20 高级编程（第五版）</span></a><a class="item title" href="/2024/08/29/chaos-and-cause/"><span class="title">Aeon Essay: Chaos and Cause</span></a><a class="item title" href="/2024/10/23/ielts-writing/"><span class="title">ielts-writing</span></a><a class="item title" href="/2024/08/21/EGZ-theorem/"><span class="title">Erdos-Ginzburg-Ziv 定理的证明和线性对数时间的求解算法</span></a><a class="item title" href="/2024/08/25/cpp-high-performance-optim/"><span class="title">C++ 高性能编程</span></a><a class="item title" href="/2024/10/04/ue5-tutorial-20241004/"><span class="title">Unreal Engine 5 Tutorial</span></a><a class="item title" href="/2024/10/02/fine-tuning-intro/"><span class="title">【AI 技术】 Fine Tuning 微调技术</span></a><a class="item title" href="/2024/09/06/fullstack-open/"><span class="title">Helsinki Fullstack-Open: Web Development</span></a><a class="item title" href="/2024/08/29/pro-git/"><span class="title">Git 版本控制</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -81,7 +81,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-08-22T05:19:15.000Z">2024-08-22</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-08-25T15:11:57.346Z">2024-08-25</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-08-22T05:19:15.000Z">2024-08-22</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-10-25T11:23:54.085Z">2024-10-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -94,7 +94,8 @@
   </div>
   </div><article class="md-text content"><h1 id="pro-c-20"><a class="markdownIt-Anchor" href="#pro-c-20"></a> Pro C++ 20</h1>
 <h2 id="chapter-01-c-入门"><a class="markdownIt-Anchor" href="#chapter-01-c-入门"></a> Chapter 01. C++ 入门</h2>
-<details class="tag-plugin colorful folding" color="light"><summary><span>语言层面</span></summary><div class="body"><ul><li>推荐使用 <code>std::byte</code> 来表示单字节（8 bits），而非 <code>char</code></li><li>推荐使用 <code>&lt;limits&gt;</code> 库里的数值极限 <code>std::numeric_limits</code><ul><li><blockquote><p>对浮点数而言，<code>numeric_limits&lt;double&gt;::min()</code> 表示最小正数，<code>numeric_limits&lt;double&gt;::lowest()</code> 表示最小负数。</p></blockquote></li></ul></li><li>推荐的类型转换方法：<code>static_cast&lt;TYPE&gt;(...)</code></li><li><code>std::isnan()</code> 是否为非数字，<code>std::isinf()</code> 判断是否为无穷。<code>numeric_limits&lt;double&gt;::infinity</code> 表示无穷的值。</li><li>枚举类型 <code>enum class ... { ... };</code>，并且可以 <code>using enum ...</code></li><li><code>.cppm</code> 是<strong>模块接口文件的后缀名</strong>，需要显式说明 export 的东西</li><li>三向比较符：适合单次 compare 较昂贵的数据结构，<code>weak_ordering::</code></li><li><code>__func__</code> 是函数自带的局部变量，包含<strong>函数的名称</strong></li></ul></div></details>
+<div class="tag-plugin colorful folders" ><details class="folder" index="0"><summary><span>内置变量</span></summary><div class="body"><ul><li><code>__func__</code> 返回当前所在的函数的名称</li></ul></div></details><details class="folder" index="1"><summary><span>标准库</span></summary><div class="body"><div class="tag-plugin colorful folders" ><details class="folder" index="0"><summary><span>std::bytes 字节表示</span></summary><div class="body"><p>推荐使用 <code>std::byte</code> 来表示单字节（8 bits），而非 <code>char</code></p></div></details><details class="folder" index="1"><summary><span>std::limits 最大值、最小值的 API</span></summary><div class="body"><!-- #region limits Library --><p>推荐使用 <code>&lt;limits&gt;</code> 库里的数值极限 <code>std::numeric_limits</code></p><blockquote><p>对浮点数而言，<code>numeric_limits&lt;double&gt;::min()</code> 表示最小正数；<br /><code>numeric_limits&lt;double&gt;::lowest()</code> 表示最小负数。</p></blockquote><p><code>std::isnan()</code> 是否为非数字，<code>std::isinf()</code> 判断是否为无穷。</p><p><code>numeric_limits&lt;double&gt;::infinity</code> 表示无穷的值。</p><!-- #endregion --></div></details><details class="folder" index="2"><summary><span>类型转化</span></summary><div class="body"><p>推荐的类型转换方法：<code>static_cast&lt;TYPE&gt;(...)</code></p></div></details><details class="folder" index="3"><summary><span><compare> 三向比较符</span></summary><div class="body"><!-- #region <compare> --><p>三向比较符：适合单次 compare 较昂贵的数据结构，<code>weak_ordering::</code></p><!-- #endregion --></div></details></div></div></details></div>
+<details class="tag-plugin colorful folding" color="light"><summary><span>语言层面</span></summary><div class="body"><ul><li>枚举类型 <code>enum class ... { ... };</code>，并且可以 <code>using enum ...</code></li><li><code>.cppm</code> 是<strong>模块接口文件的后缀名</strong>，需要显式说明 export 的东西</li><li><code>__func__</code> 是函数自带的局部变量，包含<strong>函数的名称</strong></li></ul></div></details>
 <details class="tag-plugin colorful folding" color="light"><summary><span>编译器层面</span></summary><div class="body"><ul><li><code>[[nodiscard(&quot;...&quot;)]]</code>：当函数返回值没被使用时报警告。</li><li><code>[[maybe_unused]]</code>：告诉编译器变量可能不使用。</li><li><code>[[noreturn]]</code></li><li><code>[[deprecated(&quot;...&quot;)]]</code></li><li><code>[[likely]], [[unlikely]]</code></li></ul></div></details>
 <h3 id="c-标准库速成"><a class="markdownIt-Anchor" href="#c-标准库速成"></a> C++ 标准库速成</h3>
 <ul>
