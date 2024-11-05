@@ -1,0 +1,634 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>算法笔记: ICPC 2021 区域赛澳门站 - Arca's Blog</title>
+
+  
+    <meta name="description" content="ICPC 2021 区域赛澳门站  【构造】A. So I’ll Max Out My Constructive Algorithm Skills 我们随便取一种走法，如果这种走法的上山次数大于下山次数，那么就 reverse()，此时上山变下山，一定满足条件  【构造】D. Shortest Path Fast Algorithm 如何卡 SPFA.jpg graph LR; 	A[1] --">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ICPC 2021 区域赛澳门站">
+<meta property="og:url" content="http://example.com/wiki/acm/2021-icpc-macau-r.html">
+<meta property="og:site_name" content="Arca&#39;s Blog">
+<meta property="og:description" content="ICPC 2021 区域赛澳门站  【构造】A. So I’ll Max Out My Constructive Algorithm Skills 我们随便取一种走法，如果这种走法的上山次数大于下山次数，那么就 reverse()，此时上山变下山，一定满足条件  【构造】D. Shortest Path Fast Algorithm 如何卡 SPFA.jpg graph LR; 	A[1] --">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-15T00:59:47.000Z">
+<meta property="article:modified_time" content="2024-09-15T02:15:26.886Z">
+<meta property="article:author" content="ArcaLunar">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+
+  
+
+  
+</head>
+<body><script type="text/javascript" color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://ArcaLunar.github.io/picx-images-hosting/courses/code.2veqrcjn6f.svg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/acm/summary.html"><div class="main" ff="title">算法笔记</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/acm" placeholder="Search in ACM/ folder......"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">刷题套路总结</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/summary.html#start"><span class="toc-text">小套路总结</span></a></div><div class="widget-header dis-select"><span class="name">计算几何</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/compgeo-intro.html"><span class="toc-text">计算几何：从入门到入土</span></a><a class="link" href="/wiki/acm/convex.html"><span class="toc-text">【计算几何】凸包算法</span></a><a class="link" href="/wiki/acm/half-plane.html"><span class="toc-text">「计算几何」半平面交</span></a><a class="link" href="/wiki/acm/rotating-caliper.html"><span class="toc-text">【计算几何】旋转卡尺</span></a><a class="link" href="/wiki/acm/rand-inc.html"><span class="toc-text">【计算几何】随机增量法</span></a><a class="link" href="/wiki/acm/compgeoprobs.html"><span class="toc-text">计算几何杂题</span></a><a class="link" href="/wiki/acm/inverse.html"><span class="toc-text">【计算几何】 反演变换</span></a><a class="link" href="/wiki/acm/minkovski.html"><span class="toc-text">【计算几何】 Minkovski 和</span></a></div><div class="widget-header dis-select"><span class="name">OI 数学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/nim-game.html"><span class="toc-text">Nim 博弈、SG 函数</span></a><a class="link" href="/wiki/acm/number-theory-decompose.html"><span class="toc-text">数论分块</span></a><a class="link" href="/wiki/acm/mobius-transform.html"><span class="toc-text">莫比乌斯反演</span></a><a class="link" href="/wiki/acm/linear-basis.html"><span class="toc-text">【数学】线性基</span></a><a class="link" href="/wiki/acm/min25sieve.html"><span class="toc-text">【数学】Min25 筛</span></a><a class="link" href="/wiki/acm/fwt.html"><span class="toc-text">【多项式】 快速沃尔什变换 Fast Walsh-Hadamard Transform</span></a></div><div class="widget-header dis-select"><span class="name">字符串</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/string-general.html"><span class="toc-text">【字符串】字符串的一些解题思路</span></a><a class="link" href="/wiki/acm/stringhash.html"><span class="toc-text">【字符串】字符串哈希</span></a><a class="link" href="/wiki/acm/suffix-array.html"><span class="toc-text">【字符串】后缀数组</span></a><a class="link" href="/wiki/acm/sam.html"><span class="toc-text">【字符串】后缀自动机</span></a><a class="link" href="/wiki/acm/acam.html"><span class="toc-text">【字符串】AC 自动机</span></a><a class="link" href="/wiki/acm/palindrome.html"><span class="toc-text">【字符串】回文串专题（马拉车）</span></a><a class="link" href="/wiki/acm/pam.html"><span class="toc-text">【字符串】回文自动机/回文树</span></a><a class="link" href="/wiki/acm/extend-kmp.html"><span class="toc-text">【字符串】拓展 KMP（Z 函数）</span></a><a class="link" href="/wiki/acm/prefix-automaton.html"><span class="toc-text">【字符串】前缀函数自动机 Prefix Function Automaton</span></a></div><div class="widget-header dis-select"><span class="name">图论</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/binary-shift.html"><span class="toc-text">倍增与树上倍增</span></a><a class="link" href="/wiki/acm/tree-centroid.html"><span class="toc-text">树的重心</span></a><a class="link" href="/wiki/acm/centroid-decomposition.html"><span class="toc-text">【树论】点分治</span></a><a class="link" href="/wiki/acm/centroid-decomp-tree.html"><span class="toc-text">【树论】点分治进阶：点分树</span></a><a class="link" href="/wiki/acm/chain-decomposition.html"><span class="toc-text">树链剖分</span></a><a class="link" href="/wiki/acm/aux-tree.html"><span class="toc-text">虚树</span></a><a class="link" href="/wiki/acm/dsu-on-tree.html"><span class="toc-text">启发式合并与静态链分治（树上启发式合并）</span></a><a class="link" href="/wiki/acm/segtree-merge.html"><span class="toc-text">线段树合并与动态开点权值线段树</span></a><a class="link" href="/wiki/acm/segtree-offline.html"><span class="toc-text">线段树分治</span></a><a class="link" href="/wiki/acm/network-flow.html"><span class="toc-text">网络流算法</span></a><a class="link" href="/wiki/acm/eulerian-path.html"><span class="toc-text">欧拉回路、欧拉图</span></a><a class="link" href="/wiki/acm/scc.html"><span class="toc-text">图的连通性</span></a><a class="link" href="/wiki/acm/shortest-path.html"><span class="toc-text">最短路问题</span></a><a class="link" href="/wiki/acm/two-sat.html"><span class="toc-text">【图论】2-sat</span></a><a class="link" href="/wiki/acm/block-forest.html"><span class="toc-text">【图论】广义圆方树</span></a><a class="link" href="/wiki/acm/build-graph-optim.html"><span class="toc-text">【图论】优化建图的方法</span></a><a class="link" href="/wiki/acm/kruskal.html"><span class="toc-text">【图论】生成树</span></a></div><div class="widget-header dis-select"><span class="name">数据结构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/chtholly.html"><span class="toc-text">珂朵莉树（颜色段均摊）</span></a><a class="link" href="/wiki/acm/trie.html"><span class="toc-text">字典树（Trie）</span></a><a class="link" href="/wiki/acm/lichao-segtree.html"><span class="toc-text">【数据结构】李超线段树</span></a><a class="link" href="/wiki/acm/scanline.html"><span class="toc-text">【数据结构】扫描线</span></a><a class="link" href="/wiki/acm/dsu.html"><span class="toc-text">【数据结构】并查集</span></a><a class="link" href="/wiki/acm/treap.html"><span class="toc-text">【数据结构】平衡树：板子的使用说明书</span></a><a class="link" href="/wiki/acm/link-cut-tree.html"><span class="toc-text">【数据结构】Link Cut Tree 动态树</span></a><a class="link" href="/wiki/acm/ett.html"><span class="toc-text">【数据结构、图论】Euler Tour Tree 欧拉回路树</span></a><a class="link" href="/wiki/acm/top-tree.html"><span class="toc-text">【数据结构】(Self-Adjusting) Top Tree</span></a></div><div class="widget-header dis-select"><span class="name">DP 专项</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/dp-section.html"><span class="toc-text">DP 专题</span></a><a class="link" href="/wiki/acm/contour-dp.html"><span class="toc-text">【动态规划】轮廓线 DP</span></a></div><div class="widget-header dis-select"><span class="name">杂项</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/sqrt-decomp.html"><span class="toc-text">根号分治</span></a><a class="link" href="/wiki/acm/mo-algo.html"><span class="toc-text">莫队算法</span></a><a class="link" href="/wiki/acm/stl.html"><span class="toc-text">【杂项】STL 在算法竞赛里的应用 (bitset / priority queue)</span></a><a class="link" href="/wiki/acm/simulated-annealing.html"><span class="toc-text">模拟退火算法</span></a><a class="link" href="/wiki/acm/miscprob.html"><span class="toc-text">杂题/思维题记录</span></a></div><div class="widget-header dis-select"><span class="name">Codeforces (按场次收录)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/cf652.html"><span class="toc-text">【CF652】 Educational Codeforces Round 10</span></a><a class="link" href="/wiki/acm/cf1463.html"><span class="toc-text">cf1463</span></a><a class="link" href="/wiki/acm/cf1843.html"><span class="toc-text">Codeforces Round 881 (Div. 3)</span></a><a class="link" href="/wiki/acm/cf1902.html"><span class="toc-text">【CF1902】Educational Codeforces Round 159 (Rated for Div. 2)</span></a><a class="link" href="/wiki/acm/cf1991.html"><span class="toc-text">Pinely Round 4 (Div.1 + Div. 2)</span></a><a class="link" href="/wiki/acm/cf1995.html"><span class="toc-text">Codeforces Round 961 (Div. 2)</span></a><a class="link" href="/wiki/acm/cf2021.html"><span class="toc-text">【 CF2021 】 Codeforces Round 977 (Div. 2)</span></a></div><div class="widget-header dis-select"><span class="name">AtCoder Beginner Round</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/abc365.html"><span class="toc-text">AtCoder Beginner Round 365</span></a></div><div class="widget-header dis-select"><span class="name">杭电多校 (按场次收录)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/2024-HDU-prac-01.html"><span class="toc-text">2024 杭电多校训练赛（一）</span></a><a class="link" href="/wiki/acm/2024-hdu-prac-09.html"><span class="toc-text">2024 杭电多校训练赛 09</span></a></div><div class="widget-header dis-select"><span class="name">牛客多校 (按场次收录)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/2024-nowcoder-summer-multi-05.html"><span class="toc-text">2024 牛客暑期多校训练营 5</span></a><a class="link" href="/wiki/acm/2024-nowcoder-summer-multi-06.html"><span class="toc-text">2024 牛客暑期多校训练营 6</span></a><a class="link" href="/wiki/acm/2024-nowcoder-summer-multi-07.html"><span class="toc-text">2024 牛客暑期多校训练赛 07</span></a></div><div class="widget-header dis-select"><span class="name">牛客周赛、小白赛 (按场次收录)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/nowcoder-weekly-43.html"><span class="toc-text">nowcoder-weekly-43</span></a><a class="link" href="/wiki/acm/nowcoder-weekly-46.html"><span class="toc-text">牛客周赛 46</span></a><a class="link" href="/wiki/acm/nowcoder-weekly-52.html"><span class="toc-text">牛客周赛 Round 52</span></a><a class="link" href="/wiki/acm/nc-weekly-63.html"><span class="toc-text">牛客周赛 Round 63</span></a><a class="link" href="/wiki/acm/nowcoder-novice-93.html"><span class="toc-text">牛客小白月赛 93</span></a></div><div class="widget-header dis-select"><span class="name">区域赛记录</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/2019-2020-icpc-neerc-nwrrc.html"><span class="toc-text">2019-2020 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)</span></a><a class="link active" href="/wiki/acm/2021-icpc-macau-r.html"><span class="toc-text">ICPC 2021 区域赛澳门站</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/acm/2024-icpc-shaanxi-provincial.html"><span class="toc-text">2024-icpc-shaanxi-provincial</span></a><a class="link" href="/wiki/acm/2024-icpc-asia-ec-online-contest-1.html"><span class="toc-text">【2024 | ICPC EC | 网络赛】2024 ICPC Asia East Continent Online Contest (I)</span></a></div><div class="widget-header dis-select"><span class="name">其他赛事</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/hku-selection-2024.html"><span class="toc-text">2024 香港大学 ACM 校队校选赛</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/acm/ds.html"><span class="toc-text">数据结构总结</span></a><a class="link" href="/wiki/acm/cf2013.html"><span class="toc-text">【CF2013】 Codeforces Round 973 (Div. 2)</span></a><a class="link" href="/wiki/acm/misc.html"><span class="toc-text">杂项</span></a><a class="link" href="/wiki/acm/probability.html"><span class="toc-text">概率论</span></a><a class="link" href="/wiki/acm/index.html"><span class="toc-text">ACM学习</span></a><a class="link" href="/wiki/acm/sqrt-tree.html"><span class="toc-text">【数据结构】根号树 Sqrt Tree</span></a><a class="link" href="/wiki/acm/strings.html"><span class="toc-text">strings</span></a><a class="link" href="/wiki/acm/voronoi.html"><span class="toc-text">【计算几何】 Voronoi 图、三角剖分</span></a><a class="link" href="/wiki/acm/graph-model.html"><span class="toc-text">建模转化为图论</span></a><a class="link" href="/wiki/acm/treap-principle.html"><span class="toc-text">【数据结构】平衡树的原理</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/acm/summary.html">算法笔记</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-09-15T02:15:26.886Z">2024-09-15</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>ICPC 2021 区域赛澳门站</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="icpc-2021-区域赛澳门站"><a class="markdownIt-Anchor" href="#icpc-2021-区域赛澳门站"></a> ICPC 2021 区域赛澳门站</h1>
+<h2 id="构造a-so-ill-max-out-my-constructive-algorithm-skills"><a class="markdownIt-Anchor" href="#构造a-so-ill-max-out-my-constructive-algorithm-skills"></a> 【构造】A. So I’ll Max Out My Constructive Algorithm Skills</h2>
+<p>我们随便取一种走法，如果这种走法的上山次数大于下山次数，那么就 <code>reverse()</code>，此时上山变下山，一定满足条件</p>
+<h2 id="构造d-shortest-path-fast-algorithm"><a class="markdownIt-Anchor" href="#构造d-shortest-path-fast-algorithm"></a> 【构造】D. Shortest Path Fast Algorithm</h2>
+<p>如何卡 SPFA.jpg</p>
+<pre class="mermaid">graph LR;
+	A[1] -->|1e6| B[2];
+	B -->|1| D[4];
+	A -->|1| C[3];
+	C -->|1e5| D;
+	C -->|1| B;</pre>
+<p>这样的入队顺序是：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">1,3,4,2,4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 出队 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 次</p>
+<h2 id="模拟-线段树e-sandpile"><a class="markdownIt-Anchor" href="#模拟-线段树e-sandpile"></a> 【模拟、线段树】E. Sandpile</h2>
+<p>根据题意模拟流程即可，用线段树辅助。如果可以成功模拟 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 轮，那么一定是 <code>Recurrent</code> 的；否则就直接输出结果就好。</p>
+<p>线段树维护</p>
+<ol>
+<li>区间最大值</li>
+<li>最大值的位置</li>
+<li>懒标记（区间加）</li>
+</ol>
+<details class="tag-plugin colorful folding" color="light" child="codeblock"><summary><span>Code</span></summary><div class="body"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* ============================ CONFIG BEGIN ============================ */</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5e5</span> + <span class="hljs-number">50</span>;<br><span class="hljs-type">int</span> mx[N * <span class="hljs-number">4</span>], pos[N * <span class="hljs-number">4</span>], tag[N * <span class="hljs-number">4</span>], a[N];<br><span class="hljs-type">int</span> n;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">ls</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> p &lt;&lt; <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">rs</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> p &lt;&lt; <span class="hljs-number">1</span> | <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pushup</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;<br>    mx[p] = <span class="hljs-built_in">max</span>(mx[<span class="hljs-built_in">ls</span>(p)], mx[<span class="hljs-built_in">rs</span>(p)]);<br>    <span class="hljs-keyword">if</span> (mx[p] == mx[<span class="hljs-built_in">ls</span>(p)]) pos[p] = pos[<span class="hljs-built_in">ls</span>(p)];<br>    <span class="hljs-keyword">else</span> pos[p] = pos[<span class="hljs-built_in">rs</span>(p)];<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (tag[p] == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;<br>    mx[<span class="hljs-built_in">ls</span>(p)] += tag[p];<br>    mx[<span class="hljs-built_in">rs</span>(p)] += tag[p];<br>    tag[<span class="hljs-built_in">ls</span>(p)] += tag[p];<br>    tag[<span class="hljs-built_in">rs</span>(p)] += tag[p];<br>    tag[p] = <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> p = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> l = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> r = n)</span> </span>&#123;<br>    tag[p] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> (l == r) &#123;<br>        mx[p] = a[l];<br>        pos[p] = l;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> m = l + ((r - l) &gt;&gt; <span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">build</span>(<span class="hljs-built_in">ls</span>(p), l, m);<br>    <span class="hljs-built_in">build</span>(<span class="hljs-built_in">rs</span>(p), m + <span class="hljs-number">1</span>, r);<br>    <span class="hljs-built_in">pushup</span>(p);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr, <span class="hljs-type">int</span> val, <span class="hljs-type">int</span> p = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> l = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> r = n)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (ql &lt;= l <span class="hljs-keyword">and</span> r &lt;= qr) &#123;<br>        mx[p] += val;<br>        tag[p] += val;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-built_in">pushdown</span>(p);<br>    <span class="hljs-type">int</span> m = l + ((r - l) &gt;&gt; <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">if</span> (ql &lt;= m) <span class="hljs-built_in">insert</span>(ql, qr, val, <span class="hljs-built_in">ls</span>(p), l, m);<br>    <span class="hljs-keyword">if</span> (m &lt; qr) <span class="hljs-built_in">insert</span>(ql, qr, val, <span class="hljs-built_in">rs</span>(p), m + <span class="hljs-number">1</span>, r);<br>    <span class="hljs-built_in">pushup</span>(p);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> p = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> l = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> r = n)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (l == r) <span class="hljs-keyword">return</span> mx[p];<br>    <span class="hljs-built_in">pushdown</span>(p);<br>    <span class="hljs-type">int</span> m = l + ((r - l) &gt;&gt; <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">if</span> (pos &lt;= m) <span class="hljs-keyword">return</span> <span class="hljs-built_in">search</span>(pos, <span class="hljs-built_in">ls</span>(p), l, m);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-built_in">search</span>(pos, <span class="hljs-built_in">rs</span>(p), m + <span class="hljs-number">1</span>, r);<br>&#125;<br><span class="hljs-comment">/* ============================= CONFIG END ============================= */</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>    cin &gt;&gt; n;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) cin &gt;&gt; a[i];<br>    <span class="hljs-built_in">build</span>();<br><br>    <span class="hljs-type">int</span> recur = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (mx[<span class="hljs-number">1</span>] &lt; n - <span class="hljs-number">1</span>) &#123;<br>            recur = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> p = pos[<span class="hljs-number">1</span>], mxv = mx[<span class="hljs-number">1</span>];<br>        <span class="hljs-built_in">insert</span>(p, p, -n);<br>        <span class="hljs-built_in">insert</span>(<span class="hljs-number">1</span>, n, <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (recur) cout &lt;&lt; <span class="hljs-string">&quot;Recurrent&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) cout &lt;&lt; <span class="hljs-built_in">search</span>(i) &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>[i == n];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></div></details>
+<h2 id="贪心-最小生成树k-link-cut-tree"><a class="markdownIt-Anchor" href="#贪心-最小生成树k-link-cut-tree"></a> 【贪心、最小生成树】K. Link Cut Tree</h2>
+<p>贪心的策略，注意到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></msubsup><msup><mn>2</mn><mi>i</mi></msup><mo>&lt;</mo><msup><mn>2</mn><mrow><mi>N</mi><mo>+</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\sum_{i=1}^N 2^i\lt 2^{N+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>，所以我们跑出一棵生成树之后，记录最小的、不在树上的边，然后直接在树/森林上 DFS 找路径。</p>
+<p>不要用树链剖分，DFS 就够了（树剖会被卡空间）</p>
+<details class="tag-plugin colorful folding" color="light" child="codeblock"><summary><span>Code</span></summary><div class="body"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/* ============================ CONFIG BEGIN ============================ */</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">1e5</span> + <span class="hljs-number">50</span>;<br><span class="hljs-type">int</span> n, m;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Edge</span> &#123;<br>    <span class="hljs-type">int</span> u, v, w;<br>    <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-type">const</span> Edge &amp;a) &#123; <span class="hljs-keyword">return</span> w &lt; a.w; &#125;<br>&#125;;<br>Edge e[N];<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">DSU</span> &#123;<br>    <span class="hljs-type">int</span> fa[N], rank[N];<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-built_in">iota</span>(fa, fa + N, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">fill</span>(rank, rank + N, <span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">root</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span> </span>&#123; <span class="hljs-keyword">return</span> u == fa[u] ? u : fa[u] = <span class="hljs-built_in">root</span>(fa[u]); &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">connect</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span> </span>&#123;<br>        <span class="hljs-type">int</span> fu = <span class="hljs-built_in">root</span>(u), fv = <span class="hljs-built_in">root</span>(v);<br>        <span class="hljs-keyword">if</span> (fu == fv) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span> (rank[fu] &gt; rank[fv]) <span class="hljs-built_in">swap</span>(fu, fv);<br>        fa[fu] = fv;<br>        rank[fv] += rank[fu] == rank[fv];<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br>&#125; dsu;<br>vector&lt;vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;&gt; g;<br>vector&lt;<span class="hljs-type">int</span>&gt; ans;<br><span class="hljs-type">int</span> d;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">cls</span><span class="hljs-params">()</span> </span>&#123;<br>    ans.<span class="hljs-built_in">clear</span>();<br>    dsu.<span class="hljs-built_in">clear</span>();<br>    g.<span class="hljs-built_in">clear</span>();<br>    d = <span class="hljs-number">1e9</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> f, <span class="hljs-type">int</span> des)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (u == des) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;[v, w] : g[u]) &#123;<br>        <span class="hljs-keyword">if</span> (v == f) <span class="hljs-keyword">continue</span>;<br>        ans.<span class="hljs-built_in">push_back</span>(w);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">dfs</span>(v, u, des)) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        ans.<span class="hljs-built_in">pop_back</span>();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">/* ============================= CONFIG END ============================= */</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    g.<span class="hljs-built_in">assign</span>(n + <span class="hljs-number">1</span>, &#123;&#125;);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;<br>        cin &gt;&gt; e[i].u &gt;&gt; e[i].v;<br>        e[i].w = i;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;<br>        <span class="hljs-keyword">if</span> (!dsu.<span class="hljs-built_in">connect</span>(e[i].u, e[i].v)) &#123;<br>            d = <span class="hljs-built_in">min</span>(i, d);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            g[e[i].u].<span class="hljs-built_in">push_back</span>(&#123;e[i].v, e[i].w&#125;);<br>            g[e[i].v].<span class="hljs-built_in">push_back</span>(&#123;e[i].u, e[i].w&#125;);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (d == <span class="hljs-number">1e9</span>) &#123;<br>        cout &lt;&lt; <span class="hljs-number">-1</span> &lt;&lt; endl;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    <span class="hljs-built_in">dfs</span>(e[d].u, e[d].v, e[d].v);<br>    ans.<span class="hljs-built_in">push_back</span>(e[d].w);<br>    <span class="hljs-built_in">sort</span>(ans.<span class="hljs-built_in">begin</span>(), ans.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i : ans) cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    cout &lt;&lt; endl;<br>&#125;<br><br></code></pre></td></tr></table></figure></div></details>
+<div class="article-footer fs14"></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/acm/2019-2020-icpc-neerc-nwrrc.html">2019-2020 ICPC NERC (NEERC), North-Western Russia Regional Contest (Northern Subregionals)</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/acm/2024-icpc-shaanxi-provincial.html">2024-icpc-shaanxi-provincial</a></div></section></div>
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">ArcaLunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#icpc-2021-%E5%8C%BA%E5%9F%9F%E8%B5%9B%E6%BE%B3%E9%97%A8%E7%AB%99"><span class="toc-text"> ICPC 2021 区域赛澳门站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0a-so-ill-max-out-my-constructive-algorithm-skills"><span class="toc-text"> 【构造】A. So I’ll Max Out My Constructive Algorithm Skills</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0d-shortest-path-fast-algorithm"><span class="toc-text"> 【构造】D. Shortest Path Fast Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F-%E7%BA%BF%E6%AE%B5%E6%A0%91e-sandpile"><span class="toc-text"> 【模拟、线段树】E. Sandpile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91k-link-cut-tree"><span class="toc-text"> 【贪心、最小生成树】K. Link Cut Tree</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `Switched to Light Mode`,
+      dark: `Switched to Dark Mode`,
+      auto: `Switched to Auto Mode`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@v11/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
