@@ -20,17 +20,19 @@
   <title>HKU 课程: COMP2396 Java - Arca's Blog</title>
 
   
-    <meta name="description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法 自己看吧，没啥好说的。多敲多记，This is coding">
+    <meta name="description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法  Part 2. GUI 这节课主要使用 Java Swing 来编写 GUI。  JFrame 是一个 window，里面可以包含很多东西，比如按钮、滑条、复选框等等（被称为 widgets） 一个 widget 是一个 Swing Component Component 可以包含其他 Component （就像">
 <meta property="og:type" content="website">
 <meta property="og:title" content="COMP2396 Java">
 <meta property="og:url" content="http://arcalunar.github.io/wiki/hku/comp2396.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法 自己看吧，没啥好说的。多敲多记，This is coding">
+<meta property="og:description" content="COMP2396: Java 与面对对象编程  Part 1. Java 语法  Part 2. GUI 这节课主要使用 Java Swing 来编写 GUI。  JFrame 是一个 window，里面可以包含很多东西，比如按钮、滑条、复选框等等（被称为 widgets） 一个 widget 是一个 Swing Component Component 可以包含其他 Component （就像">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.5tr1xcmk8w.webp">
 <meta property="article:published_time" content="2024-09-01T06:40:29.000Z">
-<meta property="article:modified_time" content="2024-09-18T14:28:00.573Z">
+<meta property="article:modified_time" content="2024-11-19T12:12:15.371Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.5tr1xcmk8w.webp">
   
   
   
@@ -81,7 +83,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/hku/comp2119.html">HKU 课程</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-09-18T14:28:00.573Z">2024-09-18</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-11-19T12:12:15.371Z">2024-11-19</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -94,7 +96,163 @@
   </div>
   </div><article class="md-text content"><h1 id="comp2396-java-与面对对象编程"><a class="markdownIt-Anchor" href="#comp2396-java-与面对对象编程"></a> COMP2396: Java 与面对对象编程</h1>
 <h2 id="part-1-java-语法"><a class="markdownIt-Anchor" href="#part-1-java-语法"></a> Part 1. Java 语法</h2>
-<p>自己看吧，没啥好说的。多敲多记，This is coding</p>
+<h2 id="part-2-gui"><a class="markdownIt-Anchor" href="#part-2-gui"></a> Part 2. GUI</h2>
+<p>这节课主要使用 Java Swing 来编写 GUI。</p>
+<ul>
+<li><code>JFrame</code> 是一个 <strong>window</strong>，里面可以包含很多东西，比如按钮、滑条、复选框等等（被称为 <strong>widgets</strong>）</li>
+<li>一个 widget 是一个 Swing Component</li>
+<li>Component 可以包含其他 Component （就像 Menu 包含按钮和文字）</li>
+</ul>
+<p><code>JFrame frame = new JFrame()</code><br />
+<code>frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</code></p>
+<p><code>frame.add(&lt;Component&gt;)</code></p>
+<p><code>frame.setSize(&lt;int&gt;, &lt;int&gt;)</code><br />
+<code>frame.setVisible(true)</code></p>
+<h3 id="event-handling"><a class="markdownIt-Anchor" href="#event-handling"></a> Event Handling</h3>
+<p>Implement <strong>Event-listener interface</strong>，然后 <strong>register</strong></p>
+<h3 id="drawing-panel"><a class="markdownIt-Anchor" href="#drawing-panel"></a> Drawing Panel</h3>
+<p>相当于 Canvas，分配了一块地方，可以放图片、填充颜色、画图形之类的。</p>
+<ol>
+<li>继承 <code>JPanel</code></li>
+<li>重载 <code>paintComponent()</code></li>
+<li>实例化，然后 <strong>add</strong> 到 <code>JFrame</code> 里</li>
+<li>为了更多有用的功能，可以把参数的 <code>Graphics g</code> 类型转换成 <code>Graphics2D</code></li>
+</ol>
+<p>Animation: 循环 + <code>try &#123; sleep(); &#125; catch(Exception e) &#123;&#125;</code></p>
+<h3 id="layout-managers"><a class="markdownIt-Anchor" href="#layout-managers"></a> Layout Managers</h3>
+<p><strong>controls</strong> the <em>size</em> and <em>placement</em> of the components contained <strong>within</strong> the component the layout manager is associated with</p>
+<h4 id="borderlayout-类"><a class="markdownIt-Anchor" href="#borderlayout-类"></a> BorderLayout 类</h4>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.5tr1xcmk8w.webp" alt="BorderLayout" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">BorderLayout</span></div></div>
+<p>North, South: 能拉伸高度，但是宽度限定死和 <code>JFrame</code> 一样宽<br />
+West, East: 能拉伸宽度，但是高度和 <code>JFrame</code> 一样高。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">frame.add(&lt;widget&gt;, BorderLayout.EAST);<br></code></pre></td></tr></table></figure>
+<div class="tag-plugin colorful note" color="light"><div class="title">备注</div><div class="body"><p>BorderLayout 是 Frame 的默认</p></div></div>
+<h4 id="flowlayout-类"><a class="markdownIt-Anchor" href="#flowlayout-类"></a> FlowLayout 类</h4>
+<ul>
+<li>each component gets to have its own size</li>
+<li>Components are laid out <strong>left to right</strong> in the order that they are added</li>
+<li>When a component does not fit horizontally, it <strong>drops to the next “line”</strong> in the layout</li>
+</ul>
+<div class="tag-plugin colorful note" color="yellow"><div class="title">备注</div><div class="body"><p>FlowLayout 是 Panel 的默认 Layout Manager</p></div></div>
+<h4 id="boxlayout-类"><a class="markdownIt-Anchor" href="#boxlayout-类"></a> BoxLayout 类</h4>
+<p>可以 Vertically 也可以 Horizontally 添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">panel.setLayout(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BoxLayout</span>(panel, Y_AXIS)); <span class="hljs-comment">// 纵向堆叠</span><br></code></pre></td></tr></table></figure>
+<h4 id="gridbaglayout-类"><a class="markdownIt-Anchor" href="#gridbaglayout-类"></a> GridBagLayout 类</h4>
+<ul>
+<li>Components are placed in a grid of rows and columns</li>
+</ul>
+<h5 id="defining-a-gridbaglayout"><a class="markdownIt-Anchor" href="#defining-a-gridbaglayout"></a> Defining a GridBagLayout</h5>
+<!-- #region  -->
+<details class="tag-plugin colorful folding" color="light"><summary><span>GridBagConstraints</span></summary><div class="body"><p>用来控制 GridBagLayout 的外观</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">GridBagConstraints</span><span class="hljs-params">(</span><br><span class="hljs-params">    <span class="hljs-type">int</span> gridx, </span><br><span class="hljs-params">    <span class="hljs-type">int</span> gridy,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> gridwidth,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> gridheight,</span><br><span class="hljs-params">    <span class="hljs-type">double</span> weightx, </span><br><span class="hljs-params">    <span class="hljs-type">double</span> weighty,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> anchor,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> fill,</span><br><span class="hljs-params">    Insets insets,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> ipadx,</span><br><span class="hljs-params">    <span class="hljs-type">int</span> ipady,</span><br><span class="hljs-params">)</span><br></code></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td><code>gridx, gridy</code></td><td>组件的位置<br>设置为 <code>GridBagConstraints.RELATIVE</code> 代表此组件位于之前所加入组件的右边</td></tr><tr><td><code>gridwidth, gridheight</code></td><td>用来设置组件所占的单位长度与高度，默认值皆为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</td></tr><tr><td><code>weightx, weighty</code></td><td>用来设置窗口变大时，各组件<strong>跟着变大</strong>的比例。<br>当数字越大，表示组件能得到更多的空间。默认值皆为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</td></tr><tr><td><code>anchor</code></td><td>当组件空间大于组件本身时，要将组件置于何处。<br>有 <code>CENTER</code>（默认值）、<code>NORTH</code>、<code>NORTHEAST</code>、<code>EAST</code>、<code>SOUTHEAST</code>、<code>WEST</code>、<code>NORTHWEST</code> 选择。</td></tr><tr><td><code>insets</code></td><td>设置组件之间彼此的间距。</td></tr><tr><td><code>ipadx, ipady</code></td><td>设置组件间距，默认值为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</td></tr></tbody></table></div></details>
+<!-- #endregion -->
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Setting up</span><br>panel.setLayout(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GridBagLayout</span>());<br><span class="hljs-type">GridBagConstraints</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GridBagConstaints</span>();<br>c.XXX = YYY;<br><span class="hljs-comment">// Adding things</span><br>panel.add( [widgets] , c);<br></code></pre></td></tr></table></figure>
+<h3 id="常见的-gui-组件"><a class="markdownIt-Anchor" href="#常见的-gui-组件"></a> 常见的 GUI 组件</h3>
+<h4 id="文本框-jtextfield"><a class="markdownIt-Anchor" href="#文本框-jtextfield"></a> 文本框 JTextField</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">JTextField</span> <span class="hljs-variable">jtxt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextField</span>(<span class="hljs-number">20</span>); <span class="hljs-comment">// 设置为 20 columns</span><br><span class="hljs-type">JTextField</span> <span class="hljs-variable">jtxt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextField</span>(<span class="hljs-string">&quot;Your Name&quot;</span>); <span class="hljs-comment">// 设置底部提示词</span><br></code></pre></td></tr></table></figure>
+<p>如何使用？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">jtxt.getText(); <span class="hljs-comment">// 获取输入的文本</span><br>jtxt.setText(<span class="hljs-string">&quot;...&quot;</span>); <span class="hljs-comment">// 设定字符串</span><br>jtxt.addActionListener(); <span class="hljs-comment">// Get an ActionEvent when the user presses return or enter</span><br>jtxt.selectAll(); <span class="hljs-comment">// 全选，高亮</span><br>jtxt.requestFocus(); <span class="hljs-comment">// 获取光标</span><br></code></pre></td></tr></table></figure>
+<h4 id="jtextarea"><a class="markdownIt-Anchor" href="#jtextarea"></a> JTextArea</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">JTextArea</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JTextArea</span>(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>); <span class="hljs-comment">// 10 行，20 列</span><br></code></pre></td></tr></table></figure>
+<p>如何使用？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* 添加竖直方向的滚轮条 */</span><br><span class="hljs-type">ScrollPane</span> <span class="hljs-variable">scroller</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JScrollPane</span>(text);<br>text.setLineWrap(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 多行显示</span><br>scroller.setVerticalScrollBarPolicy(<br>    ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS<br>);<br>scroller.setHorizontalScrollBarPolicy(<br>    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER<br>); <span class="hljs-comment">// 禁用水平滚轮</span><br>panel.add(scroller); <span class="hljs-comment">// add scroller, but not text</span><br><br><br>text.setText(<span class="hljs-string">&quot;...&quot;</span>); <span class="hljs-comment">// 设置文本</span><br>text.append(<span class="hljs-string">&quot;...&quot;</span>); <span class="hljs-comment">// 添加文本到末尾</span><br>text.selectAll();<br>text.requestFocus();<br></code></pre></td></tr></table></figure>
+<h4 id="jcheckbox"><a class="markdownIt-Anchor" href="#jcheckbox"></a> JCheckBox</h4>
+<p>复选框</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">check.addItemListener(...);<br><br><span class="hljs-comment">// 处理点击事件</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">itemStateChanged</span><span class="hljs-params">(ItemEvent event)</span> &#123;<br>    ...;<br>&#125;<br><br><span class="hljs-comment">// Select/unselect in code</span><br>check.setSelected(<span class="hljs-literal">true</span>);<br>check.setSelected(<span class="hljs-literal">false</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="jlist"><a class="markdownIt-Anchor" href="#jlist"></a> JList</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">JList&lt;SomeType&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JList</span>&lt;SomeType&gt;(...[list of something]);<br></code></pre></td></tr></table></figure>
+<p>如何使用？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 竖直滚动</span><br><span class="hljs-type">JScrollPane</span> <span class="hljs-variable">scroller</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JScrollPane</span>(list);<br>scroller.setVerticalScrollBarPolicy(<br>    ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS<br>);<br>scroller.setHorizontalScrollBarPolicy(<br>    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER<br>);<br>panel.add(scroller); <span class="hljs-comment">// add scroller, but not text</span><br><br><span class="hljs-comment">// 设置可见几行</span><br>list.setVisibleRowCount(<span class="hljs-number">4</span>);<br><br><span class="hljs-comment">// 设置为单选</span><br>list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);<br><br><span class="hljs-comment">// 事件</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">valueChanged</span><span class="hljs-params">(ListSelectionEvent e)</span> &#123;<br>    list.getSelectedValue(); <span class="hljs-comment">// 获取选中的值</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="jmenu-jmenubar-jmenuitem"><a class="markdownIt-Anchor" href="#jmenu-jmenubar-jmenuitem"></a> JMenu, JMenuBar, JMenuItem</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Constructor</span><br><span class="hljs-type">JMenuBar</span> <span class="hljs-variable">menuBar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JMenuBar</span>();<br><span class="hljs-type">JMenu</span> <span class="hljs-variable">menu</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JMenu</span>(<span class="hljs-string">&quot;Menu A&quot;</span>);<br><span class="hljs-type">JMenuItem</span> <span class="hljs-variable">menuItem</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JMenuItem</span>(<span class="hljs-string">&quot;Item&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>基础调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">menu.add(menuItem);<br>menuBar.add(menu);<br>frame.setJMenuBar(menuBar);<br></code></pre></td></tr></table></figure>
+<p>如何使用？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">menuItem.addActionListener(<span class="hljs-built_in">this</span>);<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(ActionEvent event)</span> &#123;<br>    <span class="hljs-comment">// codes for handling the selection of the menu item</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="chapter-10-serialization-and-file-io"><a class="markdownIt-Anchor" href="#chapter-10-serialization-and-file-io"></a> Chapter 10. Serialization and File IO</h2>
+<blockquote>
+<p>The Java I/O API has 2 types of streams, namely <strong>connection streams</strong> and <strong>chain streams</strong></p>
+<p>A connection stream (e.g., FileOutputStream) represents a <strong>connection to a source or destination</strong> (e.g., file, network socket, etc.). It has <strong>low-level methods</strong> for serialization (e.g., writing bytes to a destination)</p>
+<p>A chain stream (e.g., ObjectOutputStream) works only if chained to another stream. It has <strong>higher-level methods</strong> for serialization (e.g., writing objects to another stream)</p>
+<p>The ability to <strong>mix and match</strong> different combinations of connection and chain streams gives you tremendous flexibility</p>
+</blockquote>
+<div class="tag-plugin colorful note" color="light"><div class="title"><strong>个人理解</strong></div><div class="body"><p>Serialization 分两个部分，一个底层、一个上层。Java 的 IO API 里对于底层的实现属于 <strong>Connection Stream</strong>，这里面是 Java 帮我们写好的底层通讯，例如 IP, socket。而上层则属于 <strong>Chain Streams</strong>，负责把（最顶层的）用户输入转化成（底层的）能够让 Connection Stream 看懂的数据。</p></div></div>
+<p>用来保存当前状态。</p>
+<ol>
+<li>打开 <code>FileOutputStream</code>。<code>FileOutputStream fileStream = newFileOutputStream(&quot;MyGame.sav&quot;);</code></li>
+<li>打开 <code>ObjectOutputStream</code>。<code>ObjectOutputStream os = new ObjectOutputStream(fileStream);</code></li>
+<li>Write objects. <code>os.writeObject(elf);</code></li>
+<li>Close stream. <code>os.close()</code>，<code>fileStream</code> 会自动关闭。</li>
+</ol>
+<ul>
+<li>Serialization saves the <strong>entire object graph</strong>!</li>
+<li><code>Serializable</code> 也会自动继承。</li>
+<li>如果成员变量没有 <code>Serializable</code>，就会报错</li>
+</ul>
+<h3 id="transient-关键字"><a class="markdownIt-Anchor" href="#transient-关键字"></a> Transient 关键字</h3>
+<blockquote>
+<p>有的东西不应该被保存，例如网络连接的 socket 应该每次链接的时候重新生成</p>
+</blockquote>
+<ul>
+<li>Mark an instance variable as <code>transient</code> if it cannot or should <strong>not be saved</strong>, and it will be <strong>skipped</strong> by the serialization process</li>
+</ul>
+<h3 id="restore-from-file"><a class="markdownIt-Anchor" href="#restore-from-file"></a> Restore from File</h3>
+<ol>
+<li><code>FileInputStream</code></li>
+<li><code>ObjectInputStream</code></li>
+<li>读入，然后<strong>强制类型转换</strong></li>
+<li><code>close()</code></li>
+</ol>
+<blockquote>
+<ul>
+<li>A new object is given the space on the heap, but the constructor of the serialized object does not run（不会重新调用构造函数）</li>
+<li>If the object has a non-serializable superclass somewhere up its inheritance tree, the <strong>no-argument constructor</strong> for that <strong>non-serializable class</strong> will <strong>run</strong>, along with any constructors above it</li>
+<li>Once the constructor chaining begins, you cannot stop it, which means all superclasses, beginning with the first non-serializable one, will reinitialize their states</li>
+<li><code>Transient</code> variables are given default value.</li>
+</ul>
+</blockquote>
+<h3 id="serialization-version-control"><a class="markdownIt-Anchor" href="#serialization-version-control"></a> Serialization Version Control</h3>
+<ul>
+<li>If the class has been modified since the object was serialized, the class could have a different serialVersionUID</li>
+<li>If the 2 numbers do not match, the JVM assumes the class is not compatible with the previously-serialized object, this will result in an exception during deserialization</li>
+<li>It is possible to keep the same serialVersionUID for a class even though it has actually been modified.</li>
+<li>This can be done by putting a customized serialVersionUID in the class definition.</li>
+</ul>
+<p>不同行为对 SerialVersionUID 的影响 TODO))</p>
+<h3 id="输出到文件"><a class="markdownIt-Anchor" href="#输出到文件"></a> 输出到文件</h3>
+<p>用 <code>FileWriter</code> 而不是 <code>FileOutputStream</code>。</p>
+<blockquote>
+<p>This makes your application <strong>less efficient</strong> since every trip to the disk is a big deal compared to manipulating data in memory.</p>
+<p>By <strong>chaining</strong> a <code>BufferedWriter</code> (a chain stream) to a FileWriter, the BufferedWriter will hold all the stuff you write to it until it is full.</p>
+<p>Only when the buffer is full will the FileWriter actually be told to write to the file on disk</p>
+</blockquote>
+<p>同理，也有 <code>FileReader</code> 和 <code>BufferedReader</code></p>
+<h2 id="chapter-11-network-and-multi-threading"><a class="markdownIt-Anchor" href="#chapter-11-network-and-multi-threading"></a> Chapter 11. Network and Multi-threading</h2>
+<h3 id="socket-connection"><a class="markdownIt-Anchor" href="#socket-connection"></a> Socket Connection</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(<span class="hljs-comment">/* [IP Address in String] */</span>, <span class="hljs-comment">/* Port ID in int */</span>)<br><span class="hljs-type">ServerSocket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-comment">/* Port ID in int */</span>);<br></code></pre></td></tr></table></figure>
+<p>从 Socket 读取数据</p>
+<ol>
+<li>Make socket connection</li>
+<li><code>InputStreamReader</code>。<code>InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());</code></li>
+<li>Make a <code>BufferedReader</code>。<code>BufferedReader reader = new BufferedReader(streamReader);</code></li>
+<li>Read data. <code>String line = reader.readLine();</code></li>
+</ol>
+<p>向 Socket 里写入数据</p>
+<ol>
+<li>Make a Socket connection to the server</li>
+<li>Make a <code>PrintWriter</code></li>
+<li>Write data.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Socket</span> <span class="hljs-variable">sock</span> <span class="hljs-operator">=</span> serverSocket.accept(); <span class="hljs-comment">// 阻塞进程</span><br></code></pre></td></tr></table></figure>
+<p>Multi-threading: 处理多个 Client.</p>
+<h3 id="线程"><a class="markdownIt-Anchor" href="#线程"></a> 线程</h3>
+<ol>
+<li><code>Runnable threadJob = new MyRunnable();</code></li>
+<li><code>Thread myThread = new Thread(threadJob);</code></li>
+<li><code>myThread.start();</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="同步问题"><a class="markdownIt-Anchor" href="#同步问题"></a> 同步问题</h3>
+<p>使用关键词 <code>synchronized</code></p>
 
 <div class="article-footer fs14"></div>
 </article>
@@ -111,7 +269,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comp2396-java-%E4%B8%8E%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-text"> COMP2396: Java 与面对对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-1-java-%E8%AF%AD%E6%B3%95"><span class="toc-text"> Part 1. Java 语法</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comp2396-java-%E4%B8%8E%E9%9D%A2%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-text"> COMP2396: Java 与面对对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-1-java-%E8%AF%AD%E6%B3%95"><span class="toc-text"> Part 1. Java 语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-2-gui"><span class="toc-text"> Part 2. GUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#event-handling"><span class="toc-text"> Event Handling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drawing-panel"><span class="toc-text"> Drawing Panel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#layout-managers"><span class="toc-text"> Layout Managers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#borderlayout-%E7%B1%BB"><span class="toc-text"> BorderLayout 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flowlayout-%E7%B1%BB"><span class="toc-text"> FlowLayout 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#boxlayout-%E7%B1%BB"><span class="toc-text"> BoxLayout 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gridbaglayout-%E7%B1%BB"><span class="toc-text"> GridBagLayout 类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#defining-a-gridbaglayout"><span class="toc-text"> Defining a GridBagLayout</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-gui-%E7%BB%84%E4%BB%B6"><span class="toc-text"> 常见的 GUI 组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A1%86-jtextfield"><span class="toc-text"> 文本框 JTextField</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jtextarea"><span class="toc-text"> JTextArea</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jcheckbox"><span class="toc-text"> JCheckBox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jlist"><span class="toc-text"> JList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jmenu-jmenubar-jmenuitem"><span class="toc-text"> JMenu, JMenuBar, JMenuItem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-10-serialization-and-file-io"><span class="toc-text"> Chapter 10. Serialization and File IO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transient-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text"> Transient 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#restore-from-file"><span class="toc-text"> Restore from File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#serialization-version-control"><span class="toc-text"> Serialization Version Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6"><span class="toc-text"> 输出到文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-11-network-and-multi-threading"><span class="toc-text"> Chapter 11. Network and Multi-threading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#socket-connection"><span class="toc-text"> Socket Connection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-text"> 线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="toc-text"> 同步问题</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
