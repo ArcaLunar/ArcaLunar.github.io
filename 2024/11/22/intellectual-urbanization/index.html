@@ -17,22 +17,20 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Git 版本控制 - Arca's Blog</title>
+  <title>「Aeon Essay」A metropolitan world - Arca's Blog</title>
 
   
-    <meta name="description" content="Git 文件的状态变化周期  Git 基础 Workflow  检查状态 命令行1git status 123&gt;&gt;&gt; git statusOn branch masternothing to commit, working directory clean 这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。此外，上面的信息还表明，当前目录下没有出现">
+    <meta name="description" content="Urbanization https:&#x2F;&#x2F;aeon.co&#x2F;essays&#x2F;intellectual-life-is-still-catching-up-to-urbanisationEssay">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 版本控制">
-<meta property="og:url" content="http://arcalunar.github.io/2024/08/29/pro-git/index.html">
+<meta property="og:title" content="「Aeon Essay」A metropolitan world">
+<meta property="og:url" content="http://arcalunar.github.io/2024/11/22/intellectual-urbanization/index.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Git 文件的状态变化周期  Git 基础 Workflow  检查状态 命令行1git status 123&gt;&gt;&gt; git statusOn branch masternothing to commit, working directory clean 这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。此外，上面的信息还表明，当前目录下没有出现">
+<meta property="og:description" content="Urbanization https:&#x2F;&#x2F;aeon.co&#x2F;essays&#x2F;intellectual-life-is-still-catching-up-to-urbanisationEssay">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://iissnan.com/progit/book_src/figures/18333fig0201-tn.png">
-<meta property="article:published_time" content="2024-08-29T09:58:24.000Z">
-<meta property="article:modified_time" content="2024-09-10T03:17:04.677Z">
+<meta property="article:published_time" content="2024-11-22T09:47:54.000Z">
+<meta property="article:modified_time" content="2024-11-22T09:49:36.096Z">
 <meta property="article:author" content="ArcaLunar">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://iissnan.com/progit/book_src/figures/18333fig0201-tn.png">
+<meta name="twitter:card" content="summary">
   
   
   
@@ -67,7 +65,7 @@
 <nav class="menu dis-select"><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a></nav>
 </div>
 <div class="widgets">
-
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Topic: 英语学习</span></div><div class="widget-body"><a class="item active" href="/2024/11/22/intellectual-urbanization/"><span class="title">「Aeon Essay」A metropolitan world</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item" href="/2024/08/29/chaos-and-cause/"><span class="title">Aeon Essay: Chaos and Cause</span></a></div></widget>
 
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2024/11/22/ielts-vocabulary/"><span class="title">词汇补充</span></a><a class="item title" href="/2024/11/22/intellectual-urbanization/"><span class="title">「Aeon Essay」A metropolitan world</span></a><a class="item title" href="/2024/10/23/ielts-writing/"><span class="title">ielts-writing</span></a><a class="item title" href="/2024/11/21/ielts-materials/"><span class="title">雅思口语／写作素材积累</span></a><a class="item title" href="/2024/11/19/wireshark-intro/"><span class="title">wireshark-intro</span></a><a class="item title" href="/2024/11/17/cmake-intro/"><span class="title">「C++ 开发」 CMake 与项目管理</span></a><a class="item title" href="/2024/11/17/spdlog-usage/"><span class="title">「C++ 开发」 C++ 日志库 spdlog 的用法</span></a><a class="item title" href="/2024/11/13/linux-mint-driver-problem/"><span class="title">linux-mint-driver-problem</span></a><a class="item title" href="/2024/11/11/thread-pool/"><span class="title"><strong>cpp-dev</strong><span class="dot"></span>【C/C++】线程池的思想与实现</span></a><a class="item title" href="/2024/11/11/docker-linux-mint/"><span class="title">【踩坑实录】Linux Mint 22 下安装 Docker-Desktop</span></a></div></widget>
 </div>
@@ -81,53 +79,20 @@
 <div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-08-29T09:58:24.000Z">2024-08-29</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-09-10T03:17:04.677Z">2024-09-10</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/2024/11/22/intellectual-urbanization/">英语学习</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2024-11-22T09:47:54.000Z">2024-11-22</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2024-11-22T09:49:36.096Z">2024-11-22</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Git 版本控制</span></h1>
+        <h1 class="text title"><span>「Aeon Essay」A metropolitan world</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="git"><a class="markdownIt-Anchor" href="#git"></a> Git</h1>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://iissnan.com/progit/book_src/figures/18333fig0201-tn.png" alt="文件的状态变化周期" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">文件的状态变化周期</span></div></div>
-<h2 id="git-基础-workflow"><a class="markdownIt-Anchor" href="#git-基础-workflow"></a> Git 基础 Workflow</h2>
-<h3 id="检查状态"><a class="markdownIt-Anchor" href="#检查状态"></a> 检查状态</h3>
-<div class="tag-plugin colorful note" color="yellow"><div class="title"><strong>命令行</strong></div><div class="body"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status<br></code></pre></td></tr></table></figure></div></div>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&gt;&gt;&gt; git status<br>On branch master<br>nothing to commit, working directory clean<br></code></pre></td></tr></table></figure>
-<p>这说明你现在的工作目录相当干净。换句话说，所有已跟踪文件在上次提交后都未被更改过。此外，上面的信息还表明，当前目录下没有出现任何处于未跟踪的新文件，否则 Git 会在这里列出来。最后，该命令还显示了当前所在的分支是 <code>master</code>，这是默认的分支名称，实际是可以修改的，现在先不用考虑。下一章我们就会详细讨论分支和引用。</p>
-<h3 id="跟踪文件"><a class="markdownIt-Anchor" href="#跟踪文件"></a> 跟踪文件</h3>
-<div class="tag-plugin colorful note" color="red"><div class="title"><strong>命令行</strong></div><div class="body"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&gt;&gt;&gt; git add [FILE...]<br></code></pre></td></tr></table></figure><p>意思就是 add file to staged area.</p></div></div>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&gt;&gt;&gt; git status<br>On branch master<br>Changes to be committed:<br>  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)<br><br>        new file:   README<br><br>Changes not staged for commit:<br>  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)<br>  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)<br><br>        modified:   benchmarks.rb<br></code></pre></td></tr></table></figure>
-<p><code>Changes not staged</code> 下的 <code>modified</code> 说明<em>已跟踪文件的内容发生了变化，但还没有放到暂存区</em>。要暂存这次更新，需要运行 <code>git add</code> 命令。这是个多功能命令，根据目标文件的状态不同，此命令的效果也不同：可以用它</p>
-<ol>
-<li>开始跟踪新文件</li>
-<li>把已跟踪的文件放到暂存区</li>
-<li>合并时把有冲突的文件标记为已解决状态</li>
-<li>…</li>
-</ol>
-<h3 id="忽略文件"><a class="markdownIt-Anchor" href="#忽略文件"></a> 忽略文件</h3>
-<p>在目录新建 <code>.gitignore</code>，列出要忽略的文件名模式。</p>
-<p>文件 <code>.gitignore</code> 的格式规范如下：</p>
-<ol>
-<li>所有空行或者以注释符号 <code>＃</code> 开头的行都会被 Git 忽略。</li>
-<li>可以使用标准的 glob 模式匹配。
-<ul>
-<li>所谓的 glob 模式是指 Shell 所使用的简化了的正则表达式。</li>
-</ul>
-</li>
-<li>匹配模式最后跟反斜杠（<code>/</code>）说明要忽略的是目录。</li>
-<li>要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（<code>!</code>）取反。</li>
-</ol>
-<h3 id="查看已暂存和未暂存的更新"><a class="markdownIt-Anchor" href="#查看已暂存和未暂存的更新"></a> 查看已暂存和未暂存的更新</h3>
-<p>如果要查看具体修改了什么地方，可以用 <code>git diff</code> 命令。<code>git diff</code> 会使用<strong>文件补丁</strong>的格式显示具体添加和删除的行。</p>
-<p>此命令比较的是<strong>工作目录中当前文件</strong>和<strong>暂存区域快照</strong>之间的差异，也就是<mark>修改之后还没有暂存起来的变化内容</mark>。若要看<strong>已经暂存起来的文件</strong>和<strong>上次提交时的快照</strong>之间的差异，可以用 <code>git diff --staged</code> 命令。</p>
-<h3 id="提交更新"><a class="markdownIt-Anchor" href="#提交更新"></a> 提交更新</h3>
-
+  </div><article class="md-text content"><h1 id="urbanization"><a class="markdownIt-Anchor" href="#urbanization"></a> Urbanization</h1>
+<div class="tag-plugin link dis-select"><a class="link-card rich" title="Essay" href="https://aeon.co/essays/intellectual-life-is-still-catching-up-to-urbanisation" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="icon,desc"><div class="top"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div><span class="cap link footnote">https://aeon.co/essays/intellectual-life-is-still-catching-up-to-urbanisation</span></div><div class="bottom"><span class="title">Essay</span><span class="cap desc footnote"></span></div></a></div>
 <div class="article-footer fs14">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -136,7 +101,7 @@
     </section>
     </div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/2024/09/06/fullstack-open/">Helsinki Fullstack-Open: Web Development</a></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/08/29/chaos-and-cause/">Aeon Essay: Chaos and Cause</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Older</div><a href="/2024/11/22/ielts-vocabulary/">词汇补充</a></div></section></div>
 
 
 
@@ -151,7 +116,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#git"><span class="toc-text"> Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-%E5%9F%BA%E7%A1%80-workflow"><span class="toc-text"> Git 基础 Workflow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%8A%B6%E6%80%81"><span class="toc-text"> 检查状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-text"> 跟踪文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="toc-text"> 忽略文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E6%9A%82%E5%AD%98%E5%92%8C%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text"> 查看已暂存和未暂存的更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%96%B0"><span class="toc-text"> 提交更新</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#urbanization"><span class="toc-text"> Urbanization</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
