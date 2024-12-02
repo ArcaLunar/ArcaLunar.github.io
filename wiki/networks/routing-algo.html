@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Networks: Link Layer - Arca's Blog</title>
+  <title>Networks: Routing Algorithms - Arca's Blog</title>
 
   
-    <meta name="description" content="Link Layer  Terminology  Link Layer 里发送的被称为 Frame，负责将数据通过 link 从一个 Node 传输到 Physically adjacent 的另一个 Node。 不同的 Link 有不同的 Link Protocol，提供不同服务。">
+    <meta name="description" content="Password is needed to access the blog.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Link Layer">
-<meta property="og:url" content="http://arcalunar.github.io/wiki/networks/link-layer-intro.html">
+<meta property="og:title" content="Routing Algorithms">
+<meta property="og:url" content="http://arcalunar.github.io/wiki/networks/routing-algo.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Link Layer  Terminology  Link Layer 里发送的被称为 Frame，负责将数据通过 link 从一个 Node 传输到 Physically adjacent 的另一个 Node。 不同的 Link 有不同的 Link Protocol，提供不同服务。">
+<meta property="og:description" content="Password is needed to access the blog.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-11-22T13:32:31.000Z">
-<meta property="article:modified_time" content="2024-11-26T06:44:43.925Z">
+<meta property="article:published_time" content="2024-12-02T03:48:46.000Z">
+<meta property="article:modified_time" content="2024-12-02T06:13:26.867Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
   
@@ -68,7 +68,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Application Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/app-email.html#start"><span class="toc-text">应用层：邮件、SMTP 协议</span></a><a class="link" href="/wiki/networks/socket-prog.html"><span class="toc-text">Socket 与网络编程</span></a></div><div class="widget-header dis-select"><span class="name">Transport Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/tcp.html"><span class="toc-text">TCP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Data Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/network-layer-intro.html"><span class="toc-text">Network Layer Overview</span></a><a class="link" href="/wiki/networks/router.html"><span class="toc-text">Router 路由</span></a><a class="link" href="/wiki/networks/ipv4.html"><span class="toc-text">IPv4</span></a><a class="link" href="/wiki/networks/nat.html"><span class="toc-text">NAT 技术：缓解 IPv4 分配危机</span></a><a class="link" href="/wiki/networks/ipv6.html"><span class="toc-text">IPv6，下一代 IP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Control Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/routing-algo.html"><span class="toc-text">Routing Algorithms</span></a></div><div class="widget-header dis-select"><span class="name">Link Layer</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/networks/link-layer-intro.html"><span class="toc-text">Link Layer</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Application Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/app-email.html#start"><span class="toc-text">应用层：邮件、SMTP 协议</span></a><a class="link" href="/wiki/networks/socket-prog.html"><span class="toc-text">Socket 与网络编程</span></a></div><div class="widget-header dis-select"><span class="name">Transport Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/tcp.html"><span class="toc-text">TCP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Data Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/network-layer-intro.html"><span class="toc-text">Network Layer Overview</span></a><a class="link" href="/wiki/networks/router.html"><span class="toc-text">Router 路由</span></a><a class="link" href="/wiki/networks/ipv4.html"><span class="toc-text">IPv4</span></a><a class="link" href="/wiki/networks/nat.html"><span class="toc-text">NAT 技术：缓解 IPv4 分配危机</span></a><a class="link" href="/wiki/networks/ipv6.html"><span class="toc-text">IPv6，下一代 IP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Control Plane</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/networks/routing-algo.html"><span class="toc-text">Routing Algorithms</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Link Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/link-layer-intro.html"><span class="toc-text">Link Layer</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -81,27 +81,32 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/networks/app-email.html">Networks</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-11-26T06:44:43.925Z">2024-11-26</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-02T06:13:26.867Z">2024-12-02</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Link Layer</span></h1>
+        <h1 class="text title"><span>Routing Algorithms</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="link-layer"><a class="markdownIt-Anchor" href="#link-layer"></a> Link Layer</h1>
-<h2 id="terminology"><a class="markdownIt-Anchor" href="#terminology"></a> Terminology</h2>
-<ul>
-<li>Link Layer 里发送的被称为 <mark class="tag-plugin colorful mark" color="red">Frame</mark>，负责将数据通过 <strong>link</strong> 从一个 <mark class="tag-plugin colorful mark" color="yellow">Node</mark> 传输到 <mark class="tag-plugin colorful mark" color="red">Physically adjacent</mark> 的另一个 Node。</li>
-<li>不同的 Link 有不同的 Link Protocol，提供不同服务。</li>
-</ul>
-
+  </div><article class="md-text content"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Sorry, but invalid password." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="27e4b642c0ff7e5157662b660470dcd6bb9f9f5643d0bea1fd38352c7d5f4cc2">4ecd1815fa41cccee0e23db51522d459a22a81bc7ff0a56e487d1f750d4fab7605b73d03cfa0e696efcbc2c82d5490deda704b05088e0a63f659c3fe7468f3e4ef4aed41d7ab3195c3829deb943c6eacb4511fae0b76d18fabfb028db2f816fb970ee4e65229b6570e56db52e3120986e1447398287df1753e49da40f65e9c2ec4ef7c6a566ed924e34f7f2e18960a6c6357d2c077940372f12d50c29988ce92efbbd87b2a7cbc5efd2ebb08fbd7b4d05c8f046dcceb2f6aedad7fc33083cc439f9fd85d4a62df0d246091f463f0106532e8dc82ba4bafc6d016cf134bf0743dbb0d5df10bd2fd0626790201822ee2c5c0d33b3295d9916709b7c3a136f0c20c7a98551b4e52da475ae26d3fc6dd2df66bacc1727d45f65e6de1a934bfd59040508f714a2984b3719cfeabea34a22a7b87a20494a5bb2b08fd9521c3faec6518217f8b3c1cd539c090dc8191dd6f2855f7290e1bc34c0fcb07bf1a76fb5c49cceb74bf41400abd9367a26545e7baff7303edc35b00cfb2cfb75c73d981663a016052d922213d6019588d54dc04f8f9e66665c1c481c7902224a0e9a7234a5670a28407a62731732a19ed0d59f38815d712703db80fcde5e6cc064f8c617b0bd7b01507e3118f75a41d42b17384c5e84bf08fa87a4085f90794b58affbbc7db0511425b5c71c94de642ccd3bc37122dda1f7da7747460357031112061b925876bcb96b8674522393f12d6ae7fff1b301230641f0d1f7b070ce46b190071c59e4aa7c460916e2432062ed3f1a6c9301eac439cb79adcd62719148e0e24711315b42605c449c5c411b2ac60962f3a6340c35a9742a3950d18caebf8d2d4c88bc5fdc0a5282a0bb3966397ddcf1945d268ac71eb010966948e5acc0a56bf8bc70812baf670325ad95b34412309af7c454070d2a9d5fc92a90f9051e4f1f82f146de0a83740ef1fdf6ee411f0a0f5ded2deb8e56c84634f60fb3762250d7fa6a19a7803bb1757c472455c0bc04f9efc701f7adceec6bab686b4e845d80198bd4de0d208f41ec779e1c9d2b1f1dc9d79d295a8132f778f776254e343661313edfe9fe3d297308c4a60eb75b8790d95060b68a4c29c08e5be00a9766fc91d4cd7e7b0a438c8044b850f14c207afe29965d7c0abc8a3bf722b461a6739787c3a8199277786e4d2cb2f62a579e86b525ad68251d7604db69f69d891abbf850edd3c47f5723041edd893edcf5240b94a7dfcac50ae051a8ef35a44ed04d74deecb17a3e1defcbd79b977f3ede2334fe4bd396be203d0819e7e413895612876a3ab9dd09e5b97eaa08db67194ef4c4ceee9a2a6c74ba3f99ac1de34453634252d4a5eb24d7090844dd1775bd2cadea8658e8fd50ed175f78da4e6252a8cd142c02c947a17a5</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-shrink">
+      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">Password is needed.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/networks/routing-algo.html">Routing Algorithms</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/networks/ipv6.html">IPv6，下一代 IP 协议</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/networks/link-layer-intro.html">Link Layer</a></div></section></div>
 
 
 
@@ -110,14 +115,7 @@
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-<div class="widgets">
-
-
-
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#link-layer"><span class="toc-text"> Link Layer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#terminology"><span class="toc-text"> Terminology</span></a></li></ol></li></ol></div><div class="widget-footer">
-
-<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
