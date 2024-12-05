@@ -28,7 +28,7 @@
 <meta property="og:description" content="CPU 任务规划：MLFQ">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-05T00:28:01.000Z">
-<meta property="article:modified_time" content="2024-12-05T02:04:55.569Z">
+<meta property="article:modified_time" content="2024-12-05T02:10:09.905Z">
 <meta property="article:author" content="ArcaLunar">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/os/cpu-intro.html">OS</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-05T02:04:55.569Z">2024-12-05</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-05T02:10:09.905Z">2024-12-05</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -108,9 +108,12 @@
 <li>Minimize <strong>Response Time</strong> (对于那些 Interactive Tasks 而言)</li>
 </ol>
 <h2 id="mlfq-第一版"><a class="markdownIt-Anchor" href="#mlfq-第一版"></a> MLFQ 第一版</h2>
+<blockquote>
 <p>我们新规定三条规则</p>
-<div class="admonition note"><p class="admonition-title">note</p><p>$\text{Rule 3}.$ 当一个 Task 刚加入的时候，被<strong>直接放进 Highest</strong> Priority Queue</p>
-</div>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rule 3</mtext><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\text{Rule 3}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rule 3</span></span><span class="mord">.</span></span></span></span> 当一个 Task 刚加入的时候，被<strong>直接放进 Highest</strong> Priority Queue</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rule 4a</mtext><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\text{Rule 4a}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rule 4a</span></span><span class="mord">.</span></span></span></span> If a job uses up its allotment while running, its priority is reduced (i.e., it moves down one queue).</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rule 4b</mtext><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\text{Rule 4b}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rule 4b</span></span><span class="mord">.</span></span></span></span>  If a job gives up the CPU (for example, by performing an I/O operation) before the allotment is up, it stays at the same priority level (i.e., its allotment is reset).</p>
+</blockquote>
 <h3 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h3>
 <h2 id="mlfq-第二版"><a class="markdownIt-Anchor" href="#mlfq-第二版"></a> MLFQ 第二版</h2>
 <blockquote>
@@ -120,7 +123,7 @@
 <h2 id="mlfq-第三版"><a class="markdownIt-Anchor" href="#mlfq-第三版"></a> MLFQ 第三版</h2>
 <div class="tag-plugin colorful note" color="yellow"><div class="title"><strong>Rule 4 Revised</strong></div><div class="body"><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rule 4. (New)</mtext></mrow><annotation encoding="application/x-tex">\text{Rule 4. (New)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Rule 4. (New)</span></span></span></span></span> 当一个 Process 用完 Allotment 之后，<strong>无论是否是 Interactive (即有没有 Give up CPU)</strong>，都 <strong>Reduce Priority</strong>。</p></div></div>
 <h2 id="其他变种"><a class="markdownIt-Anchor" href="#其他变种"></a> 其他变种</h2>
-<div class="admonition note"><p class="admonition-title">Note</p><ol>
+<div class="admonition note"><p class="admonition-title">Rules Revised</p><ol>
 <li><strong>Varying Time Slicing</strong></li>
 </ol>
 </div>
