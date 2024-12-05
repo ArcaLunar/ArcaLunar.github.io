@@ -20,21 +20,22 @@
   <title>OS: Scheduling: Multi-Level Feedback Queue - Arca's Blog</title>
 
   
-    <meta name="description" content="Multi-Level Feedback Queue Problems to Handle：无法得知 Perfect Knowledge of Jobs 的情况下，  Minimize Turn-Around Time Minimize Response Time (对于那些 Interactive Tasks 而言)   MLFQ 第一版  我们新规定三条规则 Rule 3a.\text{Ru">
+    <meta name="description" content="CPU 任务规划：MLFQ">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Scheduling: Multi-Level Feedback Queue">
 <meta property="og:url" content="http://arcalunar.github.io/wiki/os/cpu-mlfq.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Multi-Level Feedback Queue Problems to Handle：无法得知 Perfect Knowledge of Jobs 的情况下，  Minimize Turn-Around Time Minimize Response Time (对于那些 Interactive Tasks 而言)   MLFQ 第一版  我们新规定三条规则 Rule 3a.\text{Ru">
+<meta property="og:description" content="CPU 任务规划：MLFQ">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-05T00:28:01.000Z">
-<meta property="article:modified_time" content="2024-12-05T01:42:39.501Z">
+<meta property="article:modified_time" content="2024-12-05T01:50:14.240Z">
 <meta property="article:author" content="ArcaLunar">
+<meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
   
   
   
-  
+  <meta name="keywords" content="">
 
   <!-- feed -->
   
@@ -81,7 +82,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/os/cpu-intro.html">OS</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-05T01:42:39.501Z">2024-12-05</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-05T01:50:14.240Z">2024-12-05</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -93,6 +94,14 @@
     
   </div>
   </div><article class="md-text content"><h1 id="multi-level-feedback-queue"><a class="markdownIt-Anchor" href="#multi-level-feedback-queue"></a> Multi-Level Feedback Queue</h1>
+
+
+	<div class="row">
+    <embed src="../../pdf/os/05_cpu-sched-mlfq.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
 <p>Problems to Handle：无法得知 Perfect Knowledge of Jobs 的情况下，</p>
 <ol>
 <li>Minimize <strong>Turn-Around Time</strong></li>
@@ -112,9 +121,8 @@
 <h2 id="mlfq-第三版"><a class="markdownIt-Anchor" href="#mlfq-第三版"></a> MLFQ 第三版</h2>
 <div class="tag-plugin colorful note" color="yellow"><div class="title"><strong>Rule 4 Revised</strong></div><div class="body"><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rule 4. (New)</mtext></mrow><annotation encoding="application/x-tex">\text{Rule 4. (New)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Rule 4. (New)</span></span></span></span></span> 当一个 Process 用完 Allotment 之后，<strong>无论是否是 Interactive (即有没有 Give up CPU)</strong>，都 <strong>Reduce Priority</strong>。</p></div></div>
 <h2 id="其他变种"><a class="markdownIt-Anchor" href="#其他变种"></a> 其他变种</h2>
-<p>!!! note</p>
-<pre><code>==Varying Time Slicing==
-</code></pre>
+<div class="admonition note"><p class="admonition-title">note</p><p>==Varying Time Slicing==</p>
+</div>
 <h2 id="mlfq-summary"><a class="markdownIt-Anchor" href="#mlfq-summary"></a> MLFQ Summary</h2>
 <div class="tag-plugin colorful note" color="yellow"><div class="title"><strong>Scheduling Rules</strong></div><div class="body"><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rules 1.</mtext></mrow><annotation encoding="application/x-tex">\text{Rules 1.}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rules 1.</span></span></span></span></span> 如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 的 Priority 比 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 高，那么先运行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span></p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rules 2.</mtext></mrow><annotation encoding="application/x-tex">\text{Rules 2.}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rules 2.</span></span></span></span></span> 如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 的 Priority 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 一样，那么在这个 Priority Queue 里以 <strong>Round Robin</strong> 进行 Schedule</p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rules 3.</mtext></mrow><annotation encoding="application/x-tex">\text{Rules 3.}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rules 3.</span></span></span></span></span> 当一个 Task 刚加入的时候，被<strong>直接放进 Highest</strong> Priority Queue</p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rules 4.</mtext></mrow><annotation encoding="application/x-tex">\text{Rules 4.}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rules 4.</span></span></span></span></span> 当一个 Process 用完所有 Quantum Length 的时候，其 Priority 降低，无论是否是 Interactive Task</p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Rules 5.</mtext></mrow><annotation encoding="application/x-tex">\text{Rules 5.}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Rules 5.</span></span></span></span></span> 在一段时间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 之后，<strong>把所有 Task 都移动到 Top-Most Priority Queue</strong></p></div></div>
 
