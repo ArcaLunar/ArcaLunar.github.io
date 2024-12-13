@@ -28,7 +28,7 @@
 <meta property="og:description" content="Multiple Access Protocol 有两种 Link：一种是 Point-to-Point，另一种是 broadcast（特点是 传播媒介是共享的） 我们主要考察 Single Shared Broadcast Channel，因为是 Shared，所以很可能发生 Collision 的问题，Node 同时接收到多个信号。这是就需要 Protocol 来决定如何处理了 Multip">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-13T05:14:43.000Z">
-<meta property="article:modified_time" content="2024-12-13T05:48:10.986Z">
+<meta property="article:modified_time" content="2024-12-13T07:07:04.524Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
   
@@ -77,11 +77,11 @@
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?mpo3y">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?1b6xj">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/networks/app-principle.html">Networks</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-13T05:48:10.986Z">2024-12-13</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-13T07:07:04.524Z">2024-12-13</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -118,7 +118,42 @@
 <li>Random Access</li>
 <li>Taking Turns</li>
 </ol>
-<div class="tag-plugin tabs" align="center"id="tab_4"><div class="nav-tabs"><div class="tab active"><a href="#tab_4-1">Channel Partition</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_4-1"></div></div></div>
+<div class="tag-plugin tabs" align="center"id="tab_3"><div class="nav-tabs"><div class="tab active"><a href="#tab_3-1">Channel Partition</a></div><div class="tab"><a href="#tab_3-2">Random Access</a></div><div class="tab"><a href="#tab_3-3">Taking Turns</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_3-1"><div class="tag-plugin colorful note" color="light"><div class="title"><strong>Channel Partition</strong></div><div class="body"><ul><li>将 Channel 划分为不同的 Slots（可以按 Frequency，Time 等等）</li><li>将每一个 Slot 分配给一个 Node 供其<strong>专用</strong></li></ul></div></div>
+<div class="tag-plugin tabs" align="center"id="tab_1"><div class="nav-tabs"><div class="tab active"><a href="#tab_1-1">TDMA: Time</a></div><div class="tab"><a href="#tab_1-2">FDMA: Frequency</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_1-1"><ul>
+<li>以 Time 作为划分 Slot 的依据。并且将时间段<mark class="tag-plugin colorful mark" color="red">等分</mark></li>
+<li>每个 Node 可以分配到一部分时间段来发送数据。</li>
+<li>空闲的时间段就空闲着。</li>
+</ul></div><div class="tab-pane" id="tab_1-2"><ul>
+<li>以 Frequency 作为划分 Slot 的依据。划分为不同 Frequency Bands</li>
+<li>每个 Node 分配给一个独特的 Frequency band</li>
+<li>没被分配的 Frequency Band 就空闲着</li>
+</ul></div></div></div></div><div class="tab-pane" id="tab_3-2"><ul>
+<li>每个 Node 都是直接以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> 的速率发送 Data，<strong>没有事先 Coordinate</strong>。</li>
+<li>如果无事发生，那就 OK 了；否则发生了 Collision，我们就需要以一定的策略处理 Collision</li>
+</ul>
+<div class="tag-plugin tabs" align="center"id="tab_2"><div class="nav-tabs"><div class="tab active"><a href="#tab_2-1">Slotted ALOHA</a></div><div class="tab"><a href="#tab_2-2">Pure ALOHA</a></div><div class="tab"><a href="#tab_2-3">CSMA</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_2-1"><blockquote>
+<p>假设：</p>
+<ol>
+<li>所有要发送的 Frame 大小一样</li>
+<li>Time 被划分为等长的时间段</li>
+<li>Node 只在 Slot 开始的时候发送 Frame</li>
+<li>Node 之间是 Sync 的</li>
+<li>如果检测到 Collision，那么所有 Node 都会知道。</li>
+</ol>
+</blockquote>
+<p>如果 Node 检测到 Collision，那么就把他的 Frame 放到下一个 Time Slot 传输。</p>
+<p>如果又失败了，在接下来的每一个 Time Slot 里，以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> 的概率重新发送 Frame 直到成功。（几何分布）</p>
+<p><a class="tag-plugin colorful hashtag" color="red"><svg t="1701408144765" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4228" width="200" height="200"><path d="M426.6 64.8c34.8 5.8 58.4 38.8 52.6 73.6l-19.6 117.6h190.2l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6s58.4 38.8 52.6 73.6l-19.4 117.6H896c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-42.6 256H832c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.6-117.4h-190.4l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.4-117.8H128c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l42.6-256H192c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6z m11.6 319.2l-42.6 256h190.2l42.6-256h-190.2z" p-id="4229"></path></svg><span>效率分析</span></a></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>max</mi><mo>⁡</mo><mo>=</mo><munder><mo><mi>lim</mi><mo>⁡</mo></mo><mrow><mi>n</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></munder><mi>n</mi><mi>p</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false">)</mo><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mn>0.37</mn></mrow><annotation encoding="application/x-tex">\max=\lim\limits_{n\to \infin}np(1-p)^{n-1}=0.37</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.45em;vertical-align:-0.7em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-2.4em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mrel mtight">→</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">lim</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">7</span></span></span></span></p>
+<div class="tag-plugin grid"  style="grid-template-columns: repeat(2, 1fr);"><div class="cell" style="">
+    <p><strong>Pros</strong>:</p><ol><li>单个的 Active Node 总是可以占满 Bandwidth</li><li>高度去中心化</li><li>简单</li></ol>
+    </div>
+    <div class="cell" style="">
+    <p><strong>Cons</strong>:</p><ol><li>冲突的话，很浪费 Slot，很多空闲</li><li>需要实现 Node 主动检测 Collision</li><li>解决 Sync 问题</li></ol>
+    </div>
+    </div></div><div class="tab-pane" id="tab_2-2"><p>就是去掉 Sync 的 Slotted ALOHA：收到 Frame 就立刻 transmit</p>
+<p><a class="tag-plugin colorful hashtag" color="orange"><svg t="1701408144765" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4228" width="200" height="200"><path d="M426.6 64.8c34.8 5.8 58.4 38.8 52.6 73.6l-19.6 117.6h190.2l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6s58.4 38.8 52.6 73.6l-19.4 117.6H896c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-42.6 256H832c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.6-117.4h-190.4l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.4-117.8H128c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l42.6-256H192c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6z m11.6 319.2l-42.6 256h190.2l42.6-256h-190.2z" p-id="4229"></path></svg><span>效率分析</span></a></p>
+<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \lin at position 6: \max=\̲l̲i̲n̲\limits_{n\to \…'>\max=\lin\limits_{n\to \infin}p(1-p)^{2(n-1)}=0.18</span></p></div><div class="tab-pane" id="tab_2-3"></div></div></div></div><div class="tab-pane" id="tab_3-3"></div></div></div>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/networks/app-cookies.html">Cookies</a></div><div class="item" id="next"></div></section></div>
