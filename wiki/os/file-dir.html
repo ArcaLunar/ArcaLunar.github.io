@@ -28,7 +28,7 @@
 <meta property="og:description" content="File Directory  Persistent Storage Abstraction 两个关键抽象：Files and Directories  File:  从 user 的角度，  a collection of related information that is recorded on persistent storage human readable   从 OS 的角度，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-23T06:13:30.000Z">
-<meta property="article:modified_time" content="2024-11-26T04:21:54.094Z">
+<meta property="article:modified_time" content="2024-12-15T03:35:08.330Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
   
@@ -49,7 +49,11 @@
 
   
 
-  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
+  {%- if config.content_blocks.enable %}
+    <style type="text/css">{{ content_blocks_css() }}</style>
+  {%- endif %}
+
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
 </head>
 <body>
 
@@ -68,7 +72,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">CPU</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/os-arch.html#start"><span class="toc-text">OS Architecture</span></a><a class="link" href="/wiki/os/cpu-intro.html"><span class="toc-text">Process</span></a><a class="link" href="/wiki/os/schedule-intro.html"><span class="toc-text">CPU Scheduling, Intro</span></a><a class="link" href="/wiki/os/schedule-algos.html"><span class="toc-text">Schedule 算法</span></a><a class="link" href="/wiki/os/cpu-mlfq.html"><span class="toc-text">Scheduling: Multi-Level Feedback Queue</span></a><a class="link" href="/wiki/os/cpu-multi-schedule.html"><span class="toc-text">多处理器 Scheduling</span></a></div><div class="widget-header dis-select"><span class="name">Concurrency</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/con-semaphore.html"><span class="toc-text">Semaphore</span></a><a class="link" href="/wiki/os/deadlock.html"><span class="toc-text">Deadlock</span></a><a class="link" href="/wiki/os/how-to-analyse.html"><span class="toc-text">如何分析一段代码的 Concurrency 问题</span></a><a class="link" href="/wiki/os/producer-consumer.html"><span class="toc-text">Producer Consumer Problem</span></a><a class="link" href="/wiki/os/reader-writer.html"><span class="toc-text">Reader Writer Problem</span></a><a class="link" href="/wiki/os/dining-problems.html"><span class="toc-text">Dining Philosophers</span></a></div><div class="widget-header dis-select"><span class="name">Virtual Memory</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/address-space.html"><span class="toc-text">Process Address Space</span></a><a class="link" href="/wiki/os/segmentation.html"><span class="toc-text">Segmentation</span></a><a class="link" href="/wiki/os/paging.html"><span class="toc-text">Paging 分页</span></a><a class="link" href="/wiki/os/TLB.html"><span class="toc-text">TLB: Translation Lookaside Buffer</span></a><a class="link" href="/wiki/os/hierarchical-page-table.html"><span class="toc-text">Hierarchical Page Table 层级分页</span></a><a class="link" href="/wiki/os/replacement-policy.html"><span class="toc-text">Replacement: Find Free Frames</span></a></div><div class="widget-header dis-select"><span class="name">File System</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/disk-storage.html"><span class="toc-text">Disk Storage</span></a><a class="link" href="/wiki/os/file-api-intro.html"><span class="toc-text">file-api-intro</span></a><a class="link active" href="/wiki/os/file-dir.html"><span class="toc-text">File and Directory 文件系统</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/os/file-sys-implement.html"><span class="toc-text">File System</span></a><a class="link" href="/wiki/os/filesys-free-space.html"><span class="toc-text">File System - Free Space Management</span></a></div><div class="widget-header dis-select"><span class="name">unclassified</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/index.html"><span class="toc-text">index</span></a><a class="link" href="/wiki/os/banker-s-algo.html"><span class="toc-text">Banker's Algorithm</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">CPU</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/os-arch.html#start"><span class="toc-text">OS Architecture</span></a><a class="link" href="/wiki/os/cpu-intro.html"><span class="toc-text">Process</span></a><a class="link" href="/wiki/os/schedule-intro.html"><span class="toc-text">CPU Scheduling, Intro</span></a><a class="link" href="/wiki/os/schedule-algos.html"><span class="toc-text">Schedule 算法</span></a><a class="link" href="/wiki/os/cpu-mlfq.html"><span class="toc-text">Scheduling: Multi-Level Feedback Queue</span></a><a class="link" href="/wiki/os/cpu-multi-schedule.html"><span class="toc-text">多处理器 Scheduling</span></a></div><div class="widget-header dis-select"><span class="name">Concurrency</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/con-semaphore.html"><span class="toc-text">Semaphore</span></a><a class="link" href="/wiki/os/deadlock.html"><span class="toc-text">Deadlock</span></a><a class="link" href="/wiki/os/how-to-analyse.html"><span class="toc-text">如何分析一段代码的 Concurrency 问题</span></a><a class="link" href="/wiki/os/producer-consumer.html"><span class="toc-text">Producer Consumer Problem</span></a><a class="link" href="/wiki/os/reader-writer.html"><span class="toc-text">Reader Writer Problem</span></a><a class="link" href="/wiki/os/dining-problems.html"><span class="toc-text">Dining Philosophers</span></a></div><div class="widget-header dis-select"><span class="name">Virtual Memory</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/address-space.html"><span class="toc-text">Process Address Space</span></a><a class="link" href="/wiki/os/segmentation.html"><span class="toc-text">Segmentation</span></a><a class="link" href="/wiki/os/paging.html"><span class="toc-text">Paging 分页</span></a><a class="link" href="/wiki/os/TLB.html"><span class="toc-text">TLB: Translation Lookaside Buffer</span></a><a class="link" href="/wiki/os/hierarchical-page-table.html"><span class="toc-text">Hierarchical Page Table 层级分页</span></a><a class="link" href="/wiki/os/replacement-policy.html"><span class="toc-text">Replacement: Find Free Frames</span></a></div><div class="widget-header dis-select"><span class="name">File System</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/disk-storage.html"><span class="toc-text">Disk Storage</span></a><a class="link" href="/wiki/os/file-api-intro.html"><span class="toc-text">file-api-intro</span></a><a class="link active" href="/wiki/os/file-dir.html"><span class="toc-text">File and Directory 文件系统</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/os/file-sys-implement.html"><span class="toc-text">File System</span></a><a class="link" href="/wiki/os/filesys-free-space.html"><span class="toc-text">File System - Free Space Management</span></a></div><div class="widget-header dis-select"><span class="name">Programming Session</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/pthread-linux.html"><span class="toc-text">PThread in Linux</span></a></div><div class="widget-header dis-select"><span class="name">unclassified</span></div><div class="widget-body fs14"><a class="link" href="/wiki/os/index.html"><span class="toc-text">index</span></a><a class="link" href="/wiki/os/banker-s-algo.html"><span class="toc-text">Banker's Algorithm</span></a><a class="link" href="/wiki/os/thread-locks.html"><span class="toc-text">Locks</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -77,11 +81,11 @@
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?zo7cl">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?nfjac">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/os/os-arch.html">OS</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-11-26T04:21:54.094Z">2024-11-26</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-15T03:35:08.330Z">2024-12-15</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -174,16 +178,21 @@
 </ul>
 </li>
 <li>
-<mark class="tag-plugin colorful mark" color="red">Link</mark> a mechanism to **create another directory entry** that refers to an existing file/directory *in another location*
+<mark class="tag-plugin colorful mark" color="red">Link</mark>: a mechanism to **create another directory entry** that refers to an existing file/directory *in another location*
 <ol>
 <li>
-<mark class="tag-plugin colorful mark" color="yellow">Hard Link</mark> Entry 映射到同一个 Low-Level ID
+<mark class="tag-plugin colorful mark" color="yellow">Hard Link</mark> 
 <ol>
+<li>新的 Entry 映射到同一个 Low-Level ID</li>
 <li>不能创建指向 Directory 的 Hard Link</li>
 </ol>
 </li>
 <li>
-<mark class="tag-plugin colorful mark" color="yellow">Soft Link</mark> 创建一个 file，其*数据内容*是**源文件的 absolute path name**</li>
+<mark class="tag-plugin colorful mark" color="yellow">Soft Link</mark> 
+<ol>
+<li>创建一个 file，其<em>数据内容</em>是<strong>源文件的 absolute path name</strong></li>
+</ol>
+</li>
 </ol>
 </li>
 </ul>

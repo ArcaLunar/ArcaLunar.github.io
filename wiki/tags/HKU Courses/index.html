@@ -47,7 +47,11 @@
 
   
 
-  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
+  {%- if config.content_blocks.enable %}
+    <style type="text/css">{{ content_blocks_css() }}</style>
+  {%- endif %}
+
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
 </head>
 <body>
 
@@ -65,7 +69,7 @@
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/cf/2050-d3.html"><span class="title"><strong>CF 比赛</strong><span class="dot"></span>CF2050, Codeforces Round 991 (Div 3)</span></a><a class="item title" href="/wiki/hku/9003-class10.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-class10</span></a><a class="item title" href="/wiki/hku/9003-lec-17.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-17</span></a><a class="item title" href="/wiki/hku/9003-lec-16.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-16</span></a><a class="item title" href="/wiki/hku/9003-lec-15.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-15</span></a><a class="item title" href="/wiki/hku/9003-lec-14.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-14</span></a><a class="item title" href="/wiki/hku/9003-lec-4.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>Lecture 4</span></a><a class="item title" href="/wiki/hku/9003-lec-3.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>Lecture 3</span></a><a class="item title" href="/wiki/os/replacement-policy.html"><span class="title"><strong>OS</strong><span class="dot"></span>Replacement: Find Free Frames</span></a><a class="item title" href="/wiki/os/banker-s-algo.html"><span class="title"><strong>OS</strong><span class="dot"></span>Banker's Algorithm</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/os/producer-consumer.html"><span class="title"><strong>OS</strong><span class="dot"></span>Producer Consumer Problem</span></a><a class="item title" href="/wiki/os/file-dir.html"><span class="title"><strong>OS</strong><span class="dot"></span>File and Directory 文件系统</span></a><a class="item title" href="/wiki/os/thread-locks.html"><span class="title"><strong>OS</strong><span class="dot"></span>Locks</span></a><a class="item title" href="/wiki/os/pthread-linux.html"><span class="title"><strong>OS</strong><span class="dot"></span>PThread in Linux</span></a><a class="item title" href="/wiki/cf/2050-d3.html"><span class="title"><strong>CF 比赛</strong><span class="dot"></span>CF2050, Codeforces Round 991 (Div 3)</span></a><a class="item title" href="/wiki/hku/9003-class10.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-class10</span></a><a class="item title" href="/wiki/hku/9003-lec-17.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-17</span></a><a class="item title" href="/wiki/hku/9003-lec-16.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-16</span></a><a class="item title" href="/wiki/hku/9003-lec-15.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-15</span></a><a class="item title" href="/wiki/hku/9003-lec-14.html"><span class="title"><strong>HKU 课程</strong><span class="dot"></span>9003-lec-14</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
