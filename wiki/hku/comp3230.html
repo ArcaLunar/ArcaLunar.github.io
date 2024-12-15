@@ -1,0 +1,1297 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>HKU 课程: COMP3230 操作系统 - Arca's Blog</title>
+
+  
+    <meta name="description" content="COMP3230 计算机架构 https:&#x2F;&#x2F;pages.cs.wisc.edu&#x2F;~remzi&#x2F;OSTEP&#x2F;开源学习资源  Lecture 1. 概述  Principles and Functionality of OS 什么是 OS？  a PROGRAM that controls the execution of application program. Two main functio">
+<meta property="og:type" content="website">
+<meta property="og:title" content="COMP3230 操作系统">
+<meta property="og:url" content="http://arcalunar.github.io/wiki/hku/comp3230.html">
+<meta property="og:site_name" content="Arca&#39;s Blog">
+<meta property="og:description" content="COMP3230 计算机架构 https:&#x2F;&#x2F;pages.cs.wisc.edu&#x2F;~remzi&#x2F;OSTEP&#x2F;开源学习资源  Lecture 1. 概述  Principles and Functionality of OS 什么是 OS？  a PROGRAM that controls the execution of application program. Two main functio">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.esgo8ea8j.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.39l4u0xwaz.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.ic2lzhoif.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.92q33cyhzv.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.7i0c3weuqu.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.4xuhr9svz3.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.2donep41je.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.sywf8gmmp.webp">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.1oveejxmua.avif">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.2h89wbs54o.avif">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.3d4sip72d8.webp">
+<meta property="og:image" content="https://github.com/ArcaLunar/picx-images-hosting/raw/master/courses/image.51e6018m0v.webp">
+<meta property="article:published_time" content="2024-09-03T02:34:37.000Z">
+<meta property="article:modified_time" content="2024-11-08T08:25:43.675Z">
+<meta property="article:author" content="ArcaLunar">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.esgo8ea8j.webp">
+  
+  
+  
+  <meta name="keywords" content="">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+
+  
+
+  
+    <!-- <style type="text/css"> "content_blocks_css()" </style> -->
+  
+
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://ArcaLunar.github.io/picx-images-hosting/courses/learning.4919vdup78.svg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/hku/2119-hashing.html"><div class="main" ff="title">HKU 课程</div><div class="sub cap">HKU Courses Notes</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/hku" placeholder="在 HKU Courses 中搜索..."></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">COMP2119 数据结构与算法</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/2119-hashing.html#start"><span class="toc-text">Lecture 4, Hashing</span></a><a class="link" href="/wiki/hku/comp2119.html"><span class="toc-text">COMP2119 Data Structures and Algorithms</span></a></div><div class="widget-header dis-select"><span class="name">CUND9003</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/cund9003.html"><span class="toc-text">CUND9003 粤语课</span></a><a class="link" href="/wiki/hku/9003-lec-2.html"><span class="toc-text">【CUND9003】Lecture 2</span></a><a class="link" href="/wiki/hku/9003-lec-3.html"><span class="toc-text">Lecture 3</span></a><a class="link" href="/wiki/hku/9003-lec-4.html"><span class="toc-text">Lecture 4</span></a><a class="link" href="/wiki/hku/9003-lec-14.html"><span class="toc-text">9003-lec-14</span></a></div><div class="widget-header dis-select"><span class="name">COMP2121 离散数学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2121.html"><span class="toc-text">COMP2121 离散数学</span></a></div><div class="widget-header dis-select"><span class="name">Java</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2396.html"><span class="toc-text">COMP2396 Java</span></a></div><div class="widget-header dis-select"><span class="name">计算机架构</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp2120.html"><span class="toc-text">COMP2120 计算机组成原理</span></a></div><div class="widget-header dis-select"><span class="name">操作系统</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/hku/comp3230.html"><span class="toc-text">COMP3230 操作系统</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/hku/comp3230-aux-signal.html"><span class="toc-text">【COMP3230 补充知识】 系统信号处理</span></a><a class="link" href="/wiki/hku/comp3230-aux-fork-wait.html"><span class="toc-text">【COMP3230 补充知识】 C 语言里的进程</span></a><a class="link" href="/wiki/hku/comp3230-aux-thread.html"><span class="toc-text">【COMP3230 补充知识】 POSIX Thread 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机网络</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3234.html"><span class="toc-text">COMP3234 计算机网络</span></a><a class="link" href="/wiki/hku/comp3234-aux-socket.html"><span class="toc-text">【COMP3234 补充知识】 Socket 编程</span></a></div><div class="widget-header dis-select"><span class="name">计算机图形学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3271.html"><span class="toc-text">COMP3271 Computer Graphics</span></a></div><div class="widget-header dis-select"><span class="name">前端</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3322.html"><span class="toc-text">COMP3322 WWW 网络技术</span></a></div><div class="widget-header dis-select"><span class="name">未分类</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/index.html"><span class="toc-text">HKU 课程笔记</span></a><a class="link" href="/wiki/hku/huffman-coding.html"><span class="toc-text">霍夫曼树</span></a><a class="link" href="/wiki/hku/9003-lec-15.html"><span class="toc-text">9003-lec-15</span></a><a class="link" href="/wiki/hku/9003-lec-16.html"><span class="toc-text">9003-lec-16</span></a><a class="link" href="/wiki/hku/9003-lec-17.html"><span class="toc-text">9003-lec-17</span></a><a class="link" href="/wiki/hku/9003-class10.html"><span class="toc-text">9003-class10</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/hku/comp3234-20240314-midterm.html"><span class="toc-text">【COMP3234】 20240314 Midterm</span></a><a class="link" href="/wiki/hku/math1853.html"><span class="toc-text">MATH1853 基础线性代数、基础概率论</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?ejgsl">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/hku/2119-hashing.html">HKU 课程</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-11-08T08:25:43.675Z">2024-11-08</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>COMP3230 操作系统</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="comp3230-计算机架构"><a class="markdownIt-Anchor" href="#comp3230-计算机架构"></a> COMP3230 计算机架构</h1>
+<div class="tag-plugin link dis-select"><a class="link-card rich" title="开源学习资源" href="https://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="icon,desc"><div class="top"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/link/8f277b4ee0ecd.svg"></div><span class="cap link footnote">https://pages.cs.wisc.edu/~remzi/OSTEP/</span></div><div class="bottom"><span class="title">开源学习资源</span><span class="cap desc footnote"></span></div></a></div>
+<h2 id="lecture-1-概述"><a class="markdownIt-Anchor" href="#lecture-1-概述"></a> Lecture 1. 概述</h2>
+<h3 id="principles-and-functionality-of-os"><a class="markdownIt-Anchor" href="#principles-and-functionality-of-os"></a> Principles and Functionality of OS</h3>
+<p>什么是 OS？</p>
+<ul>
+<li>a <strong>PROGRAM</strong> that <strong>controls the execution</strong> of application program.</li>
+<li>Two main <strong>functions</strong>:
+<ol>
+<li><em>resource</em> manager (CPU, memory, storage …)
+<blockquote>
+<p>处理 conflicting requests 来达成 <strong>高效、公平（防止资源一直完全被 high priority 程序占用）</strong> 的资源使用</p>
+</blockquote>
+</li>
+<li><strong>interface</strong> between application and hardware.
+<ul>
+<li>把软件和硬件<strong>隔开 (separate)</strong></li>
+<li>OS 提供 <strong>API (Application Program Interface)</strong> 供软件使用来请求调用系统资源，<strong>方便开发</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="os-的核心服务"><a class="markdownIt-Anchor" href="#os-的核心服务"></a> OS 的核心服务</h3>
+<ul>
+<li>Allow applications to <strong>run</strong> on the system</li>
+<li>Allow running applications to <strong>use memory</strong> as well as <strong>share the memory</strong></li>
+<li>Allow running applications to <strong>interact</strong> with each other</li>
+<li>Allow applications to <strong>access and share data</strong> that stored in persistent storage</li>
+</ul>
+<p>系统是如何提供这些服务的呢？我们关注 <strong>How</strong>: policies and mechanism, efficiency, hardware support.</p>
+<h4 id="process-processor-management"><a class="markdownIt-Anchor" href="#process-processor-management"></a> Process &amp; Processor Management</h4>
+<ul>
+<li>Process <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo></mrow><annotation encoding="application/x-tex">=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span></span></span> a program in execution
+<ul>
+<li>need resources</li>
+<li>process 终止要<strong>回收系统资源</strong></li>
+</ul>
+</li>
+</ul>
+<p>一个典型的系统有很多 process，包括<em>user process</em>, <em>kernel process</em>，并且<strong>并行 (concurrently)<strong>的运行在</strong>一个或多个</strong> CPU core 上</p>
+<ul>
+<li>系统的职责：
+<ol>
+<li>如何<strong>管理控制</strong>这些不同进程？</li>
+<li>当程序要求**使用系统资源 (Restricted Operation)**时，如何操作</li>
+<li>Provide Illusion of CPUs (一核模拟多核)</li>
+<li>Regain Control of CPUs (防止占用资源过久)</li>
+<li>Effective and efficient scheduler</li>
+</ol>
+</li>
+</ul>
+<h4 id="memory-management"><a class="markdownIt-Anchor" href="#memory-management"></a> Memory Management</h4>
+<p>冯诺依曼架构下所有指令和数据都放在 physical memory 里面。</p>
+<ul>
+<li>OS 目标：
+<ol>
+<li>在内存大小有限的情况下，OS 决定什么东西该放到内存里。
+<blockquote>
+<p>optimize <strong>CPU utilization</strong> and computer <strong>response</strong> to users.</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>OS 职责：
+<ol>
+<li>如何让所有进程<strong>共享</strong>同一个物理内存？(Share single pool of physical memory)</li>
+<li><strong>控制</strong>进程可以读写的内存位置
+<blockquote>
+<p>进程 A 不能修改进程 B 需要使用的内存，不然会出错</p>
+</blockquote>
+</li>
+<li>处理<strong>进程所需资源多余物理内存</strong>的情况</li>
+<li>空闲内存？没有空闲内存？</li>
+</ol>
+</li>
+</ul>
+<h4 id="concurrency"><a class="markdownIt-Anchor" href="#concurrency"></a> Concurrency</h4>
+<ul>
+<li>
+<p>OS Concurrency</p>
+<ul>
+<li>Many internal kernel data structures may be updated concurrently by multiple execution logics</li>
+</ul>
+</li>
+<li>
+<p>现代 OS：多核多线程</p>
+</li>
+<li>
+<p>系统的职责：</p>
+<ul>
+<li>What kind of primitives are needed for synchronization?
+<blockquote>
+<p>We may have to examine different kinds of synchronization and concurrency issues</p>
+</blockquote>
+</li>
+<li>What support do we need from <strong>hardware and OS</strong> in order to build useful synchronization primitives?
+<blockquote>
+<p>to work correctly and efficiently</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="file-management"><a class="markdownIt-Anchor" href="#file-management"></a> File Management</h4>
+<ul>
+<li>
+<p><em>Manages storage disks</em>, responsible for storing any data the user created in a <strong>reliable and efficient</strong> manner on the disks of the system (<u>save and find</u>)</p>
+</li>
+<li>
+<p>File System …</p>
+<ul>
+<li>Provides a <strong>uniform, logical</strong> view of information storage</li>
+<li><strong>Abstracts</strong> physical properties to logical storage unit - file</li>
+<li><strong>Maps</strong> files onto physical media and <strong>provides mechanisms</strong> for applications to manage and access files</li>
+</ul>
+</li>
+<li>
+<p>对 OS 而言……</p>
+<ul>
+<li>如何维护 persistent storage</li>
+<li>How to implement? (需要数据结构维护)</li>
+<li>降低 System IO Cost (Disk access is slow)</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结os-的目标"><a class="markdownIt-Anchor" href="#总结os-的目标"></a> 总结：OS 的目标</h4>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.esgo8ea8j.webp" alt="Goals&nbsp;of&nbsp;OS" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Goals&nbsp;of&nbsp;OS</span></div></div>
+<h3 id="os-architecture"><a class="markdownIt-Anchor" href="#os-architecture"></a> OS Architecture</h3>
+<p>一个 OS 可以划分为职责各异的若干个层次，如下图所示。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.39l4u0xwaz.webp" alt="OS" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">OS</span></div></div>
+<ul>
+<li>这之中，其中最重要的是 <strong>Kernel</strong>。
+<ul>
+<li>Kernel 包含一些组件， <strong>负责所有资源的调度，并且直接与硬件互动</strong>。
+<ul>
+<li>Wrap all hardwares</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>然后是 <strong>Service Layer</strong>
+<ul>
+<li>包含了一些 utility function，可以被应用程序 (application) 调用</li>
+<li>在 User mode 里</li>
+<li>通过调用 Kernel 提供的 Sysytem Call 来完成一些事情。相当于把 Kernel API 打包，上层开发不必在意很底层的实现，简化上层开发的复杂度。</li>
+<li>例子：Linux Command <code>ps</code></li>
+</ul>
+</li>
+<li>Command Layer/Application Program
+<ul>
+<li>用户由此和 OS 交互</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>OS 很复杂因为要提供众多服务，还有针对不同硬件、软件提供支持。因此需要合理的 OS Architecture 来解决这个问题。</p>
+<ul>
+<li>Specify the <strong>priority</strong> with which each component executes. 决定组建运行的优先级</li>
+<li><a href="#%E5%90%84%E7%A7%8D%E6%9E%B6%E6%9E%84">Four Main Architecture</a>:
+<ul>
+<li><a href="#monolithic">Monolithic</a></li>
+<li><a href="#layered">Layered</a></li>
+<li><a href="#microkernel">Microkernel</a></li>
+<li><a href="#modular">Modular Approach</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="所有架构都有的两种-os-模式"><a class="markdownIt-Anchor" href="#所有架构都有的两种-os-模式"></a> 所有架构都有的两种 OS 模式</h4>
+<p>CPU runs at least 2 mode:</p>
+<ul>
+<li>User Mode &amp; Kernel Mode
+<ul>
+<li>Kernel
+<ul>
+<li>CPU running in Kernel Mode when OS kernel executes.</li>
+<li><strong>Highest priority.</strong> <em>Can execute any executable commands</em>.</li>
+</ul>
+</li>
+<li>User
+<ul>
+<li>CPU running in User Mode when a user application is running.</li>
+<li><strong>Lower priority.</strong> Not all commands are executable. (Only a subset of commands available)</li>
+<li>Ensures that one user program cannot execute instruction that may interfere with operation of other user programs</li>
+</ul>
+</li>
+<li>通过一个 register 里的某一位/某几位来 inform CPU 现在是什么 mode</li>
+</ul>
+</li>
+</ul>
+<details class="tag-plugin colorful folding" color="light"><summary><span>一个例子：英特尔</span></summary><div class="body"><p>例如，在 Intel 的 CPU 里就有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个 mode，因此在寄存器里需要 2 bits。</p><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.ic2lzhoif.webp" alt="Intel&nbsp;CPU" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Intel&nbsp;CPU</span></div></div></div></details>
+<h4 id="系统调用-system-calls"><a class="markdownIt-Anchor" href="#系统调用-system-calls"></a> 系统调用 System Calls</h4>
+<ul>
+<li>System Calls
+<blockquote>
+<p>A system call is a mechanism that allows an application program to make a request to the OS for <strong>resources/services</strong>. Set of system calls is <strong>API to services provided by OS</strong></p>
+</blockquote>
+<ul>
+<li><mark>Mode switch</mark>: When it occurs, OS <strong>switches from User mode to Kernel mode</strong> to execute <em>corresponding kernel’s system function</em>.
+<ul>
+<li>Done by <em>instructions</em> that help processes to <strong>trap</strong> into <em>kernel mode</em> and <strong>return-from-trap</strong> to the <em>user mode</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="各种架构"><a class="markdownIt-Anchor" href="#各种架构"></a> 各种架构</h4>
+<h5 id="monolithic"><a class="markdownIt-Anchor" href="#monolithic"></a> Monolithic</h5>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.92q33cyhzv.webp" alt="Monolithic" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Monolithic</span></div></div>
+<ul>
+<li>特点：
+<ul>
+<li>所有组件放在一起，组件的组织 <strong>不够结构化</strong>，没有形成模块 (Module)，没有明确的接口 (Interface)</li>
+<li>一坨运行在 Kernel Mode 的屎山</li>
+<li>一个组件可以直接与另一个组件交互</li>
+<li>数据/数据结构可以直接在组件之间共享</li>
+</ul>
+</li>
+<li>优点：
+<ul>
+<li>比较高效</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>因为直接与硬件沟通，所以和硬件相关的代码（例如调用硬件指令）直接写死在代码里，散落在各地的代码里，难以维护</li>
+<li>因为数据直接共享，A 组件对数据/数据结构的修改可能会影响 B 组件，一旦 <strong>出现 bug 可能导致 fatal error</strong>；也更容易被病毒攻击（被病毒修改一下系统组件用的数据就寄了）</li>
+<li><mark><strong>省流：逐渐屎山</strong></mark></li>
+</ul>
+</li>
+</ul>
+<h5 id="layered"><a class="markdownIt-Anchor" href="#layered"></a> Layered</h5>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.7i0c3weuqu.webp" alt="Layered" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Layered</span></div></div>
+<ul>
+<li>特点
+<ul>
+<li><strong>Groups</strong> components that perform similar function or specific role into a module and <strong>layers</strong> the modules one on top of the other</li>
+<li>Each layer <strong>communicates only</strong> with layers immediately above and below it
+<ul>
+<li>Processes’ requests might pass through many layers before being serviced
+<ul>
+<li>System <strong>efficiency</strong> can be less than monolithic kernels</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优点
+<ul>
+<li>调试、组织更加便利</li>
+<li><strong>Information Hiding</strong>：可以对其他层隐藏一些重要信息，只暴露接口；也使得更新、修改更新方便</li>
+<li>Easier to Draw Kernel-User Boundary</li>
+</ul>
+</li>
+</ul>
+<details class="tag-plugin colorful folding" color="light"><summary><span>一个例子：虚拟机</span></summary><div class="body"><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.4xuhr9svz3.webp" alt="虚拟机分层原理" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">虚拟机分层原理</span></div></div></div></details>
+<h5 id="microkernel"><a class="markdownIt-Anchor" href="#microkernel"></a> Microkernel</h5>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.2donep41je.webp" alt="Microkernel" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Microkernel</span></div></div>
+<ul>
+<li>
+<p><strong>Move</strong>s as much functionalities from the kernel space into <em>user space processes</em> (being called as servers)</p>
+</li>
+<li>
+<p>Pros</p>
+<ul>
+<li>Attempt to keep kernel <strong>small</strong></li>
+<li>The system becomes more <strong>stable</strong> as only the bare essentials are running in kernel mode</li>
+<li>More easy to <strong>extend and port</strong> to other platforms</li>
+</ul>
+</li>
+<li>
+<p>Cons</p>
+<ul>
+<li>Server processes (in user space) are interacting by means of message exchanges, which <em>need the helps from kernel</em>
+<ul>
+<li><strong>Induce a significant performance overhead</strong> because of <em>communications have to go through kernel</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="modular"><a class="markdownIt-Anchor" href="#modular"></a> Modular</h5>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.sywf8gmmp.webp" alt="Modular" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Modular</span></div></div>
+<p>Core components are <strong>encapsulated</strong> as modules. The whole kernel is a collection of modules.</p>
+<ul>
+<li>More flexible and efficient
+<ul>
+<li>Protected APIs</li>
+<li>In kernel <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> efficient</li>
+<li>Allow dynamic module loading</li>
+<li>Extensiable</li>
+</ul>
+</li>
+</ul>
+<h3 id="lecture-1-总结"><a class="markdownIt-Anchor" href="#lecture-1-总结"></a> Lecture 1. 总结</h3>
+<h2 id="lecture-2-process-abstraction"><a class="markdownIt-Anchor" href="#lecture-2-process-abstraction"></a> Lecture 2. Process Abstraction</h2>
+<h3 id="what-is-process"><a class="markdownIt-Anchor" href="#what-is-process"></a> What is “process”?</h3>
+<p>一个运行的程序就是一个进程，但是进程除了要知道我运行的是什么程序以外，还需要知道一些其他信息，例如 Memory, Resource in Use, Execution State 等，才能有效的管理正在运行的程序。</p>
+<h4 id="process-1-address-space"><a class="markdownIt-Anchor" href="#process-1-address-space"></a> Process (1): Address Space</h4>
+<p>Process 的 Address Space 是<strong>a range of memory locations/addresses</strong>，这一个 range 的 memory 都可以为进程所使用。</p>
+<p>细分来说分四种：</p>
+<blockquote>
+<p><strong>Stack</strong>: 栈空间。局部变量、函数参数、函数调用、返回值等都在栈中临时保存</p>
+<p><strong>Heap</strong>: 堆空间。保存动态开辟的数据</p>
+<p><strong>Data segment</strong>: 保存全局变量和静态变量 (static variables)</p>
+<p><strong>Text segment</strong>: 保存程序代码用以执行</p>
+</blockquote>
+<h4 id="process-2-process-state"><a class="markdownIt-Anchor" href="#process-2-process-state"></a> Process (2): Process State</h4>
+<p>根据进程运行的过程不同，进程的运行分成几种状态：</p>
+<ol>
+<li><strong><code>New (Initial)</code></strong>: 进程刚刚被创建</li>
+<li><strong><code>Running</code></strong>: 进程正在运行</li>
+<li><strong><code>Blocked</code></strong>: 进程被阻塞。通常是进程在等待某些资源被其他进程释放、或者正在等待 event 结束 (例如 I/O event)</li>
+<li><strong><code>Ready</code></strong>: 进程准备可以运行了。正在等待被分配到一个 <strong>Processor</strong></li>
+<li><strong><code>Terminated (Final/Zombie)</code></strong>: 进程<u>运行完毕，但是还没被清除</u></li>
+</ol>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.1oveejxmua.avif" alt="Process&nbsp;State&nbsp;可视化" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Process&nbsp;State&nbsp;可视化</span></div></div>
+<h3 id="process-control-block"><a class="markdownIt-Anchor" href="#process-control-block"></a> Process Control Block</h3>
+<p>进程使用<strong>数据结构</strong>来记录 <a href="#process-1-address-space">Address Space</a> 和 <a href="#process-2-process-state">Process State</a> (以及还有其他的) 信息，在 OS 里，这样的数据结构叫做 <mark>Process Control Block (PCB)</mark> 或者 <mark>Process Descriptor</mark></p>
+<details class="tag-plugin colorful folding" color="green" open><summary><span>PCB&nbsp;通常包括</span></summary><div class="body"><ol><li>Unique <em>Process ID</em></li><li>Process State</li><li><strong>Program Counter</strong>: the <em>address of <u>next</u> instruction</em></li><li><mark>Register Content</mark>: snapshot of the registers contents in which the process was last running before transitioned out of the <code>Running</code> State</li><li><strong>Scheduling information</strong> - process priority, pointers to scheduling queues, etc.</li><li><strong>Credentials</strong> - determines the resources this process can access</li><li><strong>Memory Management information</strong> - concerning memory areas allocated to the process</li><li><strong>Accounting information</strong> - CPU usage statistics, time limits, etc</li><li>A pointer to the process’s parent process</li><li>Pointers to the process’s child processes</li><li>Pointers to allocated resources</li><li>…</li></ol></div></details>
+<h3 id="process-table"><a class="markdownIt-Anchor" href="#process-table"></a> Process Table</h3>
+<p>OS 用来快速查找一个进程的 PCB，Proess Table 的每一行都是<strong>指向一个 PCB 的指针</strong>。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.2h89wbs54o.avif" alt="Process&nbsp;Table&nbsp;原理" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Process&nbsp;Table&nbsp;原理</span></div></div>
+<p>当进程完全结束时，OS 从 Process Table 删除这个进程的 PCB 指针，然后释放进程之前占用着的所有资源。</p>
+<h3 id="process-list-structures"><a class="markdownIt-Anchor" href="#process-list-structures"></a> Process List Structures</h3>
+<p>先前提到过，进程可以从 <code>Blocked</code> 状态和 <code>Ready</code> 状态转移到 <code>Running</code> 状态。OS 在内部维护着一个 <code>Ready List</code> 和 <code>Blocked List</code> 来保存<strong>进程的引用</strong></p>
+<pre class="mermaid">graph LR;
+	subgraph "Ready List"
+	direction LR;
+		A[Ready List] --> B[Process 1] --> C[Process 2] --> H[...]
+	end
+
+	subgraph "Blocked List"
+	direction LR;
+		D[Ready List] --> E[Process 3] --> F[Process 4] --> G[...]
+	end</pre>
+<h3 id="os-与进程的交互"><a class="markdownIt-Anchor" href="#os-与进程的交互"></a> OS 与进程的交互</h3>
+<p>OS 提供了一些 API 来完成进程相关的任务。</p>
+<ul>
+<li>当父进程被 terminate 的时候，现代操作系统允许子进程<strong>独立于父进程继续运行</strong></li>
+</ul>
+<h4 id="创建新进程"><a class="markdownIt-Anchor" href="#创建新进程"></a> 创建新进程</h4>
+<a class="tag-plugin colorful hashtag" color="red"><svg t="1701408144765" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4228" width="200" height="200"><path d="M426.6 64.8c34.8 5.8 58.4 38.8 52.6 73.6l-19.6 117.6h190.2l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6s58.4 38.8 52.6 73.6l-19.4 117.6H896c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-42.6 256H832c35.4 0 64 28.6 64 64s-28.6 64-64 64h-137.8l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.6-117.4h-190.4l-23 138.6c-5.8 34.8-38.8 58.4-73.6 52.6s-58.4-38.8-52.6-73.6l19.4-117.8H128c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l42.6-256H192c-35.4 0-64-28.6-64-64s28.6-64 64-64h137.8l23-138.6c5.8-34.8 38.8-58.4 73.6-52.6z m11.6 319.2l-42.6 256h190.2l42.6-256h-190.2z" p-id="4229"></path></svg><span>IMPORTANT</span></a>
+<p>当系统需要创建一个新进程时：</p>
+<ol>
+<li>为这个进程分配空间
+<ul>
+<li>为 Process Control Block 分配空间</li>
+</ul>
+</li>
+<li>初始化 PCB
+<ul>
+<li>分配 unique PID</li>
+<li>记录 PID 和父进程的 PID</li>
+<li>设置 Program Counter 为子进程的下一条指令</li>
+<li>设置 Stack Pointer</li>
+</ul>
+</li>
+<li>Create other data structures
+<ul>
+<li>Memory</li>
+<li>Accounting</li>
+<li>Files</li>
+<li>…</li>
+</ul>
+</li>
+<li>把子进程的 Process State 设置为 <code>Ready</code>，放进 <code>Ready List</code></li>
+</ol>
+<h4 id="终止一个进程"><a class="markdownIt-Anchor" href="#终止一个进程"></a> 终止一个进程</h4>
+<h2 id="lecture-3-virtualizing-cpu"><a class="markdownIt-Anchor" href="#lecture-3-virtualizing-cpu"></a> Lecture 3. Virtualizing CPU</h2>
+<blockquote>
+<p>学习目标</p>
+<p>[ILO 2a]: <em>explain</em> how OS manages processes/threads and discuss the <strong>mechanisms</strong> and policies in efficiently sharing of CPU resources</p>
+</blockquote>
+<h2 id="lecture-4-process-scheduling"><a class="markdownIt-Anchor" href="#lecture-4-process-scheduling"></a> Lecture 4. Process Scheduling</h2>
+<blockquote>
+<p>学习目标</p>
+<p>[ILO 2a]: <em>explain</em> how OS manages processes/threads and discuss the mechanisms and <strong>policies</strong> in efficiently sharing of CPU resources</p>
+<p>[ILO 3]: <em>analyse and evaluate</em> the algorithms and explain the <strong>major performance issues</strong></p>
+</blockquote>
+<h3 id="各种时间指标"><a class="markdownIt-Anchor" href="#各种时间指标"></a> 各种时间指标</h3>
+<ul>
+<li>CPU-bound (compute-cound) process：进程运行期间更多的是用 CPU 完成计算操作</li>
+<li>I/O-bound process：进程运行期间更多的是进行 IO 操作</li>
+</ul>
+<h4 id="turn-around-time-minimize"><a class="markdownIt-Anchor" href="#turn-around-time-minimize"></a> Turn-Around Time (Minimize)</h4>
+<p><mark>Turn-around Time</mark>: amount of time it takes to complete a task (from <strong>first</strong> submission to <strong>completely finish</strong> servicing) 真正执行的时间</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>T</mi><mtext>turn-around</mtext></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>T</mi><mtext>completion</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>arrival</mtext></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>T</mi><mtext>waiting to get into memory</mtext></msub><mo>+</mo><msub><mi>T</mi><mtext>waiting in queue</mtext></msub><mo>+</mo><msub><mi>T</mi><mtext>CPU execution time</mtext></msub><mo>+</mo><msub><mi>T</mi><mtext>IO operation time</mtext></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+T_{\text{turn-around}}&amp;=T_{\text{completion}} - T_{\text{arrival}}\\
+&amp;=T_{\text{waiting to get into memory}}+T_{\text{waiting in queue}}+T_{\text{CPU execution time}}+T_{\text{IO operation time}}
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0000000000000004em;vertical-align:-1.2500000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">turn-around</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7500000000000002em;"><span style="top:-3.91em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">completion</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">arrival</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.317502em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">waiting to get into memory</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.317502em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">waiting in queue</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">CPU execution time</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">IO operation time</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2500000000000002em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>目标是减少 Turn-Around Time, 从提交处理请求到进程完全完成的时间越少越好。</p>
+<h4 id="wait-time-minimize"><a class="markdownIt-Anchor" href="#wait-time-minimize"></a> Wait Time (Minimize)</h4>
+<p>Amount of time a process was waiting in the ready queue</p>
+<h4 id="response-time-minimize"><a class="markdownIt-Anchor" href="#response-time-minimize"></a> Response Time (Minimize)</h4>
+<p>amount of time it takes from when a process (job) is submitted to the first time it is scheduled</p>
+<ul>
+<li>Important metric for <em>interactive tasks</em></li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>T</mi><mtext>Response</mtext></msub><mo>=</mo><msub><mi>T</mi><mtext>first execution</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>arrival</mtext></msub></mrow><annotation encoding="application/x-tex">T_{\text{Response}}=T_{\text{first execution}}-T_{\text{arrival}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Response</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">first execution</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">arrival</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<h4 id="throughput-maximize"><a class="markdownIt-Anchor" href="#throughput-maximize"></a> Throughput (Maximize)</h4>
+<ul>
+<li>Average number of processes that complete their execution per unit time
+<ul>
+<li>不是完全结束，只要一次 execution 结束即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="各种方法"><a class="markdownIt-Anchor" href="#各种方法"></a> 各种方法</h3>
+<h4 id="first-in-first-out"><a class="markdownIt-Anchor" href="#first-in-first-out"></a> First-In-First-Out</h4>
+<h4 id="shortest-job-first"><a class="markdownIt-Anchor" href="#shortest-job-first"></a> Shortest-Job-First</h4>
+<h4 id="highest-response-ratio-next-hrrn"><a class="markdownIt-Anchor" href="#highest-response-ratio-next-hrrn"></a> Highest-Response-Ratio-Next (HRRN)</h4>
+<h4 id="shortest-time-to-completion-first-stcf"><a class="markdownIt-Anchor" href="#shortest-time-to-completion-first-stcf"></a> Shortest Time-to-Completion First (STCF)</h4>
+<h4 id="round-robin-rr"><a class="markdownIt-Anchor" href="#round-robin-rr"></a> Round-Robin (RR)</h4>
+<p>核心：分配每个进程每次的运行时间是一样的（<strong>quantum</strong>），quantum 结束的进程放到 queue 的末尾。</p>
+<h4 id="multilevel-feedback-queues-mlfq"><a class="markdownIt-Anchor" href="#multilevel-feedback-queues-mlfq"></a> Multilevel Feedback Queues (MLFQ)</h4>
+<h5 id="some-improvements"><a class="markdownIt-Anchor" href="#some-improvements"></a> Some Improvements</h5>
+<h4 id="fare-share-scheduling"><a class="markdownIt-Anchor" href="#fare-share-scheduling"></a> Fare Share Scheduling</h4>
+<h4 id="lottery-scheduling"><a class="markdownIt-Anchor" href="#lottery-scheduling"></a> Lottery Scheduling</h4>
+<h3 id="multi-processor-scheduling"><a class="markdownIt-Anchor" href="#multi-processor-scheduling"></a> Multi-Processor Scheduling</h3>
+<h4 id="single-queue-scheduling"><a class="markdownIt-Anchor" href="#single-queue-scheduling"></a> Single Queue Scheduling</h4>
+<h4 id="multi-queue-scheduling"><a class="markdownIt-Anchor" href="#multi-queue-scheduling"></a> Multi Queue Scheduling</h4>
+<h2 id="lecture-5-threads"><a class="markdownIt-Anchor" href="#lecture-5-threads"></a> Lecture 5. Threads</h2>
+<h3 id="threads"><a class="markdownIt-Anchor" href="#threads"></a> Threads</h3>
+<ul>
+<li>A thread in an entity <strong>inside</strong> a process</li>
+<li>Multiple threads within one process.</li>
+<li>A sequence of instructions
+<ul>
+<li>share the process’s address space and other global info</li>
+</ul>
+</li>
+</ul>
+<p>和 Process 类似，拥有自己的 PC, registers … 记录成 Thread Control Block<br />
+也拥有 running, waiting 等状态</p>
+<h4 id="why-multithreading"><a class="markdownIt-Anchor" href="#why-multithreading"></a> Why multithreading?</h4>
+<ul>
+<li>inherently parallel tasks</li>
+<li>相比 process，创建 thread 的资源占用更少、更快</li>
+<li>多个 thread 可以同时跑，even if one is blocked</li>
+<li>make use of multicores</li>
+<li>Lass overhead in switching</li>
+</ul>
+<h4 id="线程操作"><a class="markdownIt-Anchor" href="#线程操作"></a> 线程操作</h4>
+<p><a href="./comp3230-aux-thread.html">POSIX Threads Operations</a></p>
+<h3 id="并发-concurrency"><a class="markdownIt-Anchor" href="#并发-concurrency"></a> 并发 Concurrency</h3>
+<h4 id="读写冲突"><a class="markdownIt-Anchor" href="#读写冲突"></a> 读写冲突</h4>
+<ul>
+<li>并发的问题：如果<strong>同时读写数据</strong>，输出会不一致。</li>
+<li>原因： <strong>Uncontrolled Scheduling</strong>, can’t predict <strong>when</strong> and <strong>how long</strong> a thread will execute.</li>
+<li>我们把<u>多个线程</u> <u>同时</u> <u>访问和修改共享的数据</u>，其输出由执行顺序 (<u>a race</u>) 决定的情况称为 Race Condition.</li>
+</ul>
+<details class="tag-plugin colorful folding" color="light"><summary><span>例子</span></summary><div class="body"><p>初始 <code>x=10</code>，在 Thread 1 和 Thread 2 里都执行 <code>x++;</code>，结果即可能是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span> 也可能是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>.</p><p>为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span> 时就是这种情况：</p><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.3d4sip72d8.webp" alt="Case 1" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Case 1</span></div></div></div></details>
+<h5 id="critical-sections"><a class="markdownIt-Anchor" href="#critical-sections"></a> Critical Sections</h5>
+<p>把需要修改共享数据的代码称为 <strong>Critical Section</strong>，这些代码在修改数据时需要 protection</p>
+<ul>
+<li>仅仅读取数据时，允许多个线程一起读。</li>
+<li>但是只能有一个线程写入数据，正在写入数据的线程称为 <strong>in its critical section</strong>. 显然任意时刻，我们希望最多只有一个 thread 修改数据。</li>
+<li>Mutual Exclusion.</li>
+</ul>
+<h5 id="解决办法-atomic-operation"><a class="markdownIt-Anchor" href="#解决办法-atomic-operation"></a> 解决办法: Atomic Operation</h5>
+<p>【定义】The operation <strong>can not be interrupted in the middle</strong>, and hardware can guarantee either has done or not done at all.</p>
+<p>另一个解决办法： Synchronization</p>
+<h2 id="lecture-6-synchronization"><a class="markdownIt-Anchor" href="#lecture-6-synchronization"></a> Lecture 6. Synchronization</h2>
+<p>常见场景： One thread has to wait for another thread to work on some action before it continues</p>
+<h3 id="mutual-exclusion"><a class="markdownIt-Anchor" href="#mutual-exclusion"></a> Mutual Exclusion</h3>
+<p>We need a mechanism to inform OS that a thread is going to enter its critical section</p>
+<ul>
+<li>A <mark><strong>lock</strong></mark> is a data structure used for <mark>indicating the start and end of a critical section</mark>.
+<ul>
+<li>Indicate shared data is about to be accessed and ask for the system to <mark>provide necessary protection</mark></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>requires the lock, wait until gets the lock</li>
+<li>Do something to the data</li>
+<li>Release the lock</li>
+</ol>
+<p>但是这个流程只在 <strong>Single Core</strong> 或者在 <strong>Kernel Mode</strong> 里才有效。</p>
+<h3 id="实现锁的两种-atomic-operation"><a class="markdownIt-Anchor" href="#实现锁的两种-atomic-operation"></a> 实现锁的两种 Atomic Operation</h3>
+<p>Atomic Operation 实现两种逻辑:</p>
+<h4 id="test-and-set"><a class="markdownIt-Anchor" href="#test-and-set"></a> Test-and-Set</h4>
+<ul>
+<li>enables us to <strong>test the old value</strong> while <strong>simultaneously set the variable</strong> to a new value</li>
+<li>The instruction <strong>returns the old value</strong> and <strong>simultaneously updates the variable to new value</strong> in an atomic way</li>
+<li>Checking the value of a shared variable to determine whether it can enter critical section.</li>
+<li>Uses <strong>busy waiting</strong> (spin-lock, spin-wait) to test whether can enter.</li>
+<li>问题
+<ul>
+<li>processor 一直运行死循环，资源浪费。</li>
+<li>无法避免无限拖延 infinite postponement</li>
+<li>没有 fairness guarantee</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">TestSet</span><span class="hljs-params">(<span class="hljs-type">int</span> *ptr, <span class="hljs-type">int</span> newvalue)</span> </span>&#123;<br>    <span class="hljs-type">int</span> old = *ptr;<br>    *ptr = newvalue;<br>    <span class="hljs-keyword">return</span> old;<br>&#125;<br><br><span class="hljs-comment">// ... Implementing a Lock</span><br><span class="hljs-type">int</span> flag = <span class="hljs-number">0</span>; <span class="hljs-comment">// Shared Var</span><br><br><span class="hljs-keyword">while</span>(<span class="hljs-built_in">TestSet</span>(&amp;flag, <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>); <span class="hljs-comment">// 等待锁被释放</span><br><span class="hljs-comment">// do sth.</span><br>flag = <span class="hljs-number">0</span>; <span class="hljs-comment">// Release Lock</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>逻辑是：如果当前的锁没有被释放，flag 的值应该是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>；否则如果在某个时刻被释放了，<code>TestSet()</code> 会捕获到 <code>tmp=flag=0</code> 然后将 <code>flag</code> 重新设置为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 进入占用模式。而 <code>TestSet()</code> 返回旧的值（<code>tmp</code>），于是退出 <code>while()</code> 循环，开始执行代码。直到 <code>flag=0</code> 重新释放锁。</p>
+</blockquote>
+<h4 id="compare-and-swap"><a class="markdownIt-Anchor" href="#compare-and-swap"></a> Compare-and-Swap</h4>
+<ul>
+<li>测试 value 的值和 expected 是否一致;</li>
+<li>是的话，替换为新的值，<strong>返回当前的值</strong></li>
+<li>否则啥也不干</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">CompareAndSwap</span><span class="hljs-params">(<span class="hljs-type">int</span> *ptr, <span class="hljs-type">int</span> expected, <span class="hljs-type">int</span> newvalue)</span> </span>&#123;<br>    <span class="hljs-type">int</span> tmp = *ptr;<br>    <span class="hljs-keyword">if</span>(tmp == expected) *ptr = newvalue;<br>    <span class="hljs-keyword">return</span> tmp<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>为了解决上述的浪费问题，我们需要借助 OS 的支持。</p>
+<h3 id="系统对-mutual-exclusion-的支持"><a class="markdownIt-Anchor" href="#系统对-mutual-exclusion-的支持"></a> 系统对 Mutual Exclusion 的支持</h3>
+<p><a href="./comp3230-aux-thread.html#pthread-lock-%E7%BA%BF%E7%A8%8B%E9%94%81">Linux Pthread Lock</a></p>
+<h3 id="线程间互动-control-sync"><a class="markdownIt-Anchor" href="#线程间互动-control-sync"></a> 线程间互动: Control Sync</h3>
+<p>a thread (A) should perform some action only after some other threads have performed specific actions (or have detected an event/condition)<br />
+Thread A has to be waited and some other thread has to notify A about the occurrence of the event/condition</p>
+<ol>
+<li>【法一】死循环等待</li>
+<li>用 Conditional Variables</li>
+</ol>
+<h4 id="conditional-varaible"><a class="markdownIt-Anchor" href="#conditional-varaible"></a> Conditional Varaible</h4>
+<ul>
+<li>it has a queue that threads can wait over there when some condition/event is not met</li>
+<li>some other thread, once detects the condition/event, <strong>informs (signal)</strong> those waiting threads and wake one of those waiting threads</li>
+<li>when using condition variables, each condition variable can be associated to a distinct condition/event</li>
+</ul>
+<p><a href="./comp3230-aux-thread.html#pthread-condition-variable">Linux Pthread Conditional Variable</a></p>
+<h3 id="sync-技术-semaphores"><a class="markdownIt-Anchor" href="#sync-技术-semaphores"></a> Sync 技术: Semaphores</h3>
+<p><a href="./comp3230-aux-thread.html#pthread-semaphore">Linux Semaphores</a></p>
+<ul>
+<li>an object with an <strong>internal protected integer</strong> variable</li>
+<li>The integer value stored in the semaphore determines its behavior</li>
+</ul>
+<h4 id="producer-consumer-model"><a class="markdownIt-Anchor" href="#producer-consumer-model"></a> Producer-Consumer Model</h4>
+<blockquote>
+<p>消费者、生产者问题</p>
+<ol>
+<li>Buffer 是<strong>有限</strong>且<strong>共享</strong>的</li>
+<li>Producers 生产数据并放入 Buffer</li>
+<li>Consumers 接收数据并从 Buffer 里移除</li>
+</ol>
+</blockquote>
+<p>Sync 的要求</p>
+<ul>
+<li>Buffer pool is shared resource, producers and consumers need to use some method to <strong>coordinate the access</strong> to the pool</li>
+<li>A producer must <strong>not overwrite</strong> a buffer when buffer pool is full</li>
+<li>A consumer must <strong>not consume</strong> an empty buffer when buffer pool is empty</li>
+<li>Mutual exclusion</li>
+<li>Information must be consumed in FIFO order</li>
+</ul>
+<details class="tag-plugin colorful folding" color="light" child="codeblock"><summary><span>一种实现</span></summary><div class="body"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp">buffer[sizeofbuffer];<br><span class="hljs-type">mutex_t</span> mv;<br><span class="hljs-type">cond_t</span> notFULL, notEMPTY;<br>count = <span class="hljs-number">0</span>;<br><br><span class="hljs-built_in">Producer</span>( )&#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)&#123;<br>        d = <span class="hljs-built_in">generating_data</span>();<br>        <br>        <span class="hljs-built_in">lock</span>(mv); <span class="hljs-comment">//try acquire the mutex lock</span><br><br>        <span class="hljs-keyword">while</span> (count == sizeofbuffer) <span class="hljs-comment">//while buffer pool is full</span><br>            <span class="hljs-built_in">cond_wait</span>(notFULL, mv);   <span class="hljs-comment">//wait for free space</span><br>        <br>        <span class="hljs-built_in">append</span>(d, buffer); <span class="hljs-comment">//update the count</span><br>        <br>        <span class="hljs-built_in">cond_signal</span>(notEMPTY); <span class="hljs-comment">//data is available in buffer</span><br>        <br>        <span class="hljs-built_in">unlock</span>(mv); <span class="hljs-comment">//release the lock</span><br>        <br>        <span class="hljs-built_in">remaining_work</span>();<br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">Consumer</span>( ) &#123;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-built_in">lock</span>(mv); <span class="hljs-comment">//try acquire the mutex lock</span><br><br>        <span class="hljs-keyword">while</span> (count == <span class="hljs-number">0</span>) <span class="hljs-comment">//while buffer pool is empty</span><br>            <span class="hljs-built_in">cond_wait</span>(notEMPTY, mv); <span class="hljs-comment">//wait for data item</span><br>        <br>        d = <span class="hljs-built_in">take</span>(buffer); <span class="hljs-comment">//update the count</span><br>        <br>        <span class="hljs-built_in">cond_signal</span>(notFULL); <span class="hljs-comment">//one more free buffer space</span><br>        <br>        <span class="hljs-built_in">unlock</span>(mv); <span class="hljs-comment">//release the lock</span><br>        <br>        <span class="hljs-built_in">consume_data</span>(d);<br>        <br>        <span class="hljs-built_in">remaining_work</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></div></details>
+<h4 id="reader-writer-model"><a class="markdownIt-Anchor" href="#reader-writer-model"></a> Reader-Writer Model</h4>
+<blockquote>
+<p>Reader: 只读数据的 process/thread<br />
+Writer: 只修改数据的 process/thread</p>
+<p>Reader-Writer Model 的要求</p>
+<ol>
+<li>多个 Reader 可以同时读取</li>
+<li>Writer 正在写入的时候不能读取</li>
+<li>最多只能有一个 Writer 在修改数据</li>
+</ol>
+</blockquote>
+<div class="tag-plugin grid" bg="card" style="grid-template-columns: repeat(2, 1fr);"><div class="cell" style="">
+    <p>Reader 的流程：</p><ol><li><code>StartRead()</code></li><li><code>do_reading()</code></li><li><code>EndRead()</code></li></ol>
+    </div>
+    <div class="cell" style="">
+    <p>Writer 的流程：</p><ol><li><code>StartWrite()</code></li><li><code>do_writing()</code></li><li><code>EndWrite()</code></li></ol>
+    </div>
+    <div class="cell" style="">
+    <p>假设此处：</p><p><code>readMutex</code> 指的是读取的锁，<code>writeMutex</code> 是修改的锁</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">StartWrite</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">P</span>(readMutex); <span class="hljs-comment">// 占用读取锁，更新 Reader 数量</span><br>    readCount++;<br>    <span class="hljs-keyword">if</span>(readCount == <span class="hljs-number">1</span>) <br>        <span class="hljs-built_in">P</span>(writeMutex); <br>    <span class="hljs-comment">// 如果第一个是读取锁，由于在读取的时候不能修改</span><br>    <span class="hljs-comment">// 这里需要“占用”掉修改锁防止其他线程修改。</span><br>    <span class="hljs-comment">// 如果有 Writer 正在修改，那么这里会被阻塞。</span><br>    <span class="hljs-built_in">V</span>(readMutex); <br>    <span class="hljs-comment">// 释放读取锁，其他 Reader 也可以使用这个锁更新 Reader 数量</span><br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+    <div class="cell" style="">
+    <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">StartWrite</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">P</span>(writeMutex); <span class="hljs-comment">// 占用读取锁</span><br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+    <div class="cell" style="">
+    <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">EndRead</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">P</span>(readMutex);<br>    readCount--;<br>    <span class="hljs-keyword">if</span>(readCount == <span class="hljs-number">0</span>) <br>        <span class="hljs-built_in">V</span>(writeMutex);<br>    <span class="hljs-comment">// 类似的，如果是最后一个 Reader，</span><br>    <span class="hljs-comment">// 就把 Write Lock 释放，让 Writer 可以修改</span><br>    <span class="hljs-built_in">V</span>(readMutex);<br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+    <div class="cell" style="">
+    <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">EndWrite</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">V</span>(writeMutex); <span class="hljs-comment">// 释放</span><br>&#125;<br></code></pre></td></tr></table></figure>
+    </div>
+    </div>
+<h4 id="general-semaphore-counting-semaphore"><a class="markdownIt-Anchor" href="#general-semaphore-counting-semaphore"></a> General Semaphore (Counting Semaphore)</h4>
+<p><strong>对受限资源进行限流访问</strong></p>
+<ol>
+<li>初始化 <code>sem_t</code> 为限流量，维护一个 pool</li>
+<li>使用资源就是从 pool 中减少一个配额 <code>sem_wait(&amp;semaphore)</code></li>
+<li>归还资源：<code>sem_post(&amp;semaphore)</code></li>
+</ol>
+<h4 id="semaphore-处理线程优先级"><a class="markdownIt-Anchor" href="#semaphore-处理线程优先级"></a> Semaphore 处理线程优先级</h4>
+<p>将 <code>semaphore</code> 初始化为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，然后如果是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A\to B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>，就在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 里 <code>sem_post(&amp;semaphore)</code>，在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 里先 <code>sem_wait(&amp;semaphore)</code> 再进行计算。</p>
+<h2 id="lecture-7-deadlock-死锁"><a class="markdownIt-Anchor" href="#lecture-7-deadlock-死锁"></a> Lecture 7. Deadlock 死锁</h2>
+<blockquote>
+<p>【问题描述】A set of threads each holding some system resources and block waiting to acquire another system resource held by another thread in the set.</p>
+</blockquote>
+<p>死锁的触发条件：</p>
+<ol>
+<li><strong>MutEx</strong>：最多只能有一个线程独占资源</li>
+<li><strong>Wait-for Condition</strong> (<strong>Hold and wait condition</strong>)
+<ul>
+<li>A thread may hold some resources while awaiting assignment of additional resources</li>
+</ul>
+</li>
+<li><strong>No-preemption condition</strong>: 资源的控制权不会被系统从线程手里收回</li>
+<li><strong>Circular-wait condition</strong>: 循环等释放</li>
+</ol>
+<h3 id="prevention"><a class="markdownIt-Anchor" href="#prevention"></a> Prevention</h3>
+<p>用 Restrictive Policy 来 remove 上述四个条件中的任意一个即可破除死锁。</p>
+<blockquote>
+<p>【破 Circular-Wait Condition】</p>
+<p>给每一个 resource 标号，规定每个线程按所需要的资源的标号从小到大获取、执行。</p>
+<p>劣势：线程可能先需要大标号的资源然后才是小标号的资源，这样会导致资源的利用率降低。</p>
+</blockquote>
+<blockquote>
+<p>【破 Hold-and-Wait Condition】</p>
+<p>线程开始时，要么一次性给予所有资源，要么什么也不给然后挂起，等到之后再试一次。</p>
+<p>劣势：</p>
+<ol>
+<li>资源利用率低；</li>
+<li>需要很多资源的线程会等待太久</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>【破 The Mutual Exclusion condition】</p>
+<p>Sharable resources, if allow non-mutually exclusive access, do not result in deadlock</p>
+</blockquote>
+<blockquote>
+<p>【破 No-preemption condition】</p>
+<p>如果线程 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 需要的某个资源被占用，那么 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 就必须释放所有已占有的资源，然后挂起；</p>
+<p>当且仅当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 能够一次性获得所有需要的资源（旧的和新的），才重启继续运行。</p>
+<p>劣势：</p>
+<ol>
+<li>Substantial overhead 资源开支太大，因为可能丢失之前的状态、数据</li>
+<li>Starvation 等太久</li>
+</ol>
+</blockquote>
+<h3 id="deadlock-avoidance"><a class="markdownIt-Anchor" href="#deadlock-avoidance"></a> Deadlock Avoidance</h3>
+<p>并非事先尝试破坏 Deadlock 发生条件的任何一条，而是<strong>事先知道进程需要的资源</strong>，通过算法规避死锁。</p>
+<p>Avoidance <strong>requires some global knowledge</strong> of which locks/resources various threads might grab during their execution. <strong>Subsequently schedules</strong> the threads in a way as to guarantee no deadlock can occur</p>
+<h4 id="avoidance-by-scheduling"><a class="markdownIt-Anchor" href="#avoidance-by-scheduling"></a> Avoidance by Scheduling</h4>
+<p>事先获取进程的资源依赖，用依赖关系作为 CPU 分配的 guideline.</p>
+<ul>
+<li>但是仍然可能导致<strong>低资源利用率</strong></li>
+</ul>
+<h4 id="bankers-algorithm"><a class="markdownIt-Anchor" href="#bankers-algorithm"></a> Banker’s Algorithm</h4>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wkfvawl/p/11929508.html">Banker’s Algorithm Explained</a></p>
+<ul>
+<li>允许在索要新资源的时候持有已有资源</li>
+<li>当系统估计不会出现死锁时，会将资源分配给进程</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>可能会有死锁的情况出现
+<ul>
+<li>但是会定时监测死锁是否出现
+<ul>
+<li>通常是检查 circular-wait 是否存在（维护一个依赖图，然后检查环）</li>
+</ul>
+</li>
+<li>如果出现，需要终止死锁
+<ul>
+<li>Method 1, 把死锁的进程全部终止</li>
+<li>Method 2, 每次结束一个死锁着的进程，直到死锁解除（结束尽可能少的进程，并且解决死锁）</li>
+<li>但总会导致一些进程的工作丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="lecture-8"><a class="markdownIt-Anchor" href="#lecture-8"></a> Lecture 8.</h2>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://github.com/ArcaLunar/picx-images-hosting/raw/master/courses/image.51e6018m0v.webp" alt="Paging" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Paging</span></div></div>
+<div class="article-footer fs14"></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/hku/comp2120.html">COMP2120 计算机组成原理</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/hku/comp3230-aux-signal.html">【COMP3230 补充知识】 系统信号处理</a></div></section></div>
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">ArcaLunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#comp3230-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9E%B6%E6%9E%84"><span class="toc-text"> COMP3230 计算机架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-1-%E6%A6%82%E8%BF%B0"><span class="toc-text"> Lecture 1. 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#principles-and-functionality-of-os"><span class="toc-text"> Principles and Functionality of OS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%8D%E5%8A%A1"><span class="toc-text"> OS 的核心服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-processor-management"><span class="toc-text"> Process &amp; Processor Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#memory-management"><span class="toc-text"> Memory Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#concurrency"><span class="toc-text"> Concurrency</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#file-management"><span class="toc-text"> File Management</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93os-%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text"> 总结：OS 的目标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os-architecture"><span class="toc-text"> OS Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9E%B6%E6%9E%84%E9%83%BD%E6%9C%89%E7%9A%84%E4%B8%A4%E7%A7%8D-os-%E6%A8%A1%E5%BC%8F"><span class="toc-text"> 所有架构都有的两种 OS 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-system-calls"><span class="toc-text"> 系统调用 System Calls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%9E%B6%E6%9E%84"><span class="toc-text"> 各种架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#monolithic"><span class="toc-text"> Monolithic</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#layered"><span class="toc-text"> Layered</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#microkernel"><span class="toc-text"> Microkernel</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#modular"><span class="toc-text"> Modular</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lecture-1-%E6%80%BB%E7%BB%93"><span class="toc-text"> Lecture 1. 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-2-process-abstraction"><span class="toc-text"> Lecture 2. Process Abstraction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#what-is-process"><span class="toc-text"> What is “process”?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-1-address-space"><span class="toc-text"> Process (1): Address Space</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#process-2-process-state"><span class="toc-text"> Process (2): Process State</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process-control-block"><span class="toc-text"> Process Control Block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process-table"><span class="toc-text"> Process Table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process-list-structures"><span class="toc-text"> Process List Structures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os-%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%BA%A4%E4%BA%92"><span class="toc-text"> OS 与进程的交互</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E8%BF%9B%E7%A8%8B"><span class="toc-text"> 创建新进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B"><span class="toc-text"> 终止一个进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-3-virtualizing-cpu"><span class="toc-text"> Lecture 3. Virtualizing CPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-4-process-scheduling"><span class="toc-text"> Lecture 4. Process Scheduling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%97%B6%E9%97%B4%E6%8C%87%E6%A0%87"><span class="toc-text"> 各种时间指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#turn-around-time-minimize"><span class="toc-text"> Turn-Around Time (Minimize)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wait-time-minimize"><span class="toc-text"> Wait Time (Minimize)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#response-time-minimize"><span class="toc-text"> Response Time (Minimize)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throughput-maximize"><span class="toc-text"> Throughput (Maximize)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text"> 各种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#first-in-first-out"><span class="toc-text"> First-In-First-Out</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shortest-job-first"><span class="toc-text"> Shortest-Job-First</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#highest-response-ratio-next-hrrn"><span class="toc-text"> Highest-Response-Ratio-Next (HRRN)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shortest-time-to-completion-first-stcf"><span class="toc-text"> Shortest Time-to-Completion First (STCF)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#round-robin-rr"><span class="toc-text"> Round-Robin (RR)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multilevel-feedback-queues-mlfq"><span class="toc-text"> Multilevel Feedback Queues (MLFQ)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#some-improvements"><span class="toc-text"> Some Improvements</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fare-share-scheduling"><span class="toc-text"> Fare Share Scheduling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lottery-scheduling"><span class="toc-text"> Lottery Scheduling</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multi-processor-scheduling"><span class="toc-text"> Multi-Processor Scheduling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#single-queue-scheduling"><span class="toc-text"> Single Queue Scheduling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#multi-queue-scheduling"><span class="toc-text"> Multi Queue Scheduling</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-5-threads"><span class="toc-text"> Lecture 5. Threads</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#threads"><span class="toc-text"> Threads</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#why-multithreading"><span class="toc-text"> Why multithreading?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-text"> 线程操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91-concurrency"><span class="toc-text"> 并发 Concurrency</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81"><span class="toc-text"> 读写冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#critical-sections"><span class="toc-text"> Critical Sections</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95-atomic-operation"><span class="toc-text"> 解决办法: Atomic Operation</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-6-synchronization"><span class="toc-text"> Lecture 6. Synchronization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mutual-exclusion"><span class="toc-text"> Mutual Exclusion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E9%94%81%E7%9A%84%E4%B8%A4%E7%A7%8D-atomic-operation"><span class="toc-text"> 实现锁的两种 Atomic Operation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#test-and-set"><span class="toc-text"> Test-and-Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compare-and-swap"><span class="toc-text"> Compare-and-Swap</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AF%B9-mutual-exclusion-%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text"> 系统对 Mutual Exclusion 的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E9%97%B4%E4%BA%92%E5%8A%A8-control-sync"><span class="toc-text"> 线程间互动: Control Sync</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#conditional-varaible"><span class="toc-text"> Conditional Varaible</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sync-%E6%8A%80%E6%9C%AF-semaphores"><span class="toc-text"> Sync 技术: Semaphores</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#producer-consumer-model"><span class="toc-text"> Producer-Consumer Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reader-writer-model"><span class="toc-text"> Reader-Writer Model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#general-semaphore-counting-semaphore"><span class="toc-text"> General Semaphore (Counting Semaphore)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#semaphore-%E5%A4%84%E7%90%86%E7%BA%BF%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text"> Semaphore 处理线程优先级</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-7-deadlock-%E6%AD%BB%E9%94%81"><span class="toc-text"> Lecture 7. Deadlock 死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#prevention"><span class="toc-text"> Prevention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deadlock-avoidance"><span class="toc-text"> Deadlock Avoidance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#avoidance-by-scheduling"><span class="toc-text"> Avoidance by Scheduling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bankers-algorithm"><span class="toc-text"> Banker’s Algorithm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lecture-8"><span class="toc-text"> Lecture 8.</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `Switched to Light Mode`,
+      dark: `Switched to Dark Mode`,
+      auto: `Switched to Auto Mode`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@v11/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>

@@ -1,0 +1,618 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>AI: LLM in a Flash - Arca's Blog</title>
+
+  
+    <meta name="description" content="Password is needed to access the blog.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LLM in a Flash">
+<meta property="og:url" content="http://arcalunar.github.io/wiki/ai/llm-in-a-flash.html">
+<meta property="og:site_name" content="Arca&#39;s Blog">
+<meta property="og:description" content="Password is needed to access the blog.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-23T00:56:29.000Z">
+<meta property="article:modified_time" content="2024-11-25T12:05:48.840Z">
+<meta property="article:author" content="ArcaLunar">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+
+  
+
+  
+    <!-- <style type="text/css"> "content_blocks_css()" </style> -->
+  
+
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css">
+</head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://ArcaLunar.github.io/picx-images-hosting/courses/artificial-intelligence.6m3wcl8idt.svg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/ai/backprop.html"><div class="main" ff="title">AI</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/ai/" placeholder="Search in AI"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="关于" href="/about/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">深度学习的基石</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/backprop.html#start"><span class="toc-text">BackPropagation 反向传播算法</span></a><a class="link" href="/wiki/ai/1x1conv.html"><span class="toc-text">【CNN】1x1 卷积层的机理</span></a></div><div class="widget-header dis-select"><span class="name">【LLM】LLM 基础</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/embedding.html"><span class="toc-text">Text to Sequence and Word Embedding, 文本处理与词嵌入</span></a><a class="link" href="/wiki/ai/rnn.html"><span class="toc-text">Simple Recurrent Neural Network</span></a><a class="link" href="/wiki/ai/Attention-Mechanism-%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6.html"><span class="toc-text">Attention Mechanism 注意力机制</span></a><a class="link" href="/wiki/ai/transformer.html"><span class="toc-text">【LLM 基础】Transformer</span></a></div><div class="widget-header dis-select"><span class="name">LLM 的若干改进</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/diff-transformer.html"><span class="toc-text">差分 Transformer</span></a></div><div class="widget-header dis-select"><span class="name">【CV】计算机视觉</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/ViT.html"><span class="toc-text">Vision Transformer (ViT)</span></a></div><div class="widget-header dis-select"><span class="name">生成模型</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/generative-model.html"><span class="toc-text">【生成模型基础】 Generative Model</span></a></div><div class="widget-header dis-select"><span class="name">扩散模型</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/diffusion-model.html"><span class="toc-text">扩散模型</span></a><a class="link" href="/wiki/ai/stable-diffusion.html"><span class="toc-text">【论文阅读】 Latent Diffusion Model (LDM)</span></a></div><div class="widget-header dis-select"><span class="name">Time Series Models, 滤波器</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/kalmanfilter.html"><span class="toc-text">Kalman Filter 卡尔曼滤波器</span></a><a class="link" href="/wiki/ai/ekf.html"><span class="toc-text">Extended Kalman Filter 扩展卡尔曼滤波器</span></a></div><div class="widget-header dis-select"><span class="name">【部署】 AI 模型量化／推理优化</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/ai/llm-in-a-flash.html"><span class="toc-text">LLM in a Flash</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/ai/quest-llm.html"><span class="toc-text">Quest: Query-Aware Sparsity for Efficient Long-Context LLM Inference</span></a><a class="link" href="/wiki/ai/bit-pruning.html"><span class="toc-text">【低比特】 Bit-Pruning, Learning Bitlengths for Aggressive an Accurate Quantization</span></a><a class="link" href="/wiki/ai/mf-ds-conv.html"><span class="toc-text">无乘法深度可分离卷积</span></a><a class="link" href="/wiki/ai/xsepconv.html"><span class="toc-text">【论文阅读】CNN 优化：XSepConv</span></a></div><div class="widget-header dis-select"><span class="name">顶刊 idea</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/icml2024.html"><span class="toc-text">【会议解读】ICML2024</span></a></div><div class="widget-header dis-select"><span class="name">未分类</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/index.html"><span class="toc-text">index</span></a><a class="link" href="/wiki/ai/nafnet.html"><span class="toc-text">nafnet</span></a><a class="link" href="/wiki/ai/samformer.html"><span class="toc-text">SAMFormer: Unlocking the Potential of Transformers in Time Series Forecasting</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ai/data-loader.html"><span class="toc-text">深度学习：如何处理数据？</span></a><a class="link" href="/wiki/ai/fwht-binary-layer-dnn.html"><span class="toc-text">【模型量化】基于 Fast Walsh-Hadamard Transform 的卷积层设计</span></a><a class="link" href="/wiki/ai/multi-modal.html"><span class="toc-text">多模态大模型</span></a><a class="link" href="/wiki/ai/spatial-separable-conv.html"><span class="toc-text">spatial-separable-conv</span></a><a class="link" href="/wiki/ai/uretinex-net.html"><span class="toc-text">uretinex-net</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?vq3ndj">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/ai/backprop.html">AI</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-11-25T12:05:48.840Z">2024-11-25</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>LLM in a Flash</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Sorry, but invalid password." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b23ee99b6c01a3805d77f8946fe7347babc2e2dda5a915d0cf34333ea7d4bcf9">974616f801a7f8304cb037939e6885a270659c28884e0ac3742b0c7e2899f8da44f4fca20edeb40d89292cedee9398946cfde2108e3e66d4174d407b756b05fa652952bb193faf6a7372874dbf0013427337dfab715d2f78bbcbebaa7473eeae519a5597d26820049f67aebd04de193c121a8fd2c812a8c8a4605f34a193088f09eca586046ded6d1af1deefbf19ba7641657390acd2dcede1c8b07576d6848eaf63a133fbd2bacf694ef67b1296d553f06bb3a88f36c0bcfd92631baa2a52f1ca274e1c68b0e0da1ff99a5a8d1e2e6ef998b3c626b427dcb1c64079700386c3f5984b3b5466cb4ebdc7b8469168c957fda97a5cd7689071eb1cc6a87d81d04fca2c5b3e0ecc785d250d49cfe2e9f5529cbf717665b8a4ef2a71088f75a3073ad33a8f23c7fef7b99efd3ea0fd11d1ac81ecab7bfc0911db7c3e95ad9d17c1a20e1589d632e039c6fc174f8b813450b27c71768960997499cfe2de8017456f23547ea68a714c58496172dd8db61067509e1bcaa9e990359940ad2b92623ee206c674359e3c9ffadd5701b3a8adab30bcef96db8a139119e711c5894fe603f25597d7e436d03a7009fa9183842d4652a813ebd1f1d4ed004028ea4e2faaf217241c9920dcad2180999007b171b13ef7897e3ec8352eca1e320f8408f1f3b0a75c36482f7db24b79afd6d05fbc38d3819786b752fb21f5e22487d21111052f74841bb22f0861264f204c26f8f8f77f0de08a0e6a0a1ad2522ac322e4bcc3b3ce6dfe5ac4bb3e7a35dc3cc1bee707717458644e2be1635f487be665413af85c6e4da8dd86b3edf2ecdb358537ee79f8884192751c6ae32248f2e1aea4fee8bdd4c3bc59d1c9ac4b5da7efd96a7ebd1f635404e20ea9746e6a3624c69b549bed6a3e9a4df818603f52fbf85878f0e47848aa4659540ca3d9ce60c30c153e279a04f1d06ea12e43a8002541c145b314569f30f72e3b87c037d353ee81146d6649c71dc2356a2074ea0e05689f52b24053679bd211dcd46bc8a82f716ac678e188de73e226de5a0edbad1ffc198e29093d4c34fd5198078febfa487b40d3d9c88527e767044cf1c745b49f862788cfcd0e6359bff171221d08b74df81352def49f8dbca9c32a262f74ae8596a9e911ae4a742b8b737bdbda1c608844331bf4584bd87b155a1a433f5f9df5f82ca06d11dc7ed4844b4b27897683fe35747a3d88d559f1c372ad382bf8fd0c7533b0130462a37aea0c288083858f4acd4ebdd99089c5365e69e195182b90259e20978f35dfe797d5808bcfb68c930b39577680564dc9164b42efe17a537ccce1398459426db927487b7151efb3a4f78753e8fb7423b0c3642e7ff7d9f06b502ad4877f7f741e5c3796bdb04c243d6910755a78bfd732e35de078873857ae280c1731285abb76d9adc64afaf0ef0e8832efa1d58aef8bae8cd7541c02549796e2ce605739517999b90d2f866c08ca0f351ac58d10265e1c2c7974718fb2b5749ab24fe0f348b1110dfede32638fc1bbf9093c9c135951c5e1ae6728102a9391017dad99ebaa1eeabd83f8a0aae9e0876ad800a98b7219dba0df723ddcba9579e73da8bd3a219567056ecc5f399027e68894d1969143f0b69b64d4de53b1ac316f48c005f0c3229aeb58546ca8c762db3260ea04d246d43b0125d5417e89e75921d5c2aa7cb794f248cb3232875e0577ee2787c7d15c6733a365a57375963d06d6f2d7237b3adb963fad494bb74a7c6527638b53511b23c59377e98fe06f968e937fb32b7a873d7c6b70b6273fa33336e92b7e5d37be8750d10634d9a7843cecd14610ab356a63bc0fc2dd890b1f7baa2e7618054a1d1ff1bd1e07a9ed45e9ddeb1d01d58f8c88b6f6f04185a0e3b790e467cd64bf6307f1a49eff1fddbbca995450fa9daa9b8bacdb8c0b6841ba6450131690f482f561863a29d3aeeab39205c3352ec964ce09ac582129645925e45f31f06cea3368aeec7d07f1a1d17b526d77ef04e6ec34d5bed7eabc427cb90925840a2821c2ecd2f484f5f73b232e282efab3c66af15a507155a66e950b767d6e7340f2938a0875812cc114c827a88796e5387c9149613bfb9ba67e06b5a56429c1e888fe1714c83f705d6ab29d9f21e9e2b041c3b0a29ae9a2905fb39c0bec7bc8d6c1437556fa24fa6ef42d0d0ad558bdad847fab2e5c12356c1890541e75e2f1cca1e676aae961998b353f807e29f0acbe40b9e3c3c2941809bdaf734006ebc1255a928605685727fe495a1ea58f2afd677f12143410d64702b32477b655d471a4899b6c564e4e9b8ade20aa616c0435b7246d6fdcd0ae705ec151b5d34816f306790446fbb66d6cc81baa7aae201b4bacb720f1c9b2d045875b98bde3e0998893c93ab854e21ec755d07a78f61e47820d51d81eddc052d10922e1f0457e6e5324535fdba9e7ec6efbe621ad88ee18f4e30dc3a9ad88b45ed1b6cfae9203f72066062ca864e46ca3d1c3762850e83a54004742168d7ed68b98ed64d6faefabe48f519b4d43781596a0ac80ad3a3d5b99417feba84efb2f7bf7bbe6f12b811313aa4765a4838030cf741ce1f31dbe668675053764264d6b1337027697e570836993bdab93c3939cb9e7a2819ef5ced935cbfe3c551a8768e70b11c31e65e7d9acbcab17e0d3541eecb8a639a788ac9241cd47a13b3d14ca3669a862f89487bb76af7b426e8ceaaf8f38cbdc083136c775786c21c5bf62c9f0fdd29a346f71111e186cb3d35eebde1513511284020f1ee9d899eb917994a10236873149264f2b8741d6440be6a29fe6bd9bf8f889876e4b22738414ea3e2a94f53618172dcb72395427d9bebfdfde3ded7a0759f142543f6ded37b2888fcacb0e32532fe09308096b92ab64ec1fc93e9976c7d10169bfc81a620ba2769e031ea834687aad042f0adc214fbc3e578a6eef0681a332c7c775393005b59d9797ff673d564930d9e4ea600bb87fa33a581bba852733351fd80077a5ad4bcb441a0a2914c8a0b5509f344c3f2c1d82d0bf12ac31761d060454ceeeac41dafe4bf8dd4df88a36cd489ca4dd9bfb2e94af083cd21f8b97930107c5b32a1b16bf424aa851468d47cfae8b47a83830e6705fdb1a6ae5a27ecafd9dc9778272fe175376b04207ef211fb58dda812aef856213e5527fd7a331418f60cc4f7fc6b061b2fcae60e1e01af4ab451b9090be39656de18910b6872dd8a406d9928b924406b6f3d001845fd014d01c3bca78c6335ea91675b65803265ba48206fa3073be7ad80554c90894b89e3d6760e06d1ae0dbafc4106988fdb120c9f53c985711bb7f21781b09016e205fde4bda7bfa308091ab568b008fe6f93cf533feaec00a1372dde3d1672bb92983df7c5e56f965e1e36e35c5e0e7eed3db781476dae765bc78d266feaa874a9e88ccf6ac17f7b8ae378179e551028cdf6d7e97b7f624e71e30539208bd7a1f0598df68cfb3ca79272bf011ea87cd8bc2e7956796f04e03794d4b259dee9f4af05e371526c10afc2f92d92d5d0695b98dfc7b75c9e424335a9913f4b68a40431d8c07e10905094fcff50a71f40f45644e8a9b2a048a5cc42c9b425501e212ddff8ff083ac3ce0ab6dd9b333b72cc9a46f1975dba728a69566bd40f18dd64525434b8d213266a5e4fdd04fac878250a3bded6186af856fbde62c09fdd3a06d02364ec21d51446ec87c4b578f17067c2af79cebe2e0b7ca2e3af639137c18ce01e0ad037ca42a4d13a3478165ecdb8da7b10df01b44e4aeb1ad9716bdba8eb23f177823a5cab7d31e772c57b396da4d35a86136c209a4fc7697c3f436e7f92e4a73993fb1b8674a73c78b7748b770226fe56ec899b1d84c03c78b5a754a4217c7bdea4114b1cce687685a79b53ebf9d9287dd92b5c69bbc12caa604690d4387d97a38186868070d819e0fa0f5714aee29165e517866eb4b640aa8c35fee33a7029362dbdbd7fd2eefc6283430080e7a8a7cd7b692e658f97f1f4b561fe6cc7d3eb632c04a9c1e3231b71d53410843affcd0437830532ba36e08ba4699bf13b16cfdaae055252630f65d90b754a71dda6eb06d44aaba9e432f817239a1ac1bfd8d5ca370f753022cabd544596357f236f13f96272a02f16bcd9dc6b36f1ca79ed62fdbbf5d301b20e5a9a9c1b2eeff674b5af73ec1eb88083d34d5cecb4aa4b538e1926cdb3d78705ee49dd13af7659de0a9246bd631aac815d5688048eee9604d392a4322aa3fb0ff24cb02effd72e2b6ce7b5bc79f60d44d1ebbe37d1f96b691457e00d0c18a5f385744a7bf65a38ea74ae86baa135b98c3ebdab8df7fc325bc4e49eebe006d62cb89fae8de676af1fede8308dc5f9b7d4b6af7611f66367589d948ab52c3e9e56158f51372e553a31b8f2645c96af21cf7a0a23479eb1875654f4ea2b076ff2ce01c138ab3cf8446f018842357a50dd22e80b8fc906c6aa584b986a44c1f47ba494aaf15cd0040f771a91457ca821377934edd380f89070e309e95c545dbc88dc9ada3624084df19c401c3814b5f64c8dfdd7c4fc49e4cba80161717a7969788463810dfcf96a5fbdacef3c7c9301de1c0aed57dcba05e0abfc86f995c5722514866901d9ed6008a7d3d3a81f164b8cafa319fa98197f380870b6c4376032a86aa97fb8a240ae1fa742cfd23cf77f8d2884aae3c97c7773c48f02bceaabb9f701a7aec476dd740f53d021bf2b8f45d561ffe2cc7a9f12883b1a62d261e358efd08dc4e8c167fd949ca8000f5d7aa306b82d7f6d88b3e19978d873fd0a8ba4a10e842de8b25cbe27ff0086023f36b6391edef224ad6e560d94b6fa4392099dff9d5acb76950b2abdef07305fb97340aeb39761516bfbc9178c587439eff51aa4617022696eca04679152553f9d8d042cf741d73302c7bebc0e244d031f45c7d9b6361ef361897e1c373ea02c9fcb86ec15ce8d43bd3cd46065b6a213d8524f6e9c49f788e2fae9879a2f32795d4b1d3c6a66117d4e96ab88fa3c815a56526c12259d1e3f908d15ac693c2a6da1794f6319348cb34a58d582d03fbdbd4693ad5f83e73fd03d2210a3b6477428c37e085a78c1ad19b2553b306312b68805a315c00516b9e5a00452dd9915e46fa88afb539918cc0843a173dccb4d1772f6c5edc3a3e860d76aaa5b5914fbecd2e3e72d74233af01cb6db57262fa580c544153e33546737fd4277688bca85684a940bab2954dfa9c57816f2855320bb8c9e8317b743a48af3e9fb3609dd8749fb962f353ef2886fb0efa3c1b58b386fb83579808fc3014ff49182b2cc671b6192048b09fb894c418fe12d397d6c7fc1407d24179e81e2654141aed7bdb5d86e361ffac8d3ad29b6fd69569274982ca7302de61f249bd406ec4a7461b7623a3756ca16cb836a180d6edbea4097a9ade70b0bceb0fc608d7ab7d620a5ccb7799efcb3a120f6c416c00acc2c582af58ecfc77158f6b833593a752143b509e62eea25e7a2754ae98ab14f32fa698394954da4388b4bd95750ae24a3d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-shrink">
+      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">Password is needed.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+<div class="article-footer fs14"></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/ai/ekf.html">Extended Kalman Filter 扩展卡尔曼滤波器</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/ai/quest-llm.html">Quest: Query-Aware Sparsity for Efficient Long-Context LLM Inference</a></div></section></div>
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">ArcaLunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+</aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `Switched to Light Mode`,
+      dark: `Switched to Dark Mode`,
+      auto: `Switched to Auto Mode`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@v11/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
