@@ -20,15 +20,15 @@
   <title>OS: Producer Consumer Problem - Arca's Blog</title>
 
   
-    <meta name="description" content="Producer Consumer Problem  Solution With Semaphore Utils Function12345678910111213int buffer[MAX];int fill &#x3D; 0;int use &#x3D; 0;void put(int value) &#123;    buffer[fill] &#x3D; value;    &#x2F;&#x2F; Line F1    fill &#x3D;">
+    <meta name="description" content="Producer Consumer Problem  Solution With Semaphore     Util&nbsp;Functions   12345678910111213int buffer[MAX];int fill &#x3D; 0;int use &#x3D; 0;void put(int value) &#123;    buffer[fill] &#x3D; value;    &#x2F;&#x2F; Line F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Producer Consumer Problem">
 <meta property="og:url" content="http://arcalunar.github.io/wiki/os/producer-consumer.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Producer Consumer Problem  Solution With Semaphore Utils Function12345678910111213int buffer[MAX];int fill &#x3D; 0;int use &#x3D; 0;void put(int value) &#123;    buffer[fill] &#x3D; value;    &#x2F;&#x2F; Line F1    fill &#x3D;">
+<meta property="og:description" content="Producer Consumer Problem  Solution With Semaphore     Util&nbsp;Functions   12345678910111213int buffer[MAX];int fill &#x3D; 0;int use &#x3D; 0;void put(int value) &#123;    buffer[fill] &#x3D; value;    &#x2F;&#x2F; Line F">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-12-12T02:50:28.000Z">
-<meta property="article:modified_time" content="2024-12-15T07:28:24.058Z">
+<meta property="article:modified_time" content="2024-12-15T07:45:35.683Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
   
@@ -45,7 +45,7 @@
 
   
     
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
 
   
 
@@ -363,11 +363,11 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?w5kl5j">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?aw7x5">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/os/os-arch.html">OS</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-15T07:28:24.058Z">2024-12-15</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-15T07:45:35.683Z">2024-12-15</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -380,7 +380,12 @@ div.hcb-content.hcb-cards-content.active {
   </div>
   </div><article class="md-text content"><h1 id="producer-consumer-problem"><a class="markdownIt-Anchor" href="#producer-consumer-problem"></a> Producer Consumer Problem</h1>
 <h2 id="solution-with-semaphore"><a class="markdownIt-Anchor" href="#solution-with-semaphore"></a> Solution With Semaphore</h2>
-<div class="tag-plugin colorful note" color="light" child="codeblock"><div class="title"><strong>Utils Function</strong></div><div class="body"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> buffer[MAX];<br><span class="hljs-type">int</span> fill = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> use = <span class="hljs-number">0</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;<br>    buffer[fill] = value;    <span class="hljs-comment">// Line F1</span><br>    fill = (fill + <span class="hljs-number">1</span>) % MAX; <span class="hljs-comment">// Line F2</span><br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> tmp = buffer[use]; <span class="hljs-comment">// Line G1</span><br>    use = (use + <span class="hljs-number">1</span>) % MAX; <span class="hljs-comment">// Line G2</span><br>    <span class="hljs-keyword">return</span> tmp;<br>&#125;<br></code></pre></td></tr></table></figure></div></div>
+
+<div class="hcb-content hcb-block hcbnote">
+  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Util&nbsp;Functions</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> buffer[MAX];<br><span class="hljs-type">int</span> fill = <span class="hljs-number">0</span>;<br><span class="hljs-type">int</span> use = <span class="hljs-number">0</span>;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;<br>    buffer[fill] = value;    <span class="hljs-comment">// Line F1</span><br>    fill = (fill + <span class="hljs-number">1</span>) % MAX; <span class="hljs-comment">// Line F2</span><br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> tmp = buffer[use]; <span class="hljs-comment">// Line G1</span><br>    use = (use + <span class="hljs-number">1</span>) % MAX; <span class="hljs-comment">// Line G2</span><br>    <span class="hljs-keyword">return</span> tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+</div>
+
 <details class="tag-plugin colorful folding" color="light"><summary><span>Version 1</span></summary><div class="body"><blockquote><p>Problem: Race Condition</p></blockquote></div></details>
 <details class="tag-plugin colorful folding" color="light"><summary><span>V2 with MutEx</span></summary><div class="body"><blockquote><p>Problem: Deadlock</p><p>如果 Consumer 先 run，会 acquire lock 然后锁住 job queue，让 Producer 无法运行。</p></blockquote></div></details>
 <h2 id="solution-with-cv"><a class="markdownIt-Anchor" href="#solution-with-cv"></a> Solution with CV</h2>
