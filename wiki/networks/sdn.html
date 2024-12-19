@@ -17,20 +17,25 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Networks: SDN - Arca's Blog</title>
+  <title>Networks: Software Defined Networking (SDN) - Arca's Blog</title>
 
   
-    <meta name="description" content="SDN: Software Defined Networking 传统的分布式的 Routing：当网络设备增多的时候，难以管理。 Note">
+    <meta name="description" content="传统的分布式的 Routing：每一个 Router 都有一个 Routing 算法的实现，当网络设备增多的时候，难以管理。      Plane   与传统的分布式 Routing 不同，一个 Remote Controller 收集所有 Router 的信息，然后在 Controller 内部计算完 Table 后再分发给所有 Router。        为什么需要一个&nbsp;Logi">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SDN">
+<meta property="og:title" content="Software Defined Networking (SDN)">
 <meta property="og:url" content="http://arcalunar.github.io/wiki/networks/sdn.html">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="SDN: Software Defined Networking 传统的分布式的 Routing：当网络设备增多的时候，难以管理。 Note">
+<meta property="og:description" content="传统的分布式的 Routing：每一个 Router 都有一个 Routing 算法的实现，当网络设备增多的时候，难以管理。      Plane   与传统的分布式 Routing 不同，一个 Remote Controller 收集所有 Router 的信息，然后在 Controller 内部计算完 Table 后再分发给所有 Router。        为什么需要一个&nbsp;Logi">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.b8ynum687.avif">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.3gogmycj2i.avif">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.86tpld6guc.avif">
+<meta property="og:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.5mnv8q7f91.avif">
 <meta property="article:published_time" content="2024-12-11T04:09:24.000Z">
-<meta property="article:modified_time" content="2024-12-11T04:57:15.788Z">
+<meta property="article:modified_time" content="2024-12-19T05:11:28.193Z">
 <meta property="article:author" content="ArcaLunar">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://arcalunar.github.io/picx-images-hosting/courses/image.b8ynum687.avif">
   
   
   
@@ -354,7 +359,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Application Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/app-principle.html#start"><span class="toc-text">Principle of Application Layer</span></a><a class="link" href="/wiki/networks/app-http.html"><span class="toc-text">HTTP Protocol</span></a><a class="link" href="/wiki/networks/app-cookies.html"><span class="toc-text">Cookies</span></a><a class="link" href="/wiki/networks/app-email.html"><span class="toc-text">应用层：邮件、SMTP 协议</span></a><a class="link" href="/wiki/networks/socket-prog.html"><span class="toc-text">Socket 与网络编程</span></a></div><div class="widget-header dis-select"><span class="name">Transport Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/udp.html"><span class="toc-text">UDP</span></a><a class="link" href="/wiki/networks/tcp.html"><span class="toc-text">TCP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Data Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/network-layer-intro.html"><span class="toc-text">Network Layer Overview</span></a><a class="link" href="/wiki/networks/router.html"><span class="toc-text">Router 路由</span></a><a class="link" href="/wiki/networks/ipv4.html"><span class="toc-text">IPv4</span></a><a class="link" href="/wiki/networks/nat.html"><span class="toc-text">NAT 技术：缓解 IPv4 分配危机</span></a><a class="link" href="/wiki/networks/ipv6.html"><span class="toc-text">IPv6，下一代 IP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Control Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/internet-routing-inprac.html"><span class="toc-text">Internet Routing in Practice</span></a><a class="link" href="/wiki/networks/routing-algo.html"><span class="toc-text">Routing Algorithms</span></a><a class="link" href="/wiki/networks/ospf.html"><span class="toc-text">Internet Routing: OSPF</span></a><a class="link" href="/wiki/networks/bgp.html"><span class="toc-text">BGP：ISP 之间的路由选择</span></a><a class="link active" href="/wiki/networks/sdn.html"><span class="toc-text">SDN</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Link Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/link-layer-intro.html"><span class="toc-text">Link Layer</span></a><a class="link" href="/wiki/networks/link-error.html"><span class="toc-text">Error Detection and Correction</span></a><a class="link" href="/wiki/networks/multiple-access.html"><span class="toc-text">Multiple Access Protocol</span></a><a class="link" href="/wiki/networks/LAN-addressing.html"><span class="toc-text">LAN and Addressing</span></a><a class="link" href="/wiki/networks/ethernet.html"><span class="toc-text">Ethernet 以太网</span></a><a class="link" href="/wiki/networks/ethernet-switch.html"><span class="toc-text">Ethernet Switch</span></a><a class="link" href="/wiki/networks/LAN-vlan.html"><span class="toc-text">Virtual LANs</span></a><a class="link" href="/wiki/networks/data-center.html"><span class="toc-text">Networks for Data Center</span></a><a class="link" href="/wiki/networks/in-all-scenario.html"><span class="toc-text">从例子梳理五大 Layer</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Application Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/app-principle.html#start"><span class="toc-text">Principle of Application Layer</span></a><a class="link" href="/wiki/networks/app-http.html"><span class="toc-text">HTTP Protocol</span></a><a class="link" href="/wiki/networks/app-cookies.html"><span class="toc-text">Cookies</span></a><a class="link" href="/wiki/networks/app-email.html"><span class="toc-text">应用层：邮件、SMTP 协议</span></a><a class="link" href="/wiki/networks/socket-prog.html"><span class="toc-text">Socket 与网络编程</span></a></div><div class="widget-header dis-select"><span class="name">Transport Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/transport-multiplex.html"><span class="toc-text">Multiplexing, De-multiplexing</span></a><a class="link" href="/wiki/networks/udp.html"><span class="toc-text">UDP</span></a><a class="link" href="/wiki/networks/tcp.html"><span class="toc-text">TCP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Data Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/network-layer-intro.html"><span class="toc-text">Network Layer Overview</span></a><a class="link" href="/wiki/networks/router.html"><span class="toc-text">Router 路由</span></a><a class="link" href="/wiki/networks/ipv4.html"><span class="toc-text">IPv4</span></a><a class="link" href="/wiki/networks/nat.html"><span class="toc-text">NAT 技术：缓解 IPv4 分配危机</span></a><a class="link" href="/wiki/networks/ipv6.html"><span class="toc-text">IPv6，下一代 IP 协议</span></a></div><div class="widget-header dis-select"><span class="name">Network Layer: Control Plane</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/internet-routing-inprac.html"><span class="toc-text">Internet Routing in Practice</span></a><a class="link" href="/wiki/networks/routing-algo.html"><span class="toc-text">Routing Algorithms</span></a><a class="link" href="/wiki/networks/ospf.html"><span class="toc-text">Internet Routing: OSPF</span></a><a class="link" href="/wiki/networks/bgp.html"><span class="toc-text">BGP：ISP 之间的路由选择</span></a><a class="link active" href="/wiki/networks/sdn.html"><span class="toc-text">Software Defined Networking (SDN)</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/networks/icmp.html"><span class="toc-text">Internet Control Message Protocol ​</span></a><a class="link" href="/wiki/networks/snmp.html"><span class="toc-text">网络管理与配置：SNMP 协议</span></a><a class="link" href="/wiki/networks/netconf.html"><span class="toc-text">NETCONF</span></a></div><div class="widget-header dis-select"><span class="name">Link Layer</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/link-layer-intro.html"><span class="toc-text">Link Layer</span></a><a class="link" href="/wiki/networks/link-error.html"><span class="toc-text">Error Detection and Correction</span></a><a class="link" href="/wiki/networks/multiple-access.html"><span class="toc-text">Multiple Access Protocol</span></a><a class="link" href="/wiki/networks/LAN-addressing.html"><span class="toc-text">LAN and Addressing</span></a><a class="link" href="/wiki/networks/ethernet.html"><span class="toc-text">Ethernet 以太网</span></a><a class="link" href="/wiki/networks/ethernet-switch.html"><span class="toc-text">Ethernet Switch</span></a><a class="link" href="/wiki/networks/LAN-vlan.html"><span class="toc-text">Virtual LANs</span></a><a class="link" href="/wiki/networks/mpls.html"><span class="toc-text">Multiprotocol label switching (MPLS)​</span></a><a class="link" href="/wiki/networks/data-center.html"><span class="toc-text">Networks for Data Center</span></a></div><div class="widget-header dis-select"><span class="name">Explained with Example</span></div><div class="widget-body fs14"><a class="link" href="/wiki/networks/in-all-scenario.html"><span class="toc-text">从例子梳理五大 Layer</span></a><a class="link" href="/wiki/networks/file-transfer.html"><span class="toc-text">P2P 和 ClientServer 在文件传输上的对比</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -363,27 +368,77 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?19hon">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?4x0i1">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/networks/app-principle.html">Networks</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-11T04:57:15.788Z">2024-12-11</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2024-12-19T05:11:28.193Z">2024-12-19</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>SDN</span></h1>
+        <h1 class="text title"><span>Software Defined Networking (SDN)</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="sdn-software-defined-networking"><a class="markdownIt-Anchor" href="#sdn-software-defined-networking"></a> SDN: Software Defined Networking</h1>
-<p>传统的<strong>分布式</strong>的 Routing：当网络设备增多的时候，难以管理。</p>
-<div class="admonition info"><p class="admonition-title">Note</p></div>
+  </div><article class="md-text content"><blockquote>
+<p>传统的<strong>分布式</strong>的 Routing：每一个 Router 都有一个 Routing 算法的实现，当网络设备增多的时候，难以管理。</p>
+</blockquote>
+
+<div class="hcb-content hcb-block hcbabstract">
+  <p class="hcb-content hcb-block-title"><i class="fa fa-clipboard-list fa-fw"></i>Plane</p>
+  <p>与传统的分布式 Routing 不同，一个 Remote Controller 收集所有 Router 的信息，然后在 Controller 内部计算完 Table 后再分发给所有 Router。</p>
+  <details class="hcb-content box hcbquestion" open>
+    <summary><i class="fa fa-circle-question fa-fw"></i>为什么需要一个&nbsp;Logically&nbsp;中心化的&nbsp;Controller&nbsp;呢<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+    <ol>
+    <li>易于管理网络
+    <ol>
+    <li>避免 Router Misconfig</li>
+    <li>对 Traffic flow 有更弹性的控制</li>
+    </ol>
+    </li>
+    <li>Table-based 转发使得 Router “可编程”</li>
+    <li>Control Plane 的开源实现</li>
+    </ol>
+  </details>
+  <details class="hcb-content box hcbinfo" open>
+    <summary><i class="fa fa-circle-info fa-fw"></i>应用场景<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+    <ol>
+    <li>对于某个节点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">u</span></span></span></span>，不经过某个点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> 进行 Routing</li>
+    <li>分流：对于从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">u</span></span></span></span> 出发的 Data，要同时经过 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo separator="true">,</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">v,w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span></li>
+    </ol>
+  </details>
+</div>
+
+<h2 id="sdn-的架构"><a class="markdownIt-Anchor" href="#sdn-的架构"></a> SDN 的架构</h2>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.b8ynum687.avif" alt="Arch" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Arch</span></div></div>
+
+<details class="hcb-content box hcbabstract" open>
+  <summary><i class="fa fa-clipboard-list fa-fw"></i>SDN&nbsp;特点<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <ol>
+  <li>泛化的 Forwarding</li>
+  <li>Control Plane 和 Data Plane 可分离</li>
+  </ol>
+</details>
+
+<h3 id="data-plane-switches"><a class="markdownIt-Anchor" href="#data-plane-switches"></a> Data Plane Switches</h3>
+<div class="tag-plugin grid"  style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));"><div class="cell" style="">
+    <ol><li>Fast, Simple (Hardward)</li><li>Flow Table 在 controller 的监管下计算和分发</li><li>为 Table-based switch control 提供 API</li><li>为和 control 通信提供通用协议</li></ol>
+    </div>
+    <div class="cell" style="">
+    <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.3gogmycj2i.avif" alt="Switches" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Switches</span></div></div>
+    </div>
+    </div>
+<h3 id="sdn-controller"><a class="markdownIt-Anchor" href="#sdn-controller"></a> SDN Controller</h3>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.86tpld6guc.avif" alt="Controller" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Controller</span></div></div>
+<h3 id="network-control-apps"><a class="markdownIt-Anchor" href="#network-control-apps"></a> Network-Control Apps</h3>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://ArcaLunar.github.io/picx-images-hosting/courses/image.5mnv8q7f91.avif" alt="Apps" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">Apps</span></div></div>
+
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/networks/bgp.html">BGP：ISP 之间的路由选择</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/networks/link-layer-intro.html">Link Layer</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/networks/bgp.html">BGP：ISP 之间的路由选择</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/networks/icmp.html">Internet Control Message Protocol ​</a></div></section></div>
 
 
 
@@ -396,7 +451,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sdn-software-defined-networking"><span class="toc-text"> SDN: Software Defined Networking</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sdn-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text"> SDN 的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#data-plane-switches"><span class="toc-text"> Data Plane Switches</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdn-controller"><span class="toc-text"> SDN Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#network-control-apps"><span class="toc-text"> Network-Control Apps</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
