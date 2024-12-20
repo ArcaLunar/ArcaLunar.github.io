@@ -365,7 +365,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?7o6jt">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php?p3m0q">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/networks/app-principle.html">Networks</a></div>
@@ -382,13 +382,13 @@ div.hcb-content.hcb-cards-content.active {
   </div>
   </div><article class="md-text content"><h1 id="principle-of-application-layer"><a class="markdownIt-Anchor" href="#principle-of-application-layer"></a> Principle of Application Layer</h1>
 <h2 id="application-的两种架构"><a class="markdownIt-Anchor" href="#application-的两种架构"></a> Application 的两种架构</h2>
-<div class="tag-plugin tabs" align="center"id="tab_6"><div class="nav-tabs"><div class="tab active"><a href="#tab_6-1">Client Server 架构</a></div><div class="tab"><a href="#tab_6-2">P2P 架构</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_6-1"><div class="tag-plugin grid" bg="card" style="grid-template-columns: repeat(2, 1fr);"><div class="cell" style="">
+<div class="tag-plugin tabs" align="center"id="tab_8"><div class="nav-tabs"><div class="tab active"><a href="#tab_8-1">Client Server 架构</a></div><div class="tab"><a href="#tab_8-2">P2P 架构</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_8-1"><div class="tag-plugin grid" bg="card" style="grid-template-columns: repeat(2, 1fr);"><div class="cell" style="">
     <ul><li>Server<ul><li>永远在线</li><li>永久 IP 地址</li><li>Data centers for scaling</li></ul></li></ul>
     </div>
     <div class="cell" style="">
     <ul><li>Client<ul><li>与 server 通信</li><li>通信可能是间断的</li><li>IP 会变</li><li>Client 之间不直接通信</li></ul></li></ul>
     </div>
-    </div></div><div class="tab-pane" id="tab_6-2"><div class="tag-plugin colorful note" color="light"><div class="title"><strong>P2P</strong></div><div class="body"><ul><li>不存在永远在线的 Server</li><li>终端设备 (End Systems) 直接互相通信</li><li>从其他 Peer 接受 request，向其他 Peers 提供服务<ul><li>P2P 的一个特点：<strong>Scalability 规模可拓展性</strong><ul><li>新加入的 Peer 既带来新的服务，也带来新的 Request</li></ul></li></ul></li><li>Peers 之间是间断连接着的，而且 IP 也会变<ul><li>这使得管理变得复杂</li></ul></li></ul></div></div></div></div></div>
+    </div></div><div class="tab-pane" id="tab_8-2"><div class="tag-plugin colorful note" color="light"><div class="title"><strong>P2P</strong></div><div class="body"><ul><li>不存在永远在线的 Server</li><li>终端设备 (End Systems) 直接互相通信</li><li>从其他 Peer 接受 request，向其他 Peers 提供服务<ul><li>P2P 的一个特点：<strong>Scalability 规模可拓展性</strong><ul><li>新加入的 Peer 既带来新的服务，也带来新的 Request</li></ul></li></ul></li><li>Peers 之间是间断连接着的，而且 IP 也会变<ul><li>这使得管理变得复杂</li></ul></li></ul></div></div></div></div></div>
 <h2 id="process-communication-进程通信"><a class="markdownIt-Anchor" href="#process-communication-进程通信"></a> Process Communication 进程通信</h2>
 <p>计算机网络主要关注的问题是：<mark class="tag-plugin colorful mark" color="red">不同 Host 上的 Process 之间如何通信？</mark></p>
 <p>他们之间通过计算机网络，以 <strong>Socket</strong> 作为“快递员”，传递作为“快递”的 <strong>Messages</strong>。</p>
@@ -396,12 +396,12 @@ div.hcb-content.hcb-cards-content.active {
 <h3 id="identifier"><a class="markdownIt-Anchor" href="#identifier"></a> Identifier</h3>
 <p>既然要发快递，那么地址填什么呢？在计算机网络里，Identifier 是用来标识 Host 上的 Process 的，通常来说 Identifier = IP Address + Port Number</p>
 <h2 id="application-layer-的-protocol"><a class="markdownIt-Anchor" href="#application-layer-的-protocol"></a> Application Layer 的 Protocol</h2>
-<div class="tag-plugin tabs" align="center"id="tab_7"><div class="nav-tabs"><div class="tab active"><a href="#tab_7-1">Protocol 定义了什么</a></div><div class="tab"><a href="#tab_7-2">Protocol 提供了什么服务</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_7-1"><ol>
+<div class="tag-plugin tabs" align="center"id="tab_9"><div class="nav-tabs"><div class="tab active"><a href="#tab_9-1">Protocol 定义了什么</a></div><div class="tab"><a href="#tab_9-2">Protocol 提供了什么服务</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_9-1"><ol>
 <li>Types of msg exchanged</li>
 <li>Message syntax</li>
 <li>Message semantics（不同 field 的意义）</li>
 <li>Rules，定义如何、怎样处理 msg</li>
-</ol></div><div class="tab-pane" id="tab_7-2"><ol>
+</ol></div><div class="tab-pane" id="tab_9-2"><ol>
 <li>Data Integrity</li>
 <li>Timing</li>
 <li>Throughput</li>
