@@ -1,0 +1,20 @@
+Language: Cpp
+BasedOnStyle: LLVM
+
+AlignConsecutiveAssignments: true
+TabWidth: 4
+IndentWidth: 4
+# Short statements
+AllowShortLoopsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+# Arguments
+BinPackArguments: false
+
+ColumnLimit: 75
+AlwaysBreakTemplateDeclarations: true
+
