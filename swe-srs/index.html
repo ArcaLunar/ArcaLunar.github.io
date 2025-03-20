@@ -17,7 +17,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Arca Lunar's Blog</title>
+  <title>软件工程：Software Requirement Specification - Arca Lunar's Blog</title>
 
   
     <style type="text/css">
@@ -306,13 +306,15 @@ div.hcb-content.hcb-cards-content.active {
   
 
   
-    <meta name="description" content="all kinds of stuff">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arca Lunar&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="Summary of “Software Requirements: Introduction”   1. Core Challenges in Requirements Engineering  Key Issue: Understanding the problem the system must solve, often derived from customer&#x2F;end-user nee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程：Software Requirement Specification">
+<meta property="og:url" content="http://example.com/swe-srs/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="all kinds of stuff">
+<meta property="og:description" content="Summary of “Software Requirements: Introduction”   1. Core Challenges in Requirements Engineering  Key Issue: Understanding the problem the system must solve, often derived from customer&#x2F;end-user nee">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-17T06:42:42.000Z">
+<meta property="article:modified_time" content="2025-03-17T06:43:31.837Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -337,7 +339,7 @@ div.hcb-content.hcb-cards-content.active {
 <!-- hexo injector head_end end --></head>
 <body>
 
-<div class="l_body s:aa index tech" id="start" layout="undefined" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
@@ -349,53 +351,166 @@ div.hcb-content.hcb-cards-content.active {
 <nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a></nav>
 </div>
 <div class="widgets">
+
+
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/image-text-database/"><span class="title">image-text-database</span></a><a class="item title" href="/swe-uml/"><span class="title">软件工程：UML</span></a><a class="item title" href="/swe-software-process-model/"><span class="title">软件工程：Software Process Model</span></a><a class="item title" href="/swe-srs/"><span class="title">软件工程：Software Requirement Specification</span></a><a class="item title" href="/multi-thread/"><span class="title">multi-thread</span></a><a class="item title" href="/gguf/"><span class="title">大模型权重文件 .gguf 分析</span></a><a class="item title" href="/connect-to-eduroam-hku/"><span class="title">Linux 下用 HKU 账号使用 HK eduroam WiFi</span></a><a class="item title" href="/local-deploy/"><span class="title">本地部署 llama.cpp 大模型服务器并连接</span></a><a class="item title" href="/docker-intro/"><span class="title">Docker Introduction</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
 
 
 
 
-<div class="navbar top"><nav class="post"><a class="active" href="/">Recent</a><a href="/archives">Archives</a></nav></div>
-<div class="post-list post"><a class="post-card post" href="/image-text-database/">
-<article class="md-text"><h2 class="post-title">image-text-database</h2><div class="excerpt"><p>Password is needed to access the blog.</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-19T03:14:17.000Z">2025-03-19</time></span></div></article>
-</a><a class="post-card post" href="/swe-uml/">
-<article class="md-text"><h2 class="post-title">软件工程：UML</h2><div class="excerpt"><p> Summary of “UML in Object-Oriented Analysis”
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-03-17T06:42:42.000Z">2025-03-17</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-03-17T06:43:31.837Z">2025-03-17</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>软件工程：Software Requirement Specification</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="summary-of-software-requirements-introduction"><a class="markdownIt-Anchor" href="#summary-of-software-requirements-introduction"></a> Summary of “Software Requirements: Introduction”</h2>
+<hr />
+<h3 id="1-core-challenges-in-requirements-engineering"><a class="markdownIt-Anchor" href="#1-core-challenges-in-requirements-engineering"></a> <strong>1. Core Challenges in Requirements Engineering</strong></h3>
+<ul>
+<li><strong>Key Issue</strong>: Understanding the problem the system must solve, often derived from customer/end-user needs.</li>
+<li><strong>Challenges</strong>:
+<ul>
+<li>Developers may misunderstand the business problem, leading to incorrect solutions.</li>
+<li>Customers/users may not clearly articulate their needs (especially problematic in predictive models like Waterfall).</li>
+<li>Developers must align software with end-users’ workflows to ensure practicality.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="2-drivers-of-requirements"><a class="markdownIt-Anchor" href="#2-drivers-of-requirements"></a> <strong>2. Drivers of Requirements</strong></h3>
+<ul>
+<li><strong>Custom Software (Project-Based)</strong>:
+<ul>
+<li>Requirements driven by specific clients (e.g., government, enterprise tools).</li>
+<li>Contractual obligations dictate functionality and delivery timelines.</li>
+<li>Ownership transfers to the client post-delivery.</li>
+</ul>
+</li>
+<li><strong>Software Products</strong>:
+<ul>
+<li>Requirements originate from the company’s vision/opportunity (e.g., apps, productivity tools).</li>
+<li>Developers prioritize features and constraints without a specific client’s contractual demands.</li>
+<li>Continuous evolution: Features can be added/removed post-release.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="3-types-of-requirements-information"><a class="markdownIt-Anchor" href="#3-types-of-requirements-information"></a> <strong>3. Types of Requirements Information</strong></h3>
+<ul>
+<li><strong>Business Requirements</strong>: High-level organizational objectives (e.g., “Increase customer satisfaction”).</li>
+<li><strong>Business Rules</strong>: Policies/constraints (e.g., pricing policies). Stored in a Business Rules Catalogue, not part of the SRS itself.</li>
+<li><strong>User Requirements</strong>: Tasks users must perform or desired attributes (e.g., “Users want to check in online”).</li>
+<li><strong>Functional Requirements</strong>: Specific behaviors the system must perform (e.g., “The system shall calculate fuel quantity”).</li>
+<li><strong>Features</strong>: Bundles of related functional requirements (e.g., “User Authentication Feature”).</li>
+<li><strong>System Requirements</strong>: Top-level/system-wide requirements (e.g., integration with hardware).</li>
+<li><strong>Non-Functional Requirements</strong>: Properties like performance, security, usability (e.g., “Authorization must take ≤2 seconds”).</li>
+<li><strong>External Interface Requirements</strong>: Connections to users, systems, or hardware (e.g., “JSON format for data exchange”).</li>
+<li><strong>Constraints</strong>: Restrictions on development (e.g., “Use open-source libraries only”).</li>
+</ul>
+<hr />
+<h3 id="4-business-rules-management"><a class="markdownIt-Anchor" href="#4-business-rules-management"></a> <strong>4. Business Rules Management</strong></h3>
+<ul>
+<li><strong>Documentation</strong>: Rules are recorded in tables with:
+<ul>
+<li><strong>Rule ID</strong>, <strong>Rule Description</strong>, <strong>Volatility</strong> (how often they change), and <strong>Source</strong> (e.g., company policy).</li>
+<li>Example: Delivery pricing rules for an e-commerce system.</li>
+</ul>
+</li>
+<li><strong>Impact</strong>: Influence functional/non-functional requirements (e.g., permissions, UX design).</li>
+</ul>
+<hr />
+<h3 id="5-software-requirements-specification-srs"><a class="markdownIt-Anchor" href="#5-software-requirements-specification-srs"></a> <strong>5. Software Requirements Specification (SRS)</strong></h3>
+<ul>
+<li><strong>Purpose</strong>: Formal document outlining all functional and non-functional requirements.</li>
+<li><strong>Structure</strong>:
+<ol>
+<li><strong>Introduction</strong>: Purpose, scope, conventions.</li>
+<li><strong>Overall Description</strong>: Product context, user classes, constraints.</li>
+<li><strong>System Features</strong>: Detailed functional requirements (e.g., “The system shall…”).</li>
+<li><strong>Data Requirements</strong>: Logical models, reports, data retention policies.</li>
+<li><strong>External Interfaces</strong>: User, software, hardware, and communication interfaces.</li>
+<li><strong>Quality Attributes</strong>: Usability, performance, security, safety.</li>
+<li><strong>Appendices</strong>: Glossary, analysis models.</li>
+</ol>
+</li>
+<li><strong>Formality</strong>: Varies by system criticality (e.g., strict for avionics vs. informal for web apps).</li>
+<li><strong>Example</strong>: Flight Management System (FMS) requirements trace from system to low-level software specs (e.g., fuel quantity display in pounds/kilograms).</li>
+</ul>
+<hr />
+<h3 id="6-requirements-traceability"><a class="markdownIt-Anchor" href="#6-requirements-traceability"></a> <strong>6. Requirements Traceability</strong></h3>
+<ul>
+<li><strong>Critical in Safety-Critical Systems</strong> (e.g., aviation):
+<ul>
+<li>Requirements must be <strong>bi-directionally traceable</strong> (e.g., from system to code).</li>
+<li>Example: FMS fuel quantity requirements linked to sensor polling intervals and data validity checks.</li>
+</ul>
+</li>
+<li><strong>DO-178C Compliance</strong>: Mandates traceability for airborne software.</li>
+</ul>
+<hr />
+<h3 id="7-agile-requirements-management"><a class="markdownIt-Anchor" href="#7-agile-requirements-management"></a> <strong>7. Agile Requirements Management</strong></h3>
+<ul>
+<li><strong>Alternatives to Traditional SRS</strong>:
+<ul>
+<li><strong>Vision and Scope Document</strong>: High-level goals and constraints.</li>
+<li><strong>Product Backlog</strong>: Prioritized user stories/use cases with acceptance criteria.</li>
+<li><strong>Dynamic Updates</strong>: Requirements evolve iteratively (e.g., user stories refined during sprints).</li>
+<li><strong>Working Software</strong>: Focus on delivering increments over exhaustive documentation.</li>
+</ul>
+</li>
+<li><strong>Example</strong>: User stories for a flight check-in system (e.g., “As a passenger, I want to print boarding passes after check-in”).</li>
+</ul>
+<hr />
+<h3 id="8-key-takeaways"><a class="markdownIt-Anchor" href="#8-key-takeaways"></a> <strong>8. Key Takeaways</strong></h3>
+<ul>
+<li><strong>Requirement Types</strong>: Differentiate between business rules, user needs, functional/non-functional requirements.</li>
+<li><strong>Documentation</strong>: Formal SRS for critical systems; agile backlogs for product development.</li>
+<li><strong>Traceability</strong>: Essential for compliance and defect prevention in safety-critical domains.</li>
+<li><strong>Agile Adaptation</strong>: Prioritize collaboration, iterative delivery, and flexibility over rigid planning.</li>
+</ul>
+<p>This summary captures the document’s focus on understanding requirements, their classification, documentation practices, and the shift toward agile methodologies for modern software development.</p>
 
- 1. Purpose of UML in Analysis
+<div class="article-footer fs14">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/swe-uml/">软件工程：UML</a></div><div class="item" id="next"><div class="note">Older</div><a href="/swe-software-process-model/">软件工程：Software Process Model</a></div></section></div>
 
-Modeling Goals:
 
-Understand the problem domain...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-17T06:46:20.000Z">2025-03-17</time></span></div></article>
-</a><a class="post-card post" href="/swe-srs/">
-<article class="md-text"><h2 class="post-title">软件工程：Software Requirement Specification</h2><div class="excerpt"><p> Summary of “Software Requirements: Introduction”
 
- 1. Core Challenges in Requirements Engineering
 
-Key Issue: Understanding ...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-17T06:42:42.000Z">2025-03-17</time></span></div></article>
-</a><a class="post-card post" href="/swe-software-process-model/">
-<article class="md-text"><h2 class="post-title">软件工程：Software Process Model</h2><div class="excerpt"><p>难绷 COMP3297，无力吐槽</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-17T02:45:44.000Z">2025-03-17</time></span></div></article>
-</a><a class="post-card post" href="/multi-thread/">
-<article class="md-text"><h2 class="post-title">multi-thread</h2><div class="excerpt"><p>Password is needed to access the blog.</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-15T09:36:30.000Z">2025-03-15</time></span></div></article>
-</a><a class="post-card post" href="/gguf/">
-<article class="md-text"><h2 class="post-title">大模型权重文件 .gguf 分析</h2><div class="excerpt"><p></p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-15T02:44:38.000Z">2025-03-15</time></span></div></article>
-</a><a class="post-card post" href="/connect-to-eduroam-hku/">
-<article class="md-text"><h2 class="post-title">Linux 下用 HKU 账号使用 HK eduroam WiFi</h2><div class="excerpt"><p>Linux 下需要手动配置，用这个帖子记录一下，方便随时查阅</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-15T02:36:24.000Z">2025-03-15</time></span></div></article>
-</a><a class="post-card post" href="/docker-intro/">
-<article class="md-text"><h2 class="post-title">Docker Introduction</h2><div class="excerpt"><p>Docker</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-14T04:07:44.000Z">2025-03-14</time></span></div></article>
-</a><a class="post-card post" href="/local-deploy/">
-<article class="md-text"><h2 class="post-title">本地部署 llama.cpp 大模型服务器并连接</h2><div class="excerpt"><p>记录一下 llama.cpp 的使用，顺便给日后读 llama.cpp 的源码挖个坑（说不定混点 contribute）</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-03-13T09:01:41.000Z">2025-03-13</time></span></div></article>
-</a></div>
 
 
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel blur'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#summary-of-software-requirements-introduction"><span class="toc-text"> Summary of “Software Requirements: Introduction”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-core-challenges-in-requirements-engineering"><span class="toc-text"> 1. Core Challenges in Requirements Engineering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-drivers-of-requirements"><span class="toc-text"> 2. Drivers of Requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-types-of-requirements-information"><span class="toc-text"> 3. Types of Requirements Information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-business-rules-management"><span class="toc-text"> 4. Business Rules Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-software-requirements-specification-srs"><span class="toc-text"> 5. Software Requirements Specification (SRS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-requirements-traceability"><span class="toc-text"> 6. Requirements Traceability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-agile-requirements-management"><span class="toc-text"> 7. Agile Requirements Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-key-takeaways"><span class="toc-text"> 8. Key Takeaways</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
