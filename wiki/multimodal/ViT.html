@@ -17,12 +17,12 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Multi-Modal Models: ViT - Arca Lunar's Blog</title>
+  <title>Multi-Modal: ViT - Arca Lunar's Blog</title>
 
   
     <style type="text/css">
 
-div.hcb-content.hcb-block.hcbnote, details.hcb-content.box.hcbnote,div.hcb-content.hcb-block.hcbabstract, details.hcb-content.box.hcbabstract,div.hcb-content.hcb-block.hcbinfo, details.hcb-content.box.hcbinfo,div.hcb-content.hcb-block.hcbtip, details.hcb-content.box.hcbtip,div.hcb-content.hcb-block.hcbsuccess, details.hcb-content.box.hcbsuccess,div.hcb-content.hcb-block.hcbquestion, details.hcb-content.box.hcbquestion,div.hcb-content.hcb-block.hcbwarning, details.hcb-content.box.hcbwarning,div.hcb-content.hcb-block.hcbfailure, details.hcb-content.box.hcbfailure,div.hcb-content.hcb-block.hcbdanger, details.hcb-content.box.hcbdanger,div.hcb-content.hcb-block.hcbbug, details.hcb-content.box.hcbbug,div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample,div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote {
+div.hcb-content.hcb-block.hcbnote, details.hcb-content.box.hcbnote,div.hcb-content.hcb-block.hcbabstract, details.hcb-content.box.hcbabstract,div.hcb-content.hcb-block.hcbinfo, details.hcb-content.box.hcbinfo,div.hcb-content.hcb-block.hcbtip, details.hcb-content.box.hcbtip,div.hcb-content.hcb-block.hcbsuccess, details.hcb-content.box.hcbsuccess,div.hcb-content.hcb-block.hcbquestion, details.hcb-content.box.hcbquestion,div.hcb-content.hcb-block.hcbwarning, details.hcb-content.box.hcbwarning,div.hcb-content.hcb-block.hcbfailure, details.hcb-content.box.hcbfailure,div.hcb-content.hcb-block.hcbdanger, details.hcb-content.box.hcbdanger,div.hcb-content.hcb-block.hcbbug, details.hcb-content.box.hcbbug,div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample,div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote,div.hcb-content.hcb-block.hcbimportant, details.hcb-content.box.hcbimportant {
   border: .05rem solid #448aff;
   border-radius: .2rem;
   font-size: 0.96rem;
@@ -66,6 +66,9 @@ div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample {
 div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote {
   border-color: #9e9e9e;
 }
+div.hcb-content.hcb-block.hcbimportant, details.hcb-content.box.hcbimportant {
+  border-color: #ff1744;
+}
 div.hcb-content.hcb-block.hcbnote:focus-within, details.hcb-content.box.hcbnote:focus-within {
   box-shadow: 0 0 0 .2rem #448aff1a;
 }
@@ -102,10 +105,13 @@ div.hcb-content.hcb-block.hcbexample:focus-within, details.hcb-content.box.hcbex
 div.hcb-content.hcb-block.hcbquote:focus-within, details.hcb-content.box.hcbquote:focus-within {
   box-shadow: 0 0 0 .2rem #9e9e9e1a;
 }
-div.hcb-content.hcb-block.hcbnote *, details.hcb-content.box.hcbnote *,div.hcb-content.hcb-block.hcbabstract *, details.hcb-content.box.hcbabstract *,div.hcb-content.hcb-block.hcbinfo *, details.hcb-content.box.hcbinfo *,div.hcb-content.hcb-block.hcbtip *, details.hcb-content.box.hcbtip *,div.hcb-content.hcb-block.hcbsuccess *, details.hcb-content.box.hcbsuccess *,div.hcb-content.hcb-block.hcbquestion *, details.hcb-content.box.hcbquestion *,div.hcb-content.hcb-block.hcbwarning *, details.hcb-content.box.hcbwarning *,div.hcb-content.hcb-block.hcbfailure *, details.hcb-content.box.hcbfailure *,div.hcb-content.hcb-block.hcbdanger *, details.hcb-content.box.hcbdanger *,div.hcb-content.hcb-block.hcbbug *, details.hcb-content.box.hcbbug *,div.hcb-content.hcb-block.hcbexample *, details.hcb-content.box.hcbexample *,div.hcb-content.hcb-block.hcbquote *, details.hcb-content.box.hcbquote * {
+div.hcb-content.hcb-block.hcbimportant:focus-within, details.hcb-content.box.hcbimportant:focus-within {
+  box-shadow: 0 0 0 .2rem #ff17441a;
+}
+div.hcb-content.hcb-block.hcbnote *, details.hcb-content.box.hcbnote *,div.hcb-content.hcb-block.hcbabstract *, details.hcb-content.box.hcbabstract *,div.hcb-content.hcb-block.hcbinfo *, details.hcb-content.box.hcbinfo *,div.hcb-content.hcb-block.hcbtip *, details.hcb-content.box.hcbtip *,div.hcb-content.hcb-block.hcbsuccess *, details.hcb-content.box.hcbsuccess *,div.hcb-content.hcb-block.hcbquestion *, details.hcb-content.box.hcbquestion *,div.hcb-content.hcb-block.hcbwarning *, details.hcb-content.box.hcbwarning *,div.hcb-content.hcb-block.hcbfailure *, details.hcb-content.box.hcbfailure *,div.hcb-content.hcb-block.hcbdanger *, details.hcb-content.box.hcbdanger *,div.hcb-content.hcb-block.hcbbug *, details.hcb-content.box.hcbbug *,div.hcb-content.hcb-block.hcbexample *, details.hcb-content.box.hcbexample *,div.hcb-content.hcb-block.hcbquote *, details.hcb-content.box.hcbquote *,div.hcb-content.hcb-block.hcbimportant *, details.hcb-content.box.hcbimportant * {
   box-sizing: border-box;
 }
-div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbnote > summary,div.hcb-content.hcb-block.hcbabstract > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbabstract > summary,div.hcb-content.hcb-block.hcbinfo > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbinfo > summary,div.hcb-content.hcb-block.hcbtip > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbtip > summary,div.hcb-content.hcb-block.hcbsuccess > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbsuccess > summary,div.hcb-content.hcb-block.hcbquestion > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquestion > summary,div.hcb-content.hcb-block.hcbwarning > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbwarning > summary,div.hcb-content.hcb-block.hcbfailure > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbfailure > summary,div.hcb-content.hcb-block.hcbdanger > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbdanger > summary,div.hcb-content.hcb-block.hcbbug > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbbug > summary,div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbexample > summary,div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquote > summary {
+div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbnote > summary,div.hcb-content.hcb-block.hcbabstract > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbabstract > summary,div.hcb-content.hcb-block.hcbinfo > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbinfo > summary,div.hcb-content.hcb-block.hcbtip > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbtip > summary,div.hcb-content.hcb-block.hcbsuccess > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbsuccess > summary,div.hcb-content.hcb-block.hcbquestion > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquestion > summary,div.hcb-content.hcb-block.hcbwarning > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbwarning > summary,div.hcb-content.hcb-block.hcbfailure > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbfailure > summary,div.hcb-content.hcb-block.hcbdanger > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbdanger > summary,div.hcb-content.hcb-block.hcbbug > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbbug > summary,div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbexample > summary,div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquote > summary,div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbimportant > summary {
   border-top-right-radius: 0.1rem;
   border-top-left-radius: 0.1rem;
   border-left-width: 0.2rem;
@@ -118,10 +124,10 @@ div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-c
   position: relative;
   outline: none;
 }
-details.hcb-content.box.hcbnote > summary,details.hcb-content.box.hcbabstract > summary,details.hcb-content.box.hcbinfo > summary,details.hcb-content.box.hcbtip > summary,details.hcb-content.box.hcbsuccess > summary,details.hcb-content.box.hcbquestion > summary,details.hcb-content.box.hcbwarning > summary,details.hcb-content.box.hcbfailure > summary,details.hcb-content.box.hcbdanger > summary,details.hcb-content.box.hcbbug > summary,details.hcb-content.box.hcbexample > summary,details.hcb-content.box.hcbquote > summary {
+details.hcb-content.box.hcbnote > summary,details.hcb-content.box.hcbabstract > summary,details.hcb-content.box.hcbinfo > summary,details.hcb-content.box.hcbtip > summary,details.hcb-content.box.hcbsuccess > summary,details.hcb-content.box.hcbquestion > summary,details.hcb-content.box.hcbwarning > summary,details.hcb-content.box.hcbfailure > summary,details.hcb-content.box.hcbdanger > summary,details.hcb-content.box.hcbbug > summary,details.hcb-content.box.hcbexample > summary,details.hcb-content.box.hcbquote > summary,details.hcb-content.box.hcbimportant > summary {
   cursor: pointer;
 }
-details.hcb-content.box.hcbnote:not([open]) > summary,details.hcb-content.box.hcbabstract:not([open]) > summary,details.hcb-content.box.hcbinfo:not([open]) > summary,details.hcb-content.box.hcbtip:not([open]) > summary,details.hcb-content.box.hcbsuccess:not([open]) > summary,details.hcb-content.box.hcbquestion:not([open]) > summary,details.hcb-content.box.hcbwarning:not([open]) > summary,details.hcb-content.box.hcbfailure:not([open]) > summary,details.hcb-content.box.hcbdanger:not([open]) > summary,details.hcb-content.box.hcbbug:not([open]) > summary,details.hcb-content.box.hcbexample:not([open]) > summary,details.hcb-content.box.hcbquote:not([open]) > summary {
+details.hcb-content.box.hcbnote:not([open]) > summary,details.hcb-content.box.hcbabstract:not([open]) > summary,details.hcb-content.box.hcbinfo:not([open]) > summary,details.hcb-content.box.hcbtip:not([open]) > summary,details.hcb-content.box.hcbsuccess:not([open]) > summary,details.hcb-content.box.hcbquestion:not([open]) > summary,details.hcb-content.box.hcbwarning:not([open]) > summary,details.hcb-content.box.hcbfailure:not([open]) > summary,details.hcb-content.box.hcbdanger:not([open]) > summary,details.hcb-content.box.hcbbug:not([open]) > summary,details.hcb-content.box.hcbexample:not([open]) > summary,details.hcb-content.box.hcbquote:not([open]) > summary,details.hcb-content.box.hcbimportant:not([open]) > summary {
   margin-bottom: 0;
 }
 div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbnote > summary {
@@ -159,6 +165,9 @@ div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title, details.hc
 }
 div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquote > summary {
   background-color: #9e9e9e1a;
+}
+div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbimportant > summary {
+  background-color: #ff17441a;
 }
 div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbnote > summary > i {
   margin: 0 0.6rem 0 0.6rem;
@@ -208,18 +217,22 @@ div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title > i, details.
   margin: 0 0.6rem 0 0.6rem;
   color: #9e9e9e;
 }
-details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button {
+div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbimportant > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #ff1744;
+}
+details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button,details.hcb-content.box.hcbimportant > summary > div.hcb-box-open-button {
   float: right;
 }
-details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button > i {
+details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbimportant > summary > div.hcb-box-open-button > i {
   margin: 0 0.6rem 0 0.6rem;
   font-size: 0.7rem;
   transition: transform 250ms
 }
-details.hcb-content.box.hcbnote:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote:not([open]) > summary > div.hcb-box-open-button i {
+details.hcb-content.box.hcbnote:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbimportant:not([open]) > summary > div.hcb-box-open-button i {
   transform: rotate(270deg);
 }
-details.hcb-content.box.hcbnote[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote[open] > summary > div.hcb-box-open-button i {
+details.hcb-content.box.hcbnote[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbimportant[open] > summary > div.hcb-box-open-button i {
   transform: rotate(180deg);
 }
 details.hcb-content.box.hcbnote summary div.hcb-box-open-button i {
@@ -257,6 +270,9 @@ details.hcb-content.box.hcbexample summary div.hcb-box-open-button i {
 }
 details.hcb-content.box.hcbquote summary div.hcb-box-open-button i {
   color: #9e9e9e;
+}
+details.hcb-content.box.hcbimportant summary div.hcb-box-open-button i {
+  color: #ff1744;
 }
 div.hcb-content.hcb-cards * {
   box-sizing: border-box;
@@ -331,7 +347,7 @@ div.hcb-content.hcb-cards-content.active {
 
   
 
-  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" />
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -344,7 +360,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/multimodal.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/multimodal/ViT.html"><div class="main" ff="title">Multi-Modal Models</div><div class="sub cap">from Text to Image and Videos</div></a></div></header>
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/multimodal.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/multimodal/ViT.html"><div class="main" ff="title">Multi-Modal</div><div class="sub cap">from Text to Image and Videos</div></a></div></header>
 
 <div class="nav-area">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/multimodal" placeholder="Search in Multimodal/"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
@@ -354,7 +370,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Vision Transformer</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/multimodal/ViT.html#start"><span class="toc-text">ViT</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/multimodal/VAE.html"><span class="toc-text">Variational AutoEncoders</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Vision Transformer</span></div><div class="widget-body fs14"><a class="link active" href="/wiki/multimodal/ViT.html#start"><span class="toc-text">ViT</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Generative Models</span></div><div class="widget-body fs14"><a class="link" href="/wiki/multimodal/VAE.html"><span class="toc-text">VAE: Variational AutoEncoders</span></a><a class="link" href="/wiki/multimodal/flow-matching.html"><span class="toc-text">Flow Matching 生成模型</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -366,7 +382,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/multimodal/ViT.html">Multi-Modal Models</a></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/multimodal/ViT.html">Multi-Modal</a></div>
 <div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-03-20T03:43:43.842Z">2025-03-20</time></span></div></div></div>
     
     <div class="bottom only-title">
@@ -395,7 +411,7 @@ div.hcb-content.hcb-cards-content.active {
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/multimodal/VAE.html">Variational AutoEncoders</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/multimodal/VAE.html">VAE: Variational AutoEncoders</a></div></section></div>
 
 
 
@@ -852,8 +868,8 @@ div.hcb-content.hcb-cards-content.active {
     }
   });
 </script>
-<link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
-<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer type="text/javascript" src="https://unpkg.com/mermaid@9.0.0/dist/mermaid.min.js"></script>
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
     var mermaid_config = {
