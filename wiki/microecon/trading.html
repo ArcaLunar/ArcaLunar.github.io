@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>MicroEcon: Trading 交易与分工 - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,6 +557,7 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
     <meta name="description" content="Unit Requirement Table 与 Unit Productivity Table Requirement 和 Productivity Table 最重要的区别就是：前者给出生产一个物品需要的资源，后者给出在限定资源的情况下能生产多少物品。 有一个简单的转化： 1Requirement&#x3D;Productivity\frac{1}{\text{Requirement}}&#x3D;\text{">
 <meta property="og:type" content="website">
@@ -374,7 +611,7 @@ div.hcb-content.hcb-cards-content.active {
 
 <widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">More: Econ&Finance</span></div><div class="widget-body"><a class="item wiki" href="/wiki/fina/pv-fv-npv.html"><span class="title">Corporate Finance</span><span class="excerpt">Corporate Finance is the area of finance dealing with the sources of funding and the capital structure of corporations, the actions that managers take to increase the value of the firm to the shareholders, and the tools and analysis used to allocate financial resources.</span></a></div></widget>
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/rl/actor-critic.html"><span class="title"><strong>RL</strong><span class="dot"></span>Actor Critic Methods</span></a><a class="item title" href="/wiki/rl/rl-and-llm.html"><span class="title"><strong>RL</strong><span class="dot"></span>强化学习、与大语言模型</span></a><a class="item title" href="/wiki/rl/ppo.html"><span class="title"><strong>RL</strong><span class="dot"></span>PPO 算法</span></a><a class="item title" href="/wiki/rl/deepseek-math.html"><span class="title"><strong>RL</strong><span class="dot"></span>GRPO</span></a><a class="item title" href="/wiki/microecon/cost-maxprofit-under-competition.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>竞争下的 Cost 与 Profit Maximization</span></a><a class="item title" href="/wiki/microecon/monopoly.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>Monopoly 垄断</span></a><a class="item title" href="/wiki/algo_contests/2025-hdu-spring-04.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>2025 杭电多校春季赛 4</span></a><a class="item title" href="/wiki/algo_contests/pku-2024-ds-and-algo-A-final.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>北京大学 2024 年《数据结构与算法A（实验班）》期末考试</span></a><a class="item title" href="/wiki/algo/boruvka.html"><span class="title"><strong>Algorithms</strong><span class="dot"></span>Boruvka 算法：特殊限制下的最小生成树算法</span></a><a class="item title" href="/wiki/algo_contests/20250419-CUHKSZ-contest.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>香港中文大学（深圳）2025 校赛暨粤港澳国际编程比赛</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/fina/capital-investment-decision-01.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Capital Investment Decision</span></a><a class="item title" href="/wiki/fina/CAPM.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>CAPM 资本资产定价模型</span></a><a class="item title" href="/wiki/microecon/cost-maxprofit-under-competition.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>竞争下的 Cost 与 Profit Maximization</span></a><a class="item title" href="/wiki/fina/capital-structure.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Capital Structure 资产结构</span></a><a class="item title" href="/wiki/llm/Mixture-of-experts.html"><span class="title"><strong>LLM</strong><span class="dot"></span>MoE 架构</span></a><a class="item title" href="/wiki/algo/network-flow.html"><span class="title"><strong>Algorithms</strong><span class="dot"></span>网络流：最大流、最小割</span></a><a class="item title" href="/wiki/fina/pv-fv-npv.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>PV, FV, NPV</span></a><a class="item title" href="/wiki/rl/q-learning.html"><span class="title"><strong>RL</strong><span class="dot"></span>Q Learning</span></a><a class="item title" href="/wiki/fina/risk-and-return.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Risk of Return</span></a><a class="item title" href="/wiki/fina/valuation-of-stocks.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Valuation of Stocks</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -461,7 +698,7 @@ div.hcb-content.hcb-cards-content.active {
 <h3 id="多条直线分工"><a class="markdownIt-Anchor" href="#多条直线分工"></a> 多条直线：分工</h3>
 
 <div class="hcb-content hcb-block hcbnote">
-  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Low-Hanging-Fruit&nbsp;Principle</p>
+  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Low-Hanging-Fruit Principle</p>
   <p>这个原理描述一个经济体内多人合作分工时，<strong>若要扩大生产，一定先让 Lowest Opportunity Cost 的人去做（因为最高效）</strong></p>
   <p>如果扩大的是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 的生产（横轴），那么<em>从左向右</em><strong>斜率的绝对值越来越大，越来越陡峭</strong>；<strong>图像呈现向上凸</strong>。</p>
   <p>如果扩大的是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 的生产（纵轴），那么<em>从下往上</em>直线的<strong>斜率的绝对值越来越小，越来越平缓</strong>（因为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>p</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_{opp}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>p</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_{opp}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span> 成反比）；不过图像仍是上凸的。</p>
@@ -488,7 +725,7 @@ div.hcb-content.hcb-cards-content.active {
   <p>贸易市场的价格可以用一根<strong>斜率确定、截距不定</strong>的直线在 PPC 图像（纵轴为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span>，横轴为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>）上表示出来，这条直线的斜率就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>T</mi><mi>O</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">-TOT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span></p>
   <p>为了让利益最大化，我们平移这条直线，让他和 PPC 产生交点，对于每一个交点计算收益，取最大值即可。</p>
   <div class="hcb-content hcb-block hcbnote">
-    <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>从交点倒推&nbsp;TOT&nbsp;和市场价格</p>
+    <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>从交点倒推 TOT 和市场价格</p>
     <p>一个很 tricky 的点是，图像上 PPC 的斜率是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msub><mi>C</mi><mrow><mi>o</mi><mi>p</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">-C_{opp}(B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>，但市场的直线的斜率是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>T</mi><mi>O</mi><msub><mi>T</mi><mrow><mi>A</mi><mo><mi>p</mi><mi>e</mi><mi>r</mi></mo><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">-TOT_{A\mathop{per}B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">er</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>。记得取倒数。</p>
   </div>
 </details>

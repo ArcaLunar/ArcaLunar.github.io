@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>公司金融学: Investment Decision Rule - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,6 +557,7 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
     <meta name="description" content="Investment Decision Rule  … based on Returns 就是看最后拿到的钱 RewardRewardReward 是不是初始投资 InvestInvestInvest 多就行，  … based on NPV   NPV定义​  净现值（Net Present Value, NPV）是评估投资项目价值的核心指标，计算方式为项目所有现金流（含初始投资）按贴现率折算">
 <meta property="og:type" content="website">
@@ -370,7 +607,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Basics</span></div><div class="widget-body fs14"><a class="link" href="/wiki/fina/pv-fv-npv.html#start"><span class="toc-text">PV, FV, NPV</span></a><a class="link" href="/wiki/fina/IRR.html"><span class="toc-text">IRR</span></a><a class="link active" href="/wiki/fina/invest-decision-rule.html"><span class="toc-text">Investment Decision Rule</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/fina/bonds.html"><span class="toc-text">Bonds</span></a><a class="link" href="/wiki/fina/valuation-of-stocks.html"><span class="toc-text">Valuation of Stocks</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Basics</span></div><div class="widget-body fs14"><a class="link" href="/wiki/fina/pv-fv-npv.html#start"><span class="toc-text">PV, FV, NPV</span></a><a class="link" href="/wiki/fina/IRR.html"><span class="toc-text">IRR</span></a><a class="link active" href="/wiki/fina/invest-decision-rule.html"><span class="toc-text">Investment Decision Rule</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/fina/bonds.html"><span class="toc-text">Bonds</span></a><a class="link" href="/wiki/fina/valuation-of-stocks.html"><span class="toc-text">Valuation of Stocks</span></a><a class="link" href="/wiki/fina/risk-and-return.html"><span class="toc-text">Risk of Return</span></a><a class="link" href="/wiki/fina/CAPM.html"><span class="toc-text">CAPM 资本资产定价模型</span></a><a class="link" href="/wiki/fina/capital-investment-decision-01.html"><span class="toc-text">Capital Investment Decision</span></a><a class="link" href="/wiki/fina/capital-structure.html"><span class="toc-text">Capital Structure 资产结构</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -440,7 +677,7 @@ div.hcb-content.hcb-cards-content.active {
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord"><span class="delimsizing size2">)</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.3645639999999999em;"><span style="top:-3.6029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 
 <div class="hcb-content hcb-block hcbquestion">
-  <p class="hcb-content hcb-block-title"><i class="fa fa-circle-question fa-fw"></i>NPV&nbsp;or&nbsp;IRR</p>
+  <p class="hcb-content hcb-block-title"><i class="fa fa-circle-question fa-fw"></i>NPV or IRR</p>
   <p>实际上，IRR 和 NPV 大致成反比关系。</p>
   <p>Notice the role of the return from the financial sector (e.g., interest rate on bank deposit) in the NPV rule and IRR rule:</p>
   <ul>

@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>Multi-Modal: VAE: Variational AutoEncoders - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,6 +557,7 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
     <meta name="description" content="Representation 图像生成模型的本质是一个概率模型：如果我们知道了真实图像 xxx 的分布规律 p(x)p(x)p(x)，那么我们只需要从这个分布里随便采样 x′∼p(x)x&#x27;\sim p(x)x′∼p(x)，那么 x′x&#x27;x′ 就是我们想要生成的图像。 不过通常，p(x)p(x)p(x) 很难表示和学习。我们考虑通过两个步骤生成图像：  先生成图片的特征，例如想">
 <meta property="og:type" content="website">
@@ -460,7 +697,7 @@ p_\theta(x)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:22.485236em;vertical-align:-10.992618em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:11.492618em;"><span style="top:-13.492618em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-10.515613em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span><span style="top:-7.538608em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span><span style="top:-4.875608em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-2.2126079999999995em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span><span style="top:0.7643970000000011em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span><span style="top:4.829618em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span><span style="top:6.9056180000000005em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:10.992618em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:11.492618em;"><span style="top:-13.492618em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-10.515613em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-7.538608em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathbb">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mrel mtight">∼</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="delimsizing size2">]</span></span></span></span><span style="top:-4.875608em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathbb">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mrel mtight">∼</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="delimsizing size2">]</span></span></span></span><span style="top:-2.2126079999999995em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:0.7643970000000011em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-1.3248869999999997em;margin-left:0em;"><span class="pstrut" style="height:3.427em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text"><span class="mord">by Jensen’s Inequality</span></span></span></span></span><span style="top:-3.427em;"><span class="pstrut" style="height:3.427em;"></span><span><span class="mop"><span class="mord underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.0169949999999996em;"><span class="pstrut" style="height:3.427em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4269999999999996em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.4500050000000004em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.3382210000000003em;"><span></span></span></span></span></span></span></span></span><span style="top:4.829618em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathbb">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mrel mtight">∼</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="delimsizing size2">]</span></span></span></span><span style="top:6.9056180000000005em;"><span class="pstrut" style="height:3.427em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mop" style="position:relative;top:-0.03472em;">:</span></span><span class="mrel"><span class="mspace" style="margin-right:-0.06666666666666667em;"></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord">ELBO</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:10.992618em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 
 <details class="hcb-content box hcbnote">
-  <summary><i class="fa fa-pen fa-fw"></i>从&nbsp;KL&nbsp;散度的视角理解&nbsp;ELBO<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-pen fa-fw"></i>从 KL 散度的视角理解 ELBO<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <p>而实际上</p>
   <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>log</mi><mo>⁡</mo><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi mathvariant="double-struck">E</mi><mrow><mi>z</mi><mo>∼</mo><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow></msub><mo fence="false">[</mo><mi>log</mi><mo>⁡</mo><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>z</mi><mo stretchy="false">)</mo><mo fence="false">]</mo><mo>+</mo><mi><munder><mo><mi>H</mi><mo stretchy="false">(</mo><mi>q</mi><mo stretchy="false">)</mo></mo><mover accent="true"><mstyle mathsize="0.7em"><mtext>entropy of </mtext><mi>q</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mstyle><mo stretchy="true">‾</mo></mover></munder></mi></mrow><annotation encoding="application/x-tex">\log p_\theta(x)=\mathbb E_{z\sim q(z)}\Big[ \log p_\theta(x,z) \Big] + \underset{\overline{\scriptsize\text{entropy of }q(z)}}{H(q)}
   </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="mord"><span class="mord mathbb">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mrel mtight">∼</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="delimsizing size2">]</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.1375em;vertical-align:-1.3875em;"></span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7500000000000001em;"><span style="top:-1.8875000000000002em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord overline mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9950000000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight"><span class="mord text"><span class="mord">entropy of </span></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span><span style="top:-3.8970000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line mtight" style="border-bottom-width:0.049em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mclose">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3875em;"><span></span></span></span></span></span></span></span></span></span></span></p>

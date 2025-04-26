@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>数学 - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,6 +557,7 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
     <meta name="description" content="all kinds of stuff">
 <meta property="og:type" content="website">
@@ -367,7 +604,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/rl/actor-critic.html"><span class="title"><strong>RL</strong><span class="dot"></span>Actor Critic Methods</span></a><a class="item title" href="/wiki/rl/rl-and-llm.html"><span class="title"><strong>RL</strong><span class="dot"></span>强化学习、与大语言模型</span></a><a class="item title" href="/wiki/rl/ppo.html"><span class="title"><strong>RL</strong><span class="dot"></span>PPO 算法</span></a><a class="item title" href="/wiki/rl/deepseek-math.html"><span class="title"><strong>RL</strong><span class="dot"></span>GRPO</span></a><a class="item title" href="/wiki/microecon/cost-maxprofit-under-competition.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>竞争下的 Cost 与 Profit Maximization</span></a><a class="item title" href="/wiki/microecon/monopoly.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>Monopoly 垄断</span></a><a class="item title" href="/wiki/algo_contests/2025-hdu-spring-04.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>2025 杭电多校春季赛 4</span></a><a class="item title" href="/wiki/algo_contests/pku-2024-ds-and-algo-A-final.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>北京大学 2024 年《数据结构与算法A（实验班）》期末考试</span></a><a class="item title" href="/wiki/algo/boruvka.html"><span class="title"><strong>Algorithms</strong><span class="dot"></span>Boruvka 算法：特殊限制下的最小生成树算法</span></a><a class="item title" href="/wiki/algo_contests/20250419-CUHKSZ-contest.html"><span class="title"><strong>算法竞赛比赛记录</strong><span class="dot"></span>香港中文大学（深圳）2025 校赛暨粤港澳国际编程比赛</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/wiki/fina/capital-investment-decision-01.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Capital Investment Decision</span></a><a class="item title" href="/wiki/fina/CAPM.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>CAPM 资本资产定价模型</span></a><a class="item title" href="/wiki/microecon/cost-maxprofit-under-competition.html"><span class="title"><strong>MicroEcon</strong><span class="dot"></span>竞争下的 Cost 与 Profit Maximization</span></a><a class="item title" href="/wiki/fina/capital-structure.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Capital Structure 资产结构</span></a><a class="item title" href="/wiki/llm/Mixture-of-experts.html"><span class="title"><strong>LLM</strong><span class="dot"></span>MoE 架构</span></a><a class="item title" href="/wiki/algo/network-flow.html"><span class="title"><strong>Algorithms</strong><span class="dot"></span>网络流：最大流、最小割</span></a><a class="item title" href="/wiki/fina/pv-fv-npv.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>PV, FV, NPV</span></a><a class="item title" href="/wiki/rl/q-learning.html"><span class="title"><strong>RL</strong><span class="dot"></span>Q Learning</span></a><a class="item title" href="/wiki/fina/risk-and-return.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Risk of Return</span></a><a class="item title" href="/wiki/fina/valuation-of-stocks.html"><span class="title"><strong>公司金融学</strong><span class="dot"></span>Valuation of Stocks</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">

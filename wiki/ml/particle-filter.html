@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>ML: Particle Filter 粒子滤波 - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,18 +557,21 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
-    <meta name="description" content="Particle Filter: Overview 现实世界里，xxx 的维度太大、数量太多，计算的时间复杂度爆炸。所以我们对 xxx 的一些 Samples 进行运算，而非所有 xxx。那么当采样的 xxx 变多的时候，就有 P^(Xt&#x3D;x)&#x3D;num of particles with value xN\hat P(X_t&#x3D;x)&#x3D;\frac{\text{num of particles wit">
+    <meta name="description" content="Particle Filter: Overview 现实世界里，xxx 的维度太大、数量太多，计算的时间复杂度爆炸。我们很难精确计算出 P(X)P(X)P(X) 的 closed form，一个比较经典的方法就是利用蒙特卡罗方法，化连续为离散，用若干个点近似 P(X)P(X)P(X)，这就是粒子滤波的思想。 我们通过对这些点进行追踪，从而得到大致的分布。粒子的平均值代表对 state 的近似，粒">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Particle Filter 粒子滤波">
 <meta property="og:url" content="http://example.com/wiki/ml/particle-filter.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="Particle Filter: Overview 现实世界里，xxx 的维度太大、数量太多，计算的时间复杂度爆炸。所以我们对 xxx 的一些 Samples 进行运算，而非所有 xxx。那么当采样的 xxx 变多的时候，就有 P^(Xt&#x3D;x)&#x3D;num of particles with value xN\hat P(X_t&#x3D;x)&#x3D;\frac{\text{num of particles wit">
+<meta property="og:description" content="Particle Filter: Overview 现实世界里，xxx 的维度太大、数量太多，计算的时间复杂度爆炸。我们很难精确计算出 P(X)P(X)P(X) 的 closed form，一个比较经典的方法就是利用蒙特卡罗方法，化连续为离散，用若干个点近似 P(X)P(X)P(X)，这就是粒子滤波的思想。 我们通过对这些点进行追踪，从而得到大致的分布。粒子的平均值代表对 state 的近似，粒">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/wiki/ml/pf-hmm.drawio.png">
 <meta property="article:published_time" content="2025-03-27T04:08:43.000Z">
-<meta property="article:modified_time" content="2025-04-06T10:02:58.143Z">
+<meta property="article:modified_time" content="2025-04-24T03:00:35.255Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/wiki/ml/pf-hmm.drawio.png">
   
   
   
@@ -370,7 +609,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">滤波器</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/kalman-filter.html#start"><span class="toc-text">Kalman Filter 卡尔曼滤波</span></a><a class="link" href="/wiki/ml/EKF.html"><span class="toc-text">EKF</span></a><a class="link" href="/wiki/ml/UKF.html"><span class="toc-text">UKF</span></a><a class="link active" href="/wiki/ml/particle-filter.html"><span class="toc-text">Particle Filter 粒子滤波</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Machine Learning Algorithms</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/svm.html"><span class="toc-text">Support Vector Machine</span></a></div><div class="widget-header dis-select"><span class="name">Dimension Reduction</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/PCA.html"><span class="toc-text">PCA</span></a><a class="link" href="/wiki/ml/tsne.html"><span class="toc-text">tsne</span></a><a class="link" href="/wiki/ml/UMAP.html"><span class="toc-text">UMAP</span></a></div><div class="widget-header dis-select"><span class="name">Ensemble Learning</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/plurality-majority.html"><span class="toc-text">Plurality Majority Voting</span></a><a class="link" href="/wiki/ml/bagging.html"><span class="toc-text">Bagging</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/rl/HMM.html"><span class="toc-text">HMM</span></a><a class="link" href="/wiki/rl/markov-model.html"><span class="toc-text">Markov</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">滤波器</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/kalman-filter.html#start"><span class="toc-text">Kalman Filter 卡尔曼滤波</span></a><a class="link" href="/wiki/ml/EKF.html"><span class="toc-text">EKF</span></a><a class="link" href="/wiki/ml/UKF.html"><span class="toc-text">UKF</span></a><a class="link active" href="/wiki/ml/particle-filter.html"><span class="toc-text">Particle Filter 粒子滤波</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div><div class="widget-header dis-select"><span class="name">Machine Learning Algorithms</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/svm.html"><span class="toc-text">Support Vector Machine</span></a></div><div class="widget-header dis-select"><span class="name">Dimension Reduction</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/PCA.html"><span class="toc-text">PCA</span></a><a class="link" href="/wiki/ml/tsne.html"><span class="toc-text">tsne</span></a><a class="link" href="/wiki/ml/UMAP.html"><span class="toc-text">UMAP</span></a></div><div class="widget-header dis-select"><span class="name">Ensemble Learning</span></div><div class="widget-body fs14"><a class="link" href="/wiki/ml/plurality-majority.html"><span class="toc-text">Plurality Majority Voting</span></a><a class="link" href="/wiki/ml/bagging.html"><span class="toc-text">Bagging</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -383,7 +622,7 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/ml/kalman-filter.html">ML</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-04-06T10:02:58.143Z">2025-04-06</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-04-24T03:00:35.255Z">2025-04-24</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -395,12 +634,18 @@ div.hcb-content.hcb-cards-content.active {
     
   </div>
   </div><article class="md-text content"><h2 id="particle-filter-overview"><a class="markdownIt-Anchor" href="#particle-filter-overview"></a> Particle Filter: Overview</h2>
-<p>现实世界里，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的维度太大、数量太多，计算的时间复杂度爆炸。所以我们对 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的一些 Samples 进行运算，而非所有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span>。那么当采样的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 变多的时候，就有</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>P</mi><mo>^</mo></mover><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mtext>num of particles with value </mtext><mi>x</mi></mrow><mi>N</mi></mfrac></mrow><annotation encoding="application/x-tex">\hat P(X_t=x)=\frac{\text{num of particles with value }x}{N}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.19677em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">num of particles with value </span></span><span class="mord mathnormal">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>这里用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>P</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat P()</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.19677em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mclose">)</span></span></span></span> 表示估计的概率，用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P()</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mclose">)</span></span></span></span> 表示真实概率，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 表示采样的数量。假设已知 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>P</mi><mo>^</mo></mover><mo stretchy="false">(</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat P(X_{t})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.19677em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9467699999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
-<h3 id="1-propogate-forward"><a class="markdownIt-Anchor" href="#1-propogate-forward"></a> 1. Propogate Forward</h3>
-<p>对每一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">x_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 采样其下一时刻的状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">X_{t+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X_{t+1}|x_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p>现实世界里，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的维度太大、数量太多，计算的时间复杂度爆炸。我们很难精确计算出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span> 的 closed form，一个比较经典的方法就是利用<strong>蒙特卡罗方法</strong>，化连续为离散，用若干个点近似 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>，这就是粒子滤波的思想。</p>
+<p>我们通过对这些点进行追踪，从而得到大致的分布。<u>粒子的平均值代表对 state 的近似，粒子的分布代表对 state distribution 的近似</u></p>
+<h3 id="hmm-view-of-pf"><a class="markdownIt-Anchor" href="#hmm-view-of-pf"></a> HMM view of PF</h3>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/wiki/ml/pf-hmm.drawio.png" alt="PF" data-fancybox="true"/></div><div class="image-meta"><span class="image-caption center">PF</span></div></div>
+<p>对于粒子滤波而言有这么几个东西比较重要：</p>
+<h3 id="粒子滤波算法流程"><a class="markdownIt-Anchor" href="#粒子滤波算法流程"></a> 粒子滤波算法流程</h3>
+<p>粒子滤波的流程大致可以分为这么几步</p>
+<ol>
+<li>获得 <strong>observation</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>o</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">o_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，得到每一个粒子对真实 state 的近似程度</li>
+<li>对粒子进行<strong>重采样 (resample)</strong>，越近似的粒子比重越大。重采样将近似程度低的粒子替换为近似程度高的粒子</li>
+<li><strong>sample</strong>：对每一个粒子进行状态转移，即 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mtext>sample</mtext><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mi>t</mi></msub><mo>=</mo><msub><mi>x</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x_{t+1}=\text{sample}(P(X_{t+1}|X_t=x_t))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">sample</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+</ol>
 
 <div class="article-footer fs14"></div>
 </article>
@@ -417,7 +662,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#particle-filter-overview"><span class="toc-text"> Particle Filter: Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-propogate-forward"><span class="toc-text"> 1. Propogate Forward</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#particle-filter-overview"><span class="toc-text"> Particle Filter: Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hmm-view-of-pf"><span class="toc-text"> HMM view of PF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E6%BB%A4%E6%B3%A2%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text"> 粒子滤波算法流程</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel blur'>

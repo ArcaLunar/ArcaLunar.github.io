@@ -18,6 +18,242 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>Algorithms: 网络流：最大流、最小割 - Arca Lunar's Blog</title>
+  
+<style>
+/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
+body:after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline;
+  cursor: help;
+  border-bottom: 2px dashed #999;
+  text-decoration: none;
+  z-index: 3; /* 提高触发元素的层级 */
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background-color: white;
+  color: #333;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 6px;
+  /* 使用更强的阴影效果增加视觉层级感 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #eaeaea;
+  word-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  /* 确保悬浮框不超出屏幕边界 */
+  max-width: 80vw;
+}
+
+/* 当鼠标悬停时显示悬浮框 */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
+.tooltip-container .tooltip-text {
+  --tooltip-top: auto;
+  --tooltip-left: 50%;
+  --tooltip-transform: translateX(-50%);
+  top: var(--tooltip-top);
+  left: var(--tooltip-left);
+  transform: var(--tooltip-transform);
+}
+
+/* 添加三角形指示器 */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
+}
+
+/* 确保主容器为行内元素 */
+.tooltip-container {
+  display: inline;
+}
+
+/* 修复行内元素显示问题 */
+.tooltip-container code,
+.tooltip-container .katex,
+.tooltip-container .katex-html,
+.tooltip-container .katex-mathml {
+  display: inline !important;
+  white-space: nowrap !important;
+}
+
+/* 保持行内公式字符在同一行 */
+.tooltip-container .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 但是提示框本身是块级元素 */
+.tooltip-container .tooltip-text {
+  display: block;
+}
+
+/* 提示框内的块级元素保持块级 */
+.tooltip-container .tooltip-text p,
+.tooltip-container .tooltip-text div,
+.tooltip-container .tooltip-text h1,
+.tooltip-container .tooltip-text h2,
+.tooltip-container .tooltip-text h3,
+.tooltip-container .tooltip-text h4,
+.tooltip-container .tooltip-text h5,
+.tooltip-container .tooltip-text h6,
+.tooltip-container .tooltip-text ul,
+.tooltip-container .tooltip-text ol,
+.tooltip-container .tooltip-text li {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 但提示框内的行内元素保持行内 */
+.tooltip-container .tooltip-text code,
+.tooltip-container .tooltip-text a,
+.tooltip-container .tooltip-text strong,
+.tooltip-container .tooltip-text em,
+.tooltip-container .tooltip-text span,
+.tooltip-container .tooltip-text .katex,
+.tooltip-container .tooltip-text .katex-html,
+.tooltip-container .tooltip-text .katex-mathml {
+  display: inline !important;
+  white-space: pre-wrap !important;
+}
+
+/* 修复行内公式在提示框内的显示 */
+.tooltip-container .tooltip-text .katex .katex-html * {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 新增：支持大公式居中显示 */
+.tooltip-container .tooltip-text .katex-display {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  margin: 0.5em 0 !important;
+}
+
+/* 大公式内容的样式 */
+.tooltip-container .tooltip-text .katex-display > .katex {
+  display: inline-block !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+/* 调整大公式时悬浮框的宽度 */
+.tooltip-container:hover .tooltip-text:has(.katex-display) {
+  min-width: 300px !important;
+  // max-width: 400px !important;
+}
+
+.tooltip-container .tooltip-text p:last-child {
+  margin-bottom: 0;
+}
+</style>
+
+<script>
+// 添加脚本，确保tooltip总是能够正确显示
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听鼠标进入tooltip容器的事件
+  document.addEventListener('mouseover', function(e) {
+    if (!e.target.closest('.tooltip-container')) return;
+    
+    const container = e.target.closest('.tooltip-container');
+    const tooltip = container.querySelector('.tooltip-text');
+    if (!tooltip) return;
+    
+    // 重置样式以进行测量
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+    tooltip.style.bottom = '125%';
+    tooltip.style.top = 'auto';
+    
+    // 获取元素位置信息
+    const containerRect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    // 检查顶部空间
+    const topSpace = containerRect.top;
+    const bottomSpace = window.innerHeight - containerRect.bottom;
+    
+    // 判断应该显示在上方还是下方
+    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
+      // 如果顶部空间不足且底部空间更多，显示在底部
+      tooltip.style.bottom = 'auto';
+      tooltip.style.top = '125%';
+      
+      // 调整指示器
+      tooltip.style.setProperty('--tooltip-arrow-top', '0');
+      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
+      
+      // 修改三角形方向
+      const arrow = tooltip.querySelector('::after');
+      if (arrow) {
+        arrow.style.top = '0';
+        arrow.style.bottom = 'auto';
+        arrow.style.borderColor = 'transparent transparent white transparent';
+        arrow.style.transform = 'translateY(-100%)';
+      }
+    }
+    
+    // 检查水平方向是否溢出
+    const leftOverflow = tooltipRect.left < 0;
+    const rightOverflow = tooltipRect.right > window.innerWidth;
+    
+    if (leftOverflow) {
+      tooltip.style.left = '0';
+      tooltip.style.transform = 'none';
+    } else if (rightOverflow) {
+      tooltip.style.left = 'auto';
+      tooltip.style.right = '0';
+      tooltip.style.transform = 'none';
+    }
+    
+    // 恢复可见性
+    setTimeout(() => {
+      tooltip.style.visibility = '';
+      tooltip.style.opacity = '';
+    }, 10);
+  }, true);
+});
+</script>
+
 
   
     <style type="text/css">
@@ -321,6 +557,7 @@ div.hcb-content.hcb-cards-content.active {
 </style>
   
 
+
   
     <meta name="description" content="这居然是 COMP3252 的东西">
 <meta property="og:type" content="website">
@@ -330,7 +567,7 @@ div.hcb-content.hcb-cards-content.active {
 <meta property="og:description" content="这居然是 COMP3252 的东西">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-07T16:15:14.000Z">
-<meta property="article:modified_time" content="2025-04-17T04:45:26.444Z">
+<meta property="article:modified_time" content="2025-04-26T05:49:01.891Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -370,7 +607,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">算法学习 (& COMP3252)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/greedy.html#start"><span class="toc-text">贪心算法</span></a></div><div class="widget-header dis-select"><span class="name">计算几何</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/computational-geometry.html"><span class="toc-text">计算几何</span></a><a class="link" href="/wiki/algo/convex-hull.html"><span class="toc-text">计算几何：凸包</span></a><a class="link" href="/wiki/algo/half-plane.html"><span class="toc-text">【计算几何】半平面交</span></a></div><div class="widget-header dis-select"><span class="name">图论——网络流</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/network-flow-models.html"><span class="toc-text">网络流模型</span></a><a class="link active" href="/wiki/algo/network-flow.html"><span class="toc-text">网络流：最大流、最小割</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/algo/bounded-flow.html"><span class="toc-text">无/有源汇 上下界 可行/最大/最小流</span></a><a class="link" href="/wiki/algo/ford-fulkerson.html"><span class="toc-text">网络流：Ford-Fulkerson 增广路算法</span></a><a class="link" href="/wiki/algo/edmonds-karp.html"><span class="toc-text">网络流：EK 算法</span></a><a class="link" href="/wiki/algo/push-relabel.html"><span class="toc-text">网络流：预流推进算法</span></a><a class="link" href="/wiki/algo/stoer-wagner.html"><span class="toc-text">网络流：无源汇全局最小割算法</span></a><a class="link" href="/wiki/algo/gomory-hu-tree.html"><span class="toc-text">图论、网络流：最小割树 (Gomory-Hu Tree)</span></a></div><div class="widget-header dis-select"><span class="name">图论——树上问题</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/boruvka.html"><span class="toc-text">Boruvka 算法：特殊限制下的最小生成树算法</span></a></div><div class="widget-header dis-select"><span class="name">博弈论</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/nim-game.html"><span class="toc-text">【博弈论】Nim 游戏</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">算法学习 (& COMP3252)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/greedy.html#start"><span class="toc-text">贪心算法</span></a></div><div class="widget-header dis-select"><span class="name">计算几何</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/computational-geometry.html"><span class="toc-text">计算几何</span></a><a class="link" href="/wiki/algo/convex-hull.html"><span class="toc-text">计算几何：凸包</span></a><a class="link" href="/wiki/algo/half-plane.html"><span class="toc-text">【计算几何】半平面交</span></a></div><div class="widget-header dis-select"><span class="name">图论——网络流</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/network-flow-models.html"><span class="toc-text">网络流模型</span></a><a class="link active" href="/wiki/algo/network-flow.html"><span class="toc-text">网络流：最大流、最小割</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/algo/bounded-flow.html"><span class="toc-text">无/有源汇 上下界 可行/最大/最小流</span></a><a class="link" href="/wiki/algo/ford-fulkerson.html"><span class="toc-text">网络流：Ford-Fulkerson 增广路算法</span></a><a class="link" href="/wiki/algo/edmonds-karp.html"><span class="toc-text">网络流：EK 算法</span></a><a class="link" href="/wiki/algo/push-relabel.html"><span class="toc-text">网络流：预流推进算法</span></a><a class="link" href="/wiki/algo/stoer-wagner.html"><span class="toc-text">网络流：无源汇全局最小割算法</span></a><a class="link" href="/wiki/algo/gomory-hu-tree.html"><span class="toc-text">图论、网络流：最小割树 (Gomory-Hu Tree)</span></a></div><div class="widget-header dis-select"><span class="name">图论——树上问题</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/boruvka.html"><span class="toc-text">Boruvka 算法：特殊限制下的最小生成树算法</span></a></div><div class="widget-header dis-select"><span class="name">博弈论</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/nim-game.html"><span class="toc-text">【博弈论】Nim 游戏</span></a><a class="link" href="/wiki/algo/np-complete.html"><span class="toc-text">NP 理论初探</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -383,7 +620,7 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/algo/greedy.html">Algorithms</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-04-17T04:45:26.444Z">2025-04-17</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-04-26T05:49:01.891Z">2025-04-26</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -418,7 +655,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 <div class="hcb-content hcb-block hcbnote">
-  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Flow&nbsp;Value&nbsp;Lemma</p>
+  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Flow Value Lemma</p>
   <p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">G</span></span></span></span> 上任意的流，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A,B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">G</span></span></span></span> 上任意的割（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mi>A</mi><mo separator="true">,</mo><mi>t</mi><mo>∈</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">s\in A,t\in B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>），则必有</p>
   <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>value</mtext><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>e</mi><mtext> out of </mtext><mi>A</mi></mrow></munder><mi>f</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo>−</mo><munder><mo>∑</mo><mrow><mi>e</mi><mtext> into </mtext><mi>A</mi></mrow></munder><mi>f</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{value}(f)=\sum_{e \text{ out of }A}f(e)-\sum_{e\text{ into }A} f(e)
   </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">value</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3521180000000004em;vertical-align:-1.3021129999999999em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000005em;"><span style="top:-1.847887em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord text mtight"><span class="mord mtight"> out of </span></span><span class="mord mathnormal mtight">A</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021129999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.344341em;vertical-align:-1.294336em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.855664em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord text mtight"><span class="mord mtight"> into </span></span><span class="mord mathnormal mtight">A</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.294336em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span></p>
@@ -442,7 +679,7 @@ div.hcb-content.hcb-cards-content.active {
 <p>由此也可以推得几个推论</p>
 
 <details class="hcb-content box hcbnote">
-  <summary><i class="fa fa-pen fa-fw"></i>Corollary&nbsp;1<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-pen fa-fw"></i>Corollary 1<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">v</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>≤</mo><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">p</mi></mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{value}(f)\le \mathrm{cap}(A,B)
   </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span class="mord mathrm">a</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">e</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">c</span><span class="mord mathrm">a</span><span class="mord mathrm">p</span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span></span></p>
   <details class="hcb-content box hcbexample">
@@ -459,7 +696,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 <div class="hcb-content hcb-block hcbnote">
-  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Theorem&nbsp;3</p>
+  <p class="hcb-content hcb-block-title"><i class="fa fa-pen fa-fw"></i>Theorem 3</p>
   <p>令 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 为图上的流且使得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>f</mi></msub></mrow><annotation encoding="application/x-tex">G_f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 不存在增广路，那么存在一种 cut <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(A,B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span> 使得 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">v</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mi>a</mi><mi>p</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{value}(f)=cap(A,B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span class="mord mathrm">a</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">e</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>.</p>
   <details class="hcb-content box hcbexample">
     <summary><i class="fa fa-vial fa-fw"></i>证明<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>

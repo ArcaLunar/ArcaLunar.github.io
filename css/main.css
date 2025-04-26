@@ -6041,7 +6041,6 @@ details.toc[open] >div.body section .header+.doc_tree {
   font-size: var(--fsp);
 }
 .l_body aside {
-  z-index: 8;
   flex-shrink: 0;
   position: sticky;
   position: -webkit-sticky;
@@ -6464,7 +6463,6 @@ body>.sitebg .siteblur:hover {
   position: relative;
   padding-top: 0;
   padding-bottom: 2rem;
-  overflow: hidden;
 }
 .l_body[text-indent] .md-text.content p:not([class]) {
   text-indent: calc(var(--fsp) * 2);
