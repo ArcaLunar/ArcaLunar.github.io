@@ -567,7 +567,7 @@ div.hcb-content.hcb-cards-content.active {
 <meta property="og:description" content="Byte-Pair Encoding 算法 Byte-Pair Encoding（BPE）算法是一种常用于分词器（Tokenizer）中的无监督分词方法，其主要思想是将文本中最常见的字符对（或子词对）不断合并，从而构建出一个词汇表。由于进行多轮 （假设 kkk 轮）合并，而每一次合并都会基于统计频率将一对 Token 合并为一个新 Token，因此在 kkk 轮迭代后，BPE 算法可以将长度为">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-30T07:39:33.000Z">
-<meta property="article:modified_time" content="2025-03-30T07:40:42.627Z">
+<meta property="article:modified_time" content="2025-05-04T10:04:41.834Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -584,7 +584,22 @@ div.hcb-content.hcb-cards-content.active {
 
   
 
-  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" />
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });
+        });
+  </script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -607,7 +622,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">NLP Before Deep Learning</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/wordnet.html#start"><span class="toc-text">wordnet</span></a></div><div class="widget-header dis-select"><span class="name">Attention</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/vanilla-attn.html"><span class="toc-text">Attention 机制</span></a><a class="link" href="/wiki/llm/self-attn.html"><span class="toc-text">Self Attention</span></a><a class="link" href="/wiki/llm/multi-head-attn.html"><span class="toc-text">Multi-Head Attention</span></a><a class="link" href="/wiki/llm/flash-attn.html"><span class="toc-text">Flash Attention</span></a><a class="link" href="/wiki/llm/paged-attn.html"><span class="toc-text">Paged Attention：vLLM 的核心</span></a><a class="link" href="/wiki/llm/tost-attn.html"><span class="toc-text">ToST，基于统计的 Attention 机制</span></a></div><div class="widget-header dis-select"><span class="name">Transformer Family</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/classic-transformer.html"><span class="toc-text">Transformer 架构</span></a><a class="link" href="/wiki/llm/decoder-only-transformer.html"><span class="toc-text">Decoder-Only Transformer</span></a><a class="link" href="/wiki/llm/diff-transformer.html"><span class="toc-text">差分 Transformer</span></a></div><div class="widget-header dis-select"><span class="name">MoE Structure</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/Mixture-of-experts.html"><span class="toc-text">MoE 架构</span></a></div><div class="widget-header dis-select"><span class="name">Diffusion Based LLM</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/diffusion-LM.html"><span class="toc-text">Diffusion Language Model</span></a></div><div class="widget-header dis-select"><span class="name">大模型实战：入门级 LLM 项目 —— Minimind</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/tokenizer.html"><span class="toc-text">Tokenizer 分词器</span></a><a class="link active" href="/wiki/llm/tokenizer-bpe.html"><span class="toc-text">Tokenizer, BPE 算法</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">NLP Before Deep Learning</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/wordnet.html#start"><span class="toc-text">wordnet</span></a></div><div class="widget-header dis-select"><span class="name">Attention</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/vanilla-attn.html"><span class="toc-text">Attention 机制</span></a><a class="link" href="/wiki/llm/self-attn.html"><span class="toc-text">Self Attention</span></a><a class="link" href="/wiki/llm/multi-head-attn.html"><span class="toc-text">Multi-Head Attention</span></a></div><div class="widget-header dis-select"><span class="name">Advanced Attention</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/flash-attn.html"><span class="toc-text">Flash Attention</span></a><a class="link" href="/wiki/llm/paged-attn.html"><span class="toc-text">Paged Attention：vLLM 的核心</span></a><a class="link" href="/wiki/llm/tost-attn.html"><span class="toc-text">ToST，基于统计的 Attention 机制</span></a></div><div class="widget-header dis-select"><span class="name">KV Cache</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/attn-kv-cache.html"><span class="toc-text">Attention 中的 KV Cache</span></a></div><div class="widget-header dis-select"><span class="name">Transformer Architecture</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/classic-transformer.html"><span class="toc-text">Transformer 架构</span></a><a class="link" href="/wiki/llm/decoder-only-transformer.html"><span class="toc-text">Decoder-Only Transformer</span></a><a class="link" href="/wiki/llm/diff-transformer.html"><span class="toc-text">差分 Transformer</span></a></div><div class="widget-header dis-select"><span class="name">MoE Structure</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/Mixture-of-experts.html"><span class="toc-text">MoE 架构</span></a></div><div class="widget-header dis-select"><span class="name">Position Embedding for LLM</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/rotary-emb.html"><span class="toc-text">RoPE 旋转编码位置嵌入</span></a></div><div class="widget-header dis-select"><span class="name">Diffusion Based LLM</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/diffusion-LM.html"><span class="toc-text">Diffusion Language Model</span></a></div><div class="widget-header dis-select"><span class="name">大模型实战：入门级 LLM 项目 —— Minimind</span></div><div class="widget-body fs14"><a class="link" href="/wiki/llm/tokenizer.html"><span class="toc-text">Tokenizer 分词器</span></a><a class="link active" href="/wiki/llm/tokenizer-bpe.html"><span class="toc-text">Tokenizer, BPE 算法</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -616,11 +631,11 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="article banner top">
+<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/llm/wordnet.html">LLM</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-03-30T07:40:42.627Z">2025-03-30</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-05-04T10:04:41.834Z">2025-05-04</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -632,13 +647,13 @@ div.hcb-content.hcb-cards-content.active {
     
   </div>
   </div><article class="md-text content"><h2 id="byte-pair-encoding-算法"><a class="markdownIt-Anchor" href="#byte-pair-encoding-算法"></a> Byte-Pair Encoding 算法</h2>
-<p>Byte-Pair Encoding（BPE）算法是一种常用于分词器（Tokenizer）中的无监督分词方法，其主要思想是将文本中最常见的字符对（或子词对）不断合并，从而构建出一个词汇表。由于进行多轮 （假设 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 轮）合并，而每一次合并都会基于统计频率将一对 Token 合并为一个新 Token，因此在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 轮迭代后，BPE 算法可以将长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 的单词合并为一个 Token</p>
+<p>Byte-Pair Encoding（BPE）算法是一种常用于分词器（Tokenizer）中的无监督分词方法，其主要思想是将文本中最常见的字符对（或子词对）不断合并，从而构建出一个词汇表。由于进行多轮 （假设 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></eq> 轮）合并，而每一次合并都会基于统计频率将一对 Token 合并为一个新 Token，因此在 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></eq> 轮迭代后，BPE 算法可以将长度为 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></eq> 的单词合并为一个 Token</p>
 <ol>
 <li>将输入的文本转化为 UTF-8 Encoding</li>
 <li>统计 Byte-Pair 的频率</li>
 <li>计算频率最高的 Byte-Pair，合并为一个新的 Token</li>
 <li>用新的 Token 替换旧 Byte-Pair 出现的位置</li>
-<li>回到第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 步，重新统计 Byte-Pair (Token-Pair) 频率</li>
+<li>回到第 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></eq> 步，重新统计 Byte-Pair (Token-Pair) 频率</li>
 <li>直到词汇表大小达到预设值</li>
 </ol>
 <p>BPE 算法通过这种逐步合并的方式，不仅能有效地表示常见词汇，还能灵活处理低频词和新词，对于大型语言模型的分词和词表构建有很大的优势。</p>
@@ -667,7 +682,10 @@ div.hcb-content.hcb-cards-content.active {
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
-<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+
+<script>
+    pseudocode.renderClass("pseudocode");
+</script><div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
 
 
