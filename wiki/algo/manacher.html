@@ -1,0 +1,1349 @@
+
+<!DOCTYPE html><html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  
+  <title>Algorithms: Manacher - Arca Lunar's Blog</title>
+
+  
+    <meta name="description" content="Manacher 算法  Manacher 推广 如果我们的 pattern 拥有如下的一些性质，那么我们就可以利用 Manacher 进行加速：  具有类似回文的对称性。如果维护的回文 Box 为 [l,r][l,r][l,r]，那么这种对称性使得 R[i]R[i]R[i] 至少 ≥R[l+r−i]\ge R[l+r-i]≥R[l+r−i]. 外推性：如果 s[l…r]s[l\dots r]s">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Manacher">
+<meta property="og:url" content="http://example.com/wiki/algo/manacher.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Blog">
+<meta property="og:description" content="Manacher 算法  Manacher 推广 如果我们的 pattern 拥有如下的一些性质，那么我们就可以利用 Manacher 进行加速：  具有类似回文的对称性。如果维护的回文 Box 为 [l,r][l,r][l,r]，那么这种对称性使得 R[i]R[i]R[i] 至少 ≥R[l+r−i]\ge R[l+r-i]≥R[l+r−i]. 外推性：如果 s[l…r]s[l\dots r]s">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-20T01:03:36.000Z">
+<meta property="article:modified_time" content="2025-05-20T13:31:44.432Z">
+<meta property="article:author" content="Arca Lunar">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <style type="text/css">
+    
+
+div.hcb-content.hcb-block.hcbnote, details.hcb-content.box.hcbnote,div.hcb-content.hcb-block.hcbabstract, details.hcb-content.box.hcbabstract,div.hcb-content.hcb-block.hcbinfo, details.hcb-content.box.hcbinfo,div.hcb-content.hcb-block.hcbtip, details.hcb-content.box.hcbtip,div.hcb-content.hcb-block.hcbsuccess, details.hcb-content.box.hcbsuccess,div.hcb-content.hcb-block.hcbquestion, details.hcb-content.box.hcbquestion,div.hcb-content.hcb-block.hcbwarning, details.hcb-content.box.hcbwarning,div.hcb-content.hcb-block.hcbfailure, details.hcb-content.box.hcbfailure,div.hcb-content.hcb-block.hcbdanger, details.hcb-content.box.hcbdanger,div.hcb-content.hcb-block.hcbbug, details.hcb-content.box.hcbbug,div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample,div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote,div.hcb-content.hcb-block.hcbimportant, details.hcb-content.box.hcbimportant {
+  border: .05rem solid #448aff;
+  border-radius: .2rem;
+  font-size: 0.96rem;
+  margin: 1.5625em 0;
+  padding: 0 1.2rem;
+  transition: box-shadow 250ms;
+}
+div.hcb-content.hcb-block.hcbnote, details.hcb-content.box.hcbnote {
+  border-color: #448aff;
+}
+div.hcb-content.hcb-block.hcbabstract, details.hcb-content.box.hcbabstract {
+  border-color: #00b0ff;
+}
+div.hcb-content.hcb-block.hcbinfo, details.hcb-content.box.hcbinfo {
+  border-color: #00b8d4;
+}
+div.hcb-content.hcb-block.hcbtip, details.hcb-content.box.hcbtip {
+  border-color: #00bfa5;
+}
+div.hcb-content.hcb-block.hcbsuccess, details.hcb-content.box.hcbsuccess {
+  border-color: #00c853;
+}
+div.hcb-content.hcb-block.hcbquestion, details.hcb-content.box.hcbquestion {
+  border-color: #64dd17;
+}
+div.hcb-content.hcb-block.hcbwarning, details.hcb-content.box.hcbwarning {
+  border-color: #ff9100;
+}
+div.hcb-content.hcb-block.hcbfailure, details.hcb-content.box.hcbfailure {
+  border-color: #ff5252;
+}
+div.hcb-content.hcb-block.hcbdanger, details.hcb-content.box.hcbdanger {
+  border-color: #ff1744;
+}
+div.hcb-content.hcb-block.hcbbug, details.hcb-content.box.hcbbug {
+  border-color: #f50057;
+}
+div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample {
+  border-color: #7c4dff;
+}
+div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote {
+  border-color: #9e9e9e;
+}
+div.hcb-content.hcb-block.hcbimportant, details.hcb-content.box.hcbimportant {
+  border-color: #ff1744;
+}
+div.hcb-content.hcb-block.hcbnote:focus-within, details.hcb-content.box.hcbnote:focus-within {
+  box-shadow: 0 0 0 .2rem #448aff1a;
+}
+div.hcb-content.hcb-block.hcbabstract:focus-within, details.hcb-content.box.hcbabstract:focus-within {
+  box-shadow: 0 0 0 .2rem #00b0ff1a;
+}
+div.hcb-content.hcb-block.hcbinfo:focus-within, details.hcb-content.box.hcbinfo:focus-within {
+  box-shadow: 0 0 0 .2rem #00b8d41a;
+}
+div.hcb-content.hcb-block.hcbtip:focus-within, details.hcb-content.box.hcbtip:focus-within {
+  box-shadow: 0 0 0 .2rem #00bfa51a;
+}
+div.hcb-content.hcb-block.hcbsuccess:focus-within, details.hcb-content.box.hcbsuccess:focus-within {
+  box-shadow: 0 0 0 .2rem #00c8531a;
+}
+div.hcb-content.hcb-block.hcbquestion:focus-within, details.hcb-content.box.hcbquestion:focus-within {
+  box-shadow: 0 0 0 .2rem #64dd171a;
+}
+div.hcb-content.hcb-block.hcbwarning:focus-within, details.hcb-content.box.hcbwarning:focus-within {
+  box-shadow: 0 0 0 .2rem #ff91001a;
+}
+div.hcb-content.hcb-block.hcbfailure:focus-within, details.hcb-content.box.hcbfailure:focus-within {
+  box-shadow: 0 0 0 .2rem #ff52521a;
+}
+div.hcb-content.hcb-block.hcbdanger:focus-within, details.hcb-content.box.hcbdanger:focus-within {
+  box-shadow: 0 0 0 .2rem #ff17441a;
+}
+div.hcb-content.hcb-block.hcbbug:focus-within, details.hcb-content.box.hcbbug:focus-within {
+  box-shadow: 0 0 0 .2rem #f500571a;
+}
+div.hcb-content.hcb-block.hcbexample:focus-within, details.hcb-content.box.hcbexample:focus-within {
+  box-shadow: 0 0 0 .2rem #7c4dff1a;
+}
+div.hcb-content.hcb-block.hcbquote:focus-within, details.hcb-content.box.hcbquote:focus-within {
+  box-shadow: 0 0 0 .2rem #9e9e9e1a;
+}
+div.hcb-content.hcb-block.hcbimportant:focus-within, details.hcb-content.box.hcbimportant:focus-within {
+  box-shadow: 0 0 0 .2rem #ff17441a;
+}
+div.hcb-content.hcb-block.hcbnote *, details.hcb-content.box.hcbnote *,div.hcb-content.hcb-block.hcbabstract *, details.hcb-content.box.hcbabstract *,div.hcb-content.hcb-block.hcbinfo *, details.hcb-content.box.hcbinfo *,div.hcb-content.hcb-block.hcbtip *, details.hcb-content.box.hcbtip *,div.hcb-content.hcb-block.hcbsuccess *, details.hcb-content.box.hcbsuccess *,div.hcb-content.hcb-block.hcbquestion *, details.hcb-content.box.hcbquestion *,div.hcb-content.hcb-block.hcbwarning *, details.hcb-content.box.hcbwarning *,div.hcb-content.hcb-block.hcbfailure *, details.hcb-content.box.hcbfailure *,div.hcb-content.hcb-block.hcbdanger *, details.hcb-content.box.hcbdanger *,div.hcb-content.hcb-block.hcbbug *, details.hcb-content.box.hcbbug *,div.hcb-content.hcb-block.hcbexample *, details.hcb-content.box.hcbexample *,div.hcb-content.hcb-block.hcbquote *, details.hcb-content.box.hcbquote *,div.hcb-content.hcb-block.hcbimportant *, details.hcb-content.box.hcbimportant * {
+  box-sizing: border-box;
+}
+div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbnote > summary,div.hcb-content.hcb-block.hcbabstract > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbabstract > summary,div.hcb-content.hcb-block.hcbinfo > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbinfo > summary,div.hcb-content.hcb-block.hcbtip > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbtip > summary,div.hcb-content.hcb-block.hcbsuccess > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbsuccess > summary,div.hcb-content.hcb-block.hcbquestion > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquestion > summary,div.hcb-content.hcb-block.hcbwarning > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbwarning > summary,div.hcb-content.hcb-block.hcbfailure > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbfailure > summary,div.hcb-content.hcb-block.hcbdanger > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbdanger > summary,div.hcb-content.hcb-block.hcbbug > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbbug > summary,div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbexample > summary,div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquote > summary,div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbimportant > summary {
+  border-top-right-radius: 0.1rem;
+  border-top-left-radius: 0.1rem;
+  border-left-width: 0.2rem;
+  display: block;
+  min-height: 1rem;
+  border: none;
+  font-weight: 700;
+  margin: 0 -1.2rem 1rem;
+  padding: 0.4rem 0.6rem;
+  position: relative;
+  outline: none;
+}
+details.hcb-content.box.hcbnote > summary,details.hcb-content.box.hcbabstract > summary,details.hcb-content.box.hcbinfo > summary,details.hcb-content.box.hcbtip > summary,details.hcb-content.box.hcbsuccess > summary,details.hcb-content.box.hcbquestion > summary,details.hcb-content.box.hcbwarning > summary,details.hcb-content.box.hcbfailure > summary,details.hcb-content.box.hcbdanger > summary,details.hcb-content.box.hcbbug > summary,details.hcb-content.box.hcbexample > summary,details.hcb-content.box.hcbquote > summary,details.hcb-content.box.hcbimportant > summary {
+  cursor: pointer;
+}
+details.hcb-content.box.hcbnote:not([open]) > summary,details.hcb-content.box.hcbabstract:not([open]) > summary,details.hcb-content.box.hcbinfo:not([open]) > summary,details.hcb-content.box.hcbtip:not([open]) > summary,details.hcb-content.box.hcbsuccess:not([open]) > summary,details.hcb-content.box.hcbquestion:not([open]) > summary,details.hcb-content.box.hcbwarning:not([open]) > summary,details.hcb-content.box.hcbfailure:not([open]) > summary,details.hcb-content.box.hcbdanger:not([open]) > summary,details.hcb-content.box.hcbbug:not([open]) > summary,details.hcb-content.box.hcbexample:not([open]) > summary,details.hcb-content.box.hcbquote:not([open]) > summary,details.hcb-content.box.hcbimportant:not([open]) > summary {
+  margin-bottom: 0;
+}
+div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbnote > summary {
+  background-color: #448aff1a;
+}
+div.hcb-content.hcb-block.hcbabstract > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbabstract > summary {
+  background-color: #00b0ff1a;
+}
+div.hcb-content.hcb-block.hcbinfo > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbinfo > summary {
+  background-color: #00b8d41a;
+}
+div.hcb-content.hcb-block.hcbtip > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbtip > summary {
+  background-color: #00bfa51a;
+}
+div.hcb-content.hcb-block.hcbsuccess > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbsuccess > summary {
+  background-color: #00c8531a;
+}
+div.hcb-content.hcb-block.hcbquestion > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquestion > summary {
+  background-color: #64dd171a;
+}
+div.hcb-content.hcb-block.hcbwarning > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbwarning > summary {
+  background-color: #ff91001a;
+}
+div.hcb-content.hcb-block.hcbfailure > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbfailure > summary {
+  background-color: #ff52521a;
+}
+div.hcb-content.hcb-block.hcbdanger > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbdanger > summary {
+  background-color: #ff17441a;
+}
+div.hcb-content.hcb-block.hcbbug > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbbug > summary {
+  background-color: #f500571a;
+}
+div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbexample > summary {
+  background-color: #7c4dff1a;
+}
+div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbquote > summary {
+  background-color: #9e9e9e1a;
+}
+div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title, details.hcb-content.box.hcbimportant > summary {
+  background-color: #ff17441a;
+}
+div.hcb-content.hcb-block.hcbnote > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbnote > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #448aff;
+}
+div.hcb-content.hcb-block.hcbabstract > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbabstract > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #00b0ff;
+}
+div.hcb-content.hcb-block.hcbinfo > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbinfo > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #00b8d4;
+}
+div.hcb-content.hcb-block.hcbtip > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbtip > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #00bfa5;
+}
+div.hcb-content.hcb-block.hcbsuccess > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbsuccess > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #00c853;
+}
+div.hcb-content.hcb-block.hcbquestion > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbquestion > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #64dd17;
+}
+div.hcb-content.hcb-block.hcbwarning > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbwarning > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #ff9100;
+}
+div.hcb-content.hcb-block.hcbfailure > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbfailure > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #ff5252;
+}
+div.hcb-content.hcb-block.hcbdanger > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbdanger > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #ff1744;
+}
+div.hcb-content.hcb-block.hcbbug > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbbug > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #f50057;
+}
+div.hcb-content.hcb-block.hcbexample > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbexample > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #7c4dff;
+}
+div.hcb-content.hcb-block.hcbquote > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbquote > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #9e9e9e;
+}
+div.hcb-content.hcb-block.hcbimportant > p.hcb-content.hcb-block-title > i, details.hcb-content.box.hcbimportant > summary > i {
+  margin: 0 0.6rem 0 0.6rem;
+  color: #ff1744;
+}
+details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button,details.hcb-content.box.hcbimportant > summary > div.hcb-box-open-button {
+  float: right;
+}
+details.hcb-content.box.hcbnote > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbabstract > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbinfo > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbtip > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbsuccess > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquestion > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbwarning > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbfailure > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbdanger > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbbug > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbexample > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbquote > summary > div.hcb-box-open-button > i,details.hcb-content.box.hcbimportant > summary > div.hcb-box-open-button > i {
+  margin: 0 0.6rem 0 0.6rem;
+  font-size: 0.7rem;
+  transition: transform 250ms
+}
+details.hcb-content.box.hcbnote:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote:not([open]) > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbimportant:not([open]) > summary > div.hcb-box-open-button i {
+  transform: rotate(270deg);
+}
+details.hcb-content.box.hcbnote[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbabstract[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbinfo[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbtip[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbsuccess[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquestion[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbwarning[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbfailure[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbdanger[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbbug[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbexample[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbquote[open] > summary > div.hcb-box-open-button i,details.hcb-content.box.hcbimportant[open] > summary > div.hcb-box-open-button i {
+  transform: rotate(180deg);
+}
+details.hcb-content.box.hcbnote summary div.hcb-box-open-button i {
+  color: #448aff;
+}
+details.hcb-content.box.hcbabstract summary div.hcb-box-open-button i {
+  color: #00b0ff;
+}
+details.hcb-content.box.hcbinfo summary div.hcb-box-open-button i {
+  color: #00b8d4;
+}
+details.hcb-content.box.hcbtip summary div.hcb-box-open-button i {
+  color: #00bfa5;
+}
+details.hcb-content.box.hcbsuccess summary div.hcb-box-open-button i {
+  color: #00c853;
+}
+details.hcb-content.box.hcbquestion summary div.hcb-box-open-button i {
+  color: #64dd17;
+}
+details.hcb-content.box.hcbwarning summary div.hcb-box-open-button i {
+  color: #ff9100;
+}
+details.hcb-content.box.hcbfailure summary div.hcb-box-open-button i {
+  color: #ff5252;
+}
+details.hcb-content.box.hcbdanger summary div.hcb-box-open-button i {
+  color: #ff1744;
+}
+details.hcb-content.box.hcbbug summary div.hcb-box-open-button i {
+  color: #f50057;
+}
+details.hcb-content.box.hcbexample summary div.hcb-box-open-button i {
+  color: #7c4dff;
+}
+details.hcb-content.box.hcbquote summary div.hcb-box-open-button i {
+  color: #9e9e9e;
+}
+details.hcb-content.box.hcbimportant summary div.hcb-box-open-button i {
+  color: #ff1744;
+}
+div.hcb-content.hcb-cards * {
+  box-sizing: border-box;
+}
+input.hcb-content.hcb-cards-input {
+  display: none;
+}
+div.hcb-content.hcb-cards-labels {
+  position: relative;
+  box-shadow: 0 -0.05rem #00000012 inset;
+  display: flex;
+  margin-bottom: 1.25rem;
+}
+div.hcb-content.hcb-cards-labels:before {
+  background: var(--cards-color);
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: translateX(var(--md-indicator-x));
+  transition: width 225ms, transform 250ms;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  width: var(--md-indicator-width);
+}
+label.hcb-content.hcb-cards-label {
+  border-bottom: 0.1rem solid #0000;
+  border-radius: 0.1rem 0.1rem 0 0;
+  cursor: pointer;
+  color: #0000008a;
+  font-size: 0.92em;
+  font-weight: 700;
+  padding: 0 1.25rem 0.625rem;
+  transition: color 250ms;
+}
+label.hcb-content.hcb-cards-label.active, label.hcb-content.hcb-cards-label:hover {
+  color: var(--cards-color);
+}
+div.hcb-content.hcb-cards-content {
+  display: none;
+}
+div.hcb-content.hcb-cards-content.active {
+  display: block;
+}
+
+  </style>
+
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<style>
+      /* Apply styles to the hover target class */
+      .floating-hover-target {
+        font-weight: 500;
+        position: relative;
+        display: inline;
+        cursor: help;
+        background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.3) 90%, rgba(var(--theme-color), 0.3) 100%);
+        padding: 0 2px;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+        color: var(--text-color, #333);
+        border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
+        text-decoration: none;
+      }
+      
+      .floating-hover-target:hover {
+        background: linear-gradient(to bottom, rgba(var(--theme-color), 0.08) 0%, rgba(var(--theme-color), 0.08) 90%, rgba(var(--theme-color), 0.5) 90%, rgba(var(--theme-color), 0.5) 100%);
+      }
+      
+      .floating-hover-target::after {
+        content: var(--hover-indicator, "");
+        font-size: 0.85em;
+        vertical-align: super;
+        opacity: 0.6;
+        margin-left: 1px;
+        transition: opacity 0.2s ease;
+      }
+      
+      /* Different indicator styles - can be set via CSS variables */
+      :root {
+        --hover-indicator: ""; /* Default indicator */
+      }
+      
+      .floating-hover-content {
+        position: fixed;  /* Changed from absolute to fixed */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        background-color: var(--card-background, #fff);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+        padding: 16px 20px;
+        width: max-content;
+        max-width: 380px;
+        z-index: 9999;  /* Increased z-index value */
+        left: 0;
+        top: 0;  /* Will be set dynamically by JS */
+        overflow-y: auto;
+        max-height: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-weight: normal;
+        color: var(--text-color, #333);
+        font-size: 0.95em;
+        line-height: 1.6;
+        pointer-events: auto;  /* Ensures hover content can be interacted with */
+        backdrop-filter: blur(4px);
+      }
+      
+      .floating-hover-content::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--card-background, #fff);
+        transform: rotate(45deg);
+        z-index: -1; /* Place behind the content */
+      }
+      
+      /* Arrow positioning based on hover position */
+      .floating-hover-content.positioned-bottom::before {
+        top: -6px;
+        left: 20px;
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-top::before {
+        bottom: -6px;
+        left: 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-right::before {
+        left: auto;
+        right: 20px;
+      }
+      
+      .floating-hover-content p {
+        margin: 0.8em 0;
+      }
+      
+      .floating-hover-content p:first-child {
+        margin-top: 0;
+      }
+      
+      .floating-hover-content p:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Show hover content when target is hovered */
+      .floating-hover-target:hover .floating-hover-content {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Improve the indicator appearance on hover */
+      .floating-hover-target:hover::after {
+        opacity: 1;
+      }
+      
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark), (html[data-theme='dark']) {
+        .floating-hover-content {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px -4px rgba(0, 0, 0, 0.25);
+        }
+      }
+      
+      /* Fix position for hover boxes on smaller screens */
+      @media (max-width: 768px) {
+        .floating-hover-content {
+          max-width: 85vw; /* Limit width on mobile */
+        }
+        
+        /* Don't center the hover boxes on mobile as they're now positioned from JS */
+        .floating-hover-content.positioned-centered::before {
+          left: 50%;
+          margin-left: -6px;
+        }
+        
+        /* Adjust the info indicator to be more prominent on mobile */
+        .floating-hover-target::after {
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+      }
+      
+      /* Make the hover content work with touch devices */
+      @media (pointer: coarse) {
+        .floating-hover-target {
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        /* Give feedback when tapping */
+        .floating-hover-target:active {
+          background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.7) 90%, rgba(var(--theme-color), 0.7) 100%);
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Create a container for all hover content elements at the document root
+        const hoverContainer = document.createElement('div');
+        hoverContainer.id = 'floating-hover-container';
+        hoverContainer.style.position = 'fixed';
+        hoverContainer.style.top = '0';
+        hoverContainer.style.left = '0';
+        hoverContainer.style.width = '0';
+        hoverContainer.style.height = '0';
+        hoverContainer.style.overflow = 'visible';
+        hoverContainer.style.pointerEvents = 'none'; // Don't interfere with page interaction
+        hoverContainer.style.zIndex = '9999';
+        document.body.appendChild(hoverContainer);
+        
+        // Create the hover content elements dynamically
+        const hoverTargets = document.querySelectorAll('.floating-hover-target');
+        
+        // Track currently active hover element
+        let activeHover = null;
+        
+        hoverTargets.forEach(target => {
+          const hoverContent = target.getAttribute('data-hover-content');
+          
+          if (!hoverContent) return;
+          
+          // Create hover content div but append it to the container instead of the target
+          const hoverDiv = document.createElement('div');
+          hoverDiv.className = 'floating-hover-content';
+          hoverDiv.innerHTML = decodeURIComponent(hoverContent);
+          hoverDiv.style.pointerEvents = 'auto'; // Make the hover content interactive
+          hoverContainer.appendChild(hoverDiv);
+          
+          // Store a reference to the hover div on the target
+          target.hoverDiv = hoverDiv;
+          
+          // Position hover content based on target position
+          function positionHoverContent() {
+            const targetRect = target.getBoundingClientRect();
+            const hoverRect = hoverDiv.getBoundingClientRect();
+            const padding = 16; // Safe distance from viewport edges
+            
+            // Reset any previous positioning
+            hoverDiv.style.left = '';
+            hoverDiv.style.right = '';
+            hoverDiv.style.top = '';
+            hoverDiv.style.bottom = '';
+            
+            // Remove any previous position classes
+            hoverDiv.classList.remove('positioned-left', 'positioned-right', 'positioned-top', 'positioned-bottom');
+            
+            // Default positioning below the target
+            hoverDiv.style.left = targetRect.left + 'px';
+            hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+            
+            // After setting the initial position, get the hover dimensions
+            const updatedHoverRect = hoverDiv.getBoundingClientRect();
+            
+            // Check if the hover would go off the right edge of the screen
+            if (updatedHoverRect.right > window.innerWidth - padding) {
+              // Align the right edge of the hover with the right edge of the target
+              hoverDiv.style.left = 'auto';
+              hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              hoverDiv.classList.add('positioned-right');
+            } else {
+              hoverDiv.classList.add('positioned-left');
+            }
+            
+            // Check if the hover would go off the bottom of the screen
+            if (updatedHoverRect.bottom > window.innerHeight - padding) {
+              // Position above the target instead
+              hoverDiv.style.top = 'auto';
+              hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              hoverDiv.classList.add('positioned-top');
+            } else {
+              hoverDiv.classList.add('positioned-bottom');
+            }
+            
+            // Update the arrow position
+            const arrowPosition = hoverDiv.classList.contains('positioned-top') ? 'bottom' : 'top';
+            hoverDiv.style.setProperty('--arrow-position', arrowPosition);
+          }
+          
+          // Show hover content on mouseenter
+          target.addEventListener('mouseenter', function() {
+            // Hide any previously shown hover content
+            if (activeHover && activeHover !== hoverDiv) {
+              activeHover.style.visibility = 'hidden';
+              activeHover.style.opacity = '0';
+            }
+            
+            // Set this as the active hover
+            activeHover = hoverDiv;
+            
+            // Position and show the hover content
+            hoverDiv.style.visibility = 'visible';
+            positionHoverContent();
+            
+            // Trigger fade-in animation
+            setTimeout(() => {
+              hoverDiv.style.opacity = '1';
+            }, 10);
+          });
+          
+          // Hide hover content on mouseleave
+          target.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved to the hover content itself
+            if (e.relatedTarget === hoverDiv || hoverDiv.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+          
+          // Add mouseleave event to the hover content to hide it when mouse leaves
+          hoverDiv.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved back to the target
+            if (e.relatedTarget === target || target.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+        });
+        
+        // Update hover positions on window resize
+        window.addEventListener('resize', function() {
+          if (activeHover) {
+            const target = Array.from(hoverTargets).find(t => t.hoverDiv === activeHover);
+            if (target) {
+              const hoverDiv = target.hoverDiv;
+              const targetRect = target.getBoundingClientRect();
+              const padding = 16;
+              
+              // Update position logic here similar to positionHoverContent function
+              hoverDiv.style.left = targetRect.left + 'px';
+              hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+              
+              const updatedHoverRect = hoverDiv.getBoundingClientRect();
+              
+              if (updatedHoverRect.right > window.innerWidth - padding) {
+                hoverDiv.style.left = 'auto';
+                hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              }
+              
+              if (updatedHoverRect.bottom > window.innerHeight - padding) {
+                hoverDiv.style.top = 'auto';
+                hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              }
+            }
+          }
+        });
+        
+        // Close hover content when clicking elsewhere on the page
+        document.addEventListener('click', function(event) {
+          if (activeHover && !event.target.closest('.floating-hover-target') && 
+              !event.target.closest('.floating-hover-content')) {
+            activeHover.style.opacity = '0';
+            
+            setTimeout(() => {
+              activeHover.style.visibility = 'hidden';
+              activeHover = null;
+            }, 300);
+          }
+        });
+      });
+    </script><!-- hexo injector head_end end --></head>
+<body>
+
+
+
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/algo.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/algo/greedy.html"><div class="main" ff="title">Algorithms</div><div class="sub cap">ACM-ICPC</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/algo/" placeholder="Search in Algorithms/"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+</div>
+<div class="widgets">
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">算法学习 (& COMP3252)</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/greedy.html#start"><span class="toc-text">贪心算法</span></a></div><div class="widget-header dis-select"><span class="name">动态规划</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/interval-dp.html"><span class="toc-text">区间 DP</span></a></div><div class="widget-header dis-select"><span class="name">计算几何</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/computational-geometry.html"><span class="toc-text">计算几何</span></a><a class="link" href="/wiki/algo/convex-hull.html"><span class="toc-text">计算几何：凸包</span></a><a class="link" href="/wiki/algo/half-plane.html"><span class="toc-text">【计算几何】半平面交</span></a></div><div class="widget-header dis-select"><span class="name">图论——网络流</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/network-flow-models.html"><span class="toc-text">网络流模型</span></a><a class="link" href="/wiki/algo/network-flow.html"><span class="toc-text">网络流：最大流、最小割</span></a><a class="link" href="/wiki/algo/bounded-flow.html"><span class="toc-text">无/有源汇 上下界 可行/最大/最小流</span></a><a class="link" href="/wiki/algo/ford-fulkerson.html"><span class="toc-text">网络流：Ford-Fulkerson 增广路算法</span></a><a class="link" href="/wiki/algo/edmonds-karp.html"><span class="toc-text">网络流：EK 算法</span></a><a class="link" href="/wiki/algo/push-relabel.html"><span class="toc-text">网络流：预流推进算法</span></a><a class="link" href="/wiki/algo/stoer-wagner.html"><span class="toc-text">网络流：无源汇全局最小割算法</span></a><a class="link" href="/wiki/algo/gomory-hu-tree.html"><span class="toc-text">图论、网络流：最小割树 (Gomory-Hu Tree)</span></a></div><div class="widget-header dis-select"><span class="name">图论——树上问题</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/boruvka.html"><span class="toc-text">Boruvka 算法：特殊限制下的最小生成树算法</span></a></div><div class="widget-header dis-select"><span class="name">博弈论</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/nim-game.html"><span class="toc-text">【博弈论】Nim 游戏</span></a><a class="link" href="/wiki/algo/alpha-beta-minimax.html"><span class="toc-text">博弈论：Minimax 与 Alpha-Beta 剪枝</span></a></div><div class="widget-header dis-select"><span class="name">理论计算机科学</span></div><div class="widget-body fs14"><a class="link" href="/wiki/algo/np-complete.html"><span class="toc-text">NP 理论初探</span></a><a class="link" href="/wiki/algo/npc-problems.html"><span class="toc-text">经典 NP-Complete 问题与证明</span></a><a class="link" href="/wiki/algo/approx-algo.html"><span class="toc-text">NP 理论：近似算法</span></a><a class="link" href="/wiki/algo/dp-design.html"><span class="toc-text">动态规划例题 (1)</span></a><a class="link" href="/wiki/algo/counting-techniques.html"><span class="toc-text">算法设计：计数模型</span></a><a class="link" href="/wiki/algo/segtree-decomp.html"><span class="toc-text">线段树分治</span></a><a class="link active" href="/wiki/algo/manacher.html"><span class="toc-text">Manacher</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">Wiki</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/algo/greedy.html">Algorithms</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-05-20T13:31:44.432Z">2025-05-20</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Manacher</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="manacher-算法"><a class="markdownIt-Anchor" href="#manacher-算法"></a> Manacher 算法</h2>
+<h3 id="manacher-推广"><a class="markdownIt-Anchor" href="#manacher-推广"></a> Manacher 推广</h3>
+<p>如果我们的 pattern 拥有如下的一些性质，那么我们就可以利用 Manacher 进行加速：</p>
+<ol>
+<li>具有类似回文的<strong>对称性</strong>。如果维护的回文 Box 为 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>l</mi><mo separator="true">,</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l,r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span></eq>，那么这种对称性使得 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">R[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span></eq> 至少 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≥</mo><mi>R</mi><mo stretchy="false">[</mo><mi>l</mi><mo>+</mo><mi>r</mi><mo>−</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\ge R[l+r-i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span></eq>.</li>
+<li><strong>外推性</strong>：如果 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mi>l</mi><mo>…</mo><mi>r</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[l\dots r]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">]</span></span></span></span></eq> 满足性质，那么 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo>…</mo><mi>r</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[l+1\dots r-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></eq> 也应该满足性质</li>
+</ol>
+<h2 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h2>
+<h3 id="p3501-poi-2010-ant-antisymmetry"><a class="markdownIt-Anchor" href="#p3501-poi-2010-ant-antisymmetry"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3501">P3501 [POI 2010] ANT-Antisymmetry</a></h3>
+<p>题目所描述的 pattern 符合外推性：一个合法的 pattern 必须有 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false">[</mo><mn>0</mn><mo stretchy="false">]</mo><mo mathvariant="normal">≠</mo><mi>s</mi><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">s[0]\ne s[-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span></eq>, 去掉之后的子串也必然满足&quot;反对称&quot;.</p>
+<p>而且也具有对称性。于是可以使用 Manacher 算法，而且反对称的串长必为偶数，我们在数字中间 pad <code>#</code>，这样就可以向 Manacher 那样了。时间复杂度 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></eq></p>
+
+<details class="hcb-content box hcbsuccess">
+  <summary><i class="fa fa-check fa-fw"></i>Code<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    std::cin &gt;&gt; n;</span><br><span class="line">    std::string s;</span><br><span class="line">    std::cin &gt;&gt; s;</span><br><span class="line"></span><br><span class="line">    std::string T = <span class="string">&quot;.&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> c : s) T += c, T += <span class="string">&quot;.&quot;</span>;</span><br><span class="line">    <span class="type">int</span> L = T.<span class="built_in">length</span>();</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">R</span><span class="params">(L + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> check = [&amp;](<span class="type">int</span> p1, <span class="type">int</span> p2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (T[p1] == <span class="string">&#x27;.&#x27;</span> &amp;&amp; T[p2] == <span class="string">&#x27;.&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (T[p1] == <span class="string">&#x27;1&#x27;</span> &amp;&amp; T[p2] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (T[p1] == <span class="string">&#x27;0&#x27;</span> &amp;&amp; T[p2] == <span class="string">&#x27;1&#x27;</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> C = <span class="number">0</span>, r = <span class="number">0</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L; i += <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="type">int</span> reflect = <span class="number">2</span> * C - i;</span><br><span class="line">        <span class="type">int</span> k;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &lt;= C + r) k = std::<span class="built_in">min</span>(R[reflect], C + r - i);</span><br><span class="line">        <span class="keyword">else</span> k = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (i - k &gt;= <span class="number">0</span> &amp;&amp; i + k &lt; L &amp;&amp; <span class="built_in">check</span>(i - k, i + k)) k++;</span><br><span class="line"></span><br><span class="line">        R[i] = k - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i + R[i] &gt; C + r) &#123;</span><br><span class="line">            C = i;</span><br><span class="line">            r = R[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += R[i] / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; ans &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<div class="typst">
+<svg class="typst-doc" viewBox="0 0 641.000 163.000" width="641.000" height="163.000" data-width="641.000" data-height="163.000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:h5="http://www.w3.org/1999/xhtml"><style type="text/css">.typst-text {
+  pointer-events: bounding-box;
+}
+
+.tsel span,
+.tsel {
+  left: 0;
+  position: fixed;
+  text-align: justify;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+  text-align-last: justify;
+  color: transparent;
+  white-space: pre;
+}
+.tsel span::-moz-selection,
+.tsel::-moz-selection {
+  color: transparent;
+  background: #7db9dea0;
+}
+.tsel span::selection,
+.tsel::selection {
+  color: transparent;
+  background: #7db9dea0;
+}
+.pseudo-link {
+  fill: transparent;
+  cursor: pointer;
+  pointer-events: all;
+}
+svg {
+  fill: none;
+}
+
+.outline_glyph path,
+path.outline_glyph {
+  fill: var(--glyph_fill);
+  stroke: var(--glyph_stroke);
+}
+
+.outline_glyph path,
+path.outline_glyph {
+  transition: 0.2s fill stroke;
+}
+.hover .typst-text {
+  --glyph_fill: #66bab7;
+  --glyph_stroke: #66bab7;
+}
+
+.typst-jump-ripple,
+.typst-debug-react-ripple {
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  position: absolute;
+  border-radius: 50%;
+}
+.typst-jump-ripple {
+  border: 1px solid #66bab7;
+}
+.typst-debug-react-ripple {
+  border: 1px solid #cb1b45;
+}
+@keyframes typst-jump-ripple-effect {
+  to {
+    width: 10vw;
+    height: 10vw;
+    opacity: 0.01;
+    margin: -5vw;
+  }
+}
+@keyframes typst-debug-react-ripple-effect {
+  to {
+    width: 3vw;
+    height: 3vw;
+    opacity: 0.01;
+    margin: -1.5vw;
+  }
+}
+</style><defs class="glyph"><path id="g8OKh+Q0" class="outline_glyph" d="M 203 1 C 203 65 179 106 139 106 C 104 106 86 79 86 53 C 86 27 103 0 139 0 C 154 0 168 6 179 16 C 181 -63 153 -124 109 -171 C 103 -177 102 -178 102 -182 C 102 -189 107 -193 112 -193 C 124 -193 203 -114 203 1 Z "/><path id="g8OKh+Q4" class="outline_glyph" d="M 276 187 L 276 245 L 11 245 L 11 187 Z "/><path id="g8OKh+Q8" class="outline_glyph" d="M 192 53 C 192 82 168 106 139 106 C 110 106 86 82 86 53 C 86 24 110 0 139 0 C 168 0 192 24 192 53 Z "/><path id="g8OKh+Rs" class="outline_glyph" d="M 192 378 C 192 407 168 431 139 431 C 110 431 86 407 86 378 C 86 349 110 325 139 325 C 168 325 192 349 192 378 Z M 192 53 C 192 82 168 106 139 106 C 110 106 86 82 86 53 C 86 24 110 0 139 0 C 168 0 192 24 192 53 Z "/><path id="g8OKh+S0" class="outline_glyph" d="M 582 258 L 557 258 C 546 156 532 31 356 31 L 274 31 C 227 31 225 38 225 71 L 225 604 C 225 638 225 652 320 652 L 353 652 L 353 683 C 317 680 226 680 185 680 C 146 680 68 680 33 683 L 33 652 L 57 652 C 134 652 136 641 136 605 L 136 78 C 136 42 134 31 57 31 L 33 31 L 33 0 L 554 0 Z "/><path id="g8OKh+TE" class="outline_glyph" d="M 624 497 C 624 595 525 683 388 683 L 35 683 L 35 652 L 59 652 C 136 652 138 641 138 605 L 138 78 C 138 42 136 31 59 31 L 35 31 L 35 0 C 70 3 144 3 182 3 C 220 3 295 3 330 0 L 330 31 L 306 31 C 229 31 227 42 227 78 L 227 316 L 396 316 C 516 316 624 397 624 497 Z M 521 497 C 521 450 521 342 362 342 L 224 342 L 224 612 C 224 645 226 652 273 652 L 362 652 C 521 652 521 546 521 497 Z "/><path id="g8OKh+TU" class="outline_glyph" d="M 685 452 L 666 677 L 55 677 L 36 452 L 61 452 C 75 613 90 646 241 646 C 259 646 285 646 295 644 C 316 640 316 629 316 606 L 316 79 C 316 45 316 31 211 31 L 171 31 L 171 0 C 212 3 314 3 360 3 C 406 3 509 3 550 0 L 550 31 L 510 31 C 405 31 405 45 405 79 L 405 606 C 405 626 405 640 423 644 C 434 646 461 646 480 646 C 631 646 646 613 660 452 Z "/><path id="g8OKh+UI" class="outline_glyph" d="M 483 89 L 483 145 L 458 145 L 458 89 C 458 31 433 25 422 25 C 389 25 385 70 385 75 L 385 275 C 385 317 385 356 349 393 C 310 432 260 448 212 448 C 130 448 61 401 61 335 C 61 305 81 288 107 288 C 135 288 153 308 153 334 C 153 346 148 379 102 380 C 129 415 178 426 210 426 C 259 426 316 387 316 298 L 316 261 C 265 258 195 255 132 225 C 57 191 32 139 32 95 C 32 14 129 -11 192 -11 C 258 -11 304 29 323 76 C 327 36 354 -6 401 -6 C 422 -6 483 8 483 89 Z M 316 140 C 316 45 244 11 199 11 C 150 11 109 46 109 96 C 109 151 151 234 316 240 Z "/><path id="g8OKh+UM" class="outline_glyph" d="M 521 216 C 521 343 423 442 309 442 C 231 442 188 395 172 377 L 172 694 L 28 683 L 28 652 C 98 652 106 645 106 596 L 106 0 L 131 0 L 167 62 C 182 39 224 -11 298 -11 C 417 -11 521 87 521 216 Z M 438 217 C 438 180 436 120 407 75 C 386 44 348 11 294 11 C 249 11 213 35 189 72 C 175 93 175 96 175 114 L 175 320 C 175 339 175 340 186 356 C 225 412 280 420 304 420 C 349 420 385 394 409 356 C 435 315 438 258 438 217 Z "/><path id="g8OKh+UQ" class="outline_glyph" d="M 415 119 C 415 129 405 129 402 129 C 393 129 391 125 389 119 C 360 26 295 14 258 14 C 205 14 117 57 117 218 C 117 381 199 423 252 423 C 261 423 324 422 359 386 C 318 383 312 353 312 340 C 312 314 330 294 358 294 C 384 294 404 311 404 341 C 404 409 328 448 251 448 C 126 448 34 340 34 216 C 34 88 133 -11 249 -11 C 383 -11 415 109 415 119 Z "/><path id="g8OKh+UU" class="outline_glyph" d="M 527 0 L 527 31 C 457 31 449 38 449 87 L 449 694 L 305 683 L 305 652 C 375 652 383 645 383 596 L 383 380 C 354 416 311 442 257 442 C 139 442 34 344 34 215 C 34 88 132 -11 246 -11 C 310 -11 355 23 380 55 L 380 -11 Z M 380 118 C 380 100 380 98 369 81 C 339 33 294 11 251 11 C 206 11 170 37 146 75 C 120 116 117 173 117 214 C 117 251 119 311 148 356 C 169 387 207 420 261 420 C 296 420 338 405 369 360 C 380 343 380 341 380 323 Z "/><path id="g8OKh+UY" class="outline_glyph" d="M 415 119 C 415 129 407 131 402 131 C 393 131 391 125 389 117 C 354 14 264 14 254 14 C 204 14 164 44 141 81 C 111 129 111 195 111 231 L 390 231 C 412 231 415 231 415 252 C 415 351 361 448 236 448 C 120 448 28 345 28 220 C 28 86 133 -11 248 -11 C 370 -11 415 100 415 119 Z M 349 252 L 112 252 C 118 401 202 426 236 426 C 339 426 349 291 349 252 Z "/><path id="g8OKh+Uc" class="outline_glyph" d="M 357 635 C 357 672 320 705 267 705 C 197 705 112 652 112 546 L 112 431 L 33 431 L 33 400 L 112 400 L 112 76 C 112 31 101 31 34 31 L 34 0 L 148 3 C 188 3 235 3 275 0 L 275 31 L 254 31 C 180 31 178 42 178 78 L 178 400 L 292 400 L 292 431 L 175 431 L 175 547 C 175 635 223 683 267 683 C 270 683 285 683 300 676 C 288 672 270 659 270 634 C 270 611 286 591 313 591 C 342 591 357 611 357 635 Z "/><path id="g8OKh+Ug" class="outline_glyph" d="M 485 404 C 485 421 473 453 434 453 C 414 453 370 447 328 406 C 286 439 244 442 222 442 C 129 442 60 373 60 296 C 60 252 82 214 107 193 C 94 178 76 145 76 110 C 76 79 89 41 120 21 C 60 4 28 -39 28 -79 C 28 -151 127 -206 249 -206 C 367 -206 471 -155 471 -77 C 471 -42 457 9 406 37 C 353 65 295 65 234 65 C 209 65 166 65 159 66 C 127 70 106 101 106 133 C 106 137 106 160 123 180 C 162 152 203 149 222 149 C 315 149 384 218 384 295 C 384 332 368 369 343 392 C 379 426 415 431 433 431 C 433 431 440 431 443 430 C 432 426 427 415 427 403 C 427 386 440 374 456 374 C 466 374 485 381 485 404 Z M 309 296 C 309 269 308 237 293 212 C 285 200 262 172 222 172 C 135 172 135 272 135 295 C 135 322 136 354 151 379 C 159 391 182 419 222 419 C 309 419 309 319 309 296 Z M 419 -79 C 419 -133 348 -183 250 -183 C 149 -183 80 -132 80 -79 C 80 -33 118 4 162 7 L 221 7 C 307 7 419 7 419 -79 Z "/><path id="g8OKh+Uk" class="outline_glyph" d="M 535 0 L 535 31 C 483 31 458 31 457 61 L 457 252 C 457 338 457 369 426 405 C 412 422 379 442 321 442 C 237 442 193 382 177 346 L 176 346 L 176 694 L 32 683 L 32 652 C 102 652 110 645 110 596 L 110 76 C 110 31 99 31 32 31 L 32 0 L 145 3 L 257 0 L 257 31 C 190 31 179 31 179 76 L 179 260 C 179 364 250 420 314 420 C 377 420 388 366 388 309 L 388 76 C 388 31 377 31 310 31 L 310 0 L 423 3 Z "/><path id="g8OKh+Uo" class="outline_glyph" d="M 247 0 L 247 31 C 181 31 177 36 177 75 L 177 442 L 37 431 L 37 400 C 102 400 111 394 111 345 L 111 76 C 111 31 100 31 33 31 L 33 0 L 143 3 C 178 3 213 1 247 0 Z M 192 604 C 192 631 169 657 139 657 C 105 657 85 629 85 604 C 85 577 108 551 138 551 C 172 551 192 579 192 604 Z "/><path id="g8OKh+Uw" class="outline_glyph" d="M 511 0 L 511 31 C 474 31 452 31 414 84 L 287 263 C 286 265 281 271 281 274 C 281 278 352 338 362 346 C 425 397 467 399 488 400 L 488 431 C 459 428 446 428 418 428 C 382 428 320 430 306 431 L 306 400 C 325 399 335 388 335 375 C 335 355 321 343 313 336 L 172 214 L 172 694 L 28 683 L 28 652 C 98 652 106 645 106 596 L 106 76 C 106 31 95 31 28 31 L 28 0 L 137 3 L 247 0 L 247 31 C 180 31 169 31 169 76 L 169 179 L 233 234 C 310 128 352 72 352 54 C 352 35 335 31 316 31 L 316 0 L 424 3 C 453 3 482 2 511 0 Z "/><path id="g8OKh+U0" class="outline_glyph" d="M 255 0 L 255 31 C 188 31 177 31 177 76 L 177 694 L 33 683 L 33 652 C 103 652 111 645 111 596 L 111 76 C 111 31 100 31 33 31 L 33 0 L 144 3 Z "/><path id="g8OKh+U8" class="outline_glyph" d="M 535 0 L 535 31 C 483 31 458 31 457 61 L 457 252 C 457 338 457 369 426 405 C 412 422 379 442 321 442 C 248 442 201 399 173 337 L 173 442 L 32 431 L 32 400 C 102 400 110 393 110 344 L 110 76 C 110 31 99 31 32 31 L 32 0 L 145 3 L 257 0 L 257 31 C 190 31 179 31 179 76 L 179 260 C 179 364 250 420 314 420 C 377 420 388 366 388 309 L 388 76 C 388 31 377 31 310 31 L 310 0 L 423 3 Z "/><path id="g8OKh+VA" class="outline_glyph" d="M 471 214 C 471 342 371 448 250 448 C 125 448 28 339 28 214 C 28 85 132 -11 249 -11 C 370 -11 471 87 471 214 Z M 388 222 C 388 186 388 132 366 88 C 344 43 300 14 250 14 C 207 14 163 35 136 81 C 111 125 111 186 111 222 C 111 261 111 315 135 359 C 162 405 209 426 249 426 C 293 426 336 404 362 361 C 388 318 388 260 388 222 Z "/><path id="g8OKh+VM" class="outline_glyph" d="M 364 381 C 364 413 333 442 290 442 C 217 442 181 375 167 332 L 167 442 L 28 431 L 28 400 C 98 400 106 393 106 344 L 106 76 C 106 31 95 31 28 31 L 28 0 L 142 3 C 182 3 229 3 269 0 L 269 31 L 248 31 C 174 31 172 42 172 78 L 172 232 C 172 331 214 420 290 420 C 297 420 299 420 301 419 C 298 418 278 406 278 380 C 278 352 299 337 321 337 C 339 337 364 349 364 381 Z "/><path id="g8OKh+VQ" class="outline_glyph" d="M 360 128 C 360 181 330 211 318 223 C 285 255 246 263 204 271 C 148 282 81 295 81 353 C 81 388 107 429 193 429 C 303 429 308 339 310 308 C 311 299 322 299 322 299 C 335 299 335 304 335 323 L 335 424 C 335 441 335 448 324 448 C 319 448 317 448 304 436 C 301 432 291 423 287 420 C 249 448 208 448 193 448 C 71 448 33 381 33 325 C 33 290 49 262 76 240 C 108 214 136 208 208 194 C 230 190 312 174 312 102 C 312 51 277 11 199 11 C 115 11 79 68 60 153 C 57 166 56 170 46 170 C 33 170 33 163 33 145 L 33 13 C 33 -4 33 -11 44 -11 C 49 -11 50 -10 69 9 C 71 11 71 13 89 32 C 133 -10 178 -11 199 -11 C 314 -11 360 56 360 128 Z "/><path id="g8OKh+VU" class="outline_glyph" d="M 332 124 L 332 181 L 307 181 L 307 126 C 307 52 277 14 240 14 C 173 14 173 105 173 122 L 173 400 L 316 400 L 316 431 L 173 431 L 173 615 L 148 615 C 147 533 117 426 19 422 L 19 400 L 104 400 L 104 124 C 104 1 197 -11 233 -11 C 304 -11 332 60 332 124 Z "/><path id="g8OKh+VY" class="outline_glyph" d="M 535 0 L 535 31 C 465 31 457 38 457 87 L 457 442 L 310 431 L 310 400 C 380 400 388 393 388 344 L 388 166 C 388 79 340 11 267 11 C 183 11 179 58 179 110 L 179 442 L 32 431 L 32 400 C 110 400 110 397 110 308 L 110 158 C 110 80 110 -11 262 -11 C 318 -11 362 17 391 79 L 391 -11 Z "/><path id="g8OKh+Vc" class="outline_glyph" d="M 508 400 L 508 431 C 485 429 456 428 433 428 L 346 431 L 346 400 C 383 399 394 376 394 357 C 394 348 392 344 388 333 L 286 78 L 174 357 C 168 370 168 374 168 374 C 168 400 207 400 225 400 L 225 431 L 116 428 C 89 428 49 429 19 431 L 19 400 C 82 400 86 394 99 363 L 243 8 C 249 -6 251 -11 264 -11 C 277 -11 281 -2 285 8 L 416 333 C 425 356 442 399 508 400 Z "/><path id="g8OKh+Vg" class="outline_glyph" d="M 703 400 L 703 431 C 681 429 652 428 630 428 L 537 431 L 537 400 C 573 399 595 381 595 352 C 595 346 595 344 590 331 L 499 75 L 400 354 C 396 366 395 368 395 373 C 395 400 434 400 454 400 L 454 431 L 350 428 C 320 428 291 429 261 431 L 261 400 C 298 400 314 398 324 385 C 329 379 340 349 347 330 L 261 88 L 166 355 C 161 367 161 369 161 373 C 161 400 200 400 220 400 L 220 431 L 111 428 L 18 431 L 18 400 C 68 400 80 397 92 365 L 218 11 C 223 -3 226 -11 239 -11 C 252 -11 254 -5 259 9 L 360 292 L 462 8 C 466 -3 469 -11 482 -11 C 495 -11 498 -2 502 8 L 619 336 C 637 386 668 399 703 400 Z "/><path id="g8OKh+Vo" class="outline_glyph" d="M 508 400 L 508 431 C 485 429 456 428 433 428 L 346 431 L 346 400 C 377 399 393 382 393 357 C 393 347 392 345 387 333 L 286 87 L 175 356 C 171 366 169 370 169 374 C 169 400 206 400 225 400 L 225 431 L 116 428 C 89 428 49 429 19 431 L 19 400 C 67 400 86 400 100 365 L 250 0 L 225 -59 C 203 -114 175 -183 111 -183 C 106 -183 83 -183 64 -165 C 95 -161 103 -139 103 -123 C 103 -97 84 -81 61 -81 C 41 -81 19 -94 19 -124 C 19 -169 61 -205 111 -205 C 174 -205 215 -148 239 -91 L 415 336 C 441 399 492 400 508 400 Z "/><path id="gGxid1Qk" class="outline_glyph" d="M 318 -248 C 327 -248 332 -243 332 -234 C 332 -231 330 -227 327 -223 C 275 -183 233 -117 202 -26 C 175 53 161 131 161 208 L 161 292 C 161 369 175 447 202 526 C 233 617 275 683 327 723 C 330 726 332 730 332 734 C 332 743 327 748 318 748 C 317 748 314 747 311 745 C 251 699 201 631 160 540 C 121 453 101 371 101 292 L 101 208 C 101 129 121 47 160 -40 C 201 -131 251 -199 311 -245 C 314 -247 317 -248 318 -248 Z "/><path id="gGxid1Qo" class="outline_glyph" d="M 78 -245 C 138 -199 188 -131 229 -40 C 268 47 288 129 288 208 L 288 292 C 288 371 268 453 229 540 C 188 631 138 699 78 745 C 75 747 72 748 71 748 C 62 748 57 743 57 734 C 57 730 59 726 62 723 C 114 683 156 617 187 526 C 214 447 228 369 228 292 L 228 208 C 228 131 214 53 187 -26 C 156 -117 114 -183 62 -223 C 59 -227 57 -231 57 -234 C 57 -243 62 -248 71 -248 C 72 -248 75 -247 78 -245 Z "/><path id="gGxid1Qw" class="outline_glyph" d="M 698 274 L 413 274 L 413 559 C 413 575 405 583 389 583 C 373 583 365 575 365 559 L 365 274 L 80 274 C 64 274 56 266 56 250 C 56 234 64 226 80 226 L 365 226 L 365 -59 C 365 -75 373 -83 389 -83 C 405 -83 413 -75 413 -59 L 413 226 L 698 226 C 714 226 722 234 722 250 C 722 263 711 274 698 274 Z "/><path id="gGxid1RI" class="outline_glyph" d="M 269 666 C 228 624 168 603 89 603 L 89 564 C 141 564 184 572 217 588 L 217 82 C 217 64 213 52 204 47 C 195 42 170 39 130 39 L 95 39 L 95 0 C 120 2 174 3 257 3 C 340 3 394 2 419 0 L 419 39 L 384 39 C 343 39 318 42 310 47 C 302 52 297 64 297 82 L 297 636 C 297 660 295 666 269 666 Z "/><path id="gGxid1RM" class="outline_glyph" d="M 237 666 C 186 666 143 648 106 612 C 69 576 50 534 50 483 C 50 449 75 424 106 424 C 136 424 161 450 161 480 C 161 513 137 536 105 536 C 102 536 100 536 98 535 C 117 584 161 627 224 627 C 306 627 352 556 352 470 C 352 403 318 331 250 255 L 62 43 C 49 28 50 29 50 0 L 421 0 L 450 180 L 417 180 C 409 129 402 100 396 91 C 391 86 361 84 306 84 L 139 84 L 236 179 C 304 243 390 312 419 365 C 439 400 449 435 449 470 C 449 588 357 666 237 666 Z "/><path id="gGxid1R4" class="outline_glyph" d="M 698 367 L 80 367 C 64 367 56 359 56 344 C 56 329 64 321 80 321 L 698 321 C 714 321 722 329 722 344 C 722 356 711 367 698 367 Z M 698 179 L 80 179 C 64 179 56 171 56 156 C 56 141 64 133 80 133 L 698 133 C 714 133 722 141 722 156 C 722 169 711 179 698 179 Z "/><path id="gGxid1QgL" class="outline_glyph" d="M 498 144 C 498 153 493 158 482 158 C 474 158 468 151 465 137 C 445 58 421 18 394 18 C 377 18 368 32 368 60 C 368 73 372 97 381 132 L 438 357 C 443 376 445 387 445 392 C 445 412 434 422 412 422 C 391 422 377 410 370 387 C 349 424 319 442 281 442 C 216 442 159 409 109 343 C 63 281 40 217 40 150 C 40 63 91 -11 175 -11 C 218 -11 260 12 300 58 C 311 20 345 -11 392 -11 C 461 -11 482 70 498 144 Z M 341 374 C 350 353 355 339 355 330 C 355 326 354 321 353 314 L 304 122 C 301 111 294 99 285 87 C 248 41 212 18 177 18 C 138 18 118 48 118 107 C 118 131 124 167 136 215 C 157 300 187 357 224 388 C 244 405 263 413 282 413 C 309 413 329 400 341 374 Z "/><path id="gGxid1QkL" class="outline_glyph" d="M 281 445 C 245 445 209 428 174 394 L 243 679 C 241 688 238 694 226 694 C 193 694 120 685 107 684 C 92 682 84 675 84 660 C 84 650 93 645 112 645 C 131 645 157 646 157 632 C 157 628 152 608 143 571 L 63 249 C 52 207 47 173 47 148 C 47 62 93 -11 175 -11 C 240 -11 297 22 347 89 C 392 151 415 216 415 283 C 415 370 364 445 281 445 Z M 279 415 C 318 415 337 385 337 326 C 337 299 331 263 319 218 C 297 133 268 75 233 44 C 213 27 194 19 175 19 C 134 19 114 51 114 115 C 114 137 119 170 129 214 L 151 304 C 154 319 159 330 165 338 C 204 389 242 415 279 415 Z "/><path id="gGxid1QoL" class="outline_glyph" d="M 328 325 C 328 300 341 287 368 287 C 404 287 427 318 427 354 C 427 410 368 442 308 442 C 239 442 176 412 122 353 C 68 294 41 229 41 159 C 41 61 106 -11 204 -11 C 257 -11 304 2 345 27 C 379 48 404 69 420 90 C 427 99 430 106 430 109 C 430 120 425 126 414 126 C 409 126 404 122 398 114 C 365 70 324 42 277 30 C 246 22 223 18 206 18 C 149 18 121 53 121 122 C 121 184 150 274 174 317 C 198 361 249 413 308 413 C 346 413 372 402 386 381 C 355 378 328 358 328 325 Z "/><path id="gGxid1REL" class="outline_glyph" d="M 409 353 C 409 327 423 314 450 314 C 485 314 508 345 508 379 C 508 418 476 445 437 445 C 392 445 344 415 291 356 C 250 311 217 282 190 269 L 291 679 C 289 688 287 694 274 694 C 242 694 166 685 154 684 C 139 682 132 675 132 660 C 132 650 141 645 159 645 C 178 645 204 646 204 632 L 59 43 C 56 32 55 25 55 21 C 55 0 66 -11 87 -11 C 104 -11 117 -3 124 12 C 129 21 147 92 179 226 C 231 221 286 196 286 146 C 286 131 279 101 279 91 C 279 34 316 -11 373 -11 C 431 -11 470 41 490 145 C 490 154 485 159 475 159 C 466 159 460 152 457 138 C 435 59 408 19 375 19 C 357 19 348 33 348 61 C 348 77 360 131 360 147 C 360 204 314 239 221 253 C 244 269 270 292 298 322 C 326 352 346 371 359 382 C 386 404 412 415 435 415 C 445 415 453 413 459 409 C 432 404 409 379 409 353 Z "/><path id="gGxid1RQL" class="outline_glyph" d="M 537 137 C 514 58 481 18 440 18 C 427 18 420 28 420 47 C 420 61 426 84 438 115 C 478 224 498 296 498 333 C 498 403 451 442 381 442 C 322 442 271 416 230 363 C 222 407 187 442 136 442 C 80 442 58 390 44 345 C 34 313 29 294 29 287 C 29 278 34 273 45 273 C 50 273 53 274 56 276 C 61 285 64 292 65 299 C 83 375 106 413 133 413 C 151 413 160 399 160 371 C 160 358 155 331 144 290 L 87 63 C 84 50 78 24 78 19 C 78 -1 89 -11 111 -11 C 130 -11 144 -1 151 19 C 153 24 159 49 170 92 L 191 181 L 221 295 C 232 318 249 341 270 365 C 299 397 335 413 378 413 C 411 413 427 391 427 348 C 427 310 406 234 363 120 C 356 102 353 87 353 74 C 353 25 390 -11 438 -11 C 482 -11 517 14 542 64 C 561 104 571 131 571 144 C 571 153 566 158 555 158 C 552 158 537 149 537 137 Z "/><path id="gGxid1U0S" class="outline_glyph" d="M 303 664 C 260 622 196 601 109 601 L 109 557 C 168 557 215 566 251 583 L 251 85 C 251 72 250 64 247 60 C 242 49 212 43 157 43 L 116 43 L 116 0 C 116 0 294 4 294 4 C 294 4 473 0 473 0 L 473 43 L 432 43 C 377 43 347 49 341 60 C 339 64 338 72 338 85 L 338 632 C 338 659 334 664 303 664 Z "/><path id="gGxid1XwS" class="outline_glyph" d="M 119 424 C 151 424 175 448 175 480 C 175 516 156 535 119 536 C 141 583 191 621 256 621 C 344 621 402 555 402 467 C 402 419 385 373 350 328 C 333 305 320 289 311 280 L 74 45 C 61 33 63 30 63 0 L 475 0 L 506 188 L 464 188 C 457 135 449 104 440 97 C 435 94 404 92 345 92 L 175 92 C 242 151 304 204 363 251 C 408 286 440 317 460 344 C 490 383 505 424 505 467 C 505 529 481 578 432 614 C 389 647 335 664 271 664 C 216 664 169 648 128 616 C 85 581 63 537 63 483 C 63 449 88 424 119 424 Z "/><path id="gGxid1dYT" class="outline_glyph" d="M 567 371 C 567 415 531 444 487 444 C 442 444 389 415 327 356 C 282 313 246 285 221 273 L 317 659 C 318 661 319 667 321 676 C 321 688 314 694 301 694 L 175 684 C 158 683 150 674 150 657 C 150 646 160 640 179 640 C 196 640 223 640 223 629 C 223 625 222 618 219 608 C 171 417 125 224 76 34 C 75 30 75 27 75 26 C 75 2 87 -10 112 -10 C 137 -10 153 5 161 34 C 177 95 200 186 209 223 C 288 214 328 189 328 146 C 328 137 322 105 322 96 C 322 34 369 -10 430 -10 C 466 -10 496 8 519 44 C 540 77 553 110 559 145 C 559 156 552 162 539 162 C 533 162 529 161 526 159 C 521 150 517 142 516 135 C 496 62 468 26 433 26 C 413 26 403 42 403 73 C 403 85 405 99 408 116 C 411 127 413 137 413 148 C 413 191 391 221 346 236 C 318 246 290 253 262 256 C 281 269 305 289 334 315 C 381 357 425 408 486 408 C 497 408 505 406 511 402 C 480 394 464 375 464 344 C 464 320 483 303 507 303 C 543 303 567 335 567 371 Z "/><path id="gGxid1dkT" class="outline_glyph" d="M 164 441 C 131 441 104 423 83 386 C 69 361 58 335 51 306 C 48 295 47 289 47 287 C 47 276 54 270 68 270 C 87 270 88 281 93 302 C 110 371 133 406 162 406 C 181 406 190 391 190 361 C 190 350 185 324 174 281 L 121 67 C 114 40 111 26 111 25 C 111 2 124 -10 149 -10 C 168 -10 182 -2 191 14 C 194 20 200 41 209 76 L 230 164 C 242 211 249 237 251 243 C 259 269 271 294 288 317 C 330 376 378 406 433 406 C 469 406 487 384 487 341 C 487 302 468 233 429 133 C 419 107 414 89 414 78 C 414 24 458 -10 512 -10 C 559 -10 597 14 624 62 C 647 103 658 130 658 144 C 658 155 651 161 638 161 C 631 160 624 155 617 145 C 616 144 616 142 616 141 C 593 64 559 25 515 25 C 501 25 494 35 494 56 C 494 70 502 96 517 134 C 552 223 569 287 569 325 C 569 371 553 403 522 420 C 497 434 468 441 437 441 C 372 441 317 413 273 357 C 264 406 221 441 164 441 Z "/><path id="gGxid1bcX" class="outline_glyph" d="M 1265 -450 L 1389 -124 L 1355 -124 C 1336 -174 1304 -216 1258 -250 C 1145 -334 1000 -356 791 -356 L 200 -356 L 700 232 C 707 239 710 246 710 251 L 244 894 L 781 894 C 970 894 1127 870 1230 804 C 1290 766 1332 719 1356 663 L 1389 663 L 1265 950 L 88 950 C 70 950 60 947 57 941 C 56 938 56 926 56 905 L 581 187 L 68 -415 C 61 -423 57 -430 57 -435 C 57 -445 67 -450 88 -450 Z "/></defs><defs class="clip-path"></defs><style type="text/css"></style><g class="typst-page" transform="translate(0, 0)" data-tid="pt5Zv9NT6iXcNVSsg/o/lJ0" data-page-width="641" data-page-height="163"><g data-tid="gt5Zv9NT6iXcNVSsg/o/lJ0" class="typst-group"><g transform="translate(5.000,5.000)" data-tid="pxFoSEdNjFDM80WKd+g2LBA"><g data-tid="gxFoSEdNjFDM80WKd+g2LBA" class="typst-group"><g transform="translate(0.000,12.294)" data-tid="pqQxl/JJztiERcD3Iu3QBVY"><g data-tid="gqQxl/JJztiERcD3Iu3QBVY" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#g8OKh+S0"/><use x="625" href="#g8OKh+UY"/><use x="1069" href="#g8OKh+VU"/><use x="1458" href="#g8OKh+QE"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="111.94" height="62.50"><h5:div class="tsel" style="font-size: 62px">Let </h5:div></foreignObject></g></g></g><g transform="translate(32.238,12.294)" data-tid="pOGjWxUr1tSIdSyNPXMjCAI"><g data-tid="gOGjWxUr1tSIdSyNPXMjCAI" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QgL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="33.06" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑎</h5:div></foreignObject></g></g></g><g transform="translate(41.760,12.294)" data-tid="pUB0a9+e2oYMpRFTbMbL+48"><g data-tid="gUB0a9+e2oYMpRFTbMbL+48" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#g8OKh+Q0"/><use x="278" href="#g8OKh+QE"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="38.19" height="62.50"><h5:div class="tsel" style="font-size: 62px">, </h5:div></foreignObject></g></g></g><g transform="translate(52.758,12.294)" data-tid="pa/cek3VAI8sK669KpCMzCQ"><g data-tid="ga/cek3VAI8sK669KpCMzCQ" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QkL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="27.69" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑏</h5:div></foreignObject></g></g></g><g transform="translate(60.732,12.294)" data-tid="p5pBiYjc/sGEVExtJeUuwPk"><g data-tid="g5pBiYjc/sGEVExtJeUuwPk" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#g8OKh+Q0"/><use x="278" href="#g8OKh+QE"/><use x="611" href="#g8OKh+UI"/><use x="1111" href="#g8OKh+U8"/><use x="1667" href="#g8OKh+UU"/><use x="2223" href="#g8OKh+QE"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="159.75" height="62.50"><h5:div class="tsel" style="font-size: 62px">, and </h5:div></foreignObject></g></g></g><g transform="translate(106.740,12.294)" data-tid="pZbpCxUMwg6YNsQJVM6M1wQ"><g data-tid="gZbpCxUMwg6YNsQJVM6M1wQ" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QoL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="28.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑐</h5:div></foreignObject></g></g></g><g transform="translate(114.984,12.294)" data-tid="pj62Zm6CGG20zi3xgFeg2D0"><g data-tid="gj62Zm6CGG20zi3xgFeg2D0" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#g8OKh+QE"/><use x="333" href="#g8OKh+UM"/><use x="917" href="#g8OKh+UY"/><use x="1361" href="#g8OKh+QE"/><use x="1694" href="#g8OKh+VU"/><use x="2083" href="#g8OKh+Uk"/><use x="2639" href="#g8OKh+UY"/><use x="3083" href="#g8OKh+QE"/><use x="3416" href="#g8OKh+VQ"/><use x="3810" href="#g8OKh+Uo"/><use x="4088" href="#g8OKh+UU"/><use x="4644" href="#g8OKh+UY"/><use x="5088" href="#g8OKh+QE"/><use x="5421" href="#g8OKh+U0"/><use x="5699" href="#g8OKh+UY"/><use x="6143" href="#g8OKh+U8"/><use x="6699" href="#g8OKh+Ug"/><use x="7199" href="#g8OKh+VU"/><use x="7588" href="#g8OKh+Uk"/><use x="8144" href="#g8OKh+VQ"/><use x="8538" href="#g8OKh+QE"/><use x="8871" href="#g8OKh+VA"/><use x="9371" href="#g8OKh+Uc"/><use x="9677" href="#g8OKh+QE"/><use x="10010" href="#g8OKh+VM"/><use x="10402" href="#g8OKh+Uo"/><use x="10680" href="#g8OKh+Ug"/><use x="11180" href="#g8OKh+Uk"/><use x="11708" href="#g8OKh+VU"/><use x="12097" href="#g8OKh+Q4"/><use x="12430" href="#g8OKh+UI"/><use x="12930" href="#g8OKh+U8"/><use x="13486" href="#g8OKh+Ug"/><use x="13986" href="#g8OKh+U0"/><use x="14264" href="#g8OKh+UY"/><use x="14708" href="#g8OKh+UU"/><use x="15264" href="#g8OKh+QE"/><use x="15597" href="#g8OKh+VU"/><use x="15986" href="#g8OKh+VM"/><use x="16378" href="#g8OKh+Uo"/><use x="16656" href="#g8OKh+UI"/><use x="17156" href="#g8OKh+U8"/><use x="17712" href="#g8OKh+Ug"/><use x="18212" href="#g8OKh+U0"/><use x="18490" href="#g8OKh+UY"/><use x="18934" href="#g8OKh+Q8"/><use x="19212" href="#g8OKh+QE"/><use x="19545" href="#g8OKh+TU"/><use x="20267" href="#g8OKh+Uk"/><use x="20823" href="#g8OKh+UY"/><use x="21267" href="#g8OKh+U8"/><use x="21823" href="#g8OKh+Q0"/><use x="22101" href="#g8OKh+QE"/><use x="22434" href="#g8OKh+Vg"/><use x="23128" href="#g8OKh+UY"/><use x="23572" href="#g8OKh+QE"/><use x="23905" href="#g8OKh+Uw"/><use x="24433" href="#g8OKh+U8"/><use x="24989" href="#g8OKh+VA"/><use x="25461" href="#g8OKh+Vg"/><use x="26183" href="#g8OKh+QE"/><use x="26516" href="#g8OKh+VU"/><use x="26905" href="#g8OKh+Uk"/><use x="27461" href="#g8OKh+UI"/><use x="27961" href="#g8OKh+VU"/><use x="28350" href="#g8OKh+Rs"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="1789.25" height="62.50"><h5:div class="tsel" style="font-size: 62px"> be the side lengths of right-angled triangle. Then, we know that:</h5:div></foreignObject></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g><g transform="translate(272.004,38.894)" data-tid="ps1m6D7yl38UZN3o0x3Db7c"><g data-tid="gs1m6D7yl38UZN3o0x3Db7c" class="typst-group"><g transform="translate(0.000,0.000)" data-tid="pqjbQ8sDUwG4nxX/53TxGps"><g data-tid="gqjbQ8sDUwG4nxX/53TxGps" class="typst-group"><g transform="translate(0.000,14.900)" data-tid="pOGjWxUr1tSIdSyNPXMjCAI"><g data-tid="gOGjWxUr1tSIdSyNPXMjCAI" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QgL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="33.06" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑎</h5:div></foreignObject></g></g></g><g transform="translate(9.522,8.366)" data-tid="pmxx2EaFDcQU7cGfsEPrzhE"><g data-tid="gmxx2EaFDcQU7cGfsEPrzhE" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1XwS"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="35.56" height="62.50"><h5:div class="tsel" style="font-size: 62px">2</h5:div></foreignObject></g></g></g><g transform="translate(21.699,14.900)" data-tid="p/FjH8YJVJLEdRQL05G3Z0c"><g data-tid="g/FjH8YJVJLEdRQL05G3Z0c" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1Qw"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="48.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">+</h5:div></foreignObject></g></g></g><g transform="translate(39.703,14.900)" data-tid="pa/cek3VAI8sK669KpCMzCQ"><g data-tid="ga/cek3VAI8sK669KpCMzCQ" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QkL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="27.69" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑏</h5:div></foreignObject></g></g></g><g transform="translate(47.677,8.366)" data-tid="pmxx2EaFDcQU7cGfsEPrzhE"><g data-tid="gmxx2EaFDcQU7cGfsEPrzhE" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1XwS"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="35.56" height="62.50"><h5:div class="tsel" style="font-size: 62px">2</h5:div></foreignObject></g></g></g><g transform="translate(60.855,14.900)" data-tid="pA0n/SKR5lvIjknqBkNOdU0"><g data-tid="gA0n/SKR5lvIjknqBkNOdU0" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1R4"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="48.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">=</h5:div></foreignObject></g></g></g><g transform="translate(79.859,14.900)" data-tid="pZbpCxUMwg6YNsQJVM6M1wQ"><g data-tid="gZbpCxUMwg6YNsQJVM6M1wQ" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1QoL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="28.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑐</h5:div></foreignObject></g></g></g><g transform="translate(88.103,8.366)" data-tid="pmxx2EaFDcQU7cGfsEPrzhE"><g data-tid="gmxx2EaFDcQU7cGfsEPrzhE" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1XwS"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="35.56" height="62.50"><h5:div class="tsel" style="font-size: 62px">2</h5:div></foreignObject></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g><g transform="translate(5.000,76.888)" data-tid="pQwagJvfQ6nccn8zcCQBCHw"><g data-tid="gQwagJvfQ6nccn8zcCQBCHw" class="typst-group"><g transform="translate(0.000,12.294)" data-tid="p0htxBfUBY3AwG0wGQx96ZY"><g data-tid="g0htxBfUBY3AwG0wGQx96ZY" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#g8OKh+TE"/><use x="681" href="#g8OKh+VM"/><use x="1073" href="#g8OKh+VA"/><use x="1545" href="#g8OKh+Vc"/><use x="2045" href="#g8OKh+UY"/><use x="2489" href="#g8OKh+QE"/><use x="2822" href="#g8OKh+UM"/><use x="3350" href="#g8OKh+Vo"/><use x="3878" href="#g8OKh+QE"/><use x="4211" href="#g8OKh+Uo"/><use x="4489" href="#g8OKh+U8"/><use x="5045" href="#g8OKh+UU"/><use x="5601" href="#g8OKh+VY"/><use x="6157" href="#g8OKh+UQ"/><use x="6601" href="#g8OKh+VU"/><use x="6990" href="#g8OKh+Uo"/><use x="7268" href="#g8OKh+VA"/><use x="7768" href="#g8OKh+U8"/><use x="8324" href="#g8OKh+Rs"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="537.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">Prove by induction:</h5:div></foreignObject></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g><g transform="translate(253.718,110.782)" data-tid="pqC3PWMbaCeAu2M4VnstxtY"><g data-tid="gqC3PWMbaCeAu2M4VnstxtY" class="typst-group"><g transform="translate(0.000,0.000)" data-tid="pATsr7Jd6m08lg6/VHpQ4es"><g data-tid="gATsr7Jd6m08lg6/VHpQ4es" class="typst-group"><g transform="translate(0.000,26.383)" data-tid="p/3czb/FZ4HkI57jg46LeqY"><g data-tid="g/3czb/FZ4HkI57jg46LeqY" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1bcX"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="90.25" height="62.50"><h5:div class="tsel" style="font-size: 62px">∑</h5:div></foreignObject></g></g></g><g transform="translate(8.548,5.557)" data-tid="p8vPaRCHhtOonHxoxucpvSA"><g data-tid="g8vPaRCHhtOonHxoxucpvSA" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1dkT"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="44.12" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑛</h5:div></foreignObject></g></g></g><g transform="translate(0.686,46.233)" data-tid="p9QwKRi9QNgkoOZw/Q4xkd0"><g data-tid="g9QwKRi9QNgkoOZw/Q4xkd0" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1dYT"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="37.94" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑘</h5:div></foreignObject></g></g></g><g transform="translate(8.334,46.233)" data-tid="p6UZEl0OD52cBbU7RRD+5QQ"><g data-tid="g6UZEl0OD52cBbU7RRD+5QQ" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1R4"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="48.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">=</h5:div></foreignObject></g></g></g><g transform="translate(18.137,46.233)" data-tid="p3PFJqC/jW2ouQG0xtnSpNk"><g data-tid="g3PFJqC/jW2ouQG0xtnSpNk" class="typst-text" fill="#000" transform="scale(0.0126,-0.0126)"><use x="0" href="#gGxid1U0S"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="35.56" height="62.50"><h5:div class="tsel" style="font-size: 62px">1</h5:div></foreignObject></g></g></g><g transform="translate(28.992,26.383)" data-tid="pG/tixW1VtzMAHgJjYLCXRA"><g data-tid="gG/tixW1VtzMAHgJjYLCXRA" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1REL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="33.50" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑘</h5:div></foreignObject></g></g></g><g transform="translate(43.640,26.383)" data-tid="pA0n/SKR5lvIjknqBkNOdU0"><g data-tid="gA0n/SKR5lvIjknqBkNOdU0" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1R4"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="48.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">=</h5:div></foreignObject></g></g></g><g transform="translate(62.644,0.733)" data-tid="pSETrnpNXCN0GZ8iIR/ziJA"><g data-tid="gSETrnpNXCN0GZ8iIR/ziJA" class="typst-group"><g transform="translate(1.800,13.464)" data-tid="pVOtcm4j3v90ApWax743W9Q"><g data-tid="gVOtcm4j3v90ApWax743W9Q" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1RQL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="37.50" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑛</h5:div></foreignObject></g></g></g><g transform="translate(12.600,13.464)" data-tid="pakTRU7hpTRIlbWprCwSTlk"><g data-tid="gakTRU7hpTRIlbWprCwSTlk" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1Qk"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="24.31" height="62.50"><h5:div class="tsel" style="font-size: 62px">(</h5:div></foreignObject></g></g></g><g transform="translate(19.602,13.464)" data-tid="pVOtcm4j3v90ApWax743W9Q"><g data-tid="gVOtcm4j3v90ApWax743W9Q" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1RQL"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="37.50" height="62.50"><h5:div class="tsel" style="font-size: 62px">𝑛</h5:div></foreignObject></g></g></g><g transform="translate(34.402,13.464)" data-tid="p/FjH8YJVJLEdRQL05G3Z0c"><g data-tid="g/FjH8YJVJLEdRQL05G3Z0c" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1Qw"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="48.62" height="62.50"><h5:div class="tsel" style="font-size: 62px">+</h5:div></foreignObject></g></g></g><g transform="translate(52.406,13.464)" data-tid="p0cYhfMWY5Vk6XyYP+o9lPc"><g data-tid="g0cYhfMWY5Vk6XyYP+o9lPc" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1RI"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="31.25" height="62.50"><h5:div class="tsel" style="font-size: 62px">1</h5:div></foreignObject></g></g></g><g transform="translate(61.406,13.464)" data-tid="p6aOQ50LTdJwhwBf4yUKDKs"><g data-tid="g6aOQ50LTdJwhwBf4yUKDKs" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1Qo"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="24.31" height="62.50"><h5:div class="tsel" style="font-size: 62px">)</h5:div></foreignObject></g></g></g><g transform="translate(30.604,37.998)" data-tid="ph7RaAz/w0DkEShuAqr7s/w"><g data-tid="gh7RaAz/w0DkEShuAqr7s/w" class="typst-text" fill="#000" transform="scale(0.018,-0.018)"><use x="0" href="#gGxid1RM"/><g transform="scale(16,-16)"><foreignObject x="0" y="-50.38" width="31.25" height="62.50"><h5:div class="tsel" style="font-size: 62px">2</h5:div></foreignObject></g></g></g><g transform="translate(1.800,21.150)" data-tid="p/rK2Aur3loYmvtnqbIJs44"><g data-tid="g/rK2Aur3loYmvtnqbIJs44"><path class="typst-shape" d="M 0 0 L 66.608 0 " stroke-width="0.864" stroke-miterlimit="4" fill-rule="nonzero" fill="none" stroke="#000" /></g></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g><g transform="translate(0.000,0.000)" data-tid="pyu2Fv0okwB4s4X4mOHZQ+Q"><g data-tid="gyu2Fv0okwB4s4X4mOHZQ+Q" class="typst-content-hint" data-hint="a"></g></g></g></g></g></g></svg>
+</div><br>
+
+<div class="callout" data-callout="note">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner">Man!</div>
+</div>
+<div class="callout-content"><p>What can I say.</p>
+</div></div>
+<div class="article-footer fs14"></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/algo/segtree-decomp.html">线段树分治</a></div><div class="item" id="next"></div></section></div>
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#manacher-%E7%AE%97%E6%B3%95"><span class="toc-text"> Manacher 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#manacher-%E6%8E%A8%E5%B9%BF"><span class="toc-text"> Manacher 推广</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text"> 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#p3501-poi-2010-ant-antisymmetry"><span class="toc-text"> P3501 [POI 2010] ANT-Antisymmetry</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `Just`,
+      min: `minutes ago`,
+      hour: `hours ago`,
+      day: `days ago`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://a.ppy.sh/13888511`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js`,
+    marked: `https://cdn.jsdelivr.net/npm/marked@13.0.1/lib/marked.umd.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+
+<!-- required -->
+<script src="/js/main.js?v=1.29.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    applyThemeToGiscus(theme)
+  }
+
+  const applyThemeToGiscus = (theme) => {
+    theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+
+    const messages = {
+      light: `Switched to Light Mode`,
+      dark: `Switched to Dark Mode`,
+      auto: `Switched to Auto Mode`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    }
+  })()
+</script>
+
+
+<!-- optional -->
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer type="text/javascript" src="https://unpkg.com/mermaid@9.0.0/dist/mermaid.min.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    var mermaid_config = {
+      startOnLoad: true,
+      theme:
+        "" == "auto" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "neutral",
+      logLevel: 3,
+      themeVariables: {
+        darkMode: true
+      },
+      flowchart: {
+        useMaxWidth: false,
+        htmlLabels: true,
+        curve: "linear"
+      },
+      gantt: {
+        axisFormat: "%Y/%m/%d"
+      },
+      sequence: {
+        actorMargin: 50
+      }
+    }
+    mermaid.initialize(mermaid_config);
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>

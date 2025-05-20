@@ -18,245 +18,35 @@
   <meta name="theme-color" content="#f9fafb">
   
   <title>image-text-database - Arca Lunar's Blog</title>
-  
-<style>
-/* 创建一个顶层容器，用于突破可能的堆叠上下文限制 */
-body:after {
-  content: "";
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  height: 0;
-  width: 0;
-}
-
-.tooltip-container {
-  position: relative;
-  display: inline;
-  cursor: help;
-  border-bottom: 2px dashed #999;
-  text-decoration: none;
-  z-index: 3; /* 提高触发元素的层级 */
-}
-
-.tooltip-container .tooltip-text {
-  visibility: hidden;
-  position: absolute;
-  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 300px;
-  background-color: white;
-  color: #333;
-  text-align: left;
-  padding: 10px 14px;
-  border-radius: 6px;
-  /* 使用更强的阴影效果增加视觉层级感 */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-  font-size: 14px;
-  line-height: 1.5;
-  border: 1px solid #eaeaea;
-  word-wrap: break-word;
-  white-space: normal;
-  pointer-events: none;
-  /* 确保悬浮框不超出屏幕边界 */
-  max-width: 80vw;
-}
-
-/* 当鼠标悬停时显示悬浮框 */
-.tooltip-container:hover .tooltip-text {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 对悬浮框使用CSS变量，方便JavaScript动态调整位置 */
-.tooltip-container .tooltip-text {
-  --tooltip-top: auto;
-  --tooltip-left: 50%;
-  --tooltip-transform: translateX(-50%);
-  top: var(--tooltip-top);
-  left: var(--tooltip-left);
-  transform: var(--tooltip-transform);
-}
-
-/* 添加三角形指示器 */
-.tooltip-container .tooltip-text::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -6px;
-  border-width: 6px;
-  border-style: solid;
-  border-color: white transparent transparent transparent;
-  z-index: 2147483647; /* 使用最大可能的 z-index 值 */
-}
-
-/* 确保主容器为行内元素 */
-.tooltip-container {
-  display: inline;
-}
-
-/* 修复行内元素显示问题 */
-.tooltip-container code,
-.tooltip-container .katex,
-.tooltip-container .katex-html,
-.tooltip-container .katex-mathml {
-  display: inline !important;
-  white-space: nowrap !important;
-}
-
-/* 保持行内公式字符在同一行 */
-.tooltip-container .katex .katex-html * {
-  display: inline-block !important;
-  white-space: nowrap !important;
-}
-
-/* 但是提示框本身是块级元素 */
-.tooltip-container .tooltip-text {
-  display: block;
-}
-
-/* 提示框内的块级元素保持块级 */
-.tooltip-container .tooltip-text p,
-.tooltip-container .tooltip-text div,
-.tooltip-container .tooltip-text h1,
-.tooltip-container .tooltip-text h2,
-.tooltip-container .tooltip-text h3,
-.tooltip-container .tooltip-text h4,
-.tooltip-container .tooltip-text h5,
-.tooltip-container .tooltip-text h6,
-.tooltip-container .tooltip-text ul,
-.tooltip-container .tooltip-text ol,
-.tooltip-container .tooltip-text li {
-  display: block;
-  margin-bottom: 8px;
-}
-
-/* 但提示框内的行内元素保持行内 */
-.tooltip-container .tooltip-text code,
-.tooltip-container .tooltip-text a,
-.tooltip-container .tooltip-text strong,
-.tooltip-container .tooltip-text em,
-.tooltip-container .tooltip-text span,
-.tooltip-container .tooltip-text .katex,
-.tooltip-container .tooltip-text .katex-html,
-.tooltip-container .tooltip-text .katex-mathml {
-  display: inline !important;
-  white-space: pre-wrap !important;
-}
-
-/* 修复行内公式在提示框内的显示 */
-.tooltip-container .tooltip-text .katex .katex-html * {
-  display: inline-block !important;
-  white-space: nowrap !important;
-}
-
-/* 新增：支持大公式居中显示 */
-.tooltip-container .tooltip-text .katex-display {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-  overflow-x: auto !important;
-  white-space: nowrap !important;
-  text-align: center !important;
-  margin: 0.5em 0 !important;
-}
-
-/* 大公式内容的样式 */
-.tooltip-container .tooltip-text .katex-display > .katex {
-  display: inline-block !important;
-  max-width: 100% !important;
-  text-align: center !important;
-}
-
-/* 调整大公式时悬浮框的宽度 */
-.tooltip-container:hover .tooltip-text:has(.katex-display) {
-  min-width: 300px !important;
-  // max-width: 400px !important;
-}
-
-.tooltip-container .tooltip-text p:last-child {
-  margin-bottom: 0;
-}
-</style>
-
-<script>
-// 添加脚本，确保tooltip总是能够正确显示
-document.addEventListener('DOMContentLoaded', function() {
-  // 监听鼠标进入tooltip容器的事件
-  document.addEventListener('mouseover', function(e) {
-    if (!e.target.closest('.tooltip-container')) return;
-    
-    const container = e.target.closest('.tooltip-container');
-    const tooltip = container.querySelector('.tooltip-text');
-    if (!tooltip) return;
-    
-    // 重置样式以进行测量
-    tooltip.style.visibility = 'hidden';
-    tooltip.style.opacity = '0';
-    tooltip.style.bottom = '125%';
-    tooltip.style.top = 'auto';
-    
-    // 获取元素位置信息
-    const containerRect = container.getBoundingClientRect();
-    const tooltipRect = tooltip.getBoundingClientRect();
-    
-    // 检查顶部空间
-    const topSpace = containerRect.top;
-    const bottomSpace = window.innerHeight - containerRect.bottom;
-    
-    // 判断应该显示在上方还是下方
-    if (topSpace < tooltipRect.height && bottomSpace > topSpace) {
-      // 如果顶部空间不足且底部空间更多，显示在底部
-      tooltip.style.bottom = 'auto';
-      tooltip.style.top = '125%';
-      
-      // 调整指示器
-      tooltip.style.setProperty('--tooltip-arrow-top', '0');
-      tooltip.style.setProperty('--tooltip-arrow-bottom', '100%');
-      
-      // 修改三角形方向
-      const arrow = tooltip.querySelector('::after');
-      if (arrow) {
-        arrow.style.top = '0';
-        arrow.style.bottom = 'auto';
-        arrow.style.borderColor = 'transparent transparent white transparent';
-        arrow.style.transform = 'translateY(-100%)';
-      }
-    }
-    
-    // 检查水平方向是否溢出
-    const leftOverflow = tooltipRect.left < 0;
-    const rightOverflow = tooltipRect.right > window.innerWidth;
-    
-    if (leftOverflow) {
-      tooltip.style.left = '0';
-      tooltip.style.transform = 'none';
-    } else if (rightOverflow) {
-      tooltip.style.left = 'auto';
-      tooltip.style.right = '0';
-      tooltip.style.transform = 'none';
-    }
-    
-    // 恢复可见性
-    setTimeout(() => {
-      tooltip.style.visibility = '';
-      tooltip.style.opacity = '';
-    }, 10);
-  }, true);
-});
-</script>
-
 
   
-    <style type="text/css">
+    <meta name="description" content="Password is needed to access the blog.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="image-text-database">
+<meta property="og:url" content="http://example.com/image-text-database/index.html">
+<meta property="og:site_name" content="Arca Lunar&#39;s Blog">
+<meta property="og:description" content="Password is needed to access the blog.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-19T03:14:17.000Z">
+<meta property="article:modified_time" content="2025-05-04T10:04:41.809Z">
+<meta property="article:author" content="Arca Lunar">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+
+  
+
+  
+
+  <style type="text/css">
+    
 
 div.hcb-content.hcb-block.hcbnote, details.hcb-content.box.hcbnote,div.hcb-content.hcb-block.hcbabstract, details.hcb-content.box.hcbabstract,div.hcb-content.hcb-block.hcbinfo, details.hcb-content.box.hcbinfo,div.hcb-content.hcb-block.hcbtip, details.hcb-content.box.hcbtip,div.hcb-content.hcb-block.hcbsuccess, details.hcb-content.box.hcbsuccess,div.hcb-content.hcb-block.hcbquestion, details.hcb-content.box.hcbquestion,div.hcb-content.hcb-block.hcbwarning, details.hcb-content.box.hcbwarning,div.hcb-content.hcb-block.hcbfailure, details.hcb-content.box.hcbfailure,div.hcb-content.hcb-block.hcbdanger, details.hcb-content.box.hcbdanger,div.hcb-content.hcb-block.hcbbug, details.hcb-content.box.hcbbug,div.hcb-content.hcb-block.hcbexample, details.hcb-content.box.hcbexample,div.hcb-content.hcb-block.hcbquote, details.hcb-content.box.hcbquote,div.hcb-content.hcb-block.hcbimportant, details.hcb-content.box.hcbimportant {
   border: .05rem solid #448aff;
@@ -554,57 +344,345 @@ div.hcb-content.hcb-cards-content {
 div.hcb-content.hcb-cards-content.active {
   display: block;
 }
-</style>
-  
 
-
-  
-    <meta name="description" content="Password is needed to access the blog.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="image-text-database">
-<meta property="og:url" content="http://example.com/image-text-database/index.html">
-<meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="Password is needed to access the blog.">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-03-19T03:14:17.000Z">
-<meta property="article:modified_time" content="2025-05-04T10:04:41.809Z">
-<meta property="article:author" content="Arca Lunar">
-<meta name="twitter:card" content="summary">
-  
-  
-  
-  
-
-  <!-- feed -->
-  
-
-  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
-
-  
-
-  
+  </style>
 
   <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
-
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '\\[', right: '\\]', display: true}
-            ],
-            throwOnError : false
-        });
-        });
-  </script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<style>
+      /* Apply styles to the hover target class */
+      .floating-hover-target {
+        font-weight: 500;
+        position: relative;
+        display: inline;
+        cursor: help;
+        background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.3) 90%, rgba(var(--theme-color), 0.3) 100%);
+        padding: 0 2px;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+        color: var(--text-color, #333);
+        border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
+        text-decoration: none;
+      }
+      
+      .floating-hover-target:hover {
+        background: linear-gradient(to bottom, rgba(var(--theme-color), 0.08) 0%, rgba(var(--theme-color), 0.08) 90%, rgba(var(--theme-color), 0.5) 90%, rgba(var(--theme-color), 0.5) 100%);
+      }
+      
+      .floating-hover-target::after {
+        content: var(--hover-indicator, "");
+        font-size: 0.85em;
+        vertical-align: super;
+        opacity: 0.6;
+        margin-left: 1px;
+        transition: opacity 0.2s ease;
+      }
+      
+      /* Different indicator styles - can be set via CSS variables */
+      :root {
+        --hover-indicator: ""; /* Default indicator */
+      }
+      
+      .floating-hover-content {
+        position: fixed;  /* Changed from absolute to fixed */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        background-color: var(--card-background, #fff);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+        padding: 16px 20px;
+        width: max-content;
+        max-width: 380px;
+        z-index: 9999;  /* Increased z-index value */
+        left: 0;
+        top: 0;  /* Will be set dynamically by JS */
+        overflow-y: auto;
+        max-height: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-weight: normal;
+        color: var(--text-color, #333);
+        font-size: 0.95em;
+        line-height: 1.6;
+        pointer-events: auto;  /* Ensures hover content can be interacted with */
+        backdrop-filter: blur(4px);
+      }
+      
+      .floating-hover-content::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--card-background, #fff);
+        transform: rotate(45deg);
+        z-index: -1; /* Place behind the content */
+      }
+      
+      /* Arrow positioning based on hover position */
+      .floating-hover-content.positioned-bottom::before {
+        top: -6px;
+        left: 20px;
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-top::before {
+        bottom: -6px;
+        left: 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-right::before {
+        left: auto;
+        right: 20px;
+      }
+      
+      .floating-hover-content p {
+        margin: 0.8em 0;
+      }
+      
+      .floating-hover-content p:first-child {
+        margin-top: 0;
+      }
+      
+      .floating-hover-content p:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Show hover content when target is hovered */
+      .floating-hover-target:hover .floating-hover-content {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Improve the indicator appearance on hover */
+      .floating-hover-target:hover::after {
+        opacity: 1;
+      }
+      
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark), (html[data-theme='dark']) {
+        .floating-hover-content {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px -4px rgba(0, 0, 0, 0.25);
+        }
+      }
+      
+      /* Fix position for hover boxes on smaller screens */
+      @media (max-width: 768px) {
+        .floating-hover-content {
+          max-width: 85vw; /* Limit width on mobile */
+        }
+        
+        /* Don't center the hover boxes on mobile as they're now positioned from JS */
+        .floating-hover-content.positioned-centered::before {
+          left: 50%;
+          margin-left: -6px;
+        }
+        
+        /* Adjust the info indicator to be more prominent on mobile */
+        .floating-hover-target::after {
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+      }
+      
+      /* Make the hover content work with touch devices */
+      @media (pointer: coarse) {
+        .floating-hover-target {
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        /* Give feedback when tapping */
+        .floating-hover-target:active {
+          background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.7) 90%, rgba(var(--theme-color), 0.7) 100%);
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Create a container for all hover content elements at the document root
+        const hoverContainer = document.createElement('div');
+        hoverContainer.id = 'floating-hover-container';
+        hoverContainer.style.position = 'fixed';
+        hoverContainer.style.top = '0';
+        hoverContainer.style.left = '0';
+        hoverContainer.style.width = '0';
+        hoverContainer.style.height = '0';
+        hoverContainer.style.overflow = 'visible';
+        hoverContainer.style.pointerEvents = 'none'; // Don't interfere with page interaction
+        hoverContainer.style.zIndex = '9999';
+        document.body.appendChild(hoverContainer);
+        
+        // Create the hover content elements dynamically
+        const hoverTargets = document.querySelectorAll('.floating-hover-target');
+        
+        // Track currently active hover element
+        let activeHover = null;
+        
+        hoverTargets.forEach(target => {
+          const hoverContent = target.getAttribute('data-hover-content');
+          
+          if (!hoverContent) return;
+          
+          // Create hover content div but append it to the container instead of the target
+          const hoverDiv = document.createElement('div');
+          hoverDiv.className = 'floating-hover-content';
+          hoverDiv.innerHTML = decodeURIComponent(hoverContent);
+          hoverDiv.style.pointerEvents = 'auto'; // Make the hover content interactive
+          hoverContainer.appendChild(hoverDiv);
+          
+          // Store a reference to the hover div on the target
+          target.hoverDiv = hoverDiv;
+          
+          // Position hover content based on target position
+          function positionHoverContent() {
+            const targetRect = target.getBoundingClientRect();
+            const hoverRect = hoverDiv.getBoundingClientRect();
+            const padding = 16; // Safe distance from viewport edges
+            
+            // Reset any previous positioning
+            hoverDiv.style.left = '';
+            hoverDiv.style.right = '';
+            hoverDiv.style.top = '';
+            hoverDiv.style.bottom = '';
+            
+            // Remove any previous position classes
+            hoverDiv.classList.remove('positioned-left', 'positioned-right', 'positioned-top', 'positioned-bottom');
+            
+            // Default positioning below the target
+            hoverDiv.style.left = targetRect.left + 'px';
+            hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+            
+            // After setting the initial position, get the hover dimensions
+            const updatedHoverRect = hoverDiv.getBoundingClientRect();
+            
+            // Check if the hover would go off the right edge of the screen
+            if (updatedHoverRect.right > window.innerWidth - padding) {
+              // Align the right edge of the hover with the right edge of the target
+              hoverDiv.style.left = 'auto';
+              hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              hoverDiv.classList.add('positioned-right');
+            } else {
+              hoverDiv.classList.add('positioned-left');
+            }
+            
+            // Check if the hover would go off the bottom of the screen
+            if (updatedHoverRect.bottom > window.innerHeight - padding) {
+              // Position above the target instead
+              hoverDiv.style.top = 'auto';
+              hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              hoverDiv.classList.add('positioned-top');
+            } else {
+              hoverDiv.classList.add('positioned-bottom');
+            }
+            
+            // Update the arrow position
+            const arrowPosition = hoverDiv.classList.contains('positioned-top') ? 'bottom' : 'top';
+            hoverDiv.style.setProperty('--arrow-position', arrowPosition);
+          }
+          
+          // Show hover content on mouseenter
+          target.addEventListener('mouseenter', function() {
+            // Hide any previously shown hover content
+            if (activeHover && activeHover !== hoverDiv) {
+              activeHover.style.visibility = 'hidden';
+              activeHover.style.opacity = '0';
+            }
+            
+            // Set this as the active hover
+            activeHover = hoverDiv;
+            
+            // Position and show the hover content
+            hoverDiv.style.visibility = 'visible';
+            positionHoverContent();
+            
+            // Trigger fade-in animation
+            setTimeout(() => {
+              hoverDiv.style.opacity = '1';
+            }, 10);
+          });
+          
+          // Hide hover content on mouseleave
+          target.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved to the hover content itself
+            if (e.relatedTarget === hoverDiv || hoverDiv.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+          
+          // Add mouseleave event to the hover content to hide it when mouse leaves
+          hoverDiv.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved back to the target
+            if (e.relatedTarget === target || target.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+        });
+        
+        // Update hover positions on window resize
+        window.addEventListener('resize', function() {
+          if (activeHover) {
+            const target = Array.from(hoverTargets).find(t => t.hoverDiv === activeHover);
+            if (target) {
+              const hoverDiv = target.hoverDiv;
+              const targetRect = target.getBoundingClientRect();
+              const padding = 16;
+              
+              // Update position logic here similar to positionHoverContent function
+              hoverDiv.style.left = targetRect.left + 'px';
+              hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+              
+              const updatedHoverRect = hoverDiv.getBoundingClientRect();
+              
+              if (updatedHoverRect.right > window.innerWidth - padding) {
+                hoverDiv.style.left = 'auto';
+                hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              }
+              
+              if (updatedHoverRect.bottom > window.innerHeight - padding) {
+                hoverDiv.style.top = 'auto';
+                hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              }
+            }
+          }
+        });
+        
+        // Close hover content when clicking elsewhere on the page
+        document.addEventListener('click', function(event) {
+          if (activeHover && !event.target.closest('.floating-hover-target') && 
+              !event.target.closest('.floating-hover-content')) {
+            activeHover.style.opacity = '0';
+            
+            setTimeout(() => {
+              activeHover.style.visibility = 'hidden';
+              activeHover = null;
+            }, 300);
+          }
+        });
+      });
+    </script><!-- hexo injector head_end end --></head>
 <body>
 
 <div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
@@ -621,7 +699,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/ai-and-searching/"><span class="title">Intro to AI: Searching</span></a><a class="item title" href="/langchain-RecursiveCharacterTextSplitter/"><span class="title">RecursiveCharacterTextSplitter 具体实现</span></a><a class="item title" href="/nlp-development/"><span class="title">自然语言处理（NLP）的发展与关键技术：从词义到大模型</span></a><a class="item title" href="/lightrag-query-method/"><span class="title">LightRAG: query 处理查询的深入探究</span></a><a class="item title" href="/matplotlib-fast-tutorial/"><span class="title">Matplotlib 快速入门指南</span></a><a class="item title" href="/openai-stream-mode-w-streamlit/"><span class="title">OpenAI 流式传输与 StreamLit</span></a><a class="item title" href="/raw-image-pass-as-url/"><span class="title">Python LangChain 将图像当作 URL 传递</span></a><a class="item title" href="/MinerU-examples/"><span class="title">MinerU Examples</span></a><a class="item title" href="/conda-pip-proxy/"><span class="title">conda 与 pip 配置代理服务器</span></a><a class="item title" href="/connect-to-eduroam-hku/"><span class="title">Linux 下用 HKU 账号使用 HK eduroam WiFi</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/chain-of-thought/"><span class="title">chain-of-thought</span></a><a class="item title" href="/nlp-development/"><span class="title">自然语言处理（NLP）的发展与关键技术：从词义到大模型</span></a><a class="item title" href="/comp3270-menu/"><span class="title">HKU COMP3270 目录</span></a><a class="item title" href="/%E8%AE%A9%E6%A8%A1%E5%9E%8B%E7%BB%99%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA%E8%AF%84%E5%88%86/"><span class="title">让模型给模型输出评分：LLM as Judge</span></a><a class="item title" href="/%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E7%9B%B8%E6%9C%BA%E9%A3%9F%E7%94%A8%E6%8C%87%E5%8C%97/"><span class="title">海康威视相机食用指北</span></a><a class="item title" href="/what-is-agentic/"><span class="title">Agentic 系统</span></a><a class="item title" href="/pratt-parsing/"><span class="title">语法解析方法 Pratt Parsing</span></a><a class="item title" href="/lightrag-paper/"><span class="title">LightRAG 论文</span></a><a class="item title" href="/networkflow-another-view/"><span class="title">另一种视角下的网络流体系</span></a><a class="item title" href="/maniskill-snippets/"><span class="title">ManiSkill Task Definition Snippet</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -630,7 +708,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php">
+<div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
@@ -678,10 +756,7 @@ div.hcb-content.hcb-cards-content.active {
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
-
-<script>
-    pseudocode.renderClass("pseudocode");
-</script><div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 </aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
