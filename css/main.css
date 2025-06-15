@@ -6731,21 +6731,12 @@ body>.sitebg .siteblur:hover {
 .md-text.content h4 >a:first-child,
 .md-text.content h5 >a:first-child,
 .md-text.content h6 >a:first-child {
-  background: #1cd0fd;
   border-radius: 2px;
   margin-right: 8px;
   transition: background 0.2s ease-out;
   -moz-transition: background 0.2s ease-out;
   -webkit-transition: background 0.2s ease-out;
   -o-transition: background 0.2s ease-out;
-}
-.md-text.content h1 >a:first-child:hover,
-.md-text.content h2 >a:first-child:hover,
-.md-text.content h3 >a:first-child:hover,
-.md-text.content h4 >a:first-child:hover,
-.md-text.content h5 >a:first-child:hover,
-.md-text.content h6 >a:first-child:hover {
-  background: #ff5724;
 }
 .md-text.content h1 >a:first-child:before,
 .md-text.content h2 >a:first-child:before,
@@ -6754,16 +6745,61 @@ body>.sitebg .siteblur:hover {
 .md-text.content h5 >a:first-child:before,
 .md-text.content h6 >a:first-child:before {
   content: '';
-  color: #fff;
-  font-weight: 700;
+  color: #1cd0fd;
+  font-weight: 300;
   padding: 0 2px;
-  font-size: 0.75rem;
+}
+.md-text.content h1 >a:first-child:hover,
+.md-text.content h2 >a:first-child:hover,
+.md-text.content h3 >a:first-child:hover,
+.md-text.content h4 >a:first-child:hover,
+.md-text.content h5 >a:first-child:hover,
+.md-text.content h6 >a:first-child:hover {
+  color: #ff5724;
+}
+.md-text.content h1 >a:first-child:hover:before,
+.md-text.content h2 >a:first-child:hover:before,
+.md-text.content h3 >a:first-child:hover:before,
+.md-text.content h4 >a:first-child:hover:before,
+.md-text.content h5 >a:first-child:hover:before,
+.md-text.content h6 >a:first-child:hover:before {
+  color: #ff5724;
 }
 .md-text.content h2 {
-  font-weight: 500;
+  font-size: 1.6em;
 }
 .md-text.content h2 >a:first-child:before {
-  content: ':';
+  content: '##';
+}
+.md-text.content h3 {
+  font-size: 1.4em;
+}
+.md-text.content h3 >a:first-child:before {
+  content: '###';
+}
+.md-text.content h4 {
+  font-size: 1.2em;
+}
+.md-text.content h4 >a:first-child:before {
+  content: '####';
+}
+.md-text.content h5 {
+  font-size: 1.1em;
+}
+.md-text.content h5 >a:first-child:before {
+  content: '#####';
+}
+.md-text.content h6 {
+  font-size: 1em;
+}
+.md-text.content h6 >a:first-child:before {
+  content: '######';
+}
+.md-text.content h1 {
+  font-size: 1.8em;
+}
+.md-text.content h1 >a:first-child:before {
+  content: '#';
 }
 .md-text.content blockquote h2,
 .md-text.content .tag-plugin h2,
