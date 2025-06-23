@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4" theme-name="Stellar" theme-version="1.30.4">
   
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -12,7 +12,7 @@
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
@@ -39,7 +39,8 @@
   <!-- feed -->
   
 
-  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+  <link rel="stylesheet" href="/css/main.css?v=1.30.4">
+
 
   
 
@@ -366,6 +367,7 @@ div.hcb-content.hcb-cards-content.active {
         color: var(--text-color, #333);
         border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
         text-decoration: none;
+        outline-style: dashed;
       }
       
       .floating-hover-target:hover {
@@ -687,7 +689,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/algo-contests.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/algo_contests/cf2049.html"><div class="main" ff="title">算法竞赛比赛记录</div></a></div></header>
@@ -850,17 +852,15 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
   <summary><i class="fa fa-check fa-fw"></i>Code<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> MAXN = <span class="number">100005</span>;</span><br><span class="line"><span class="keyword">using</span> vi           = std::vector&lt;<span class="type">int</span>&gt;;</span><br><span class="line"><span class="keyword">using</span> si           = std::set&lt;<span class="type">int</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">UnionFind</span> &#123;</span><br><span class="line">    vi fa, size;</span><br><span class="line">    <span class="built_in">UnionFind</span>(<span class="type">int</span> n) : <span class="built_in">fa</span>(n), <span class="built_in">size</span>(n, <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) fa[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">root</span><span class="params">(<span class="type">int</span> u)</span> </span>&#123; <span class="keyword">return</span> u == fa[u] ? u : fa[u] = <span class="built_in">root</span>(fa[u]); &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">same</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">root</span>(u) == <span class="built_in">root</span>(v); &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> fu = <span class="built_in">root</span>(u), fv = <span class="built_in">root</span>(v);</span><br><span class="line">        <span class="keyword">if</span> (fu == fv) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (size[fu] &lt; size[fv]) std::<span class="built_in">swap</span>(fu, fv);</span><br><span class="line">        fa[fv] = fu;</span><br><span class="line">        size[fu] += size[fv];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">check_connected</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">bool</span> ok = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; fa.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">same</span>(i, <span class="number">0</span>)) &#123;</span><br><span class="line">                ok = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ok;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(std::vector&lt;si&gt; &amp;G, <span class="type">int</span> L, <span class="type">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L == R) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> length   = R - L + <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> max_size = length / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> begin = L;</span><br><span class="line">    vi nodes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> v : G[begin])</span><br><span class="line">        <span class="keyword">if</span> (v &gt;= L &amp;&amp; v &lt;= R) nodes.<span class="built_in">push_back</span>(v - L);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (nodes.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> size = nodes.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vi <span class="title">suffixgcd</span><span class="params">(size)</span></span>;</span><br><span class="line">    suffixgcd[size - <span class="number">1</span>] = nodes[size - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = size - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) suffixgcd[i] = std::<span class="built_in">gcd</span>(suffixgcd[i + <span class="number">1</span>], nodes[i]);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> c_size = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = size - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (suffixgcd[i] == nodes[i] &amp;&amp; nodes[i] &lt;= max_size) &#123;</span><br><span class="line">            c_size = nodes[i];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (c_size &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// remove edges</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u = L + c_size; u &lt;= R; u++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!G[u].<span class="built_in">contains</span>(L + (u - L) % c_size)) <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// no such edge</span></span><br><span class="line">        G[u].<span class="built_in">erase</span>(L + (u - L) % c_size);</span><br><span class="line">        G[L + (u - L) % c_size].<span class="built_in">erase</span>(u);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u = L; u &lt; L + c_size; u++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (G[u].<span class="built_in">empty</span>()) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (*G[u].<span class="built_in">rbegin</span>() &gt;= L + c_size) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u = L + c_size; u &lt;= R; u++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (G[u].<span class="built_in">empty</span>()) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (*G[u].<span class="built_in">begin</span>() &lt; L + c_size) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(G, L, L + c_size - <span class="number">1</span>) &amp;&amp; <span class="built_in">dfs</span>(G, L + c_size, R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="function">UnionFind <span class="title">uf</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="function">std::vector&lt;si&gt; <span class="title">G</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="type">bool</span> is_valid = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, u, v; i &lt; m; i++) &#123;</span><br><span class="line">        std::cin &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        <span class="keyword">if</span> (u == v || G[u].<span class="built_in">contains</span>(v)) is_valid = <span class="literal">false</span>;</span><br><span class="line">        G[u].<span class="built_in">insert</span>(v);</span><br><span class="line">        G[v].<span class="built_in">insert</span>(u);</span><br><span class="line">        uf.<span class="built_in">merge</span>(u, v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    is_valid &amp;= uf.<span class="built_in">check_connected</span>();</span><br><span class="line">    <span class="keyword">if</span> (!is_valid) <span class="keyword">return</span> <span class="built_in">void</span>(std::cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> std::cout &lt;&lt; (<span class="built_in">dfs</span>(G, <span class="number">0</span>, n - <span class="number">1</span>) ? <span class="string">&quot;YES\n&quot;</span> : <span class="string">&quot;NO\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>)-&gt;<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    std::cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) <span class="built_in">run</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
+</article>
+<div class="article-footer"></div>
 
-<div class="article-footer fs14"></div>
-<script>
-    pseudocode.renderClass("pseudocode");
-</script></article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/algo_contests/pku-2024-ds-and-algo-A-final.html">北京大学 2024 年《数据结构与算法A（实验班）》期末考试</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/algo_contests/arc198.html">AtCoder Regular Contest 198 (Div. 2)</a></div></section></div>
 
 
 
 
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4">Stellar 1.30.4</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
@@ -871,7 +871,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
 <widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E8%87%AA%E5%8A%A8%E5%88%B7%E9%A2%98%E6%9C%BA"><span class="toc-text"> [SHOI2015] 自动刷题机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E8%84%91%E6%B4%9E%E6%B2%BB%E7%96%97%E4%BB%AA"><span class="toc-text"> [SHOI2015] 脑洞治疗仪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E8%B6%85%E8%83%BD%E7%B2%92%E5%AD%90%E7%82%AE%E6%94%B9"><span class="toc-text"> [SHOI2015] 超能粒子炮·改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E8%81%9A%E5%8F%98%E5%8F%8D%E5%BA%94%E7%82%89"><span class="toc-text"> [SHOI2015] 聚变反应炉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E6%BF%80%E5%85%89%E5%8F%91%E7%94%9F%E5%99%A8"><span class="toc-text"> [SHOI2015] 激光发生器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shoi2015-%E9%9B%B6%E4%BB%B6%E7%BB%84%E8%A3%85%E6%9C%BA"><span class="toc-text"> [SHOI2015] 零件组装机</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -889,6 +889,9 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
       day: `days ago`,
     },
     root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
   };
 
   // required plugins (only load if needs)
@@ -896,7 +899,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
     ctx.search = {};
     ctx.search.service = `local_search`;
     if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
       ctx.search[ctx.search.service] = service_obj;
     }
   }
@@ -913,6 +916,46 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
 </script>
 
 <script type="text/javascript">
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
   const utils = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     css: (href, before, media, attributes) => {
@@ -975,7 +1018,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
 
     js: (src, opt) => new Promise((resolve, reject) => {
       var script = document.createElement('script');
-      if (src.startsWith('/')){
+      if (src.startsWith('/')) {
         src = ctx.root + src.substring(1);
       }
       script.src = src;
@@ -988,7 +1031,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
         script.async = true
       }
       script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
+      script.onload = script.onreadystatechange = function () {
         const loadState = this.readyState
         if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
         script.onload = script.onreadystatechange = null
@@ -1004,7 +1047,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
         fn()
       }
     },
-    
+
     onLoading: (el) => {
       if (el) {
         $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
@@ -1038,7 +1081,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
               }
             }
           }, 5000);
-          fetch(url).then(function(response) {
+          fetch(url).then(function (response) {
             if (status !== 2) {
               clearTimeout(timer);
               resolve(response);
@@ -1046,14 +1089,14 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
               status = 1;
             }
             if (response.ok) {
-              return response.json();
+              return response;
             }
             throw new Error('Network response was not ok.');
-          }).then(function(data) {
+          }).then(function (data) {
             retryTimes = 0;
             utils.onLoadSuccess(el);
             callback(data);
-          }).catch(function(error) {
+          }).catch(function (error) {
             if (retryTimes > 0) {
               retryTimes -= 1;
               setTimeout(() => {
@@ -1068,9 +1111,28 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
       }
       req();
     },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
   };
-</script>
 
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
 <script>
   const sidebar = {
     leftbar: () => {
@@ -1126,7 +1188,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
 
 
 <!-- required -->
-<script src="/js/main.js?v=1.29.1" defer></script>
+<script src="/js/main.js?v=1.30.4" defer></script>
 
 <script type="text/javascript">
   const applyTheme = (theme) => {
@@ -1173,6 +1235,8 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
     }
     applyTheme(newTheme)
     window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
 
     const messages = {
       light: `Switched to Light Mode`,
@@ -1187,7 +1251,10 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
     const theme = window.localStorage.getItem('Stellar.theme')
     if (theme !== null) {
       applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
+    utils.dark.method.toggle.start();
   })()
 </script>
 
@@ -1198,7 +1265,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
 
 <script defer>
   window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"}}`));
     for (let id of Object.keys(ctx.services)) {
       const js = ctx.services[id].js;
       if (id == 'siteinfo') {
@@ -1206,6 +1273,27 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
         if (ctx.cardlinks?.length > 0) {
           utils.js(js, { defer: true }).then(function () {
             setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
           });
         }
       } else {
@@ -1223,6 +1311,76 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
         }
       }
     }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
   });
 </script>
 
@@ -1326,7 +1484,7 @@ U_{v,1}=\min_{\texttt{cost}\le \texttt{cap[v]}}\Big(\texttt{dp[v,cost]-\(\min(\)
     var mermaid_config = {
       startOnLoad: true,
       theme:
-        "" == "auto" &&
+        "auto" == "auto" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "neutral",

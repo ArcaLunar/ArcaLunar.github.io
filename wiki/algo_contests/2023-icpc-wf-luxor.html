@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4" theme-name="Stellar" theme-version="1.30.4">
   
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -12,7 +12,7 @@
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
@@ -39,7 +39,8 @@
   <!-- feed -->
   
 
-  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+  <link rel="stylesheet" href="/css/main.css?v=1.30.4">
+
 
   
 
@@ -366,6 +367,7 @@ div.hcb-content.hcb-cards-content.active {
         color: var(--text-color, #333);
         border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
         text-decoration: none;
+        outline-style: dashed;
       }
       
       .floating-hover-target:hover {
@@ -687,7 +689,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/algo-contests.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/algo_contests/cf2049.html"><div class="main" ff="title">算法竞赛比赛记录</div></a></div></header>
@@ -737,17 +739,15 @@ tip_1\to foot_1\to foot_2\to top_2
   <summary><i class="fa fa-check fa-fw"></i>Code<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;headers/geometry.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Geo2D;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">Point p1[<span class="number">4</span>], p2[<span class="number">4</span>], tip1, tip2;</span><br><span class="line">Decimal h1, h2, d1, d2, len1, len2;</span><br><span class="line"></span><br><span class="line">Decimal phi = <span class="number">0.618</span>, cphi = -phi + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; p1[<span class="number">0</span>] &gt;&gt; p1[<span class="number">1</span>] &gt;&gt; h1;</span><br><span class="line">    cin &gt;&gt; p2[<span class="number">0</span>] &gt;&gt; p2[<span class="number">1</span>] &gt;&gt; h2;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        p1[i] = p1[i - <span class="number">1</span>] + (p1[i - <span class="number">1</span>] - p1[i - <span class="number">2</span>]).<span class="built_in">Perp</span>();</span><br><span class="line">        p2[i] = p2[i - <span class="number">1</span>] + (p2[i - <span class="number">1</span>] - p2[i - <span class="number">2</span>]).<span class="built_in">Perp</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    tip1 = (p1[<span class="number">0</span>] + p1[<span class="number">2</span>]) / <span class="number">2</span>;</span><br><span class="line">    tip2 = (p2[<span class="number">0</span>] + p2[<span class="number">2</span>]) / <span class="number">2</span>;</span><br><span class="line">    len1 = p1[<span class="number">0</span>].<span class="built_in">Distance</span>(p1[<span class="number">1</span>]);</span><br><span class="line">    len2 = p2[<span class="number">0</span>].<span class="built_in">Distance</span>(p2[<span class="number">1</span>]);</span><br><span class="line">    d1   = (len<span class="number">1.</span><span class="built_in">sqr</span>() / <span class="number">4</span> + h<span class="number">1.</span><span class="built_in">sqr</span>()).<span class="built_in">sqrt</span>();</span><br><span class="line">    d2   = (len<span class="number">2.</span><span class="built_in">sqr</span>() / <span class="number">4</span> + h<span class="number">2.</span><span class="built_in">sqr</span>()).<span class="built_in">sqrt</span>();</span><br><span class="line"></span><br><span class="line">    Decimal ans = <span class="number">2e18</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        Vector v1   = p1[(i + <span class="number">1</span>) % <span class="number">4</span>] - p1[i];</span><br><span class="line">        Point midp1 = (p1[i] + p1[(i + <span class="number">1</span>) % <span class="number">4</span>]) / <span class="number">2</span>;</span><br><span class="line">        Point pt1   = midp1 + v<span class="number">1.</span><span class="built_in">Normal</span>() * d1;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">            Vector v2   = p2[(j + <span class="number">1</span>) % <span class="number">4</span>] - p2[j];</span><br><span class="line">            Point midp2 = (p2[j] + p2[(j + <span class="number">1</span>) % <span class="number">4</span>]) / <span class="number">2</span>;</span><br><span class="line">            Point pt2   = midp2 + v<span class="number">2.</span><span class="built_in">Normal</span>() * d2;</span><br><span class="line"></span><br><span class="line">            Decimal precent_l1 = <span class="number">0</span>;</span><br><span class="line">            Decimal precent_r1 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">auto</span> findfoot1 = [&amp;](Decimal precent_mid1) -&gt; Decimal &#123;</span><br><span class="line">                Point foot1        = p1[i] + v1 * precent_mid1;</span><br><span class="line">                Decimal precent_l2 = <span class="number">0</span>;</span><br><span class="line">                Decimal precent_r2 = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">auto</span> findfoot2 = [&amp;](Decimal precent_mid2) -&gt; Decimal &#123;</span><br><span class="line">                    Point foot2 = p2[j] + v2 * precent_mid2;</span><br><span class="line">                    <span class="keyword">return</span> foot<span class="number">1.</span><span class="built_in">Distance</span>(foot2) + foot<span class="number">1.</span><span class="built_in">Distance</span>(pt1) +</span><br><span class="line">                           foot<span class="number">2.</span><span class="built_in">Distance</span>(pt2);</span><br><span class="line">                &#125;;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> __ = <span class="number">1</span>; __ &lt;= <span class="number">100</span>; __++) &#123;</span><br><span class="line">                    Decimal l2 = precent_l2 * phi + precent_r2 * cphi;</span><br><span class="line">                    Decimal r2 = precent_l2 * cphi + precent_r2 * phi;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (<span class="built_in">findfoot2</span>(l2) &gt; <span class="built_in">findfoot2</span>(r2)) precent_l2 = l2;</span><br><span class="line">                    <span class="keyword">else</span> precent_r2 = r2;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">findfoot2</span>(precent_l2);</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> _ = <span class="number">1</span>; _ &lt;= <span class="number">100</span>; _++) &#123;</span><br><span class="line">                Decimal l1 = precent_l1 * phi + precent_r1 * cphi;</span><br><span class="line">                Decimal r1 = precent_l1 * cphi + precent_r1 * phi;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">findfoot1</span>(l1) &gt; <span class="built_in">findfoot1</span>(r1)) precent_l1 = l1;</span><br><span class="line">                <span class="keyword">else</span> precent_r1 = r1;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ans = <span class="built_in">min</span>(ans, <span class="built_in">findfoot1</span>(precent_l1));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
+</article>
+<div class="article-footer"></div>
 
-<div class="article-footer fs14"></div>
-<script>
-    pseudocode.renderClass("pseudocode");
-</script></article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/algo_contests/cf2110.html">[6/6] CodeForces Round 1026 (Div. 2)</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/algo_contests/2024-icpc-ec-online-2.html">2024 ICPC EC 第二场网络预选赛</a></div></section></div>
 
 
 
 
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4">Stellar 1.30.4</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
@@ -758,7 +758,7 @@ tip_1\to foot_1\to foot_2\to top_2
 <widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a"><span class="toc-text"> A.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d-carls-vacation"><span class="toc-text"> D. Carl’s Vacation</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -776,6 +776,9 @@ tip_1\to foot_1\to foot_2\to top_2
       day: `days ago`,
     },
     root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
   };
 
   // required plugins (only load if needs)
@@ -783,7 +786,7 @@ tip_1\to foot_1\to foot_2\to top_2
     ctx.search = {};
     ctx.search.service = `local_search`;
     if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
       ctx.search[ctx.search.service] = service_obj;
     }
   }
@@ -800,6 +803,46 @@ tip_1\to foot_1\to foot_2\to top_2
 </script>
 
 <script type="text/javascript">
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
   const utils = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     css: (href, before, media, attributes) => {
@@ -862,7 +905,7 @@ tip_1\to foot_1\to foot_2\to top_2
 
     js: (src, opt) => new Promise((resolve, reject) => {
       var script = document.createElement('script');
-      if (src.startsWith('/')){
+      if (src.startsWith('/')) {
         src = ctx.root + src.substring(1);
       }
       script.src = src;
@@ -875,7 +918,7 @@ tip_1\to foot_1\to foot_2\to top_2
         script.async = true
       }
       script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
+      script.onload = script.onreadystatechange = function () {
         const loadState = this.readyState
         if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
         script.onload = script.onreadystatechange = null
@@ -891,7 +934,7 @@ tip_1\to foot_1\to foot_2\to top_2
         fn()
       }
     },
-    
+
     onLoading: (el) => {
       if (el) {
         $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
@@ -925,7 +968,7 @@ tip_1\to foot_1\to foot_2\to top_2
               }
             }
           }, 5000);
-          fetch(url).then(function(response) {
+          fetch(url).then(function (response) {
             if (status !== 2) {
               clearTimeout(timer);
               resolve(response);
@@ -933,14 +976,14 @@ tip_1\to foot_1\to foot_2\to top_2
               status = 1;
             }
             if (response.ok) {
-              return response.json();
+              return response;
             }
             throw new Error('Network response was not ok.');
-          }).then(function(data) {
+          }).then(function (data) {
             retryTimes = 0;
             utils.onLoadSuccess(el);
             callback(data);
-          }).catch(function(error) {
+          }).catch(function (error) {
             if (retryTimes > 0) {
               retryTimes -= 1;
               setTimeout(() => {
@@ -955,9 +998,28 @@ tip_1\to foot_1\to foot_2\to top_2
       }
       req();
     },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
   };
-</script>
 
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
 <script>
   const sidebar = {
     leftbar: () => {
@@ -1013,7 +1075,7 @@ tip_1\to foot_1\to foot_2\to top_2
 
 
 <!-- required -->
-<script src="/js/main.js?v=1.29.1" defer></script>
+<script src="/js/main.js?v=1.30.4" defer></script>
 
 <script type="text/javascript">
   const applyTheme = (theme) => {
@@ -1060,6 +1122,8 @@ tip_1\to foot_1\to foot_2\to top_2
     }
     applyTheme(newTheme)
     window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
 
     const messages = {
       light: `Switched to Light Mode`,
@@ -1074,7 +1138,10 @@ tip_1\to foot_1\to foot_2\to top_2
     const theme = window.localStorage.getItem('Stellar.theme')
     if (theme !== null) {
       applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
+    utils.dark.method.toggle.start();
   })()
 </script>
 
@@ -1085,7 +1152,7 @@ tip_1\to foot_1\to foot_2\to top_2
 
 <script defer>
   window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"}}`));
     for (let id of Object.keys(ctx.services)) {
       const js = ctx.services[id].js;
       if (id == 'siteinfo') {
@@ -1093,6 +1160,27 @@ tip_1\to foot_1\to foot_2\to top_2
         if (ctx.cardlinks?.length > 0) {
           utils.js(js, { defer: true }).then(function () {
             setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
           });
         }
       } else {
@@ -1110,6 +1198,76 @@ tip_1\to foot_1\to foot_2\to top_2
         }
       }
     }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
   });
 </script>
 
@@ -1213,7 +1371,7 @@ tip_1\to foot_1\to foot_2\to top_2
     var mermaid_config = {
       startOnLoad: true,
       theme:
-        "" == "auto" &&
+        "auto" == "auto" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "neutral",

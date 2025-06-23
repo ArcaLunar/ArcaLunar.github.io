@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4" theme-name="Stellar" theme-version="1.30.4">
   
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -12,7 +12,7 @@
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
@@ -39,7 +39,8 @@
   <!-- feed -->
   
 
-  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+  <link rel="stylesheet" href="/css/main.css?v=1.30.4">
+
 
   
 
@@ -366,6 +367,7 @@ div.hcb-content.hcb-cards-content.active {
         color: var(--text-color, #333);
         border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
         text-decoration: none;
+        outline-style: dashed;
       }
       
       .floating-hover-target:hover {
@@ -687,7 +689,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="/assets/cover/fina.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/fina/pv-fv-npv.html"><div class="main" ff="title">公司金融学</div><div class="sub cap">Corporate Finance</div></a></div></header>
@@ -777,13 +779,13 @@ div.hcb-content.hcb-cards-content.active {
 <section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Value of Firm</mtext><mo>=</mo><mtext>Value of Equity</mtext><mo>+</mo><mtext>Value of Debt</mtext></mrow><annotation encoding="application/x-tex">
 \text{Value of Firm}=\text{Value of Equity}+\text{Value of Debt}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Value of Firm</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Value of Equity</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Value of Debt</span></span></span></span></span></span></eqn></section><h3 id="mm-proportion-i"><a class="markdownIt-Anchor" href="#mm-proportion-i"></a> MM Proportion I</h3>
-<p>在无税收、无破产成本的情况下，公司价值 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></eq> 不受<span id="hover-828vpvhrk" class="floating-hover-target" data-hover-content="%E6%8C%87%E8%82%A1%E6%9D%83%20equity%20%E4%B8%8E%E5%80%BA%E5%8A%A1%20debt%20%E7%9A%84%E6%AF%94%E9%87%8D%E7%BB%84%E5%90%88">资本结构</span>影响，即无<span id="hover-2d7e0e4uq" class="floating-hover-target" data-hover-content="%E4%B8%80%E7%A7%8D%E7%BB%8F%E6%B5%8E%E6%B4%BB%E5%8A%A8%EF%BC%9A%E4%B8%BE%E5%80%BA%EF%BC%8C%E5%B9%B6%E6%8A%95%E8%B5%84%E4%BA%8E%E9%AB%98%E9%A3%8E%E9%99%A9%E7%9A%84%E4%BA%8B%E4%B8%9A%E3%80%81%E6%B4%BB%E5%8A%A8">杠杆</span>公司的价值等于有杠杆的公司</p>
+<p>在无税收、无破产成本的情况下，公司价值 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></eq> 不受<span id="hover-bi5wv1qme" class="floating-hover-target" data-hover-content="%E6%8C%87%E8%82%A1%E6%9D%83%20equity%20%E4%B8%8E%E5%80%BA%E5%8A%A1%20debt%20%E7%9A%84%E6%AF%94%E9%87%8D%E7%BB%84%E5%90%88">资本结构</span>影响，即无<span id="hover-us6p9p5b1" class="floating-hover-target" data-hover-content="%E4%B8%80%E7%A7%8D%E7%BB%8F%E6%B5%8E%E6%B4%BB%E5%8A%A8%EF%BC%9A%E4%B8%BE%E5%80%BA%EF%BC%8C%E5%B9%B6%E6%8A%95%E8%B5%84%E4%BA%8E%E9%AB%98%E9%A3%8E%E9%99%A9%E7%9A%84%E4%BA%8B%E4%B8%9A%E3%80%81%E6%B4%BB%E5%8A%A8">杠杆</span>公司的价值等于有杠杆的公司</p>
 <section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mi>U</mi></msub><mo>=</mo><msub><mi>V</mi><mi>L</mi></msub><mo>=</mo><mi>O</mi><mi>C</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">
 V_U=V_L=OCF
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">OCF</span></span></span></span></span></eqn></section><hr />
 <h2 id="with-tax-and-bankruptcy-costs"><a class="markdownIt-Anchor" href="#with-tax-and-bankruptcy-costs"></a> With Tax and Bankruptcy Costs</h2>
 <h3 id="mm-proportion-i-2"><a class="markdownIt-Anchor" href="#mm-proportion-i-2"></a> MM Proportion I</h3>
-<p>在存在企业所得税的情况下，公司价值（<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>L</mi></msub></mrow><annotation encoding="application/x-tex">V_L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>​）随财务杠杆增加而提升 ，主要因<span id="hover-op54l819r" class="floating-hover-target" data-hover-content="%E5%80%BA%E5%8A%A1%E5%88%A9%E6%81%AF%E5%8F%AF%E6%8A%B5%E7%A8%8E%EF%BC%8C%E6%AF%8F%E5%B9%B4%E8%8A%82%E7%9C%81%E7%A8%8E%E9%A2%9D%E4%B8%BA%20%3Ceq%3E%3Cspan%20class%3D%22katex%22%3E%3Cspan%20class%3D%22katex-mathml%22%3E%3Cmath%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%3Csemantics%3E%3Cmrow%3E%3Cmtext%3EInterest%3C%2Fmtext%3E%3Cmo%3E%C3%97%3C%2Fmo%3E%3Cmsub%3E%3Cmi%3ET%3C%2Fmi%3E%3Cmi%3Ec%3C%2Fmi%3E%3C%2Fmsub%3E%3C%2Fmrow%3E%3Cannotation%20encoding%3D%22application%2Fx-tex%22%3E%5Ctext%7BInterest%7D%5Ctimes%20T_c%3C%2Fannotation%3E%3C%2Fsemantics%3E%3C%2Fmath%3E%3C%2Fspan%3E%3Cspan%20class%3D%22katex-html%22%20aria-hidden%3D%22true%22%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.7667em%3Bvertical-align%3A-0.0833em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%20text%22%3E%3Cspan%20class%3D%22mord%22%3EInterest%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mbin%22%3E%C3%97%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.8333em%3Bvertical-align%3A-0.15em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%22%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.13889em%3B%22%3ET%3C%2Fspan%3E%3Cspan%20class%3D%22msupsub%22%3E%3Cspan%20class%3D%22vlist-t%20vlist-t2%22%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.1514em%3B%22%3E%3Cspan%20style%3D%22top%3A-2.55em%3Bmargin-left%3A-0.1389em%3Bmargin-right%3A0.05em%3B%22%3E%3Cspan%20class%3D%22pstrut%22%20style%3D%22height%3A2.7em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22sizing%20reset-size6%20size3%20mtight%22%3E%3Cspan%20class%3D%22mord%20mathnormal%20mtight%22%3Ec%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-s%22%3E%E2%80%8B%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.15em%3B%22%3E%3Cspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Feq%3E%E2%80%8B%EF%BC%8C%E5%85%B6%E7%8E%B0%E5%80%BC%E4%B8%BA%20%3Ceq%3E%3Cspan%20class%3D%22katex%22%3E%3Cspan%20class%3D%22katex-mathml%22%3E%3Cmath%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%3Csemantics%3E%3Cmrow%3E%3Cmi%3ED%3C%2Fmi%3E%3Cmo%3E%C3%97%3C%2Fmo%3E%3Cmsub%3E%3Cmi%3ET%3C%2Fmi%3E%3Cmi%3Ec%3C%2Fmi%3E%3C%2Fmsub%3E%3C%2Fmrow%3E%3Cannotation%20encoding%3D%22application%2Fx-tex%22%3ED%5Ctimes%20T_c%3C%2Fannotation%3E%3C%2Fsemantics%3E%3C%2Fmath%3E%3C%2Fspan%3E%3Cspan%20class%3D%22katex-html%22%20aria-hidden%3D%22true%22%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.7667em%3Bvertical-align%3A-0.0833em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.02778em%3B%22%3ED%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mbin%22%3E%C3%97%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.8333em%3Bvertical-align%3A-0.15em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%22%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.13889em%3B%22%3ET%3C%2Fspan%3E%3Cspan%20class%3D%22msupsub%22%3E%3Cspan%20class%3D%22vlist-t%20vlist-t2%22%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.1514em%3B%22%3E%3Cspan%20style%3D%22top%3A-2.55em%3Bmargin-left%3A-0.1389em%3Bmargin-right%3A0.05em%3B%22%3E%3Cspan%20class%3D%22pstrut%22%20style%3D%22height%3A2.7em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22sizing%20reset-size6%20size3%20mtight%22%3E%3Cspan%20class%3D%22mord%20mathnormal%20mtight%22%3Ec%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-s%22%3E%E2%80%8B%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.15em%3B%22%3E%3Cspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Feq%3E%E2%80%8B%E3%80%82">利息税盾（<strong>Interest Tax Shield</strong>）</span>的税收优惠效应。</p>
+<p>在存在企业所得税的情况下，公司价值（<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mi>L</mi></msub></mrow><annotation encoding="application/x-tex">V_L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>​）随财务杠杆增加而提升 ，主要因<span id="hover-8dgzlw23u" class="floating-hover-target" data-hover-content="%E5%80%BA%E5%8A%A1%E5%88%A9%E6%81%AF%E5%8F%AF%E6%8A%B5%E7%A8%8E%EF%BC%8C%E6%AF%8F%E5%B9%B4%E8%8A%82%E7%9C%81%E7%A8%8E%E9%A2%9D%E4%B8%BA%20%3Ceq%3E%3Cspan%20class%3D%22katex%22%3E%3Cspan%20class%3D%22katex-mathml%22%3E%3Cmath%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%3Csemantics%3E%3Cmrow%3E%3Cmtext%3EInterest%3C%2Fmtext%3E%3Cmo%3E%C3%97%3C%2Fmo%3E%3Cmsub%3E%3Cmi%3ET%3C%2Fmi%3E%3Cmi%3Ec%3C%2Fmi%3E%3C%2Fmsub%3E%3C%2Fmrow%3E%3Cannotation%20encoding%3D%22application%2Fx-tex%22%3E%5Ctext%7BInterest%7D%5Ctimes%20T_c%3C%2Fannotation%3E%3C%2Fsemantics%3E%3C%2Fmath%3E%3C%2Fspan%3E%3Cspan%20class%3D%22katex-html%22%20aria-hidden%3D%22true%22%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.7667em%3Bvertical-align%3A-0.0833em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%20text%22%3E%3Cspan%20class%3D%22mord%22%3EInterest%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mbin%22%3E%C3%97%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.8333em%3Bvertical-align%3A-0.15em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%22%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.13889em%3B%22%3ET%3C%2Fspan%3E%3Cspan%20class%3D%22msupsub%22%3E%3Cspan%20class%3D%22vlist-t%20vlist-t2%22%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.1514em%3B%22%3E%3Cspan%20style%3D%22top%3A-2.55em%3Bmargin-left%3A-0.1389em%3Bmargin-right%3A0.05em%3B%22%3E%3Cspan%20class%3D%22pstrut%22%20style%3D%22height%3A2.7em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22sizing%20reset-size6%20size3%20mtight%22%3E%3Cspan%20class%3D%22mord%20mathnormal%20mtight%22%3Ec%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-s%22%3E%E2%80%8B%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.15em%3B%22%3E%3Cspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Feq%3E%E2%80%8B%EF%BC%8C%E5%85%B6%E7%8E%B0%E5%80%BC%E4%B8%BA%20%3Ceq%3E%3Cspan%20class%3D%22katex%22%3E%3Cspan%20class%3D%22katex-mathml%22%3E%3Cmath%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1998%2FMath%2FMathML%22%3E%3Csemantics%3E%3Cmrow%3E%3Cmi%3ED%3C%2Fmi%3E%3Cmo%3E%C3%97%3C%2Fmo%3E%3Cmsub%3E%3Cmi%3ET%3C%2Fmi%3E%3Cmi%3Ec%3C%2Fmi%3E%3C%2Fmsub%3E%3C%2Fmrow%3E%3Cannotation%20encoding%3D%22application%2Fx-tex%22%3ED%5Ctimes%20T_c%3C%2Fannotation%3E%3C%2Fsemantics%3E%3C%2Fmath%3E%3C%2Fspan%3E%3Cspan%20class%3D%22katex-html%22%20aria-hidden%3D%22true%22%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.7667em%3Bvertical-align%3A-0.0833em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.02778em%3B%22%3ED%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mbin%22%3E%C3%97%3C%2Fspan%3E%3Cspan%20class%3D%22mspace%22%20style%3D%22margin-right%3A0.2222em%3B%22%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22base%22%3E%3Cspan%20class%3D%22strut%22%20style%3D%22height%3A0.8333em%3Bvertical-align%3A-0.15em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22mord%22%3E%3Cspan%20class%3D%22mord%20mathnormal%22%20style%3D%22margin-right%3A0.13889em%3B%22%3ET%3C%2Fspan%3E%3Cspan%20class%3D%22msupsub%22%3E%3Cspan%20class%3D%22vlist-t%20vlist-t2%22%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.1514em%3B%22%3E%3Cspan%20style%3D%22top%3A-2.55em%3Bmargin-left%3A-0.1389em%3Bmargin-right%3A0.05em%3B%22%3E%3Cspan%20class%3D%22pstrut%22%20style%3D%22height%3A2.7em%3B%22%3E%3C%2Fspan%3E%3Cspan%20class%3D%22sizing%20reset-size6%20size3%20mtight%22%3E%3Cspan%20class%3D%22mord%20mathnormal%20mtight%22%3Ec%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-s%22%3E%E2%80%8B%3C%2Fspan%3E%3C%2Fspan%3E%3Cspan%20class%3D%22vlist-r%22%3E%3Cspan%20class%3D%22vlist%22%20style%3D%22height%3A0.15em%3B%22%3E%3Cspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Fspan%3E%3C%2Feq%3E%E2%80%8B%E3%80%82">利息税盾（<strong>Interest Tax Shield</strong>）</span>的税收优惠效应。</p>
 <section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mi>L</mi></msub><mo>=</mo><msub><mi>V</mi><mi>U</mi></msub><mo>+</mo><mi>D</mi><mo>×</mo><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
 V_L=V_U+D\times T_c
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section><h3 id="mm-proportion-ii"><a class="markdownIt-Anchor" href="#mm-proportion-ii"></a> MM Proportion II</h3>
@@ -791,17 +793,15 @@ V_L=V_U+D\times T_c
 <section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mi>E</mi></msub><mtext>​</mtext><mo>=</mo><msub><mi>R</mi><mi>U</mi></msub><mo>+</mo><mo stretchy="false">(</mo><msub><mi>R</mi><mi>U</mi></msub><mtext>​</mtext><mo>−</mo><msub><mi>R</mi><mi>D</mi></msub><mtext>​</mtext><mo stretchy="false">)</mo><mo>×</mo><msub><mi>E</mi><mi>D</mi></msub><mtext>​</mtext><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>T</mi><mi>c</mi></msub><mtext>​</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">​</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">U</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">​</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">​</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">​</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">​</span><span class="mclose">)</span></span></span></span></span></eqn></section><p>税收降低了债务的实际成本（因利息税盾），但股权风险和成本仍随杠杆上升而增加。</p>
+</article>
+<div class="article-footer"></div>
 
-<div class="article-footer fs14"></div>
-<script>
-    pseudocode.renderClass("pseudocode");
-</script></article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Prev</div><a href="/wiki/fina/capital-investment-decision-01.html">Capital Investment Decision</a></div><div class="item" id="next"><div class="note">Next</div><a href="/wiki/fina/market-efficiency.html">Agency Problem 和 Market Efficiency</a></div></section></div>
 
 
 
 
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4">Stellar 1.30.4</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
@@ -812,7 +812,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 <widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#without-tax-and-backruptcy-costs"><span class="toc-text"> Without Tax and Backruptcy Costs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mm-proportion-i"><span class="toc-text"> MM Proportion I</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#with-tax-and-bankruptcy-costs"><span class="toc-text"> With Tax and Bankruptcy Costs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mm-proportion-i-2"><span class="toc-text"> MM Proportion I</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mm-proportion-ii"><span class="toc-text"> MM Proportion II</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -830,6 +830,9 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
       day: `days ago`,
     },
     root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
   };
 
   // required plugins (only load if needs)
@@ -837,7 +840,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
     ctx.search = {};
     ctx.search.service = `local_search`;
     if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
       ctx.search[ctx.search.service] = service_obj;
     }
   }
@@ -854,6 +857,46 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 </script>
 
 <script type="text/javascript">
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
   const utils = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     css: (href, before, media, attributes) => {
@@ -916,7 +959,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 
     js: (src, opt) => new Promise((resolve, reject) => {
       var script = document.createElement('script');
-      if (src.startsWith('/')){
+      if (src.startsWith('/')) {
         src = ctx.root + src.substring(1);
       }
       script.src = src;
@@ -929,7 +972,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
         script.async = true
       }
       script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
+      script.onload = script.onreadystatechange = function () {
         const loadState = this.readyState
         if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
         script.onload = script.onreadystatechange = null
@@ -945,7 +988,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
         fn()
       }
     },
-    
+
     onLoading: (el) => {
       if (el) {
         $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
@@ -979,7 +1022,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
               }
             }
           }, 5000);
-          fetch(url).then(function(response) {
+          fetch(url).then(function (response) {
             if (status !== 2) {
               clearTimeout(timer);
               resolve(response);
@@ -987,14 +1030,14 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
               status = 1;
             }
             if (response.ok) {
-              return response.json();
+              return response;
             }
             throw new Error('Network response was not ok.');
-          }).then(function(data) {
+          }).then(function (data) {
             retryTimes = 0;
             utils.onLoadSuccess(el);
             callback(data);
-          }).catch(function(error) {
+          }).catch(function (error) {
             if (retryTimes > 0) {
               retryTimes -= 1;
               setTimeout(() => {
@@ -1009,9 +1052,28 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
       }
       req();
     },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
   };
-</script>
 
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
 <script>
   const sidebar = {
     leftbar: () => {
@@ -1067,7 +1129,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 
 
 <!-- required -->
-<script src="/js/main.js?v=1.29.1" defer></script>
+<script src="/js/main.js?v=1.30.4" defer></script>
 
 <script type="text/javascript">
   const applyTheme = (theme) => {
@@ -1114,6 +1176,8 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
     }
     applyTheme(newTheme)
     window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
 
     const messages = {
       light: `Switched to Light Mode`,
@@ -1128,7 +1192,10 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
     const theme = window.localStorage.getItem('Stellar.theme')
     if (theme !== null) {
       applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
+    utils.dark.method.toggle.start();
   })()
 </script>
 
@@ -1139,7 +1206,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
 
 <script defer>
   window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"}}`));
     for (let id of Object.keys(ctx.services)) {
       const js = ctx.services[id].js;
       if (id == 'siteinfo') {
@@ -1147,6 +1214,27 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
         if (ctx.cardlinks?.length > 0) {
           utils.js(js, { defer: true }).then(function () {
             setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
           });
         }
       } else {
@@ -1164,6 +1252,76 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
         }
       }
     }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
   });
 </script>
 
@@ -1267,7 +1425,7 @@ R_E​=R_U+(R_U​−R_D​)\times E_D​\times (1−T_c​)
     var mermaid_config = {
       startOnLoad: true,
       theme:
-        "" == "auto" &&
+        "auto" == "auto" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "neutral",

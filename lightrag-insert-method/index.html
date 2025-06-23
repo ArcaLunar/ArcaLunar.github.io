@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1" theme-name="Stellar" theme-version="1.29.1">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4" theme-name="Stellar" theme-version="1.30.4">
   
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
@@ -12,7 +12,7 @@
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
@@ -39,7 +39,8 @@
   <!-- feed -->
   
 
-  <link rel="stylesheet" href="/css/main.css?v=1.29.1">
+  <link rel="stylesheet" href="/css/main.css?v=1.30.4">
+
 
   
 
@@ -366,6 +367,7 @@ div.hcb-content.hcb-cards-content.active {
         color: var(--text-color, #333);
         border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
         text-decoration: none;
+        outline-style: dashed;
       }
       
       .floating-hover-target:hover {
@@ -685,8 +687,7 @@ div.hcb-content.hcb-cards-content.active {
     </script><!-- hexo injector head_end end --></head>
 <body>
 
-
-<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
@@ -700,7 +701,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/rust-grammar/rust-atomic/"><span class="title">Rust 原子操作与内存顺序</span></a><a class="item title" href="/topic/rust-grammar/rust-concurrency-condvar-sema-mutex/"><span class="title">Rust 同步：Semaphore, 条件变量, 互斥锁</span></a><a class="item title" href="/topic/rust-grammar/rust-concurrency-msg-passing/"><span class="title">Rust 线程同步：消息传递</span></a><a class="item title" href="/topic/rust-grammar/rust-generics/"><span class="title">Rust 泛型</span></a><a class="item title" href="/topic/rust-grammar/rust-concurrency/"><span class="title">Rust 多线程与并发</span></a><a class="item title" href="/topic/rust-grammar/rust-internal-changeable-cell-refcell/"><span class="title">Rust Cell&lt;T&gt;: 在不可变引用的同时修改目标数据</span></a><a class="item title" href="/topic/rust-grammar/rust-multithread-arc/"><span class="title">Rust Arc&lt;T&gt;：在多线程里共享对象</span></a><a class="item title" href="/topic/rust-grammar/rust-shared-pointer-rc/"><span class="title">Rust 中的计数指针</span></a><a class="item title" href="/topic/rust-grammar/smart-pointer-deref-drop/"><span class="title">智能指针：Deref, Drop</span></a><a class="item title" href="/topic/rust-grammar/rust-smart-pointers/"><span class="title">Rust 中的智能指针</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a><a class="item title" href="/topic/llm/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/mjcf-urdf/"><span class="title">ManiSkill 里的 MuJoCo Robot File</span></a><a class="item title" href="/topic/functional/haskell/haskell-crash-course/"><span class="title">Haskell 快速入门</span></a><a class="item title" href="/topic/functional/haskell/haskell-param-types/"><span class="title">Haskell, Parameterized Types</span></a><a class="item title" href="/git-hf-sshkey/"><span class="title">HuggingFace, GitHub 添加 SSH Key</span></a><a class="item title" href="/topic/functional/ocaml/ocaml-in-source-documentation/"><span class="title">OCaml 代码文档</span></a><a class="item title" href="/topic/functional/ocaml/ocaml-lec1/"><span class="title">OCaml 快速入门</span></a><a class="item title" href="/topic/analysis/math-analysis-2/"><span class="title">数学分析一 Ep.2：实数、有理数</span></a><a class="item title" href="/topic/analysis/math-analysis-1/"><span class="title">数学分析一 Ep.1 ：实数的公理化描述、四条公理</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -800,7 +801,7 @@ div.hcb-content.hcb-cards-content.active {
 </details>
 
 <ol start="4">
-<li>为每一份文档建立一个状态，方便追踪（包括<span id="hover-7ejfnxff0" class="floating-hover-target" data-hover-content="%E4%BE%8B%E5%A6%82%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0%E7%9A%84%E6%97%B6%E9%97%B4%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0">更新时间</span>）</li>
+<li>为每一份文档建立一个状态，方便追踪（包括<span id="hover-q1gg9jb3v" class="floating-hover-target" data-hover-content="%E4%BE%8B%E5%A6%82%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0%E7%9A%84%E6%97%B6%E9%97%B4%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0">更新时间</span>）</li>
 </ol>
 <p>这里的 <code>content_summary</code> 并非 LLM 的总结，仅仅只是做了截取。</p>
 
@@ -845,7 +846,7 @@ div.hcb-content.hcb-cards-content.active {
 </div>
 
 <h3 id="把文档和-prompt-输入大模型"><a class="markdownIt-Anchor" href="#把文档和-prompt-输入大模型"></a> 把文档和 prompt 输入大模型</h3>
-<p>这一部分由 <code>_process_single_content()</code> 完成。首先 patch Prompt 输入，然后调用 <span id="hover-7e2xwnj34" class="floating-hover-target" data-hover-content="%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E9%A6%96%E5%85%88%E7%94%A8%20hash%20%E5%9C%A8%20%3Ccode%3Ellm_response_cache%3C%2Fcode%3E%20%E9%87%8C%E6%89%BE%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E6%8F%92%E5%85%A5%E8%BF%87%E7%9B%B8%E5%90%8C%E7%9A%84%E6%96%87%E6%9C%AC%EF%BC%8C%E6%98%AF%E7%9A%84%E8%AF%9D%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9E%EF%BC%8C%E5%90%A6%E5%88%99%E8%B0%83%E7%94%A8%20%3Ccode%3Euse_llm_func()%3C%2Fcode%3E%20%E8%8E%B7%E5%8F%96%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%94%A8%20%3Ccode%3Eawait%20save_to_cache()%3C%2Fcode%3E%20%E7%BC%93%E5%AD%98%E4%B8%8B%E6%9D%A5"><code>use_llm_func_with_cache()</code></span> 获得 LLM 输出并缓存下来。</p>
+<p>这一部分由 <code>_process_single_content()</code> 完成。首先 patch Prompt 输入，然后调用 <span id="hover-polvb36fh" class="floating-hover-target" data-hover-content="%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E9%A6%96%E5%85%88%E7%94%A8%20hash%20%E5%9C%A8%20%3Ccode%3Ellm_response_cache%3C%2Fcode%3E%20%E9%87%8C%E6%89%BE%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E6%8F%92%E5%85%A5%E8%BF%87%E7%9B%B8%E5%90%8C%E7%9A%84%E6%96%87%E6%9C%AC%EF%BC%8C%E6%98%AF%E7%9A%84%E8%AF%9D%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9E%EF%BC%8C%E5%90%A6%E5%88%99%E8%B0%83%E7%94%A8%20%3Ccode%3Euse_llm_func()%3C%2Fcode%3E%20%E8%8E%B7%E5%8F%96%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%94%A8%20%3Ccode%3Eawait%20save_to_cache()%3C%2Fcode%3E%20%E7%BC%93%E5%AD%98%E4%B8%8B%E6%9D%A5"><code>use_llm_func_with_cache()</code></span> 获得 LLM 输出并缓存下来。</p>
 <p>接着开始解析输出，<code>for ... in range(entity_extract_max_gleaning)</code> 表示如果最多尝试提取关系 <code>entity_extract_max_gleaning</code> 次。</p>
 
 <div class="hcb-content hcb-block hcbwarning">
@@ -853,11 +854,11 @@ div.hcb-content.hcb-cards-content.active {
   <p>以下的两个步骤是针对一块 chunk 做的。也就是说，如果文档太长而被切分成很多 chunk，那么以下两个步骤也会运行多次。</p>
   <details class="hcb-content box hcbnote" open>
     <summary><i class="fa fa-pen fa-fw"></i>那么批量处理是如何进行的呢？<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
-    <p>项目源码这里采用多线程的方式批量处理 chunk. 具体做法是定义了一个 <span id="hover-cg30n9e23" class="floating-hover-target" data-hover-content="%E5%8D%B3%E6%9C%80%E5%A4%9A%E5%90%8C%E6%97%B6%E5%A4%84%E7%90%86%E7%9A%84%E4%BB%BB%E5%8A%A1%E6%95%B0%E9%87%8F">semaphore</span>，然后将所有任务都用 <code>asyncio.create_task()</code> 包装后，由 <code>asyncio.wait()</code> 统一执行并阻塞直到任务全部完成。</p>
+    <p>项目源码这里采用多线程的方式批量处理 chunk. 具体做法是定义了一个 <span id="hover-dh4ekvkl7" class="floating-hover-target" data-hover-content="%E5%8D%B3%E6%9C%80%E5%A4%9A%E5%90%8C%E6%97%B6%E5%A4%84%E7%90%86%E7%9A%84%E4%BB%BB%E5%8A%A1%E6%95%B0%E9%87%8F">semaphore</span>，然后将所有任务都用 <code>asyncio.create_task()</code> 包装后，由 <code>asyncio.wait()</code> 统一执行并阻塞直到任务全部完成。</p>
     <blockquote>
     <p>这里我们先忽略错误处理，先关注后面的流程。</p>
     </blockquote>
-    <p>收集完 <span id="hover-dvtjm37pj" class="floating-hover-target" data-hover-content="a%20list%20of%20tuples%20of%20%3Ccode%3E(nodes%2C%20edges)%3C%2Fcode%3E"><code>chunk_results</code></span> 后，<span id="hover-kzygc9ur2" class="floating-hover-target" data-hover-content="%E8%BF%99%E6%A0%B7%E5%81%9A%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7%E5%9C%A8%E4%BA%8E%EF%BC%8C%E6%AD%A4%E6%97%B6%EF%BC%8C%E5%90%8C%E5%90%8D%E7%9A%84%20entity%20%E5%87%BA%E7%8E%B0%E5%9C%A8%E4%B8%8D%E5%90%8C%20chunk%20%E9%87%8C%EF%BC%8C%E6%84%8F%E5%91%B3%E7%9D%80%3Cu%3E%E4%B8%8D%E5%90%8C%20chunk%20%E5%8C%85%E5%90%AB%E5%90%8C%E4%B8%80%E4%B8%AA%20entity%20%E7%9A%84%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%3C%2Fu%3E%EF%BC%8C%E5%9B%A0%E6%AD%A4%E8%BF%99%E9%87%8C%E7%9B%B4%E6%8E%A5%20%3Ccode%3Eextend()%3C%2Fcode%3E%20%E6%98%AF%E5%90%88%E7%90%86%E7%9A%84">直接用 <code>list</code> 的 <code>extend()</code> 方法合并到 <code>all_nodes, all_edges</code> 里面</span></p>
+    <p>收集完 <span id="hover-n6kayspn7" class="floating-hover-target" data-hover-content="a%20list%20of%20tuples%20of%20%3Ccode%3E(nodes%2C%20edges)%3C%2Fcode%3E"><code>chunk_results</code></span> 后，<span id="hover-pz3ybv1hf" class="floating-hover-target" data-hover-content="%E8%BF%99%E6%A0%B7%E5%81%9A%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7%E5%9C%A8%E4%BA%8E%EF%BC%8C%E6%AD%A4%E6%97%B6%EF%BC%8C%E5%90%8C%E5%90%8D%E7%9A%84%20entity%20%E5%87%BA%E7%8E%B0%E5%9C%A8%E4%B8%8D%E5%90%8C%20chunk%20%E9%87%8C%EF%BC%8C%E6%84%8F%E5%91%B3%E7%9D%80%3Cu%3E%E4%B8%8D%E5%90%8C%20chunk%20%E5%8C%85%E5%90%AB%E5%90%8C%E4%B8%80%E4%B8%AA%20entity%20%E7%9A%84%E4%B8%8D%E5%90%8C%E5%B1%9E%E6%80%A7%3C%2Fu%3E%EF%BC%8C%E5%9B%A0%E6%AD%A4%E8%BF%99%E9%87%8C%E7%9B%B4%E6%8E%A5%20%3Ccode%3Eextend()%3C%2Fcode%3E%20%E6%98%AF%E5%90%88%E7%90%86%E7%9A%84">直接用 <code>list</code> 的 <code>extend()</code> 方法合并到 <code>all_nodes, all_edges</code> 里面</span></p>
     <details class="hcb-content box hcbsuccess">
       <summary><i class="fa fa-check fa-fw"></i>合并 chunk<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
       <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Collect all nodes and edges from all chunks</span></span><br><span class="line">all_nodes = defaultdict(<span class="built_in">list</span>)</span><br><span class="line">all_edges = defaultdict(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> maybe_nodes, maybe_edges <span class="keyword">in</span> chunk_results:</span><br><span class="line">    <span class="comment"># Collect nodes</span></span><br><span class="line">    <span class="keyword">for</span> entity_name, entities <span class="keyword">in</span> maybe_nodes.items():</span><br><span class="line">        all_nodes[entity_name].extend(entities)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Collect edges with sorted keys for undirected graph</span></span><br><span class="line">    <span class="keyword">for</span> edge_key, edges <span class="keyword">in</span> maybe_edges.items():</span><br><span class="line">        sorted_edge_key = <span class="built_in">tuple</span>(<span class="built_in">sorted</span>(edge_key))</span><br><span class="line">        all_edges[sorted_edge_key].extend(edges)</span><br></pre></td></tr></table></figure>
@@ -877,14 +878,14 @@ div.hcb-content.hcb-cards-content.active {
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取为实体</span></span><br><span class="line">if_entities = <span class="keyword">await</span> _handle_single_entity_extraction(</span><br><span class="line">    record_attributes, chunk_key, file_path</span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> if_entities <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    maybe_nodes[if_entities[<span class="string">&quot;entity_name&quot;</span>]].append(if_entities)</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取为关系</span></span><br><span class="line">if_relation = <span class="keyword">await</span> _handle_single_relationship_extraction(</span><br><span class="line">    record_attributes, chunk_key, file_path</span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> if_relation <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    maybe_edges[(if_relation[<span class="string">&quot;src_id&quot;</span>], if_relation[<span class="string">&quot;tgt_id&quot;</span>])].append(</span><br><span class="line">        if_relation</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
 <h3 id="合并实体节点和关系边"><a class="markdownIt-Anchor" href="#合并实体节点和关系边"></a> 合并实体节点和关系边</h3>
-<p>这一块就是<span id="hover-m7zs218z3" class="floating-hover-target" data-hover-content="%E6%88%91%E6%84%9F%E8%A7%89%E5%85%B6%E5%AE%9E%E5%8F%AF%E8%83%BD%E8%BF%98%E6%98%AF%E9%9C%80%E8%A6%81%20LLM%20%E5%81%9A%E5%AE%9E%E4%BD%93%E5%90%88%E5%B9%B6%EF%BC%8C%E6%88%96%E8%80%85%E7%94%A8%20embedding%20%E5%88%A4%E6%96%AD%E8%AF%AD%E4%B9%89%E5%A5%BD%E4%B8%80%E7%82%B9%3Cdel%3E%E4%B8%8D%E8%BF%87%E8%BF%99%E4%B8%AA%E4%BC%98%E5%8C%96%E4%B9%8B%E5%90%8E%E5%86%8D%E8%AF%B4%E5%90%A7%3C%2Fdel%3E">简单地</span>用<strong>提取的实体名称</strong>和<strong>关系名称</strong>做合并</p>
+<p>这一块就是<span id="hover-2vcanvz3x" class="floating-hover-target" data-hover-content="%E6%88%91%E6%84%9F%E8%A7%89%E5%85%B6%E5%AE%9E%E5%8F%AF%E8%83%BD%E8%BF%98%E6%98%AF%E9%9C%80%E8%A6%81%20LLM%20%E5%81%9A%E5%AE%9E%E4%BD%93%E5%90%88%E5%B9%B6%EF%BC%8C%E6%88%96%E8%80%85%E7%94%A8%20embedding%20%E5%88%A4%E6%96%AD%E8%AF%AD%E4%B9%89%E5%A5%BD%E4%B8%80%E7%82%B9%3Cdel%3E%E4%B8%8D%E8%BF%87%E8%BF%99%E4%B8%AA%E4%BC%98%E5%8C%96%E4%B9%8B%E5%90%8E%E5%86%8D%E8%AF%B4%E5%90%A7%3C%2Fdel%3E">简单地</span>用<strong>提取的实体名称</strong>和<strong>关系名称</strong>做合并</p>
 
 <details class="hcb-content box hcbsuccess">
   <summary><i class="fa fa-check fa-fw"></i>Code<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Process gleaning result separately with file path</span></span><br><span class="line">glean_nodes, glean_edges = <span class="keyword">await</span> _process_extraction_result(</span><br><span class="line">    glean_result, chunk_key, file_path</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Merge results - only add entities and edges with new names</span></span><br><span class="line"><span class="keyword">for</span> entity_name, entities <span class="keyword">in</span> glean_nodes.items():</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        entity_name <span class="keyword">not</span> <span class="keyword">in</span> maybe_nodes</span><br><span class="line">    ):  <span class="comment"># Only accetp entities with new name in gleaning stage</span></span><br><span class="line">        maybe_nodes[entity_name].extend(entities)</span><br><span class="line"><span class="keyword">for</span> edge_key, edges <span class="keyword">in</span> glean_edges.items():</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        edge_key <span class="keyword">not</span> <span class="keyword">in</span> maybe_edges</span><br><span class="line">    ):  <span class="comment"># Only accetp edges with new name in gleaning stage</span></span><br><span class="line">        maybe_edges[edge_key].extend(edges)</span><br></pre></td></tr></table></figure>
 </details>
 
-<p>为了避免 LLM 遗漏 Entity，我们再额外用 LLM 判断是否有遗漏，用 <code>prompt.py</code> 里的 <span id="hover-hr8jhdl7h" class="floating-hover-target" data-hover-content="%E6%80%8E%E4%B9%88%E7%94%A8%E8%BF%99%E4%B9%88%E4%B8%AA%E5%90%8D%E5%AD%97%EF%BC%8C%E8%BF%99%E5%92%8C%20loop%20%E6%9C%89%E5%95%A5%E5%85%B3%E7%B3%BB%EF%BC%88"><code>if_loop_prompt</code></span> 作为输入，直到没有遗漏了就退出循环。</p>
+<p>为了避免 LLM 遗漏 Entity，我们再额外用 LLM 判断是否有遗漏，用 <code>prompt.py</code> 里的 <span id="hover-ogft5we51" class="floating-hover-target" data-hover-content="%E6%80%8E%E4%B9%88%E7%94%A8%E8%BF%99%E4%B9%88%E4%B8%AA%E5%90%8D%E5%AD%97%EF%BC%8C%E8%BF%99%E5%92%8C%20loop%20%E6%9C%89%E5%95%A5%E5%85%B3%E7%B3%BB%EF%BC%88"><code>if_loop_prompt</code></span> 作为输入，直到没有遗漏了就退出循环。</p>
 <p>最后返回从这个 chunk 提取出来的 nodes 和 edges</p>
 
 <details class="hcb-content box hcbsuccess">
@@ -916,17 +917,15 @@ div.hcb-content.hcb-cards-content.active {
   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> relationships_vdb <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> relationships_data:</span><br><span class="line">    data_for_vdb = &#123;</span><br><span class="line">        compute_mdhash_id(dp[<span class="string">&quot;src_id&quot;</span>] + dp[<span class="string">&quot;tgt_id&quot;</span>], prefix=<span class="string">&quot;rel-&quot;</span>): &#123;</span><br><span class="line">            <span class="string">&quot;src_id&quot;</span>: dp[<span class="string">&quot;src_id&quot;</span>],</span><br><span class="line">            <span class="string">&quot;tgt_id&quot;</span>: dp[<span class="string">&quot;tgt_id&quot;</span>],</span><br><span class="line">            <span class="string">&quot;keywords&quot;</span>: dp[<span class="string">&quot;keywords&quot;</span>],</span><br><span class="line">            <span class="string">&quot;content&quot;</span>: <span class="string">f&quot;<span class="subst">&#123;dp[<span class="string">&#x27;src_id&#x27;</span>]&#125;</span>\t<span class="subst">&#123;dp[<span class="string">&#x27;tgt_id&#x27;</span>]&#125;</span>\n<span class="subst">&#123;dp[<span class="string">&#x27;keywords&#x27;</span>]&#125;</span>\n<span class="subst">&#123;dp[<span class="string">&#x27;description&#x27;</span>]&#125;</span>&quot;</span>,</span><br><span class="line">            <span class="string">&quot;source_id&quot;</span>: dp[<span class="string">&quot;source_id&quot;</span>],</span><br><span class="line">            <span class="string">&quot;file_path&quot;</span>: dp.get(<span class="string">&quot;file_path&quot;</span>, <span class="string">&quot;unknown_source&quot;</span>),</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> dp <span class="keyword">in</span> relationships_data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> relationships_vdb.upsert(data_for_vdb)</span><br></pre></td></tr></table></figure>
 </details>
 
-
-<div class="article-footer fs14">
+</article>
+<div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
 </div>
     </section>
     </div>
-<script>
-    pseudocode.renderClass("pseudocode");
-</script></article>
+
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/coredump-analysis/">C/C++ 程序崩溃分析：coredump</a></div><div class="item" id="next"><div class="note">Older</div><a href="/swe-django-rest-framework/">Django REST API 框架</a></div></section></div>
 
 
@@ -934,7 +933,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.29.1">Stellar 1.29.1</a> 主题创建。<br />
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Arca Lunar</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.30.4">Stellar 1.30.4</a> 主题创建。<br />
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
@@ -945,7 +944,7 @@ div.hcb-content.hcb-cards-content.active {
 <widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lightrag"><span class="toc-text"> LightRAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%BC%82%E6%AD%A5%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BA"><span class="toc-text"> 启动异步索引构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5"><span class="toc-text"> 异步进行插入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text"> 完整代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%96%87%E6%A1%A3%E8%BF%9B%E8%A1%8C%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text"> 对文档进行预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E5%A4%84%E7%90%86%E6%96%87%E6%A1%A3"><span class="toc-text"> 正式处理文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E6%A1%A3%E5%92%8C-prompt-%E8%BE%93%E5%85%A5%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text"> 把文档和 prompt 输入大模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-text"> 解析大模型的输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%AE%9E%E4%BD%93%E8%8A%82%E7%82%B9%E5%92%8C%E5%85%B3%E7%B3%BB%E8%BE%B9"><span class="toc-text"> 合并实体节点和关系边</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1"><span class="toc-text"> 更新知识图谱</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel blur'>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -963,6 +962,9 @@ div.hcb-content.hcb-cards-content.active {
       day: `days ago`,
     },
     root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
   };
 
   // required plugins (only load if needs)
@@ -970,7 +972,7 @@ div.hcb-content.hcb-cards-content.active {
     ctx.search = {};
     ctx.search.service = `local_search`;
     if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"sort":"-date"}`);
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
       ctx.search[ctx.search.service] = service_obj;
     }
   }
@@ -987,6 +989,46 @@ div.hcb-content.hcb-cards-content.active {
 </script>
 
 <script type="text/javascript">
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
   const utils = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     css: (href, before, media, attributes) => {
@@ -1049,7 +1091,7 @@ div.hcb-content.hcb-cards-content.active {
 
     js: (src, opt) => new Promise((resolve, reject) => {
       var script = document.createElement('script');
-      if (src.startsWith('/')){
+      if (src.startsWith('/')) {
         src = ctx.root + src.substring(1);
       }
       script.src = src;
@@ -1062,7 +1104,7 @@ div.hcb-content.hcb-cards-content.active {
         script.async = true
       }
       script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
+      script.onload = script.onreadystatechange = function () {
         const loadState = this.readyState
         if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
         script.onload = script.onreadystatechange = null
@@ -1078,7 +1120,7 @@ div.hcb-content.hcb-cards-content.active {
         fn()
       }
     },
-    
+
     onLoading: (el) => {
       if (el) {
         $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
@@ -1112,7 +1154,7 @@ div.hcb-content.hcb-cards-content.active {
               }
             }
           }, 5000);
-          fetch(url).then(function(response) {
+          fetch(url).then(function (response) {
             if (status !== 2) {
               clearTimeout(timer);
               resolve(response);
@@ -1120,14 +1162,14 @@ div.hcb-content.hcb-cards-content.active {
               status = 1;
             }
             if (response.ok) {
-              return response.json();
+              return response;
             }
             throw new Error('Network response was not ok.');
-          }).then(function(data) {
+          }).then(function (data) {
             retryTimes = 0;
             utils.onLoadSuccess(el);
             callback(data);
-          }).catch(function(error) {
+          }).catch(function (error) {
             if (retryTimes > 0) {
               retryTimes -= 1;
               setTimeout(() => {
@@ -1142,9 +1184,28 @@ div.hcb-content.hcb-cards-content.active {
       }
       req();
     },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
   };
-</script>
 
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
 <script>
   const sidebar = {
     leftbar: () => {
@@ -1200,7 +1261,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 <!-- required -->
-<script src="/js/main.js?v=1.29.1" defer></script>
+<script src="/js/main.js?v=1.30.4" defer></script>
 
 <script type="text/javascript">
   const applyTheme = (theme) => {
@@ -1247,6 +1308,8 @@ div.hcb-content.hcb-cards-content.active {
     }
     applyTheme(newTheme)
     window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
 
     const messages = {
       light: `Switched to Light Mode`,
@@ -1261,7 +1324,10 @@ div.hcb-content.hcb-cards-content.active {
     const theme = window.localStorage.getItem('Stellar.theme')
     if (theme !== null) {
       applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
+    utils.dark.method.toggle.start();
   })()
 </script>
 
@@ -1272,7 +1338,7 @@ div.hcb-content.hcb-cards-content.active {
 
 <script defer>
   window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"}}`));
     for (let id of Object.keys(ctx.services)) {
       const js = ctx.services[id].js;
       if (id == 'siteinfo') {
@@ -1280,6 +1346,27 @@ div.hcb-content.hcb-cards-content.active {
         if (ctx.cardlinks?.length > 0) {
           utils.js(js, { defer: true }).then(function () {
             setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
           });
         }
       } else {
@@ -1297,6 +1384,76 @@ div.hcb-content.hcb-cards-content.active {
         }
       }
     }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
   });
 </script>
 
@@ -1400,7 +1557,7 @@ div.hcb-content.hcb-cards-content.active {
     var mermaid_config = {
       startOnLoad: true,
       theme:
-        "" == "auto" &&
+        "auto" == "auto" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "neutral",
