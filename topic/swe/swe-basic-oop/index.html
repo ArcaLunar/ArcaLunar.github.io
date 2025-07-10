@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Django REST API 框架 - Arca Lunar's Blog</title>
+  <title>软件工程基础：面向对象编程 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="REST 的六大设计约束   客户端-服务器架构  分离职责：客户端与服务器完全解耦，各自独立演化。 优势：提升可扩展性，简化服务器端复杂度，允许客户端灵活更新。    无状态性  定义：服务器不保存客户端会话状态，每次请求必须包含完整上下文。 实现：通过请求参数、Cookie 或 Token 传递必要信息。 优势：提高可靠性、可伸缩性，避免单点故障。    缓存  要求：响应必须明确标注是否可">
+    <meta name="description" content="什么是 OOP？以及 OOP 的原则，学习《深入设计模式》">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django REST API 框架">
-<meta property="og:url" content="http://example.com/swe-django-rest-framework/index.html">
+<meta property="og:title" content="软件工程基础：面向对象编程">
+<meta property="og:url" content="http://example.com/topic/swe/swe-basic-oop/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="REST 的六大设计约束   客户端-服务器架构  分离职责：客户端与服务器完全解耦，各自独立演化。 优势：提升可扩展性，简化服务器端复杂度，允许客户端灵活更新。    无状态性  定义：服务器不保存客户端会话状态，每次请求必须包含完整上下文。 实现：通过请求参数、Cookie 或 Token 传递必要信息。 优势：提高可靠性、可伸缩性，避免单点故障。    缓存  要求：响应必须明确标注是否可">
+<meta property="og:description" content="什么是 OOP？以及 OOP 的原则，学习《深入设计模式》">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-29T05:31:08.000Z">
-<meta property="article:modified_time" content="2025-05-04T10:04:41.842Z">
+<meta property="article:published_time" content="2025-06-24T15:35:41.000Z">
+<meta property="article:modified_time" content="2025-06-24T15:41:29.476Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -701,7 +701,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a><a class="item title" href="/topic/llm/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/mjcf-urdf/"><span class="title">ManiSkill 里的 MuJoCo Robot File</span></a><a class="item title" href="/topic/functional/haskell/haskell-crash-course/"><span class="title">Haskell 快速入门</span></a><a class="item title" href="/topic/functional/haskell/haskell-param-types/"><span class="title">Haskell, Parameterized Types</span></a><a class="item title" href="/git-hf-sshkey/"><span class="title">HuggingFace, GitHub 添加 SSH Key</span></a><a class="item title" href="/topic/functional/ocaml/ocaml-in-source-documentation/"><span class="title">OCaml 代码文档</span></a><a class="item title" href="/topic/functional/ocaml/ocaml-lec1/"><span class="title">OCaml 快速入门</span></a><a class="item title" href="/topic/analysis/math-analysis-2/"><span class="title">数学分析一 Ep.2：实数、有理数</span></a><a class="item title" href="/topic/analysis/math-analysis-1/"><span class="title">数学分析一 Ep.1 ：实数的公理化描述、四条公理</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/joisc2021-ioi-netsubyou/"><span class="title">JOISC2021 - IOI 热病</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">terminal-chn-fonts</span></a><a class="item title" href="/topic/functional/haskell/haskell-crash-course/"><span class="title">Haskell 快速入门</span></a><a class="item title" href="/topic/dailycf/LuoguP3631/"><span class="title">P3631 [APIO2011] 方格染色</span></a><a class="item title" href="/topic/dailycf/LuoguP3632/"><span class="title">P3632 [APIO2011] 寻路</span></a><a class="item title" href="/topic/dailycf/LuoguP4151/"><span class="title">P4151 [WC2011] 最大XOR和路径</span></a><a class="item title" href="/topic/dailycf/LuoguP9368/"><span class="title">P9368 [ICPC2022 Xi'an] Streets</span></a><a class="item title" href="/topic/swe/swe-basic-oop/"><span class="title">软件工程基础：面向对象编程</span></a><a class="item title" href="/topic/llm/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -714,84 +714,31 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-04-29T05:31:08.000Z">2025-04-29</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-05-04T10:04:41.842Z">2025-05-04</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-06-24T15:35:41.000Z">2025-06-24</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-06-24T15:41:29.476Z">2025-06-24</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Django REST API 框架</span></h1>
+        <h1 class="text title"><span>软件工程基础：面向对象编程</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="rest-的六大设计约束"><a class="markdownIt-Anchor" href="#rest-的六大设计约束"></a> <strong>REST 的六大设计约束</strong></h2>
-<ol>
-<li>
-<p><strong>客户端-服务器架构</strong></p>
-<ul>
-<li><strong>分离职责</strong>：客户端与服务器完全解耦，各自独立演化。</li>
-<li><strong>优势</strong>：提升可扩展性，简化服务器端复杂度，允许客户端灵活更新。</li>
-</ul>
-</li>
-<li>
-<p><strong>无状态性</strong></p>
-<ul>
-<li><strong>定义</strong>：服务器不保存<span id="hover-yjbx9siz4" class="floating-hover-target" data-hover-content="%E7%94%B1%20Client%20%E7%BB%B4%E6%8A%A4">客户端会话状态</span>，每次请求必须包含完整上下文。</li>
-<li><strong>实现</strong>：通过请求参数、Cookie 或 Token 传递必要信息。</li>
-<li><strong>优势</strong>：提高<u>可靠性、可伸缩性</u>，避免单点故障。</li>
-</ul>
-</li>
-<li>
-<p><strong>缓存</strong></p>
-<ul>
-<li><strong>要求</strong>：响应必须明确标注是否可缓存（如 <code>Cache-Control</code> 头）。</li>
-<li><strong>优势</strong>：减少网络流量，提升性能，优化用户体验。</li>
-</ul>
-</li>
-<li>
-<p><strong>统一接口</strong></p>
-<ul>
-<li><strong>核心要素</strong>：
-<ul>
-<li><strong>资源标识</strong>：每个资源通过唯一 URI（如 <code>/products/123</code>）访问。</li>
-<li><strong>操作方式</strong>：使用标准 HTTP 方法（GET/POST/PUT/PATCH/DELETE）操作资源。</li>
-<li><strong>表示交换</strong>：通过 JSON/XML 等格式传输资源状态（Representational State Transfer）。</li>
-<li><strong>自描述消息</strong>：响应包含元数据（如 Content-Type），无需额外文档即可解析。</li>
-<li><strong>HATEOAS</strong>：超文本驱动应用状态，响应中嵌入链接引导下一步操作（如 <code>&#123;&quot;next&quot;: &quot;/products?page=2&quot;&#125;</code>）。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>分层系统</strong></p>
-<ul>
-<li><strong>定义</strong>：支持中间层（如代理、缓存服务器），隐藏底层实现细节。</li>
-<li><strong>优势</strong>：增强可扩展性，简化部署，隔离客户端与服务器直接交互。</li>
-</ul>
-</li>
-<li>
-<p><strong>按需代码（可选）</strong></p>
-<ul>
-<li><strong>功能</strong>：允许服务器动态下载代码到客户端（如 JavaScript 扩展功能）。</li>
-<li><strong>场景</strong>：适用于需要动态行为调整的场景（如 Web 应用热更新）。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="rest-的本质目标"><a class="markdownIt-Anchor" href="#rest-的本质目标"></a> <strong>REST 的本质目标</strong></h3>
-<ul>
-<li><strong>解耦系统组件</strong>：通过标准化接口降低依赖，支持独立开发与维护。</li>
-<li><strong>高效通信</strong>：利用 HTTP 协议特性（如缓存、状态码）优化性能。</li>
-<li><strong>可进化性</strong>：允许服务端迭代升级，只要保持接口兼容。</li>
-</ul>
-<hr />
-<h3 id="关键实践建议"><a class="markdownIt-Anchor" href="#关键实践建议"></a> <strong>关键实践建议</strong></h3>
-<ul>
-<li><strong>资源设计</strong>：以名词命名资源（如 <code>/orders</code>），而非动词（如 <code>/get-orders</code>）。</li>
-<li><strong>层级结构</strong>：通过 URL 层级体现资源关系（如 <code>/managers/23/orders</code>）。</li>
-<li><strong>HATEOAS 实现</strong>：在响应中提供导航链接，减少客户端硬编码路径依赖。</li>
-</ul>
+  </div><article class="md-text content"><h2 id="抽象-abstraction"><a class="markdownIt-Anchor" href="#抽象-abstraction"></a> 抽象 Abstraction</h2>
+<blockquote>
+<p>建模，模拟真实对象的特定属性和行为。</p>
+</blockquote>
+<h2 id="封装-capsulation"><a class="markdownIt-Anchor" href="#封装-capsulation"></a> 封装 Capsulation</h2>
+<blockquote>
+<p><strong>接口 interface</strong>: 它是对象的公有部分， 能够同其他对象进行交互</p>
+<p><strong>封装</strong>是指一个对象对其他对象隐藏其部分状态和行为，而仅向程序其他部分暴露有限的接口的能力</p>
+</blockquote>
+<h2 id="继承-inheritance"><a class="markdownIt-Anchor" href="#继承-inheritance"></a> 继承 Inheritance</h2>
+<h2 id="多态"><a class="markdownIt-Anchor" href="#多态"></a> 多态</h2>
+<blockquote>
+<p><strong>多态</strong>是指程序能够检测对象所属的实际类，并在当前上下文不知道其真实类型的情况下调用其实现的能力</p>
+</blockquote>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -801,7 +748,7 @@ div.hcb-content.hcb-cards-content.active {
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/lightrag-insert-method/">LightRAG: 构建索引 insert() 方法深入探究</a></div><div class="item" id="next"><div class="note">Older</div><a href="/async-programming/">异步编程</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/dailycf/LuoguP4151/">P4151 [WC2011] 最大XOR和路径</a></div><div class="item" id="next"><div class="note">Older</div><a href="/vim-keys-001/">Vim 快捷键操作</a></div></section></div>
 
 
 
@@ -816,7 +763,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rest-%E7%9A%84%E5%85%AD%E5%A4%A7%E8%AE%BE%E8%AE%A1%E7%BA%A6%E6%9D%9F"><span class="toc-text"> REST 的六大设计约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rest-%E7%9A%84%E6%9C%AC%E8%B4%A8%E7%9B%AE%E6%A0%87"><span class="toc-text"> REST 的本质目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text"> 关键实践建议</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1-abstraction"><span class="toc-text"> 抽象 Abstraction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85-capsulation"><span class="toc-text"> 封装 Capsulation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF-inheritance"><span class="toc-text"> 继承 Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text"> 多态</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
