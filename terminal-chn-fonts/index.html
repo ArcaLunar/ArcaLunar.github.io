@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>terminal-chn-fonts - Arca Lunar's Blog</title>
+  <title>终端里给任何字体都加上自定义图标和中文支持 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="all kinds of stuff">
+    <meta name="description" content="起因是想在终端里用一个字体，但是这个字体没有 nerd font 和中文的支持。恰好本地有其他的 nerd font 和中文字体，所以直接 patch 一下使用~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="terminal-chn-fonts">
+<meta property="og:title" content="终端里给任何字体都加上自定义图标和中文支持">
 <meta property="og:url" content="http://example.com/terminal-chn-fonts/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="all kinds of stuff">
+<meta property="og:description" content="起因是想在终端里用一个字体，但是这个字体没有 nerd font 和中文的支持。恰好本地有其他的 nerd font 和中文字体，所以直接 patch 一下使用~">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-06T11:04:50.000Z">
-<meta property="article:modified_time" content="2025-07-06T11:04:50.537Z">
+<meta property="article:modified_time" content="2025-07-19T09:20:29.829Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -701,7 +701,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/joisc2021-ioi-netsubyou/"><span class="title">JOISC2021 - IOI 热病</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">terminal-chn-fonts</span></a><a class="item title" href="/topic/functional/haskell/haskell-crash-course/"><span class="title">Haskell 快速入门</span></a><a class="item title" href="/topic/dailycf/LuoguP3631/"><span class="title">P3631 [APIO2011] 方格染色</span></a><a class="item title" href="/topic/dailycf/LuoguP3632/"><span class="title">P3632 [APIO2011] 寻路</span></a><a class="item title" href="/topic/dailycf/LuoguP4151/"><span class="title">P4151 [WC2011] 最大XOR和路径</span></a><a class="item title" href="/topic/dailycf/LuoguP9368/"><span class="title">P9368 [ICPC2022 Xi'an] Streets</span></a><a class="item title" href="/topic/swe/swe-basic-oop/"><span class="title">软件工程基础：面向对象编程</span></a><a class="item title" href="/topic/llm/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/llm-application/RAG-reference-system/"><span class="title">RAG：添加引用文献功能</span></a><a class="item title" href="/topic/cs336/tensor-storage/"><span class="title">Tensor 的内存分布</span></a><a class="item title" href="/topic/cs336/fp-int-formats/"><span class="title">AI 训练的浮点数、整数数据格式</span></a><a class="item title" href="/topic/langchain/conversation-management/"><span class="title">LangChain 实现 LLM 历史聊天记录</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/claude-code-prompting/"><span class="title">Claude Code 提示词工程指南（一）</span></a><a class="item title" href="/topic/cs336/model-computational-resources/"><span class="title">模型计算量 FLOPs</span></a><a class="item title" href="/topic/swe/design-pattern/"><span class="title">设计模式：UML</span></a><a class="item title" href="/dataset-4-vla/"><span class="title">dataset-4-vla</span></a><a class="item title" href="/topic/dailycf/techniques-01/"><span class="title">ACM Tricks (1)</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -714,18 +714,33 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-07-06T11:04:50.000Z">2025-07-06</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-07-06T11:04:50.537Z">2025-07-06</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-07-06T11:04:50.000Z">2025-07-06</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-07-19T09:20:29.829Z">2025-07-19</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>terminal-chn-fonts</span></h1>
+        <h1 class="text title"><span>终端里给任何字体都加上自定义图标和中文支持</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"></article>
+  </div><article class="md-text content"><h2 id="给字体打个补丁"><a class="markdownIt-Anchor" href="#给字体打个补丁"></a> 给字体打个补丁</h2>
+<p>Linux 运行 <code>fc-cache -f</code> 会</p>
+<ul>
+<li>重新加载字体文件夹下的所有字体文件</li>
+<li>读取 <code>~/.config/fontconfig/fonts.conf</code></li>
+</ul>
+<p>这个 <code>fonts.conf</code> 可以自定义字体 fallback，可以给每一个字体都单独进行设置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">alias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">family</span>&gt;</span>Inconsolata<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">prefer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">family</span>&gt;</span>FiraCode Nerd Font<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">family</span>&gt;</span>LXGW Wenkai<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">prefer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">alias</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的 config 就设置了两个东西：</p>
+<ul>
+<li>先使用 Inconsolata 的英文字体</li>
+<li>对于图标等特殊字符和中文，先在 FiraCode Nerd Font 里找（能找到图标这类的特殊字符）</li>
+<li>对于中文，再到 LXGW Wenkai 里找（能找到中文字体）</li>
+</ul>
+<p>然后 nerd font 和中文字体都可以正常显示了~</p>
+</article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -734,7 +749,7 @@ div.hcb-content.hcb-cards-content.active {
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Older</div><a href="/joisc2021-ioi-netsubyou/">JOISC2021 - IOI 热病</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/dailycf/techniques-01/">ACM Tricks (1)</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/dailycf/joisc2021-ioi-netsubyou/">JOISC2021 - IOI 热病</a></div></section></div>
 
 
 
@@ -745,7 +760,14 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%AD%97%E4%BD%93%E6%89%93%E4%B8%AA%E8%A1%A5%E4%B8%81"><span class="toc-text"> 给字体打个补丁</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
