@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Haskell 快速入门 - Arca Lunar's Blog</title>
+  <title>LangChain API: 多模态输入 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="学一学函数式编程（">
+    <meta name="description" content="LLM 大模型 App 开发不得不品的一环">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell 快速入门">
-<meta property="og:url" content="http://example.com/topic/functional/haskell/haskell-crash-course/index.html">
+<meta property="og:title" content="LangChain API: 多模态输入">
+<meta property="og:url" content="http://example.com/topic/LLMApplication/langchain/langchain-multimodal-inputs/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="学一学函数式编程（">
+<meta property="og:description" content="LLM 大模型 App 开发不得不品的一环">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-06-21T04:28:46.000Z">
-<meta property="article:modified_time" content="2025-07-01T15:59:27.445Z">
+<meta property="article:published_time" content="2025-08-01T02:49:38.000Z">
+<meta property="article:modified_time" content="2025-08-01T03:03:23.945Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -348,7 +348,7 @@ div.hcb-content.hcb-cards-content.active {
 
   </style>
 
-  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -701,7 +701,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/llm-application/RAG-reference-system/"><span class="title">RAG：添加引用文献功能</span></a><a class="item title" href="/topic/cs336/tensor-storage/"><span class="title">Tensor 的内存分布</span></a><a class="item title" href="/topic/cs336/fp-int-formats/"><span class="title">AI 训练的浮点数、整数数据格式</span></a><a class="item title" href="/topic/langchain/conversation-management/"><span class="title">LangChain 实现 LLM 历史聊天记录</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/claude-code-prompting/"><span class="title">Claude Code 提示词工程指南（一）</span></a><a class="item title" href="/topic/cs336/model-computational-resources/"><span class="title">模型计算量 FLOPs</span></a><a class="item title" href="/topic/swe/design-pattern/"><span class="title">设计模式：UML</span></a><a class="item title" href="/dataset-4-vla/"><span class="title">dataset-4-vla</span></a><a class="item title" href="/topic/dailycf/techniques-01/"><span class="title">ACM Tricks (1)</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/LLMApplication/langchain/langchain-multimodal-inputs/"><span class="title">LangChain API: 多模态输入</span></a><a class="item title" href="/topic/LLMApplication/RAG-reference-system/"><span class="title">RAG：添加引用文献功能</span></a><a class="item title" href="/topic/cs336/tensor-storage/"><span class="title">Tensor 的内存分布</span></a><a class="item title" href="/topic/cs336/fp-int-formats/"><span class="title">AI 训练的浮点数、整数数据格式</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/claude-code-prompting/"><span class="title">Claude Code 提示词工程指南（一）</span></a><a class="item title" href="/topic/cs336/model-computational-resources/"><span class="title">模型计算量 FLOPs</span></a><a class="item title" href="/topic/swe/design-pattern/"><span class="title">设计模式：UML</span></a><a class="item title" href="/dataset-4-vla/"><span class="title">dataset-4-vla</span></a><a class="item title" href="/topic/dailycf/techniques-01/"><span class="title">ACM Tricks (1)</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -714,75 +714,31 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-06-21T04:28:46.000Z">2025-06-21</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-07-01T15:59:27.445Z">2025-07-01</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-08-01T02:49:38.000Z">2025-08-01</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-08-01T03:03:23.945Z">2025-08-01</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Haskell 快速入门</span></h1>
+        <h1 class="text title"><span>LangChain API: 多模态输入</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="variables"><a class="markdownIt-Anchor" href="#variables"></a> Variables</h2>
-
-<div class="callout" data-callout="notes">
-<div class="callout-title">
-<div class="callout-title-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-</div>
-<div class="callout-title-inner">Variables: Local Definition</div>
-</div>
-<div class="callout-content"><p>使用 <code>let ... in</code> 语法，或者 <code>where</code> 语法。<code>where</code> 后置变量定义，<code>let ... in</code> 则是前置。</p>
-<p>示例：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">solve</span> :: <span class="type">Int</span> -&gt; <span class="type">Int</span> -&gt; [<span class="type">Int</span>] -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">solve</span> n m doors = <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">case</span> indices <span class="keyword">of</span></span><br><span class="line">    [] -&gt; <span class="string">&quot;YES&quot;</span></span><br><span class="line">    _ -&gt; <span class="keyword">case</span> end - start + <span class="number">1</span> <span class="keyword">of</span></span><br><span class="line">      x | x &lt;= m -&gt; <span class="string">&quot;YES&quot;</span></span><br><span class="line">      _ -&gt; <span class="string">&quot;NO&quot;</span></span><br><span class="line">  <span class="keyword">where</span> <span class="comment">-- 这里就是 local definition 定义的局部变量</span></span><br><span class="line">    indices = elemIndices <span class="number">1</span> doors</span><br><span class="line">    end = last indices</span><br><span class="line">    start = head indices</span><br></pre></td></tr></table></figure>
-</div></div><h2 id="pattern-matching"><a class="markdownIt-Anchor" href="#pattern-matching"></a> Pattern Matching</h2>
-
-<div class="callout" data-callout="notes">
-<div class="callout-title">
-<div class="callout-title-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-</div>
-<div class="callout-title-inner">Pattern Matching</div>
-</div>
-<div class="callout-content"><p>定义函数的时候，可以根据参数的不同，触发不同分支。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">greet</span> :: <span class="type">String</span> -&gt; <span class="type">String</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;Finland&quot;</span> name = <span class="string">&quot;Hei, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;Italy&quot;</span>   name = <span class="string">&quot;Ciao, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;England&quot;</span> name = <span class="string">&quot;How do you do, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> _         name = <span class="string">&quot;Hello, &quot;</span> ++ name</span><br></pre></td></tr></table></figure>
-</div></div><h3 id="guards"><a class="markdownIt-Anchor" href="#guards"></a> Guards</h3>
-
-<div class="callout" data-callout="notes">
-<div class="callout-title">
-<div class="callout-title-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-</div>
-<div class="callout-title-inner">Condition Guards</div>
-</div>
-<div class="callout-content"><p>和 Pattern Matching 类似，用 Condition 代替具体的值进行 Matching.</p>
-<p>示例：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">describe</span> :: <span class="type">Int</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">describe</span> n</span><br><span class="line">  | n == <span class="number">2</span>      = <span class="string">&quot;Two&quot;</span></span><br><span class="line">  | even n      = <span class="string">&quot;Even&quot;</span></span><br><span class="line">  | n == <span class="number">3</span>      = <span class="string">&quot;Three&quot;</span></span><br><span class="line">  | n &gt; <span class="number">100</span>     = <span class="string">&quot;Big!!&quot;</span></span><br><span class="line">  | otherwise   = <span class="string">&quot;The number &quot;</span> ++ show n</span><br></pre></td></tr></table></figure>
-<p>当然，Guards 和 Pattern Matching 也可以一起用。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">guessAge</span> :: <span class="type">String</span> -&gt; <span class="type">Int</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">guessAge</span> <span class="string">&quot;Griselda&quot;</span> age</span><br><span class="line">    | age &lt; <span class="number">47</span> = <span class="string">&quot;Too low!&quot;</span></span><br><span class="line">    | age &gt; <span class="number">47</span> = <span class="string">&quot;Too high!&quot;</span></span><br><span class="line">    | otherwise = <span class="string">&quot;Correct!&quot;</span></span><br><span class="line"><span class="title">guessAge</span> <span class="string">&quot;Hansel&quot;</span> age</span><br><span class="line">    | age &lt; <span class="number">12</span> = <span class="string">&quot;Too low!&quot;</span></span><br><span class="line">    | age &gt; <span class="number">12</span> = <span class="string">&quot;Too high!&quot;</span></span><br><span class="line">    | otherwise = <span class="string">&quot;Correct!&quot;</span></span><br><span class="line"><span class="title">guessAge</span> name age = <span class="string">&quot;Wrong name!&quot;</span></span><br></pre></td></tr></table></figure>
-</div></div><h3 id="case-of"><a class="markdownIt-Anchor" href="#case-of"></a> <code>case ... of</code></h3>
-<blockquote>
-<p>我觉得 <code>case ... of</code> 语法也算 Pattern Matching 的一部分</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">case</span> xxx <span class="keyword">of</span></span><br><span class="line">  value1 -&gt; return_value1</span><br><span class="line">  value2 -&gt; return_value2</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p><code>case ... of</code> 可以用在“当多个分支都需要使用同一个函数时”</p>
-<h2 id="recursion"><a class="markdownIt-Anchor" href="#recursion"></a> Recursion</h2>
-<ul>
-<li>Helper Function: arguments of the helper function are variables you update in your loop; Tail Recursion Optimization</li>
-</ul>
-<blockquote>
-<p>Haskell programs often use the apostrophe to name helper functions and alternative versions of functions.</p>
-</blockquote>
-<h2 id="haskell-常用数据结构"><a class="markdownIt-Anchor" href="#haskell-常用数据结构"></a> Haskell 常用数据结构</h2>
-<h3 id="list-a"><a class="markdownIt-Anchor" href="#list-a"></a> <code>List / [a]</code></h3>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">head</span> :: [a] -&gt; a            <span class="comment">-- returns the first element</span></span><br><span class="line"><span class="title">last</span> :: [a] -&gt; a            <span class="comment">-- returns the last element</span></span><br><span class="line"><span class="title">tail</span> :: [a] -&gt; [a]          <span class="comment">-- returns everything except the first element</span></span><br><span class="line"><span class="title">init</span> :: [a] -&gt; [a]          <span class="comment">-- returns everything except the last element</span></span><br><span class="line"><span class="title">take</span> :: <span class="type">Int</span> -&gt; [a] -&gt; [a]   <span class="comment">-- returns the n first elements</span></span><br><span class="line"><span class="title">drop</span> :: <span class="type">Int</span> -&gt; [a] -&gt; [a]   <span class="comment">-- returns everything except the n first elements</span></span><br><span class="line">(++) :: [a] -&gt; [a] -&gt; [a]   <span class="comment">-- lists are catenated with the ++ operator</span></span><br><span class="line">(!!) :: [a] -&gt; <span class="type">Int</span> -&gt; a     <span class="comment">-- lists are indexed with the !! operator</span></span><br><span class="line"><span class="title">reverse</span> :: [a] -&gt; [a]       <span class="comment">-- reverse a list</span></span><br><span class="line"><span class="title">null</span> :: [a] -&gt; <span class="type">Bool</span>         <span class="comment">-- is this list empty?</span></span><br><span class="line"><span class="title">length</span> :: [a] -&gt; <span class="type">Int</span>        <span class="comment">-- the length of a list</span></span><br></pre></td></tr></table></figure>
-<h2 id="实用函数"><a class="markdownIt-Anchor" href="#实用函数"></a> 实用函数</h2>
-<ul>
-<li><code>show :: Any -&gt; String</code>: 将任何东西变成可以输出的字符串</li>
-</ul>
-</article>
+  </div><article class="md-text content"><h2 id="langchain-how-to-pass-messages-to-models"><a class="markdownIt-Anchor" href="#langchain-how-to-pass-messages-to-models"></a> LangChain: How to Pass messages to Models</h2>
+<p>一般的框架是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">llm = CHatOllama() <span class="comment"># ... just an example</span></span><br><span class="line">message = &#123;</span><br><span class="line">    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">    <span class="string">&quot;content&quot;</span>: [</span><br><span class="line">        <span class="comment"># ......</span></span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = llm.invoke([message])</span><br><span class="line"><span class="built_in">print</span>(response.text())</span><br></pre></td></tr></table></figure>
+<p>如果需要传入多模态的输入的话，我们就在 <code>message</code> 的 <code>content</code> 栏位填入我们需要的东西即可</p>
+<h3 id="texts"><a class="markdownIt-Anchor" href="#texts"></a> Texts</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;content&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">        <span class="string">&quot;text&quot;</span>: <span class="string">&quot;......&quot;</span>, </span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="images"><a class="markdownIt-Anchor" href="#images"></a> Images</h3>
+<p>对于本地文件，可以传 base64 encode image。对于网络资源，可以传 URL</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;image&quot;</span>,</span><br><span class="line">    <span class="string">&quot;source_type&quot;</span>: <span class="string">&quot;base64&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mime_type&quot;</span>: <span class="string">&quot;image/jpeg&quot;</span>,  <span class="comment"># or image/png, etc.</span></span><br><span class="line">    <span class="string">&quot;data&quot;</span>: <span class="string">&quot;&lt;base64 data string&gt;&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># OR...</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;image&quot;</span>,</span><br><span class="line">    <span class="string">&quot;source_type&quot;</span>: <span class="string">&quot;url&quot;</span>,</span><br><span class="line">    <span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://...&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="documents-pdf"><a class="markdownIt-Anchor" href="#documents-pdf"></a> Documents (PDF)</h3>
+<p>有的模型支持直接上传 PDF</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;file&quot;</span>,</span><br><span class="line">    <span class="string">&quot;source_type&quot;</span>: <span class="string">&quot;base64&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mime_type&quot;</span>: <span class="string">&quot;application/pdf&quot;</span>,</span><br><span class="line">    <span class="string">&quot;data&quot;</span>: <span class="string">&quot;&lt;base64 data string&gt;&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="audio"><a class="markdownIt-Anchor" href="#audio"></a> Audio</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;audio&quot;</span>,</span><br><span class="line">    <span class="string">&quot;source_type&quot;</span>: <span class="string">&quot;base64&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mime_type&quot;</span>: <span class="string">&quot;audio/wav&quot;</span>,  <span class="comment"># or appropriate mime-type</span></span><br><span class="line">    <span class="string">&quot;data&quot;</span>: <span class="string">&quot;&lt;base64 data string&gt;&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -791,7 +747,7 @@ div.hcb-content.hcb-cards-content.active {
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/functional/haskell/haskell-param-types/">Haskell, Parameterized Types</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/functional/ocaml/ocaml-in-source-documentation/">OCaml 代码文档</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/LLMApplication/RAG-reference-system/">RAG：添加引用文献功能</a></div></section></div>
 
 
 
@@ -806,7 +762,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#variables"><span class="toc-text"> Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern-matching"><span class="toc-text"> Pattern Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#guards"><span class="toc-text"> Guards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case-of"><span class="toc-text"> case ... of</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recursion"><span class="toc-text"> Recursion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#haskell-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text"> Haskell 常用数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-a"><span class="toc-text"> List &#x2F; [a]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text"> 实用函数</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#langchain-how-to-pass-messages-to-models"><span class="toc-text"> LangChain: How to Pass messages to Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#texts"><span class="toc-text"> Texts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#images"><span class="toc-text"> Images</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#documents-pdf"><span class="toc-text"> Documents (PDF)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#audio"><span class="toc-text"> Audio</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>

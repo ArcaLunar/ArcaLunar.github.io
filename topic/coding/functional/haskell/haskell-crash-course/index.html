@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>OCaml 代码文档 - Arca Lunar's Blog</title>
+  <title>Haskell 快速入门 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="每一个工业语言都必须有的代码注释 hhhh">
+    <meta name="description" content="学一学函数式编程（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OCaml 代码文档">
-<meta property="og:url" content="http://example.com/topic/functional/ocaml/ocaml-in-source-documentation/index.html">
+<meta property="og:title" content="Haskell 快速入门">
+<meta property="og:url" content="http://example.com/topic/coding/functional/haskell/haskell-crash-course/index.html">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="每一个工业语言都必须有的代码注释 hhhh">
+<meta property="og:description" content="学一学函数式编程（">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-06-20T17:07:51.000Z">
-<meta property="article:modified_time" content="2025-06-20T19:21:33.557Z">
+<meta property="article:published_time" content="2025-06-21T04:28:46.000Z">
+<meta property="article:modified_time" content="2025-07-01T15:59:27.445Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -348,7 +348,7 @@ div.hcb-content.hcb-cards-content.active {
 
   </style>
 
-  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -699,9 +699,9 @@ div.hcb-content.hcb-cards-content.active {
 <nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
 </div>
 <div class="widgets">
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Topic: 函数式编程： OCaml</span></div><div class="widget-body"><a class="item active" href="/topic/functional/ocaml/ocaml-in-source-documentation/"><span class="title">OCaml 代码文档</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item" href="/topic/functional/ocaml/ocaml-build-system/"><span class="title">OCaml 构建系统：Dune</span></a><a class="item" href="/topic/functional/ocaml/ocaml-lec1/"><span class="title">OCaml 快速入门</span></a></div></widget>
 
-<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/llm-application/RAG-reference-system/"><span class="title">RAG：添加引用文献功能</span></a><a class="item title" href="/topic/cs336/tensor-storage/"><span class="title">Tensor 的内存分布</span></a><a class="item title" href="/topic/cs336/fp-int-formats/"><span class="title">AI 训练的浮点数、整数数据格式</span></a><a class="item title" href="/topic/langchain/conversation-management/"><span class="title">LangChain 实现 LLM 历史聊天记录</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/claude-code-prompting/"><span class="title">Claude Code 提示词工程指南（一）</span></a><a class="item title" href="/topic/cs336/model-computational-resources/"><span class="title">模型计算量 FLOPs</span></a><a class="item title" href="/topic/swe/design-pattern/"><span class="title">设计模式：UML</span></a><a class="item title" href="/dataset-4-vla/"><span class="title">dataset-4-vla</span></a><a class="item title" href="/topic/dailycf/techniques-01/"><span class="title">ACM Tricks (1)</span></a></div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/LLMApplication/langchain/langchain-multimodal-inputs/"><span class="title">LangChain API: 多模态输入</span></a><a class="item title" href="/topic/LLMApplication/RAG-reference-system/"><span class="title">RAG：添加引用文献功能</span></a><a class="item title" href="/topic/cs336/tensor-storage/"><span class="title">Tensor 的内存分布</span></a><a class="item title" href="/topic/cs336/fp-int-formats/"><span class="title">AI 训练的浮点数、整数数据格式</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/claude-code-prompting/"><span class="title">Claude Code 提示词工程指南（一）</span></a><a class="item title" href="/topic/cs336/model-computational-resources/"><span class="title">模型计算量 FLOPs</span></a><a class="item title" href="/topic/swe/design-pattern/"><span class="title">设计模式：UML</span></a><a class="item title" href="/dataset-4-vla/"><span class="title">dataset-4-vla</span></a><a class="item title" href="/topic/dailycf/techniques-01/"><span class="title">ACM Tricks (1)</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -713,22 +713,76 @@ div.hcb-content.hcb-cards-content.active {
 <div class="article banner top"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://www.dmoe.cc/random.php">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/topic/functional/ocaml/ocaml-in-source-documentation/">函数式编程： OCaml</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-06-20T17:07:51.000Z">2025-06-21</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-06-20T19:21:33.557Z">2025-06-21</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-06-21T04:28:46.000Z">2025-06-21</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-07-01T15:59:27.445Z">2025-07-01</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>OCaml 代码文档</span></h1>
+        <h1 class="text title"><span>Haskell 快速入门</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="基础语法"><a class="markdownIt-Anchor" href="#基础语法"></a> 基础语法</h2>
-<p>文档注释的形式为 <code>(** some comments *)</code>。在 <code>[]</code> 内部的文字会显示为 Coding Font.</p>
-<p>和其他语言类似的，OCaml 也有 <code>@author, @return</code> 等等注释项。</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(** [sum lst] is the sum of [lst] *)</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">rec</span> sum lst = ...</span><br></pre></td></tr></table></figure></article>
+  </div><article class="md-text content"><h2 id="variables"><a class="markdownIt-Anchor" href="#variables"></a> Variables</h2>
+
+<div class="callout" data-callout="notes">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner">Variables: Local Definition</div>
+</div>
+<div class="callout-content"><p>使用 <code>let ... in</code> 语法，或者 <code>where</code> 语法。<code>where</code> 后置变量定义，<code>let ... in</code> 则是前置。</p>
+<p>示例：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">solve</span> :: <span class="type">Int</span> -&gt; <span class="type">Int</span> -&gt; [<span class="type">Int</span>] -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">solve</span> n m doors = <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">case</span> indices <span class="keyword">of</span></span><br><span class="line">    [] -&gt; <span class="string">&quot;YES&quot;</span></span><br><span class="line">    _ -&gt; <span class="keyword">case</span> end - start + <span class="number">1</span> <span class="keyword">of</span></span><br><span class="line">      x | x &lt;= m -&gt; <span class="string">&quot;YES&quot;</span></span><br><span class="line">      _ -&gt; <span class="string">&quot;NO&quot;</span></span><br><span class="line">  <span class="keyword">where</span> <span class="comment">-- 这里就是 local definition 定义的局部变量</span></span><br><span class="line">    indices = elemIndices <span class="number">1</span> doors</span><br><span class="line">    end = last indices</span><br><span class="line">    start = head indices</span><br></pre></td></tr></table></figure>
+</div></div><h2 id="pattern-matching"><a class="markdownIt-Anchor" href="#pattern-matching"></a> Pattern Matching</h2>
+
+<div class="callout" data-callout="notes">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner">Pattern Matching</div>
+</div>
+<div class="callout-content"><p>定义函数的时候，可以根据参数的不同，触发不同分支。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">greet</span> :: <span class="type">String</span> -&gt; <span class="type">String</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;Finland&quot;</span> name = <span class="string">&quot;Hei, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;Italy&quot;</span>   name = <span class="string">&quot;Ciao, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> <span class="string">&quot;England&quot;</span> name = <span class="string">&quot;How do you do, &quot;</span> ++ name</span><br><span class="line"><span class="title">greet</span> _         name = <span class="string">&quot;Hello, &quot;</span> ++ name</span><br></pre></td></tr></table></figure>
+</div></div><h3 id="guards"><a class="markdownIt-Anchor" href="#guards"></a> Guards</h3>
+
+<div class="callout" data-callout="notes">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner">Condition Guards</div>
+</div>
+<div class="callout-content"><p>和 Pattern Matching 类似，用 Condition 代替具体的值进行 Matching.</p>
+<p>示例：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">describe</span> :: <span class="type">Int</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">describe</span> n</span><br><span class="line">  | n == <span class="number">2</span>      = <span class="string">&quot;Two&quot;</span></span><br><span class="line">  | even n      = <span class="string">&quot;Even&quot;</span></span><br><span class="line">  | n == <span class="number">3</span>      = <span class="string">&quot;Three&quot;</span></span><br><span class="line">  | n &gt; <span class="number">100</span>     = <span class="string">&quot;Big!!&quot;</span></span><br><span class="line">  | otherwise   = <span class="string">&quot;The number &quot;</span> ++ show n</span><br></pre></td></tr></table></figure>
+<p>当然，Guards 和 Pattern Matching 也可以一起用。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">guessAge</span> :: <span class="type">String</span> -&gt; <span class="type">Int</span> -&gt; <span class="type">String</span></span><br><span class="line"><span class="title">guessAge</span> <span class="string">&quot;Griselda&quot;</span> age</span><br><span class="line">    | age &lt; <span class="number">47</span> = <span class="string">&quot;Too low!&quot;</span></span><br><span class="line">    | age &gt; <span class="number">47</span> = <span class="string">&quot;Too high!&quot;</span></span><br><span class="line">    | otherwise = <span class="string">&quot;Correct!&quot;</span></span><br><span class="line"><span class="title">guessAge</span> <span class="string">&quot;Hansel&quot;</span> age</span><br><span class="line">    | age &lt; <span class="number">12</span> = <span class="string">&quot;Too low!&quot;</span></span><br><span class="line">    | age &gt; <span class="number">12</span> = <span class="string">&quot;Too high!&quot;</span></span><br><span class="line">    | otherwise = <span class="string">&quot;Correct!&quot;</span></span><br><span class="line"><span class="title">guessAge</span> name age = <span class="string">&quot;Wrong name!&quot;</span></span><br></pre></td></tr></table></figure>
+</div></div><h3 id="case-of"><a class="markdownIt-Anchor" href="#case-of"></a> <code>case ... of</code></h3>
+<blockquote>
+<p>我觉得 <code>case ... of</code> 语法也算 Pattern Matching 的一部分</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">case</span> xxx <span class="keyword">of</span></span><br><span class="line">  value1 -&gt; return_value1</span><br><span class="line">  value2 -&gt; return_value2</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>case ... of</code> 可以用在“当多个分支都需要使用同一个函数时”</p>
+<h2 id="recursion"><a class="markdownIt-Anchor" href="#recursion"></a> Recursion</h2>
+<ul>
+<li>Helper Function: arguments of the helper function are variables you update in your loop; Tail Recursion Optimization</li>
+</ul>
+<blockquote>
+<p>Haskell programs often use the apostrophe to name helper functions and alternative versions of functions.</p>
+</blockquote>
+<h2 id="haskell-常用数据结构"><a class="markdownIt-Anchor" href="#haskell-常用数据结构"></a> Haskell 常用数据结构</h2>
+<h3 id="list-a"><a class="markdownIt-Anchor" href="#list-a"></a> <code>List / [a]</code></h3>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">head</span> :: [a] -&gt; a            <span class="comment">-- returns the first element</span></span><br><span class="line"><span class="title">last</span> :: [a] -&gt; a            <span class="comment">-- returns the last element</span></span><br><span class="line"><span class="title">tail</span> :: [a] -&gt; [a]          <span class="comment">-- returns everything except the first element</span></span><br><span class="line"><span class="title">init</span> :: [a] -&gt; [a]          <span class="comment">-- returns everything except the last element</span></span><br><span class="line"><span class="title">take</span> :: <span class="type">Int</span> -&gt; [a] -&gt; [a]   <span class="comment">-- returns the n first elements</span></span><br><span class="line"><span class="title">drop</span> :: <span class="type">Int</span> -&gt; [a] -&gt; [a]   <span class="comment">-- returns everything except the n first elements</span></span><br><span class="line">(++) :: [a] -&gt; [a] -&gt; [a]   <span class="comment">-- lists are catenated with the ++ operator</span></span><br><span class="line">(!!) :: [a] -&gt; <span class="type">Int</span> -&gt; a     <span class="comment">-- lists are indexed with the !! operator</span></span><br><span class="line"><span class="title">reverse</span> :: [a] -&gt; [a]       <span class="comment">-- reverse a list</span></span><br><span class="line"><span class="title">null</span> :: [a] -&gt; <span class="type">Bool</span>         <span class="comment">-- is this list empty?</span></span><br><span class="line"><span class="title">length</span> :: [a] -&gt; <span class="type">Int</span>        <span class="comment">-- the length of a list</span></span><br></pre></td></tr></table></figure>
+<h2 id="实用函数"><a class="markdownIt-Anchor" href="#实用函数"></a> 实用函数</h2>
+<ul>
+<li><code>show :: Any -&gt; String</code>: 将任何东西变成可以输出的字符串</li>
+</ul>
+</article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -737,7 +791,7 @@ div.hcb-content.hcb-cards-content.active {
     </section>
     </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/functional/haskell/haskell-crash-course/">Haskell 快速入门</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/analysis/math-analysis-2/">数学分析一 Ep.2：实数、有理数</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/coding/functional/haskell/haskell-param-types/">Haskell, Parameterized Types</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/coding/functional/ocaml/ocaml-in-source-documentation/">OCaml 代码文档</a></div></section></div>
 
 
 
@@ -752,7 +806,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-text"> 基础语法</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#variables"><span class="toc-text"> Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pattern-matching"><span class="toc-text"> Pattern Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#guards"><span class="toc-text"> Guards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case-of"><span class="toc-text"> case ... of</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recursion"><span class="toc-text"> Recursion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#haskell-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text"> Haskell 常用数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-a"><span class="toc-text"> List &#x2F; [a]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text"> 实用函数</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
