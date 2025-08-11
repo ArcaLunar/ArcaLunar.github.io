@@ -442,7 +442,7 @@ p.admonition-title {
 }
 pre {
   font-family: "Fira Code", "LXGW wenkai", "tsangerQHT-gl w03", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -886,7 +886,7 @@ pre:not([class]):has(>code) {
 }
 .md-text .highlight figcaption {
   color: var(--text-p2);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 500;
   margin-left: 0.5rem;
   display: inline-block;
