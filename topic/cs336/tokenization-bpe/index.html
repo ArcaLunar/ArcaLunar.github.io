@@ -741,7 +741,7 @@ div.hcb-content.hcb-cards-content.active {
 <p>通常，我们的文本文件很大，例如几个 GB，我们不可能把这些字符全都载入内存里（肯定爆炸），因此，<u>第一步，我们需要对训练文本分块</u>，以便发挥多线程的优势，让计算机并行处理多个任务。分块需要注意，每一块都必须是以 special token 结尾的，否则如果横跨了某个单词，那么这个单词被 tokenize 的结果很可能与 expected 的不同。</p>
 
 <details class="hcb-content box hcbexample">
-  <summary><i class="fa fa-vial fa-fw"></i>实现<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-vial fa-fw"></i><code>chunkify</code> 实现<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <p>根据上面所说的，我们把文本进行分块。function (args, content) {<br />
   // Extract content parameter<br />
   args = ctx.args.map(args, [‘’], [‘display’])<br />

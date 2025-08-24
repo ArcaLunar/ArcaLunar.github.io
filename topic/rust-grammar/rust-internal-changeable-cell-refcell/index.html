@@ -736,7 +736,7 @@ div.hcb-content.hcb-cards-content.active {
 </blockquote>
 
 <details class="hcb-content box hcbexample">
-  <summary><i class="fa fa-vial fa-fw"></i>没有可变引用<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-vial fa-fw"></i><code>Cell</code> 没有可变引用<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::cell::Cell;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="comment">// code snipet 1</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = Cell::<span class="title function_ invoke__">new</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = &amp;x;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">z</span> = &amp;x;</span><br><span class="line">    x.<span class="title function_ invoke__">set</span>(<span class="number">2</span>);</span><br><span class="line">    y.<span class="title function_ invoke__">set</span>(<span class="number">3</span>);</span><br><span class="line">    z.<span class="title function_ invoke__">set</span>(<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x.<span class="title function_ invoke__">get</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   <blockquote>
   <p>这里，<code>y, z</code> 都是 <code>x</code> 的不可变引用，调用 <code>y.set()</code> 的时候，会自动 dereference 为</p>
@@ -747,7 +747,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 <details class="hcb-content box hcbnote">
-  <summary><i class="fa fa-pen fa-fw"></i>使用技巧<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-pen fa-fw"></i><code>Cell::from_mut(), Cell::as_slice_of_cells()</code> 使用技巧<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <ul>
   <li><code>Cell::from_mut()</code>，该方法将 <code>&amp;mut T</code> 转为 <code>&amp;Cell&lt;T&gt;</code></li>
   <li><code>Cell::as_slice_of_cells()</code>，该方法将 <code>&amp;Cell&lt;[T]&gt;</code> 转为 <code>&amp;[Cell&lt;T&gt;]</code></li>

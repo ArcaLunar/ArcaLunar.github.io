@@ -20,12 +20,12 @@
   <title>rustbook: 深入特征 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="关联类型 12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;     Generics?          使用泛型：1234567trait Container&lt;A, B&gt; &#123;    fn contains(">
+    <meta name="description" content="关联类型 12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;     why not Generics?          使用泛型：1234567trait Container&lt;A, B&gt; &#123;    fn c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="深入特征">
 <meta property="og:url" content="http://example.com/wiki/rustbook/more-traits/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="关联类型 12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;     Generics?          使用泛型：1234567trait Container&lt;A, B&gt; &#123;    fn contains(">
+<meta property="og:description" content="关联类型 12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;     why not Generics?          使用泛型：1234567trait Container&lt;A, B&gt; &#123;    fn c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-08T02:13:48.000Z">
 <meta property="article:modified_time" content="2025-05-08T02:24:43.671Z">
@@ -46,7 +46,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/wiki/rustbook/more-traits/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"深入特征","description":" 关联类型\n12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;\n\n\n  Generics?\n  \n      使用泛型：1234567trait Container&lt;A, B&gt; &#123;    fn contai...","url":"http://example.com/wiki/rustbook/more-traits/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/wiki/rustbook/more-traits/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"深入特征","description":" 关联类型\n12345pub trait Iterator &#123;    type Item;    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;&#125;\n\n\n  why not Generics?\n  \n      使用泛型：1234567trait Container&lt;A, B&gt; &#123;    f...","url":"http://example.com/wiki/rustbook/more-traits/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -738,7 +738,7 @@ div.hcb-content.hcb-cards-content.active {
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">trait</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line">    <span class="keyword">type</span> <span class="title class_">Item</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">next</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;<span class="keyword">Self</span>::Item&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <details class="hcb-content box hcbnote">
-  <summary><i class="fa fa-pen fa-fw"></i>Generics?<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-pen fa-fw"></i>why not Generics?<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <div class="tag-plugin grid"  style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));"><div class="cell" style="">
       <p>使用泛型：</p><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> <span class="title class_">Container</span>&lt;A, B&gt; &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">contains</span>(&amp;<span class="keyword">self</span>, a: A, b: B) <span class="punctuation">-&gt;</span> <span class="type">bool</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">difference</span>&lt;A, B, C&gt;(container: &amp;C) <span class="punctuation">-&gt;</span> <span class="type">i32</span></span><br><span class="line">  <span class="keyword">where</span></span><br><span class="line">    C : Container&lt;A, B&gt; &#123;...&#125;</span><br></pre></td></tr></table></figure>
       </div>

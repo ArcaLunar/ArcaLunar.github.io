@@ -927,7 +927,7 @@ function (args, content) {
 
 
 <details class="hcb-content box hcbnote">
-  <summary><i class="fa fa-pen fa-fw"></i>`forward()`<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <summary><i class="fa fa-pen fa-fw"></i>前向传播 <code>forward()</code><div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
   <p>Tensor 输入是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>×</mo><mi>S</mi><mo>×</mo><mi>H</mi></mrow><annotation encoding="application/x-tex">B\times S\times H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span></eq>，因为我们只关心 Token 发送到哪个专家，所以我们首先把 Tensor 拍成二维 function (args, content) {<br />
   // Extract content parameter<br />
   args = ctx.args.map(args, [‘’], [‘display’])<br />
@@ -1089,7 +1089,7 @@ function (args, content) {
   </blockquote>
   <!-- #region Why it makes sense? -->
   <details class="hcb-content box hcbquote">
-    <summary><i class="fa fa-quote-right fa-fw"></i>Why&nbsp;It&nbsp;Makes&nbsp;Sense<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+    <summary><i class="fa fa-quote-right fa-fw"></i>Why It Makes Sense<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
     <p>因为我们的训练目标是让 Loss 尽可能的小，对于这个 Aux Loss 而言，如果某一个专家的负载特别大，那么就说明</p>
     <ol>
     <li>每一个 Batch 内的所有 Tokens，这个专家对应的 <code>scores</code> 都会比较大</li>
