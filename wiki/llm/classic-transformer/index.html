@@ -736,7 +736,7 @@ div.hcb-content.hcb-cards-content.active {
 </ol>
 <hr />
 <h2 id="model-arch"><a class="markdownIt-Anchor" href="#model-arch"></a> Model Arch</h2>
-<p>Transformer 总体是 <u>Encoder-Decoder</u> 架构。Encoder 将 Input</p>
+<p>Transformer 总体是 <u><p>Encoder-Decoder</p> </u> 架构。Encoder 将 Input</p>
 <hr />
 <h2 id="杂谈"><a class="markdownIt-Anchor" href="#杂谈"></a> 杂谈</h2>
 <p>其实 Transformer 的本质也是概率统计模型，其生成过程就是给定前 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></eq> 个词的情况下生成第 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></eq> 个词；训练过程的 Loss Function 是<br />

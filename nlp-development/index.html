@@ -739,10 +739,10 @@ div.hcb-content.hcb-cards-content.active {
 <p>2013 年前，NLP 普遍采用 <strong>One-Hot 编码</strong> 表示词汇，即用高维稀疏向量（如长度为 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></eq> 万的向量中仅一个位置为 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></eq>）表示单词。这种“局部表示”导致：</p>
 <ul>
 <li><strong>维度灾难</strong> ：<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></eq> 万词汇需 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></eq> 万维空间；</li>
-<li><strong>零相似性</strong> ：正交向量无法反映<u>词义关联</u>（如“hotel”与“motel”）。</li>
+<li><strong>零相似性</strong> ：正交向量无法反映<u><p>词义关联</p> </u>（如“hotel”与“motel”）。</li>
 </ul>
 <h3 id="distributed-semantics-与-word2vec"><a class="markdownIt-Anchor" href="#distributed-semantics-与-word2vec"></a> Distributed Semantics 与 Word2Vec</h3>
-<p>Word2Vec 是一种通过<em>无监督学习</em>生成词向量的工具，其核心思想是基于<u>词的上下文共现规律</u>，将词映射到低维稠密向量空间中，使得语义相似的词在向量空间中距离较近。主要有两种模型：一种是根据上下文推理中心词的 CBOW 模型，另一种是根据中心词推理上下文的 Skip-Gram 模型。</p>
+<p>Word2Vec 是一种通过<em>无监督学习</em>生成词向量的工具，其核心思想是基于<u><p>词的上下文共现规律</p> </u>，将词映射到低维稠密向量空间中，使得语义相似的词在向量空间中距离较近。主要有两种模型：一种是根据上下文推理中心词的 CBOW 模型，另一种是根据中心词推理上下文的 Skip-Gram 模型。</p>
 <blockquote>
 <p>这里的 Word Vector 也被称为 <strong>Word Embedding</strong> 或者 <strong>Word Representations</strong></p>
 </blockquote>
