@@ -28,7 +28,7 @@
 <meta property="og:description" content="Preface  起因主要是社团……没有车的时候调试个 serial port 十分费劲，甚至根本调试不了写的对不对 所以只能用 socat 开虚拟串口模拟通讯了    socat 安装 安装比较容易，可以直接通过 apt 包管理器安装 1sudo apt install socat   socat 指定串口名称 指定名称时，用 link&#x3D; 表示指定的串口位置，pty,raw,echo&#x3D;0 表示">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-10T01:12:33.000Z">
-<meta property="article:modified_time" content="2025-05-04T10:04:41.842Z">
+<meta property="article:modified_time" content="2025-09-19T10:46:34.579Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
   
@@ -46,7 +46,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"dateCreated":"2025-04-10T09:12:33+08:00","dateModified":"2025-05-04T18:04:41+08:00","datePublished":"2025-04-10T09:12:33+08:00","description":"","headline":"使用 Socat 创建虚拟串口并指定名称","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/socat-usage/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[]},"url":"http://example.com/socat-usage/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"dateCreated":"2025-04-10T09:12:33+08:00","dateModified":"2025-09-19T18:46:34+08:00","datePublished":"2025-04-10T09:12:33+08:00","description":"","headline":"使用 Socat 创建虚拟串口并指定名称","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/socat-usage/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[]},"url":"http://example.com/socat-usage/","image":[]}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -350,11 +350,7 @@ div.hcb-content.hcb-cards-content.active {
 }
 
   </style>
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<style>
+<!-- hexo injector head_end start --><style>
       /* Apply styles to the hover target class */
       .floating-hover-target {
         font-weight: 500;
@@ -685,7 +681,11 @@ div.hcb-content.hcb-cards-content.active {
           }
         });
       });
-    </script><!-- hexo injector head_end end --></head>
+    </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 <body>
 
 <div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
@@ -702,7 +702,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/lightrag-insert-method/"><span class="title">LightRAG: 构建索引 insert() 方法深入探究</span></a><a class="item title" href="/mjcf-urdf/"><span class="title">ManiSkill 里的 MuJoCo Robot File</span></a><a class="item title" href="/git-hf-sshkey/"><span class="title">HuggingFace, GitHub 添加 SSH Key</span></a><a class="item title" href="/topic/blockchain/blockchain-01/"><span class="title">区块链：概念</span></a><a class="item title" href="/topic/cs336/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/topic/dailycf/20250826-dp/"><span class="title">Codeforces 刷题 2025.08.26</span></a><a class="item title" href="/topic/dailycf/20250822-dp/"><span class="title">Codeforces 刷题 2025.08.22</span></a><a class="item title" href="/2025icpc-wf-journey/"><span class="title">2025 ICPC World Final</span></a><a class="item title" href="/terminal-chn-fonts/"><span class="title">终端里给任何字体都加上自定义图标和中文支持</span></a><a class="item title" href="/icpc-problemlists/"><span class="title">自己整理的算法题单</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/design%20patterns/design-patterns-classification/"><span class="title">Design Patterns 的分类与原则</span></a><a class="item title" href="/2025icpc-wf-journey/"><span class="title">2025 ICPC World Final</span></a><a class="item title" href="/first-principle-design-thinking/"><span class="title">First Principle Design Thinking</span></a><a class="item title" href="/socat-usage/"><span class="title">使用 Socat 创建虚拟串口并指定名称</span></a><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a><a class="item title" href="/conda-pip-proxy/"><span class="title">conda 与 pip 配置代理服务器</span></a><a class="item title" href="/topic/cs336/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/Non-Fungible-Tokens/"><span class="title">Non-Fungible Tokens</span></a><a class="item title" href="/ERC20-tokens/"><span class="title">ERC20 协议</span></a><a class="item title" href="/use-excel-to-solve-optimization-problems/"><span class="title">使用 Excel 解决优化问题</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -715,7 +715,7 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-04-10T01:12:33.000Z">2025-04-10</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-05-04T10:04:41.842Z">2025-05-04</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-04-10T01:12:33.000Z">2025-04-10</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-09-19T10:46:34.579Z">2025-09-19</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -740,7 +740,8 @@ div.hcb-content.hcb-cards-content.active {
 <p>指定名称时，用 <code>link=</code> 表示指定的串口位置，<code>pty,raw,echo=0</code> 表示串口的配置参数</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo socat -d -d pty,raw,echo=0,link=/dev/ttyACM0 pty,raw,echo=0,link=/dev/ttyACM1</span><br></pre></td></tr></table></figure>
 <p>然后还需要给 <code>/dev/ttyACM0, /dev/ttyACM1</code> 这两个串口权限，方便起见，这里直接全部设为 <code>rwx</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /dev/ttyACM0</span><br><span class="line">sudo chmod 777 /dev/ttyACM1</span><br></pre></td></tr></table></figure></article>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /dev/ttyACM0</span><br><span class="line">sudo chmod 777 /dev/ttyACM1</span><br></pre></td></tr></table></figure>
+</article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -751,7 +752,7 @@ div.hcb-content.hcb-cards-content.active {
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/python-joblib/">Python 并行库 joblib</a></div><div class="item" id="next"><div class="note">Older</div><a href="/llama-cpp-locally-deploy/">使用 llama.cpp 在本地部署大模型</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/python-joblib/">Python 并行库 joblib</a></div><div class="item" id="next"><div class="note">Older</div><a href="/python-get-embedding-through-urls/">Python 通过 URL 获取 Embedding</a></div></section></div>
 
 
 
