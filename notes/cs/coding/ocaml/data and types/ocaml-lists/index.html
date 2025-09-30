@@ -17,24 +17,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>OCaml 代码文档 - Arca Lunar's Blog</title>
+  <title>Ocaml 里的数据结构：Lists - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="每一个工业语言都必须有的代码注释 hhhh">
-<meta property="og:type" content="article">
-<meta property="og:title" content="OCaml 代码文档">
-<meta property="og:url" content="http://example.com/topic/coding/functional/ocaml/ocaml-in-source-documentation/">
+    <meta name="description" content="列表   OCaml 里的列表的底层实现是单向链表，并且是类型相同的不可变元素。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ocaml 里的数据结构：Lists">
+<meta property="og:url" content="http://example.com/notes/cs/coding/ocaml/data%20and%20types/ocaml-lists/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="每一个工业语言都必须有的代码注释 hhhh">
+<meta property="og:description" content="列表   OCaml 里的列表的底层实现是单向链表，并且是类型相同的不可变元素。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-06-20T17:07:51.000Z">
-<meta property="article:modified_time" content="2025-06-20T19:21:33.557Z">
+<meta property="article:published_time" content="2025-09-28T09:26:48.000Z">
+<meta property="article:modified_time" content="2025-09-28T09:32:09.078Z">
 <meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="Data and Types">
 <meta name="twitter:card" content="summary">
   
   
   
-  
+  <meta name="keywords" content="">
 
   <!-- feed -->
   
@@ -46,7 +47,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"dateCreated":"2025-06-21T01:07:51+08:00","dateModified":"2025-06-21T03:21:33+08:00","datePublished":"2025-06-21T01:07:51+08:00","description":"","headline":"OCaml 代码文档","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/topic/coding/functional/ocaml/ocaml-in-source-documentation/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[]},"url":"http://example.com/topic/coding/functional/ocaml/ocaml-in-source-documentation/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/cs/coding/ocaml/data%20and%20types/ocaml-lists/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Ocaml 里的数据结构：Lists","description":"\n\n\n\n\n\n列表\n\n\nOCaml 里的列表的底层实现是单向链表，并且是类型相同的不可变元素。\n","url":"http://example.com/notes/cs/coding/ocaml/data%20and%20types/ocaml-lists/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -688,21 +689,163 @@ div.hcb-content.hcb-cards-content.active {
 <!-- hexo injector head_end end --></head>
 <body>
 
-<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
 
 <div class="nav-area">
 
-<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><img no-lazy src="/assets/icons/wiki.svg" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="nav-item" title="笔记本" href="/notebooks/" style="color:#FA6400"><img no-lazy src="/assets/icons/notebook.svg" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><img no-lazy src="/assets/icons/wiki.svg" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="nav-item" title="笔记本" href="/notebooks/" style="color:#FA6400"><img no-lazy src="/assets/icons/notebook.svg" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="nav-item" title="社交" href="/friends/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg></a></nav>
 </div>
 <div class="widgets">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/notes/cs/coding/ocaml" placeholder="Search in 学习 OCaml"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
 
-<widget class="widget-wrapper related post-list"><div class="widget-header dis-select"><span class="name">Topic: 函数式编程： OCaml</span></div><div class="widget-body"><a class="item active" href="/topic/coding/functional/ocaml/ocaml-in-source-documentation/"><span class="title">OCaml 代码文档</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item" href="/topic/coding/functional/ocaml/ocaml-build-system/"><span class="title">OCaml 构建系统：Dune</span></a><a class="item" href="/topic/coding/functional/ocaml/ocaml-lec1/"><span class="title">OCaml 快速入门</span></a></div></widget>
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/design%20patterns/design-patterns-classification/"><span class="title">Design Patterns 的分类与原则</span></a><a class="item title" href="/2025icpc-wf-journey/"><span class="title">2025 ICPC World Final</span></a><a class="item title" href="/first-principle-design-thinking/"><span class="title">First Principle Design Thinking</span></a><a class="item title" href="/socat-usage/"><span class="title">使用 Socat 创建虚拟串口并指定名称</span></a><a class="item title" href="/vim-keys-001/"><span class="title">Vim 快捷键操作</span></a><a class="item title" href="/conda-pip-proxy/"><span class="title">conda 与 pip 配置代理服务器</span></a><a class="item title" href="/topic/cs336/tokenization-bpe/"><span class="title">Tokenization, BPE 算法</span></a><a class="item title" href="/Non-Fungible-Tokens/"><span class="title">Non-Fungible Tokens</span></a><a class="item title" href="/ERC20-tokens/"><span class="title">ERC20 协议</span></a><a class="item title" href="/use-excel-to-solve-optimization-problems/"><span class="title">使用 Excel 解决优化问题</span></a></div></widget>
+
+
+
+
+
+
+
+
+
+
+
+  <widget class="widget-wrapper post-list">
+    <div class="widget-header dis-select">
+      <span class="name">Tags</span>
+    </div>
+    <div class="widget-body fs14 tag-tree">
+      
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="">
+    
+  
+  <a class="link" href="/notes/cs/coding/ocaml/">
+    <span class="toc-text">
+      
+        All Notes
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="basics">
+    
+  
+  <a class="link" href="/notes/cs/coding/ocaml/tags/basics/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Basics
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="build system">
+    
+  
+  <a class="link" href="/notes/cs/coding/ocaml/tags/build%20system/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Build System
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="data and types">
+    
+  
+  <a class="link" href="/notes/cs/coding/ocaml/tags/data%20and%20types/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Data and Types
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="debug">
+    
+  
+  <a class="link" href="/notes/cs/coding/ocaml/tags/debug/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Debug
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+    </div>
+  </widget>
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/cs/coding/ocaml/data%20and%20types/ocaml-lists/"><span class="title">Ocaml 里的数据结构：Lists</span></a><a class="item title" href="/notes/cs/coding/ocaml/basics/ocaml-debugging/"><span class="title">OCaml Debugging</span></a><a class="item title" href="/notes/cs/coding/ocaml/basics/ocaml-documentation-printing/"><span class="title">OCaml 格式化输出</span></a><a class="item title" href="/notes/cs/coding/ocaml/basics/ocaml-functions/"><span class="title">Functions</span></a><a class="item title" href="/notes/cs/coding/ocaml/basics/ocaml-expression/"><span class="title">Expression</span></a><a class="item title" href="/notes/cs/coding/ocaml/basics/ocaml-dune/"><span class="title">Dune Build System</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -714,22 +857,45 @@ div.hcb-content.hcb-cards-content.active {
 <div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/topic/coding/functional/ocaml/ocaml-in-source-documentation/">函数式编程： OCaml</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2025-06-20T17:07:51.000Z">2025-06-21</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2025-06-20T19:21:33.557Z">2025-06-21</time></span></div></div></div>
+<span class="sep"></span>
+<a class="cap breadcrumb" href="/notebooks/">Notebook</a>
+
+
+  <span class="sep"></span>
+  <a class="cap breadcrumb" href="/notes/cs/coding/ocaml/">学习 OCaml</a>
+
+</div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-09-28T09:32:09.078Z">2025-09-28</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-28T09:26:48.000Z">2025-09-28</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>OCaml 代码文档</span></h1>
+        <h1 class="text title"><span>Ocaml 里的数据结构：Lists</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="基础语法"><a class="markdownIt-Anchor" href="#基础语法"></a> 基础语法</h2>
-<p>文档注释的形式为 <code>(** some comments *)</code>。在 <code>[]</code> 内部的文字会显示为 Coding Font.</p>
-<p>和其他语言类似的，OCaml 也有 <code>@author, @return</code> 等等注释项。</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(** [sum lst] is the sum of [lst] *)</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">rec</span> sum lst = ...</span><br></pre></td></tr></table></figure></article>
+  </div><article class="md-text content">
+<div class="callout" data-callout="note">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner">列表</div>
+</div>
+<div class="callout-content"><p></p>
+<p>OCaml 里的列表的底层实现是<strong>单向链表</strong>，并且是<strong>类型相同</strong>的<strong>不可变</strong>元素。</p>
+</div></div>
+
+  <div class="tag-list">
+    
+      
+      <a class="tag" href="/notes/cs/coding/ocaml/tags/data%20and%20types/">Data and Types</a>
+    
+  </div>
+
+</article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -740,10 +906,6 @@ div.hcb-content.hcb-cards-content.active {
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/coding/functional/haskell/haskell-crash-course/">Haskell 快速入门</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/analysis/math-analysis-2/">数学分析一 Ep.2：实数、有理数</a></div></section></div>
-
-
-
 
 
 
@@ -751,12 +913,7 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-<div class="widgets">
-
-
-
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-text"> 基础语法</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
-</div></aside><div class='float-panel'>
+</aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
