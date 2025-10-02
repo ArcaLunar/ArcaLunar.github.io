@@ -17,25 +17,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>区块链上的数据结构 - Arca Lunar's Blog</title>
+  <title>以太坊：账户类型与交易 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="Data Structures for Blockchain  Hash Pointer Hash Pointer 本身包含一个数据指针和一个哈希指针：数据指针指向存储数据的地址，而哈希指针与其说是指针，其实只保存了指向的数据的哈希值 1234567&#x2F;&#x2F; 只是随便举的一个 Data Structure 的例子struct HashPointer &#123;    &#x2F;&#x2F; 指向数据的指针, ptr">
+    <meta name="description" content="从状态机的视角研究交易如何影响以太坊的账户状态">
 <meta property="og:type" content="website">
-<meta property="og:title" content="区块链上的数据结构">
-<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-data-structures/">
+<meta property="og:title" content="以太坊：账户类型与交易">
+<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/ethereum/blockchain-ethereum-accounts-txs/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="Data Structures for Blockchain  Hash Pointer Hash Pointer 本身包含一个数据指针和一个哈希指针：数据指针指向存储数据的地址，而哈希指针与其说是指针，其实只保存了指向的数据的哈希值 1234567&#x2F;&#x2F; 只是随便举的一个 Data Structure 的例子struct HashPointer &#123;    &#x2F;&#x2F; 指向数据的指针, ptr">
+<meta property="og:description" content="从状态机的视角研究交易如何影响以太坊的账户状态">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/assets/notes/cs/blockchain/merkle1.png">
-<meta property="og:image" content="http://example.com/assets/notes/cs/blockchain/tree2block.png">
-<meta property="og:image" content="http://example.com/assets/notes/cs/blockchain/block2chain.png">
-<meta property="article:published_time" content="2025-09-21T12:44:46.000Z">
-<meta property="article:modified_time" content="2025-09-26T02:17:28.853Z">
+<meta property="article:published_time" content="2025-10-02T08:16:31.000Z">
+<meta property="article:modified_time" content="2025-10-02T08:19:08.890Z">
 <meta property="article:author" content="Arca Lunar">
-<meta property="article:tag" content="区块链原理">
+<meta property="article:tag" content="区块链原理&#x2F;以太坊">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/assets/notes/cs/blockchain/merkle1.png">
   
   
   
@@ -51,7 +47,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-data-structures/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"区块链上的数据结构","description":" Data Structures for Blockchain\n Hash Pointer\nHash Pointer 本身包含一个数据指针和一个哈希指针：数据指针指向存储数据的地址，而哈希指针与其说是指针，其实只保存了指向的数据的哈希值\n1234567// 只是随便举的一个 Data Structure 的例子struct HashPointer &#123;    // 指向数据的指针, ...","url":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-data-structures/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/ethereum/blockchain-ethereum-accounts-txs/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"以太坊：账户类型与交易","description":"从状态机的视角研究交易如何影响以太坊的账户状态","url":"http://example.com/notes/fintech/blockchain/principles/ethereum/blockchain-ethereum-accounts-txs/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -804,6 +800,31 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
+  <div class="tag-subtree leaf-tag" data-tag="top down approach">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/top%20down%20approach/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Top Down Approach
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
   <div class="tag-subtree leaf-tag" data-tag="分布式系统">
     
   
@@ -854,7 +875,7 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
-  <div class="tag-subtree leaf-tag" data-tag="区块链原理">
+  <div class="tag-subtree parent-tag" data-tag="区块链原理">
     
   
   <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">
@@ -869,6 +890,85 @@ div.hcb-content.hcb-cards-content.active {
       <span class="tag-switcher" />
     </span>
   </a>
+
+    
+      
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/交易">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BA%A4%E6%98%93/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        交易
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/以太坊">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BB%A5%E5%A4%AA%E5%9D%8A/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        以太坊
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/梳理">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E6%A2%B3%E7%90%86/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        梳理
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
 
     
   </div>
@@ -928,7 +1028,7 @@ div.hcb-content.hcb-cards-content.active {
   </widget>
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-digital-sign/"><span class="title">区块链：数字签名</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/consensus-protocols/"><span class="title">Consensus Protocols 共识协议</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/distributed-systems/"><span class="title">分布式系统</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-hashing/"><span class="title">区块链与哈希</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-data-structures/"><span class="title">区块链上的数据结构</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/mechanics-of-blocks-transactions-address/"><span class="title">Bitcoin Transactions: Block and Address</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/mining-PoW/"><span class="title">挖矿与 Proof-of-Work</span></a><a class="item title" href="/notes/fintech/blockchain/applications/digital-assets-and-decentralized-finance/"><span class="title">区块链在数字资产与去中心化金融上的应用</span></a><a class="item title" href="/notes/fintech/blockchain/applications/smart-contracts/"><span class="title">Smart Contract 智能合约</span></a><a class="item title" href="/notes/fintech/blockchain/applications/dev/examples/blind-auction-with-solidity/"><span class="title">用 Solidity 编写 Blind Auction</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/fintech/blockchain/principles/ethereum/blockchain-ethereum-accounts-txs/"><span class="title">以太坊：账户类型与交易</span></a><a class="item title" href="/notes/fintech/blockchain/principles/ethereum/blockchain-state-transition-system/"><span class="title">以太坊 (Ethereum) 与状态机模型</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-full-progress/"><span class="title">Transaction, Episode 3. （梳理）交易从创建开始的完整流程</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-data-structure/"><span class="title">Transaction, Episode 1. 数据结构实现</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-verification/"><span class="title">Transaction, Episode 2. 交易验证背后的技术细节</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/hash-blockchain-digitalsignature/"><span class="title">Top-Down 视角：哈希函数、数字签名、区块链</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-digital-signature/"><span class="title">区块链：数字签名</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-chain-and-merkle-tree/"><span class="title">区块链：Merkle Tree 与“区块” “链”</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-hash/"><span class="title">区块链：哈希函数</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/consensus-protocols/"><span class="title">Consensus Protocols 共识协议</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -948,42 +1048,25 @@ div.hcb-content.hcb-cards-content.active {
   <a class="cap breadcrumb" href="/notes/fintech/blockchain/">区块链技术</a>
 
 </div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-09-26T02:17:28.853Z">2025-09-26</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-21T12:44:46.000Z">2025-09-21</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-10-02T08:19:08.890Z">2025-10-02</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-10-02T08:16:31.000Z">2025-10-02</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>区块链上的数据结构</span></h1>
+        <h1 class="text title"><span>以太坊：账户类型与交易</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="data-structures-for-blockchain"><a class="markdownIt-Anchor" href="#data-structures-for-blockchain"></a> Data Structures for Blockchain</h2>
-<h3 id="hash-pointer"><a class="markdownIt-Anchor" href="#hash-pointer"></a> Hash Pointer</h3>
-<p>Hash Pointer 本身包含一个<strong>数据指针</strong>和一个<strong>哈希指针</strong>：数据指针指向存储数据的地址，而哈希指针与其说是指针，其实只保存了指向的数据的哈希值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只是随便举的一个 Data Structure 的例子</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HashPointer</span> &#123;</span><br><span class="line">    <span class="comment">// 指向数据的指针, ptr = &amp;data</span></span><br><span class="line">    <span class="type">data_t</span> *ptr;</span><br><span class="line">    <span class="comment">// 数据的哈希值, hash = H(data)</span></span><br><span class="line">    <span class="type">hash_t</span> hash;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="node-hash-structure"><a class="markdownIt-Anchor" href="#node-hash-structure"></a> Node: Hash Structure</h3>
-<p>一个 Hash Structure 除了包含 Hash Pointer 之外，还可能包含其他数据，例如 Main Data, Meta Data 等等。那么这时候的 Hash Pointer 的指针与哈希指针分别指向什么呢？答案是：指针指向上一个（<strong>整个</strong>） Hash Structure 的地址，而哈希指针则计算的是整个 Hash Structure 的哈希。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashStructure</span> &#123;</span><br><span class="line">    <span class="type">data_t</span> metadata;</span><br><span class="line">    <span class="type">data_t</span> maindata;</span><br><span class="line">    <span class="comment">// hs[i].hp.ptr = &amp;hs[i-1]</span></span><br><span class="line">    <span class="comment">// hs[i].hp.hash = H(hs[i-1]),</span></span><br><span class="line">    <span class="comment">//   including hs[i-1].metadata, h[i-1].maindata, h[i-1].hp</span></span><br><span class="line">    HashPointer hp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>所以这些 Hash Structure 可以形成类似<strong>链表</strong>的数据结构。链表头被称为“创世区块”。</p>
-<h3 id="二叉树merkle-tree"><a class="markdownIt-Anchor" href="#二叉树merkle-tree"></a> 二叉树：Merkle Tree</h3>
-<p>Merkle Tree 可以看作是 Leafy Tree，是二叉树，且只有叶子节点真正保存 Document 的哈希值，非叶子节点的 Hash Pointer 保存左右两个 Hash Pointer 拼接之后计算出来的哈希。</p>
-<h4 id="hash-combiner"><a class="markdownIt-Anchor" href="#hash-combiner"></a> Hash Combiner</h4>
-<p>既然是二叉树，而且只有叶子节点有值，那么非叶子节点其实就保存了两个东西：左儿子的 Hash Pointer 和右儿子的 Hash Pointer。这两个数据经过 Hash Combiner 拼接之后，计算出哈希，拼成一个新的 Hash Pointer.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashCombiner</span> &#123;</span><br><span class="line">    <span class="comment">// left.hash = H([Left HashCombiner]),</span></span><br><span class="line">    <span class="comment">//   i.e. H(left.left, left.right)</span></span><br><span class="line">    HashPointer left;</span><br><span class="line">    HashPointer right;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="/assets/notes/cs/blockchain/merkle1.png" data-src="/assets/notes/cs/blockchain/merkle1.png" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div></div>
-<h3 id="overview"><a class="markdownIt-Anchor" href="#overview"></a> Overview</h3>
-<pre class="mermaid">graph TB
-A[Hash Pointer] -->|Form| B[Merkle Tree] -->|We only need| C[Merkle Tree Root] -->|Encapsulate into| D[Hash Block] -->|Form Linked List| E[Hash Chain]</pre>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="/assets/notes/cs/blockchain/tree2block.png" data-src="/assets/notes/cs/blockchain/tree2block.png" alt="Merkle Tree 提取为 Hash Structure" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div><div class="image-meta"><span class="image-caption center">Merkle Tree 提取为 Hash Structure</span></div></div>
-<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="/assets/notes/cs/blockchain/block2chain.png" data-src="/assets/notes/cs/blockchain/block2chain.png" alt="Hash Structure 构建 Blockchain" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div><div class="image-meta"><span class="image-caption center">Hash Structure 构建 Blockchain</span></div></div>
+  </div><article class="md-text content"><h2 id="accounts"><a class="markdownIt-Anchor" href="#accounts"></a> Accounts</h2>
+<h2 id="状态机视角下的交易"><a class="markdownIt-Anchor" href="#状态机视角下的交易"></a> <a href="../blockchain-state-transition-system">状态机视角下的交易</a></h2>
 
 
   <div class="tag-list">
     
       
-      <a class="tag" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">区块链原理</a>
+      <a class="tag" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BB%A5%E5%A4%AA%E5%9D%8A/">区块链原理/以太坊</a>
     
   </div>
 
@@ -1007,7 +1090,7 @@ A[Hash Pointer] -->|Form| B[Merkle Tree] -->|We only need| C[Merkle Tree Root] -
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-structures-for-blockchain"><span class="toc-text"> Data Structures for Blockchain</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hash-pointer"><span class="toc-text"> Hash Pointer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node-hash-structure"><span class="toc-text"> Node: Hash Structure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91merkle-tree"><span class="toc-text"> 二叉树：Merkle Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hash-combiner"><span class="toc-text"> Hash Combiner</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#overview"><span class="toc-text"> Overview</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#accounts"><span class="toc-text"> Accounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E4%BA%A4%E6%98%93"><span class="toc-text"> 状态机视角下的交易</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>

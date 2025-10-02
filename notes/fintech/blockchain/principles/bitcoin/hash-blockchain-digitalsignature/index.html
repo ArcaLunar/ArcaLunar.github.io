@@ -17,20 +17,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>区块链与哈希 - Arca Lunar's Blog</title>
+  <title>Top-Down 视角：哈希函数、数字签名、区块链 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="NTU SC3060 Module 2 Lecture 1">
+    <meta name="description" content="NTU 的课比较 Bottom Up，细节很丰富，但是比较容易让人一头雾水到底在干嘛，所以尝试以自己的视角写一篇 Top Down Approach 的（非技术性）文章。其实我感觉最好也是在非技术性综述里放上导向技术细节的文章链接">
 <meta property="og:type" content="website">
-<meta property="og:title" content="区块链与哈希">
-<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-hashing/">
+<meta property="og:title" content="Top-Down 视角：哈希函数、数字签名、区块链">
+<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/bitcoin/hash-blockchain-digitalsignature/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="NTU SC3060 Module 2 Lecture 1">
+<meta property="og:description" content="NTU 的课比较 Bottom Up，细节很丰富，但是比较容易让人一头雾水到底在干嘛，所以尝试以自己的视角写一篇 Top Down Approach 的（非技术性）文章。其实我感觉最好也是在非技术性综述里放上导向技术细节的文章链接">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-15T12:53:33.000Z">
-<meta property="article:modified_time" content="2025-09-26T02:17:28.854Z">
+<meta property="article:published_time" content="2025-09-30T17:17:59.000Z">
+<meta property="article:modified_time" content="2025-10-01T14:27:17.149Z">
 <meta property="article:author" content="Arca Lunar">
-<meta property="article:tag" content="区块链原理">
+<meta property="article:tag" content="Top Down Approach">
 <meta name="twitter:card" content="summary">
   
   
@@ -47,7 +47,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-hashing/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"区块链与哈希","description":"NTU SC3060 Module 2 Lecture 1","url":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-hashing/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/bitcoin/hash-blockchain-digitalsignature/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Top-Down 视角：哈希函数、数字签名、区块链","description":"NTU 的课比较 Bottom Up，细节很丰富，但是比较容易让人一头雾水到底在干嘛，所以尝试以自己的视角写一篇 Top Down Approach 的（非技术性）文章。其实我感觉最好也是在非技术性综述里放上导向技术细节的文章链接","url":"http://example.com/notes/fintech/blockchain/principles/bitcoin/hash-blockchain-digitalsignature/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -800,6 +800,31 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
+  <div class="tag-subtree leaf-tag" data-tag="top down approach">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/top%20down%20approach/">
+    <span class="toc-text">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        Top Down Approach
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+      
+        
+  
+  
+  
+  
   <div class="tag-subtree leaf-tag" data-tag="分布式系统">
     
   
@@ -850,7 +875,7 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
-  <div class="tag-subtree leaf-tag" data-tag="区块链原理">
+  <div class="tag-subtree parent-tag" data-tag="区块链原理">
     
   
   <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">
@@ -865,6 +890,85 @@ div.hcb-content.hcb-cards-content.active {
       <span class="tag-switcher" />
     </span>
   </a>
+
+    
+      
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/交易">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BA%A4%E6%98%93/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        交易
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/以太坊">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BB%A5%E5%A4%AA%E5%9D%8A/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        以太坊
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="区块链原理/梳理">
+    
+  
+  <a class="link" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E6%A2%B3%E7%90%86/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        梳理
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
 
     
   </div>
@@ -924,7 +1028,7 @@ div.hcb-content.hcb-cards-content.active {
   </widget>
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-digital-sign/"><span class="title">区块链：数字签名</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/consensus-protocols/"><span class="title">Consensus Protocols 共识协议</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/distributed-systems/"><span class="title">分布式系统</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-hashing/"><span class="title">区块链与哈希</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-data-structures/"><span class="title">区块链上的数据结构</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/mechanics-of-blocks-transactions-address/"><span class="title">Bitcoin Transactions: Block and Address</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/mining-PoW/"><span class="title">挖矿与 Proof-of-Work</span></a><a class="item title" href="/notes/fintech/blockchain/applications/digital-assets-and-decentralized-finance/"><span class="title">区块链在数字资产与去中心化金融上的应用</span></a><a class="item title" href="/notes/fintech/blockchain/applications/smart-contracts/"><span class="title">Smart Contract 智能合约</span></a><a class="item title" href="/notes/fintech/blockchain/applications/dev/examples/blind-auction-with-solidity/"><span class="title">用 Solidity 编写 Blind Auction</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/fintech/blockchain/principles/ethereum/blockchain-ethereum-accounts-txs/"><span class="title">以太坊：账户类型与交易</span></a><a class="item title" href="/notes/fintech/blockchain/principles/ethereum/blockchain-state-transition-system/"><span class="title">以太坊 (Ethereum) 与状态机模型</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-full-progress/"><span class="title">Transaction, Episode 3. （梳理）交易从创建开始的完整流程</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-data-structure/"><span class="title">Transaction, Episode 1. 数据结构实现</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-verification/"><span class="title">Transaction, Episode 2. 交易验证背后的技术细节</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/hash-blockchain-digitalsignature/"><span class="title">Top-Down 视角：哈希函数、数字签名、区块链</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-digital-signature/"><span class="title">区块链：数字签名</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-chain-and-merkle-tree/"><span class="title">区块链：Merkle Tree 与“区块” “链”</span></a><a class="item title" href="/notes/fintech/blockchain/principles/bitcoin/blockchain-hash/"><span class="title">区块链：哈希函数</span></a><a class="item title" href="/notes/fintech/blockchain/principles/DistributedSystem/consensus-protocols/"><span class="title">Consensus Protocols 共识协议</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -944,78 +1048,41 @@ div.hcb-content.hcb-cards-content.active {
   <a class="cap breadcrumb" href="/notes/fintech/blockchain/">区块链技术</a>
 
 </div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-09-26T02:17:28.854Z">2025-09-26</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-15T12:53:33.000Z">2025-09-15</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-10-01T14:27:17.149Z">2025-10-01</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-30T17:17:59.000Z">2025-10-01</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>区块链与哈希</span></h1>
+        <h1 class="text title"><span>Top-Down 视角：哈希函数、数字签名、区块链</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="hashing-function"><a class="markdownIt-Anchor" href="#hashing-function"></a> Hashing Function</h2>
-<p>一个好的哈希函数 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> 需要满足如下几点：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Property</th>
-<th>Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Efficiently Computable</td>
-<td><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span></eq>-bit input takes <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span></eq> to compute</td>
-</tr>
-<tr>
-<td style="text-align:center">Preimage Resistance</td>
-<td>Given <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=H(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq>, finding <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq> is impossible.</td>
-</tr>
-<tr>
-<td style="text-align:center"><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mtext>nd</mtext></msup></mrow><annotation encoding="application/x-tex">2^{\text{nd}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">nd</span></span></span></span></span></span></span></span></span></span></span></span></span></eq> Preimage Resistance</td>
-<td>Given <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq>, finding <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo mathvariant="normal">≠</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y\ne x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></eq> s.t. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(y)=H(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></eq> is impossible.</td>
-</tr>
-<tr>
-<td style="text-align:center">Collision Resistance</td>
-<td>Finding any pair <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo mathvariant="normal">≠</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x\ne y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span></eq> s.t. <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(x)=H(y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></eq> is impossible</td>
-</tr>
-</tbody>
-</table>
-<p>同时，也分成 Keyed Hash Function 和 Keyless Hash Function. 在区块链中，我们主要关注 <em>Collision Resistant Hash Function</em>.</p>
-<ul>
-<li>Hiding &amp; Binding 原则
-<ul>
-<li><strong>Is it Hiding?</strong> If you use Hash function, given commitment, is it possible to find data?</li>
-<li><strong>Is it Binding?</strong> If you use Hash function, is it possible to deny your commitment later?</li>
-</ul>
-</li>
-</ul>
-<h3 id="deep-dive-sha-256-算法"><a class="markdownIt-Anchor" href="#deep-dive-sha-256-算法"></a> Deep Dive: SHA-256 算法</h3>
+  </div><article class="md-text content"><h2 id="decentralized-finance-but-which-central"><a class="markdownIt-Anchor" href="#decentralized-finance-but-which-central"></a> Decentralized Finance. But which “central”?</h2>
+<p>故事从 Web3 的兴起开始讲起. Blockchain 与 Bitcoin 开始流行的时候，大家都将其视为“对<strong>传统金融</strong>作出的创新”，由此发展出<strong>去中心化金融 (DeFi)</strong>。这里的传统金融指的是银行这样的金融机构，显然如果把 bitcoin 称为“去”中心化金融的话，那么银行应当视为中心化金融，“中心化”这个词的意思也随之确定下来：<em>有某个中央金融机构进行监督与管理</em>。</p>
+<p>既然“去除”了中心化，我们仍希望去中心化金融可以正常像中心化金融进行服务<del>（不然我们要这个去中心化金融干嘛，那肯定得正常发挥取代的功效</del>。然而很多在传统金融下十分 trivial 的 action 在 DeFi 里却并不是那么 trivial 的。例如，我应该怎么验证一笔转账？传统金融里只需要银行进行核查即可，在 DeFi 里应该怎么办？又比如说，交易数据如何保存？传统金融里，只需要银行自己维护一个数据库即可，由于 DeFi “去中心化”，又应该如何保存每一笔交易？</p>
+<p>这些问题都需要 Blockchain 发展相关的技术去解决。而通过传统金融与 DeFi 在达成同一目的所使用的不同手段之对比，从技术所希望解决的问题出发，技术的每一个细节解决了什么样的问题，笔者认为这些拆解将会让技术以及其细节更加容易理解。</p>
+<h2 id="交易时如何验证身份"><a class="markdownIt-Anchor" href="#交易时如何验证身份"></a> 交易时如何验证身份？</h2>
+<h2 id="数据库如何储存"><a class="markdownIt-Anchor" href="#数据库如何储存"></a> 数据库如何储存？</h2>
+<p>传统金融里，每一笔交易的记录都会存放在金融公司的数据库里，这样的数据库是 central 的。在去中心化的场景下，我们的一个大前提便是：everyone has access to，那么我们怎么构建数据库使得</p>
+<ol>
+<li>能够记录下每一笔交易</li>
+<li>保证交易发生后，交易本身的状态和内容不会改变</li>
+</ol>
+<h3 id="哈希"><a class="markdownIt-Anchor" href="#哈希"></a> 哈希</h3>
+<p>回顾哈希函数，它的一个性质是：如果输入改变，输出也会改变。于是</p>
 
 
   <div class="tag-list">
     
       
-      <a class="tag" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">区块链原理</a>
+      <a class="tag" href="/notes/fintech/blockchain/tags/top%20down%20approach/">Top Down Approach</a>
     
   </div>
 
 </article>
 <div class="article-footer">
-    <section id="references">
-      <div class="header"><span>References</span></div>
-      <div class="body">
-        <ul>
-        <li class="post-title">
-          <p><a target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/questions/268/ethereum-block-architecture">以太坊架构</a></p>
-
-        </li>
-        </ul>
-      </div>
-    </section>
-    
     <section id="license">
       <div class="header"><span>License</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
@@ -1034,7 +1101,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
 <div class="widgets">
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashing-function"><span class="toc-text"> Hashing Function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#deep-dive-sha-256-%E7%AE%97%E6%B3%95"><span class="toc-text"> Deep Dive: SHA-256 算法</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#decentralized-finance-but-which-central"><span class="toc-text"> Decentralized Finance. But which “central”?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E6%97%B6%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E8%BA%AB%E4%BB%BD"><span class="toc-text"> 交易时如何验证身份？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A6%82%E4%BD%95%E5%82%A8%E5%AD%98"><span class="toc-text"> 数据库如何储存？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C"><span class="toc-text"> 哈希</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>

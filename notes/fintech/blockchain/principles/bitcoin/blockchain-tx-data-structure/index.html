@@ -17,22 +17,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>Arca Lunar's Blog</title>
+  <title>Transaction, Episode 1. 数据结构实现 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="all kinds of stuff">
+    <meta name="description" content="浅浅解析">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Arca Lunar&#39;s Blog">
-<meta property="og:url" content="http://example.com/notes/fintech/blockchain/tags/solidity/">
+<meta property="og:title" content="Transaction, Episode 1. 数据结构实现">
+<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-data-structure/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="all kinds of stuff">
+<meta property="og:description" content="浅浅解析">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-01T15:59:49.000Z">
+<meta property="article:modified_time" content="2025-10-01T16:33:02.244Z">
 <meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="区块链原理&#x2F;交易">
 <meta name="twitter:card" content="summary">
   
   
   
-  
+  <meta name="keywords" content="">
 
   <!-- feed -->
   
@@ -44,7 +47,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Arca Lunar's Blog","description":"all kinds of stuff","url":"http://example.com"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-data-structure/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Transaction, Episode 1. 数据结构实现","description":"浅浅解析","url":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-data-structure/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -686,7 +689,7 @@ div.hcb-content.hcb-cards-content.active {
 <!-- hexo injector head_end end --></head>
 <body>
 
-<div class="l_body index" id="start" layout="notes" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
@@ -743,10 +746,10 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
-  <div class="tag-subtree parent-tag expanded" data-tag="solidity">
+  <div class="tag-subtree parent-tag" data-tag="solidity">
     
   
-  <a class="link active" href="/notes/fintech/blockchain/tags/solidity/">
+  <a class="link" href="/notes/fintech/blockchain/tags/solidity/">
     <span class="toc-text">
       
         
@@ -1030,89 +1033,62 @@ div.hcb-content.hcb-cards-content.active {
 
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
-
-<div class="post-list post">
-  
-    <a
-      class="post-card post"
-      href="/notes/fintech/blockchain/applications/solidity/solidity-basics/?tag=solidity"
-    >
-      
-<article class="md-text">
-  
-  <h2 class="post-title">Solidity Basics</h2>
-  <div class="excerpt">
-    <p>
-      
-         Data Types
- Arrays
-12345uint[5] arr;// similar to std::arrayuint[] vec;// similar to std::vectoruint newLength = vec.push();...
-      
-    </p>
-  </div>
-  <div class="meta cap">
-    
-    <span class="cap" id="post-meta">
-      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2025-09-26T02:17:28.834Z">2025-09-26</time>
-    </span>
-    
-      
-        <span class="cap breadcrumb" >
-          <span class="tag">Solidity</span>
-        </span>
-      
-    
-  </div>
-</article>
-
-    </a>
-  
-    <a
-      class="post-card post"
-      href="/notes/fintech/blockchain/applications/dev/examples/blind-auction-with-solidity/?tag=solidity"
-    >
-      
-<article class="md-text">
-  
-  <h2 class="post-title">用 Solidity 编写 Blind Auction</h2>
-  <div class="excerpt">
-    <p>
-      
-        
 
 
 
 
+<div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span>
+<a class="cap breadcrumb" href="/notebooks/">Notebook</a>
 
-什么是 Blind Auction?
 
+  <span class="sep"></span>
+  <a class="cap breadcrumb" href="/notes/fintech/blockchain/">区块链技术</a>
 
-
-
-      
-    </p>
-  </div>
-  <div class="meta cap">
-    
-    <span class="cap" id="post-meta">
-      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2025-09-26T02:17:28.841Z">2025-09-26</time>
-    </span>
-    
-      
-        <span class="cap breadcrumb" >
-          <span class="tag">Solidity/示例</span>
-        </span>
-      
-    
-  </div>
-</article>
-
-    </a>
-  
 </div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-10-01T16:33:02.244Z">2025-10-02</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-10-01T15:59:49.000Z">2025-10-01</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Transaction, Episode 1. 数据结构实现</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>Bitcoin 是 Transaction-based Ledger. 这个是什么意思呢？在传统金融里主要是 Account-based Ledger: 银行给每一个用户维护一个<strong>余额账户</strong>，这是主体，交易只是账户与账户之间产生的行为，也就是说，交易是账户的附属。</p>
+<p>而 Transaction-based Ledger 则完全相反，Transaction 才是主体，所谓“账户”不过是若干 Transaction 的总和（当然，需要 TX 的收款人是账户持有者）。账户持有者账户里的钱，数值上等于他收到的 TX 的金额值总和；但是实际上，账户维护的是 TXs.</p>
+<h2 id="交易发送者的钱从哪来"><a class="markdownIt-Anchor" href="#交易发送者的钱从哪来"></a> 交易：发送者的钱从哪来？</h2>
+<p>在传统金融里，我们是如何转账的呢？</p>
+<ul>
+<li>首先，我们需要确保，自己账户的余额大于等于即将发送的金额</li>
+<li>其次，我们还会需要进行身份核验（通常是银行来完成核验）</li>
+<li>然后，我们账户的余额会相应减少，对方账户的余额会相应增多</li>
+</ul>
+<p>先前我们已经提到过，区块链账户本质维护的是一些 Transactions. 那么在 DeFi 里，这些步骤都是如何实现的呢？</p>
+
+
+  <div class="tag-list">
+    
+      
+      <a class="tag" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BA%A4%E6%98%93/">区块链原理/交易</a>
+    
+  </div>
+
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
 
 
 
@@ -1120,7 +1096,10 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E5%8F%91%E9%80%81%E8%80%85%E7%9A%84%E9%92%B1%E4%BB%8E%E5%93%AA%E6%9D%A5"><span class="toc-text"> 交易：发送者的钱从哪来？</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>

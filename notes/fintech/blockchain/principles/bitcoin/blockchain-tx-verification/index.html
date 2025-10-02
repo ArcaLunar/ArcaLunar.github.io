@@ -17,22 +17,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>Arca Lunar's Blog</title>
+  <title>Transaction, Episode 2. 交易验证背后的技术细节 - Arca Lunar's Blog</title>
 
   
-    <meta name="description" content="all kinds of stuff">
+    <meta name="description" content="Recall: TX 的数据结构 Transaction 由三部分组成：  指向 unspent UTXO 的 Hash Pointer 以及每一个 unspent UTXO 对应的 unlocking script  一个 bitcoin unlocking script 包含 signature 和 sender’s public key   新的 UTXOs  每一个 UTXO 包含金额、">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Arca Lunar&#39;s Blog">
-<meta property="og:url" content="http://example.com/notes/fintech/blockchain/tags/solidity/">
+<meta property="og:title" content="Transaction, Episode 2. 交易验证背后的技术细节">
+<meta property="og:url" content="http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-verification/">
 <meta property="og:site_name" content="Arca Lunar&#39;s Blog">
-<meta property="og:description" content="all kinds of stuff">
+<meta property="og:description" content="Recall: TX 的数据结构 Transaction 由三部分组成：  指向 unspent UTXO 的 Hash Pointer 以及每一个 unspent UTXO 对应的 unlocking script  一个 bitcoin unlocking script 包含 signature 和 sender’s public key   新的 UTXOs  每一个 UTXO 包含金额、">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://static.learnmeabitcoin.com/technical/script/validate.gif">
+<meta property="article:published_time" content="2025-10-01T07:14:06.000Z">
+<meta property="article:modified_time" content="2025-10-01T16:31:52.511Z">
 <meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="区块链原理&#x2F;交易">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.learnmeabitcoin.com/technical/script/validate.gif">
   
   
   
-  
+  <meta name="keywords" content="">
 
   <!-- feed -->
   
@@ -44,7 +49,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Arca Lunar's Blog","description":"all kinds of stuff","url":"http://example.com"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-verification/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"Transaction, Episode 2. 交易验证背后的技术细节","description":" Recall: TX 的数据结构\nTransaction 由三部分组成：\n\n指向 unspent UTXO 的 Hash Pointer 以及每一个 unspent UTXO 对应的 unlocking script\n\n一个 bitcoin unlocking script 包含 signature 和 sender’s public key\n\n\n新的 UTXOs\n\n每一个 UTXO 包含...","url":"http://example.com/notes/fintech/blockchain/principles/bitcoin/blockchain-tx-verification/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -686,7 +691,7 @@ div.hcb-content.hcb-cards-content.active {
 <!-- hexo injector head_end end --></head>
 <body>
 
-<div class="l_body index" id="start" layout="notes" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
@@ -743,10 +748,10 @@ div.hcb-content.hcb-cards-content.active {
   
   
   
-  <div class="tag-subtree parent-tag expanded" data-tag="solidity">
+  <div class="tag-subtree parent-tag" data-tag="solidity">
     
   
-  <a class="link active" href="/notes/fintech/blockchain/tags/solidity/">
+  <a class="link" href="/notes/fintech/blockchain/tags/solidity/">
     <span class="toc-text">
       
         
@@ -1030,89 +1035,81 @@ div.hcb-content.hcb-cards-content.active {
 
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca Lunar's Blog</div><div class="sub cap">>w<</div></a></div></header>
-
-<div class="post-list post">
-  
-    <a
-      class="post-card post"
-      href="/notes/fintech/blockchain/applications/solidity/solidity-basics/?tag=solidity"
-    >
-      
-<article class="md-text">
-  
-  <h2 class="post-title">Solidity Basics</h2>
-  <div class="excerpt">
-    <p>
-      
-         Data Types
- Arrays
-12345uint[5] arr;// similar to std::arrayuint[] vec;// similar to std::vectoruint newLength = vec.push();...
-      
-    </p>
-  </div>
-  <div class="meta cap">
-    
-    <span class="cap" id="post-meta">
-      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2025-09-26T02:17:28.834Z">2025-09-26</time>
-    </span>
-    
-      
-        <span class="cap breadcrumb" >
-          <span class="tag">Solidity</span>
-        </span>
-      
-    
-  </div>
-</article>
-
-    </a>
-  
-    <a
-      class="post-card post"
-      href="/notes/fintech/blockchain/applications/dev/examples/blind-auction-with-solidity/?tag=solidity"
-    >
-      
-<article class="md-text">
-  
-  <h2 class="post-title">用 Solidity 编写 Blind Auction</h2>
-  <div class="excerpt">
-    <p>
-      
-        
 
 
 
 
+<div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span>
+<a class="cap breadcrumb" href="/notebooks/">Notebook</a>
 
-什么是 Blind Auction?
 
+  <span class="sep"></span>
+  <a class="cap breadcrumb" href="/notes/fintech/blockchain/">区块链技术</a>
 
-
-
-      
-    </p>
-  </div>
-  <div class="meta cap">
-    
-    <span class="cap" id="post-meta">
-      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2025-09-26T02:17:28.841Z">2025-09-26</time>
-    </span>
-    
-      
-        <span class="cap breadcrumb" >
-          <span class="tag">Solidity/示例</span>
-        </span>
-      
-    
-  </div>
-</article>
-
-    </a>
-  
 </div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-10-01T16:31:52.511Z">2025-10-02</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-10-01T07:14:06.000Z">2025-10-01</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Transaction, Episode 2. 交易验证背后的技术细节</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="recall-tx-的数据结构"><a class="markdownIt-Anchor" href="#recall-tx-的数据结构"></a> Recall: TX 的数据结构</h2>
+<p>Transaction 由三部分组成：</p>
+<ol>
+<li>指向 unspent UTXO 的 Hash Pointer 以及每一个 unspent UTXO 对应的 unlocking script
+<ul>
+<li>一个 bitcoin unlocking script 包含 signature 和 sender’s public key</li>
+</ul>
+</li>
+<li>新的 UTXOs
+<ul>
+<li>每一个 UTXO 包含金额、receiver’s address</li>
+</ul>
+</li>
+<li>TX’s Metadata</li>
+</ol>
+<h2 id="how-are-bitcoin-scripts-executed"><a class="markdownIt-Anchor" href="#how-are-bitcoin-scripts-executed"></a> How Are Bitcoin Scripts Executed?</h2>
+<div class="tag-plugin image"><div class="image-bg" style="aspect-ratio:784/480;"><img class="lazy" src="https://static.learnmeabitcoin.com/technical/script/validate.gif" data-src="https://static.learnmeabitcoin.com/technical/script/validate.gif" alt="动画展示" data-fancybox="true"onerror="this.src=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2rem' height='2rem' viewBox='0 0 24 24'%3E%3C!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --%3E%3Cpath fill='%23F44336' d='M22 12.698c-.002 1.47-.013 2.718-.096 3.743c-.097 1.19-.296 2.184-.74 3.009a4.2 4.2 0 0 1-.73.983c-.833.833-1.893 1.21-3.237 1.39C15.884 22 14.2 22 12.053 22h-.106c-2.148 0-3.83 0-5.144-.177c-1.343-.18-2.404-.557-3.236-1.39c-.738-.738-1.12-1.656-1.322-2.795c-.2-1.12-.236-2.512-.243-4.241Q1.999 12.737 2 12v-.054c0-2.148 0-3.83.177-5.144c.18-1.343.557-2.404 1.39-3.236s1.893-1.21 3.236-1.39c1.168-.157 2.67-.175 4.499-.177a.697.697 0 1 1 0 1.396c-1.855.002-3.234.018-4.313.163c-1.189.16-1.906.464-2.436.994S3.72 5.8 3.56 6.99C3.397 8.2 3.395 9.788 3.395 12v.784l.932-.814a2.14 2.14 0 0 1 2.922.097l3.99 3.99a1.86 1.86 0 0 0 2.385.207l.278-.195a2.79 2.79 0 0 1 3.471.209l2.633 2.37c.265-.557.423-1.288.507-2.32c.079-.972.09-2.152.091-3.63a.698.698 0 0 1 1.396 0' opacity='.5'/%3E%3Cpath fill='%23F44336' fill-rule='evenodd' d='M17.5 11c-2.121 0-3.182 0-3.841-.659S13 8.621 13 6.5s0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11m-1.47-7.03a.75.75 0 1 0-1.06 1.06l1.47 1.47l-1.47 1.47a.75.75 0 0 0 1.06 1.06l1.47-1.47l1.47 1.47a.75.75 0 1 0 1.06-1.06L18.56 6.5l1.47-1.47a.75.75 0 0 0-1.06-1.06L17.5 5.44z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;"/><div class="lazy-icon" style="background-image:url(https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd);"></div></div><div class="image-meta"><span class="image-caption center">动画展示</span></div></div>
+
+
+  <div class="tag-list">
+    
+      
+      <a class="tag" href="/notes/fintech/blockchain/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/%E4%BA%A4%E6%98%93/">区块链原理/交易</a>
+    
+  </div>
+
+</article>
+<div class="article-footer">
+    <section id="references">
+      <div class="header"><span>References</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://learnmeabitcoin.com/technical/script/">Executing Bitcoin Script</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
 
 
 
@@ -1120,7 +1117,10 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#recall-tx-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text"> Recall: TX 的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#how-are-bitcoin-scripts-executed"><span class="toc-text"> How Are Bitcoin Scripts Executed?</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
