@@ -2827,11 +2827,13 @@ div.toast.show {
   max-width: 100%;
   margin: 1px;
   border-radius: 64px;
-  overflow: scroll visible;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .navbar-container::-webkit-scrollbar {
-  height: 0;
-  width: 0;
+  height: 4px;
+  width: 4px;
 }
 .navbar-container::-webkit-scrollbar-track-piece {
   background: transparent;
@@ -2839,7 +2841,7 @@ div.toast.show {
 .navbar-container::-webkit-scrollbar-thumb {
   background: var(--text-meta);
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 2px;
 }
 .navbar-container::-webkit-scrollbar-thumb:hover {
   background: var(--text-p3);
