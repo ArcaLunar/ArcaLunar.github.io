@@ -20,15 +20,15 @@
   <title>珂朵莉树 - Arca's Blog</title>
 
   
-    <meta name="description" content="珂朵莉树算法  具体实现   算法时间复杂度分析     为什么一定要学习如何分析珂朵莉树的时间复杂度？   珂朵莉树时间复杂度的正确性基于针对操作的分析，分析时间复杂度通常需要分析“连续段”数量的变化，才能计算操作的均摊时间复杂度。因此学会分析时间复杂度是正确使用珂朵莉树的关键所在。（否则只能期待玄学出现或者祈祷出题人不会卡了     珂朵莉树的推广   例题  其实也不算例题，毕竟没有哪一道">
+    <meta name="description" content="珂朵莉树算法  具体实现 感觉用 std::map 更加好写. 因为储存的区间都是连续的，假设两个相邻指针的左端点是 l1&lt;l2l_1\lt l_2l1​&lt;l2​，那么我们就知道第一个区间实际上是 [l1,l2−1][l_1, l_2-1][l1​,l2​−1]. Chtholly Tree with std::map 12345678910111213141516171819202">
 <meta property="og:type" content="website">
 <meta property="og:title" content="珂朵莉树">
 <meta property="og:url" content="http://example.com/notes/acm/tricks/chtholly-tree/">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="珂朵莉树算法  具体实现   算法时间复杂度分析     为什么一定要学习如何分析珂朵莉树的时间复杂度？   珂朵莉树时间复杂度的正确性基于针对操作的分析，分析时间复杂度通常需要分析“连续段”数量的变化，才能计算操作的均摊时间复杂度。因此学会分析时间复杂度是正确使用珂朵莉树的关键所在。（否则只能期待玄学出现或者祈祷出题人不会卡了     珂朵莉树的推广   例题  其实也不算例题，毕竟没有哪一道">
+<meta property="og:description" content="珂朵莉树算法  具体实现 感觉用 std::map 更加好写. 因为储存的区间都是连续的，假设两个相邻指针的左端点是 l1&lt;l2l_1\lt l_2l1​&lt;l2​，那么我们就知道第一个区间实际上是 [l1,l2−1][l_1, l_2-1][l1​,l2​−1]. Chtholly Tree with std::map 12345678910111213141516171819202">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-23T12:52:04.000Z">
-<meta property="article:modified_time" content="2025-09-24T04:48:21.222Z">
+<meta property="article:modified_time" content="2025-11-10T02:56:07.510Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="杂项">
 <meta name="twitter:card" content="summary">
@@ -47,7 +47,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/acm/tricks/chtholly-tree/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"珂朵莉树","description":" 珂朵莉树算法\n 具体实现\n\n 算法时间复杂度分析\n\n\n  为什么一定要学习如何分析珂朵莉树的时间复杂度？\n  珂朵莉树时间复杂度的正确性基于针对操作的分析，分析时间复杂度通常需要分析“连续段”数量的变化，才能计算操作的均摊时间复杂度。因此学会分析时间复杂度是正确使用珂朵莉树的关键所在。（否则只能期待玄学出现或者祈祷出题人不会卡了\n\n\n\n 珂朵莉树的推广\n\n 例题\n\n其实也不算例题，毕竟没有...","url":"http://example.com/notes/acm/tricks/chtholly-tree/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com/notes/acm/tricks/chtholly-tree/","author":{"@type":"Person","name":"Arca Lunar","sameAs":[]},"name":"珂朵莉树","description":" 珂朵莉树算法\n 具体实现\n感觉用 std::map 更加好写. 因为储存的区间都是连续的，假设两个相邻指针的左端点是 l1&lt;l2l_1\\lt l_2l1​&lt;l2​，那么我们就知道第一个区间实际上是 [l1,l2−1][l_1, l_2-1][l1​,l2​−1].\nChtholly Tree with std::map\n12345678910111213141516171819...","url":"http://example.com/notes/acm/tricks/chtholly-tree/"}</script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Mono:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/style.css" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"><script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
 
   <style type="text/css">
@@ -894,6 +894,31 @@ div.hcb-content.hcb-cards-content.active {
   </div>
 
   
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="图论/网络流">
+    
+  
+  <a class="link" href="/notes/acm/tags/%E5%9B%BE%E8%AE%BA/%E7%BD%91%E7%BB%9C%E6%B5%81/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        网络流
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
 
     
   </div>
@@ -998,6 +1023,31 @@ div.hcb-content.hcb-cards-content.active {
   </div>
 
   
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="数学/数论">
+    
+  
+  <a class="link" href="/notes/acm/tags/%E6%95%B0%E5%AD%A6/%E6%95%B0%E8%AE%BA/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        数论
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
+  
 
     
   </div>
@@ -1026,6 +1076,31 @@ div.hcb-content.hcb-cards-content.active {
 
     
       
+  
+    
+  
+  
+  
+  
+  <div class="tag-subtree leaf-tag" data-tag="数据结构/可持久化">
+    
+  
+  <a class="link" href="/notes/acm/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96/">
+    <span class="toc-text" style="padding-left: 0.875rem;">
+      
+        
+        <span class="tagcon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" d="m14.092 10.75l-.75 2.5H9.908l.75-2.5z"/><path fill="currentColor" fill-rule="evenodd" d="M3.464 3.464C2 4.93 2 7.286 2 12s0 7.071 1.464 8.535C4.93 22 7.286 22 12 22s7.071 0 8.535-1.465C22 19.072 22 16.714 22 12s0-7.071-1.465-8.536C19.072 2 16.714 2 12 2S4.929 2 3.464 3.464m7.752 2.818a.75.75 0 0 1 .502.934l-.61 2.034h3.434l.74-2.465a.75.75 0 0 1 1.436.43l-.61 2.035H18a.75.75 0 0 1 0 1.5h-2.342l-.75 2.5H17a.75.75 0 0 1 0 1.5h-2.542l-.74 2.465a.75.75 0 0 1-1.436-.43l.61-2.035H9.458l-.74 2.465a.75.75 0 1 1-1.436-.43l.61-2.035H6a.75.75 0 0 1 0-1.5h2.342l.75-2.5H7a.75.75 0 0 1 0-1.5h2.542l.74-2.465a.75.75 0 0 1 .934-.503" clip-rule="evenodd"/></svg></span>
+        可持久化
+      
+    </span>
+    <span class="toc-text tag-switcher-wrapper">
+      <span class="tag-switcher" />
+    </span>
+  </a>
+
+    
+  </div>
+
   
     
   
@@ -1248,7 +1323,7 @@ div.hcb-content.hcb-cards-content.active {
   </widget>
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/acm/game/nim-game/"><span class="title">Nim Game</span></a><a class="item title" href="/notes/acm/string/finite-state-machine/"><span class="title">有限状态自动机</span></a><a class="item title" href="/notes/acm/tricks/techniques-01/"><span class="title">ACM Tricks</span></a><a class="item title" href="/notes/acm/tricks/chtholly-tree/"><span class="title">珂朵莉树</span></a><a class="item title" href="/notes/acm/tricks/acm-chunkify/"><span class="title">分块思想</span></a><a class="item title" href="/notes/acm/ds/weight-balanced-leafy-tree/"><span class="title">WBLT 平衡树</span></a><a class="item title" href="/notes/acm/tree/hld/"><span class="title">轻重链剖分</span></a><a class="item title" href="/notes/acm/tree/centroid-decomposition/"><span class="title">点分治、点分树 Centroid Decomposition</span></a><a class="item title" href="/notes/acm/polynomials/FFT/"><span class="title">FFT</span></a><a class="item title" href="/notes/acm/tricks/min-max-inclusion-exclusion/"><span class="title">Min-Max 容斥</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/acm/graph/flow/Dinic-algorithm-for-Max-Flow-Problems/"><span class="title">最大流问题：Dinic 算法</span></a><a class="item title" href="/notes/acm/graph/flow/Flow-Problems-Modeling-Techniques/"><span class="title">网络流问题：建模技巧</span></a><a class="item title" href="/notes/acm/tricks/chtholly-tree/"><span class="title">珂朵莉树</span></a><a class="item title" href="/notes/acm/string/finite-state-machine/"><span class="title">有限状态自动机</span></a><a class="item title" href="/notes/acm/graph/mod-shortest-path/"><span class="title">同余最短路</span></a><a class="item title" href="/notes/acm/maths/number%20theory/baby-step-giant-step/"><span class="title">Baby-Step Giant-Step 算法</span></a><a class="item title" href="/notes/acm/ds/persistant-segment-tree/"><span class="title">可持久化线段树</span></a><a class="item title" href="/notes/acm/graph/kruskal/"><span class="title">最小生成树 Kruskal 算法与 Kruskal 重构树</span></a><a class="item title" href="/notes/acm/maths/linear-basis/"><span class="title">线性基</span></a><a class="item title" href="/notes/acm/maths/game/nim-game/"><span class="title">Nim Game</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -1268,7 +1343,7 @@ div.hcb-content.hcb-cards-content.active {
   <a class="cap breadcrumb" href="/notes/acm/">算法</a>
 
 </div>
-<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-09-24T04:48:21.222Z">2025-09-24</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-23T12:52:04.000Z">2025-09-23</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Updated on: <time datetime="2025-11-10T02:56:07.510Z">2025-11-10</time></span><span class="sep updated"></span><span class="text updated">Posted on: <time datetime="2025-09-23T12:52:04.000Z">2025-09-23</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -1281,6 +1356,9 @@ div.hcb-content.hcb-cards-content.active {
   </div>
   </div><article class="md-text content"><h2 id="珂朵莉树算法"><a class="markdownIt-Anchor" href="#珂朵莉树算法"></a> 珂朵莉树算法</h2>
 <h3 id="具体实现"><a class="markdownIt-Anchor" href="#具体实现"></a> 具体实现</h3>
+<p>感觉用 <code>std::map</code> 更加好写. 因为储存的区间都是连续的，假设两个相邻指针的左端点是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>l</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>l</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">l_1\lt l_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0197em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0197em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>，那么我们就知道第一个区间实际上是 <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>l</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>l</mi><mn>2</mn></msub><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[l_1, l_2-1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0197em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0197em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span></eq>.</p>
+<details class="tag-plugin colorful folding" color="light" child="codeblock" open><summary><p>Chtholly Tree with <code>std::map</code></p>
+</summary><div class="body"><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ChthollyTree</span> &#123;</span><br><span class="line">    std::map&lt;<span class="type">int</span>, /* data to maintain */&gt; mp;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">split</span><span class="params">(<span class="type">int</span> l)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 找出 l 所在的区间</span></span><br><span class="line">        <span class="keyword">auto</span> it = std::<span class="built_in">prev</span>(mp.<span class="built_in">upper_bound</span>(l));</span><br><span class="line">        <span class="comment">// 先复制一遍数据</span></span><br><span class="line">        mp[l] = it-&gt;second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// assign [l, r] to /* data */</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">assign</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="comment">/* data */</span>)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">split</span>(l), <span class="built_in">split</span>(r + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">auto</span> it = mp.<span class="built_in">find</span>(l);</span><br><span class="line">        <span class="keyword">while</span> (it-&gt;first != r + <span class="number">1</span>) </span><br><span class="line">            it = mp.<span class="built_in">erase</span>(it);</span><br><span class="line">        mp[l] = <span class="comment">/* data */</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Compute the result for [l, r]</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">perform</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">split</span>(l), <span class="built_in">split</span>(r<span class="number">+1</span>);</span><br><span class="line">        <span class="keyword">auto</span> it = mp.<span class="built_in">find</span>(l);</span><br><span class="line">        <span class="keyword">while</span>(it-&gt;first != r<span class="number">+1</span>) &#123;</span><br><span class="line">            <span class="comment">// Do computation ...</span></span><br><span class="line">            it = std::<span class="built_in">next</span>(it);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure> </div></details>
 <hr />
 <h2 id="算法时间复杂度分析"><a class="markdownIt-Anchor" href="#算法时间复杂度分析"></a> 算法时间复杂度分析</h2>
 

@@ -842,7 +842,7 @@ div.hcb-content.hcb-cards-content.active {
   </widget>
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/cs/vision/region%20processing/niblack-local-thresholding/"><span class="title">Niblack's Local Thresholding</span></a><a class="item title" href="/notes/cs/vision/region%20processing/otsu-algorithm/"><span class="title">Otsu's Algorithm</span></a><a class="item title" href="/notes/cs/vision/hough-transform/"><span class="title">Hough 变换算法</span></a><a class="item title" href="/notes/cs/vision/canny-algorithm/"><span class="title">Canny 边缘检测算法</span></a><a class="item title" href="/notes/cs/vision/img-enhancement-in-frequency-domain/"><span class="title">Image Enhancement in Frequency Domain 频域上的图像处理</span></a><a class="item title" href="/notes/cs/vision/edge-processing/"><span class="title">边缘处理</span></a><a class="item title" href="/notes/cs/vision/img-enhancement-in-spatial-domain/"><span class="title">Image Enhancement in Spatial Domain 空间域上的图像增强</span></a><a class="item title" href="/notes/cs/vision/imaging-system/"><span class="title">Imaging System 成像系统</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/cs/vision/Stereo-Vision/"><span class="title">双目视觉 Stereo Vision</span></a><a class="item title" href="/notes/cs/vision/Imaging-Geometry/"><span class="title">Imaging Geometry</span></a><a class="item title" href="/notes/cs/vision/region%20processing/Semantic-Segmentation/"><span class="title">语义分割</span></a><a class="item title" href="/notes/cs/vision/region%20processing/Texture-Segmentation/"><span class="title">Gabor 滤波器与纹理分割</span></a><a class="item title" href="/notes/cs/vision/region%20processing/Otsu-Global-Thresholding-Algorithm/"><span class="title">Otsu Global Thresholding Algorithm</span></a><a class="item title" href="/notes/cs/vision/region%20processing/niblack-local-thresholding/"><span class="title">Niblack's Local Thresholding</span></a><a class="item title" href="/notes/cs/vision/hough-transform/"><span class="title">Hough 变换算法</span></a><a class="item title" href="/notes/cs/vision/canny-algorithm/"><span class="title">Canny 边缘检测算法</span></a><a class="item title" href="/notes/cs/vision/img-enhancement-in-frequency-domain/"><span class="title">Image Enhancement in Frequency Domain 频域上的图像处理</span></a><a class="item title" href="/notes/cs/vision/edge-processing/"><span class="title">边缘处理</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -850,6 +850,105 @@ div.hcb-content.hcb-cards-content.active {
 <header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://a.ppy.sh/13888511" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca's Blog</div><div class="sub cap">>w<</div></a></div></header>
 
 <div class="post-list post">
+  
+    <a
+      class="post-card post"
+      href="/notes/cs/vision/region%20processing/Semantic-Segmentation/?tag=region processing"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">语义分割</h2>
+  <div class="excerpt">
+    <p>
+      
+        遥想当年还是 AI+CV 的热门领域……现在基本已经凉得差不多了……
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2025-11-13T03:51:48.849Z">2025-11-13</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">Region Processing</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
+  
+    <a
+      class="post-card post"
+      href="/notes/cs/vision/region%20processing/Texture-Segmentation/?tag=region processing"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">Gabor 滤波器与纹理分割</h2>
+  <div class="excerpt">
+    <p>
+      
+        Texture Segmentation 针对 Otsu 算法仅能处理二分类的问题做了改进，使用 K-Means 算法使其可以区分多个类别. 搭配 Gabor Filter 提取特征向量，用于聚类.
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2025-11-12T16:03:43.941Z">2025-11-13</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">Region Processing</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
+  
+    <a
+      class="post-card post"
+      href="/notes/cs/vision/region%20processing/Otsu-Global-Thresholding-Algorithm/?tag=region processing"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">Otsu Global Thresholding Algorithm</h2>
+  <div class="excerpt">
+    <p>
+      
+        Region Processing 的传统算法之一 Otsu Algorithm，对图像进行像素值分布统计之后，通过最大化组间方差或最小化组内方差计算像素分组，并进行二值化.
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2025-11-12T16:00:37.473Z">2025-11-13</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">Region Processing</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
   
     <a
       class="post-card post"
@@ -869,41 +968,6 @@ div.hcb-content.hcb-cards-content.active {
     <span class="cap" id="post-meta">
       <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
       <time datetime="2025-10-14T08:16:09.695Z">2025-10-14</time>
-    </span>
-    
-      
-        <span class="cap breadcrumb" >
-          <span class="tag">Region Processing</span>
-        </span>
-      
-    
-  </div>
-</article>
-
-    </a>
-  
-    <a
-      class="post-card post"
-      href="/notes/cs/vision/region%20processing/otsu-algorithm/?tag=region processing"
-    >
-      
-<article class="md-text">
-  
-  <h2 class="post-title">Otsu&#39;s Algorithm</h2>
-  <div class="excerpt">
-    <p>
-      
-         Otsu’s Algorithm
-算法的核心思想是，将像素分为两类 foreground 和 background，使得类内方差最小、类间方差最大：
-
-      
-    </p>
-  </div>
-  <div class="meta cap">
-    
-    <span class="cap" id="post-meta">
-      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2025-10-14T08:15:19.744Z">2025-10-14</time>
     </span>
     
       
