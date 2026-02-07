@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
   
-  <meta name="robots" content="none">
+  
   <meta name="generator" content="Hexo 8.1.1">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,22 +17,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>Arca's Blog</title>
+  <title>nmcli 配置 HKU WiFi - Arca's Blog</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Arca&#39;s Blog">
-<meta property="og:url" content="http://arcalunar.github.io/404">
+    <meta name="description" content="为什么要搞这么复杂呢？因为刚刚安装的 Arch Linux 根本没有 Network Manager 的 GUI，所以只能自己用 nmcli 手动配置了……  其实所需要的权限配置在 HKU Wifi Manual 里明确列出来了；几个坑是 802-1x.identity 那里填的是去掉 connect 的邮箱账号，例如我的邮箱是 abc0123@connect.hku.hk 那么 identi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nmcli 配置 HKU WiFi">
+<meta property="og:url" content="http://arcalunar.github.io/2026/02/07/nmcli-%E9%85%8D%E7%BD%AE-HKU-WiFi/">
 <meta property="og:site_name" content="Arca&#39;s Blog">
+<meta property="og:description" content="为什么要搞这么复杂呢？因为刚刚安装的 Arch Linux 根本没有 Network Manager 的 GUI，所以只能自己用 nmcli 手动配置了……  其实所需要的权限配置在 HKU Wifi Manual 里明确列出来了；几个坑是 802-1x.identity 那里填的是去掉 connect 的邮箱账号，例如我的邮箱是 abc0123@connect.hku.hk 那么 identi">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
+<meta property="article:published_time" content="2026-02-07T08:38:56.632Z">
+<meta property="article:modified_time" content="2026-02-07T08:38:56.632Z">
 <meta property="article:author" content="Arca Lunar">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
   
   
   
-  
+  <meta name="keywords" content="Linux,Network">
 
   <!-- feed -->
   
@@ -46,7 +52,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://arcalunar.github.io","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"name":"Arca's Blog","description":"","url":"http://arcalunar.github.io"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-07T16:38:56+08:00","dateModified":"2026-02-07T16:38:56+08:00","datePublished":"2026-02-07T16:38:56+08:00","description":"","headline":"nmcli 配置 HKU WiFi","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/2026/02/07/nmcli-%E9%85%8D%E7%BD%AE-HKU-WiFi/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/2026/02/07/nmcli-%E9%85%8D%E7%BD%AE-HKU-WiFi/","keywords":"Linux, Network","image":[]}</script>
   
 
   <style type="text/css">
@@ -337,7 +343,7 @@ div.hcb-content.hcb-cards-content.active {
 </head>
 <body>
 
-<div class="l_body index" id="start" layout="404" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar/anime-azusa.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca's Blog</div><div class="sub cap">o/</div></a></div></header>
@@ -349,28 +355,52 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
 
+
+
 <widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/2026/02/07/nmcli-%E9%85%8D%E7%BD%AE-HKU-WiFi/"><span class="title">nmcli 配置 HKU WiFi</span></a><a class="item title" href="/2026/02/07/hello-world/"><span class="title">Hello World</span></a></div></widget>
-
-
 </div>
 
 </div></aside><div class="l_main" id="main">
 
 
 
-<article class='md-text error-page'>
-  <h1><img id='error' src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/404/1c830bfcd517d.svg' alt='404'></h1>
-  <p class='what'>
-    <strong>
-      Page Not Found
-    </strong>
-  </p>
-  <p class='why'>
-    The address may be entered incorrectly or the address has been deleted.
-  </p>
-  <br><br>
-  <a class='button' id='back' href="/">Back to Home</a>
+
+
+<div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-07T08:38:56.632Z">2026-02-07</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-02-07T08:38:56.632Z">2026-02-07</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>nmcli 配置 HKU WiFi</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><blockquote>
+<p>为什么要搞这么复杂呢？因为刚刚安装的 Arch Linux 根本没有 Network Manager 的 GUI，所以只能自己用 <code>nmcli</code> 手动配置了……</p>
+</blockquote>
+<p>其实所需要的权限配置在 <a target="_blank" rel="noopener" href="https://its.hku.hk/kb/procedure-other-access-hku-wifi/">HKU Wifi Manual</a> 里明确列出来了；几个坑是 <code>802-1x.identity</code> 那里填的是去掉 <code>connect</code> 的邮箱账号，例如我的邮箱是 <code>abc0123@connect.hku.hk</code> 那么 <code>identity</code> 那里就填 <code>abc0123@hku.hk</code>．</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">sudo nmcli connection add \</span><br><span class="line">	type wifi \ # 配置 wifi</span><br><span class="line">	con-name HKU \ # 配置项的名称为 HKU</span><br><span class="line">	ifname &#x27;*&#x27; \ # 表示　自动识别用什么网卡</span><br><span class="line">	ssid HKU \ # 表示　要连接的网络名称是 HKU</span><br><span class="line">	wifi-sec.key-mgmt wpa-eap \ # 用 wpa-eap 管理</span><br><span class="line">	wifi-sec.pairwise ccmp \ # 不懂是干什么的（</span><br><span class="line">	802-1x.eap peap \ # 设置　EAP type</span><br><span class="line">	802-1x.phase2-auth mschapv2 \ # EAP 的二阶段验证方式</span><br><span class="line">	802-1x.identity &quot;&lt;UID&gt;@hku.hk&quot; \ # 登入账号</span><br><span class="line">	802-1x.anonymous-identity &quot;&quot; \ # 留空即可</span><br><span class="line">	802-1x.password &quot;&lt;PORTAL LOGIN PASSWORD&gt;&quot; \ # 登录密码</span><br><span class="line">	802-1x.ca-cert &quot;/etc/ssl/certs/ca-certificates.crt&quot; \ # 证书的路径</span><br><span class="line">	802-1x.altsubject-matches &quot;DNS:802.1x.hku.hk&quot; # 不懂是干什么的（</span><br></pre></td></tr></table></figure>
+<p>最后再 <code>sudo nmcli con up HKU</code> 就可以连接了～</p>
 </article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>License</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">Older</div><a href="/2026/02/07/hello-world/">Hello World</a></div></section></div>
+
+
 
 
 
