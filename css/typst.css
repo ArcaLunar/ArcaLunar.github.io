@@ -1,0 +1,42 @@
+/**
+ * Typst CSS styles for better integration with the theme
+ */
+
+/* Additional Typst-specific styles */
+.typst-container {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.typst-svg {
+  display: flex;
+  justify-content: center;
+  background-color: var(--card-background, #fff);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.typst-svg svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.dark-mode .typst-svg,
+[data-theme="dark"] .typst-svg {
+  background-color: var(--card-background, #222);
+}
+
+/* Style for error messages */
+.typst-error {
+  color: #e53935;
+  background-color: rgba(229, 57, 53, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #e53935;
+  font-family: monospace;
+  white-space: pre-wrap;
+  margin: 1rem 0;
+}
