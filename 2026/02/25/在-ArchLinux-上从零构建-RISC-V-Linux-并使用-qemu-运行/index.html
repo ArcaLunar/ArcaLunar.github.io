@@ -17,6 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"></script> -->
   <title>在 ArchLinux 上从零构建 RISC-V Linux 并使用 qemu 运行 - Arca's Blog</title>
 
   
@@ -29,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
 <meta property="article:published_time" content="2026-02-25T02:59:02.000Z">
-<meta property="article:modified_time" content="2026-02-25T06:39:42.713Z">
+<meta property="article:modified_time" content="2026-02-25T07:15:26.634Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="RISC-V">
 <meta property="article:tag" content="qemu">
@@ -52,7 +54,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-25T10:59:02+08:00","dateModified":"2026-02-25T14:39:42+08:00","datePublished":"2026-02-25T10:59:02+08:00","description":"","headline":"在 ArchLinux 上从零构建 RISC-V Linux 并使用 qemu 运行","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/2026/02/25/%E5%9C%A8-ArchLinux-%E4%B8%8A%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA-RISC-V-Linux-%E5%B9%B6%E4%BD%BF%E7%94%A8-qemu-%E8%BF%90%E8%A1%8C/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/2026/02/25/%E5%9C%A8-ArchLinux-%E4%B8%8A%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA-RISC-V-Linux-%E5%B9%B6%E4%BD%BF%E7%94%A8-qemu-%E8%BF%90%E8%A1%8C/","keywords":"RISC-V, qemu","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-25T10:59:02+08:00","dateModified":"2026-02-25T15:15:26+08:00","datePublished":"2026-02-25T10:59:02+08:00","description":"","headline":"在 ArchLinux 上从零构建 RISC-V Linux 并使用 qemu 运行","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/2026/02/25/%E5%9C%A8-ArchLinux-%E4%B8%8A%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA-RISC-V-Linux-%E5%B9%B6%E4%BD%BF%E7%94%A8-qemu-%E8%BF%90%E8%A1%8C/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/2026/02/25/%E5%9C%A8-ArchLinux-%E4%B8%8A%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA-RISC-V-Linux-%E5%B9%B6%E4%BD%BF%E7%94%A8-qemu-%E8%BF%90%E8%A1%8C/","keywords":"RISC-V, qemu","image":[]}</script>
   
 
   <style type="text/css">
@@ -370,7 +372,7 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-25T02:59:02.000Z">2026-02-25</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-02-25T06:39:42.713Z">2026-02-25</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-25T02:59:02.000Z">2026-02-25</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-02-25T07:15:26.634Z">2026-02-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -381,17 +383,7 @@ div.hcb-content.hcb-cards-content.active {
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="完整报告-pdf"><a class="markdownIt-Anchor" href="#完整报告-pdf"></a> 完整报告 (PDF)</h2>
-
-
-	<div class="row">
-    <embed src="/assets/posts/qemu-riscv/report.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<hr />
-<h2 id="实验环境"><a class="markdownIt-Anchor" href="#实验环境"></a> 实验环境</h2>
+  </div><article class="md-text content"><h2 id="实验环境"><a class="markdownIt-Anchor" href="#实验环境"></a> 实验环境</h2>
 <p>我使用的系统是 Arch Linux，内核是 Linux-zen 6.18.9，更多信息见下图：</p>
 <p><img src="/assets/posts/qemu-riscv/env.png" alt="系统信息" /></p>
 <hr />
@@ -405,6 +397,124 @@ div.hcb-content.hcb-cards-content.active {
   <p>他们的本质区别在于 <code>riscv64-linux-gnu-gcc</code> 是针对 Linux 系统的交叉编译工具链，适用于编译运行在 Linux 上的 RISC-V 程序；而 <code>riscv64-unknown-elf-gcc</code> 是针对裸机 (bare-metal) 环境的交叉编译工具链，适用于编译运行在没有操作系统的 RISC-V 硬件上的程序。</p>
   <p>但是，后面我们需要利用 BusyBox 构建根文件系统，而 BusyBox 需要 Linux 环境，所以我们选择安装 <code>riscv64-linux-gnu-gcc</code>.</p>
 </div>
+
+<p>安装完成后，运行下面的命令检查一下版本信息，确保安装成功：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riscv64-linux-gnu-gcc --version</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/posts/qemu-riscv/riscv-gcc-version.png" alt="检查版本信息" /></p>
+<h3 id="2-下载并编译-linux-内核"><a class="markdownIt-Anchor" href="#2-下载并编译-linux-内核"></a> 2. 下载并编译 Linux 内核</h3>
+<p>这里，笔者下载的 Linux LTS 内核版本是 6.12.74, 可以从内核官方网站下载并解压：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.74.tar.xz</span><br><span class="line">tar -xJf linux-6.12.74.tar.xz</span><br><span class="line"><span class="built_in">cd</span> linux-6.12.74</span><br></pre></td></tr></table></figure>
+<p>运行 <code>make</code> 命令用默认的配置对内核进行配置，注意要选择 RISC-V 架构 (<code>ARCH=riscv</code>) 和交叉编译工具链 (<code>CROSS_COMPILE=riscv64-linux-gnu-</code>):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/posts/qemu-riscv/linuxkernel-defconf.png" alt="初始化配置" /></p>
+<p>接着，需要对内核进行编译，在此之前，需要先安装一些系统命令，如 <code>bc</code> (可以用 <code>sudo pacman -S bc</code> 安装)，否则会在编译过程中报错．用下面的命令进行编译 Image:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- Image</span><br></pre></td></tr></table></figure>
+<p>编译完成后，运行 <code>ls -lh</code> 和 <code>file</code> 命令查看一下 Image 的大小和文件信息：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lh <span class="built_in">arch</span>/riscv/boot/Image</span><br><span class="line">file <span class="built_in">arch</span>/riscv/boot/Image</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/posts/qemu-riscv/image-check01.png" alt="检查 image" /></p>
+<p><img src="/assets/posts/qemu-riscv/image-check02.png" alt="检查 image" /></p>
+<p>至此，我们已经成功编译了 RISC-V Linux 内核，接下来我们需要构建根文件系统来运行这个内核．</p>
+<h3 id="3-编译-busybox"><a class="markdownIt-Anchor" href="#3-编译-busybox"></a> 3. 编译 BusyBox</h3>
+<p>我们使用 BusyBox 来构建根文件系统，首先下载 BusyBox 的源代码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://busybox.net/downloads/busybox-1.37.0.tar.bz2</span><br><span class="line">tar -xjf busybox-1.37.0.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> busybox-1.37.0</span><br></pre></td></tr></table></figure>
+<p>先生成默认配置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- defconfig</span><br></pre></td></tr></table></figure>
+<p>然后进入交互配置，将 <code>Settings</code> -&gt; <code>Build Options</code> -&gt; <code>Build static binary (no shared libs)</code> 选项勾选上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- menuconfig</span><br></pre></td></tr></table></figure>
+
+<details class="hcb-content box hcbdanger">
+  <summary><i class="fa fa-bolt fa-fw"></i>ArchLinux 下进入 BusyBox 交互界面报错：<code>ncurses not found</code><div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <p>笔者第一次配置时，提示需要安装 <code>ncurses-devel</code> 包，但用 <code>pacman</code> 安装了 <code>ncurses</code> 包后，问题依旧没有解决．后来在 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/78491346/busybox-build-fails-with-ncurses-header-not-found-in-archlinux-spoiler-i-alrea">StackOverflow</a> 上找到了答案.</p>
+  <p>解决这个问题，需要修改 <code>scripts/kconfig/lxdialog/check-lxdialog.sh</code> 文件，找到 <code>check()</code> 函数，在 <code>main()</code> 函数前面加上 <code>int</code>，改为 <code>int main()</code>，保存退出即可．如下图所示</p>
+  <p><img src="/assets/posts/qemu-riscv/fix1.png" alt="改这个" /></p>
+</details>
+
+<p>进行编译：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j8</span><br></pre></td></tr></table></figure>
+
+<details class="hcb-content box hcbdanger">
+  <summary><i class="fa fa-bolt fa-fw"></i>ArchLinux 编译 BusyBox 报错<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <p>笔者一共遇到两个错误：一个是 <code>tc.c</code> 文件中 <code>CBQ</code> 相关的宏；另一个是 <code>sha1</code> 相关的编译报错．</p>
+  <p><code>CBQ</code> 在 Linux 6.8 版本之后被移除了。好在其他的发行版已经有 patch 可以绕过 <code>CBQ</code> 了，执行以下命令修改 <code>networking/tc.c</code> 文件：</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -L <span class="string">&#x27;https://hina.lysator.liu.se/gentoo-portage/sys-apps/busybox/files/busybox-1.36.1-kernel-6.8.patch&#x27;</span> \</span><br><span class="line">| patch -p1</span><br></pre></td></tr></table></figure>
+  <p>对于第二个问题，我们需要手动编辑 <code>libbb/hash_md5_sha.c</code> 文件，把 <code>shaNI</code> 的相关代码限制在 x86 架构下：</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim libbb/hash_md5_sha.c</span><br></pre></td></tr></table></figure>
+  <p>然后执行修改：</p>
+  <p><img src="/assets/posts/qemu-riscv/fix2.png" alt="修改成这样" /></p>
+</details>
+
+<p>编译完成后，运行 <code>file</code> 命令查看一下生成的 BusyBox 可执行文件：</p>
+<p><img src="/assets/posts/qemu-riscv/check-busybox.png" alt="检查 busybox" /></p>
+<h3 id="4-创建根文件系统"><a class="markdownIt-Anchor" href="#4-创建根文件系统"></a> 4. 创建根文件系统</h3>
+<p>我们先手动创建根文件系统的目录结构：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">export</span> ROOTFS=<span class="variable">$PWD</span>/rootfs</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$ROOTFS</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>&quot;</span>/&#123;bin,sbin,etc,proc,sys,dev,tmp,usr/&#123;bin,sbin&#125;,var,root&#125;</span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/etc/init.d&quot;</span></span><br><span class="line"><span class="built_in">chmod</span> 1777 <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/tmp&quot;</span></span><br></pre></td></tr></table></figure>
+<p>接着把 <code>busybox</code> 安装到刚刚创建的根文件系统中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> busybox-1.37.0</span><br><span class="line">make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- CONFIG_PREFIX=<span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>&quot;</span> install</span><br></pre></td></tr></table></figure>
+<p>接着创建 <code>/dev</code> 目录下的设备节点，至少要有 <code>console</code>，否则很容易没有输出或无法交互：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mknod</span> -m 600 <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/dev/console&quot;</span> c 5 1</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mknod</span> -m 666 <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/dev/null&quot;</span> c 1 3</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mknod</span> -m 666 <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/dev/tty&quot;</span> c 5 0</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mknod</span> -m 666 <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/dev/zero&quot;</span> c 1 5</span><br></pre></td></tr></table></figure>
+<h3 id="5-编写初始化脚本"><a class="markdownIt-Anchor" href="#5-编写初始化脚本"></a> 5. 编写初始化脚本</h3>
+<p>我们需要编写一个简单的初始化脚本来启动系统并自动挂载 <code>/proc</code> 和 <code>/sys</code>，创建一个 <code>/etc/init.d/rcS</code> 文件，命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/etc/init.d/rcS&quot;</span> &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">mount -t proc  proc /proc</span><br><span class="line">mount -t sysfs sys  /sys</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Welcome, Arch Lunar.&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> /bin/sh</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/etc/init.d/rcS&quot;</span></span><br></pre></td></tr></table></figure>
+<p>对 <code>initramfs</code>, 内核默认会尝试执行根目录下的 <code>/init</code>. 所以我们用 <code>/init</code> 去调用 <code>/etc/init.d/rcS</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/init&quot;</span> &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="built_in">exec</span> /etc/init.d/rcS</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x <span class="string">&quot;<span class="variable">$&#123;ROOTFS&#125;</span>/init&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-打包成-cpiogz-格式"><a class="markdownIt-Anchor" href="#6-打包成-cpiogz-格式"></a> 6. 打包成 <code>cpio.gz</code> 格式</h3>
+<p>我们用 <code>fakeroot</code> 和 <code>cpio</code> 命令把根文件系统打包成 <code>cpio.gz</code> 格式，注意可能需要先安装 <code>fakeroot</code> 和 <code>cpio</code> 包：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fakeroot -- sh -c <span class="string">&#x27;find . -print0 | cpio --null -ov --format=newc | gzip -9 &gt; ../initramfs.cpio.gz&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/assets/posts/qemu-riscv/fakeroot-pack.png" alt="fakeroot 打包" /></p>
+<p><img src="/assets/posts/qemu-riscv/cpio-check.png" alt="检查 cpio" /></p>
+<h3 id="7-编写-runsh-脚本一键运行"><a class="markdownIt-Anchor" href="#7-编写-runsh-脚本一键运行"></a> 7. 编写 <code>run.sh</code> 脚本一键运行</h3>
+<p>我们编写一个 <code>run.sh</code> 脚本来一键运行 <code>qemu</code>，命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -euo pipefail</span><br><span class="line"></span><br><span class="line">KERNEL_IMAGE=<span class="string">&quot;<span class="variable">$&#123;KERNEL_IMAGE:-./linux-6.12.74/arch/riscv/boot/Image&#125;</span>&quot;</span></span><br><span class="line">INITRAMFS=<span class="string">&quot;<span class="variable">$&#123;INITRAMFS:-./initramfs.cpio.gz&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Checks</span></span><br><span class="line"><span class="keyword">if</span> [[ ! -f <span class="string">&quot;<span class="variable">$KERNEL_IMAGE</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;ERROR: kernel Image not found: <span class="variable">$KERNEL_IMAGE</span>&quot;</span> &gt;&amp;2</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [[ ! -f <span class="string">&quot;<span class="variable">$INITRAMFS</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;ERROR: initramfs not found: <span class="variable">$INITRAMFS</span>&quot;</span> &gt;&amp;2</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># run qemu</span></span><br><span class="line"><span class="built_in">exec</span> qemu-system-riscv64 \</span><br><span class="line">  -machine virt \</span><br><span class="line">  -m 256M \</span><br><span class="line">  -nographic \</span><br><span class="line">  -kernel <span class="string">&quot;<span class="variable">$KERNEL_IMAGE</span>&quot;</span> \</span><br><span class="line">  -initrd <span class="string">&quot;<span class="variable">$INITRAMFS</span>&quot;</span> \</span><br><span class="line">  -append <span class="string">&quot;console=ttyS0 earlycon=sbi rdinit=/init&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-nographic</code> 参数表示不使用图形界面，直接在终端中显示输出；</li>
+<li><code>-append</code> 参数用来传递内核启动参数，这里我们指定了 <code>console=ttyS0</code> 来将控制台输出重定向到串口，<code>earlycon=sbi</code> 来启用早期控制台支持，以及 <code>rdinit=/init</code> 来指定内核启动后执行的初始化程序；</li>
+<li><code>-kernel</code> 和 <code>-initrd</code> 参数分别指定了内核镜像和初始 RAM 文件系统。</li>
+</ul>
+
+<div class="callout" data-callout="note">
+<div class="callout-title">
+<div class="callout-title-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+</div>
+<div class="callout-title-inner"><code>-nographic</code> 的作用</div>
+</div>
+<div class="callout-content"><p>在 <code>virt</code> machine 下, qemu 默认会提供一个图形接口，同时仿真串口设备．如果不加 <code>-nographic</code> 参数, qemu 会在一个新的窗口中显示图形界面，而串口输出会被重定向到这个窗口中．如果加上 <code>-nographic</code> 参数, qemu 就不会启动图形界面，而是直接在当前终端中显示串口输出，这样我们就可以直接在终端中看到内核的启动日志和交互式 shell 的输出了．</p>
+</div></div><h3 id="8-最终效果"><a class="markdownIt-Anchor" href="#8-最终效果"></a> 8. 最终效果</h3>
+<div class="tag-plugin swiper fancybox" id="swiper-api" effect="cards"><div class="swiper-wrapper"><div class="swiper-slide"><img no-lazy src="/assets/posts/qemu-riscv/image-12.png" alt="1" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><div class="swiper-slide"><img no-lazy src="/assets/posts/qemu-riscv/image-13.png" alt="1" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><div class="swiper-slide"><img no-lazy src="/assets/posts/qemu-riscv/image-14.png" alt="1" / onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div></div><div class="swiper-pagination"></div><div class="swiper-button-prev blur"></div><div class="swiper-button-next blur"></div></div>
+<p><img src="/assets/posts/qemu-riscv/image-15.png" alt=" 输出" /><br />
+<img src="/assets/posts/qemu-riscv/image-16.png" alt=" 输出" /></p>
+<h2 id="总结思考"><a class="markdownIt-Anchor" href="#总结思考"></a> 总结/思考</h2>
+
+<details class="hcb-content box hcbquestion" open>
+  <summary><i class="fa fa-circle-question fa-fw"></i>为什么 x86 不能直接 <code>make</code> 编译 RISC-V 内核？<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <p>因为 <code>x86</code> 和 <code>RISC-V</code> 是两种不同的处理器架构，它们的指令集、寄存器结构、内存管理等方面都有很大的差异．直接 <code>make</code> 默认使用宿主机的工具链来生成宿主机平台的二进制文件，所以我们不能直接在 <code>x86</code> 上编译 <code>RISC-V</code> 内核，而需要使用交叉编译工具链来生成适用于 <code>RISC-V</code> 架构的二进制文件．</p>
+</details>
+
+
+<details class="hcb-content box hcbquestion" open>
+  <summary><i class="fa fa-circle-question fa-fw"></i>宿主机与目标机的关系<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <p>在交叉编译中，宿主机 (host) 是指我们进行编译的计算机系统，而目标机 (target) 是指我们希望运行编译结果的计算机系统．在这个实验中，宿主机是运行 Arch Linux 的 x86_64 计算机，而目标机是我们通过 qemu 模拟的 RISC-V 虚拟机．交叉编译工具链就是为了<em>在宿主机上</em>生成<em>适用于目标机的二进制文件</em>而设计的．</p>
+</details>
+
+
+<details class="hcb-content box hcbquestion" open>
+  <summary><i class="fa fa-circle-question fa-fw"></i>BusyBox 里输入 <code>ls</code> 回车，最终触发内核哪个机制读取目录？<div class="hcb-box-open-button"><i class="fa fa-chevron-down fa-fw"></i></div></summary>
+  <p>从用户态开始</p>
+  <ol>
+  <li>shell 首先解析命令，<code>fork()</code> 出一个子进程来执行 BusyBox <code>ls</code> applet</li>
+  <li><code>execve()</code> 用 <code>openat()</code> 打开当前目录，获取目录的 <code>fd</code>，然后通过 <code>getdents64</code> 系统调用和 <em>VFS 目录迭代机制</em>把目录项从内核的文件系统实现 (ext4、tmpfs、ramfs 等) 拷贝到用户态。</li>
+  </ol>
+</details>
+
+<hr />
+<h2 id="完整报告-pdf"><a class="markdownIt-Anchor" href="#完整报告-pdf"></a> 完整报告 (PDF)</h2>
+
+
+	<div class="row">
+    <embed src="/assets/posts/qemu-riscv/report.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
 
 </article>
 <div class="article-footer">
@@ -432,7 +542,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%8A%A5%E5%91%8A-pdf"><span class="toc-text"> 完整报告 (PDF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="toc-text"> 实验环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-text"> 1. 安装交叉编译工具链</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="toc-text"> 实验环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B"><span class="toc-text"> 实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-text"> 1. 安装交叉编译工具链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E7%BC%96%E8%AF%91-linux-%E5%86%85%E6%A0%B8"><span class="toc-text"> 2. 下载并编译 Linux 内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BC%96%E8%AF%91-busybox"><span class="toc-text"> 3. 编译 BusyBox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E6%A0%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text"> 4. 创建根文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BC%96%E5%86%99%E5%88%9D%E5%A7%8B%E5%8C%96%E8%84%9A%E6%9C%AC"><span class="toc-text"> 5. 编写初始化脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%89%93%E5%8C%85%E6%88%90-cpiogz-%E6%A0%BC%E5%BC%8F"><span class="toc-text"> 6. 打包成 cpio.gz 格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%BC%96%E5%86%99-runsh-%E8%84%9A%E6%9C%AC%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C"><span class="toc-text"> 7. 编写 run.sh 脚本一键运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="toc-text"> 8. 最终效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%80%9D%E8%80%83"><span class="toc-text"> 总结&#x2F;思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%8A%A5%E5%91%8A-pdf"><span class="toc-text"> 完整报告 (PDF)</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
