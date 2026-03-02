@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "source serif pro adjusted";
+  src: local("Source Serif Pro");
+  size-adjust: 110%;
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "source serif 4 adjusted";
+  src: local("Source Serif 4 Italic"), local("SourceSerif4-Italic");
+  size-adjust: 115%;
+  font-weight: 100 900;
+  font-style: italic;
+}
 :root {
   --width-main: 720px;
   --fsp: 17px;
@@ -1961,7 +1975,7 @@ table:not([class]) {
   outline: none;
 }
 html {
-  font-family: "source serif pro", system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
+  font-family: "source serif pro adjusted", "LXGW WenKai Screen", system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -7162,7 +7176,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 .search-wrapper .search-input {
   width: 100%;
   box-sizing: border-box;
-  font-family: "source serif pro", system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
+  font-family: "source serif pro adjusted", "LXGW WenKai Screen", system-ui, "Microsoft Yahei", "Segoe UI", Arial, sans-serif;
   font-size: 0.875rem;
   padding: 12px 0;
   color: var(--text);
