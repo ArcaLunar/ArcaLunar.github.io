@@ -2,14 +2,12 @@
   font-family: "source serif pro adjusted";
   src: local("Source Serif Pro");
   size-adjust: 110%;
-  font-weight: 100 900;
   font-style: normal;
 }
 @font-face {
-  font-family: "source serif 4 adjusted";
-  src: local("Source Serif 4 Italic"), local("SourceSerif4-Italic");
-  size-adjust: 115%;
-  font-weight: 100 900;
+  font-family: "source serif pro adjusted";
+  src: local("Source Serif Pro Italic");
+  size-adjust: 110%;
   font-style: italic;
 }
 :root {
