@@ -19,19 +19,19 @@
   <meta name="theme-color" content="#f9fafb">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <!-- <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"></script> -->
-  <title>Haskell: Functors - Arca's Blog</title>
+  <title>Haskell Functors - Arca's Blog</title>
 
   
-    <meta name="description" content="higher order function: transform functions to functions  Functors 的作用在于 Preserve structures. 例如 map 可以处理 [a] -&gt; [b] 的问题，而 Functor 则可以处理 Maybe a -&gt; Maybe b 甚至自定义的类型 Node a -&gt; Node b. 12class">
+    <meta name="description" content="Introduction to Functors Explanation of Functor. A new Functor, f b, can be made from another Functor f a by transforming all of its value(s), whilst leaving the structure of f unchanged. Syntax12cla">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell: Functors">
+<meta property="og:title" content="Haskell Functors">
 <meta property="og:url" content="http://arcalunar.github.io/topic/programming/Haskell/Haskell-Functors/">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="higher order function: transform functions to functions  Functors 的作用在于 Preserve structures. 例如 map 可以处理 [a] -&gt; [b] 的问题，而 Functor 则可以处理 Maybe a -&gt; Maybe b 甚至自定义的类型 Node a -&gt; Node b. 12class">
+<meta property="og:description" content="Introduction to Functors Explanation of Functor. A new Functor, f b, can be made from another Functor f a by transforming all of its value(s), whilst leaving the structure of f unchanged. Syntax12cla">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
 <meta property="article:published_time" content="2026-02-15T09:08:33.000Z">
-<meta property="article:modified_time" content="2026-04-06T03:25:39.650Z">
+<meta property="article:modified_time" content="2026-04-25T09:07:02.471Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="Haskell">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-15T17:08:33+08:00","dateModified":"2026-04-06T11:25:39+08:00","datePublished":"2026-02-15T17:08:33+08:00","description":"","headline":"Haskell: Functors","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Functors/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Functors/","keywords":"Haskell","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-15T17:08:33+08:00","dateModified":"2026-04-25T17:07:02+08:00","datePublished":"2026-02-15T17:08:33+08:00","description":"","headline":"Haskell Functors","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Functors/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Functors/","keywords":"Haskell","image":[]}</script>
   
 
   <style type="text/css">
@@ -356,9 +356,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
 
-
-
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/Avalanche-Protocol-for-Blockchain/"><span class="title">Avalanche Protocol for Blockchain</span></a><a class="item title" href="/Differential-Privacy/"><span class="title">Differential Privacy</span></a><a class="item title" href="/topic/%E8%AE%BA%E6%96%87/LoRA-Fine-tuning/"><span class="title">[Paper] LoRA Fine-tuning</span></a><a class="item title" href="/topic/agents/experiments/Records-While-Testing-on-SWE-Bench/"><span class="title">Records While Testing on SWE-Bench</span></a><a class="item title" href="/topic/acm-contests/2025-ICPC-AsiaEC-Shanghai/"><span class="title">2025 ICPC AsiaEC Shanghai</span></a><a class="item title" href="/topic/%E8%AE%BA%E6%96%87/Sage-Attention-v2-%E4%B8%8E-v2/"><span class="title">[Paper] Sage Attention v2 与 v2++</span></a><a class="item title" href="/topic/cuda-opt/examples/Sage-Attention-%E4%BB%A3%E7%A0%81%E6%A2%B3%E7%90%86-2/"><span class="title">Sage Attention v1,v2,v3 代码梳理 (2): SA 的 CUDA 实现</span></a><a class="item title" href="/topic/cuda-opt/Profiling-CUDA-Kernels-in-PyTorch/"><span class="title">Profiling CUDA Kernels in PyTorch</span></a><a class="item title" href="/topic/cuda-opt/Divide-and-Conquer-Reduction-with-CUDA/"><span class="title">Divide and Conquer Reduction with CUDA</span></a><a class="item title" href="/topic/cuda-opt/GPU-Parallelism-PTX/"><span class="title">GPU Parallelism: PTX</span></a></div></widget>
+<widget class="widget-wrapper related post-list"><div class="widget-header dis-select"><span class="name">Topic: Haskell</span></div><div class="widget-body"><a class="item" href="/topic/programming/Haskell/Managing-Modules-in-Haskell/"><span class="title">Managing Modules in Haskell</span></a><a class="item" href="/topic/programming/Haskell/Generalized-Algebraic-Datatypes/"><span class="title">Generalized Algebraic Datatypes</span></a><a class="item" href="/topic/programming/Haskell/Haskell-Laziness-Evaluation-Model/"><span class="title">Laziness and Evaluation Model of Haskell</span></a><a class="item" href="/topic/programming/Haskell/Haskell-Monads/"><span class="title">Haskell Monads</span></a><a class="item" href="/topic/programming/Haskell/Haskell-Applicative/"><span class="title">Haskell Applicative</span></a><a class="item active" href="/topic/programming/Haskell/Haskell-Functors/"><span class="title">Haskell Functors</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item" href="/topic/programming/Haskell/Haskell-%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/"><span class="title">Haskell 类型系统</span></a><a class="item" href="/topic/programming/Haskell/Haskell-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><span class="title">Haskell 基础语法</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -370,39 +368,47 @@ div.hcb-content.hcb-cards-content.active {
 <div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Programming/">Programming</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/Programming/Haskell/">Haskell</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-15T09:08:33.000Z">2026-02-15</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-06T03:25:39.650Z">2026-04-06</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/topic/programming/Haskell/Managing-Modules-in-Haskell/">Haskell</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-15T09:08:33.000Z">2026-02-15</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-25T09:07:02.471Z">2026-04-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Haskell: Functors</span></h1>
+        <h1 class="text title"><span>Haskell Functors</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><blockquote>
-<p>higher order function: transform functions to functions</p>
-</blockquote>
-<p>Functors 的作用在于 Preserve structures. 例如 <code>map</code> 可以处理 <code>[a] -&gt; [b]</code> 的问题，而 Functor 则可以处理 <code>Maybe a -&gt; Maybe b</code> 甚至自定义的类型 <code>Node a -&gt; Node b</code>.</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">    fmap :: (a -&gt; b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure>
-<p>例如，当 <code>f = Maybe</code> 时，其实现为</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">instance</span> <span class="type">Functor</span> <span class="type">Maybe</span> <span class="keyword">where</span></span></span><br><span class="line">    fmap :: (a -&gt; b) -&gt; <span class="type">Maybe</span> a -&gt; <span class="type">Maybe</span> b</span><br><span class="line">    fmap f <span class="type">Nothing</span> = <span class="type">Nothing</span></span><br><span class="line">    fmap f (<span class="type">Just</span> x) = <span class="type">Just</span> (f x)</span><br></pre></td></tr></table></figure>
-<p>当然 <code>f = []</code> 也可以，那就是正常的 <code>map</code></p>
-<p>调用 Functor 有简单的形式：<code>&lt;$&gt;</code>：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">reverse</span> . tail  $       <span class="string">&quot;hello&quot;</span>       ==&gt;  <span class="string">&quot;olle&quot;</span></span><br><span class="line"><span class="title">reverse</span> . tail &lt;$&gt; <span class="type">Just</span> <span class="string">&quot;hello&quot;</span>       ==&gt;  <span class="type">Just</span> <span class="string">&quot;olle&quot;</span></span><br><span class="line"><span class="comment">-- which is the same as</span></span><br><span class="line"><span class="title">fmap</span> (reverse . tail) (<span class="type">Just</span> <span class="string">&quot;hello&quot;</span>)  ==&gt;  <span class="type">Just</span> <span class="string">&quot;olle&quot;</span></span><br></pre></td></tr></table></figure>
-
-<div class="callout" data-callout="note">
-<div class="callout-title">
-<div class="callout-title-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
-</div>
-<div class="callout-title-inner">Kinds</div>
-</div>
-<div class="callout-content"><p>Kinds 是 Types 的 Type．如 <code>Maybe :: * -&gt; *</code>，而 <code>Int :: *</code>，<code>Maybe Int :: *</code>．</p>
-</div></div></article>
+  </div><article class="md-text content"><h2 id="introduction-to-functors"><a class="markdownIt-Anchor" href="#introduction-to-functors"></a> Introduction to Functors</h2>
+<p><em>Explanation of <code>Functor</code></em>. A new <code>Functor</code>, <code>f b</code>, can be made from another <code>Functor</code> <code>f a</code> by transforming all of its value(s), whilst leaving the <strong>structure of <code>f</code> unchanged</strong>.</p>
+<figure class="highlight haskell"><figcaption><span>Syntax</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">  fmap :: (a -&gt; b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure>
+<p>Its minimal complete definition is <code>fmap</code>.</p>
+<div class="tag-plugin colorful note" color="cyan" child="codeblock"><div class="body"><figure class="highlight haskell"><figcaption><span>Methods</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- create a `f b` by calling function on each value in `f a`</span></span><br><span class="line"><span class="title">fmap</span> :: (a -&gt; b) -&gt; f a -&gt; f b</span><br><span class="line"><span class="comment">-- infix form of `fmap`</span></span><br><span class="line">(&lt;$&gt;) :: (a -&gt; b) -&gt; f a -&gt; f b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- create a `f a` by replacing all values in `f b` by `a`</span></span><br><span class="line">(&lt;$) :: a -&gt; f b -&gt; f a</span><br><span class="line"></span><br><span class="line"><span class="comment">-- almost the same, by reserving argument positions</span></span><br><span class="line">($&gt;) :: f a -&gt; b -&gt; f b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ignoring the values in `f a`.</span></span><br><span class="line"><span class="title">void</span> :: <span class="type">Functor</span> f =&gt; f a -&gt; f ()</span><br></pre></td></tr></table></figure></div></div>
+<h3 id="functor-laws"><a class="markdownIt-Anchor" href="#functor-laws"></a> Functor Laws</h3>
+<p>Types of <code>Functor</code> class must satisfy <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> constraints:</p>
+<ol>
+<li><strong>Identity</strong>. When performing the mapping operation, if the values in the functor are mapped to themselves, the result will be an unmodified functor.</li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fmap</span> id = id</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>Composition</strong>.</li>
+</ol>
+<figure class="highlight haskell"><figcaption><span>Composition</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fmap</span> (f . g) = fmap f . fmap g</span><br></pre></td></tr></table></figure>
+</article>
 <div class="article-footer">
+    <section id="references">
+      <div class="header"><span>References</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://wiki.haskell.org/index.php?title=Functor">Haskell Wiki: <code>Functor</code></a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
     <section id="license">
       <div class="header"><span>License</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
@@ -412,7 +418,7 @@ div.hcb-content.hcb-cards-content.active {
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/programming/Haskell/Haskell-Monads/">Haskell: Monads & Applicative</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/programming/Haskell/Haskell-%E4%B8%AD%E7%9A%84-IO/">Haskell 中的 IO</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/programming/Haskell/Haskell-Applicative/">Haskell Applicative</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/programming/Haskell/Haskell-%E4%B8%AD%E7%9A%84-IO/">Haskell 中的 IO</a></div></section></div>
 
 
 
@@ -423,7 +429,12 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction-to-functors"><span class="toc-text"> Introduction to Functors</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#functor-laws"><span class="toc-text"> Functor Laws</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>

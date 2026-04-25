@@ -19,19 +19,19 @@
   <meta name="theme-color" content="#f9fafb">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <!-- <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"></script> -->
-  <title>Haskell: Applicative - Arca's Blog</title>
+  <title>Haskell Applicative - Arca's Blog</title>
 
   
-    <meta name="description" content="Applicative 处于 Functor 和 Monad 之间．其定义如下： 123456class Functor f &#x3D;&gt; Applicative f where  pure :: a -&gt; f a  liftA2 :: (a -&gt; b -&gt; c) -&gt; f a -&gt; f b -&gt; f c  (&lt;*&gt;) :: f (a -&gt; b)">
+    <meta name="description" content="Applicative Why we need Applicative? Its common use case could be the following. We have several values with contexts and wanting to combine them with some function (that is also shipped with some co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell: Applicative">
+<meta property="og:title" content="Haskell Applicative">
 <meta property="og:url" content="http://arcalunar.github.io/topic/programming/Haskell/Haskell-Applicative/">
 <meta property="og:site_name" content="Arca&#39;s Blog">
-<meta property="og:description" content="Applicative 处于 Functor 和 Monad 之间．其定义如下： 123456class Functor f &#x3D;&gt; Applicative f where  pure :: a -&gt; f a  liftA2 :: (a -&gt; b -&gt; c) -&gt; f a -&gt; f b -&gt; f c  (&lt;*&gt;) :: f (a -&gt; b)">
+<meta property="og:description" content="Applicative Why we need Applicative? Its common use case could be the following. We have several values with contexts and wanting to combine them with some function (that is also shipped with some co">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
-<meta property="article:published_time" content="2026-02-15T16:44:48.000Z">
-<meta property="article:modified_time" content="2026-04-06T03:25:29.959Z">
+<meta property="article:published_time" content="2026-02-15T10:44:48.000Z">
+<meta property="article:modified_time" content="2026-04-25T11:33:27.874Z">
 <meta property="article:author" content="Arca Lunar">
 <meta property="article:tag" content="Haskell">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-16T00:44:48+08:00","dateModified":"2026-04-06T11:25:29+08:00","datePublished":"2026-02-16T00:44:48+08:00","description":"","headline":"Haskell: Applicative","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Applicative/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Applicative/","keywords":"Haskell","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-02-15T18:44:48+08:00","dateModified":"2026-04-25T19:33:27+08:00","datePublished":"2026-02-15T18:44:48+08:00","description":"","headline":"Haskell Applicative","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Applicative/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/topic/programming/Haskell/Haskell-Applicative/","keywords":"Haskell","image":[]}</script>
   
 
   <style type="text/css">
@@ -356,9 +356,7 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
 
-
-
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/Avalanche-Protocol-for-Blockchain/"><span class="title">Avalanche Protocol for Blockchain</span></a><a class="item title" href="/Differential-Privacy/"><span class="title">Differential Privacy</span></a><a class="item title" href="/topic/%E8%AE%BA%E6%96%87/LoRA-Fine-tuning/"><span class="title">[Paper] LoRA Fine-tuning</span></a><a class="item title" href="/topic/agents/experiments/Records-While-Testing-on-SWE-Bench/"><span class="title">Records While Testing on SWE-Bench</span></a><a class="item title" href="/topic/acm-contests/2025-ICPC-AsiaEC-Shanghai/"><span class="title">2025 ICPC AsiaEC Shanghai</span></a><a class="item title" href="/topic/%E8%AE%BA%E6%96%87/Sage-Attention-v2-%E4%B8%8E-v2/"><span class="title">[Paper] Sage Attention v2 与 v2++</span></a><a class="item title" href="/topic/cuda-opt/examples/Sage-Attention-%E4%BB%A3%E7%A0%81%E6%A2%B3%E7%90%86-2/"><span class="title">Sage Attention v1,v2,v3 代码梳理 (2): SA 的 CUDA 实现</span></a><a class="item title" href="/topic/cuda-opt/Profiling-CUDA-Kernels-in-PyTorch/"><span class="title">Profiling CUDA Kernels in PyTorch</span></a><a class="item title" href="/topic/cuda-opt/Divide-and-Conquer-Reduction-with-CUDA/"><span class="title">Divide and Conquer Reduction with CUDA</span></a><a class="item title" href="/topic/cuda-opt/GPU-Parallelism-PTX/"><span class="title">GPU Parallelism: PTX</span></a></div></widget>
+<widget class="widget-wrapper related post-list"><div class="widget-header dis-select"><span class="name">Topic: Haskell</span></div><div class="widget-body"><a class="item" href="/topic/programming/Haskell/Managing-Modules-in-Haskell/"><span class="title">Managing Modules in Haskell</span></a><a class="item" href="/topic/programming/Haskell/Generalized-Algebraic-Datatypes/"><span class="title">Generalized Algebraic Datatypes</span></a><a class="item" href="/topic/programming/Haskell/Haskell-Laziness-Evaluation-Model/"><span class="title">Laziness and Evaluation Model of Haskell</span></a><a class="item" href="/topic/programming/Haskell/Haskell-Monads/"><span class="title">Haskell Monads</span></a><a class="item active" href="/topic/programming/Haskell/Haskell-Applicative/"><span class="title">Haskell Applicative</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="item" href="/topic/programming/Haskell/Haskell-Functors/"><span class="title">Haskell Functors</span></a><a class="item" href="/topic/programming/Haskell/Haskell-%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/"><span class="title">Haskell 类型系统</span></a><a class="item" href="/topic/programming/Haskell/Haskell-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><span class="title">Haskell 基础语法</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -370,38 +368,61 @@ div.hcb-content.hcb-cards-content.active {
 <div class="article banner top"><img class="lazy bg" data-src="https://api.mtyqx.cn/tapi/random.php">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Programming/">Programming</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/Programming/Haskell/">Haskell</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-15T16:44:48.000Z">2026-02-16</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-06T03:25:29.959Z">2026-04-06</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/topic/">Topic</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/topic/programming/Haskell/Managing-Modules-in-Haskell/">Haskell</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-02-15T10:44:48.000Z">2026-02-15</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-25T11:33:27.874Z">2026-04-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Haskell: Applicative</span></h1>
+        <h1 class="text title"><span>Haskell Applicative</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><p><code>Applicative</code> 处于 <code>Functor</code> 和 <code>Monad</code> 之间．其定义如下：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f =&gt; <span class="type">Applicative</span> f <span class="keyword">where</span></span></span><br><span class="line">  pure :: a -&gt; f a</span><br><span class="line">  liftA2 :: (a -&gt; b -&gt; c) -&gt; f a -&gt; f b -&gt; f c</span><br><span class="line">  (&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b</span><br><span class="line">  (*&gt;) :: f a -&gt; f b -&gt; f b</span><br><span class="line">  (&lt;*) :: f a -&gt; f b -&gt; f a</span><br></pre></td></tr></table></figure>
-<p>一个新的函数</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&lt;*&gt;) :: <span class="type">Applicative</span> f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一个不太恰当的比喻：</p>
-<ul>
-<li><code>Functor</code> 是一个已知的函数应用在一个盒子里的值上（这个盒子可能是空的，即没有值）</li>
-<li><code>Applicative</code> 是一个盒子里的函数应用在一个盒子里的值上（这两个盒子可能都没有值，即没有函数或者没有值）</li>
-</ul>
-</blockquote>
-<p><code>(*&gt;)</code> 和 <code>(&lt;*)</code> 运算符也是比较有用的的，在计算完两边的表达式后，返回右值/左值，可以结合 condition check 使用：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">decrease</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span></span><br><span class="line"><span class="title">decrease</span> i = <span class="keyword">if</span> i&gt;<span class="number">0</span> <span class="keyword">then</span> <span class="type">Just</span> (i-<span class="number">1</span>) <span class="keyword">else</span> <span class="type">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="title">small</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span></span><br><span class="line"><span class="title">small</span> i = <span class="keyword">if</span> i&lt;<span class="number">10</span> <span class="keyword">then</span> <span class="type">Just</span> i <span class="keyword">else</span> <span class="type">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="title">decreaseSmall</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span></span><br><span class="line"><span class="comment">-- do what decrease does, but fail if small fails</span></span><br><span class="line"><span class="title">decreaseSmall</span> i = decrease i &lt;* small i</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ===== Evaluation Result =====</span></span><br><span class="line"><span class="title">decreaseSmall</span> <span class="number">4</span>   ==&gt; <span class="type">Just</span> <span class="number">3</span></span><br><span class="line"><span class="title">decreaseSmall</span> <span class="number">0</span>   ==&gt; <span class="type">Nothing</span></span><br><span class="line"><span class="title">decreaseSmall</span> <span class="number">11</span>  ==&gt; <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>traverse</code> 是 Applicative 版本的 <code>mapM</code></p>
-</blockquote>
-<h2 id="alternative-applicative"><a class="markdownIt-Anchor" href="#alternative-applicative"></a> <code>Alternative</code> Applicative</h2>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;|&gt; :: f a -&gt; f a -&gt; f a</span><br><span class="line"><span class="comment">-- 如果左边可选，那么就选左边；否则选右边</span></span><br></pre></td></tr></table></figure>
+  </div><article class="md-text content"><h2 id="applicative"><a class="markdownIt-Anchor" href="#applicative"></a> <code>Applicative</code></h2>
+<details class="tag-plugin colorful folding"  open><summary><p>Why we need <code>Applicative</code>?</p>
+</summary><div class="body"><p>Its common use case could be the following. We have several values with <em>contexts</em> and wanting to combine them with some function (that is also shipped with some context).</p> <p>For example, we are developping some database, that requires us to construct user if and only if all fields are valid.</p> <p>Suppose we have a <code>User</code> type whose constructor requires <code>Age, Name</code> field, and two field validators, <code>checkName, checkAge</code> which produces <code>Maybe Age, Maybe Name</code>. It’s obvious that if any of the required field returns <code>Nothing</code>, <code>User</code> should not be constructed. So we’re left the problem: how to combine <code>Age -&gt; Name -&gt; User</code> with <code>Maybe Age, Maybe Name</code>.</p> <p><strong>Difference between <code>Monad</code></strong>. The combination here must have no dependencies. If so, we should use <code>Monad</code> to handle dependencies.</p> </div></details>
+<p><code>Applicative</code> is indeed a <strong>functor</strong> with application, which (minimally) supports</p>
+<ol>
+<li>embed pure expressions (<code>pure</code>)</li>
+<li>sequence computation and result combination (<code>&lt;*&gt;</code> or <code>liftA2</code>)</li>
+</ol>
+<p>It’s like <strong>applying functions in the certain context</strong>.</p>
+<div class="tag-plugin colorful note" color="cyan" child="codeblock"><div class="body"><figure class="highlight haskell"><figcaption><span>Methods</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- `pure` function just puts a value in the context</span></span><br><span class="line"><span class="title">pure</span> :: a -&gt; f a</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Takes a unary function out of context,</span></span><br><span class="line"><span class="comment">--   and then applies it on the extracted value</span></span><br><span class="line">(&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Similar to `&lt;*&gt;`, but the function it take is deterministic and binary</span></span><br><span class="line"><span class="title">liftA2</span> :: (a -&gt; b -&gt; c) -&gt; f a -&gt; f b -&gt; f c</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Sequential execution, but discard first arg</span></span><br><span class="line">(*&gt;) :: f a -&gt; f b -&gt; f b</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Sequential execution, but discard second arg</span></span><br><span class="line">(&lt;*) :: f a -&gt; f b -&gt; f b</span><br></pre></td></tr></table></figure></div></div>
+<p>The most common pattern for <code>Applicative</code> is actually</p>
+<div class="tag-plugin colorful note" color="green" child="codeblock"><div class="body"><figure class="highlight haskell"><figcaption><span>Common Pattern</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NormalFunction</span> &lt;$&gt; <span class="type">Context1</span> &lt;*&gt; <span class="type">Context2</span> &lt;*&gt; <span class="type">Context3</span> <span class="comment">-- ...</span></span><br></pre></td></tr></table></figure></div></div>
+<h3 id="applicative-laws"><a class="markdownIt-Anchor" href="#applicative-laws"></a> Applicative Laws</h3>
+<ol>
+<li><strong>Identity</strong></li>
+</ol>
+<figure class="highlight haskell"><figcaption><span>Identity</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- v :: f a</span></span><br><span class="line"><span class="title">pure</span> id &lt;*&gt; v = v</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>Composition</strong></li>
+</ol>
+<figure class="highlight haskell"><figcaption><span>Composition</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pure</span> (.) &lt;*&gt; u &lt;*&gt; v &lt;*&gt; w = u &lt;*&gt; (v &lt;*&gt; w)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>Homomorphism</strong>.</li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pure</span> f &lt;*&gt; pure x = pure (f x)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><strong>Interchange</strong></li>
+</ol>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- g :: f (a -&gt; b)</span></span><br><span class="line"><span class="title">g</span> &lt;*&gt; (pure y) = pure ($ y) &lt;*&gt; g</span><br></pre></td></tr></table></figure>
 </article>
 <div class="article-footer">
+    <section id="references">
+      <div class="header"><span>References</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://www.staff.city.ac.uk/~ross/papers/Applicative.html"><code>Applicative</code> programming with effects</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
     <section id="license">
       <div class="header"><span>License</span></div>
       <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
@@ -411,7 +432,7 @@ div.hcb-content.hcb-cards-content.active {
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/programming/Haskell/Haskell-%E9%AB%98%E7%BA%A7%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/">Haskell 高级概念总结</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/programming/Haskell/Practical-Haskell/">Practical Haskell: Text/ByteString & Web HTTP</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">Newer</div><a href="/topic/programming/Haskell/Haskell-Monads/">Haskell Monads</a></div><div class="item" id="next"><div class="note">Older</div><a href="/topic/programming/Haskell/Haskell-Functors/">Haskell Functors</a></div></section></div>
 
 
 
@@ -426,7 +447,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#alternative-applicative"><span class="toc-text"> Alternative Applicative</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#applicative"><span class="toc-text"> Applicative</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#applicative-laws"><span class="toc-text"> Applicative Laws</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
