@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
 <meta property="article:published_time" content="2026-04-15T04:25:28.000Z">
-<meta property="article:modified_time" content="2026-04-15T07:48:20.904Z">
+<meta property="article:modified_time" content="2026-04-30T03:01:43.885Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
@@ -340,7 +340,338 @@ div.hcb-content.hcb-cards-content.active {
 }
 
   </style>
-</head>
+<!-- hexo injector head_end start --><style>
+      /* Apply styles to the hover target class */
+      .floating-hover-target {
+        font-weight: 500;
+        position: relative;
+        display: inline;
+        cursor: help;
+        background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.3) 90%, rgba(var(--theme-color), 0.3) 100%);
+        padding: 0 2px;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+        color: var(--text-color, #333);
+        border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
+        text-decoration: none;
+        outline-style: dashed;
+      }
+      
+      .floating-hover-target:hover {
+        background: linear-gradient(to bottom, rgba(var(--theme-color), 0.08) 0%, rgba(var(--theme-color), 0.08) 90%, rgba(var(--theme-color), 0.5) 90%, rgba(var(--theme-color), 0.5) 100%);
+      }
+      
+      .floating-hover-target::after {
+        content: var(--hover-indicator, "");
+        font-size: 0.85em;
+        vertical-align: super;
+        opacity: 0.6;
+        margin-left: 1px;
+        transition: opacity 0.2s ease;
+      }
+      
+      /* Different indicator styles - can be set via CSS variables */
+      :root {
+        --hover-indicator: ""; /* Default indicator */
+      }
+      
+      .floating-hover-content {
+        position: fixed;  /* Changed from absolute to fixed */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        background-color: var(--card-background, #fff);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+        padding: 16px 20px;
+        width: max-content;
+        max-width: 380px;
+        z-index: 9999;  /* Increased z-index value */
+        left: 0;
+        top: 0;  /* Will be set dynamically by JS */
+        overflow-y: auto;
+        max-height: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-weight: normal;
+        color: var(--text-color, #333);
+        font-size: 0.95em;
+        line-height: 1.6;
+        pointer-events: auto;  /* Ensures hover content can be interacted with */
+        backdrop-filter: blur(4px);
+      }
+      
+      .floating-hover-content::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--card-background, #fff);
+        transform: rotate(45deg);
+        z-index: -1; /* Place behind the content */
+      }
+      
+      /* Arrow positioning based on hover position */
+      .floating-hover-content.positioned-bottom::before {
+        top: -6px;
+        left: 20px;
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-top::before {
+        bottom: -6px;
+        left: 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-right::before {
+        left: auto;
+        right: 20px;
+      }
+      
+      .floating-hover-content p {
+        margin: 0.8em 0;
+      }
+      
+      .floating-hover-content p:first-child {
+        margin-top: 0;
+      }
+      
+      .floating-hover-content p:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Show hover content when target is hovered */
+      .floating-hover-target:hover .floating-hover-content {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Improve the indicator appearance on hover */
+      .floating-hover-target:hover::after {
+        opacity: 1;
+      }
+      
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark), (html[data-theme='dark']) {
+        .floating-hover-content {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px -4px rgba(0, 0, 0, 0.25);
+        }
+      }
+      
+      /* Fix position for hover boxes on smaller screens */
+      @media (max-width: 768px) {
+        .floating-hover-content {
+          max-width: 85vw; /* Limit width on mobile */
+        }
+        
+        /* Don't center the hover boxes on mobile as they're now positioned from JS */
+        .floating-hover-content.positioned-centered::before {
+          left: 50%;
+          margin-left: -6px;
+        }
+        
+        /* Adjust the info indicator to be more prominent on mobile */
+        .floating-hover-target::after {
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+      }
+      
+      /* Make the hover content work with touch devices */
+      @media (pointer: coarse) {
+        .floating-hover-target {
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        /* Give feedback when tapping */
+        .floating-hover-target:active {
+          background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.7) 90%, rgba(var(--theme-color), 0.7) 100%);
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Create a container for all hover content elements at the document root
+        const hoverContainer = document.createElement('div');
+        hoverContainer.id = 'floating-hover-container';
+        hoverContainer.style.position = 'fixed';
+        hoverContainer.style.top = '0';
+        hoverContainer.style.left = '0';
+        hoverContainer.style.width = '0';
+        hoverContainer.style.height = '0';
+        hoverContainer.style.overflow = 'visible';
+        hoverContainer.style.pointerEvents = 'none'; // Don't interfere with page interaction
+        hoverContainer.style.zIndex = '9999';
+        document.body.appendChild(hoverContainer);
+        
+        // Create the hover content elements dynamically
+        const hoverTargets = document.querySelectorAll('.floating-hover-target');
+        
+        // Track currently active hover element
+        let activeHover = null;
+        
+        hoverTargets.forEach(target => {
+          const hoverContent = target.getAttribute('data-hover-content');
+          
+          if (!hoverContent) return;
+          
+          // Create hover content div but append it to the container instead of the target
+          const hoverDiv = document.createElement('div');
+          hoverDiv.className = 'floating-hover-content';
+          hoverDiv.innerHTML = decodeURIComponent(hoverContent);
+          hoverDiv.style.pointerEvents = 'auto'; // Make the hover content interactive
+          hoverContainer.appendChild(hoverDiv);
+          
+          // Store a reference to the hover div on the target
+          target.hoverDiv = hoverDiv;
+          
+          // Position hover content based on target position
+          function positionHoverContent() {
+            const targetRect = target.getBoundingClientRect();
+            const hoverRect = hoverDiv.getBoundingClientRect();
+            const padding = 16; // Safe distance from viewport edges
+            
+            // Reset any previous positioning
+            hoverDiv.style.left = '';
+            hoverDiv.style.right = '';
+            hoverDiv.style.top = '';
+            hoverDiv.style.bottom = '';
+            
+            // Remove any previous position classes
+            hoverDiv.classList.remove('positioned-left', 'positioned-right', 'positioned-top', 'positioned-bottom');
+            
+            // Default positioning below the target
+            hoverDiv.style.left = targetRect.left + 'px';
+            hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+            
+            // After setting the initial position, get the hover dimensions
+            const updatedHoverRect = hoverDiv.getBoundingClientRect();
+            
+            // Check if the hover would go off the right edge of the screen
+            if (updatedHoverRect.right > window.innerWidth - padding) {
+              // Align the right edge of the hover with the right edge of the target
+              hoverDiv.style.left = 'auto';
+              hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              hoverDiv.classList.add('positioned-right');
+            } else {
+              hoverDiv.classList.add('positioned-left');
+            }
+            
+            // Check if the hover would go off the bottom of the screen
+            if (updatedHoverRect.bottom > window.innerHeight - padding) {
+              // Position above the target instead
+              hoverDiv.style.top = 'auto';
+              hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              hoverDiv.classList.add('positioned-top');
+            } else {
+              hoverDiv.classList.add('positioned-bottom');
+            }
+            
+            // Update the arrow position
+            const arrowPosition = hoverDiv.classList.contains('positioned-top') ? 'bottom' : 'top';
+            hoverDiv.style.setProperty('--arrow-position', arrowPosition);
+          }
+          
+          // Show hover content on mouseenter
+          target.addEventListener('mouseenter', function() {
+            // Hide any previously shown hover content
+            if (activeHover && activeHover !== hoverDiv) {
+              activeHover.style.visibility = 'hidden';
+              activeHover.style.opacity = '0';
+            }
+            
+            // Set this as the active hover
+            activeHover = hoverDiv;
+            
+            // Position and show the hover content
+            hoverDiv.style.visibility = 'visible';
+            positionHoverContent();
+            
+            // Trigger fade-in animation
+            setTimeout(() => {
+              hoverDiv.style.opacity = '1';
+            }, 10);
+          });
+          
+          // Hide hover content on mouseleave
+          target.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved to the hover content itself
+            if (e.relatedTarget === hoverDiv || hoverDiv.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+          
+          // Add mouseleave event to the hover content to hide it when mouse leaves
+          hoverDiv.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved back to the target
+            if (e.relatedTarget === target || target.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+        });
+        
+        // Update hover positions on window resize
+        window.addEventListener('resize', function() {
+          if (activeHover) {
+            const target = Array.from(hoverTargets).find(t => t.hoverDiv === activeHover);
+            if (target) {
+              const hoverDiv = target.hoverDiv;
+              const targetRect = target.getBoundingClientRect();
+              const padding = 16;
+              
+              // Update position logic here similar to positionHoverContent function
+              hoverDiv.style.left = targetRect.left + 'px';
+              hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+              
+              const updatedHoverRect = hoverDiv.getBoundingClientRect();
+              
+              if (updatedHoverRect.right > window.innerWidth - padding) {
+                hoverDiv.style.left = 'auto';
+                hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              }
+              
+              if (updatedHoverRect.bottom > window.innerHeight - padding) {
+                hoverDiv.style.top = 'auto';
+                hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              }
+            }
+          }
+        });
+        
+        // Close hover content when clicking elsewhere on the page
+        document.addEventListener('click', function(event) {
+          if (activeHover && !event.target.closest('.floating-hover-target') && 
+              !event.target.closest('.floating-hover-content')) {
+            activeHover.style.opacity = '0';
+            
+            setTimeout(() => {
+              activeHover.style.visibility = 'hidden';
+              activeHover = null;
+            }, 300);
+          }
+        });
+      });
+    </script><!-- hexo injector head_end end --></head>
 <body>
 
 <div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
@@ -369,7 +700,7 @@ div.hcb-content.hcb-cards-content.active {
   <span class="sep"></span>
   <a class="cap breadcrumb" href="/wiki/Maths/Statistics/testing/Unknown-Variance-Check-Mean/">Unknown Variance, Check Mean</a>
   </div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-04-15T04:25:28.000Z">2026-04-15</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-15T07:48:20.904Z">2026-04-15</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-04-15T04:25:28.000Z">2026-04-15</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-04-30T03:01:43.885Z">2026-04-30</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -428,6 +759,47 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p>Here, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>d</mi><mi>f</mi><mo separator="true">,</mo><mi>α</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{df, \alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> can be retrieved from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>-table. Notation <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">df</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> means degree of freedom, which is usually <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</p>
 <div class="tag-plugin colorful note" color="blue"><div class="title"><strong><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>-distribution</p>
 </strong></div><div class="body"><p>If <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span></span></span></span> is a standardized normal r.v. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>∼</mo><mi mathvariant="script">N</mi><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Z\sim \mathcal{N}(0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>, and r.v. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> has a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>χ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">χ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> distribution with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> degrees of freedom, i.e., <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>∼</mo><msubsup><mi>χ</mi><mi>v</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">X\sim \chi_v^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal">χ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>, independent of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span></span></span></span>, then</p><p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mi>Z</mi><msqrt><mrow><mi>X</mi><mi mathvariant="normal">/</mi><mi>v</mi></mrow></msqrt></mfrac><mo>∼</mo><msub><mi>t</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">\frac{Z}{\sqrt{X/v}}\sim t_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.49033em;vertical-align:-1.13em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.175em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span><span style="top:-2.8950000000000005em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067l0 -0c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60zM1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.13em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p><p>i.e., follows a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>-distribution with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span> degrees of freedom.</p></div></div>
+<h2 id="confidence-interval"><a class="markdownIt-Anchor" href="#confidence-interval"></a> Confidence Interval</h2>
+<p>In testing <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub><mo>:</mo><mi>μ</mi><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>H</mi><mn>1</mn></msub><mo>:</mo><mi>μ</mi><mo mathvariant="normal">≠</mo><msub><mi>μ</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">H_0:\mu=\mu_0, H_1:\mu\ne\mu_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span> CI for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span></span></span></span> is</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="false">[</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo>−</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mfrac><mi>s</mi><msqrt><mi>n</mi></msqrt></mfrac><mo separator="true">,</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo>+</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mfrac><mi>s</mi><msqrt><mi>n</mi></msqrt></mfrac><mo fence="false">]</mo></mrow><annotation encoding="application/x-tex">\Big[ \bar{x}-t_{n-1,\alpha/2}\frac{s}{\sqrt{n}}, \bar{x}+t_{n-1,\alpha/2}\frac{s}{\sqrt{n}} \Big]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.03756em;vertical-align:-0.9300000000000002em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10756em;"><span style="top:-2.30972em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9300000000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.08em;vertical-align:-0.9300000000000002em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10756em;"><span style="top:-2.30972em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9300000000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="delimsizing size2">]</span></span></span></span></span></span></p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>E</mi><mo>=</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mfrac><mi>s</mi><msqrt><mi>n</mi></msqrt></mfrac></mrow><annotation encoding="application/x-tex">ME=t_{n-1,\alpha/2}\frac{s}{\sqrt{n}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.233392em;vertical-align:-0.538em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6258665em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8059050000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-2.765905em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.234095em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.538em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mi>μ</mi><mo separator="true">,</mo><mover accent="true"><mi>θ</mi><mo>^</mo></mover><mo>=</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\theta=\mu, \hat\theta=\bar{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">^</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.56778em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">ˉ</span></span></span></span></span></span></span></span></span></span></li>
+</ul>
 </article>
 
 
@@ -436,7 +808,10 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#confidence-interval"><span class="toc-text"> Confidence Interval</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>

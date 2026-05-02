@@ -336,7 +336,338 @@ div.hcb-content.hcb-cards-content.active {
 }
 
   </style>
-</head>
+<!-- hexo injector head_end start --><style>
+      /* Apply styles to the hover target class */
+      .floating-hover-target {
+        font-weight: 500;
+        position: relative;
+        display: inline;
+        cursor: help;
+        background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.3) 90%, rgba(var(--theme-color), 0.3) 100%);
+        padding: 0 2px;
+        border-radius: 2px;
+        transition: all 0.2s ease;
+        color: var(--text-color, #333);
+        border-bottom: 1px dotted rgba(var(--theme-color, 0, 0, 0), 0.5);
+        text-decoration: none;
+        outline-style: dashed;
+      }
+      
+      .floating-hover-target:hover {
+        background: linear-gradient(to bottom, rgba(var(--theme-color), 0.08) 0%, rgba(var(--theme-color), 0.08) 90%, rgba(var(--theme-color), 0.5) 90%, rgba(var(--theme-color), 0.5) 100%);
+      }
+      
+      .floating-hover-target::after {
+        content: var(--hover-indicator, "");
+        font-size: 0.85em;
+        vertical-align: super;
+        opacity: 0.6;
+        margin-left: 1px;
+        transition: opacity 0.2s ease;
+      }
+      
+      /* Different indicator styles - can be set via CSS variables */
+      :root {
+        --hover-indicator: ""; /* Default indicator */
+      }
+      
+      .floating-hover-content {
+        position: fixed;  /* Changed from absolute to fixed */
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        background-color: var(--card-background, #fff);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10), 0 4px 8px -4px rgba(0, 0, 0, 0.12);
+        padding: 16px 20px;
+        width: max-content;
+        max-width: 380px;
+        z-index: 9999;  /* Increased z-index value */
+        left: 0;
+        top: 0;  /* Will be set dynamically by JS */
+        overflow-y: auto;
+        max-height: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-weight: normal;
+        color: var(--text-color, #333);
+        font-size: 0.95em;
+        line-height: 1.6;
+        pointer-events: auto;  /* Ensures hover content can be interacted with */
+        backdrop-filter: blur(4px);
+      }
+      
+      .floating-hover-content::before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--card-background, #fff);
+        transform: rotate(45deg);
+        z-index: -1; /* Place behind the content */
+      }
+      
+      /* Arrow positioning based on hover position */
+      .floating-hover-content.positioned-bottom::before {
+        top: -6px;
+        left: 20px;
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-top::before {
+        bottom: -6px;
+        left: 20px;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      
+      .floating-hover-content.positioned-right::before {
+        left: auto;
+        right: 20px;
+      }
+      
+      .floating-hover-content p {
+        margin: 0.8em 0;
+      }
+      
+      .floating-hover-content p:first-child {
+        margin-top: 0;
+      }
+      
+      .floating-hover-content p:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Show hover content when target is hovered */
+      .floating-hover-target:hover .floating-hover-content {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Improve the indicator appearance on hover */
+      .floating-hover-target:hover::after {
+        opacity: 1;
+      }
+      
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark), (html[data-theme='dark']) {
+        .floating-hover-content {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px -4px rgba(0, 0, 0, 0.25);
+        }
+      }
+      
+      /* Fix position for hover boxes on smaller screens */
+      @media (max-width: 768px) {
+        .floating-hover-content {
+          max-width: 85vw; /* Limit width on mobile */
+        }
+        
+        /* Don't center the hover boxes on mobile as they're now positioned from JS */
+        .floating-hover-content.positioned-centered::before {
+          left: 50%;
+          margin-left: -6px;
+        }
+        
+        /* Adjust the info indicator to be more prominent on mobile */
+        .floating-hover-target::after {
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+      }
+      
+      /* Make the hover content work with touch devices */
+      @media (pointer: coarse) {
+        .floating-hover-target {
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        
+        /* Give feedback when tapping */
+        .floating-hover-target:active {
+          background: linear-gradient(to bottom, transparent 0%, transparent 90%, rgba(var(--theme-color), 0.7) 90%, rgba(var(--theme-color), 0.7) 100%);
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Create a container for all hover content elements at the document root
+        const hoverContainer = document.createElement('div');
+        hoverContainer.id = 'floating-hover-container';
+        hoverContainer.style.position = 'fixed';
+        hoverContainer.style.top = '0';
+        hoverContainer.style.left = '0';
+        hoverContainer.style.width = '0';
+        hoverContainer.style.height = '0';
+        hoverContainer.style.overflow = 'visible';
+        hoverContainer.style.pointerEvents = 'none'; // Don't interfere with page interaction
+        hoverContainer.style.zIndex = '9999';
+        document.body.appendChild(hoverContainer);
+        
+        // Create the hover content elements dynamically
+        const hoverTargets = document.querySelectorAll('.floating-hover-target');
+        
+        // Track currently active hover element
+        let activeHover = null;
+        
+        hoverTargets.forEach(target => {
+          const hoverContent = target.getAttribute('data-hover-content');
+          
+          if (!hoverContent) return;
+          
+          // Create hover content div but append it to the container instead of the target
+          const hoverDiv = document.createElement('div');
+          hoverDiv.className = 'floating-hover-content';
+          hoverDiv.innerHTML = decodeURIComponent(hoverContent);
+          hoverDiv.style.pointerEvents = 'auto'; // Make the hover content interactive
+          hoverContainer.appendChild(hoverDiv);
+          
+          // Store a reference to the hover div on the target
+          target.hoverDiv = hoverDiv;
+          
+          // Position hover content based on target position
+          function positionHoverContent() {
+            const targetRect = target.getBoundingClientRect();
+            const hoverRect = hoverDiv.getBoundingClientRect();
+            const padding = 16; // Safe distance from viewport edges
+            
+            // Reset any previous positioning
+            hoverDiv.style.left = '';
+            hoverDiv.style.right = '';
+            hoverDiv.style.top = '';
+            hoverDiv.style.bottom = '';
+            
+            // Remove any previous position classes
+            hoverDiv.classList.remove('positioned-left', 'positioned-right', 'positioned-top', 'positioned-bottom');
+            
+            // Default positioning below the target
+            hoverDiv.style.left = targetRect.left + 'px';
+            hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+            
+            // After setting the initial position, get the hover dimensions
+            const updatedHoverRect = hoverDiv.getBoundingClientRect();
+            
+            // Check if the hover would go off the right edge of the screen
+            if (updatedHoverRect.right > window.innerWidth - padding) {
+              // Align the right edge of the hover with the right edge of the target
+              hoverDiv.style.left = 'auto';
+              hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              hoverDiv.classList.add('positioned-right');
+            } else {
+              hoverDiv.classList.add('positioned-left');
+            }
+            
+            // Check if the hover would go off the bottom of the screen
+            if (updatedHoverRect.bottom > window.innerHeight - padding) {
+              // Position above the target instead
+              hoverDiv.style.top = 'auto';
+              hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              hoverDiv.classList.add('positioned-top');
+            } else {
+              hoverDiv.classList.add('positioned-bottom');
+            }
+            
+            // Update the arrow position
+            const arrowPosition = hoverDiv.classList.contains('positioned-top') ? 'bottom' : 'top';
+            hoverDiv.style.setProperty('--arrow-position', arrowPosition);
+          }
+          
+          // Show hover content on mouseenter
+          target.addEventListener('mouseenter', function() {
+            // Hide any previously shown hover content
+            if (activeHover && activeHover !== hoverDiv) {
+              activeHover.style.visibility = 'hidden';
+              activeHover.style.opacity = '0';
+            }
+            
+            // Set this as the active hover
+            activeHover = hoverDiv;
+            
+            // Position and show the hover content
+            hoverDiv.style.visibility = 'visible';
+            positionHoverContent();
+            
+            // Trigger fade-in animation
+            setTimeout(() => {
+              hoverDiv.style.opacity = '1';
+            }, 10);
+          });
+          
+          // Hide hover content on mouseleave
+          target.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved to the hover content itself
+            if (e.relatedTarget === hoverDiv || hoverDiv.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+          
+          // Add mouseleave event to the hover content to hide it when mouse leaves
+          hoverDiv.addEventListener('mouseleave', function(e) {
+            // Check if the mouse moved back to the target
+            if (e.relatedTarget === target || target.contains(e.relatedTarget)) {
+              return;
+            }
+            
+            hoverDiv.style.opacity = '0';
+            
+            setTimeout(() => {
+              if (hoverDiv.style.opacity === '0') {
+                hoverDiv.style.visibility = 'hidden';
+                activeHover = null;
+              }
+            }, 300); // Match the transition duration
+          });
+        });
+        
+        // Update hover positions on window resize
+        window.addEventListener('resize', function() {
+          if (activeHover) {
+            const target = Array.from(hoverTargets).find(t => t.hoverDiv === activeHover);
+            if (target) {
+              const hoverDiv = target.hoverDiv;
+              const targetRect = target.getBoundingClientRect();
+              const padding = 16;
+              
+              // Update position logic here similar to positionHoverContent function
+              hoverDiv.style.left = targetRect.left + 'px';
+              hoverDiv.style.top = (targetRect.bottom + 8) + 'px';
+              
+              const updatedHoverRect = hoverDiv.getBoundingClientRect();
+              
+              if (updatedHoverRect.right > window.innerWidth - padding) {
+                hoverDiv.style.left = 'auto';
+                hoverDiv.style.right = (window.innerWidth - targetRect.right) + 'px';
+              }
+              
+              if (updatedHoverRect.bottom > window.innerHeight - padding) {
+                hoverDiv.style.top = 'auto';
+                hoverDiv.style.bottom = (window.innerHeight - targetRect.top + 8) + 'px';
+              }
+            }
+          }
+        });
+        
+        // Close hover content when clicking elsewhere on the page
+        document.addEventListener('click', function(event) {
+          if (activeHover && !event.target.closest('.floating-hover-target') && 
+              !event.target.closest('.floating-hover-content')) {
+            activeHover.style.opacity = '0';
+            
+            setTimeout(() => {
+              activeHover.style.visibility = 'hidden';
+              activeHover = null;
+            }, 300);
+          }
+        });
+      });
+    </script><!-- hexo injector head_end end --></head>
 <body>
 
 <div class="l_body index" id="start" layout="undefined" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
@@ -351,9 +682,9 @@ div.hcb-content.hcb-cards-content.active {
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="Search"></form><div id="search-result"></div><div class="search-no-result">No Results!</div></div>
 
-<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签云</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 12px;" class="tag -0">AI</a> <a href="/tags/AI-%E7%BC%96%E8%AF%91%E5%99%A8/" style="font-size: 14px;" class="tag -2">AI 编译器</a> <a href="/tags/Assembly/" style="font-size: 12px;" class="tag -0">Assembly</a> <a href="/tags/Async/" style="font-size: 12px;" class="tag -0">Async</a> <a href="/tags/Bash/" style="font-size: 12px;" class="tag -0">Bash</a> <a href="/tags/Blockchain/" style="font-size: 12px;" class="tag -0">Blockchain</a> <a href="/tags/C-C/" style="font-size: 18px;" class="tag -5">C/C++</a> <a href="/tags/CUDA/" style="font-size: 12px;" class="tag -0">CUDA</a> <a href="/tags/Concurrency/" style="font-size: 12px;" class="tag -0">Concurrency</a> <a href="/tags/Deepseek/" style="font-size: 12px;" class="tag -0">Deepseek</a> <a href="/tags/Design-Pattern/" style="font-size: 16px;" class="tag -3">Design Pattern</a> <a href="/tags/FL/" style="font-size: 12px;" class="tag -0">FL</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;" class="tag -0">Federated Learning</a> <a href="/tags/Foundry/" style="font-size: 12px;" class="tag -0">Foundry</a> <a href="/tags/GPU/" style="font-size: 12px;" class="tag -0">GPU</a> <a href="/tags/Haskell/" style="font-size: 22px;" class="tag -8">Haskell</a> <a href="/tags/ICLR/" style="font-size: 12px;" class="tag -0">ICLR</a> <a href="/tags/Java/" style="font-size: 12px;" class="tag -0">Java</a> <a href="/tags/L1-Design/" style="font-size: 12px;" class="tag -0">L1 Design</a> <a href="/tags/Linux/" style="font-size: 14px;" class="tag -2">Linux</a> <a href="/tags/NF4-Dequantization/" style="font-size: 12px;" class="tag -0">NF4 Dequantization</a> <a href="/tags/Network/" style="font-size: 12px;" class="tag -0">Network</a> <a href="/tags/NumPy/" style="font-size: 12px;" class="tag -0">NumPy</a> <a href="/tags/OCaml/" style="font-size: 12px;" class="tag -0">OCaml</a> <a href="/tags/PyTorch/" style="font-size: 16px;" class="tag -3">PyTorch</a> <a href="/tags/Python/" style="font-size: 16px;" class="tag -3">Python</a> <a href="/tags/QEMU/" style="font-size: 12px;" class="tag -0">QEMU</a> <a href="/tags/RISC-V/" style="font-size: 14px;" class="tag -2">RISC-V</a> <a href="/tags/RPC/" style="font-size: 12px;" class="tag -0">RPC</a> <a href="/tags/Rust/" style="font-size: 24px;" class="tag -10">Rust</a> <a href="/tags/SFL/" style="font-size: 12px;" class="tag -0">SFL</a> <a href="/tags/Solidity/" style="font-size: 12px;" class="tag -0">Solidity</a> <a href="/tags/Training/" style="font-size: 12px;" class="tag -0">Training</a> <a href="/tags/Triton/" style="font-size: 12px;" class="tag -0">Triton</a> <a href="/tags/Web3/" style="font-size: 14px;" class="tag -2">Web3</a> <a href="/tags/concurrency/" style="font-size: 12px;" class="tag -0">concurrency</a> <a href="/tags/cuda/" style="font-size: 20px;" class="tag -7">cuda</a> <a href="/tags/distributed/" style="font-size: 12px;" class="tag -0">distributed</a> <a href="/tags/git/" style="font-size: 18px;" class="tag -5">git</a> <a href="/tags/ninetoothed/" style="font-size: 12px;" class="tag -0">ninetoothed</a> <a href="/tags/training/" style="font-size: 12px;" class="tag -0">training</a> <a href="/tags/%E4%BD%8E%E7%B2%BE%E5%BA%A6/" style="font-size: 14px;" class="tag -2">低精度</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 12px;" class="tag -0">大模型</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86/" style="font-size: 14px;" class="tag -2">大模型推理</a> <a href="/tags/%E6%8E%A8%E7%90%86/" style="font-size: 12px;" class="tag -0">推理</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 12px;" class="tag -0">智能合约</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/" style="font-size: 12px;" class="tag -0">模板元编程</a></div></widget>
+<widget class="widget-wrapper tagcloud"><div class="widget-header dis-select"><span class="name">标签云</span></div><div class="widget-body fs14"><a href="/tags/AI/" style="font-size: 14.4px;" class="tag -2">AI</a> <a href="/tags/AI-%E7%BC%96%E8%AF%91%E5%99%A8/" style="font-size: 12px;" class="tag -0">AI 编译器</a> <a href="/tags/Ascend/" style="font-size: 12px;" class="tag -0">Ascend</a> <a href="/tags/Assembly/" style="font-size: 12px;" class="tag -0">Assembly</a> <a href="/tags/Async/" style="font-size: 12px;" class="tag -0">Async</a> <a href="/tags/Bash/" style="font-size: 12px;" class="tag -0">Bash</a> <a href="/tags/Blockchain/" style="font-size: 12px;" class="tag -0">Blockchain</a> <a href="/tags/C-C/" style="font-size: 19.2px;" class="tag -6">C/C++</a> <a href="/tags/CUDA/" style="font-size: 12px;" class="tag -0">CUDA</a> <a href="/tags/Compiler/" style="font-size: 12px;" class="tag -0">Compiler</a> <a href="/tags/Concurrency/" style="font-size: 12px;" class="tag -0">Concurrency</a> <a href="/tags/Deepseek/" style="font-size: 12px;" class="tag -0">Deepseek</a> <a href="/tags/Design-Pattern/" style="font-size: 19.2px;" class="tag -6">Design Pattern</a> <a href="/tags/FL/" style="font-size: 12px;" class="tag -0">FL</a> <a href="/tags/Federated-Learning/" style="font-size: 12px;" class="tag -0">Federated Learning</a> <a href="/tags/Foundry/" style="font-size: 12px;" class="tag -0">Foundry</a> <a href="/tags/GPU/" style="font-size: 14.4px;" class="tag -2">GPU</a> <a href="/tags/HPC/" style="font-size: 12px;" class="tag -0">HPC</a> <a href="/tags/Haskell/" style="font-size: 24px;" class="tag -10">Haskell</a> <a href="/tags/ICLR/" style="font-size: 12px;" class="tag -0">ICLR</a> <a href="/tags/IR/" style="font-size: 12px;" class="tag -0">IR</a> <a href="/tags/Java/" style="font-size: 12px;" class="tag -0">Java</a> <a href="/tags/L1-Design/" style="font-size: 12px;" class="tag -0">L1 Design</a> <a href="/tags/Linux/" style="font-size: 14.4px;" class="tag -2">Linux</a> <a href="/tags/Math/" style="font-size: 12px;" class="tag -0">Math</a> <a href="/tags/NF4-Dequantization/" style="font-size: 12px;" class="tag -0">NF4 Dequantization</a> <a href="/tags/Network/" style="font-size: 12px;" class="tag -0">Network</a> <a href="/tags/NumPy/" style="font-size: 12px;" class="tag -0">NumPy</a> <a href="/tags/OCaml/" style="font-size: 12px;" class="tag -0">OCaml</a> <a href="/tags/PyTorch/" style="font-size: 16.8px;" class="tag -4">PyTorch</a> <a href="/tags/Python/" style="font-size: 16.8px;" class="tag -4">Python</a> <a href="/tags/QEMU/" style="font-size: 12px;" class="tag -0">QEMU</a> <a href="/tags/RISC-V/" style="font-size: 14.4px;" class="tag -2">RISC-V</a> <a href="/tags/RPC/" style="font-size: 12px;" class="tag -0">RPC</a> <a href="/tags/Rust/" style="font-size: 24px;" class="tag -10">Rust</a> <a href="/tags/SFL/" style="font-size: 12px;" class="tag -0">SFL</a> <a href="/tags/Solidity/" style="font-size: 12px;" class="tag -0">Solidity</a> <a href="/tags/Training/" style="font-size: 12px;" class="tag -0">Training</a> <a href="/tags/Triton/" style="font-size: 12px;" class="tag -0">Triton</a> <a href="/tags/Web3/" style="font-size: 14.4px;" class="tag -2">Web3</a> <a href="/tags/concurrency/" style="font-size: 12px;" class="tag -0">concurrency</a> <a href="/tags/cuda/" style="font-size: 21.6px;" class="tag -8">cuda</a> <a href="/tags/distributed/" style="font-size: 12px;" class="tag -0">distributed</a> <a href="/tags/git/" style="font-size: 19.2px;" class="tag -6">git</a> <a href="/tags/ninetoothed/" style="font-size: 12px;" class="tag -0">ninetoothed</a> <a href="/tags/%E4%BD%8E%E7%B2%BE%E5%BA%A6/" style="font-size: 12px;" class="tag -0">低精度</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 12px;" class="tag -0">大模型</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86/" style="font-size: 12px;" class="tag -0">大模型推理</a> <a href="/tags/%E6%8E%A8%E7%90%86/" style="font-size: 12px;" class="tag -0">推理</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" style="font-size: 12px;" class="tag -0">智能合约</a> <a href="/tags/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/" style="font-size: 12px;" class="tag -0">模板元编程</a></div></widget>
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/topic/programming/Haskell/Managing-Modules-in-Haskell/"><span class="title">Managing Modules in Haskell</span></a><a class="item title" href="/topic/programming/Haskell/Generalized-Algebraic-Datatypes/"><span class="title">Generalized Algebraic Datatypes</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-Laziness-Evaluation-Model/"><span class="title">Laziness and Evaluation Model of Haskell</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-Monads/"><span class="title">Haskell Monads</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-Applicative/"><span class="title">Haskell Applicative</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-Functors/"><span class="title">Haskell Functors</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/"><span class="title">Haskell 类型系统</span></a><a class="item title" href="/topic/programming/Haskell/Haskell-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><span class="title">Haskell 基础语法</span></a><a class="item title" href="/topic/cuda-opt/Roofline-Model/"><span class="title">Roofline Model & Optimization Roadmaps</span></a><a class="item title" href="/Gluon-Linear-Layout-and-Improvement-of-Triton/"><span class="title">Gluon: Linear Layout and Improvement of Triton</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/posts/24d62123/"><span class="title">Transformer for Vision (ViT)</span></a><a class="item title" href="/posts/9abaf430/"><span class="title">SpinLock and the Idea of LockGuard</span></a><a class="item title" href="/posts/d64633ba/"><span class="title">RWLock 读写锁</span></a><a class="item title" href="/posts/fb34785a/"><span class="title">ST Monad in Haskell</span></a><a class="item title" href="/posts/5d4c970f/"><span class="title">CUDA 算子优化：量化</span></a><a class="item title" href="/posts/5574b15d/"><span class="title">Rust no_std 开发</span></a><a class="item title" href="/posts/7c55f9ed/"><span class="title">NF4 Dequant CUDA Kernel 优化过程 (1)</span></a><a class="item title" href="/posts/582521b1/"><span class="title">CUDA Kernel: ArgMax</span></a><a class="item title" href="/posts/b01e48f9/"><span class="title">cuda 编写 flash attention 算子</span></a><a class="item title" href="/posts/a4a6b1cf/"><span class="title">SIMD 优化</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -366,7 +697,9 @@ div.hcb-content.hcb-cards-content.active {
 
 
 <div class="navbar top"><div class="navbar-blur"><div class="navbar-container"><nav class="post"><a href="/">Recent</a><a href="/categories/">Categories</a><a class="active" href="/tags/">Tag: GPU</a><a href="/topic/">Topic</a><a href="/archives/">Archives</a></nav></div></div></div>
-<div class="post-list post"><a class="post-card post" href="/Gluon-Linear-Layout-and-Improvement-of-Triton/">
+<div class="post-list post"><a class="post-card post" href="/posts/e3393763/">
+<article class="md-text"><h2 class="post-title">Introduction to Streaming Multiprocessors</h2><div class="excerpt"><p>Brief introduce streaming multiprocessors and explain what happens when a kernel is issued from the hardwares' view.</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2026-04-29T04:15:05.000Z">2026-04-29</time></span></div></article>
+</a><a class="post-card post" href="/posts/bf749a34/">
 <article class="md-text"><h2 class="post-title">Gluon: Linear Layout and Improvement of Triton</h2><div class="excerpt"><p>OpenAI released tool recently, built on Triton to fit Blackwell's warp-based execution model.</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2026-04-24T07:55:37.000Z">2026-04-24</time></span></div></article>
 </a></div>
 
