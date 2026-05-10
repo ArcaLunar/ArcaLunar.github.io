@@ -19,17 +19,19 @@
   <meta name="theme-color" content="#f9fafb">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <!-- <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"></script> -->
-  <title>zig PL: basic grammar - Arca's Blog</title>
+  <title>Basic Grammer of Zig Programming Language - Arca's Blog</title>
 
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="zig PL: basic grammar">
+    <meta name="description" content="New system programming language, said to be a more pragmatic C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Grammer of Zig Programming Language">
 <meta property="og:url" content="http://arcalunar.github.io/posts/4ac14845/">
 <meta property="og:site_name" content="Arca&#39;s Blog">
+<meta property="og:description" content="New system programming language, said to be a more pragmatic C">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
 <meta property="article:published_time" content="2026-04-28T11:58:20.000Z">
-<meta property="article:modified_time" content="2026-05-01T12:41:28.082Z">
+<meta property="article:modified_time" content="2026-05-10T14:52:45.150Z">
 <meta property="article:author" content="Arca Lunar">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://arcalunar.github.io/assets/avatar/anime-azusa.png">
@@ -50,7 +52,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-04-28T19:58:20+08:00","dateModified":"2026-05-01T20:41:28+08:00","datePublished":"2026-04-28T19:58:20+08:00","description":"","headline":"zig PL: basic grammar","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/posts/4ac14845/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/posts/4ac14845/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"dateCreated":"2026-04-28T19:58:20+08:00","dateModified":"2026-05-10T22:52:45+08:00","datePublished":"2026-04-28T19:58:20+08:00","description":"","headline":"Basic Grammer of Zig Programming Language","mainEntityOfPage":{"@type":"WebPage","@id":"http://arcalunar.github.io/posts/4ac14845/"},"publisher":{"@type":"Organization","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png","logo":{"@type":"ImageObject","url":"/assets/avatar/anime-azusa.png"}},"url":"http://arcalunar.github.io/posts/4ac14845/","image":[]}</script>
   
 
   <style type="text/css">
@@ -686,7 +688,7 @@ div.hcb-content.hcb-cards-content.active {
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/posts/9c6f7b96/"><span class="title">Podman Network Configure</span></a><a class="item title" href="/posts/c75fbe99/"><span class="title">Spark Streaming</span></a><a class="item title" href="/posts/9aaebfdd/"><span class="title">An Overview of Apache Spark</span></a><a class="item title" href="/posts/b39cc59c/"><span class="title">An Overview of Hadoop</span></a><a class="item title" href="/posts/257fd49d/"><span class="title">Setup docker/podman for CUDA Development</span></a><a class="item title" href="/posts/fc9733fb/"><span class="title">Raft Consensus Protocol</span></a><a class="item title" href="/posts/a57364c8/"><span class="title">Case Study: Facebook Photo Caching</span></a><a class="item title" href="/posts/83d96085/"><span class="title">Memory Consistency Models</span></a><a class="item title" href="/posts/3d782b0e/"><span class="title">2026 ICPC Asia Pacific Championship</span></a><a class="item title" href="/posts/d0bf5384/"><span class="title">MapReduce Architecture</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/posts/4ac14845/"><span class="title">Basic Grammer of Zig Programming Language</span></a><a class="item title" href="/posts/538edea0/"><span class="title">State Monad in Haskell</span></a><a class="item title" href="/posts/11dbcb3e/"><span class="title">Remote Procedure Call (RPC)</span></a><a class="item title" href="/posts/83d96085/"><span class="title">Memory Consistency Models</span></a><a class="item title" href="/posts/d0bf5384/"><span class="title">MapReduce Architecture</span></a><a class="item title" href="/posts/6c9a5e7d/"><span class="title">RL Infra Frameworks</span></a><a class="item title" href="/posts/a8ad9bc0/"><span class="title">nano-vllm Overview</span></a><a class="item title" href="/posts/fc9733fb/"><span class="title">Raft Consensus Protocol</span></a><a class="item title" href="/posts/c75fbe99/"><span class="title">Spark Streaming</span></a><a class="item title" href="/posts/9aaebfdd/"><span class="title">An Overview of Apache Spark</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -699,18 +701,25 @@ div.hcb-content.hcb-cards-content.active {
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">Home</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">Blog</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Programming/">Programming</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/Programming/zig/">zig</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-04-28T11:58:20.000Z">2026-04-28</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-05-01T12:41:28.082Z">2026-05-01</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">Posted on: <time datetime="2026-04-28T11:58:20.000Z">2026-04-28</time></span><span class="sep updated"></span><span class="text updated">Updated on: <time datetime="2026-05-10T14:52:45.150Z">2026-05-10</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>zig PL: basic grammar</span></h1>
+        <h1 class="text title"><span>Basic Grammer of Zig Programming Language</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"></article>
+  </div><article class="md-text content"><h2 id="basic-data-types"><a class="markdownIt-Anchor" href="#basic-data-types"></a> Basic Data Types</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ***** Arrays *****</span></span><br><span class="line"><span class="comment">// uses notation [num]type. num can be ignored.</span></span><br><span class="line"><span class="keyword">const</span> a = [<span class="number">5</span>]u8&#123; <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> b = [_]u8&#123; <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;d&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="basic-control-flows"><a class="markdownIt-Anchor" href="#basic-control-flows"></a> Basic Control Flows</h2>
+<figure class="highlight js"><figcaption><span>Control Flows</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ***** if statements *****</span></span><br><span class="line"><span class="comment">// if () &#123; block expression &#125; else &#123; block expression &#125;</span></span><br><span class="line"><span class="comment">// if () inline-expression else inline-expression</span></span><br><span class="line"><span class="keyword">var</span> x : i32 = <span class="keyword">if</span> (<span class="literal">true</span>) <span class="number">1</span> <span class="keyword">else</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// while statement</span></span><br><span class="line"><span class="comment">// while (condition) : (update i) &#123; expression &#125;</span></span><br><span class="line"><span class="comment">// continue clause or break clause</span></span><br><span class="line"><span class="keyword">var</span> <span class="attr">sum</span>: i32 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> i : i32 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt;= <span class="number">100</span>) : (i += <span class="number">1</span>) &#123;</span><br><span class="line">  sum += i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ***** for-loops *****</span></span><br><span class="line"><span class="comment">//character literals are equivalent to integer literals</span></span><br><span class="line"><span class="keyword">const</span> string = [_]u8&#123; <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">for</span> (string, <span class="number">0.</span>.) |character, index| &#123;</span><br><span class="line">    _ = character;</span><br><span class="line">    _ = index;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (string) |character| &#123;</span><br><span class="line">    _ = character;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (string, <span class="number">0.</span>.) |_, index| &#123;</span><br><span class="line">    _ = index;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (string) |_| &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="defer"><a class="markdownIt-Anchor" href="#defer"></a> Defer</h2>
+<p><code>defer</code> keyword is used to execute a command upon <em>exiting the current block</em>. When multiple defers exist, they’re executed in the <em>reversed order</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> expect = @<span class="keyword">import</span>(<span class="string">&quot;std&quot;</span>).<span class="property">testing</span>.<span class="property">expect</span>;</span><br><span class="line"></span><br><span class="line">test <span class="string">&quot;multi defer&quot;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="attr">x</span>: f32 = <span class="number">5</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        defer x += <span class="number">2</span>;</span><br><span class="line">        defer x /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> <span class="title function_">expect</span>(x == <span class="number">4.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article>
 <div class="article-footer">
     <section id="license">
       <div class="header"><span>License</span></div>
@@ -732,7 +741,12 @@ div.hcb-content.hcb-cards-content.active {
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">On This Page</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#basic-data-types"><span class="toc-text"> Basic Data Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#basic-control-flows"><span class="toc-text"> Basic Control Flows</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#defer"><span class="toc-text"> Defer</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>Scroll to Top</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
