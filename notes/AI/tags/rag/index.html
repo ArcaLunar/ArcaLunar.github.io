@@ -49,7 +49,7 @@
   
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://arcalunar.github.io","author":{"@type":"Person","name":"Arca Lunar","sameAs":[],"image":"/assets/avatar/anime-azusa.png"},"name":"Arca's Blog","description":"","url":"http://arcalunar.github.io"}</script>
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css" /><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lilex:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans-style.css" /><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <style type="text/css">
     
@@ -1254,7 +1254,7 @@ div.hcb-content.hcb-cards-content.active {
   </widget>
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/AI/tech%20reports/Deepseek-FP8-%E8%AE%AD%E7%BB%83%E6%96%B9%E6%A1%88/"><span class="title">Deepseek FP8 训练方案</span></a><a class="item title" href="/notes/AI/techniques/Rotary-Position-Embedding/"><span class="title">Rotary Position Embedding</span></a><a class="item title" href="/notes/AI/distributed/foundation/Pipeline-Parallelism/"><span class="title">Pipeline Parallelism</span></a><a class="item title" href="/notes/AI/training/papers/Activation-Checkpointing/"><span class="title">Activation Checkpointing</span></a><a class="item title" href="/notes/AI/distributed/ZeRO-Zero-Redundancy-Optimizer/"><span class="title">ZeRO: Zero Redundancy Optimizer</span></a><a class="item title" href="/notes/AI/compression/Radio-Rate-Distortion-Optimization-for-LLM-Compression/"><span class="title">Radio: Rate-Distortion Optimization for LLM Compression</span></a><a class="item title" href="/notes/AI/rag/papers/LightRAG/"><span class="title">LightRAG</span></a><a class="item title" href="/notes/AI/rag/papers/GraphRAG/"><span class="title">GraphRAG</span></a><a class="item title" href="/notes/AI/kv%20cache/Prefix-Caching/"><span class="title">Prefix Caching (RadixAttention)</span></a><a class="item title" href="/notes/AI/systems/Prefill-Decode-Disaggregation/"><span class="title">Prefill Decode Disaggregation</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">Recent Update</span></div><div class="widget-body fs14"><a class="item title" href="/notes/AI/rag/papers/VideoRAG/"><span class="title">VideoRAG</span></a><a class="item title" href="/notes/AI/rag/papers/RAG-Anything/"><span class="title">RAG-Anything</span></a><a class="item title" href="/notes/AI/rag/papers/MiniRAG/"><span class="title">MiniRAG</span></a><a class="item title" href="/notes/AI/rag/papers/LightRAG/"><span class="title">LightRAG</span></a><a class="item title" href="/notes/AI/tech%20reports/Deepseek-FP8-%E8%AE%AD%E7%BB%83%E6%96%B9%E6%A1%88/"><span class="title">Deepseek FP8 训练方案</span></a><a class="item title" href="/notes/AI/techniques/Rotary-Position-Embedding/"><span class="title">Rotary Position Embedding</span></a><a class="item title" href="/notes/AI/distributed/foundation/Pipeline-Parallelism/"><span class="title">Pipeline Parallelism</span></a><a class="item title" href="/notes/AI/training/papers/Activation-Checkpointing/"><span class="title">Activation Checkpointing</span></a><a class="item title" href="/notes/AI/distributed/ZeRO-Zero-Redundancy-Optimizer/"><span class="title">ZeRO: Zero Redundancy Optimizer</span></a><a class="item title" href="/notes/AI/compression/Radio-Rate-Distortion-Optimization-for-LLM-Compression/"><span class="title">Radio: Rate-Distortion Optimization for LLM Compression</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -1262,6 +1262,109 @@ div.hcb-content.hcb-cards-content.active {
 <header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/avatar/anime-azusa.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">Arca's Blog</div><div class="sub cap">o/</div></a></div></header>
 
 <div class="post-list post">
+  
+    <a
+      class="post-card post"
+      href="/notes/AI/rag/papers/VideoRAG/?tag=rag"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">VideoRAG</h2>
+  <div class="excerpt">
+    <p>
+      
+        RAG extension for videos.
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2026-05-15T14:01:51.464Z">2026-05-15</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">RAG</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
+  
+    <a
+      class="post-card post"
+      href="/notes/AI/rag/papers/RAG-Anything/?tag=rag"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">RAG-Anything</h2>
+  <div class="excerpt">
+    <p>
+      
+        The problem RAG-Anything is addressing is that previous RAG systems are often text-centric. Limitations include:
+
+text-only f...
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2026-05-15T13:56:30.161Z">2026-05-15</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">RAG</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
+  
+    <a
+      class="post-card post"
+      href="/notes/AI/rag/papers/MiniRAG/?tag=rag"
+    >
+      
+<article class="md-text">
+  
+  <h2 class="post-title">MiniRAG</h2>
+  <div class="excerpt">
+    <p>
+      
+        The main concern of MiniRAG is cost, privacy and storage. MiniRAG is based on 3 observations:
+
+SLMs are weak at semantic unde...
+      
+    </p>
+  </div>
+  <div class="meta cap">
+    
+    <span class="cap" id="post-meta">
+      <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
+      <time datetime="2026-05-15T13:43:50.821Z">2026-05-15</time>
+    </span>
+    
+      
+        <span class="cap breadcrumb" >
+          <span class="tag">RAG</span>
+        </span>
+      
+    
+  </div>
+</article>
+
+    </a>
   
     <a
       class="post-card post"
@@ -1282,7 +1385,7 @@ div.hcb-content.hcb-cards-content.active {
     
     <span class="cap" id="post-meta">
       <svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg>
-      <time datetime="2026-05-13T03:36:45.679Z">2026-05-13</time>
+      <time datetime="2026-05-15T13:22:22.965Z">2026-05-15</time>
     </span>
     
       
