@@ -5,7 +5,9 @@
     font-weight: normal;
     font-style: italic;
 }
-
+i {
+    font-family: "Playwrite GB S";
+}
 html {
   font-family: sans-serif;
   line-height: 1.15;
