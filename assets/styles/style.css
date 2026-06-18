@@ -1,4 +1,11 @@
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
+
+@font-face {
+    font-family: "Playwrite GB S";
+    font-weight: normal;
+    font-style: italic;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -1923,7 +1930,7 @@ body {
   margin: 2% auto;
   font-size: 14px;
   line-height: 1.4em;
-  font-family: "Fira Sans", "LXGW Wenkai", serif;
+  font-family: "MiSans", "LXGW Wenkai", serif;
   color: #333;
 }
 @media screen and (min-width: 600px) {
