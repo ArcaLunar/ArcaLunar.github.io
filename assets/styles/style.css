@@ -1,5 +1,19 @@
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
+div.theorem {
+    padding: 15px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    border-left: 5px solid #00769b;
+    font-style: italic;
+}
+
+div.theorem::before {
+    content: "Theorem. ";
+    font-weight: bold;
+    font-style: normal;
+}
+
 @font-face {
     font-family: "Playwrite GB S";
     font-weight: normal;
