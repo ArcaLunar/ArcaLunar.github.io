@@ -1,5 +1,89 @@
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
+/* Floating TOC widget */
+#table-of-contents {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+
+  width: 280px;
+  max-height: calc(100vh - 2rem);
+
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+}
+
+/* Heading bar */
+#table-of-contents > h2 {
+  margin: 0;
+  padding: 0.75rem 1rem;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Menu icon */
+#table-of-contents > h2::before {
+  content: "☰";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Collapsed body by default */
+#text-table-of-contents {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+/* Show body on hover or keyboard focus */
+#table-of-contents:hover #text-table-of-contents,
+#table-of-contents:focus-within #text-table-of-contents {
+  max-height: calc(100vh - 5rem);
+  overflow-y: auto;
+}
+
+/* TOC list styling */
+#text-table-of-contents ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0.75rem 0.75rem;
+}
+
+#text-table-of-contents ul ul {
+  padding-left: 1rem;
+}
+
+#text-table-of-contents li {
+  margin: 0.25rem 0;
+}
+
+#text-table-of-contents a {
+  display: block;
+  padding: 0.25rem 0.35rem;
+
+  color: #333;
+  text-decoration: none;
+  line-height: 1.35;
+  border-radius: 6px;
+}
+
+#text-table-of-contents a:hover {
+  background: #f2f2f2;
+}
+
 div.theorem {
     padding: 15px;
     margin: 20px 0;
