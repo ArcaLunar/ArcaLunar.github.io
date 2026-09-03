@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Latent Variable Models: VAEs</title>
+<meta name="description" content="VAE extends the idea of variational inference to use neural networks to model both encoder and decoder. For encoder, it uses neural network (e.g. CNN) to study distribution \( q_{\lambda}(\mathbf{z}|\mathbf{x}) \) and outputs a distribution of \( \mathbf{z} \). For decoder, we sample from the distribution \( p(\mathbf{z}) \) and generates images from it through decoder that have learnt \( p(\mathbf{x}|\mathbf{z}) \) from dataset." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Latent Variable Models: VAEs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3e95ecf">1. Mixture of Gaussians</a></li>
+<li><a href="#org0010ab3">2. Variational Autoencoder (VAE)</a>
+<ul>
+<li><a href="#orgef73250">2.1. Learning Directed Latent Variable Models</a>
+<ul>
+<li><a href="#org4bcb75e">2.1.1. Attempt 1: Maximize Log-Likelihood</a></li>
+<li><a href="#org5bb29dc">2.1.2. Attempt 2: Find a Lower Bound (Importance Sampling)</a></li>
+</ul>
+</li>
+<li><a href="#org8d77db3">2.2. Variational Inference</a></li>
+<li><a href="#org8db5d25">2.3. Variational Learning</a>
+<ul>
+<li><a href="#org599468a">2.3.1. Reparameterization: Gradient Estimation of ELBO</a></li>
+<li><a href="#org22dcfdc">2.3.2. Black-Box Variational Inference</a></li>
+<li><a href="#org4c8a699">2.3.3. <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</a></li>
+<li><a href="#orgb70c744">2.3.4. Amortized Variational Inference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org59d4fdf">3. Summary of VAE</a></li>
+</ul>
+</div>
+</div>
+<p>
+VAE extends the idea of variational inference to use neural networks to model both encoder and decoder. For encoder, it uses neural network (e.g. CNN) to study distribution \( q_{\lambda}(\mathbf{z}|\mathbf{x}) \) and outputs a distribution of \( \mathbf{z} \). For decoder, we sample from the distribution \( p(\mathbf{z}) \) and generates images from it through decoder that have learnt \( p(\mathbf{x}|\mathbf{z}) \) from dataset.
+</p>
+
+<hr />
+
+<p>
+Lots of variability in images \(\mathbf{x}\) due to different features, but these features are usually not explicitly available. Thus, the motivation is to model these factors with <b>latent variable</b> \(\mathbf{z}\).
+</p>
+
+<p>
+\[
+\boxed{\mathbf{z}} \longrightarrow \boxed{\mathbf{x}}
+\]
+</p>
+
+<ul class="org-ul">
+<li>only \( \mathbf{x} \) is observed</li>
+<li>\( \mathbf{z} \) is some high-level features</li>
+</ul>
+
+<p>
+Instead of learning images distribution \(p(\mathbf{x})\) directly, we learn the distribution of latent variables \( p(\mathbf{z}) \) and \( p(\mathbf{x}|\mathbf{z}) \).
+</p>
+<div id="outline-container-org3e95ecf" class="outline-2">
+<h2 id="org3e95ecf"><span class="section-number-2">1.</span> Mixture of Gaussians</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The MoG assumes:
+</p>
+
+<ul class="org-ul">
+<li>\( \mathbf{z}\sim \text{Categorical}(1,\dots,K) \)</li>
+<li>\( p(\mathbf{x} | \mathbf{z}=k) = \mathcal{N}(\mu_{k}, \Sigma_{k}) \)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0010ab3" class="outline-2">
+<h2 id="org0010ab3"><span class="section-number-2">2.</span> Variational Autoencoder (VAE)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We generalizes MoG into a mixture of <i>infinite</i> Gaussians, VAE assumes
+</p>
+
+<ul class="org-ul">
+<li>\( \mathbf{z}\sim \mathcal{N}(0,I) \)</li>
+<li>\( p(\mathbf{x}|\mathbf{z}) = \mathcal{N}(\mu_{\theta}(\mathbf{z}), \Sigma_{\theta}(\mathbf{z})) \)</li>
+</ul>
+
+<p>
+where \( \mu_{\theta}, \Sigma_{\theta} \) are neural networks. The VAE model is exactly
+</p>
+
+<p>
+\[
+\boxed{p_{\theta}(\mathbf{x},\mathbf{z}) = p(\mathbf{z}) p_{\theta}(\mathbf{x}|\mathbf{z})}
+\]
+</p>
+</div>
+<div id="outline-container-orgef73250" class="outline-3">
+<h3 id="orgef73250"><span class="section-number-3">2.1.</span> Learning Directed Latent Variable Models</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The dataset \(D\) only contains images \(\mathbf{x}\) but not \(\mathbf{z}\), so the dataset can only represent \( p(\mathbf{x}) \), however the VAE models \( p(\mathbf{x},\mathbf{z}) \), thus we have to use <b>marginal distribution</b> to express \( p(\mathbf{x}) \):
+</p>
+
+<p>
+\[
+p(\mathbf{x}) = \int p(\mathbf{x},\mathbf{z})\; \text{d}\mathbf{z}
+\]
+</p>
+
+<p>
+Then, the training objective is to minimize the KL divergence
+</p>
+
+<p>
+\[
+\min_{p\in\mathcal{P}_{\mathbf{x},\mathbf{z}}} D_{KL}(p_{\text{data}}(\mathbf{x}) \| p(\mathbf{x}))
+\]
+</p>
+</div>
+<div id="outline-container-org4bcb75e" class="outline-4">
+<h4 id="org4bcb75e"><span class="section-number-4">2.1.1.</span> Attempt 1: Maximize Log-Likelihood</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Equivalently, we maximize the log-likelihood
+</p>
+
+<p>
+\[
+\max_{p\in\mathcal{P}_{\mathbf{x},\mathbf{z}}} \sum_{\mathbf{x}\in \mathcal{D}} \log p(\mathbf{x})=\sum_{\mathbf{x}\in\mathcal{D}} \log \int p(\mathbf{x},\mathbf{z}) \text{d}\mathbf{z}
+\]
+</p>
+
+<p>
+However, since \( \mathbf{z}\sim p(\mathbf{z}) \), it&rsquo;s intractable for high-dimensional \( \mathbf{z} \) as it involves an integration. One option is to estimate the objective via <b>Monte Carlo</b>.
+</p>
+
+<p>
+\[
+\log p(\mathbf{x}) \approx \log \frac{1}{k} \sum_{i=1}^{k} p(\mathbf{x}|\mathbf{z}^{(i)}), \quad \text{where } \mathbf{z}^{(i)} \sim p(\mathbf{z})
+\]
+</p>
+
+<p>
+In practice, however, it suffers from high variance in gradient estimates.
+</p>
+</div>
+</div>
+<div id="outline-container-org5bb29dc" class="outline-4">
+<h4 id="org5bb29dc"><span class="section-number-4">2.1.2.</span> Attempt 2: Find a Lower Bound (Importance Sampling)</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+We notice that the marginal likelihood \( p(\mathbf{x}) \) is at least as hard as evaluating the posterior \( p(\mathbf{z}|\mathbf{x}) \) since \( p(\mathbf{z}|\mathbf{x}) = p(\mathbf{x},\mathbf{z}) / p(\mathbf{x}) \)
+</p>
+
+<p>
+So, we introduce a <b>variantional family</b> \( \mathcal{Q} \) of distributions to <span class="underline">approximate the true <b>posterior</b> \( p(\mathbf{z}|\mathbf{x}) \)</span>. Suppose the model family \( \mathcal{P}_{\mathbf{x},\mathbf{z}} \) is specified by a set of parameters \( \theta \in \Theta \), while the variantional family \( \mathcal{Q} \) is specified by parameters set \( \lambda \in \Lambda \).
+</p>
+
+<p>
+Given \( \mathcal{P}_{\mathbf{x},\mathbf{z}} \) and \( \mathcal{Q} \), we can derive that
+</p>
+
+\begin{split}
+\log p_{\theta}(\mathbf{x}) &= \log \int p_{\theta}(\mathbf{x},\mathbf{z}) \, \text{d}\mathbf{z} \\
+&= \log \int \frac{q_{\lambda}(\mathbf{z})}{q_{\lambda}(\mathbf{z})} p_{\theta}(\mathbf{x},\mathbf{z})\, \text{d}\mathbf{z}\\
+& \ge \int q_{\lambda}(\mathbf{z}) \log \frac{p_{\theta}(\mathbf{x},\mathbf{z})}{q_{\lambda}(\mathbf{z})} \,\text{d}\mathbf{z}\\
+&=\mathbb{E}_{\mathbf{z}\sim q_{\lambda}(\mathbf{z})}\Big[ \log \frac{p_{\theta}(\mathbf{x},\mathbf{z})}{q_{\lambda}(\mathbf{z})} \Big]\\
+& \overset{\Delta}{=} \text{ELBO}(\mathbf{x}; \theta,\lambda) \\
+\end{split}
+
+<p>
+Then, we can apply <b>Monte Carlo</b> on ELBO
+</p>
+
+<p>
+\[
+\frac{1}{k}\sum_{i=1}^{k} \log \frac{p_{\theta}(\mathbf{x},\mathbf{z}^{(i)})}{q_{\lambda}(\mathbf{z}^{(i)})},\quad \text{where }\mathbf{z}^{(i)}\sim q_{\lambda}(\mathbf{z})
+\]
+</p>
+
+<p>
+The tightness between ELBO and the original objective depends on the choice of variantional family.
+</p>
+
+<p>
+The \( q_{\lambda}(\mathbf{z}) \) is called <b>encoder</b>, and the \( p_{\theta}(\mathbf{x}|\mathbf{z}) \) is called <b>decoder</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8d77db3" class="outline-3">
+<h3 id="org8d77db3"><span class="section-number-3">2.2.</span> Variational Inference</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+How should we choose \( q_{\lambda}(\mathbf{z}) \)? In general, we can show that
+</p>
+
+<p>
+\[
+\log p_{\theta}(\mathbf{x}) = ELBO + D_{KL}(q_{\lambda}(\mathbf{z})\, \|\, p_{\theta}(\mathbf{z}|\mathbf{x}))
+\]
+</p>
+
+<p>
+In short, we just need to pick \(\lambda\) to make it approximate \( p(\mathbf{z}|\mathbf{x}) \). This process is called <i>variational inference</i>. So now the problem becomes:
+</p>
+
+<div class="org-center">
+<p>
+How to jointly optimize over \(\theta\) and \(\lambda\) to maximize ELBO over a dataset \(\mathcal{D}\)?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8db5d25" class="outline-3">
+<h3 id="org8db5d25"><span class="section-number-3">2.3.</span> Variational Learning</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org599468a" class="outline-4">
+<h4 id="org599468a"><span class="section-number-4">2.3.1.</span> Reparameterization: Gradient Estimation of ELBO</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+We estimate gradient of ELBO w.r.t. \( \lambda^{(i)},\theta \) with <b>Monte Carlo</b> sampling.
+</p>
+
+<p>
+For \( \theta \), we can simply pushing \( \nabla_{\theta} \) through the expectation operator. But for \( \nabla_{\lambda} \), we see that
+</p>
+
+\begin{align}
+\nabla_\lambda \mathbb{E}_{q_\lambda(\mathbf{z})} \left[\log \frac{p_\theta(\mathbf{x}, \mathbf{z})}{q_\lambda(\mathbf{z})} \right]= \mathbb{E}_{q_\lambda(\mathbf{z})} \left[ \left(\log \frac{p_\theta(\mathbf{x}, \mathbf{z})}{q_\lambda(\mathbf{z})} \right) \cdot \nabla_\lambda \log q_\lambda(\mathbf{z}) \right]
+\end{align}
+
+<p>
+Thus we can use RHS for Monte Carlo estimation. However, it suffers from high variance problem. To handle this, we use <b>re-parameterization</b> trick that we introduce a fixed, auxiliary distribution \( p(\epsilon) \) and a <i>differentiable</i> function \( T(\epsilon; \lambda) \) such that the following procedure
+</p>
+
+\begin{split}
+\epsilon &\sim p(\epsilon) \\
+\mathbf{z} &\gets T(\epsilon; \lambda),
+\end{split}
+
+<p>
+is equivalent to sampling from \( q_{\lambda}(\mathbf{z}) \).
+</p>
+</div>
+</div>
+<div id="outline-container-org22dcfdc" class="outline-4">
+<h4 id="org22dcfdc"><span class="section-number-4">2.3.2.</span> Black-Box Variational Inference</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+A first-order stichastic gradient method for optimizing ELBO. This kind of technique allows us to sub-sample the dataset but requires differentiability of our objective functions.
+</p>
+
+<p>
+In BBVI, for each mini-batch \( \mathcal{B}=\set{\mathbf{x}^{(1)}, \dots, \mathbf{x}^{(m)} } \). We alternatively perform two steps of gradient descent
+</p>
+
+\begin{split}
+\lambda^{(i)} &\gets \lambda^{(i)} + \tilde{\nabla}_{\lambda} \text{ELBO}(\mathbf{x}^{(i)}; \theta,\lambda^{(i)}) \\
+\theta &\gets \theta + \tilde{\nabla}_{\theta} \sum_{i} ELBO(\mathbf{x}^{(i)}; \theta, \lambda^{(i)})
+\end{split}
+</div>
+</div>
+<div id="outline-container-org4c8a699" class="outline-4">
+<h4 id="org4c8a699"><span class="section-number-4">2.3.3.</span> <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+For convenience, a popular distribution for \( p_{\theta}(\mathbf{z}) \) is unit Gaussian:
+</p>
+
+<p>
+\[
+p_{\theta}(\mathbf{z})=\mathcal{N}(\mathbf{z}|0,I)
+\]
+</p>
+
+<p>
+or mixture of Gaussians with <i>trainable</i> means and covariance parameters.
+</p>
+
+<p>
+The <b>conditional distribution</b> \( p_{\theta}(\mathbf{x}|\mathbf{z}) \) is where we introduce deep learning. We note that a conditional distribution can be constructed by <span class="underline">defining a distribution family (parameterized by \(\omega \in \Omega\)) in the target space \(\mathbf{x}\), i.e., \(p_{\omega}(\mathbf{x})\) defines an unconditional distribution over \(\mathbf{x}\), and a mapping function \(g_{\theta}:\mathcal{Z}\mapsto\Omega\)</span>:
+</p>
+
+<p>
+\[
+p_{\theta}(\mathbf{x}|\mathbf{z})=p_{\omega}(\mathbf{x}), \quad \text{where } \omega=g_{\theta}(\mathbf{z})
+\]
+</p>
+
+<p>
+We specify \(g_{\theta}\) as deep neural network.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb70c744" class="outline-4">
+<h4 id="orgb70c744"><span class="section-number-4">2.3.4.</span> Amortized Variational Inference</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org59d4fdf" class="outline-2">
+<h2 id="org59d4fdf"><span class="section-number-2">3.</span> Summary of VAE<sup><a id="fnr.bilibili-VAE" class="footref" href="#fn.bilibili-VAE" role="doc-backlink">1</a></sup></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+In all, the core idea of VAE is that, encoder outputs a distribution of latent variable \( \mathbf{z} \), and the decoder samples from the distribution and outputs reconstructed images.
+</p>
+
+<p>
+To train VAEs, we need backprop. However, sampling from the distribution is non-differentiable. To solve this, we use <b>re-parameterization</b> trick. The loss used for training consists of <i>reconstruction loss</i> (MSE) and <i>KL loss</i> (requiring the distribution output by encoder to approximate standard normal distribution).
+</p>
+
+<p>
+We use deep neural networks to model encoder \(q_{\lambda}(\mathbf{z})\) and decoder \(p_{\theta}(\mathbf{x}|\mathbf{z})\), usually a CNN network.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.bilibili-VAE" class="footnum" href="#fnr.bilibili-VAE" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://www.bilibili.com/video/BV1xFxMz1EMS">https://www.bilibili.com/video/BV1xFxMz1EMS</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-21 Sun</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lexical Specification &amp; DFAs</title>
+<meta name="description" content="Briefly discuss how to use regex to specify lexemes, also its implementation." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
+<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Lexical Specification &amp; DFAs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga790bee">1. Lexing Procedure</a></li>
+<li><a href="#orgbba1341">2. Finite Automata</a>
+<ul>
+<li><a href="#orgce09585">2.1. Converting Regex into NFAs</a></li>
+<li><a href="#orgbc89a92">2.2. From NFAs to DFAs</a></li>
+<li><a href="#org39d1226">2.3. Implementation of Finite Automata</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This part focuses on how to partition the input string into tokens.
+</p>
+<div id="outline-container-orga790bee" class="outline-2">
+<h2 id="orga790bee"><span class="section-number-2">1.</span> Lexing Procedure</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>we first write down the regex for each token class</li>
+<li>construct a gigantic regex \(R\) to match all lexemes for all tokens</li>
+<li>suppose the input is \(x_1 \dots x_n\), for a prefix \(x_1 \dots x_i\), check if this prefix satisfies the regex \(R\).</li>
+<li>if yes, then we remove the prefix as a token. and then, find which token class this prefix belongs to.</li>
+</ol>
+
+<p>
+<i>Q1. How much input is used?</i> What if \(x_1\dots x_i \in L(R)\) and also \(x_1\dots x_j\in L(R)\) where \(i\ne j\) ? It turns out that we should <b>pick the longest possible string</b> in \(L(R)\).
+</p>
+
+<p>
+<i>Q2. What if a token satisfies multiple token classes?</i> i.e. \(\text{prefix}(i)\in L(R_j)\) and \(\text{prefix}(i)\in L(R_k)\). In this case, we should <b>give priority to token classes</b>, and pick the token class with highest priority, e.g., for token <code>if</code>, keywords token class should be prioritized before variables.
+</p>
+
+<p>
+<i>Q3. What if no rule matches?</i> We should write an &ldquo;error handling&rdquo; case with lowest priority to match all &ldquo;bad strings&rdquo;.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbba1341" class="outline-2">
+<h2 id="orgbba1341"><span class="section-number-2">2.</span> Finite Automata</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Regular expressions = specification, while finite automata = implementation. A finite automata consists of input alphabet \(\Sigma\), a set of state \(S\), a start state \(n\), a set of accepting states \(F\subseteq S\) and a set of transitions \(\text{state} \overset{\text{input}}{\longrightarrow} \text{state}\).
+</p>
+
+<dl class="org-dl">
+<dt>\(\epsilon\)-move</dt><dd>Machine can move from state A to state B without reading input. This only exists in NFA.</dd>
+<dt>Deterministic Finite Automata (DFA)</dt><dd>Exactly one transition per input per state. No \(\epsilon\)-moves.</dd>
+<dt>Non-deterministic Finite Automata (NFA)</dt><dd>Can have zero, one or multiple transitions for one input in a given state. Can have \(\epsilon\)-moves. NFA accepts if the input <b>can</b> get to an accepting state.</dd>
+</dl>
+
+<p>
+DFAs are faster to execute, while NFAs are generally (exponentially) smaller.
+</p>
+</div>
+<div id="outline-container-orgce09585" class="outline-3">
+<h3 id="orgce09585"><span class="section-number-3">2.1.</span> Converting Regex into NFAs</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Practically, we use NFAs to implement regular expressions. Then we translate NFAs into DFAs, and finally use look-up tables to implement DFAs.
+</p>
+
+<p>
+Our task is to <i>define an NFA for each kind of regex</i>.
+</p>
+
+<p>
+For \(\epsilon\)-move, we can define
+</p>
+
+<p>
+\[
+\boxed{\text{state}} \overset{\epsilon}{\longrightarrow} \boxed{\text{accept}}
+\]
+</p>
+
+<p>
+For single character, we can define
+</p>
+
+<p>
+For union,
+</p>
+
+<p>
+For concat,
+</p>
+
+<p>
+For iteration,
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc89a92" class="outline-3">
+<h3 id="orgbc89a92"><span class="section-number-3">2.2.</span> From NFAs to DFAs</h3>
+<div class="outline-text-3" id="text-2-2">
+<dl class="org-dl">
+<dt>\(\epsilon\)-closure</dt><dd>A \(\epsilon\)-closure of a state \(S\), is the set of nodes that can be reached by only using \(\epsilon\)-moves zero or more times</dd>
+</dl>
+
+<p>
+If a NFA have \(N\) states, then in its equivalent DFA, there&rsquo;re at most \(2^N-1\) non-empty subsets.
+</p>
+
+<p>
+<i>&ldquo;<b>Construction of DFA</b>&rdquo;</i>. We first introduce some notations, suppose in NFA
+</p>
+
+<ul class="org-ul">
+<li>state set \(S\)</li>
+<li>start state \(s\)</li>
+<li>accepting state \(F\)</li>
+<li>suppose \(a\) is a character in the input language. we define \(a(X)\) to be the set of states \(y\) such that there exists some state \(x\) in \(X\) that has a transition from \(x\) to \(y\) through \(a\). i.e.</li>
+</ul>
+
+<p>
+\[
+a(X)=\set{y:x\in X \land x \overset{a}{\to} y}
+\]
+</p>
+
+<ul class="org-ul">
+<li>\(\epsilon\)-closure operator \(C(X)\).</li>
+</ul>
+
+<p>
+For the equivalent DFA to the above NFA, we have
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Property</th>
+<th scope="col" class="org-left">NFA</th>
+<th scope="col" class="org-left">DFA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">states</td>
+<td class="org-left">\(S\)</td>
+<td class="org-left">subsets of \(S\)</td>
+</tr>
+
+<tr>
+<td class="org-left">start state</td>
+<td class="org-left">\(s\)</td>
+<td class="org-left">\(C(s)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">final states</td>
+<td class="org-left">\(F\)</td>
+<td class="org-left">\( \set{X:X\cap F\ne \emptyset} \)</td>
+</tr>
+
+<tr>
+<td class="org-left">transition</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">\( X\overset{a}{\to}Y \) if \( C(a(X))=Y \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org39d1226" class="outline-3">
+<h3 id="org39d1226"><span class="section-number-3">2.3.</span> Implementation of Finite Automata</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+A DFA can be implemented by a 2D table T, with one dimension being states and the other dimension being input symbols. For every transition \( s_i \overset{a}{\to} s_j \), we set \( \texttt{T}[s_i, a]=s_j \).
+</p>
+
+<p>
+Sometimes, we may directly implement NFA for memory concerns. We can also use 2D table with an extra column for \( \epsilon \)-moves and each cell should be <i>a set of states</i>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-09 Tue</p>
+</div>
+</body>
+</html>

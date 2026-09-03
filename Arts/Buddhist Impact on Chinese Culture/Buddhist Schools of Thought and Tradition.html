@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buddhist Schools of Thought and Tradition</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
+<script src="../../.assets/index.js"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Buddhist Schools of Thought and Tradition</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgbd5b046">1. Sanlun</a>
+<ul>
+<li><a href="#org003ecd3">1.1. Yogacara Tradition</a></li>
+</ul>
+</li>
+<li><a href="#orge7fa67c">2. Pure Land 淨土宗</a>
+<ul>
+<li><a href="#orgec886f4">2.1. Main Practice</a></li>
+<li><a href="#org60d39f6">2.2. Pure Land Thought</a></li>
+</ul>
+</li>
+<li><a href="#orgc44e236">3. Tiantai 天台宗</a></li>
+<li><a href="#org1115753">4. Huayan 華嚴宗</a></li>
+<li><a href="#orgd57142a">5. Chan School 禪宗</a>
+<ul>
+<li><a href="#orga154802">5.1. Huineng Meditation</a></li>
+<li><a href="#org1a88adb">5.2. Chan in Song Dynasty</a>
+<ul>
+<li><a href="#org75c3244">5.2.1. Huatou Chan 話頭禪</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Eight Buddhist schools in China:
+</p>
+
+<ul class="org-ul">
+<li>Tiantai 天臺宗</li>
+<li>Huayan 華嚴宗</li>
+<li>Pure Land 淨土宗</li>
+<li>Chan 禪宗</li>
+<li>Sanlun 三論宗</li>
+<li>Yogacara 唯識宗</li>
+<li>Mizong/Tantrayana 密宗</li>
+<li>Luzong 律宗</li>
+</ul>
+
+<p>
+Among the first 4 schools, Tiantai and Huayan are theoritical and philosophical while Chan and Pure Land are emphasized practice.
+</p>
+
+<p>
+After Wuzong&rsquo;s presecution of Buddhism in 845, philosophical schools declined sharply while Chan and Pure Land became prominent and developed further.
+</p>
+
+<p>
+<b>Exegetic tradition (釋經傳統)</b>. Started with <i>Kumarajiva</i> 鸠摩罗什 who had introduced many Madhyamaka treaties and commentaries together with Mahayana sutras. <i>Kumarajiva</i> also attracted many students, like <i>Sengzhao</i> 僧肇.
+</p>
+
+<p>
+This tradition is culminated with formulation of Sanlun school by <i>Jizang</i> 吉藏, who extended traditional &ldquo;Two Truths&rdquo; into 3 levels.
+</p>
+
+<hr />
+<div id="outline-container-orgbd5b046" class="outline-2">
+<h2 id="orgbd5b046"><span class="section-number-2">1.</span> Sanlun</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Main doctrine</b>. Because all phenomena appear and disappear solely by virtue of their relationship with other phenomena (dependent arising), they have <span class="underline">no existence of their own</span>, or <span class="underline">self-nature</span>, and are <span class="underline">without substance</span>.
+</p>
+</div>
+<div id="outline-container-org003ecd3" class="outline-3">
+<h3 id="org003ecd3"><span class="section-number-3">1.1.</span> Yogacara Tradition</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><i>Paramartha</i> 真諦 introduced early Indian Yogacara school of thought to China</li>
+<li><i>Xuanzang</i> 玄奘 completed the introduction of Yogacara texts and tradition</li>
+<li>Yogacara, aka Faxiang 法相 or Weishi 唯識.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7fa67c" class="outline-2">
+<h2 id="orge7fa67c"><span class="section-number-2">2.</span> Pure Land 淨土宗</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ALthough the school traced back to <span class="underline">Huiyuan</span> (慧遠) as its founder, it was actually established by <span class="underline">Tanluan (曇鸞), Daozhuo (道綽), Shandao (善導)</span>.
+</p>
+
+<p>
+<i>Tanluan</i> created the practice of chanting the name of Amita Buddha; <i>Daozhuo</i> and <i>Shandao</i> further developed and popularized the school in <b>Tang</b> dynasty.
+</p>
+</div>
+<div id="outline-container-orgec886f4" class="outline-3">
+<h3 id="orgec886f4"><span class="section-number-3">2.1.</span> Main Practice</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<b>Recitation</b>. The main practice of recitation is based on the 18th vow in the <span class="underline">Infinite Life Scripture (無量壽經)</span> that one will be reborn in the <span class="underline">Pure Land</span> created by Amitabha if one recites his name for 10 times with a concentrated mind.
+</p>
+</div>
+</div>
+<div id="outline-container-org60d39f6" class="outline-3">
+<h3 id="org60d39f6"><span class="section-number-3">2.2.</span> Pure Land Thought</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<span class="underline">Chan</span> masters inclined to interpret Pure Land as a <b>mental creation</b> as the <span class="underline">Scripture on the Visualization of Amitā</span> says
+</p>
+
+<blockquote>
+<p>
+“this mind is the Buddha and this mind becomes a Buddha as the ocean like true wisdom of all Buddhas come from the mind
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc44e236" class="outline-2">
+<h2 id="orgc44e236"><span class="section-number-2">3.</span> Tiantai 天台宗</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Master <i>Zhiyi</i> (智顗) resided on Mt. Tiantai and developed his interpretation of Buddhist doctrines and practices from the perspective of the popular <b>Lotus Sutra</b> 《法華經》.
+</p>
+
+<p>
+Develop <b>three truths</b> on the basis of two truths found in Nagarjuna&rsquo;s treaties: <span class="underline">ultimate, provisional, and middle</span>. He used the theory of three truths to explain reality.
+</p>
+</div>
+</div>
+<div id="outline-container-org1115753" class="outline-2">
+<h2 id="org1115753"><span class="section-number-2">4.</span> Huayan 華嚴宗</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+This school is based on <i>Huayan Jing</i> 《華嚴經》. Its religious philosophy is complex, which merges <span class="underline">emptiness, mere consciousness, and Buddha nature</span>. Philosophy: <span class="underline">One principle and many manifestations</span>.
+</p>
+
+<p>
+Also a product of the encounter of Indian Buddhism and Chinese philosophy of <span class="underline">world view</span>. <b>Fazang (法藏)</b> first formulated the doctrines of <i>Hanyan school</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd57142a" class="outline-2">
+<h2 id="orgd57142a"><span class="section-number-2">5.</span> Chan School 禪宗</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Influence people in <span class="underline">ways of thinking and life and their thought</span>. Originally as <span class="underline">meditation</span>.
+</p>
+
+<p>
+<i>Bodhidharma</i> 菩提達摩 is credited as the person who introduced Chan tradition. <i>Daoxin</i> (道信) and <i>Hongren</i> (弘忍) attracted crowd in Hubei.
+</p>
+
+<p>
+<i>Shenxiu</i> 神秀 teaching prospered in the 2 capitals of Tang, and amongst elites; <i>Huineng</i> 惠能 went back to Guangdong and influenced South China.
+</p>
+</div>
+<div id="outline-container-orga154802" class="outline-3">
+<h3 id="orga154802"><span class="section-number-3">5.1.</span> Huineng Meditation</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>not need to sit still; but as long as concentrate his mind whether walking, sitting, or even laying down</li>
+<li>The mind is the dharmakāya which is unlimited like a space;</li>
+<li>The wisdom is the self nature of the prajñā which is possessed by everyone;
+<ul class="org-ul">
+<li>so one can realize it in a moment if one so concentrates</li>
+</ul></li>
+</ul>
+
+<p>
+advocates <span class="underline">sudden enlightenment</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org1a88adb" class="outline-3">
+<h3 id="org1a88adb"><span class="section-number-3">5.2.</span> Chan in Song Dynasty</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+<i>Yanshou</i> 延壽 advocated <span class="underline">combination of Chan practice with recitation of Amitabha</span>. 禪淨合流
+</p>
+
+<p>
+<b>Yulu 語錄</b>, which are records of simultaneous or instant speeches with enlightening stories and dialogues, called <b>Gongan 公案</b>.
+</p>
+</div>
+<div id="outline-container-org75c3244" class="outline-4">
+<h4 id="org75c3244"><span class="section-number-4">5.2.1.</span> Huatou Chan 話頭禪</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+<i>Zonggao</i> 宗杲 worried about degeneration of Chan with playing of word game, and created a method of meditation by <span class="underline">pondering over a critical phrase</span>. 
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-07-07 Tue</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,551 @@
+/* === Foldable index lists === */
+
+/*
+ * Org footnote presentation.
+ *
+ * Change only this value to switch the preferred presentation:
+ *   sidenote — margin notes on wide screens, cards on narrow screens
+ *   card     — floating cards on every screen
+ */
+:root {
+  --org-footnote-style: sidenote;
+  --org-footnote-accent: #527d9a;
+  --org-footnote-card-background: #fff;
+  --org-footnote-card-foreground: #333;
+
+  --site-ink: #1b1f23;
+  --site-paper: #fbfaf7;
+  --site-rule: #d6dce1;
+  --site-accent: #527d9a;
+  --site-dim: #7c8a93;
+  --site-mono-tint: #eef1f3;
+  --site-serif: ui-serif, "Anthropic Serif Text", "Iowan Old Style", "Palatino Linotype", serif;
+  --site-mono: ui-monospace, "Anthropic Mono Web", "JetBrains Mono", "Cascadia Code",
+    Menlo, Consolas, monospace;
+}
+
+html[data-org-footnote-style="sidenote"] #content {
+  position: relative;
+  margin-bottom: var(--org-sidenote-overflow, 0);
+}
+
+.org-sidenote-layer {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+html[data-org-footnote-style="card"] .org-sidenote-layer {
+  display: none;
+}
+
+.org-sidenote {
+  position: absolute;
+  left: calc(100% + 1.35rem);
+  box-sizing: border-box;
+  width: clamp(10rem, calc((100vw - 900px) / 2 - 2rem), 14rem);
+  padding-left: 0.75rem;
+  color: #59636e;
+  border-left: 2px solid #d6dce1;
+  font-size: 0.78rem;
+  line-height: 1.38;
+  pointer-events: auto;
+}
+
+.org-sidenote-number {
+  margin-right: 0.35em;
+  color: var(--org-footnote-accent);
+  font-size: 0.85em;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+.org-sidenote .footpara,
+.org-sidenote p {
+  display: inline;
+  margin: 0;
+}
+
+.org-footnote-card {
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: min(21rem, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 1.5rem);
+  padding: 0.8rem 0.95rem;
+  overflow: auto;
+
+  color: var(--org-footnote-card-foreground);
+  background: var(--org-footnote-card-background);
+  border: 1px solid #d7dce1;
+  border-radius: 0.65rem;
+  box-shadow: 0 0.65rem 1.8rem rgba(31, 41, 55, 0.18);
+
+  font-size: 0.84rem;
+  line-height: 1.45;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.35rem);
+  pointer-events: none;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    visibility 0s linear 150ms;
+}
+
+.org-footnote-card[data-placement="above"] {
+  transform: translateY(-0.35rem);
+}
+
+.org-footnote-card.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    visibility 0s linear;
+}
+
+.org-footnote-card .org-footnote-card-number {
+  margin-right: 0.4em;
+  color: var(--org-footnote-accent);
+  font-weight: 700;
+}
+
+.org-footnote-card .footpara,
+.org-footnote-card p {
+  display: inline;
+  margin: 0;
+}
+
+.footref[aria-expanded="true"] {
+  color: #035;
+  outline: 2px solid color-mix(in srgb, var(--org-footnote-accent) 35%, white);
+  outline-offset: 2px;
+  border-radius: 0.15rem;
+}
+
+html.org-footnotes-enhanced #footnotes {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .org-sidenote-layer {
+    display: none;
+  }
+}
+
+@media print {
+  .org-sidenote-layer,
+  .org-footnote-card {
+    display: none !important;
+  }
+
+  html.org-footnotes-enhanced #footnotes {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .org-footnote-card {
+    transition: none;
+  }
+}
+
+/* Foldable items: replace bullet with triangle, pointer cursor */
+.org-ul li.has-subtree {
+  cursor: pointer;
+  list-style-type: none;
+}
+
+/* Triangle indicator */
+.org-ul li.has-subtree::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.4em;
+  font-size: 0.8em;
+  line-height: 1;
+  transition: transform 0.25s ease;
+  vertical-align: middle;
+}
+
+/* Rotate triangle when expanded */
+.org-ul li.has-subtree.expanded::before {
+  transform: rotate(90deg);
+}
+
+/* Collapsed: hide child lists with transition */
+.org-ul li.has-subtree > ul {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+/* Expanded: reveal child lists */
+.org-ul li.has-subtree.expanded > ul {
+  max-height: 20000px;
+  opacity: 1;
+}
+
+/* === Site-wide look (paper background, serif headings, slim nav) ===
+ * Applies to every page — articles, the academic homepage, and this blog's
+ * own homepage — using the tokens defined in :root above.
+ */
+
+body {
+  background: var(--site-paper);
+  color: var(--site-ink);
+}
+
+#preamble {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  border-bottom: 1px solid var(--site-rule);
+  background: var(--site-paper);
+}
+
+#preamble .site-nav {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--site-serif);
+  font-size: 0.88rem;
+  color: var(--site-dim);
+}
+
+#preamble .site-nav a {
+  color: var(--site-ink);
+}
+
+#preamble .site-nav a:hover {
+  color: var(--site-accent);
+  border-bottom: 1px dotted var(--site-accent);
+}
+
+#preamble .site-subnav {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 0.75rem;
+}
+
+#preamble .site-tab {
+  appearance: none;
+  margin: 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  padding: 0.15rem 0;
+  font-family: var(--site-serif);
+  font-size: 0.95rem;
+  color: var(--site-dim);
+  cursor: pointer;
+}
+
+#preamble .site-tab:hover {
+  color: var(--site-ink);
+}
+
+#preamble .site-tab.is-active {
+  color: var(--site-accent);
+  border-bottom-color: var(--site-accent);
+}
+
+#postamble {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+}
+
+#postamble .date {
+  color: var(--site-dim);
+  font-family: var(--site-mono);
+  font-size: 0.78rem;
+}
+
+#content {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+  font-family: var(--site-serif);
+}
+
+/* Clear the slim nav bar above — it now spans the full page width. */
+#table-of-contents {
+  top: 4rem;
+  max-height: calc(100vh - 5rem);
+}
+
+/* === Blog homepage (body.site-home) ===
+ * A tighter, left-aligned index layout on top of the shared look above —
+ * scoped so it never touches the ordinary bullet lists or wider reading
+ * measure used by article pages, which load this same stylesheet.
+ */
+
+body.site-home #postamble {
+  display: none;
+}
+
+body.site-home #preamble .site-nav,
+body.site-home #content {
+  max-width: 46rem;
+}
+
+body.site-home #content > h1.title {
+  text-align: left;
+  font-family: var(--site-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+}
+
+body.site-home .site-tagline {
+  max-width: 34rem;
+  margin: 0 0 1.75rem;
+  color: var(--site-dim);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+body.site-home #site-search {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 2.5rem;
+  padding: 0.65rem 0.9rem 0.65rem 1.9rem;
+  border: 1px solid var(--site-rule);
+  border-radius: 0.4rem;
+  background:
+    #fff
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="none" stroke="%237c8a93" stroke-width="1.6" d="M13 13l4 4M4 9a5 5 0 1 1 10 0 5 5 0 0 1-10 0z"/></svg>')
+    no-repeat 0.7rem center;
+  background-size: 0.95rem;
+  font-family: var(--site-mono);
+  font-size: 0.88rem;
+  color: var(--site-ink);
+}
+
+body.site-home #site-search::placeholder {
+  color: var(--site-dim);
+}
+
+body.site-home #site-search:focus {
+  outline: none;
+  border-color: var(--site-accent);
+  box-shadow: 0 0 0 3px rgba(82, 125, 154, 0.18);
+}
+
+body.site-home h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.9rem;
+}
+
+body.site-home .site-recent {
+  margin: 0 0 2.75rem;
+}
+
+body.site-home .site-recent > ul.org-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.site-home .site-recent li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.65em;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--site-rule);
+}
+
+body.site-home .site-recent li:last-child {
+  border-bottom: none;
+}
+
+/* Undo the `display: flex' above for batches not yet revealed by scroll. */
+body.site-home .site-recent li[hidden] {
+  display: none;
+}
+
+body.site-home .site-recent-sentinel {
+  height: 1px;
+}
+
+body.site-home .site-recent li i {
+  order: -1;
+  font-style: normal;
+  font-family: var(--site-mono);
+  font-size: 0.76rem;
+  color: var(--site-dim);
+  min-width: 5.4rem;
+}
+
+body.site-home .site-recent li b {
+  font-family: var(--site-serif);
+  font-weight: 600;
+}
+
+body.site-home .site-recent li a {
+  color: var(--site-ink);
+}
+
+body.site-home .site-recent li a:hover {
+  color: var(--site-accent);
+}
+
+body.site-home .site-recent li .site-desc {
+  flex-basis: 100%;
+  margin-top: 0.15rem;
+  color: var(--site-dim);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* The signature piece: the category tree drawn as a real directory listing. */
+
+body.site-home .site-index > ul.org-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.site-home .site-index > ul.org-ul > li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--site-rule);
+  font-family: var(--site-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+body.site-home .site-index > ul.org-ul > li:last-child {
+  border-bottom: none;
+}
+
+body.site-home .site-index li.has-subtree::before {
+  content: "›";
+  font-family: var(--site-mono);
+  color: var(--site-accent);
+}
+
+body.site-home .site-index li.has-subtree.expanded::before {
+  transform: rotate(90deg);
+}
+
+/* A fixed identity independent of depth — otherwise this silently inherits
+   whatever size/weight the surrounding row happens to have, which made
+   nested subfolders look thinner than sibling post titles (posts stay
+   bold via <b> regardless of depth) and smaller than top-level folders. */
+body.site-home .site-index .folder-name {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  border-radius: 0.35rem;
+  background: rgba(82, 125, 154, 0.1);
+  color: var(--site-accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul {
+  margin: 0.6rem 0 0.2rem;
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--site-rule);
+  list-style: none;
+  font-family: var(--site-serif);
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul li {
+  padding: 0.45rem 0 0.45rem 0.4rem;
+  border-bottom: 1px dashed var(--site-rule);
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul li:last-child {
+  border-bottom: none;
+}
+
+/* Folders (at any depth) get a solid divider instead of a post's dashed
+   one, so a folder row reads as a section break rather than another card.
+   Spelled out as the full shorthand (not just -style) so it isn't left
+   picking up the :last-child rule's reset width/color at equal specificity. */
+body.site-home .site-index ul.org-ul ul.org-ul li.has-subtree {
+  border-bottom: 1px solid var(--site-rule);
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul li.has-subtree:last-child {
+  border-bottom: none;
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul a {
+  color: var(--site-ink);
+}
+
+body.site-home .site-index ul.org-ul ul.org-ul a:hover {
+  color: var(--site-accent);
+}
+
+body.site-home .site-index li i {
+  font-style: normal;
+  font-weight: 400;
+  font-family: var(--site-mono);
+  font-size: 0.76rem;
+  color: var(--site-dim);
+  margin-left: 0.5em;
+}
+
+body.site-home .site-index .site-desc {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--site-dim);
+  font-weight: 400;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+body.site-home .count-chip {
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.05em 0.5em;
+  border-radius: 999px;
+  background: var(--site-mono-tint);
+  color: var(--site-dim);
+  font-family: var(--site-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+body.site-home .site-index li.filtered-out {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  body.site-home #content {
+    padding: 2rem 1.1rem 3.5rem;
+  }
+
+  body.site-home #content > h1.title {
+    font-size: 2rem;
+  }
+}

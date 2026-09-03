@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Introduction to Differential Privacy</title>
+<meta name="description" content="Briefly looks at previous approaches to protect privacy and why they fail; then discuss several important concepts in DP and formalize the definition." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Introduction to Differential Privacy</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5b39d35">1. Desiderata for Strong Privacy Definition</a></li>
+<li><a href="#org5d79e78">2. Definition of DP</a>
+<ul>
+<li><a href="#org1c430d2">2.1. Distributed or Central Models for DP</a></li>
+<li><a href="#org8274364">2.2. Formal Definition, Techniques and Properties</a>
+<ul>
+<li><a href="#org0804ff5">2.2.1. Adjacency</a></li>
+<li><a href="#orged06ad9">2.2.2. Gloval Sensitivity</a></li>
+<li><a href="#org4a5f38c">2.2.3. Mathematical Definition of DP</a></li>
+</ul>
+</li>
+<li><a href="#org55e3904">2.3. Approximate DP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Differential privacy is widely regarded as the gold standard for privacy protection in statistical analysis and dataset releases. Its strength lies in providing a <i>formal</i> and <i>mathematical</i> definition of privacy, offering <i>precise</i> and <i>provable</i> guarantees.
+</p>
+<div id="outline-container-org5b39d35" class="outline-2">
+<h2 id="org5b39d35"><span class="section-number-2">1.</span> Desiderata for Strong Privacy Definition</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><i>Compositionality</i>. A good privacy definition should ensure that its protection <i>gradually degrade</i> when applied multiple times, instead of <i>drastically collapse</i>.</li>
+<li><i>Post-processing immunity</i>. After data has been privatized with a privacy-preserving mechanism, any further data analysis should not degrade its privacy guarantees.</li>
+<li><i>Group privacy</i>. The privacy mechanism does not arbitrarily fail to protect privacy beyond the individual level when data from multiple users is combined.</li>
+<li><i>Quantifiable privacy-accuracy trade-offs</i>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d79e78" class="outline-2">
+<h2 id="org5d79e78"><span class="section-number-2">2.</span> Definition of DP</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A more precise requirement: information obtained from dataset with individual data, cannot be more than information from dataset without individual data. (There shouldn&rsquo;t be much new information gained from joining new individual data). DP is more like an requirement for privacy, rather than some algorithm.
+</p>
+</div>
+<div id="outline-container-org1c430d2" class="outline-3">
+<h3 id="org1c430d2"><span class="section-number-3">2.1.</span> Distributed or Central Models for DP</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+In <b>centralized</b> models, all data collection, storage and processing happen at a single and central location by a trusted data curator. The assumption is that <i>the data curator will faithfully protect individual privacy and handle data responsibly</i>.
+</p>
+
+<p>
+The centralized settings trade <i>trust</i> for <i>data utility</i> and <i>algorithmic flexibility</i>, since the center has access to the raw data.
+</p>
+
+<p>
+In <b>distributed</b> (local) models, data are kept de-centralized at each client. <i>Privacy-preserving algorithms</i> are executed locally and only privatized data will be communicated to the central authority.
+</p>
+
+<p>
+The distributed settings are, however, the contrast that introduces additional complexity in implementing privacy-preserving protocols. In addition, the aggregated results may suffer from accuracy-reduced individual data due to accumulation of noise.
+</p>
+</div>
+</div>
+<div id="outline-container-org8274364" class="outline-3">
+<h3 id="org8274364"><span class="section-number-3">2.2.</span> Formal Definition, Techniques and Properties</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+DP is a mathematical framework for measuring and bounding the individuals&rsquo; privacy risks in a computation. A mechanism is considered <i>differentially private</i> if <span class="underline">the probability of any outcome occurring is nearly the same for any two datasets that differ in only one record</span>.
+</p>
+
+<dl class="org-dl">
+<dt>Dataset</dt><dd>A dataset \(D\) is a multiset of elements in the <i>data universe</i> \(\mathcal{U}\). The set of every possible dataset is denoted \(\mathcal{D}\). The data universe \(\mathcal{U}\) is a cross product of multiple <i>attributes</i> \(U_1,U_2, \dots, U_{n}\) and has dimension \(n\).</dd>
+<dt>Numeric Query</dt><dd>A numeric query is a function \(f:\mathcal{D}\mapsto\mathcal{R},\mathcal{R}\subseteq \mathbb{R}^{r}\) that maps a dataset in some real vector space. For example, the function could be an SQL statement that counts the individuals.</dd>
+</dl>
+</div>
+<div id="outline-container-org0804ff5" class="outline-4">
+<h4 id="org0804ff5"><span class="section-number-4">2.2.1.</span> Adjacency</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+The concept of <i>adjacency</i> is fundamental in DP. It frames the <i>unit of change</i> that DP seeks to protect against, ensuring that the presence or absense of any single individual&rsquo;s data does not significantly alter the outcomes of data analysis. There 2 common ways to define adjacency in the context of DP:
+</p>
+
+<dl class="org-dl">
+<dt><i>Add (remove) adjacency</i></dt><dd>Two datasets \(D,D'\) are said adjacent under the add/remove notion, denoted as \(D\sim D'\), if \(|D\Delta D'|=1\) where \(\Delta\) is the <i>symmetric difference</i> of two sets.</dd>
+<dt><i>Exchange adjacency</i></dt><dd>Two datasets \(D,D'\) are said <i>adjacent under exchange notion</i>, denoted as \(D\sim_{\leftrightarrows}D'\), if \(D'\) is obtained from \(D\) by successively removing one record and adding a (possibly different) record. That is, there exist elements \(d\in D\) and \(d'\in \mathcal{U}\) such that \(D' = (D-\set{d})\cup \set{d'}\). This implies that \(|D| = |D'|\) and \(|D\Delta D'| = 2\)</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orged06ad9" class="outline-4">
+<h4 id="orged06ad9"><span class="section-number-4">2.2.2.</span> Gloval Sensitivity</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+The choice of add/remove or exchange adjacency has implications for how DP is applied, as it directly addects the computation of <i>global sensitivity</i>, which measures the *maximum change in the output of a function for adjacent datasets.
+</p>
+
+<dl class="org-dl">
+<dt><i>Global Sensitivity</i></dt><dd>The impact of a single individual&rsquo;s data on the overall analysis is measured through the concept of <i>global sensitivity</i>. Formally, the global sensitivity of a function \(f:\mathcal{D}\mapsto \mathcal{R}\) is defined as the <i>maximum difference</i> in the output over \(f\) over all pairs of adjacent datasets \(D\sim D'\in \mathcal{D}\), measured w.r.t. to \(\ell_{p}\) norm</dd>
+</dl>
+
+<p>
+\[
+\Delta_{p} f = \max_{D\sim D'} \Vert f(D)-f(D') \Vert_{p}  
+\]
+</p>
+
+<p>
+In simpler terms, it measures how much the output of a function can change when an individual’s data is added or removed from the dataset. This measurement provides a basis for determining the amount of noise that needs to be added to the function’s output to achieve privacy.
+</p>
+</div>
+</div>
+<div id="outline-container-org4a5f38c" class="outline-4">
+<h4 id="org4a5f38c"><span class="section-number-4">2.2.3.</span> Mathematical Definition of DP</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+The sensitivity measurement tells us how much the output of the target function need to be adjusted to protect an individual&rsquo;s privacy. DP achieves this by <i>adding noise</i> to the function&rsquo;s output by an amount calibrated to the function sensitivity.
+</p>
+
+<dl class="org-dl">
+<dt>Differential Privacy</dt><dd>A randomized mechanism \(\mathcal{M}:\mathcal{D}\mapsto\mathcal{R}\) with domain \(\mathcal{D}\) and range \(\mathcal{R}\) is \((\epsilon,\delta)\)-differentially private if for any event \(S \subseteq \mathcal{R}\) and any pair \(D,D'\in\mathcal{D}\) of adjacent datasets:</dd>
+</dl>
+
+\begin{equation}
+\mathbb{P}[\mathcal{M}(D) \in S] \le \exp(\epsilon)\cdot \mathbb{P}[\mathcal{M}(D') \in S] + \delta
+\end{equation}
+
+<p>
+A DP mechanism maps a dataset to a distribution over the possible outputs. The released DP output is a single random sample drawn from this distribution. The <i>level of privacy</i> is controlled by \(\epsilon\), called <b>privacy loss</b>, with values close to \(0\) denoting strong privacy. The secondary \(\delta\) can be loosely interpreted as a margin of error.
+</p>
+
+<p>
+In DP, \((\epsilon,0)\)-DP is satisfied for any pair \(D,D'\).
+</p>
+
+<p>
+With the definition of DP, we can prove that this DP satisfies compositionality, group privacy, post-processing.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org55e3904" class="outline-3">
+<h3 id="org55e3904"><span class="section-number-3">2.3.</span> Approximate DP</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+DP with \(\delta=0\) is called <i>pure</i> DP, while \(\delta\gt 0\) is called <i>approximate</i> DP. Examples include [BROKEN LINK: 0230d137-15b1-407f-b805-6212d4378d9d].
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-23 Tue 00:00</p>
+</div>
+</body>
+</html>

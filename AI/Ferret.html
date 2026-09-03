@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ferret: Federated Full-Parameter Tuning at Scale for Large Language Models</title>
+<meta name="description" content="Ferret uses first-order method with shared randomness to enable scalable full-parameter update. It also projects updates to a lower dimensional space to reduce communication overhead, and then reconstructs local updates from lower dimensional space with shared randomness for effective full-parameter global aggregation." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Ferret: Federated Full-Parameter Tuning at Scale for Large Language Models</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org08f4c5d">1. Challenge</a></li>
+<li><a href="#org03d7897">2. The Ferret Algorithm</a>
+<ul>
+<li><a href="#orgf5a8239">2.1. Local Updates</a></li>
+<li><a href="#org246aca2">2.2. Projected Updates</a>
+<ul>
+<li><a href="#org3802ed0">2.2.1. Reconstruction with Inversion</a></li>
+<li><a href="#orgcd8f899">2.2.2. Reconstruction without Inversion</a></li>
+<li><a href="#org124c1c8">2.2.3. Block-wise Reconstruction</a></li>
+</ul>
+</li>
+<li><a href="#org28130aa">2.3. Global Aggregation</a></li>
+</ul>
+</li>
+<li><a href="#orgfadefe6">3. Theoretical Analysis</a>
+<ul>
+<li><a href="#orgb171616">3.1. Reconstruction Analysis</a></li>
+<li><a href="#orgfc4a597">3.2. Convergence Analysis</a></li>
+<li><a href="#orgb768749">3.3. Scalability</a></li>
+</ul>
+</li>
+<li><a href="#org77f62c3">4. Experiments</a></li>
+</ul>
+</div>
+</div>
+<p>
+Ferret uses first-order method with shared randomness to enable scalable full-parameter update. It also projects updates to a lower dimensional space to reduce communication overhead, and then reconstructs local updates from lower dimensional space with shared randomness for effective full-parameter global aggregation.
+</p>
+
+<p>
+The <i>contribution</i> can be summarized as:
+</p>
+
+<ol class="org-ol">
+<li>Ferret uses first-order methods to perform local updates for each client, for faster convergence;</li>
+<li>Ferret projects updates into a low-dimensional space to reduce communication cost;</li>
+<li>Ferret reconstructs local updates from the low-dimensional space with shared randomness for effective full-parameter global aggregation.</li>
+</ol>
+
+<p>
+<b>Notice</b>: this paper is based on <i>federated learning</i> setups, not <i>split federated learning</i>.
+</p>
+<div id="outline-container-org08f4c5d" class="outline-2">
+<h2 id="org08f4c5d"><span class="section-number-2">1.</span> Challenge</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The problem is <i>full-parameter finetuning</i>. Naive full-parameter finetuning guarantees the convergence speed but suffers from <i>communication overheads</i>. Existing first order methods incur \(O(d)\) communication overheads, due to the need to transmit the whole model parameter, where \(d\) denotes the model size. Zero-th order methods can transmit less data in each communication round, but often incur more computational cost to <span class="underline">compensate the accuracy loss due to missing gradient</span>.
+</p>
+</div>
+</div>
+<div id="outline-container-org03d7897" class="outline-2">
+<h2 id="org03d7897"><span class="section-number-2">2.</span> The Ferret Algorithm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Ferret operates by repeatedly running 3 sequential steps over many communication rounds \(r\in[R]\) where \(R\) denotes the total number of rounds.
+</p>
+
+<p>
+At the beginning of the first round, each client initializes its local parameters with pretrained model parameters, i.e., \( \mathbf{w}_{1} \gets \mathbf{w}_{0} \).
+</p>
+</div>
+<div id="outline-container-orgf5a8239" class="outline-3">
+<h3 id="orgf5a8239"><span class="section-number-3">2.1.</span> Local Updates</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Each client performs \(T\) iterations of first-order optimization on its local loss function with optimizers like SGD, Adam, etc. Suppose \( \mathbf{w}_{r,0} := \mathbf{w}_{r} \) denoting the first local iteration starts from sync-ed model parameters at the beginning of \(r\)-th round. Then for SGD, each iteration can be expressed as
+</p>
+
+<p>
+\[
+\mathbf{w}^{(j)}_{r,t} \gets \mathbf{w}^{(j)}_{r,t-1} - \eta \nabla \ell\Big( \mathbf{w}_{r,t-1}^{(j)}; \mathbf{x}_{t-1}^{(j)} \Big) 
+\]
+</p>
+
+<p>
+where \( \mathbf{x} \) denotes local dataset. Then, we&rsquo;re able to compute local update as
+</p>
+
+<p>
+\[
+\Delta_{r}^{(j)}:=\mathbf{w}_{r,T}-\mathbf{w}_{r,0}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org246aca2" class="outline-3">
+<h3 id="org246aca2"><span class="section-number-3">2.2.</span> Projected Updates</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+After completing local updates, each client \(j\) randomly chooses a seed \( s^{(j)} \) to generate \(K\) new random bases, where \(K \ll d\) for the sake of communication efficiency. Each base \( \mathbf{v}_{r}^{(j)} \in \mathbb{R}^{d} \).
+</p>
+
+<p>
+Then, we project \( \Delta_{r}^{(j)} \in \mathbb{R}^{d} \) into a \(K\)-dimensional vector \( \mathbf{\gamma}^{(j)}_{r} \in \mathbb{R}^{K} \). Yes, here, we directly <i>flatten</i> the model parameters into a \(d\)-dimensional vector, and projects it into a \(K\)-dimensional vector. The point here is that, we do not care about how gradients are actually organized, but only cares about the gradients&rsquo; value. Moreover, <i>flatten</i> operation is indeed <b>bi-jective</b> if we predetermine by-row or by-column.
+</p>
+
+<p>
+The design of <i>seed</i> is to utilize its <b>pseudo-randomness</b> property to avoid transmitting the random bases.
+</p>
+</div>
+<div id="outline-container-org3802ed0" class="outline-4">
+<h4 id="org3802ed0"><span class="section-number-4">2.2.1.</span> Reconstruction with Inversion</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Let \( \Delta\in\mathbb{R}^{d} \) be the local update, and matrix \( \mathbf{V}=[\mathbf{v}_{1}\, \mathbf{v}_{2}\, \dots\, \mathbf{v}_{K}] \in \mathbb{R}^{d\times K} \) denotes the \(K\) random bases. Then we can form the <b>convex optimization problem</b> to determine the \(K\)-dimensional vector \(\gamma\).
+</p>
+
+<p>
+\[
+\gamma := \mathop{\text{argmin}}\limits_{\mathbf{y}} \Vert \mathbf{Vy}-\Delta \Vert
+\]
+</p>
+
+<p>
+which has a closed form, given the \( \mathbf{V} \) is singular with \( K \ll d \), we can compute the projected update, as well as the corresponding reconstruction \( \tilde{\Delta} \)
+</p>
+
+\begin{equation}
+\begin{split}
+\gamma &= (\mathbf{V}^\top \mathbf{V})^{-1} \mathbf{V}^{\top} \Delta \\
+\tilde{\Delta} &= \mathbf{V}(\mathbf{V}^{\top}\mathbf{V})^{-1}\mathbf{V}^{\top}\Delta
+\end{split}
+\end{equation}
+</div>
+</div>
+<div id="outline-container-orgcd8f899" class="outline-4">
+<h4 id="orgcd8f899"><span class="section-number-4">2.2.2.</span> Reconstruction without Inversion</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+The above closed form requires computing inversion of a matrix. The total complexity will raise to \( O(K^{2}d + K^{3}) \) for time complexity and \( O(Kd) \) for memory complexity for solely \( M=\mathbf{V}^{\top}\mathbf{V} \).
+</p>
+
+<p>
+Alternatively, we can <i>approximate</i> \(M\) with \(\mathbf{I}_{K}\):
+</p>
+
+\begin{equation}
+\gamma \approx (\rho K)^{-1} \mathbf{V}^{\top}\Delta
+\end{equation}
+
+<p>
+where \( \rho:= 1-\frac{2\phi(1/\sqrt{d})/\sqrt{d}}{2\Phi(1/\sqrt{d})-1} \), \( \phi(1/\sqrt{d}) \) stands for P.D.F. and \( \Phi(1/\sqrt{d}) \) stands for C.D.F.
+</p>
+</div>
+</div>
+<div id="outline-container-org124c1c8" class="outline-4">
+<h4 id="org124c1c8"><span class="section-number-4">2.2.3.</span> Block-wise Reconstruction</h4>
+</div>
+</div>
+<div id="outline-container-org28130aa" class="outline-3">
+<h3 id="org28130aa"><span class="section-number-3">2.3.</span> Global Aggregation</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+For global aggregation, we might have <b>ring allgather</b> or with a <b>centralized fed server</b>. But after all, one server (either fed server or each client) will have full information about the random seed \( s^{(j)} \) and corresponding projected local updates \( \mathbf{\gamma}^{(j)}_{r} \). We first reconstruct full-parameters updates \( \tilde{\Delta}_{r}^{(j)} \) from \( \gamma^{(j)}_{r} \)
+</p>
+
+<p>
+\[
+\tilde{\Delta}^{(i)}_{r} := \sum_{k=1}^{K} \gamma_{k}^{(i)} \mathbf{v}_{k}^{(i)}
+\]
+</p>
+
+<p>
+Then, we compute the average of reconstructed updates, and apply it to <i>previous global sync-ed parameters</i>. Not locally computed parameters, since this is just used to compute local updates.
+</p>
+
+<p>
+\[
+\mathbf{w}_{r+1} \gets \mathbf{w}_{r} - \frac{1}{N} \sum_{i=1}^{N} \tilde{\Delta}^{(i)}_{r}
+\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfadefe6" class="outline-2">
+<h2 id="orgfadefe6"><span class="section-number-2">3.</span> Theoretical Analysis</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgb171616" class="outline-3">
+<h3 id="orgb171616"><span class="section-number-3">3.1.</span> Reconstruction Analysis</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+From equation (2), the reconstruction satisfies that
+</p>
+
+<p>
+\[
+\mathbb{E}[\tilde{\Delta}]=\Delta
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgfc4a597" class="outline-3">
+<h3 id="orgfc4a597"><span class="section-number-3">3.2.</span> Convergence Analysis</h3>
+</div>
+
+<div id="outline-container-orgb768749" class="outline-3">
+<h3 id="orgb768749"><span class="section-number-3">3.3.</span> Scalability</h3>
+</div>
+</div>
+<div id="outline-container-org77f62c3" class="outline-2">
+<h2 id="org77f62c3"><span class="section-number-2">4.</span> Experiments</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-18 Thu</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RL and Markov Decision Process</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">RL and Markov Decision Process</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org96490f6">1. Introduction to RL and MDP</a></li>
+<li><a href="#orgdd1e0c7">2. Solving MDPs</a>
+<ul>
+<li><a href="#org58780a1">2.1. Utility of State Sequences</a></li>
+<li><a href="#org7131ecd">2.2. Optimal Quantities</a></li>
+<li><a href="#org7343364">2.3. Solving Optimal Policy</a>
+<ul>
+<li><a href="#org58b8d0e">2.3.1. Value Iteration</a></li>
+<li><a href="#org4c9ca10">2.3.2. Q-Value Iteration</a></li>
+<li><a href="#org93c7697">2.3.3. Policy Iteration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgaadaa0c">3. Reinforcement Learning</a>
+<ul>
+<li><a href="#orga59b85d">3.1. Model-Based Learning</a></li>
+<li><a href="#org74e9b92">3.2. Model-Free Learning</a>
+<ul>
+<li><a href="#org8d97721">3.2.1. Direct Evaluation</a></li>
+<li><a href="#org13b3805">3.2.2. Temporal Difference Learning</a></li>
+<li><a href="#orge3c4e87">3.2.3. Q-Learning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org96490f6" class="outline-2">
+<h2 id="org96490f6"><span class="section-number-2">1.</span> Introduction to RL and MDP</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In RL, the world and the agent is modeled by <i>world state</i> \(s_t\in S\) and <i>agent action</i> \(a_t\in A\), where the subscript \(t\) models the <i>time</i>, \(A\) models the action space and \(S\) models the world state space. The transition of world can be modeled by
+</p>
+
+<p>
+\[
+s_{t+1} \sim \mathbb{P}(s\mid s_0,a_0,\dots, s_t,a_t)
+\]
+</p>
+
+<p>
+In practical, we assume the transitions are <i>Markovian</i>, i.e., the probability of reaching \(s_{t+1}\) from \(s_t\) depends <b>only on</b> \(s_t\) and not on the history of earlier states. This tells
+</p>
+
+<p>
+\[
+\mathbb{P}(s=s_{t+1}\mid s_0,a_0,\dots,s_t,a_t) = \mathbb{P}(s=s_{t+1}\mid s_t,a_t)
+\]
+</p>
+
+<p>
+We model the transition as \(T(s_t,a_t,s_{t+1})=\mathbb{P}(s=s_{t+1}\mid s_t,a_t)\).
+</p>
+
+<dl class="org-dl">
+<dt>Reward</dt><dd>Reward is also an important component. It acts as a criterion to tell agent if the move is good or not, therefore encouraging the agent to follow a certain pattern. We model the criterion as \(R(s_t,a_t,s_{t+1})\).</dd>
+</dl>
+
+<p>
+A significant difference is that, MDPs have a <b>fixed environment</b> that transitions and rewards are known in advance. However, in RL, these two are unknown.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd1e0c7" class="outline-2">
+<h2 id="orgdd1e0c7"><span class="section-number-2">2.</span> Solving MDPs</h2>
+<div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt>Policy</dt><dd>Given the current state, the policy tells which action should be taken. We use \(\pi(s):\mathcal{S}\to \mathcal{A}\) to model <i>policy</i> that produces an action recommended by the policy given the state \(s\).</dd>
+</dl>
+
+<p>
+Starting from initial state \(s_0\), we can alternatively explore actions, state transition and then states again.
+</p>
+
+<pre class="example" id="org3cdca4d">
+state --(take action)--&gt; (s,a) --(transition)--&gt; state'
+</pre>
+
+<p>
+Here, the \((s,a)\) is an <i>intermediate state</i>: the agent has taken action and is waiting for the world state to transit, aka <b>Q-state</b>, computed by \(Q(s,a)\).
+</p>
+</div>
+<div id="outline-container-org58780a1" class="outline-3">
+<h3 id="org58780a1"><span class="section-number-3">2.1.</span> Utility of State Sequences</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The agent produces a sequence of alternating states and actions, and we can compute a sequence of rewards. The <b>utility</b> of the state sequence can model the <b>&ldquo;goodness&rdquo; of action sequence</b>. Higher utility can mean better performance of the agent.
+</p>
+
+<p>
+We may also involve <b>discounting</b> here. Discounting means that rewards decrease by a multiplier \(\gamma\) as more steps are taken. This can be used to encourage performing useful steps earlier. Discounting also helps utility convergence.
+</p>
+</div>
+</div>
+<div id="outline-container-org7131ecd" class="outline-3">
+<h3 id="org7131ecd"><span class="section-number-3">2.2.</span> Optimal Quantities</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We use \(V(s)\) to model the utility of a state \(s\), short for <b>expected utility starting from \(s\) and acting optimally</b>. Also use similarly \(Q(s,a)\) to the model the <b>expected utility starting from \(s\), taking action \(a\) and then acting optimally</b>.
+</p>
+
+<p>
+With the definition, we can infer their relationship:
+</p>
+
+\begin{equation}
+\begin{split}
+V^\ast(s)   &= \max_a Q^\ast (s,a) \\
+Q^\ast(s,a) &= \sum_{s'} T(s,a,s')\cdot \Big[ R(s,a,s') + \gamma V^\ast(s') \Big]
+\end{split}
+\end{equation}
+</div>
+</div>
+<div id="outline-container-org7343364" class="outline-3">
+<h3 id="org7343364"><span class="section-number-3">2.3.</span> Solving Optimal Policy</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org58b8d0e" class="outline-4">
+<h4 id="org58b8d0e"><span class="section-number-4">2.3.1.</span> Value Iteration</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+We update the value \(V(s)\) for \(k\) rounds to approximate the optimal. i.e.
+</p>
+
+<p>
+\[
+V_{k+1}(s) \gets \max_a \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V_k(s') \Big]
+\]
+</p>
+
+<p>
+<i>Policy extraction</i>. We derive the optimal policy given values
+</p>
+
+<p>
+\[
+\pi^\ast(s)=\mathop{\text{argmax}}\limits_a \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V^\ast(s') \Big]
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org4c9ca10" class="outline-4">
+<h4 id="org4c9ca10"><span class="section-number-4">2.3.2.</span> Q-Value Iteration</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+We start with \(Q_0(s,a)=0\), and iteratively update \(Q\)-values.
+</p>
+
+<p>
+\[
+Q_{k+1}(s,a) \gets \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma \max_{a'} Q_k(s',a') \Big]
+\]
+</p>
+
+<p>
+Policy extraction for Q-value iteration is very easy
+</p>
+
+<p>
+\[
+\pi^\ast(s)=\mathop{\text{argmax}}\limits_a\, Q^\ast(s,a)
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org93c7697" class="outline-4">
+<h4 id="org93c7697"><span class="section-number-4">2.3.3.</span> Policy Iteration</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+An alternative approach for value iteration. It can be divided into 2 phases.
+</p>
+
+<ol class="org-ol">
+<li><i>Policy evaluation</i>. calculate utilities for some fixed policy</li>
+<li><i>Policy improvement</i>. update policy using one-step look-ahead with resulting converged (but not optimal) utilities as future values.</li>
+</ol>
+
+<p>
+For evaluation with a <i>fixed policy \(\pi\)</i>, we can either use <i>iterative updates</i> \( V^\pi_{k+1}(s) \gets \sum_{s'} T(s,\pi(s),s')\Big[ R(s,\pi(s), s') + \gamma V^\pi_k(s') \Big] \), or treat Bellman equations as a linear system: \( V^\pi(s)=\sum_{s'} T(s,\pi(s),s')\Big[ R(s,\pi(s),s')+\gamma V^\pi(s') \Big] \)
+</p>
+
+<p>
+Then, we improve our policy with computed value:
+</p>
+
+<p>
+\[
+\pi_{k+1}(s)=\mathop{\text{argmax}}\limits_a\,\sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V^{\pi_k}(s') \Big]
+\]
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaadaa0c" class="outline-2">
+<h2 id="orgaadaa0c"><span class="section-number-2">3.</span> Reinforcement Learning</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga59b85d" class="outline-3">
+<h3 id="orga59b85d"><span class="section-number-3">3.1.</span> Model-Based Learning</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Its idea to learn an approximate model based on experience and use this model to solve for values. We first build transition model \(T^e(s,a,s')\) from history and discover each \(R^e(s,a,s')\), where \(e\) stands for <i>empirical</i>. Then with the transition model and reward model, we can solve the RL problem as MDP problem.
+</p>
+</div>
+</div>
+<div id="outline-container-org74e9b92" class="outline-3">
+<h3 id="org74e9b92"><span class="section-number-3">3.2.</span> Model-Free Learning</h3>
+<div class="outline-text-3" id="text-3-2">
+<dl class="org-dl">
+<dt>Passive RL</dt><dd>An agent is given a policy to follow and learns the value of states under that policy as it experiences episodes, which is exactly what is done by policy evaluation for MDPs when \(T,R\) are known.</dd>
+<dt>Acitve RL</dt><dd>During active RL, agent can use the feedback it receives to iteratively update it policy while learning until eventually determining the optimal policy after sufficient exploration.</dd>
+</dl>
+</div>
+<div id="outline-container-org8d97721" class="outline-4">
+<h4 id="org8d97721"><span class="section-number-4">3.2.1.</span> Direct Evaluation</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+An algorithm under passive RL. We fix some policy \(\pi\) and have the agent experience several episodes while following \(\pi\). As the agent collects samples through these episodes, it maintains counts of the total utilities obtained from each state and the number of times it visited each state. So then, we can compute the estimated value of any state \(s\) by dividing the total utility obtained from \(s\) by the number of times \(s\) was visited.
+</p>
+</div>
+</div>
+<div id="outline-container-org13b3805" class="outline-4">
+<h4 id="org13b3805"><span class="section-number-4">3.2.2.</span> Temporal Difference Learning</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Read: [BROKEN LINK: c5478523-4571-4c44-8459-8e65b7a40b8b]
+</p>
+</div>
+</div>
+<div id="outline-container-orge3c4e87" class="outline-4">
+<h4 id="orge3c4e87"><span class="section-number-4">3.2.3.</span> Q-Learning</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+Read: [BROKEN LINK: 33e3ca5d-e240-4e85-b718-caa69ab19d5f]
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-15 Mon</p>
+</div>
+</body>
+</html>

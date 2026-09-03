@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Normalizing Flow Models</title>
+<meta name="description" content="Autoregressive models provide tractable likelihoods but no direct mechanism for learning features, while VAEs can learn feature representations via latent variables but have intractable marginal likelihoods." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Normalizing Flow Models</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7f8a800">1. Motivation</a></li>
+<li><a href="#org8bdec20">2. Flow Model</a>
+<ul>
+<li><a href="#org0752a7e">2.1. Learning via Maximum Likelihood over Dataset</a></li>
+<li><a href="#org1657e35">2.2. Choice of Transformation</a></li>
+<li><a href="#orge5c9055">2.3. Case Study: Planar Flows</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Autoregressive models provide tractable likelihoods but no direct mechanism for learning features, while VAEs can learn feature representations via latent variables but have intractable marginal likelihoods.
+</p>
+<div id="outline-container-org7f8a800" class="outline-2">
+<h2 id="org7f8a800"><span class="section-number-2">1.</span> Motivation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We want to design a latent variable model with tractable likelihoods. Desirable properties of model distribution \( p_{\theta}(\mathbf{x}) \) include easy-to-evaluate (closed form density) which is useful for training and easy-to-sample which is useful for generation.
+</p>
+
+<p>
+Many simple distributions satisfy the above property, but true data distributions are more complex. The idea behind flow models is to <b>map simple distributions to complex distributions through an <i>invertible transformation</i>.</b>
+</p>
+</div>
+</div>
+<div id="outline-container-org8bdec20" class="outline-2">
+<h2 id="org8bdec20"><span class="section-number-2">2.</span> Flow Model</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Similar to VAE, we start from a simple prior: \( \mathbf{z} \sim \mathcal{N}(0,I)=p(\mathbf{z}) \), then we transform via \( p(\mathbf{x}|\mathbf{z})=\mathcal{N}(\mu_{\theta}(\mathbf{z}), \Sigma_{\theta}(\mathbf{z})) \)
+</p>
+
+<p>
+The problem is that, training requires \( p_{\theta}(\mathbf{x}) \), but computing this requires enumerating over \( \mathbf{z} \). Thus, we want to easily &ldquo;invert&rdquo; \( p(\mathbf{x}|\mathbf{z}) \) and compute \( p(\mathbf{z}|\mathbf{x}) \) by design. The idea here is to <span class="underline">make \( \mathbf{x} = f_{\theta}(\mathbf{z}) \) a deterministic and invertible function, so for any \( \mathbf{x} \) there is a unique corresponding \( \mathbf{z} \), thus we eliminate enumeration</span>.
+</p>
+
+<p>
+Consider a directed, latent-variable model over observed variables \(X\) and latent variables \(Z\). In a normalizing flow model, the mapping between \(Z\) and \(X\), given by \( \mathbf{f}_{\theta}:\mathbb{R}^{n}\mapsto\mathbb{R}^{n} \), is deterministic and invertible such that \( X=\mathbf{f}_{\theta}(Z) \) and \( Z=\mathbf{f}_{\theta}^{-1}(X) \).
+</p>
+
+<p>
+Using <a href="../Mathematics/Probability/Change of Variable Formula.html#ID-f15b0e80-526c-4be2-b326-e1bd495d88f4">Change of Variable Formula</a>, the marginal likelihood \( p(\mathbf{x}) \) is given by
+</p>
+
+\begin{equation}
+p_{X}(\mathbf{x}; \theta) = p_{Z}(\mathbf{f}^{-1}_{\theta}(\mathbf{x})) \left\vert \det \left( \frac{\partial \mathbf{f}^{-1}_{\theta}(\mathbf{x})}{\partial \mathbf{x}} \right) \right\vert
+\end{equation}
+
+<p>
+From the above formula, &ldquo;normalizing&rdquo; - change of variables gives a normalized density after applying an invertible transformation; &ldquo;flow&rdquo; - invertible transformation can be composed with each other, like
+</p>
+
+<p>
+\[
+\mathbf{z}_{m} = (\mathbf{f}_{\theta}^{m} \circ \mathbf{f}_{\theta}^{m-1} \circ \dots \circ \mathbf{f}_{\theta}^{1})(\mathbf{z}_{0}) := \mathbf{f}_{\theta}(\mathbf{z}_{0})
+\]
+</p>
+
+<dl class="org-dl">
+<dt>Sampling</dt><dd>The sampling is simple that we first sample latent variable \( \mathbf{z}\sim p(\mathbf{z}) \), then transform it with \( \mathbf{x} = \mathbf{f}_{\theta}(\mathbf{z}) \)</dd>
+<dt>Latent representations</dt><dd>To represent the latent variable, it&rsquo;s also straightforward to use inverse transformation \( \mathbf{z} = \mathbf{f}^{-1}_{\theta}(\mathbf{x}) \)</dd>
+</dl>
+</div>
+<div id="outline-container-org0752a7e" class="outline-3">
+<h3 id="org0752a7e"><span class="section-number-3">2.1.</span> Learning via Maximum Likelihood over Dataset</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+We can learn \( \mathbf{f}_{\theta} \) through maximum likelihood.
+</p>
+
+<p>
+\[
+\max_{\theta} \log p_{X}(\mathcal{D};\theta) = \sum_{\mathbf{x}\in \mathcal{D}} \log p_{Z}(\mathbf{f}^{-1}_{\theta}(\mathbf{x})) + \log \left\vert \det \left( \frac{\partial \mathbf{f}^{-1}_{\theta}(\mathbf{x})}{\partial \mathbf{x}} \right) \right\vert
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org1657e35" class="outline-3">
+<h3 id="org1657e35"><span class="section-number-3">2.2.</span> Choice of Transformation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Since we have to compute the determinant of the Jacobian, the time complexity is \( O(n^{3}) \). Suppose
+</p>
+
+<p>
+\[
+\mathbf{x} = (x_{1},x_{2}, \dots, x_{n}) = \mathbf{f}(\mathbf{z}) = (f_{1}(\mathbf{z}), \dots, f_{n}(\mathbf{z}))
+\]
+</p>
+
+<p>
+If \( x_{i} = f_{i}(\mathbf{z}) \) only depends on \( \mathbf{z}_{\le i} \), then the Jacobian has <b>lower triangular</b> structure. The determinant can be computed in <b>linear time</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orge5c9055" class="outline-3">
+<h3 id="orge5c9055"><span class="section-number-3">2.3.</span> Case Study: Planar Flows</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Planar flow assumes the transformation to be
+</p>
+
+<p>
+\[
+\mathbf{f}_{\theta}(\mathbf{z}) = \mathbf{z} + \mathbf{u} h(\mathbf{w}^{\top}\mathbf{z} + b)
+\]
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-21 Sun</p>
+</div>
+</body>
+</html>

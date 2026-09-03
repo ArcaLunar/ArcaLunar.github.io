@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trap Mechanism and Context Switch</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
+<script src="../../../.assets/index.js"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Trap Mechanism and Context Switch</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org34d9085">1. Procedure Overview</a>
+<ul>
+<li><a href="#org99900c5">1.1. Boot-Time Preparation</a></li>
+<li><a href="#orgf2057fd">1.2. If the Trap is Caused by Syscall</a></li>
+<li><a href="#org86e04cc">1.3. If the Trap is Caused by Timer</a></li>
+</ul>
+</li>
+<li><a href="#org85825e0">2. Explanation</a></li>
+</ul>
+</div>
+</div>
+<div class="definition" id="org3811a30">
+<dl class="org-dl">
+<dt>Trap Table</dt><dd>A table that stores the location of syscalls (aka trap handlers). Each syscall is assigned to a number, which is used by OS to tell the hardware what syscall to run. This trap table is set up by <i>kernel</i> at boot time, whose address is told to the hardware.</dd>
+<dt>User Mode, Kernel Mode</dt><dd>User mode process can only run restricted operations, while kernel mode processes can run privileged operations.</dd>
+<dt>Trap, Return-From-Trap</dt><dd>Trap and return-from-trap are special mechanisms for a user-mode process to run privileged operations.</dd>
+</dl>
+
+</div>
+<div id="outline-container-org34d9085" class="outline-2">
+<h2 id="org34d9085"><span class="section-number-2">1.</span> Procedure Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The following tables include <b>timer interrupt</b>.
+</p>
+</div>
+<div id="outline-container-org99900c5" class="outline-3">
+<h3 id="org99900c5"><span class="section-number-3">1.1.</span> Boot-Time Preparation</h3>
+<div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">OS@boot(kernel mode)</th>
+<th scope="col" class="org-left">Hardware</th>
+<th scope="col" class="org-left">Program(user mode)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">init trap table</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">remember addr of syscall &amp; timer handler</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">start interrupt timer</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">start timer, interrupt CPU per X ms</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf2057fd" class="outline-3">
+<h3 id="orgf2057fd"><span class="section-number-3">1.2.</span> If the Trap is Caused by Syscall</h3>
+<div class="outline-text-3" id="text-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">OS@run (kernel mode)</th>
+<th scope="col" class="org-left">Hardware</th>
+<th scope="col" class="org-left">Program (user mode)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Create entry for process list</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Allocate memory for program</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Load program from memory</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Setup user stack with argv</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Fill kernel stack with reg/PC</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">return-from-trap</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">restore regs (from kernel mode)</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">move to user mode</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">jump to <code>main()</code></td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">Run <code>main()</code></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">call syscall</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left"><b>trap</b> into OS</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">save regs (to kernel mode)</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">move to kernel mode</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">jump to trap handler</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Handle trap</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Execute syscall</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">return-from-trao</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">restore regs (from kernel stack)</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">move to user mode</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">jump to PC after trap</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">return from <code>main()</code></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">trap via <code>exit()</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Free memory of process</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Remove from process list</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org86e04cc" class="outline-3">
+<h3 id="org86e04cc"><span class="section-number-3">1.3.</span> If the Trap is Caused by Timer</h3>
+<div class="outline-text-3" id="text-1-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">OS @ run (kernel mode)</th>
+<th scope="col" class="org-left">Hardware</th>
+<th scope="col" class="org-left">Program (user mode)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">Process A</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">Timer interrupt</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">save regs(A) to kernel stack (A)</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">move to kernel mode</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">jump to trap handler</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Handle the trap</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">Call <code>switch()</code> routine:</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">save regs(A) to PCB(A)</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">restore regs(B) from PCB(B)</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">switch to kernel stack (B)</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">return from trap (into B)</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">restore regs(B) from kernel stack (B)</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">move to user mode</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">jumo to B&rsquo;s Program Counter</td>
+<td class="org-left">&nbsp;</td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">&nbsp;</td>
+<td class="org-left">Process B</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org85825e0" class="outline-2">
+<h2 id="org85825e0"><span class="section-number-2">2.</span> Explanation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Usually, programs are running in <b>user mode</b>. However, when it comes to <i>privileged operations</i> like file IO, such operations can only be done by OS, i.e., <b>kernel mode</b>. Such operations are called <b>system call</b>. System calls are APIs that are carefully exposed by OS.
+</p>
+
+<p>
+So how can OS perform syscalls in kernel mode? Upon booting, OS stores a <b>trap table</b> into memory, and tells hardware about the memory address of the trap table.
+</p>
+
+<p>
+If a program wants to perform some privileged operations, OS must <b>trap</b> from user mode into kernel mode to perform, and then <b>return-from-trap</b> back into user mode.
+</p>
+
+<p>
+When executing the trap, in order to <span class="underline">be able to return correctly</span>, the hardware and OS should <i>save enough of the caller&rsquo;s registers</i>. The hardware will push registers onto <b>per-process kernel stack</b> on trap; and pop these values from kernel stack on return-from-trap.
+</p>
+
+<p>
+The next question, how to switch between processes? More specifically, how do CPU <b>regain control</b>?
+</p>
+
+<ul class="org-ul">
+<li><i>Cooperative Approach</i>. CPU waits for syscalls from processes or illegal operations, so that after trapping into kernel mode, CPU can perform context switch to another process.</li>
+<li><i>Non-Cooperative Approach</i>. CPU has a <b>timer interrupt</b> that when the interrupt is raised, the currently running process is halted and a pre-configured <i>interrupt handler</i> <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> in the OS runs.</li>
+</ul>
+
+<p>
+During context switch, there are <b>two types of register saves &amp; restores</b>
+</p>
+
+<ol class="org-ol">
+<li>When timer interrupt occurs, <i>user registers</i> are implicitly saved by <i>hardware</i> using the <i>kernel stack</i> of that process.</li>
+<li>When OS decides to switch from A to B, the <i>kernel registers</i> are explicitly saved by the <i>software (OS)</i> into <i>memory (process structure)</i>.</li>
+</ol>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">aka exception handler</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-07 Sun</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Array Programming</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
+<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Array Programming</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgeb1d309">1. Slices</a>
+<ul>
+<li><a href="#org7be3733">1.1. Slice Literals vs. Array Literals</a></li>
+<li><a href="#orgd4c7797">1.2. Dynamic Arrays</a></li>
+<li><a href="#org430a1f1">1.3. Fixed Capacity Dynamic Arrays</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Odin has built-in supports array and matrix arithmetic.
+</p>
+<div id="outline-container-orgeb1d309" class="outline-2">
+<h2 id="orgeb1d309"><span class="section-number-2">1.</span> Slices</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Slices look like arrays, but their length is not known at compile time. Slices have type <code>[]T</code> where <code>T</code> is the value type.
+</p>
+
+<p>
+A slice is formed by specifying two indices, an <i>inclusive</i> lower bound and an <i>exclusive</i> upper bound.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin"><code>  <span class="org-variable-use">a</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">[</span></span><span class="org-variable-use">low</span><span class="org-punctuation">:</span> <span class="org-variable-use">high</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">]</span></span>
+</code></pre>
+</div>
+
+<p>
+<b>Slice Implementation</b>. A slice stores a pointer to the data and an interger to store the length of the slice.
+</p>
+</div>
+<div id="outline-container-org7be3733" class="outline-3">
+<h3 id="org7be3733"><span class="section-number-3">1.1.</span> Slice Literals vs. Array Literals</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Array literals specifies the array length, e.g., <code>[3]int{1,2,3}</code>; while slice literals do not. Indeed, Odin first <i>creates an array</i>, then <i>creates a slice that reference it</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd4c7797" class="outline-3">
+<h3 id="orgd4c7797"><span class="section-number-3">1.2.</span> Dynamic Arrays</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Dynamic arrays are similar to slices, but their length may change during runtime. They are allocated using the current context&rsquo;s allocator.
+</p>
+
+<ul class="org-ul">
+<li><code>append(&amp;arr, ..vals)</code> appends values to the end of array</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-odin"><code><span class="org-variable-use">x</span> <span class="org-punctuation">:=</span> <span class="org-function-call">make</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-keyword">dynamic</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-type">int</span><span class="org-punctuation">,</span> <span class="org-number">0</span><span class="org-punctuation">,</span> <span class="org-number">16</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-function-call">inject_at</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">0</span><span class="org-punctuation">,</span> <span class="org-number">10</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-function-call">inject_at</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">3</span><span class="org-punctuation">,</span> <span class="org-number">10</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// resizes till length</span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">eprintln</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-punctuation">:</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-punctuation">,</span> <span class="org-function-call">len</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation">,</span> <span class="org-function-call">cap</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// [10, 0, 0, 10] 4 16</span>
+<span class="org-function-call">assign_at</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">3</span><span class="org-punctuation">,</span> <span class="org-number">20</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-function-call">assign_at</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">4</span><span class="org-punctuation">,</span> <span class="org-number">30</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">eprintln</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-punctuation">:</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-punctuation">,</span> <span class="org-function-call">len</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation">,</span> <span class="org-function-call">cap</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// [10, 0, 0, 20, 30] 5, 16</span>
+<span class="org-function-call">assign_at</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">5</span><span class="org-punctuation">,</span> <span class="org-number">40</span><span class="org-punctuation">,</span> <span class="org-number">50</span><span class="org-punctuation">,</span> <span class="org-number">60</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">eprintln</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-punctuation">:</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-punctuation">,</span> <span class="org-function-call">len</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation">,</span> <span class="org-function-call">cap</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// [10, 0, 0, 20, 30, 40, 50, 60] 8 16</span>
+</code></pre>
+</div>
+
+<ul class="org-ul">
+<li><code>pop()</code> removes the last element</li>
+<li><code>ordered_remove(&amp;arr, index)</code> will move all elements after the index downwards with <i>copy</i></li>
+<li><code>unordered_remove(&amp;arr, index)</code> is \(O(1)\) removal, as it <i>swaps with the last element</i> and <i>pop</i>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org430a1f1" class="outline-3">
+<h3 id="org430a1f1"><span class="section-number-3">1.3.</span> Fixed Capacity Dynamic Arrays</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+It implements most dynamic array procedures while being able to remain on stack.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin"><code><span class="org-variable-use">x</span><span class="org-punctuation">:</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">[</span></span><span class="org-keyword">dynamic</span><span class="org-punctuation">;</span> <span class="org-number">8</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">]</span></span><span class="org-type">int</span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-function-call">len</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation">,</span> <span class="org-function-call">cap</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// 0 8</span>
+<span class="org-function-call">append</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-punctuation">&amp;</span><span class="org-variable-use">x</span><span class="org-punctuation">,</span> <span class="org-number">1</span><span class="org-punctuation">,</span> <span class="org-number">2</span><span class="org-punctuation">,</span> <span class="org-number">3</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-function-call">len</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation">,</span> <span class="org-function-call">cap</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// 3 8</span>
+<span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">x</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-punctuation">:</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-comment">// [1, 2, 3]</span>
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-11 Thu</p>
+</div>
+</body>
+</html>

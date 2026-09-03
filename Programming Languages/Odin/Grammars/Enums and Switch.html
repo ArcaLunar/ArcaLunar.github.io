@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Enums, Unions and Switch</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
+<script src="../../../.assets/index.js"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Enums, Unions and Switch</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3621cd1">1. Enumeration</a>
+<ul>
+<li><a href="#org712865b">1.1. Explicit Enumeration Numbering</a></li>
+<li><a href="#org269f7ae">1.2. Backing Type</a></li>
+</ul>
+</li>
+<li><a href="#orga78e8a3">2. Unions</a>
+<ul>
+<li><a href="#orga44526b">2.1. Grammar Sugar for Checking If Union is Holding a Specific Variant</a></li>
+<li><a href="#org720e84d">2.2. Tag of Union</a></li>
+</ul>
+</li>
+<li><a href="#orgd3e4cc2">3. Switch</a>
+<ul>
+<li><a href="#org859b4c5">3.1. Switch on Enums</a></li>
+<li><a href="#org8c18028">3.2. Switch on Unions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3621cd1" class="outline-2">
+<h2 id="org3621cd1"><span class="section-number-2">1.</span> Enumeration</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Enumerations can be defined with <code>enum</code> keyword
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-type">Computer_Type</span> <span class="org-punctuation">::</span> <span class="org-keyword">enum</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-type">Laptop</span><span class="org-punctuation">,</span> <span class="org-comment">// value 0</span>
+      <span class="org-type">Desktop</span><span class="org-punctuation">,</span> <span class="org-comment">// value 1</span>
+      <span class="org-type">Mainframe</span><span class="org-punctuation">,</span> <span class="org-comment">// value 2</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+
+<p>
+Similar to other languages, each enumeration is associated with an integer value. When <code>enum</code> instances are initialized with zero value, by default, it&rsquo;s set to the <span class="underline">first item</span>. Moreover, to initialize with specific enumeration item, we can use the <span class="underline">simplified dot notation</span>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-variable-use">ct</span> <span class="org-punctuation">:=</span> <span class="org-punctuation">.</span><span class="org-variable-use">Mainframe</span>
+  <span class="org-comment">// which is equivalent to</span>
+  <span class="org-variable-use">ct</span> <span class="org-punctuation">:=</span> <span class="org-variable-use">Computer_Type</span><span class="org-punctuation">.</span><span class="org-property-use">Mainframe</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org712865b" class="outline-3">
+<h3 id="org712865b"><span class="section-number-3">1.1.</span> Explicit Enumeration Numbering</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+We can explicit map each enumeration item to an integer manually. By default, it increases by 1.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-type">Computer_Type</span> <span class="org-punctuation">::</span> <span class="org-keyword">enum</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+    <span class="org-type">Laptop</span> <span class="org-punctuation">=</span> <span class="org-number">1</span><span class="org-punctuation">,</span> <span class="org-comment">// value 1</span>
+    <span class="org-type">Desktop</span><span class="org-punctuation">,</span>    <span class="org-comment">// value 2</span>
+    <span class="org-type">Mainframe</span><span class="org-punctuation">,</span>  <span class="org-comment">// value 3</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-type">Computer_Type</span> <span class="org-punctuation">::</span> <span class="org-keyword">enum</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+    <span class="org-type">Laptop</span> <span class="org-punctuation">=</span> <span class="org-number">0</span><span class="org-punctuation">,</span>    <span class="org-comment">// value 0 </span>
+    <span class="org-type">Desktop</span><span class="org-punctuation">,</span>       <span class="org-comment">// value 1</span>
+    <span class="org-type">Mainframe</span> <span class="org-punctuation">=</span> <span class="org-number">5</span><span class="org-punctuation">,</span> <span class="org-comment">// value 5</span>
+    <span class="org-type">Broken</span><span class="org-punctuation">,</span>        <span class="org-comment">// value 6</span>
+    <span class="org-type">Gamer_Rig</span><span class="org-punctuation">,</span>     <span class="org-comment">// value 7</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org269f7ae" class="outline-3">
+<h3 id="org269f7ae"><span class="section-number-3">1.2.</span> Backing Type</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+By default, <code>enum</code> uses <code>int</code> as backing type, which means that <span class="underline">behind the scenes, an enum uses an <code>int</code> to store the current value</span>. We can change the backing type by specifying the type after <code>enum</code> keyword
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-type">Animal_Type</span> <span class="org-punctuation">::</span> <span class="org-keyword">enum</span> <span class="org-type">u8</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-type">Cat</span><span class="org-punctuation">,</span>
+      <span class="org-type">Rabbit</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orga78e8a3" class="outline-2">
+<h2 id="orga78e8a3"><span class="section-number-2">2.</span> Unions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Unions can store both <i>type information</i> and <i>value</i>. We should specify the <span class="underline">type names</span> inside a <code>union</code>. When initializing a <code>union</code>, we should always remember to specify the data type.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-type">MyUnion</span> <span class="org-punctuation">::</span> <span class="org-keyword">union</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-type">f32</span><span class="org-punctuation">,</span>
+      <span class="org-type">int</span><span class="org-punctuation">,</span>
+      <span class="org-type">PersonData</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-type">PersonData</span> <span class="org-punctuation">::</span> <span class="org-keyword">struct</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-property-name">health</span><span class="org-punctuation">:</span> <span class="org-type">int</span><span class="org-punctuation">,</span>
+      <span class="org-property-name">age</span><span class="org-punctuation">:</span> <span class="org-type">int</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-variable-use">val</span><span class="org-punctuation">:</span> <span class="org-type">MyUnion</span> <span class="org-punctuation">=</span> <span class="org-function-call">int</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">12</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orga44526b" class="outline-3">
+<h3 id="orga44526b"><span class="section-number-3">2.1.</span> Grammar Sugar for Checking If Union is Holding a Specific Variant</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Soemtimes, we do not need the entire <code>switch</code> statement to get a value. We can just use <code>variable.(variant)</code> to try unpacking the union.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-variable-use">f32val</span><span class="org-punctuation">,</span> <span class="org-variable-use">f32val_ok</span> <span class="org-punctuation">:=</span> <span class="org-variable-use">val</span><span class="org-punctuation">.</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">f32</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+
+  <span class="org-variable-use">if</span> <span class="org-variable-use">f32val_ok</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-comment">// f32val is ok to use here</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-comment">// or equivalently, initialize within if-statement</span>
+  <span class="org-variable-use">if</span> <span class="org-variable-use">f32val</span><span class="org-punctuation">,</span> <span class="org-variable-use">ok</span> <span class="org-punctuation">:=</span> <span class="org-variable-use">val</span><span class="org-punctuation">.</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">f32</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-punctuation">;</span> <span class="org-variable-use">ok</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-comment">// If we want to modify the value</span>
+  <span class="org-variable-use">if</span> <span class="org-variable-use">f32val</span><span class="org-punctuation">,</span> <span class="org-variable-use">ok</span> <span class="org-punctuation">:=</span> <span class="org-punctuation">&amp;</span><span class="org-variable-use">val</span><span class="org-punctuation">.</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">f32</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-punctuation">;</span> <span class="org-variable-use">ok</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-variable-use">f32val</span><span class="org-punctuation">^</span> <span class="org-punctuation">=</span> <span class="org-number">7</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+
+<p>
+Note, <span class="underline">the zero value of a <code>union</code> is <code>nil</code>.</span> If a union is marked non-nil, then the zero value will be the zero value of the first variant.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-type">Shape</span> <span class="org-punctuation">::</span> <span class="org-keyword">union</span> <span class="org-preprocessor">#no_nil</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-type">Shape_Circle</span><span class="org-punctuation">,</span>
+      <span class="org-type">Shape_Square</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-type">Shape_Circle</span> <span class="org-punctuation">::</span> <span class="org-keyword">struct</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-property-name">radius</span><span class="org-punctuation">:</span> <span class="org-type">f32</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+  <span class="org-type">Shape_Square</span> <span class="org-punctuation">::</span> <span class="org-keyword">struct</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-property-name">width</span><span class="org-punctuation">:</span> <span class="org-type">f32</span><span class="org-punctuation">,</span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+
+  <span class="org-variable-use">shape</span><span class="org-punctuation">:</span> <span class="org-type">Shape</span> <span class="org-comment">// zero value: Variant Shape_Circle</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org720e84d" class="outline-3">
+<h3 id="org720e84d"><span class="section-number-3">2.2.</span> Tag of Union</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Without non-nil, there are 3 tags for <code>Shape</code> union: 0 for <code>nil</code>, 1 for <code>ShapeCircle</code>, 2 for <code>ShapeSquare</code>. With non-nil, there are 2 tags: 0 for <code>ShapeCircle</code>, 1 for <code>ShapeSquare</code>.
+</p>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgd3e4cc2" class="outline-2">
+<h2 id="orgd3e4cc2"><span class="section-number-2">3.</span> Switch</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org859b4c5" class="outline-3">
+<h3 id="org859b4c5"><span class="section-number-3">3.1.</span> Switch on Enums</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+In Odin, we can use <code>switch case</code> grammar to match variables. Unlike C/C++, in Odin, if one branch is matched, it will <b>automatically break</b>. If we want to fall through to next case, we should explicitly use <code>fallthrough</code> keyword.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-variable-use">switch</span> <span class="org-variable-use">ct</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+    <span class="org-variable-use">case</span> <span class="org-punctuation">.</span><span class="org-property-use">Laptop</span><span class="org-punctuation">:</span>
+      <span class="org-type">fmt</span><span class="org-punctuation">.</span><span class="org-type">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"Laptop"</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+    <span class="org-variable-use">case</span> <span class="org-punctuation">.</span><span class="org-property-use">Desktop</span><span class="org-punctuation">:</span>
+      <span class="org-type">fmt</span><span class="org-punctuation">.</span><span class="org-type">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"Desktop"</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+    <span class="org-variable-use">case</span> <span class="org-punctuation">.</span><span class="org-property-use">Mainframe</span><span class="org-punctuation">:</span>
+      <span class="org-type">fmt</span><span class="org-punctuation">.</span><span class="org-type">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"Mainframe"</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+
+<p>
+By default, <code>switch</code> requires you to exhaust all cases. But we can declare <code>#partial</code> before <code>switch</code> to tell Odin non-exhaustive matching.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-preprocessor">#partial</span> <span class="org-variable-use">switch</span> <span class="org-variable-use">ct</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-variable-use">case</span> <span class="org-punctuation">.</span><span class="org-property-use">Laptop</span><span class="org-punctuation">:</span>
+        <span class="org-type">fmt</span><span class="org-punctuation">.</span><span class="org-type">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"Laptop"</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+      <span class="org-variable-use">case</span> <span class="org-punctuation">.</span><span class="org-property-use">Desktop</span><span class="org-punctuation">:</span>
+        <span class="org-type">fmt</span><span class="org-punctuation">.</span><span class="org-type">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"Desktop"</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8c18028" class="outline-3">
+<h3 id="org8c18028"><span class="section-number-3">3.2.</span> Switch on Unions</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+We can pattern matching on union variants <span class="underline">by type names</span>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-odin-ts"><code>  <span class="org-variable-use">switch</span> <span class="org-variable-use">v</span> <span class="org-keyword">in</span> <span class="org-variable-use">val</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+      <span class="org-variable-use">case</span> <span class="org-variable-use">int</span><span class="org-punctuation">:</span>
+        <span class="org-comment">// we can use v as an int here</span>
+        <span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-string">"int: "</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+      <span class="org-variable-use">case</span> <span class="org-variable-use">f32</span><span class="org-punctuation">:</span>
+        <span class="org-comment">// we can use v as an f32 here</span>
+      <span class="org-variable-use">case</span> <span class="org-type">PersonData</span><span class="org-punctuation">:</span>
+        <span class="org-comment">// we can use v as of type PersonData, like accessing fields</span>
+        <span class="org-variable-use">fmt</span><span class="org-punctuation">.</span><span class="org-function-call">println</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-use">v</span><span class="org-punctuation">.</span><span class="org-property-use">age</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-2">)</span></span>
+  <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</code></pre>
+</div>
+
+<p>
+To make <code>v</code> <b>modifiable</b> inside <code>switch case</code>, we should use <i>references</i>: <code>switch &amp;v in val</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-07-17 Fri</p>
+</div>
+</body>
+</html>

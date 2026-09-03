@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Survey of RL for LRMs</title>
+<meta name="description" content="RL has become an important part for Large Reasoning Models. This article briefly reviews a survey paper on RL for LRMs, focusing on LLMs' reasoning ability" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
+<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Survey of RL for LRMs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4f971ca">1. Preliminary Definitions of RL Modeling for LRMs</a>
+<ul>
+<li><a href="#org1881d6b">1.1. Reinforcement Learning</a></li>
+<li><a href="#orgd1fda80">1.2. Frontier Models</a></li>
+</ul>
+</li>
+<li><a href="#orge09fd88">2. Foundational Components of RL for LRMs</a>
+<ul>
+<li><a href="#org0ab946e">2.1. Reward Design</a>
+<ul>
+<li><a href="#orgb4a7e96">2.1.1. Verifiable Rewards</a></li>
+<li><a href="#org5f07e30">2.1.2. Generative Rewards</a></li>
+<li><a href="#orgabd12dc">2.1.3. Dense Rewards</a></li>
+<li><a href="#org85c2bb4">2.1.4. Unsupervised Rewards</a></li>
+<li><a href="#org262e92a">2.1.5. Reward Shaping</a></li>
+</ul>
+</li>
+<li><a href="#org0fac2ff">2.2. Policy Optimization</a>
+<ul>
+<li><a href="#org5670f18">2.2.1. Policy Gradient Objective</a></li>
+<li><a href="#org9e2da05">2.2.2. Critic-based Algorithms</a></li>
+<li><a href="#org1e96fc2">2.2.3. Critic-Free Algorithms</a></li>
+<li><a href="#orgc7d0fb6">2.2.4. Off-Policy Optimization</a></li>
+<li><a href="#org7b6393b">2.2.5. Regularization Objectives</a></li>
+</ul>
+</li>
+<li><a href="#orgc00dc8a">2.3. Sampling Strategies</a>
+<ul>
+<li><a href="#org3b380a5">2.3.1. Dynamic and Structured Sampling</a></li>
+<li><a href="#orge647b0b">2.3.2. Sampling Hyper Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org96ddac0">3. Problems in RL for LRMs</a>
+<ul>
+<li><a href="#orga515f3c">3.1. Role of RL</a></li>
+<li><a href="#org070a56a">3.2. RL vs. SFT</a></li>
+<li><a href="#org9f71acc">3.3. Model Priors</a></li>
+<li><a href="#org3b0721a">3.4. Training Recipes</a></li>
+<li><a href="#org52ba147">3.5. Reward Definitions</a></li>
+</ul>
+</li>
+<li><a href="#org645172a">4. Training Resources for RL</a>
+<ul>
+<li><a href="#org139dc67">4.1. Static Corpus</a></li>
+<li><a href="#org7ae36ce">4.2. Dynamic Environments</a></li>
+<li><a href="#org8aff6a3">4.3. Training Infrastructure</a></li>
+</ul>
+</li>
+<li><a href="#orgba19259">5. Application of RL</a></li>
+<li><a href="#org3e9c354">6. Future Directions in RL for Language Models</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4f971ca" class="outline-2">
+<h2 id="org4f971ca"><span class="section-number-2">1.</span> Preliminary Definitions of RL Modeling for LRMs</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We quickly go through the basic components of RL, and describe how language models can be adapted into the RL framework.
+</p>
+
+<p>
+<img src="/.assets/rl/rl-llm.png" alt="" />
+</p>
+</div>
+<div id="outline-container-org1881d6b" class="outline-3">
+<h3 id="org1881d6b"><span class="section-number-3">1.1.</span> Reinforcement Learning</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+RL is a general framework for <i>sequential decision making</i>, in which an <i>agent</i> interacts with an <i>environment</i> by taking <i>actions</i> to <i>maximize cumulative reward</i>. The main components include state space \(\mathcal{S}\), action space \(\mathcal{A}\), transition function \( \mathcal{P}:\mathcal{S}\times\mathcal{A}\mapsto\mathcal{S} \), reward function \( R:\mathcal{S}\times\mathcal{A}\mapsto \mathbb{R} \), and a discounting factor \( \gamma \in [0,1] \).
+</p>
+
+<p>
+At each step, the agent observes a state \( s_{t} \), selects an action \( a_{t} \) based on policy \( \pi_{\theta} \) parameterized by \( \theta \), transits to a new state \( s_{t+1} \) and receives a reward \( r_{t} \).
+</p>
+
+<p>
+When mapping to the context of language models:
+</p>
+
+<ul class="org-ul">
+<li><b>Prompt</b> \(x\) can be mapped to the initial world state or env context, drawn from a data distribution and corresponding to the dataset \( \mathcal{D} \).</li>
+<li><b>Policy</b> \( \pi_{\theta} \) represents the language model itself, which generates a sequence of length \(T\) denoting as \( y=(y_{1}, y_{2}, \dots, y_{T}) \).</li>
+<li><b>State</b> \( s_{t} \) defined as <i>prompt</i> + <i>tokens generated so far</i>, i.e., \( s_{t}=(x,a_{1:t-1}) \)</li>
+<li><b>Action</b> \( a_{t} \) can be a single token (<i>token-level</i>), a segment of tokens (<i>step-level</i>), or the entire generated sequence (<i>sequence-level</i>), dependent on granularity.</li>
+<li><b>Transition Dynamics</b> \(\mathcal{P}\) is usually deterministic in the context of LLMs since \( s_{t+1} = [s_{t}, a_{t}] \)</li>
+<li><b>Reward</b> \( R(x,y),r_{t} \) is assigned based on <b>action granularity</b>.</li>
+<li><b>Return</b> \(G\) is the <i>cumulative reward</i> of the whole trajectory \(y\) for prompt \(x\)</li>
+</ul>
+
+<p>
+In this setting, the learning objective is to maximize the expected cumulative reward over that data distribution \(\mathcal{D}\), i.e.,
+</p>
+
+<p>
+\[
+\theta^{\ast}=\max_{\theta} \mathcal{J}(\theta):=\mathbb{E}_{x\sim\mathcal{D}, y\sim \pi_{\theta}(x)}[G]
+\]
+</p>
+
+<p>
+In practice, we usually have a reference policy \(\pi_{ref}\) for model regularization. Often implemented as KL-divergence, to stablize modle policy training and maintain language quality (by avoiding model parameters from changing too much).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1fda80" class="outline-3">
+<h3 id="orgd1fda80"><span class="section-number-3">1.2.</span> Frontier Models</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+There are 3 major directions: LRMs, agentic LRMs and multimodal LRMs.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge09fd88" class="outline-2">
+<h2 id="orge09fd88"><span class="section-number-2">2.</span> Foundational Components of RL for LRMs</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org0ab946e" class="outline-3">
+<h3 id="org0ab946e"><span class="section-number-3">2.1.</span> Reward Design</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgb4a7e96" class="outline-4">
+<h4 id="orgb4a7e96"><span class="section-number-4">2.1.1.</span> Verifiable Rewards</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Only tasks <b>comparatively easy to verify</b> benefit from outcome-based RL algorithms. Tasks lacking fast or objective verification remain challenging for outcome-based RL.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org3e746b4"></a>Rule-based Rewards<br />
+<div class="outline-text-5" id="text-2-1-1-1">
+<p>
+In rule-based rewards method, we usually have a programmatic verifier. They provide <b>binary and checkable</b> signals in domains with objectively verifiable outcomes, for example, coding and mathematics, thus improving models&rsquo; performance in these 2 fields through <b>accuracy and format checks</b>.
+</p>
+
+<ul class="org-ul">
+<li><b>Accuracy rewards</b>. For tasks with deterministic outcomes, like math problems, we compare generated answer with reference answer. For coding tests, we may use unit tests or compiler signals.</li>
+<li><b>Format rewards</b> impose structural constraint requiring the model to follow, like <code>&lt;think&gt;&lt;/think&gt;</code> chain of thought format.</li>
+</ul>
+</div>
+</li>
+<li><a id="orgc9c4057"></a>Rule-based Verifiers<br />
+<div class="outline-text-5" id="text-2-1-1-2">
+<p>
+Usually rely on a large collection of predefined equivalent rules to check if the generated answer matches the ground truth.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org5f07e30" class="outline-4">
+<h4 id="org5f07e30"><span class="section-number-4">2.1.2.</span> Generative Rewards</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<blockquote>
+<p>
+Generative reward models (GenRMs) extend RL to <i>subjective, non-verifiable</i> domains by providing nuanced, text-based feedback. A dominant trend is training RMs to <i>reason before judging</i>, often using structured rubrics to guide evaluation or co-evolving them with the policy model in a unified RL loop.
+</p>
+</blockquote>
+</div>
+<ol class="org-ol">
+<li><a id="org1e9dce2"></a>Model-based Verifiers for Verifiable Tasks<br />
+<div class="outline-text-5" id="text-2-1-2-1">
+<p>
+Use model to evaluate model&rsquo;s free-form output with reference answer. This technique is adopted in augmenting existing rule-based systems, as well as multi-domain veirifiers that handles diverse data types and reasoning tasks.
+</p>
+</div>
+</li>
+<li><a id="org70a701c"></a>Generative Rewards for Non-Verifiable Tasks<br />
+<div class="outline-text-5" id="text-2-1-2-2">
+<p>
+AKA <i>assessment-based GenRMs</i>, which can be roughly categorized into:
+</p>
+
+<p>
+<b>&ldquo;<i>Reasoning reward models</i>&rdquo;</b> (learning to think). Train the reward models to explicitly reason before judging. It could be done through <i>prompting</i> or <i>train</i> reward models with RL using simple and verifiable meta-rewards based on correctness of their final verdict.
+</p>
+
+<p>
+<b>&ldquo;<i>Rubric-based rewards</i>&rdquo; (structuring subjectivity)</b>. While rule-based methods rely on hardcoded logic for objective and verifiable tasks, rubric-based methods leverage <i>natural language descriptions</i> to capture criteria for <i>subjective, non-verifiable domains</i> where binary rules are insufficient. <span class="underline">A common way is to use LLM to generate or follow a checklist of principles to guide its assessment</span>. Another approach is to <i>decompose high-level tasks into a set of verifiable proxy questions or generate domain specific principles</i>. Moreover, rubric itself can be served as instructional scaffolds to guide policy exploration, and as criteria for the final reward, e.g. RLMT<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> uses model-rewarded thinking to improve reasoning and chat capabilities.
+</p>
+
+<p>
+<b>&ldquo;<i>Co-Evolving Systems</i>&rdquo; (Unifying Policy and Reward)</b>. Generator and verifier improve together.
+</p>
+
+<ul class="org-ul">
+<li><b>Self-Rewarding</b> that a single model generates its own training signals. Either alternatively play roles as policy and verifier, or performs self-correction based on its own critique, or internalizes the reward function via post-completion learning.</li>
+<li><b>Co-Optimization</b> where the policy and a separate reward model are trained concurrently.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgabd12dc" class="outline-4">
+<h4 id="orgabd12dc"><span class="section-number-4">2.1.3.</span> Dense Rewards</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Dense rewards provide fine-grained credit assignment and improve training efficiency and optimization stability in RL. However, <i>scaling</i> remains challenging for open-domain tasks due to difficulty in defining dense rewards or using verifiers.
+</p>
+</div>
+</div>
+<div id="outline-container-org85c2bb4" class="outline-4">
+<h4 id="org85c2bb4"><span class="section-number-4">2.1.4.</span> Unsupervised Rewards</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+Unsupervised rewards eliminate human annotation bottleneck, making reward signal generation scalable. Main approaches either from <i>model&rsquo;s own processes</i> (output consistency, internal confidence, self-generated knowledge), or from <i>automated external sources</i> (heuristics, data corpora).
+</p>
+</div>
+</div>
+<div id="outline-container-org262e92a" class="outline-4">
+<h4 id="org262e92a"><span class="section-number-4">2.1.5.</span> Reward Shaping</h4>
+</div>
+</div>
+<div id="outline-container-org0fac2ff" class="outline-3">
+<h3 id="org0fac2ff"><span class="section-number-3">2.2.</span> Policy Optimization</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org5670f18" class="outline-4">
+<h4 id="org5670f18"><span class="section-number-4">2.2.1.</span> Policy Gradient Objective</h4>
+</div>
+
+<div id="outline-container-org9e2da05" class="outline-4">
+<h4 id="org9e2da05"><span class="section-number-4">2.2.2.</span> Critic-based Algorithms</h4>
+</div>
+
+<div id="outline-container-org1e96fc2" class="outline-4">
+<h4 id="org1e96fc2"><span class="section-number-4">2.2.3.</span> Critic-Free Algorithms</h4>
+</div>
+
+<div id="outline-container-orgc7d0fb6" class="outline-4">
+<h4 id="orgc7d0fb6"><span class="section-number-4">2.2.4.</span> Off-Policy Optimization</h4>
+</div>
+
+<div id="outline-container-org7b6393b" class="outline-4">
+<h4 id="org7b6393b"><span class="section-number-4">2.2.5.</span> Regularization Objectives</h4>
+</div>
+</div>
+<div id="outline-container-orgc00dc8a" class="outline-3">
+<h3 id="orgc00dc8a"><span class="section-number-3">2.3.</span> Sampling Strategies</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org3b380a5" class="outline-4">
+<h4 id="org3b380a5"><span class="section-number-4">2.3.1.</span> Dynamic and Structured Sampling</h4>
+</div>
+
+<div id="outline-container-orge647b0b" class="outline-4">
+<h4 id="orge647b0b"><span class="section-number-4">2.3.2.</span> Sampling Hyper Parameters</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org96ddac0" class="outline-2">
+<h2 id="org96ddac0"><span class="section-number-2">3.</span> Problems in RL for LRMs</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga515f3c" class="outline-3">
+<h3 id="orga515f3c"><span class="section-number-3">3.1.</span> Role of RL</h3>
+</div>
+
+<div id="outline-container-org070a56a" class="outline-3">
+<h3 id="org070a56a"><span class="section-number-3">3.2.</span> RL vs. SFT</h3>
+</div>
+
+<div id="outline-container-org9f71acc" class="outline-3">
+<h3 id="org9f71acc"><span class="section-number-3">3.3.</span> Model Priors</h3>
+</div>
+
+<div id="outline-container-org3b0721a" class="outline-3">
+<h3 id="org3b0721a"><span class="section-number-3">3.4.</span> Training Recipes</h3>
+</div>
+
+<div id="outline-container-org52ba147" class="outline-3">
+<h3 id="org52ba147"><span class="section-number-3">3.5.</span> Reward Definitions</h3>
+</div>
+</div>
+<div id="outline-container-org645172a" class="outline-2">
+<h2 id="org645172a"><span class="section-number-2">4.</span> Training Resources for RL</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org139dc67" class="outline-3">
+<h3 id="org139dc67"><span class="section-number-3">4.1.</span> Static Corpus</h3>
+</div>
+
+<div id="outline-container-org7ae36ce" class="outline-3">
+<h3 id="org7ae36ce"><span class="section-number-3">4.2.</span> Dynamic Environments</h3>
+</div>
+
+<div id="outline-container-org8aff6a3" class="outline-3">
+<h3 id="org8aff6a3"><span class="section-number-3">4.3.</span> Training Infrastructure</h3>
+</div>
+</div>
+<div id="outline-container-orgba19259" class="outline-2">
+<h2 id="orgba19259"><span class="section-number-2">5.</span> Application of RL</h2>
+</div>
+
+<div id="outline-container-org3e9c354" class="outline-2">
+<h2 id="org3e9c354"><span class="section-number-2">6.</span> Future Directions in RL for Language Models</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Yang Zhou, Sunzhu Li, Shunyu Liu, Wenkai Fang, Jiale Zhao, Jingwen Yang, Jianwei Lv, Kongcheng Zhang, Yihe Zhou, Hengtong Lu, et al. Breaking the exploration bottleneck: Rubric-scaffolded reinforcement learning for general llm reasoning. arXiv preprint arXiv:2508.16949, 2025f.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-06-18 Thu</p>
+</div>
+</body>
+</html>
