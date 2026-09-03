@@ -210,12 +210,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9156e8c">1. Lexing Procedure</a></li>
-<li><a href="#org19c1299">2. Finite Automata</a>
+<li><a href="#org2523e7e">1. Lexing Procedure</a></li>
+<li><a href="#org5df7fe2">2. Finite Automata</a>
 <ul>
-<li><a href="#org08fb129">2.1. Converting Regex into NFAs</a></li>
-<li><a href="#orgedf86ba">2.2. From NFAs to DFAs</a></li>
-<li><a href="#orgd1fd79f">2.3. Implementation of Finite Automata</a></li>
+<li><a href="#org93f2819">2.1. Converting Regex into NFAs</a></li>
+<li><a href="#org67853c1">2.2. From NFAs to DFAs</a></li>
+<li><a href="#org4df4d8f">2.3. Implementation of Finite Automata</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +224,8 @@
 <p>
 This part focuses on how to partition the input string into tokens.
 </p>
-<div id="outline-container-org9156e8c" class="outline-2">
-<h2 id="org9156e8c"><span class="section-number-2">1.</span> Lexing Procedure</h2>
+<div id="outline-container-org2523e7e" class="outline-2">
+<h2 id="org2523e7e"><span class="section-number-2">1.</span> Lexing Procedure</h2>
 <div class="outline-text-2" id="text-1">
 <ol class="org-ol">
 <li>we first write down the regex for each token class</li>
@@ -247,8 +247,8 @@ This part focuses on how to partition the input string into tokens.
 </p>
 </div>
 </div>
-<div id="outline-container-org19c1299" class="outline-2">
-<h2 id="org19c1299"><span class="section-number-2">2.</span> Finite Automata</h2>
+<div id="outline-container-org5df7fe2" class="outline-2">
+<h2 id="org5df7fe2"><span class="section-number-2">2.</span> Finite Automata</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Regular expressions = specification, while finite automata = implementation. A finite automata consists of input alphabet \(\Sigma\), a set of state \(S\), a start state \(n\), a set of accepting states \(F\subseteq S\) and a set of transitions \(\text{state} \overset{\text{input}}{\longrightarrow} \text{state}\).
@@ -264,8 +264,8 @@ Regular expressions = specification, while finite automata = implementation. A f
 DFAs are faster to execute, while NFAs are generally (exponentially) smaller.
 </p>
 </div>
-<div id="outline-container-org08fb129" class="outline-3">
-<h3 id="org08fb129"><span class="section-number-3">2.1.</span> Converting Regex into NFAs</h3>
+<div id="outline-container-org93f2819" class="outline-3">
+<h3 id="org93f2819"><span class="section-number-3">2.1.</span> Converting Regex into NFAs</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Practically, we use NFAs to implement regular expressions. Then we translate NFAs into DFAs, and finally use look-up tables to implement DFAs.
@@ -302,8 +302,8 @@ For iteration,
 </p>
 </div>
 </div>
-<div id="outline-container-orgedf86ba" class="outline-3">
-<h3 id="orgedf86ba"><span class="section-number-3">2.2.</span> From NFAs to DFAs</h3>
+<div id="outline-container-org67853c1" class="outline-3">
+<h3 id="org67853c1"><span class="section-number-3">2.2.</span> From NFAs to DFAs</h3>
 <div class="outline-text-3" id="text-2-2">
 <dl class="org-dl">
 <dt>\(\epsilon\)-closure</dt><dd>A \(\epsilon\)-closure of a state \(S\), is the set of nodes that can be reached by only using \(\epsilon\)-moves zero or more times</dd>
@@ -383,8 +383,8 @@ For the equivalent DFA to the above NFA, we have
 </table>
 </div>
 </div>
-<div id="outline-container-orgd1fd79f" class="outline-3">
-<h3 id="orgd1fd79f"><span class="section-number-3">2.3.</span> Implementation of Finite Automata</h3>
+<div id="outline-container-org4df4d8f" class="outline-3">
+<h3 id="org4df4d8f"><span class="section-number-3">2.3.</span> Implementation of Finite Automata</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A DFA can be implemented by a 2D table T, with one dimension being states and the other dimension being input symbols. For every transition \( s_i \overset{a}{\to} s_j \), we set \( \texttt{T}[s_i, a]=s_j \).

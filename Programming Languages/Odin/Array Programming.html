@@ -209,11 +209,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org807e74b">1. Slices</a>
+<li><a href="#orgba530d1">1. Slices</a>
 <ul>
-<li><a href="#orgeaccef7">1.1. Slice Literals vs. Array Literals</a></li>
-<li><a href="#org94b0011">1.2. Dynamic Arrays</a></li>
-<li><a href="#org25002b8">1.3. Fixed Capacity Dynamic Arrays</a></li>
+<li><a href="#org05f5ac8">1.1. Slice Literals vs. Array Literals</a></li>
+<li><a href="#orgaef397b">1.2. Dynamic Arrays</a></li>
+<li><a href="#org3b3cbf8">1.3. Fixed Capacity Dynamic Arrays</a></li>
 </ul>
 </li>
 </ul>
@@ -222,8 +222,8 @@
 <p>
 Odin has built-in supports array and matrix arithmetic.
 </p>
-<div id="outline-container-org807e74b" class="outline-2">
-<h2 id="org807e74b"><span class="section-number-2">1.</span> Slices</h2>
+<div id="outline-container-orgba530d1" class="outline-2">
+<h2 id="orgba530d1"><span class="section-number-2">1.</span> Slices</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Slices look like arrays, but their length is not known at compile time. Slices have type <code>[]T</code> where <code>T</code> is the value type.
@@ -242,16 +242,16 @@ A slice is formed by specifying two indices, an <i>inclusive</i> lower bound and
 <b>Slice Implementation</b>. A slice stores a pointer to the data and an interger to store the length of the slice.
 </p>
 </div>
-<div id="outline-container-orgeaccef7" class="outline-3">
-<h3 id="orgeaccef7"><span class="section-number-3">1.1.</span> Slice Literals vs. Array Literals</h3>
+<div id="outline-container-org05f5ac8" class="outline-3">
+<h3 id="org05f5ac8"><span class="section-number-3">1.1.</span> Slice Literals vs. Array Literals</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Array literals specifies the array length, e.g., <code>[3]int{1,2,3}</code>; while slice literals do not. Indeed, Odin first <i>creates an array</i>, then <i>creates a slice that reference it</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org94b0011" class="outline-3">
-<h3 id="org94b0011"><span class="section-number-3">1.2.</span> Dynamic Arrays</h3>
+<div id="outline-container-orgaef397b" class="outline-3">
+<h3 id="orgaef397b"><span class="section-number-3">1.2.</span> Dynamic Arrays</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Dynamic arrays are similar to slices, but their length may change during runtime. They are allocated using the current context&rsquo;s allocator.
@@ -281,8 +281,8 @@ Dynamic arrays are similar to slices, but their length may change during runtime
 </ul>
 </div>
 </div>
-<div id="outline-container-org25002b8" class="outline-3">
-<h3 id="org25002b8"><span class="section-number-3">1.3.</span> Fixed Capacity Dynamic Arrays</h3>
+<div id="outline-container-org3b3cbf8" class="outline-3">
+<h3 id="org3b3cbf8"><span class="section-number-3">1.3.</span> Fixed Capacity Dynamic Arrays</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 It implements most dynamic array procedures while being able to remain on stack.

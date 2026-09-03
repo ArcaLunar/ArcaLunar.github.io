@@ -206,29 +206,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc7ca062">1. Enumeration</a>
+<li><a href="#org93a9864">1. Enumeration</a>
 <ul>
-<li><a href="#org18731f4">1.1. Explicit Enumeration Numbering</a></li>
-<li><a href="#org8ff411d">1.2. Backing Type</a></li>
+<li><a href="#orgf6f21d5">1.1. Explicit Enumeration Numbering</a></li>
+<li><a href="#org9860c9a">1.2. Backing Type</a></li>
 </ul>
 </li>
-<li><a href="#org367c928">2. Unions</a>
+<li><a href="#org38d2397">2. Unions</a>
 <ul>
-<li><a href="#org4532cc0">2.1. Grammar Sugar for Checking If Union is Holding a Specific Variant</a></li>
-<li><a href="#org576e009">2.2. Tag of Union</a></li>
+<li><a href="#org812b407">2.1. Grammar Sugar for Checking If Union is Holding a Specific Variant</a></li>
+<li><a href="#orgfce6efd">2.2. Tag of Union</a></li>
 </ul>
 </li>
-<li><a href="#orgf0743d9">3. Switch</a>
+<li><a href="#org7786a6c">3. Switch</a>
 <ul>
-<li><a href="#orgc45383e">3.1. Switch on Enums</a></li>
-<li><a href="#org6e201dc">3.2. Switch on Unions</a></li>
+<li><a href="#org7d65c14">3.1. Switch on Enums</a></li>
+<li><a href="#org1ba4f6c">3.2. Switch on Unions</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc7ca062" class="outline-2">
-<h2 id="orgc7ca062"><span class="section-number-2">1.</span> Enumeration</h2>
+<div id="outline-container-org93a9864" class="outline-2">
+<h2 id="org93a9864"><span class="section-number-2">1.</span> Enumeration</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Enumerations can be defined with <code>enum</code> keyword
@@ -254,8 +254,8 @@ Similar to other languages, each enumeration is associated with an integer value
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org18731f4" class="outline-3">
-<h3 id="org18731f4"><span class="section-number-3">1.1.</span> Explicit Enumeration Numbering</h3>
+<div id="outline-container-orgf6f21d5" class="outline-3">
+<h3 id="orgf6f21d5"><span class="section-number-3">1.1.</span> Explicit Enumeration Numbering</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can explicit map each enumeration item to an integer manually. By default, it increases by 1.
@@ -279,8 +279,8 @@ We can explicit map each enumeration item to an integer manually. By default, it
 </div>
 </div>
 </div>
-<div id="outline-container-org8ff411d" class="outline-3">
-<h3 id="org8ff411d"><span class="section-number-3">1.2.</span> Backing Type</h3>
+<div id="outline-container-org9860c9a" class="outline-3">
+<h3 id="org9860c9a"><span class="section-number-3">1.2.</span> Backing Type</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 By default, <code>enum</code> uses <code>int</code> as backing type, which means that <span class="underline">behind the scenes, an enum uses an <code>int</code> to store the current value</span>. We can change the backing type by specifying the type after <code>enum</code> keyword
@@ -298,8 +298,8 @@ By default, <code>enum</code> uses <code>int</code> as backing type, which means
 </div>
 </div>
 </div>
-<div id="outline-container-org367c928" class="outline-2">
-<h2 id="org367c928"><span class="section-number-2">2.</span> Unions</h2>
+<div id="outline-container-org38d2397" class="outline-2">
+<h2 id="org38d2397"><span class="section-number-2">2.</span> Unions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Unions can store both <i>type information</i> and <i>value</i>. We should specify the <span class="underline">type names</span> inside a <code>union</code>. When initializing a <code>union</code>, we should always remember to specify the data type.
@@ -321,8 +321,8 @@ Unions can store both <i>type information</i> and <i>value</i>. We should specif
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org4532cc0" class="outline-3">
-<h3 id="org4532cc0"><span class="section-number-3">2.1.</span> Grammar Sugar for Checking If Union is Holding a Specific Variant</h3>
+<div id="outline-container-org812b407" class="outline-3">
+<h3 id="org812b407"><span class="section-number-3">2.1.</span> Grammar Sugar for Checking If Union is Holding a Specific Variant</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Soemtimes, we do not need the entire <code>switch</code> statement to get a value. We can just use <code>variable.(variant)</code> to try unpacking the union.
@@ -369,8 +369,8 @@ Note, <span class="underline">the zero value of a <code>union</code> is <code>ni
 </div>
 </div>
 </div>
-<div id="outline-container-org576e009" class="outline-3">
-<h3 id="org576e009"><span class="section-number-3">2.2.</span> Tag of Union</h3>
+<div id="outline-container-orgfce6efd" class="outline-3">
+<h3 id="orgfce6efd"><span class="section-number-3">2.2.</span> Tag of Union</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Without non-nil, there are 3 tags for <code>Shape</code> union: 0 for <code>nil</code>, 1 for <code>ShapeCircle</code>, 2 for <code>ShapeSquare</code>. With non-nil, there are 2 tags: 0 for <code>ShapeCircle</code>, 1 for <code>ShapeSquare</code>.
@@ -380,12 +380,12 @@ Without non-nil, there are 3 tags for <code>Shape</code> union: 0 for <code>nil<
 </div>
 </div>
 </div>
-<div id="outline-container-orgf0743d9" class="outline-2">
-<h2 id="orgf0743d9"><span class="section-number-2">3.</span> Switch</h2>
+<div id="outline-container-org7786a6c" class="outline-2">
+<h2 id="org7786a6c"><span class="section-number-2">3.</span> Switch</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc45383e" class="outline-3">
-<h3 id="orgc45383e"><span class="section-number-3">3.1.</span> Switch on Enums</h3>
+<div id="outline-container-org7d65c14" class="outline-3">
+<h3 id="org7d65c14"><span class="section-number-3">3.1.</span> Switch on Enums</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 In Odin, we can use <code>switch case</code> grammar to match variables. Unlike C/C++, in Odin, if one branch is matched, it will <b>automatically break</b>. If we want to fall through to next case, we should explicitly use <code>fallthrough</code> keyword.
@@ -418,8 +418,8 @@ By default, <code>switch</code> requires you to exhaust all cases. But we can de
 </div>
 </div>
 </div>
-<div id="outline-container-org6e201dc" class="outline-3">
-<h3 id="org6e201dc"><span class="section-number-3">3.2.</span> Switch on Unions</h3>
+<div id="outline-container-org1ba4f6c" class="outline-3">
+<h3 id="org1ba4f6c"><span class="section-number-3">3.2.</span> Switch on Unions</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 We can pattern matching on union variants <span class="underline">by type names</span>.

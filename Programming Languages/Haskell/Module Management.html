@@ -206,21 +206,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge909c50">1. Module Management and Interface</a></li>
-<li><a href="#org4e7cbef">2. Module Architecture</a></li>
-<li><a href="#org7e9ef36">3. Importing Module</a>
+<li><a href="#org33f5e13">1. Module Management and Interface</a></li>
+<li><a href="#orgcf28223">2. Module Architecture</a></li>
+<li><a href="#orgc9a4619">3. Importing Module</a>
 <ul>
-<li><a href="#org22f2a20">3.1. Import to Global Namespace</a></li>
-<li><a href="#org8fd416c">3.2. Import Namespaced</a></li>
-<li><a href="#orgc983f6a">3.3. Import with Aliases</a></li>
-<li><a href="#orgec8c77f">3.4. Selective Import</a></li>
+<li><a href="#orga535359">3.1. Import to Global Namespace</a></li>
+<li><a href="#org1022312">3.2. Import Namespaced</a></li>
+<li><a href="#orgc07f66d">3.3. Import with Aliases</a></li>
+<li><a href="#org3c52d13">3.4. Selective Import</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge909c50" class="outline-2">
-<h2 id="orge909c50"><span class="section-number-2">1.</span> Module Management and Interface</h2>
+<div id="outline-container-org33f5e13" class="outline-2">
+<h2 id="org33f5e13"><span class="section-number-2">1.</span> Module Management and Interface</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can control what to expose in the brackets after module name. For example,
@@ -232,8 +232,8 @@ We can control what to expose in the brackets after module name. For example,
 </div>
 </div>
 </div>
-<div id="outline-container-org4e7cbef" class="outline-2">
-<h2 id="org4e7cbef"><span class="section-number-2">2.</span> Module Architecture</h2>
+<div id="outline-container-orgcf28223" class="outline-2">
+<h2 id="orgcf28223"><span class="section-number-2">2.</span> Module Architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Module names usually have their first letter capitalized, e.g., <code>Data.List</code>. The dots in the module names refer to <span class="underline">folder architecture</span>.
@@ -244,15 +244,15 @@ The root directory of modules can be configured in cabal as <code>hs-source-dirs
 </p>
 </div>
 </div>
-<div id="outline-container-org7e9ef36" class="outline-2">
-<h2 id="org7e9ef36"><span class="section-number-2">3.</span> Importing Module</h2>
+<div id="outline-container-orgc9a4619" class="outline-2">
+<h2 id="orgc9a4619"><span class="section-number-2">3.</span> Importing Module</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Suppose in <code>Module</code>, we have functions <code>foo, bar</code> and datatype <code>Maybe</code> with constrcutors <code>Just, Nothing</code>.
 </p>
 </div>
-<div id="outline-container-org22f2a20" class="outline-3">
-<h3 id="org22f2a20"><span class="section-number-3">3.1.</span> Import to Global Namespace</h3>
+<div id="outline-container-orga535359" class="outline-3">
+<h3 id="orga535359"><span class="section-number-3">3.1.</span> Import to Global Namespace</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can directly import, this will import all symbols to the global namespace, which may cause issues.
@@ -267,8 +267,8 @@ We can directly import, this will import all symbols to the global namespace, wh
 </div>
 </div>
 </div>
-<div id="outline-container-org8fd416c" class="outline-3">
-<h3 id="org8fd416c"><span class="section-number-3">3.2.</span> Import Namespaced</h3>
+<div id="outline-container-org1022312" class="outline-3">
+<h3 id="org1022312"><span class="section-number-3">3.2.</span> Import Namespaced</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 We can import with namespace isolation, using <code>qualified</code> keyword.
@@ -283,8 +283,8 @@ We can import with namespace isolation, using <code>qualified</code> keyword.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc983f6a" class="outline-3">
-<h3 id="orgc983f6a"><span class="section-number-3">3.3.</span> Import with Aliases</h3>
+<div id="outline-container-orgc07f66d" class="outline-3">
+<h3 id="orgc07f66d"><span class="section-number-3">3.3.</span> Import with Aliases</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Even with qualified, we can use <code>as</code> keyword to give it an alias for convenience.
@@ -299,8 +299,8 @@ Even with qualified, we can use <code>as</code> keyword to give it an alias for 
 </div>
 </div>
 </div>
-<div id="outline-container-orgec8c77f" class="outline-3">
-<h3 id="orgec8c77f"><span class="section-number-3">3.4.</span> Selective Import</h3>
+<div id="outline-container-org3c52d13" class="outline-3">
+<h3 id="org3c52d13"><span class="section-number-3">3.4.</span> Selective Import</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can import only part of the module.

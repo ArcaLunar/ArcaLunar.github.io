@@ -305,6 +305,7 @@ body.site-home #postamble {
 }
 
 body.site-home #preamble .site-nav,
+body.site-home #preamble .site-subnav,
 body.site-home #content {
   max-width: 46rem;
 }

@@ -209,16 +209,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga79aa40">1. Vanilla Attention</a>
+<li><a href="#orge9fd032">1. Vanilla Attention</a>
 <ul>
-<li><a href="#org554d570">1.1. Scaled Dot-Product Attention</a></li>
+<li><a href="#org4117e19">1.1. Scaled Dot-Product Attention</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga79aa40" class="outline-2">
-<h2 id="orga79aa40"><span class="section-number-2">1.</span> Vanilla Attention</h2>
+<div id="outline-container-orge9fd032" class="outline-2">
+<h2 id="orge9fd032"><span class="section-number-2">1.</span> Vanilla Attention</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The idea of attention is similar to the procedure of looking up a word in the dictionary. Suppose we want to look up for the word <code>xxxxness</code> and we have already known the meaning of <code>xxxx</code>. Then we may assume that the meaning of <code>xxxxness</code> has something to do with <code>xxxx</code>.
@@ -238,8 +238,8 @@ A=\sum_i \texttt{sim}(q,k_i)v_i
 So the question becomes: <i>how to compute the similarity between query and keys, reasonably?</i>
 </p>
 </div>
-<div id="outline-container-org554d570" class="outline-3">
-<h3 id="org554d570"><span class="section-number-3">1.1.</span> Scaled Dot-Product Attention</h3>
+<div id="outline-container-org4117e19" class="outline-3">
+<h3 id="org4117e19"><span class="section-number-3">1.1.</span> Scaled Dot-Product Attention</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 As introduced in the pioneering Transformer paper, we use softmax over cosine similarity between vectors as attention score. The cosine similarity is further extended to <b>matmul</b> for batch processing queries.

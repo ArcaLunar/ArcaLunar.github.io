@@ -211,25 +211,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1c4c161">1. Solution</a>
+<li><a href="#org89f4ff2">1. Solution</a>
 <ul>
-<li><a href="#orgf19126f">1.1. Naive Approach</a></li>
-<li><a href="#org3136870">1.2. Optimization</a></li>
+<li><a href="#orgbf74365">1.1. Naive Approach</a></li>
+<li><a href="#org8ce9fbc">1.2. Optimization</a></li>
 </ul>
 </li>
-<li><a href="#orgd5a2888">2. Experiments</a></li>
+<li><a href="#orgb19ac9c">2. Experiments</a></li>
 </ul>
 </div>
 </div>
 <p>
 The advantage of SigLIP over CLIP is that SigLIP only relies on image-text pairs rather than global pairwise similarity, reducing computational cost from quadric to linear w.r.t. batch size.
 </p>
-<div id="outline-container-org1c4c161" class="outline-2">
-<h2 id="org1c4c161"><span class="section-number-2">1.</span> Solution</h2>
+<div id="outline-container-org89f4ff2" class="outline-2">
+<h2 id="org89f4ff2"><span class="section-number-2">1.</span> Solution</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf19126f" class="outline-3">
-<h3 id="orgf19126f"><span class="section-number-3">1.1.</span> Naive Approach</h3>
+<div id="outline-container-orgbf74365" class="outline-3">
+<h3 id="orgbf74365"><span class="section-number-3">1.1.</span> Naive Approach</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Given dataset \( B = \{ (I_{i}, T_{i}) \}_{i=1}^{N} \), the loss is defined as
@@ -250,8 +250,8 @@ Initially, \(t_{0} = \log 10\) and \(b_{0} = -10\)
 </p>
 </div>
 </div>
-<div id="outline-container-org3136870" class="outline-3">
-<h3 id="org3136870"><span class="section-number-3">1.2.</span> Optimization</h3>
+<div id="outline-container-org8ce9fbc" class="outline-3">
+<h3 id="org8ce9fbc"><span class="section-number-3">1.2.</span> Optimization</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The above computation still requires \(O(N^{2})\) time complexity for cosine similarities. However, we notice that the computation of cosine similarity does not depend on the results of other cosine similarities, compared to softmax approaches. This means that, we can <b>parallelize</b> the computation. In the SigLIP paper, the parallelization is just simple chunkification into blocks.
@@ -259,8 +259,8 @@ The above computation still requires \(O(N^{2})\) time complexity for cosine sim
 </div>
 </div>
 </div>
-<div id="outline-container-orgd5a2888" class="outline-2">
-<h2 id="orgd5a2888"><span class="section-number-2">2.</span> Experiments</h2>
+<div id="outline-container-orgb19ac9c" class="outline-2">
+<h2 id="orgb19ac9c"><span class="section-number-2">2.</span> Experiments</h2>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -207,21 +207,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4a789fb">1. Monad Transformers</a>
+<li><a href="#org7dc2c96">1. Monad Transformers</a>
 <ul>
-<li><a href="#org0beaa6a">1.1. General <code>lift</code></a></li>
-<li><a href="#org5db1b2c">1.2. Transformer Order Matters</a></li>
+<li><a href="#org5dcac48">1.1. General <code>lift</code></a></li>
+<li><a href="#orgbdff884">1.2. Transformer Order Matters</a></li>
 </ul>
 </li>
-<li><a href="#org4619b78">2. <code>mtl</code> Style: Monad Transformers as Typeclasses</a></li>
+<li><a href="#org40ee8cf">2. <code>mtl</code> Style: Monad Transformers as Typeclasses</a></li>
 </ul>
 </div>
 </div>
 <p>
 A general application may have more than one effect to model, for example, doing IO while reading configurations (which is modeled by <code>IO</code> and <code>Reader</code> respectively). In this case, a single monad may not provide all of the capabilities. The <b>Monad Transformers</b> let us combine monads into a larger monadic computation.
 </p>
-<div id="outline-container-org4a789fb" class="outline-2">
-<h2 id="org4a789fb"><span class="section-number-2">1.</span> Monad Transformers</h2>
+<div id="outline-container-org7dc2c96" class="outline-2">
+<h2 id="org7dc2c96"><span class="section-number-2">1.</span> Monad Transformers</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A transformer takes an existing monad and adds another monad to it. Usually, they are suffixed with <code>T</code>, e.g.,
@@ -236,8 +236,8 @@ A transformer takes an existing monad and adds another monad to it. Usually, the
 stands for <span class="underline">a stateful computation layered on top of an underlying monad <code>M</code>.</span> Conceptually, if ordinary monad models <code>s -&gt; (a, s)</code>, then monad transformer models <code>s -&gt; m (a, s)</code>.
 </p>
 </div>
-<div id="outline-container-org0beaa6a" class="outline-3">
-<h3 id="org0beaa6a"><span class="section-number-3">1.1.</span> General <code>lift</code></h3>
+<div id="outline-container-org5dcac48" class="outline-3">
+<h3 id="org5dcac48"><span class="section-number-3">1.1.</span> General <code>lift</code></h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The general transformer operation is <code>lift</code>, which lifts an action from the underlying monad into the transformed monad.
@@ -249,12 +249,12 @@ The general transformer operation is <code>lift</code>, which lifts an action fr
 </div>
 </div>
 </div>
-<div id="outline-container-org5db1b2c" class="outline-3">
-<h3 id="org5db1b2c"><span class="section-number-3">1.2.</span> Transformer Order Matters</h3>
+<div id="outline-container-orgbdff884" class="outline-3">
+<h3 id="orgbdff884"><span class="section-number-3">1.2.</span> Transformer Order Matters</h3>
 </div>
 </div>
-<div id="outline-container-org4619b78" class="outline-2">
-<h2 id="org4619b78"><span class="section-number-2">2.</span> <code>mtl</code> Style: Monad Transformers as Typeclasses</h2>
+<div id="outline-container-org40ee8cf" class="outline-2">
+<h2 id="org40ee8cf"><span class="section-number-2">2.</span> <code>mtl</code> Style: Monad Transformers as Typeclasses</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Sometimes, to handle the order issue, it can be suffering to manually lift monads. To handle this, Haskell solves this problem by using <span class="underline">typeclasses</span>.

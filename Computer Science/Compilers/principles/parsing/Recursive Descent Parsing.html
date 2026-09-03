@@ -210,9 +210,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0f57d45">1. Recursive Descent Parsing Algorithm</a>
+<li><a href="#org879ff21">1. Recursive Descent Parsing Algorithm</a>
 <ul>
-<li><a href="#orga4c1bf3">1.1. Limitation</a></li>
+<li><a href="#org1734f26">1.1. Limitation</a></li>
 </ul>
 </li>
 </ul>
@@ -221,8 +221,8 @@
 <p>
 A top-down and left-to-right parsing algorithm that terminals are seens in order of appearance in the token stream.
 </p>
-<div id="outline-container-org0f57d45" class="outline-2">
-<h2 id="org0f57d45"><span class="section-number-2">1.</span> Recursive Descent Parsing Algorithm</h2>
+<div id="outline-container-org879ff21" class="outline-2">
+<h2 id="org879ff21"><span class="section-number-2">1.</span> Recursive Descent Parsing Algorithm</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Let TOKEN be the type of tokens, and we have a <i>global</i> <code>next</code> point to the next input token. And suppose we have several helper functions that returns true or false.
@@ -266,8 +266,8 @@ For example,
 To start the parser, we simply <i>initialize</i> <code>next</code> to point to the first token, and invoke <code>E()</code>.
 </p>
 </div>
-<div id="outline-container-orga4c1bf3" class="outline-3">
-<h3 id="orga4c1bf3"><span class="section-number-3">1.1.</span> Limitation</h3>
+<div id="outline-container-org1734f26" class="outline-3">
+<h3 id="org1734f26"><span class="section-number-3">1.1.</span> Limitation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 RDP might cause a <b>false reject</b> of a correct pattern, if a prefix of a pattern is also a valid pattern. i.e., we cannot backtrack to try a different production for \(X\) later, if a production for non-terminal \(X\) succeeds.

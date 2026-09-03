@@ -210,28 +210,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3c4edde">1. Diffusion Models - An Overview from Likelihood-Based Perspective</a>
+<li><a href="#org3b63152">1. Diffusion Models - An Overview from Likelihood-Based Perspective</a>
 <ul>
-<li><a href="#org2d858aa">1.1. Forward process</a></li>
-<li><a href="#org14fd774">1.2. Reverse process</a></li>
+<li><a href="#org661ba26">1.1. Forward process</a></li>
+<li><a href="#org4ea2f9e">1.2. Reverse process</a></li>
 </ul>
 </li>
-<li><a href="#org287724a">2. Likelihood Modeling</a></li>
+<li><a href="#org773d6a4">2. Likelihood Modeling</a></li>
 </ul>
 </div>
 </div>
 <p>
 Autoregressive models generate one element at a time, which makes sampling sequential. VAEs trained with simple pixel-space likelihoods may produce blurry samples, while GANs can be difficult to train and may suffer from mode collapse. Diffusion models offer another approach: they learn to transform noise into data through a sequence of denoising steps.
 </p>
-<div id="outline-container-org3c4edde" class="outline-2">
-<h2 id="org3c4edde"><span class="section-number-2">1.</span> Diffusion Models - An Overview from Likelihood-Based Perspective</h2>
+<div id="outline-container-org3b63152" class="outline-2">
+<h2 id="org3b63152"><span class="section-number-2">1.</span> Diffusion Models - An Overview from Likelihood-Based Perspective</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Suppose \( \mathbf{x}_{0} \sim q_{\mathrm{data}} \) is a data sample and \( \mathbf{x}_{T} \) is approximately standard Gaussian noise. The <i>forward process</i> \(q\) is fixed and gradually adds noise, while the learned <i>reverse process</i> \(p_{\theta}\) gradually removes it.
 </p>
 </div>
-<div id="outline-container-org2d858aa" class="outline-3">
-<h3 id="org2d858aa"><span class="section-number-3">1.1.</span> Forward process</h3>
+<div id="outline-container-org661ba26" class="outline-3">
+<h3 id="org661ba26"><span class="section-number-3">1.1.</span> Forward process</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The forward process is more akin to <i>training</i>. It transforms a clean image into noise.
@@ -257,7 +257,7 @@ Since we have modeled the diffusion as <i>Markovian</i>, we can represent the ov
 q(\mathbf{x}_{1:T}\mid\mathbf{x}_{0}) = \prod_{t=1}^{T} q(\mathbf{x}_{t}\mid\mathbf{x}_{t-1})
 \end{equation}
 
-<div class="note" id="org41258c2">
+<div class="note" id="org19ead2a">
 <p>
 The purpose of selection of \(\sqrt{1-\beta_{t}}\) and \( \beta_{t} \) for mean and variance is solely for convenience in computation.
 </p>
@@ -289,8 +289,8 @@ If the variance of \( \mathbf{x}_{t-1} \) is \( 1 \), then the variance of \( \m
 </div>
 </div>
 </div>
-<div id="outline-container-org14fd774" class="outline-3">
-<h3 id="org14fd774"><span class="section-number-3">1.2.</span> Reverse process</h3>
+<div id="outline-container-org4ea2f9e" class="outline-3">
+<h3 id="org4ea2f9e"><span class="section-number-3">1.2.</span> Reverse process</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Similarly, the reverse process is more akin to <i>inference</i>. It tries to reconstruct images from noise.
@@ -318,8 +318,8 @@ p_{\theta}(\mathbf{x}_{0:T}) = p(\mathbf{x}_{T}) \prod_{t=1}^{T} p_{\theta}(\mat
 </div>
 </div>
 </div>
-<div id="outline-container-org287724a" class="outline-2">
-<h2 id="org287724a"><span class="section-number-2">2.</span> Likelihood Modeling</h2>
+<div id="outline-container-org773d6a4" class="outline-2">
+<h2 id="org773d6a4"><span class="section-number-2">2.</span> Likelihood Modeling</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="Maximum Likelihood Estimation.html#ID-65aa9c55-1192-43ee-a3f3-6b8d889293b6">Maximum Likelihood Learning</a> would maximize \( \log p_{\theta}(\mathbf{x}_{0}) \) (so as to make \( p_{data} \) and \( p_{\theta} \) closer).

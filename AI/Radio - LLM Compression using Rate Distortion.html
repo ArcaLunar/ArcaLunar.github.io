@@ -210,10 +210,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6fc0832">1. RADIO Solution</a>
+<li><a href="#orgacac78b">1. RADIO Solution</a>
 <ul>
-<li><a href="#orgb805445">1.1. <span class="todo TODO">TODO</span> Bit Depth Assignment</a></li>
-<li><a href="#orgca6e39c">1.2. <span class="todo TODO">TODO</span> Quantization Step Size</a></li>
+<li><a href="#org7e03b02">1.1. <span class="todo TODO">TODO</span> Bit Depth Assignment</a></li>
+<li><a href="#org16364ad">1.2. <span class="todo TODO">TODO</span> Quantization Step Size</a></li>
 </ul>
 </li>
 </ul>
@@ -226,8 +226,8 @@ Radio provides a novel view for quantization with optimization technique and rat
 <p>
 We model the next-token prediction as a single function: \(\mathbf{Z}=f(\mathbf{X}; \Theta_0, \Theta_1, \dots, \Theta_n, \Theta_{n+1})\). The model has \(n\) layers where \(\Theta_0\) is word embedding and \(\Theta_{n+1}\) is the prediction head.
 </p>
-<div id="outline-container-org6fc0832" class="outline-2">
-<h2 id="org6fc0832"><span class="section-number-2">1.</span> RADIO Solution</h2>
+<div id="outline-container-orgacac78b" class="outline-2">
+<h2 id="orgacac78b"><span class="section-number-2">1.</span> RADIO Solution</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We use the settings including next token prediction. We use follow quantization schema, suppose bit depth is \(B\) and step size is \(D\), the dequantization can be expressed as
@@ -243,8 +243,8 @@ We use the settings including next token prediction. We use follow quantization 
 In RADIO, we&rsquo;ll use one pair of \((B,D)\) to quantize a small group of weights.
 </p>
 </div>
-<div id="outline-container-orgb805445" class="outline-3">
-<h3 id="orgb805445"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Bit Depth Assignment</h3>
+<div id="outline-container-org7e03b02" class="outline-3">
+<h3 id="org7e03b02"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Bit Depth Assignment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose we want to quantize matrix \(\Theta_n\) with \(P_n\) parameters. Following the intuition that <i>parameters that are more sensitive to output distortion should be allocated more bits</i>, we can formalize the optimization problem:
@@ -311,8 +311,8 @@ V &\gets V+\beta \Big( r(\set{B_n}) \Big)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca6e39c" class="outline-3">
-<h3 id="orgca6e39c"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> Quantization Step Size</h3>
+<div id="outline-container-org16364ad" class="outline-3">
+<h3 id="org16364ad"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> Quantization Step Size</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
 </div>

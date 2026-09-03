@@ -210,15 +210,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaa36b06">1. Challenges</a></li>
-<li><a href="#org0303a09">2. Solution</a>
+<li><a href="#orgd1276c2">1. Challenges</a></li>
+<li><a href="#orgb328d7a">2. Solution</a>
 <ul>
-<li><a href="#org5c099d3">2.1. Dataset Construction</a></li>
-<li><a href="#orgeae1e8a">2.2. Hierarchical Sensor Caption Generation</a></li>
-<li><a href="#org6d98e6b">2.3. SensorLM</a>
+<li><a href="#orgc249eb0">2.1. Dataset Construction</a></li>
+<li><a href="#org5f811de">2.2. Hierarchical Sensor Caption Generation</a></li>
+<li><a href="#org31e6497">2.3. SensorLM</a>
 <ul>
-<li><a href="#org7b2cae3">2.3.1. Model Architecture</a></li>
-<li><a href="#orgbb4f53f">2.3.2. Pretraining Objective</a></li>
+<li><a href="#org65631d9">2.3.1. Model Architecture</a></li>
+<li><a href="#org6175719">2.3.2. Pretraining Objective</a></li>
 </ul>
 </li>
 </ul>
@@ -226,8 +226,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa36b06" class="outline-2">
-<h2 id="orgaa36b06"><span class="section-number-2">1.</span> Challenges</h2>
+<div id="outline-container-orgd1276c2" class="outline-2">
+<h2 id="orgd1276c2"><span class="section-number-2">1.</span> Challenges</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>LLMs are unable to handle <i>high-dimensional, continuous, and temporal extensive</i> sensor data, which can easily exceed context length.</li>
@@ -245,20 +245,20 @@ Thus, this work contributes to
 </ol>
 </div>
 </div>
-<div id="outline-container-org0303a09" class="outline-2">
-<h2 id="org0303a09"><span class="section-number-2">2.</span> Solution</h2>
+<div id="outline-container-orgb328d7a" class="outline-2">
+<h2 id="orgb328d7a"><span class="section-number-2">2.</span> Solution</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5c099d3" class="outline-3">
-<h3 id="org5c099d3"><span class="section-number-3">2.1.</span> Dataset Construction</h3>
+<div id="outline-container-orgc249eb0" class="outline-3">
+<h3 id="orgc249eb0"><span class="section-number-3">2.1.</span> Dataset Construction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Data are collected from wrist-worn wearable sensor data, raw data include time series signals.
 </p>
 </div>
 </div>
-<div id="outline-container-orgeae1e8a" class="outline-3">
-<h3 id="orgeae1e8a"><span class="section-number-3">2.2.</span> Hierarchical Sensor Caption Generation</h3>
+<div id="outline-container-org5f811de" class="outline-3">
+<h3 id="org5f811de"><span class="section-number-3">2.2.</span> Hierarchical Sensor Caption Generation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Captions are generated at 3 distinct levels:
@@ -283,23 +283,23 @@ Captions are generated at 3 distinct levels:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6d98e6b" class="outline-3">
-<h3 id="org6d98e6b"><span class="section-number-3">2.3.</span> SensorLM</h3>
+<div id="outline-container-org31e6497" class="outline-3">
+<h3 id="org31e6497"><span class="section-number-3">2.3.</span> SensorLM</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 SensorLM uses a <i>sensor encoder</i> (ViT), text encoder and multimodal text decoder.
 </p>
 </div>
-<div id="outline-container-org7b2cae3" class="outline-4">
-<h4 id="org7b2cae3"><span class="section-number-4">2.3.1.</span> Model Architecture</h4>
+<div id="outline-container-org65631d9" class="outline-4">
+<h4 id="org65631d9"><span class="section-number-4">2.3.1.</span> Model Architecture</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 The sensor encoder adaopts a ViT that <span class="underline">segment the sequence into patches, apply linear embeddings and process them through Transformer blocks</span> to local and long-range temporal dependencies. The text encoder is similar that encode text into unimodal representations. The multimodal text decoder is a casaully masked transformer that integrates both sensor embeddings (via cross-attention) and text features.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbb4f53f" class="outline-4">
-<h4 id="orgbb4f53f"><span class="section-number-4">2.3.2.</span> Pretraining Objective</h4>
+<div id="outline-container-org6175719" class="outline-4">
+<h4 id="org6175719"><span class="section-number-4">2.3.2.</span> Pretraining Objective</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 SensorLM combines both <i>contrastive</i> (as in CLIP) and <i>generative</i> (as in Cap) objectives. Given a batch of \( N \) sensor-language pairs \( \{ (x_{n}, y_{n}) \}_{n\in[N]} \), the <i>contrastive loss</i> \( \mathcal{L}_{con} \) is applied to <span class="underline">normalized unimodal text embeddings \( v_{i} \) from the text encoder</span> and <span class="underline">sensor embeddings \( s_{i} \) from the sensor encoder</span> via a <b>symmetric cross-modal objective</b>

@@ -210,21 +210,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga083dbd">1. Prototype of DSA (DeepSeek V3.2)</a>
+<li><a href="#org7c67bae">1. Prototype of DSA (DeepSeek V3.2)</a>
 <ul>
-<li><a href="#orgba8fc4c">1.1. Lightning Indexer</a></li>
-<li><a href="#org9bfc55e">1.2. Fine-grained Token Selection Mechanism</a></li>
+<li><a href="#orga4a541f">1.1. Lightning Indexer</a></li>
+<li><a href="#orgc6f3111">1.2. Fine-grained Token Selection Mechanism</a></li>
 </ul>
 </li>
-<li><a href="#org3f0a66b">2. <span class="todo TODO">TODO</span> Implementation of DSA</a></li>
+<li><a href="#org035f10b">2. <span class="todo TODO">TODO</span> Implementation of DSA</a></li>
 </ul>
 </div>
 </div>
 <p>
 DeepSeek Sparse Attention (DSA) is introduced along with the DeepSeek V3.2 technical report. It&rsquo;s designed to reduce computational complexity while preserving model performance in long context scenarios.
 </p>
-<div id="outline-container-orga083dbd" class="outline-2">
-<h2 id="orga083dbd"><span class="section-number-2">1.</span> Prototype of DSA (DeepSeek V3.2)</h2>
+<div id="outline-container-org7c67bae" class="outline-2">
+<h2 id="org7c67bae"><span class="section-number-2">1.</span> Prototype of DSA (DeepSeek V3.2)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In vanilla attention, each input query is processed to compute attention score with <b>ALL</b> history KV tokens. Although dense matrix multiplication can be boosted with FlashAttention techniques, the complexity is still \( O(n^2) \) where \(n\) is the length of context.
@@ -238,8 +238,8 @@ Reviewing the attention scoring, we found that it&rsquo;s, in essense, selection
 The intuition here is that <span class="underline">there won&rsquo;t be too much relevant tokens as the context grows</span>. It means that only a few tokens have a meanful weight when performing \(O=PV\), while the weights of a majority of tokens are near \(0\). Thus we want some selector to find out the &ldquo;a few most relevant tokens&rdquo;. That is <b>lightning indexer</b>.
 </p>
 </div>
-<div id="outline-container-orgba8fc4c" class="outline-3">
-<h3 id="orgba8fc4c"><span class="section-number-3">1.1.</span> Lightning Indexer</h3>
+<div id="outline-container-orga4a541f" class="outline-3">
+<h3 id="orga4a541f"><span class="section-number-3">1.1.</span> Lightning Indexer</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Given a query token \(\mathbf{h}_t\in\mathbb{R}^d\). The lightning indexer computes the <i>index score</i> (which is another measure of <i>relevancy</i>) between the query token and <b>ALL</b> history keys. For some history token \(\mathbf{h}_s\in\mathbb{R}^d\), their <i>indexing score</i> \( I_{t,s} \) is given by
@@ -267,8 +267,8 @@ Other designs include:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9bfc55e" class="outline-3">
-<h3 id="org9bfc55e"><span class="section-number-3">1.2.</span> Fine-grained Token Selection Mechanism</h3>
+<div id="outline-container-orgc6f3111" class="outline-3">
+<h3 id="orgc6f3111"><span class="section-number-3">1.2.</span> Fine-grained Token Selection Mechanism</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Now that we have computed the index score for the query token against all history tokens, we next select key-value pairs of <b>top-k</b> history tokens. And apply the vanilla attention mechanism.
@@ -281,8 +281,8 @@ Now that we have computed the index score for the query token against all histor
 </div>
 </div>
 </div>
-<div id="outline-container-org3f0a66b" class="outline-2">
-<h2 id="org3f0a66b"><span class="section-number-2">2.</span> <span class="todo TODO">TODO</span> Implementation of DSA</h2>
+<div id="outline-container-org035f10b" class="outline-2">
+<h2 id="org035f10b"><span class="section-number-2">2.</span> <span class="todo TODO">TODO</span> Implementation of DSA</h2>
 </div>
 </div>
 <div id="postamble" class="status">

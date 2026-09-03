@@ -207,16 +207,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge5c68da">1. <code>message</code> Function</a></li>
-<li><a href="#orgcdb458c">2. <code>insert</code> Function</a></li>
-<li><a href="#orgf847c4b">3. Print to Buffer</a></li>
-<li><a href="#orge389446">4. Print to Warnings Buffer</a></li>
-<li><a href="#org2c9148e">5. Temporarily Specify a Buffer for Output</a></li>
+<li><a href="#org373c4b6">1. <code>message</code> Function</a></li>
+<li><a href="#orgf1af936">2. <code>insert</code> Function</a></li>
+<li><a href="#org7d15913">3. Print to Buffer</a></li>
+<li><a href="#orgdea411d">4. Print to Warnings Buffer</a></li>
+<li><a href="#org9e376c4">5. Temporarily Specify a Buffer for Output</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge5c68da" class="outline-2">
-<h2 id="orge5c68da"><span class="section-number-2">1.</span> <code>message</code> Function</h2>
+<div id="outline-container-org373c4b6" class="outline-2">
+<h2 id="org373c4b6"><span class="section-number-2">1.</span> <code>message</code> Function</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Its signature is
@@ -235,8 +235,8 @@ It displays a message at the bottom of the screen, as well as into the <code>*Me
 </p>
 </div>
 </div>
-<div id="outline-container-orgcdb458c" class="outline-2">
-<h2 id="orgcdb458c"><span class="section-number-2">2.</span> <code>insert</code> Function</h2>
+<div id="outline-container-orgf1af936" class="outline-2">
+<h2 id="orgf1af936"><span class="section-number-2">2.</span> <code>insert</code> Function</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <code>insert</code> function inserts string to current buffer <i>at cursor position</i>.
@@ -255,8 +255,8 @@ It has signature
 </div>
 </div>
 </div>
-<div id="outline-container-orgf847c4b" class="outline-2">
-<h2 id="orgf847c4b"><span class="section-number-2">3.</span> Print to Buffer</h2>
+<div id="outline-container-org7d15913" class="outline-2">
+<h2 id="org7d15913"><span class="section-number-2">3.</span> Print to Buffer</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <code>print</code> function has signature
@@ -289,8 +289,8 @@ It also has sibling functions: <code>prin1</code> function acts like <code>print
 </p>
 </div>
 </div>
-<div id="outline-container-orge389446" class="outline-2">
-<h2 id="orge389446"><span class="section-number-2">4.</span> Print to Warnings Buffer</h2>
+<div id="outline-container-orgdea411d" class="outline-2">
+<h2 id="orgdea411d"><span class="section-number-2">4.</span> Print to Warnings Buffer</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Use the <code>warn</code> function, print messages to <code>*Warnings*</code> buffer.
@@ -305,8 +305,8 @@ Use the <code>warn</code> function, print messages to <code>*Warnings*</code> bu
 </div>
 </div>
 </div>
-<div id="outline-container-org2c9148e" class="outline-2">
-<h2 id="org2c9148e"><span class="section-number-2">5.</span> Temporarily Specify a Buffer for Output</h2>
+<div id="outline-container-org9e376c4" class="outline-2">
+<h2 id="org9e376c4"><span class="section-number-2">5.</span> Temporarily Specify a Buffer for Output</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 This feature is akin to <code>with ... as ...</code> feature in Python. It <span class="underline">binds standard output to a specified buffer</span>, evaluates the body, and then show that buffer. The buffer is cleared before getting printed to; <code>print</code> functions print to this buffer by default.
