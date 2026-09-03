@@ -206,19 +206,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge455580">1. Scoped Variables</a></li>
-<li><a href="#org5bff272">2. Pattern Matching</a>
+<li><a href="#org46f17e8">1. Scoped Variables</a></li>
+<li><a href="#org5227184">2. Pattern Matching</a>
 <ul>
-<li><a href="#org227ada7">2.1. Enumeration Matching</a></li>
-<li><a href="#org4a2fcdb">2.2. Condition Guards</a></li>
-<li><a href="#org5fccf75">2.3. <code>case of</code></a></li>
+<li><a href="#org5604675">2.1. Enumeration Matching</a></li>
+<li><a href="#orgd3af52f">2.2. Condition Guards</a></li>
+<li><a href="#orgd5ff996">2.3. <code>case of</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge455580" class="outline-2">
-<h2 id="orge455580"><span class="section-number-2">1.</span> Scoped Variables</h2>
+<div id="outline-container-org46f17e8" class="outline-2">
+<h2 id="org46f17e8"><span class="section-number-2">1.</span> Scoped Variables</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can use <code>let ... in</code> or <code>where ...</code> to bind temporary variables or functions, <code>where</code> statement can be positioned after body whilst <code>let in</code> should be positioned before the body.
@@ -240,12 +240,12 @@ We can use <code>let ... in</code> or <code>where ...</code> to bind temporary v
 </div>
 </div>
 </div>
-<div id="outline-container-org5bff272" class="outline-2">
-<h2 id="org5bff272"><span class="section-number-2">2.</span> Pattern Matching</h2>
+<div id="outline-container-org5227184" class="outline-2">
+<h2 id="org5227184"><span class="section-number-2">2.</span> Pattern Matching</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org227ada7" class="outline-3">
-<h3 id="org227ada7"><span class="section-number-3">2.1.</span> Enumeration Matching</h3>
+<div id="outline-container-org5604675" class="outline-3">
+<h3 id="org5604675"><span class="section-number-3">2.1.</span> Enumeration Matching</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Use <code>_</code> to indicate match all cases but ignore their value.
@@ -261,8 +261,8 @@ Use <code>_</code> to indicate match all cases but ignore their value.
 </div>
 </div>
 </div>
-<div id="outline-container-org4a2fcdb" class="outline-3">
-<h3 id="org4a2fcdb"><span class="section-number-3">2.2.</span> Condition Guards</h3>
+<div id="outline-container-orgd3af52f" class="outline-3">
+<h3 id="orgd3af52f"><span class="section-number-3">2.2.</span> Condition Guards</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 By adding <code>| &lt;condition&gt;</code> after a variable while pattern matching, we can do filtering. Use <code>otherwise</code> to represent all other conditions.
@@ -283,8 +283,8 @@ We may also combine condition guards with enumeration matching.
 </p>
 </div>
 </div>
-<div id="outline-container-org5fccf75" class="outline-3">
-<h3 id="org5fccf75"><span class="section-number-3">2.3.</span> <code>case of</code></h3>
+<div id="outline-container-orgd5ff996" class="outline-3">
+<h3 id="orgd5ff996"><span class="section-number-3">2.3.</span> <code>case of</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>case of</code> also pattern matching based on value.

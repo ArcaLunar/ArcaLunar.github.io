@@ -821,7 +821,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: "Caesium", "LXGW Wenkai Mono", monospace;
+  font-family: "Anthropic Mono Web", "LXGW Wenkai Mono", monospace;
   font-size: 1em;
 }
 figure {
@@ -2649,7 +2649,7 @@ body {
   margin: 2% auto;
   font-size: 14px;
   line-height: 1.4em;
-  font-family: "Anthropic Serif Text", "LXGW Wenkai", serif;
+  font-family: "Anthropic Serif Text", "Georgia", "LXGW Wenkai", serif;
   color: #333;
 }
 @media screen and (min-width: 600px) {
@@ -2855,7 +2855,7 @@ kbd {
   border-radius: 3px;
   background-clip: padding-box;
   font-size: 80%;
-  font-family: "Caesium", "LXGW Wenkai Mono", monospace;
+  font-family: "Anthropic Mono Web", "LXGW Wenkai Mono", monospace;
   line-height: 1;
 }
 .done {
@@ -2863,13 +2863,13 @@ kbd {
 }
 .priority {
   color: orange;
-  font-family: "Caesium", "LXGW Wenkai Mono", monospace;
+  font-family: "Anthropic Mono Web", "LXGW Wenkai Mono", monospace;
 }
 #table-of-contents li {
   clear: both;
 }
 .tag {
-  font-family: "Caesium", "LXGW Wenkai Mono", monospace;
+  font-family: "Anthropic Mono Web", "LXGW Wenkai Mono", monospace;
   font-size: 0.7em;
   font-weight: 400;
 }
@@ -2939,7 +2939,7 @@ p.verse {
   border-radius: 0.5rem;
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 
-  font-family: "Caesium", "LXGW Wenkai Mono", monospace;
+  font-family: "Anthropic Mono Web", "LXGW Wenkai Mono", monospace;
   font-size: 0.875em;
   line-height: 1.55;
   overflow: hidden;

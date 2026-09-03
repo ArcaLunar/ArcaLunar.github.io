@@ -206,19 +206,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9920f56">1. <code>progn</code> Function</a></li>
-<li><a href="#org4403810">2. Common Conditional Flows</a>
+<li><a href="#org2c25cf0">1. <code>progn</code> Function</a></li>
+<li><a href="#orga6554f1">2. Common Conditional Flows</a>
 <ul>
-<li><a href="#org71910b1">2.1. If, Then, Else</a></li>
-<li><a href="#org7da4010">2.2. When</a></li>
-<li><a href="#org6117223">2.3. <code>cond</code> as Switch</a></li>
+<li><a href="#org3152a61">2.1. If, Then, Else</a></li>
+<li><a href="#orgfab1ffc">2.2. When</a></li>
+<li><a href="#orga8e1e64">2.3. <code>cond</code> as Switch</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9920f56" class="outline-2">
-<h2 id="org9920f56"><span class="section-number-2">1.</span> <code>progn</code> Function</h2>
+<div id="outline-container-org2c25cf0" class="outline-2">
+<h2 id="org2c25cf0"><span class="section-number-2">1.</span> <code>progn</code> Function</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Sometimes, we need to group multiple expressions together as one single expression. We can use <code>progn</code>. It returns the last expression.
@@ -248,12 +248,12 @@ Similarly, <code>prog1</code>, <code>prog2</code> do the same job, but they retu
 </div>
 </div>
 </div>
-<div id="outline-container-org4403810" class="outline-2">
-<h2 id="org4403810"><span class="section-number-2">2.</span> Common Conditional Flows</h2>
+<div id="outline-container-orga6554f1" class="outline-2">
+<h2 id="orga6554f1"><span class="section-number-2">2.</span> Common Conditional Flows</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org71910b1" class="outline-3">
-<h3 id="org71910b1"><span class="section-number-3">2.1.</span> If, Then, Else</h3>
+<div id="outline-container-org3152a61" class="outline-3">
+<h3 id="org3152a61"><span class="section-number-3">2.1.</span> If, Then, Else</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-keyword">if</span> test body<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -267,8 +267,8 @@ Note that, we should use <code>progn</code> if we want to have multiple statemen
 </p>
 </div>
 </div>
-<div id="outline-container-org7da4010" class="outline-3">
-<h3 id="org7da4010"><span class="section-number-3">2.2.</span> When</h3>
+<div id="outline-container-orgfab1ffc" class="outline-3">
+<h3 id="orgfab1ffc"><span class="section-number-3">2.2.</span> When</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 If we don&rsquo;t need else part, we can use <code>when</code>:
@@ -287,8 +287,8 @@ When using <code>when</code>, we don&rsquo;t need <code>progn</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org6117223" class="outline-3">
-<h3 id="org6117223"><span class="section-number-3">2.3.</span> <code>cond</code> as Switch</h3>
+<div id="outline-container-orga8e1e64" class="outline-3">
+<h3 id="orga8e1e64"><span class="section-number-3">2.3.</span> <code>cond</code> as Switch</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <code>cond</code> function tests each clause. If true, it runs that branch and exits.

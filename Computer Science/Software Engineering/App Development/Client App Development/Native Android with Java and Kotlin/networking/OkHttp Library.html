@@ -207,17 +207,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgab69b06">1. The Architecture of OkHttp Library</a>
+<li><a href="#org08bef80">1. The Architecture of OkHttp Library</a>
 <ul>
-<li><a href="#org9f5f864">1.1. <span class="todo TODO">TODO</span> Design Patterns in OkHttp Library</a></li>
-<li><a href="#orgd03fb2d">1.2. <span class="todo TODO">TODO</span> The Workflow of a Request</a></li>
+<li><a href="#org7c462c4">1.1. <span class="todo TODO">TODO</span> Design Patterns in OkHttp Library</a></li>
+<li><a href="#org147642a">1.2. <span class="todo TODO">TODO</span> The Workflow of a Request</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab69b06" class="outline-2">
-<h2 id="orgab69b06"><span class="section-number-2">1.</span> The Architecture of OkHttp Library</h2>
+<div id="outline-container-org08bef80" class="outline-2">
+<h2 id="org08bef80"><span class="section-number-2">1.</span> The Architecture of OkHttp Library</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The top level is <i>application layer</i>, consisting of <code>OkHttpClient</code>, <code>Request</code>, <code>Response</code>, <code>RealCall</code>. It&rsquo;s the entrance for developers and is the core <i>builder</i> that handles global configurations like timeout, caching and filtering. It&rsquo;s also <i>thread-safe singleton</i> that is shared globally.
@@ -244,12 +244,12 @@ The <i>connection layer</i> contains <code>Connection</code> and <code>Connectio
 The <i>IO layer</i> contains <code>Okio Stream</code>, <code>Socket</code> and <code>Server</code> that is responsible for low-level networking IO and encrypted communication.
 </p>
 </div>
-<div id="outline-container-org9f5f864" class="outline-3">
-<h3 id="org9f5f864"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Design Patterns in OkHttp Library</h3>
+<div id="outline-container-org7c462c4" class="outline-3">
+<h3 id="org7c462c4"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Design Patterns in OkHttp Library</h3>
 </div>
 
-<div id="outline-container-orgd03fb2d" class="outline-3">
-<h3 id="orgd03fb2d"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> The Workflow of a Request</h3>
+<div id="outline-container-org147642a" class="outline-3">
+<h3 id="org147642a"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> The Workflow of a Request</h3>
 </div>
 </div>
 </div>

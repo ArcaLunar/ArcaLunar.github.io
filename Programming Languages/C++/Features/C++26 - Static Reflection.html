@@ -206,26 +206,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org40e0cc0">1. What Is Reflection?</a></li>
-<li><a href="#orgec03d51">2. Everything As Value</a></li>
-<li><a href="#org01222d2">3. Meta Functions</a>
+<li><a href="#orgda88000">1. What Is Reflection?</a></li>
+<li><a href="#org72fd302">2. Everything As Value</a></li>
+<li><a href="#org6d2fdbd">3. Meta Functions</a>
 <ul>
-<li><a href="#org4ae8556">3.1. Members</a></li>
+<li><a href="#org68dff27">3.1. Members</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org40e0cc0" class="outline-2">
-<h2 id="org40e0cc0"><span class="section-number-2">1.</span> What Is Reflection?</h2>
+<div id="outline-container-orgda88000" class="outline-2">
+<h2 id="orgda88000"><span class="section-number-2">1.</span> What Is Reflection?</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Static reflection
 </p>
 </div>
 </div>
-<div id="outline-container-orgec03d51" class="outline-2">
-<h2 id="orgec03d51"><span class="section-number-2">2.</span> Everything As Value</h2>
+<div id="outline-container-org72fd302" class="outline-2">
+<h2 id="org72fd302"><span class="section-number-2">2.</span> Everything As Value</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 C++26 introduces two new operators. The reflection operator <code>^^</code> converts most name entity to <code>std::meta::info</code> type:
@@ -258,15 +258,15 @@ We can convert the meta info <b>back into</b> the name entity, by using <code>[:
 </div>
 </div>
 </div>
-<div id="outline-container-org01222d2" class="outline-2">
-<h2 id="org01222d2"><span class="section-number-2">3.</span> Meta Functions</h2>
+<div id="outline-container-org6d2fdbd" class="outline-2">
+<h2 id="org6d2fdbd"><span class="section-number-2">3.</span> Meta Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We can do operations to retrieved meta info, such operations are called <b>meta functions</b>, which are defined in <code>&lt;meta&gt;</code> header.
 </p>
 </div>
-<div id="outline-container-org4ae8556" class="outline-3">
-<h3 id="org4ae8556"><span class="section-number-3">3.1.</span> Members</h3>
+<div id="outline-container-org68dff27" class="outline-3">
+<h3 id="org68dff27"><span class="section-number-3">3.1.</span> Members</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-cpp"><code>  <span class="org-keyword">namespace</span> <span class="org-constant">std</span>::<span class="org-constant">meta</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span>

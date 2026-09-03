@@ -206,17 +206,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org65e0c17">1. Model Layer</a></li>
-<li><a href="#orgb564c18">2. View Layer</a></li>
-<li><a href="#orgfb6de39">3. Viewmodel Layer</a></li>
+<li><a href="#orgafc7e7d">1. Model Layer</a></li>
+<li><a href="#org977b29b">2. View Layer</a></li>
+<li><a href="#orgb4e2432">3. Viewmodel Layer</a></li>
 </ul>
 </div>
 </div>
 <p>
 Model-View-ViewModel (MVVM) is a UI architectural pattern designed to separate business data logic, presentation state and UI rendering into different <i>layers</i>. This separation makes code less coupled, easier to test and more scalable.
 </p>
-<div id="outline-container-org65e0c17" class="outline-2">
-<h2 id="org65e0c17"><span class="section-number-2">1.</span> Model Layer</h2>
+<div id="outline-container-orgafc7e7d" class="outline-2">
+<h2 id="orgafc7e7d"><span class="section-number-2">1.</span> Model Layer</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The model layer represents
@@ -234,16 +234,16 @@ and should have no knowledge about UI.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb564c18" class="outline-2">
-<h2 id="orgb564c18"><span class="section-number-2">2.</span> View Layer</h2>
+<div id="outline-container-org977b29b" class="outline-2">
+<h2 id="org977b29b"><span class="section-number-2">2.</span> View Layer</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The view layer is the UI layer, which is responsible for rendering state, forwarding user interactions, and should have no knowledge about data logic.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfb6de39" class="outline-2">
-<h2 id="orgfb6de39"><span class="section-number-2">3.</span> Viewmodel Layer</h2>
+<div id="outline-container-orgb4e2432" class="outline-2">
+<h2 id="orgb4e2432"><span class="section-number-2">3.</span> Viewmodel Layer</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The viewmodel layer is indeed the <b>bridge</b> between models and views. It prepares data for display, manages UI state, handles user actions and coordinates async operations. It transforms raw domain data into UI-friendly state.

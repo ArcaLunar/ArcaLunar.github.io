@@ -206,39 +206,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org694e3ef">1. Enumerations</a></li>
-<li><a href="#org16912c7">2. Bit Sets</a></li>
-<li><a href="#org504ccba">3. Pointers</a></li>
-<li><a href="#org2174c1a">4. Structs</a>
+<li><a href="#org908d3ed">1. Enumerations</a></li>
+<li><a href="#org361bb95">2. Bit Sets</a></li>
+<li><a href="#org6a55e99">3. Pointers</a></li>
+<li><a href="#orgfb42321">4. Structs</a>
 <ul>
-<li><a href="#orgef42b9a">4.1. Directives</a></li>
-<li><a href="#orgd167f8a">4.2. Struct field tags</a></li>
+<li><a href="#orgec86bf3">4.1. Directives</a></li>
+<li><a href="#org3b71b78">4.2. Struct field tags</a></li>
 </ul>
 </li>
-<li><a href="#org0b7b0a6">5. Unions</a>
+<li><a href="#org18d8df9">5. Unions</a>
 <ul>
-<li><a href="#org24eb3f1">5.1. Type switch statement</a></li>
-<li><a href="#org3a5814c">5.2. Union Tags</a></li>
+<li><a href="#org3c10d29">5.1. Type switch statement</a></li>
+<li><a href="#org09a4d7f">5.2. Union Tags</a></li>
 </ul>
 </li>
-<li><a href="#org2529eeb">6. Maps</a></li>
-<li><a href="#org7fcb6ba">7. Bit Fields</a></li>
-<li><a href="#org8130f86">8. Procedure Type</a>
+<li><a href="#orgcbb0b38">6. Maps</a></li>
+<li><a href="#org8c580a2">7. Bit Fields</a></li>
+<li><a href="#org6b5e56a">8. Procedure Type</a>
 <ul>
-<li><a href="#org4ba680a">8.1. Calling Conventions</a></li>
-<li><a href="#orgc1244fe">8.2. Pass context explicitly</a></li>
+<li><a href="#org523b49a">8.1. Calling Conventions</a></li>
+<li><a href="#org6e7e64d">8.2. Pass context explicitly</a></li>
 </ul>
 </li>
-<li><a href="#org87df81a">9. Multi Pointers</a></li>
+<li><a href="#org011f423">9. Multi Pointers</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org694e3ef" class="outline-2">
-<h2 id="org694e3ef"><span class="section-number-2">1.</span> Enumerations</h2>
+<div id="outline-container-org908d3ed" class="outline-2">
+<h2 id="org908d3ed"><span class="section-number-2">1.</span> Enumerations</h2>
 </div>
 
-<div id="outline-container-org16912c7" class="outline-2">
-<h2 id="org16912c7"><span class="section-number-2">2.</span> Bit Sets</h2>
+<div id="outline-container-org361bb95" class="outline-2">
+<h2 id="org361bb95"><span class="section-number-2">2.</span> Bit Sets</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <code>bit_set</code> type models the mathematical notion of a set. A bit<sub>set</sub>&rsquo;s element type can be either an enumeration or a range. They are implemented as bit vectors internally for high performance.
@@ -254,16 +254,16 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org504ccba" class="outline-2">
-<h2 id="org504ccba"><span class="section-number-2">3.</span> Pointers</h2>
+<div id="outline-container-org6a55e99" class="outline-2">
+<h2 id="org6a55e99"><span class="section-number-2">3.</span> Pointers</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <code>&amp;x</code> takes the address (reference) and <code>p^</code> dereferences pointer <code>p</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org2174c1a" class="outline-2">
-<h2 id="org2174c1a"><span class="section-number-2">4.</span> Structs</h2>
+<div id="outline-container-orgfb42321" class="outline-2">
+<h2 id="orgfb42321"><span class="section-number-2">4.</span> Structs</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Similar to structs in C. Struct fields can be accessed through struct pointer without dereferencing.
@@ -288,8 +288,8 @@ Similar to structs in C. Struct fields can be accessed through struct pointer wi
 structs can be nested.
 </p>
 </div>
-<div id="outline-container-orgef42b9a" class="outline-3">
-<h3 id="orgef42b9a"><span class="section-number-3">4.1.</span> Directives</h3>
+<div id="outline-container-orgec86bf3" class="outline-3">
+<h3 id="orgec86bf3"><span class="section-number-3">4.1.</span> Directives</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 structs can be annotated with different memory layout and alignment requirements.
@@ -306,8 +306,8 @@ structs can be annotated with different memory layout and alignment requirements
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd167f8a" class="outline-3">
-<h3 id="orgd167f8a"><span class="section-number-3">4.2.</span> Struct field tags</h3>
+<div id="outline-container-org3b71b78" class="outline-3">
+<h3 id="org3b71b78"><span class="section-number-3">4.2.</span> Struct field tags</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 String attached to the field for documentation.
@@ -315,8 +315,8 @@ String attached to the field for documentation.
 </div>
 </div>
 </div>
-<div id="outline-container-org0b7b0a6" class="outline-2">
-<h2 id="org0b7b0a6"><span class="section-number-2">5.</span> Unions</h2>
+<div id="outline-container-org18d8df9" class="outline-2">
+<h2 id="org18d8df9"><span class="section-number-2">5.</span> Unions</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-odin"><code><span class="org-type">Value</span> <span class="org-punctuation">::</span> <span class="org-keyword">union</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
@@ -333,8 +333,8 @@ String attached to the field for documentation.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org24eb3f1" class="outline-3">
-<h3 id="org24eb3f1"><span class="section-number-3">5.1.</span> Type switch statement</h3>
+<div id="outline-container-org3c10d29" class="outline-3">
+<h3 id="org3c10d29"><span class="section-number-3">5.1.</span> Type switch statement</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-odin"><code><span class="org-variable-use">value</span><span class="org-punctuation">:</span> <span class="org-type">Value</span> <span class="org-punctuation">=</span> <span class="org-punctuation">...</span>
@@ -358,8 +358,8 @@ String attached to the field for documentation.
 </div>
 </div>
 </div>
-<div id="outline-container-org3a5814c" class="outline-3">
-<h3 id="org3a5814c"><span class="section-number-3">5.2.</span> Union Tags</h3>
+<div id="outline-container-org09a4d7f" class="outline-3">
+<h3 id="org09a4d7f"><span class="section-number-3">5.2.</span> Union Tags</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 <code>#no_nil</code> to a union type states it does not have a <code>nil</code> value. Union with <code>#no_nil</code> must have 2+ variants and the first variant is its default type.
@@ -371,12 +371,12 @@ String attached to the field for documentation.
 </div>
 </div>
 </div>
-<div id="outline-container-org2529eeb" class="outline-2">
-<h2 id="org2529eeb"><span class="section-number-2">6.</span> Maps</h2>
+<div id="outline-container-orgcbb0b38" class="outline-2">
+<h2 id="orgcbb0b38"><span class="section-number-2">6.</span> Maps</h2>
 </div>
 
-<div id="outline-container-org7fcb6ba" class="outline-2">
-<h2 id="org7fcb6ba"><span class="section-number-2">7.</span> Bit Fields</h2>
+<div id="outline-container-org8c580a2" class="outline-2">
+<h2 id="org8c580a2"><span class="section-number-2">7.</span> Bit Fields</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-odin"><code><span class="org-type">Foo</span> <span class="org-punctuation">::</span> <span class="org-keyword">bit_field</span> <span class="org-type">u16</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-comment">// backing type must be an integer or array of integers</span>
@@ -393,15 +393,15 @@ String attached to the field for documentation.
 </div>
 </div>
 </div>
-<div id="outline-container-org8130f86" class="outline-2">
-<h2 id="org8130f86"><span class="section-number-2">8.</span> Procedure Type</h2>
+<div id="outline-container-org6b5e56a" class="outline-2">
+<h2 id="org6b5e56a"><span class="section-number-2">8.</span> Procedure Type</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 A procedure type is internally a <i>pointer</i> to a procedure in memory. <code>nil</code> is the zero value of a procedure type.
 </p>
 </div>
-<div id="outline-container-org4ba680a" class="outline-3">
-<h3 id="org4ba680a"><span class="section-number-3">8.1.</span> Calling Conventions</h3>
+<div id="outline-container-org523b49a" class="outline-3">
+<h3 id="org523b49a"><span class="section-number-3">8.1.</span> Calling Conventions</h3>
 <div class="outline-text-3" id="text-8-1">
 <dl class="org-dl">
 <dt><code>proc "odin" (...)</code></dt><dd>default convention. pass all params &gt;= 16 bytes by reference; pass an implicit <code>context</code> pointer on each call.</dd>
@@ -417,12 +417,12 @@ When working with C libs, often <code>proc "c"</code> is needed and should pass 
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1244fe" class="outline-3">
-<h3 id="orgc1244fe"><span class="section-number-3">8.2.</span> Pass context explicitly</h3>
+<div id="outline-container-org6e7e64d" class="outline-3">
+<h3 id="org6e7e64d"><span class="section-number-3">8.2.</span> Pass context explicitly</h3>
 </div>
 </div>
-<div id="outline-container-org87df81a" class="outline-2">
-<h2 id="org87df81a"><span class="section-number-2">9.</span> Multi Pointers</h2>
+<div id="outline-container-org011f423" class="outline-2">
+<h2 id="org011f423"><span class="section-number-2">9.</span> Multi Pointers</h2>
 </div>
 </div>
 <div id="postamble" class="status">

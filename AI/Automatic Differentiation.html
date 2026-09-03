@@ -209,12 +209,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9064604">1. AutoGrad</a></li>
+<li><a href="#orga402a18">1. AutoGrad</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9064604" class="outline-2">
-<h2 id="org9064604"><span class="section-number-2">1.</span> AutoGrad</h2>
+<div id="outline-container-orga402a18" class="outline-2">
+<h2 id="orga402a18"><span class="section-number-2">1.</span> AutoGrad</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 AutoGrad is a method that can automatically compute the gradient/derivative of a program or function. It&rsquo;s principle is that <b>all numerical computation can be decomposed to basic operations</b> such that these operations can be easily composed to compute the gradient with <b>chain rule</b>.
@@ -234,7 +234,7 @@ f(x,w,b) = \frac{1}{\exp(-(wx+b)) + 1}
 The computation of \(f\) can be decomposed to basic ops and construct a <b>computation graph</b>.
 </p>
 
-<pre class="example" id="orgea420e2">
+<pre class="example" id="org62bbdb7">
 x --&gt; (*) --&gt; (+) --&gt; (*) --&gt; (exp) --&gt; (+) --&gt; (/) --&gt; f(x,w,b)
        ↑       ↑       ↑                 ↑       ↑
        w       b       -1                1       1

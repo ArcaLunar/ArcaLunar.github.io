@@ -206,16 +206,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org35f59a8">1. Creational Design Patterns: Factory Method</a>
+<li><a href="#org5bac5a0">1. Creational Design Patterns: Factory Method</a>
 <ul>
-<li><a href="#orgbf381ee">1.1. Scenarios</a></li>
+<li><a href="#orgd7c6c29">1.1. Scenarios</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org35f59a8" class="outline-2">
-<h2 id="org35f59a8"><span class="section-number-2">1.</span> Creational Design Patterns: Factory Method</h2>
+<div id="outline-container-org5bac5a0" class="outline-2">
+<h2 id="org5bac5a0"><span class="section-number-2">1.</span> Creational Design Patterns: Factory Method</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Factory method is a creational design pattern that provides an interface for creating objects in a superclass but allows subclasses to alter the type of objects that will be created.
@@ -229,8 +229,8 @@ The Factory method recommends that, instead of directly calling <code>new</code>
 How does this enable scalability? For example, both <code>ProductA</code> and <code>ProductB</code> classes implement the interface <code>Product</code>, so that for <code>AFactory</code> and <code>BFactory</code> being subclasses of some <code>Factory</code> class, <code>AFactory</code> can return <code>ProductA</code> upon calling <code>createProduct()</code> while <code>BFactory</code> can return <code>ProductB</code>. Moreover, the rest of the codebase treats <b>all</b> <i>products</i> as abstract <code>Product</code> interface.
 </p>
 </div>
-<div id="outline-container-orgbf381ee" class="outline-3">
-<h3 id="orgbf381ee"><span class="section-number-3">1.1.</span> Scenarios</h3>
+<div id="outline-container-orgd7c6c29" class="outline-3">
+<h3 id="orgd7c6c29"><span class="section-number-3">1.1.</span> Scenarios</h3>
 <div class="outline-text-3" id="text-1-1">
 <ol class="org-ol">
 <li>Factory method <b>decouples</b> code using <i>products</i> from code constructing <i>products</i>. This provides extensibility.</li>

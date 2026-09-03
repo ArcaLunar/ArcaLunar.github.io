@@ -208,16 +208,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd19f70b">1. Basic Structure of an Image Build</a></li>
-<li><a href="#org79b2191">2. Essential Commands</a></li>
+<li><a href="#orgaad3361">1. Basic Structure of an Image Build</a></li>
+<li><a href="#orgaeddab2">2. Essential Commands</a></li>
 </ul>
 </div>
 </div>
 <p>
 ContainerFile and DockerFile are almost the same, the difference between which is simply that the former is the default for <code>podman</code>, while the latter is the default for <code>docker</code>.
 </p>
-<div id="outline-container-orgd19f70b" class="outline-2">
-<h2 id="orgd19f70b"><span class="section-number-2">1.</span> Basic Structure of an Image Build</h2>
+<div id="outline-container-orgaad3361" class="outline-2">
+<h2 id="orgaad3361"><span class="section-number-2">1.</span> Basic Structure of an Image Build</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The container image is constructed within 5 stages: we start from <span class="underline">base image</span>, then <span class="underline">install packages</span> inside this image, <span class="underline">copy</span> application-specific files, <span class="underline">configuration</span> necessary environment (e.g., environment variables, settings up toolchains), and define the <span class="underline">startup</span> command.
@@ -228,8 +228,8 @@ Since we always start from base image, this design actually kind of defines a fi
 </p>
 </div>
 </div>
-<div id="outline-container-org79b2191" class="outline-2">
-<h2 id="org79b2191"><span class="section-number-2">2.</span> Essential Commands</h2>
+<div id="outline-container-orgaeddab2" class="outline-2">
+<h2 id="orgaeddab2"><span class="section-number-2">2.</span> Essential Commands</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt><code>FROM &lt;image[:tag]&gt;</code></dt><dd><p>
@@ -243,7 +243,7 @@ Moreover, we can use multiple <code>FROM ... AS</code> statements, so that follo
 <dt><code>RUN &lt;command&gt;</code></dt><dd>Executes commands during build. If <code>&lt;command&gt;</code> is normal executable bash command, then it will be executed by <code>/bin/sh</code>; if <code>&lt;command&gt;</code> is a list of strings, then it will involve shell to execute.</dd>
 </dl>
 
-<div class="definition" id="org0ab61d1">
+<div class="definition" id="orge2026dd">
 <dl class="org-dl">
 <dt>Layer</dt><dd>Each statement creates a &ldquo;layer&rdquo; of the image. Docker images are a stack of <i>immutable</i> layers, each command &ldquo;transforms&rdquo; the previous layer into a new layer.</dd>
 </dl>

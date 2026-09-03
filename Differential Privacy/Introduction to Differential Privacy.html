@@ -210,18 +210,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5b39d35">1. Desiderata for Strong Privacy Definition</a></li>
-<li><a href="#org5d79e78">2. Definition of DP</a>
+<li><a href="#org764f27a">1. Desiderata for Strong Privacy Definition</a></li>
+<li><a href="#org9096a52">2. Definition of DP</a>
 <ul>
-<li><a href="#org1c430d2">2.1. Distributed or Central Models for DP</a></li>
-<li><a href="#org8274364">2.2. Formal Definition, Techniques and Properties</a>
+<li><a href="#org950ff6e">2.1. Distributed or Central Models for DP</a></li>
+<li><a href="#orgeda0a0b">2.2. Formal Definition, Techniques and Properties</a>
 <ul>
-<li><a href="#org0804ff5">2.2.1. Adjacency</a></li>
-<li><a href="#orged06ad9">2.2.2. Gloval Sensitivity</a></li>
-<li><a href="#org4a5f38c">2.2.3. Mathematical Definition of DP</a></li>
+<li><a href="#org0450224">2.2.1. Adjacency</a></li>
+<li><a href="#orgf337eb2">2.2.2. Gloval Sensitivity</a></li>
+<li><a href="#orge19ab87">2.2.3. Mathematical Definition of DP</a></li>
 </ul>
 </li>
-<li><a href="#org55e3904">2.3. Approximate DP</a></li>
+<li><a href="#org3c976d9">2.3. Approximate DP</a></li>
 </ul>
 </li>
 </ul>
@@ -230,8 +230,8 @@
 <p>
 Differential privacy is widely regarded as the gold standard for privacy protection in statistical analysis and dataset releases. Its strength lies in providing a <i>formal</i> and <i>mathematical</i> definition of privacy, offering <i>precise</i> and <i>provable</i> guarantees.
 </p>
-<div id="outline-container-org5b39d35" class="outline-2">
-<h2 id="org5b39d35"><span class="section-number-2">1.</span> Desiderata for Strong Privacy Definition</h2>
+<div id="outline-container-org764f27a" class="outline-2">
+<h2 id="org764f27a"><span class="section-number-2">1.</span> Desiderata for Strong Privacy Definition</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><i>Compositionality</i>. A good privacy definition should ensure that its protection <i>gradually degrade</i> when applied multiple times, instead of <i>drastically collapse</i>.</li>
@@ -241,15 +241,15 @@ Differential privacy is widely regarded as the gold standard for privacy protect
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d79e78" class="outline-2">
-<h2 id="org5d79e78"><span class="section-number-2">2.</span> Definition of DP</h2>
+<div id="outline-container-org9096a52" class="outline-2">
+<h2 id="org9096a52"><span class="section-number-2">2.</span> Definition of DP</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A more precise requirement: information obtained from dataset with individual data, cannot be more than information from dataset without individual data. (There shouldn&rsquo;t be much new information gained from joining new individual data). DP is more like an requirement for privacy, rather than some algorithm.
 </p>
 </div>
-<div id="outline-container-org1c430d2" class="outline-3">
-<h3 id="org1c430d2"><span class="section-number-3">2.1.</span> Distributed or Central Models for DP</h3>
+<div id="outline-container-org950ff6e" class="outline-3">
+<h3 id="org950ff6e"><span class="section-number-3">2.1.</span> Distributed or Central Models for DP</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 In <b>centralized</b> models, all data collection, storage and processing happen at a single and central location by a trusted data curator. The assumption is that <i>the data curator will faithfully protect individual privacy and handle data responsibly</i>.
@@ -268,8 +268,8 @@ The distributed settings are, however, the contrast that introduces additional c
 </p>
 </div>
 </div>
-<div id="outline-container-org8274364" class="outline-3">
-<h3 id="org8274364"><span class="section-number-3">2.2.</span> Formal Definition, Techniques and Properties</h3>
+<div id="outline-container-orgeda0a0b" class="outline-3">
+<h3 id="orgeda0a0b"><span class="section-number-3">2.2.</span> Formal Definition, Techniques and Properties</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 DP is a mathematical framework for measuring and bounding the individuals&rsquo; privacy risks in a computation. A mechanism is considered <i>differentially private</i> if <span class="underline">the probability of any outcome occurring is nearly the same for any two datasets that differ in only one record</span>.
@@ -280,8 +280,8 @@ DP is a mathematical framework for measuring and bounding the individuals&rsquo;
 <dt>Numeric Query</dt><dd>A numeric query is a function \(f:\mathcal{D}\mapsto\mathcal{R},\mathcal{R}\subseteq \mathbb{R}^{r}\) that maps a dataset in some real vector space. For example, the function could be an SQL statement that counts the individuals.</dd>
 </dl>
 </div>
-<div id="outline-container-org0804ff5" class="outline-4">
-<h4 id="org0804ff5"><span class="section-number-4">2.2.1.</span> Adjacency</h4>
+<div id="outline-container-org0450224" class="outline-4">
+<h4 id="org0450224"><span class="section-number-4">2.2.1.</span> Adjacency</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 The concept of <i>adjacency</i> is fundamental in DP. It frames the <i>unit of change</i> that DP seeks to protect against, ensuring that the presence or absense of any single individual&rsquo;s data does not significantly alter the outcomes of data analysis. There 2 common ways to define adjacency in the context of DP:
@@ -293,8 +293,8 @@ The concept of <i>adjacency</i> is fundamental in DP. It frames the <i>unit of c
 </dl>
 </div>
 </div>
-<div id="outline-container-orged06ad9" class="outline-4">
-<h4 id="orged06ad9"><span class="section-number-4">2.2.2.</span> Gloval Sensitivity</h4>
+<div id="outline-container-orgf337eb2" class="outline-4">
+<h4 id="orgf337eb2"><span class="section-number-4">2.2.2.</span> Gloval Sensitivity</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 The choice of add/remove or exchange adjacency has implications for how DP is applied, as it directly addects the computation of <i>global sensitivity</i>, which measures the *maximum change in the output of a function for adjacent datasets.
@@ -315,8 +315,8 @@ In simpler terms, it measures how much the output of a function can change when 
 </p>
 </div>
 </div>
-<div id="outline-container-org4a5f38c" class="outline-4">
-<h4 id="org4a5f38c"><span class="section-number-4">2.2.3.</span> Mathematical Definition of DP</h4>
+<div id="outline-container-orge19ab87" class="outline-4">
+<h4 id="orge19ab87"><span class="section-number-4">2.2.3.</span> Mathematical Definition of DP</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 The sensitivity measurement tells us how much the output of the target function need to be adjusted to protect an individual&rsquo;s privacy. DP achieves this by <i>adding noise</i> to the function&rsquo;s output by an amount calibrated to the function sensitivity.
@@ -344,8 +344,8 @@ With the definition of DP, we can prove that this DP satisfies compositionality,
 </div>
 </div>
 </div>
-<div id="outline-container-org55e3904" class="outline-3">
-<h3 id="org55e3904"><span class="section-number-3">2.3.</span> Approximate DP</h3>
+<div id="outline-container-org3c976d9" class="outline-3">
+<h3 id="org3c976d9"><span class="section-number-3">2.3.</span> Approximate DP</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 DP with \(\delta=0\) is called <i>pure</i> DP, while \(\delta\gt 0\) is called <i>approximate</i> DP. Examples include [BROKEN LINK: 0230d137-15b1-407f-b805-6212d4378d9d].

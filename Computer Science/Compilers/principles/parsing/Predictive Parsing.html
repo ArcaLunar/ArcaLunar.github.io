@@ -210,13 +210,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc831726">1. Left-Factoring the Grammars</a>
+<li><a href="#org0fd1ec4">1. Left-Factoring the Grammars</a>
 <ul>
-<li><a href="#orgd5bf08a">1.1. Parsing table</a></li>
-<li><a href="#org2385d68">1.2. Stack</a></li>
+<li><a href="#orgedb6b8d">1.1. Parsing table</a></li>
+<li><a href="#orgb1e61d1">1.2. Stack</a></li>
 </ul>
 </li>
-<li><a href="#org3d6fb48">2. First Sets</a></li>
+<li><a href="#org892de94">2. First Sets</a></li>
 </ul>
 </div>
 </div>
@@ -227,8 +227,8 @@ Like recursive rescent parsing, but parser can &ldquo;predict&rdquo; which produ
 <p>
 Predictive parsers accept \(LL(k)\) grammars, which means &ldquo;left-to-right&rdquo;, &ldquo;left-most derivation&rdquo; and &ldquo;\(k\)-tokens to lookahead&rdquo;. <b>In \(LL(k)\), at each step, only one choice of production.</b>
 </p>
-<div id="outline-container-orgc831726" class="outline-2">
-<h2 id="orgc831726"><span class="section-number-2">1.</span> Left-Factoring the Grammars</h2>
+<div id="outline-container-org0fd1ec4" class="outline-2">
+<h2 id="org0fd1ec4"><span class="section-number-2">1.</span> Left-Factoring the Grammars</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The goal is to eliminate common prefixes of terminals, by <b>extracting common prefixes to a production</b>. e.g., the following production
@@ -249,16 +249,16 @@ E &\to T\, X \\
 X &\to +E\, |\, \epsilon
 \end{split}
 </div>
-<div id="outline-container-orgd5bf08a" class="outline-3">
-<h3 id="orgd5bf08a"><span class="section-number-3">1.1.</span> Parsing table</h3>
+<div id="outline-container-orgedb6b8d" class="outline-3">
+<h3 id="orgedb6b8d"><span class="section-number-3">1.1.</span> Parsing table</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The \(LL(1)\) parsing table has rows representing <i>current non-terminal</i> and columns representing <i>next token</i>, and the cell tells <i>which production to use for parsing</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org2385d68" class="outline-3">
-<h3 id="org2385d68"><span class="section-number-3">1.2.</span> Stack</h3>
+<div id="outline-container-orgb1e61d1" class="outline-3">
+<h3 id="orgb1e61d1"><span class="section-number-3">1.2.</span> Stack</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We may also need a <i>stack</i> to record frontier of the parse tree, including <i>non-terminals</i> that have yet to be expanded, <i>terminals</i> that have yet to matched against the input. Top of stack always tells the leftmost pending terminal or non-terminal.
@@ -296,8 +296,8 @@ And we reject on reaching error state, accept on end of input and empty stack.
 </div>
 </div>
 </div>
-<div id="outline-container-org3d6fb48" class="outline-2">
-<h2 id="org3d6fb48"><span class="section-number-2">2.</span> First Sets</h2>
+<div id="outline-container-org892de94" class="outline-2">
+<h2 id="org892de94"><span class="section-number-2">2.</span> First Sets</h2>
 </div>
 </div>
 <div id="postamble" class="status">

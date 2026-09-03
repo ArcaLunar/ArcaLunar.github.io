@@ -209,62 +209,62 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7294d16">1. Model Architecture</a>
+<li><a href="#orgd86d29f">1. Model Architecture</a>
 <ul>
-<li><a href="#org1d852a7">1.1. MLP-Based Vision-Language Merger</a></li>
-<li><a href="#org1177063">1.2. Vision Encoder</a>
+<li><a href="#org124ae5e">1.1. MLP-Based Vision-Language Merger</a></li>
+<li><a href="#org35b4428">1.2. Vision Encoder</a>
 <ul>
-<li><a href="#orga3847ae">1.2.1. Patch Embedding for Images and Videos</a></li>
-<li><a href="#orge70e127">1.2.2. Window Attention</a></li>
-<li><a href="#org820717f">1.2.3. Multimodal Positional Embedding</a></li>
-<li><a href="#orgd24b457">1.2.4. Other Components</a></li>
+<li><a href="#org30f7177">1.2.1. Patch Embedding for Images and Videos</a></li>
+<li><a href="#org523ad6d">1.2.2. Window Attention</a></li>
+<li><a href="#org3ad4a65">1.2.3. Multimodal Positional Embedding</a></li>
+<li><a href="#orgbb3f315">1.2.4. Other Components</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0e81f20">2. Training</a>
+<li><a href="#orgf4ff67e">2. Training</a>
 <ul>
-<li><a href="#org7511569">2.1. Pretraining</a>
+<li><a href="#org5c06f53">2.1. Pretraining</a>
 <ul>
-<li><a href="#org2845a69">2.1.1. Grounding Data with Absolute Position Coordinates</a></li>
+<li><a href="#org78d49ba">2.1.1. Grounding Data with Absolute Position Coordinates</a></li>
 </ul>
 </li>
-<li><a href="#org76016ed">2.2. Post-Training</a></li>
+<li><a href="#orgd27f86f">2.2. Post-Training</a></li>
 </ul>
 </li>
-<li><a href="#orgf842f2e">3. Experiments</a></li>
+<li><a href="#orge556839">3. Experiments</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7294d16" class="outline-2">
-<h2 id="org7294d16"><span class="section-number-2">1.</span> Model Architecture</h2>
+<div id="outline-container-orgd86d29f" class="outline-2">
+<h2 id="orgd86d29f"><span class="section-number-2">1.</span> Model Architecture</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1d852a7" class="outline-3">
-<h3 id="org1d852a7"><span class="section-number-3">1.1.</span> MLP-Based Vision-Language Merger</h3>
+<div id="outline-container-org124ae5e" class="outline-3">
+<h3 id="org124ae5e"><span class="section-number-3">1.1.</span> MLP-Based Vision-Language Merger</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To address efficiency problems caused by <span class="underline">long sequence of image features</span>, Qwen2.5VL first <span class="underline">group adjacent \( 2\times 2 \) patch features</span>, concatenate them, then pass them through a <i>two-layer MLP</i> to align dimension with text token embeddings. When training LLM backbone, vision embeddings are appended to text token embeddings.
 </p>
 </div>
 </div>
-<div id="outline-container-org1177063" class="outline-3">
-<h3 id="org1177063"><span class="section-number-3">1.2.</span> Vision Encoder</h3>
+<div id="outline-container-org35b4428" class="outline-3">
+<h3 id="org35b4428"><span class="section-number-3">1.2.</span> Vision Encoder</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Qwen2.5 of different sizes (3B, 7B, 72B) uses the same vision encoder, which is a modified version of ViT.
 </p>
 </div>
-<div id="outline-container-orga3847ae" class="outline-4">
-<h4 id="orga3847ae"><span class="section-number-4">1.2.1.</span> Patch Embedding for Images and Videos</h4>
+<div id="outline-container-org30f7177" class="outline-4">
+<h4 id="org30f7177"><span class="section-number-4">1.2.1.</span> Patch Embedding for Images and Videos</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 To handle videos, Qwen2.5VL uses \( 14\times 14 \) as <span class="underline">spacial unit</span>, and extends to \( 2\times 14\times 14 \), which means for videos, 2 consecutive frames are used to form a single <span class="underline">temporal token</span>.
 </p>
 </div>
 </div>
-<div id="outline-container-orge70e127" class="outline-4">
-<h4 id="orge70e127"><span class="section-number-4">1.2.2.</span> Window Attention</h4>
+<div id="outline-container-org523ad6d" class="outline-4">
+<h4 id="org523ad6d"><span class="section-number-4">1.2.2.</span> Window Attention</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 In Qwen2.5VL, concerning computational efficiency, only 4 layers are full attention. The rest are <span class="underline">window attention without padding</span> such that each window covers adjacent \( 112 \times 112 \) pixels, equivalent to \( 8\times 8 \) surrounding patches.
@@ -279,8 +279,8 @@ This design is similar to Convolutional NN, so it leverages the advantage that i
 </p>
 </div>
 </div>
-<div id="outline-container-org820717f" class="outline-4">
-<h4 id="org820717f"><span class="section-number-4">1.2.3.</span> Multimodal Positional Embedding</h4>
+<div id="outline-container-org3ad4a65" class="outline-4">
+<h4 id="org3ad4a65"><span class="section-number-4">1.2.3.</span> Multimodal Positional Embedding</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 To represent video frames, we need 3D information: \( (t, h, w) \) representing temporal timestamp, height, width respectively.
@@ -291,8 +291,8 @@ This 3D representation does not break 1D RoPE and 2D RoPE. For text, \(p\)-th to
 </p>
 </div>
 </div>
-<div id="outline-container-orgd24b457" class="outline-4">
-<h4 id="orgd24b457"><span class="section-number-4">1.2.4.</span> Other Components</h4>
+<div id="outline-container-orgbb3f315" class="outline-4">
+<h4 id="orgbb3f315"><span class="section-number-4">1.2.4.</span> Other Components</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 To align with LLM backbone, Qwen2.5VL uses RMSNorm for normalization and SwiGLU as activation.
@@ -301,24 +301,24 @@ To align with LLM backbone, Qwen2.5VL uses RMSNorm for normalization and SwiGLU 
 </div>
 </div>
 </div>
-<div id="outline-container-org0e81f20" class="outline-2">
-<h2 id="org0e81f20"><span class="section-number-2">2.</span> Training</h2>
+<div id="outline-container-orgf4ff67e" class="outline-2">
+<h2 id="orgf4ff67e"><span class="section-number-2">2.</span> Training</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org7511569" class="outline-3">
-<h3 id="org7511569"><span class="section-number-3">2.1.</span> Pretraining</h3>
+<div id="outline-container-org5c06f53" class="outline-3">
+<h3 id="org5c06f53"><span class="section-number-3">2.1.</span> Pretraining</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org2845a69" class="outline-4">
-<h4 id="org2845a69"><span class="section-number-4">2.1.1.</span> Grounding Data with Absolute Position Coordinates</h4>
+<div id="outline-container-org78d49ba" class="outline-4">
+<h4 id="org78d49ba"><span class="section-number-4">2.1.1.</span> Grounding Data with Absolute Position Coordinates</h4>
 </div>
 </div>
-<div id="outline-container-org76016ed" class="outline-3">
-<h3 id="org76016ed"><span class="section-number-3">2.2.</span> Post-Training</h3>
+<div id="outline-container-orgd27f86f" class="outline-3">
+<h3 id="orgd27f86f"><span class="section-number-3">2.2.</span> Post-Training</h3>
 </div>
 </div>
-<div id="outline-container-orgf842f2e" class="outline-2">
-<h2 id="orgf842f2e"><span class="section-number-2">3.</span> Experiments</h2>
+<div id="outline-container-orge556839" class="outline-2">
+<h2 id="orge556839"><span class="section-number-2">3.</span> Experiments</h2>
 </div>
 </div>
 <div id="postamble" class="status">

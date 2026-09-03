@@ -206,29 +206,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd7e6df6">1. Define Functions</a>
+<li><a href="#orgdb55ea9">1. Define Functions</a>
 <ul>
-<li><a href="#org072ebba">1.1. Optional Parameters</a></li>
-<li><a href="#orgd30ab36">1.2. Rest Parameters</a></li>
+<li><a href="#orgf4a3f84">1.1. Optional Parameters</a></li>
+<li><a href="#org815d584">1.2. Rest Parameters</a></li>
 </ul>
 </li>
-<li><a href="#orgc62964a">2. Lambda Functions</a></li>
-<li><a href="#org5dbb844">3. Higher-Order Functions</a>
+<li><a href="#org9e696d5">2. Lambda Functions</a></li>
+<li><a href="#org73285ec">3. Higher-Order Functions</a>
 <ul>
-<li><a href="#org80835da">3.1. <code>apply</code></a></li>
-<li><a href="#org1263bf5">3.2. <code>funcall</code></a></li>
-<li><a href="#org5b56e6a">3.3. <code>identity</code></a></li>
-<li><a href="#orgb9f0d3b">3.4. <code>ignore</code></a></li>
-<li><a href="#org707a6fe">3.5. <code>always</code></a></li>
+<li><a href="#org3cca09b">3.1. <code>apply</code></a></li>
+<li><a href="#orgd2ad219">3.2. <code>funcall</code></a></li>
+<li><a href="#org66d0f88">3.3. <code>identity</code></a></li>
+<li><a href="#orgb08a325">3.4. <code>ignore</code></a></li>
+<li><a href="#org933fed1">3.5. <code>always</code></a></li>
 </ul>
 </li>
-<li><a href="#org0159893">4. Function Types</a></li>
-<li><a href="#org8b2bf93">5. Docstring Markup</a></li>
+<li><a href="#org87b4bfc">4. Function Types</a></li>
+<li><a href="#orgedc1945">5. Docstring Markup</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd7e6df6" class="outline-2">
-<h2 id="orgd7e6df6"><span class="section-number-2">1.</span> Define Functions</h2>
+<div id="outline-container-orgdb55ea9" class="outline-2">
+<h2 id="orgdb55ea9"><span class="section-number-2">1.</span> Define Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Basic function definition has the form
@@ -245,16 +245,16 @@ Basic function definition has the form
 When a function is called, the last expression in the function&rsquo;s body is returned.
 </p>
 </div>
-<div id="outline-container-org072ebba" class="outline-3">
-<h3 id="org072ebba"><span class="section-number-3">1.1.</span> Optional Parameters</h3>
+<div id="outline-container-orgf4a3f84" class="outline-3">
+<h3 id="orgf4a3f84"><span class="section-number-3">1.1.</span> Optional Parameters</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Add <code>&amp;optional</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgd30ab36" class="outline-3">
-<h3 id="orgd30ab36"><span class="section-number-3">1.2.</span> Rest Parameters</h3>
+<div id="outline-container-org815d584" class="outline-3">
+<h3 id="org815d584"><span class="section-number-3">1.2.</span> Rest Parameters</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Add <code>&amp;rest</code>, becomes a list.
@@ -262,16 +262,16 @@ Add <code>&amp;rest</code>, becomes a list.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc62964a" class="outline-2">
-<h2 id="orgc62964a"><span class="section-number-2">2.</span> Lambda Functions</h2>
+<div id="outline-container-org9e696d5" class="outline-2">
+<h2 id="org9e696d5"><span class="section-number-2">2.</span> Lambda Functions</h2>
 </div>
 
-<div id="outline-container-org5dbb844" class="outline-2">
-<h2 id="org5dbb844"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
+<div id="outline-container-org73285ec" class="outline-2">
+<h2 id="org73285ec"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org80835da" class="outline-3">
-<h3 id="org80835da"><span class="section-number-3">3.1.</span> <code>apply</code></h3>
+<div id="outline-container-org3cca09b" class="outline-3">
+<h3 id="org3cca09b"><span class="section-number-3">3.1.</span> <code>apply</code></h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">apply</span> FUNCTION <span class="org-type">&amp;rest</span> args_or_list<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -283,8 +283,8 @@ Useful when we have a list and want to feed them as function parameters.
 </p>
 </div>
 </div>
-<div id="outline-container-org1263bf5" class="outline-3">
-<h3 id="org1263bf5"><span class="section-number-3">3.2.</span> <code>funcall</code></h3>
+<div id="outline-container-orgd2ad219" class="outline-3">
+<h3 id="orgd2ad219"><span class="section-number-3">3.2.</span> <code>funcall</code></h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">funcall</span> FUNCTION <span class="org-type">&amp;rest</span> args<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -296,8 +296,8 @@ Useful when function name is a variable, whose value is known only at runtime.
 </p>
 </div>
 </div>
-<div id="outline-container-org5b56e6a" class="outline-3">
-<h3 id="org5b56e6a"><span class="section-number-3">3.3.</span> <code>identity</code></h3>
+<div id="outline-container-org66d0f88" class="outline-3">
+<h3 id="org66d0f88"><span class="section-number-3">3.3.</span> <code>identity</code></h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">identity</span> ARGUMENT<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -309,8 +309,8 @@ Simply returns the ARGUMENT.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb9f0d3b" class="outline-3">
-<h3 id="orgb9f0d3b"><span class="section-number-3">3.4.</span> <code>ignore</code></h3>
+<div id="outline-container-orgb08a325" class="outline-3">
+<h3 id="orgb08a325"><span class="section-number-3">3.4.</span> <code>ignore</code></h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">ignore</span> <span class="org-type">&amp;rest</span> ARGUMENTS<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -322,8 +322,8 @@ Ignore ARGUMENTS, and return <code>nil</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org707a6fe" class="outline-3">
-<h3 id="org707a6fe"><span class="section-number-3">3.5.</span> <code>always</code></h3>
+<div id="outline-container-org933fed1" class="outline-3">
+<h3 id="org933fed1"><span class="section-number-3">3.5.</span> <code>always</code></h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">always</span> <span class="org-type">&amp;rest</span> ARGUMENTS<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -336,14 +336,14 @@ Ignore ARGUMENTS, do nothing and return <code>t</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-org0159893" class="outline-2">
-<h2 id="org0159893"><span class="section-number-2">4.</span> Function Types</h2>
+<div id="outline-container-org87b4bfc" class="outline-2">
+<h2 id="org87b4bfc"><span class="section-number-2">4.</span> Function Types</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
 </div>
 </div>
-<div id="outline-container-org8b2bf93" class="outline-2">
-<h2 id="org8b2bf93"><span class="section-number-2">5.</span> Docstring Markup</h2>
+<div id="outline-container-orgedc1945" class="outline-2">
+<h2 id="orgedc1945"><span class="section-number-2">5.</span> Docstring Markup</h2>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -206,16 +206,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb9e6766">1. Android.Room</a>
+<li><a href="#org2eacd88">1. Android.Room</a>
 <ul>
-<li><a href="#orgb336ce5">1.1. Setup</a></li>
-<li><a href="#org56643d4">1.2. Primary Components&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></a></li>
-<li><a href="#org1df7772">1.3. Sample Implementation</a>
+<li><a href="#org55a2986">1.1. Setup</a></li>
+<li><a href="#org8430474">1.2. Primary Components&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></a></li>
+<li><a href="#orgd1f1fd6">1.3. Sample Implementation</a>
 <ul>
-<li><a href="#orgbd590c9">1.3.1. Data Entity</a></li>
-<li><a href="#org7451292">1.3.2. Data Access Object (DAO)</a></li>
-<li><a href="#org75e53fa">1.3.3. Database</a></li>
-<li><a href="#orgc748586">1.3.4. Usage</a></li>
+<li><a href="#org806f6c8">1.3.1. Data Entity</a></li>
+<li><a href="#org9a5e911">1.3.2. Data Access Object (DAO)</a></li>
+<li><a href="#org1ea3de4">1.3.3. Database</a></li>
+<li><a href="#orga653598">1.3.4. Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -223,23 +223,23 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb9e6766" class="outline-2">
-<h2 id="orgb9e6766"><span class="section-number-2">1.</span> Android.Room</h2>
+<div id="outline-container-org2eacd88" class="outline-2">
+<h2 id="org2eacd88"><span class="section-number-2">1.</span> Android.Room</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Although <code>SQLiteOpenHelper</code> is powerful, but we still need to write template codes, and <i>lacks compile-time SQL grammar check</i>. Thus, <b>Room</b> is introduced.
 </p>
 </div>
-<div id="outline-container-orgb336ce5" class="outline-3">
-<h3 id="orgb336ce5"><span class="section-number-3">1.1.</span> Setup</h3>
+<div id="outline-container-org55a2986" class="outline-3">
+<h3 id="org55a2986"><span class="section-number-3">1.1.</span> Setup</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We need to include relevant dependencies in <code>build.gradle</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org56643d4" class="outline-3">
-<h3 id="org56643d4"><span class="section-number-3">1.2.</span> Primary Components&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
+<div id="outline-container-org8430474" class="outline-3">
+<h3 id="org8430474"><span class="section-number-3">1.2.</span> Primary Components&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 There are 3 components in Room:
@@ -252,18 +252,18 @@ There are 3 components in Room:
 </ol>
 
 
-<div id="orgf157a2f" class="figure">
+<div id="orgeadf85e" class="figure">
 <p><img src="./data/87/d09844-ea59-4485-87b5-5566079f105e/room_architecture.png" alt="room_architecture.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1df7772" class="outline-3">
-<h3 id="org1df7772"><span class="section-number-3">1.3.</span> Sample Implementation</h3>
+<div id="outline-container-orgd1f1fd6" class="outline-3">
+<h3 id="orgd1f1fd6"><span class="section-number-3">1.3.</span> Sample Implementation</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orgbd590c9" class="outline-4">
-<h4 id="orgbd590c9"><span class="section-number-4">1.3.1.</span> Data Entity</h4>
+<div id="outline-container-org806f6c8" class="outline-4">
+<h4 id="org806f6c8"><span class="section-number-4">1.3.1.</span> Data Entity</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 <i>Data entity</i> acts as tables in app&rsquo;s database. Each instance represents a row in the table (default, table name is the same name but lowercased)
@@ -299,8 +299,8 @@ Or in Java,
 </div>
 </div>
 </div>
-<div id="outline-container-org7451292" class="outline-4">
-<h4 id="org7451292"><span class="section-number-4">1.3.2.</span> Data Access Object (DAO)</h4>
+<div id="outline-container-org9a5e911" class="outline-4">
+<h4 id="org9a5e911"><span class="section-number-4">1.3.2.</span> Data Access Object (DAO)</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 <code>UserDAO</code> provides the methods that the rest of the app uses to interact with data in the <code>user</code> table.
@@ -329,8 +329,8 @@ Or in Java,
 </div>
 </div>
 </div>
-<div id="outline-container-org75e53fa" class="outline-4">
-<h4 id="org75e53fa"><span class="section-number-4">1.3.3.</span> Database</h4>
+<div id="outline-container-org1ea3de4" class="outline-4">
+<h4 id="org1ea3de4"><span class="section-number-4">1.3.3.</span> Database</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 Then, we need a <code>AppDatabase</code> class to hold the database that defines the database configuration and is the main access point to persisted data.
@@ -351,8 +351,8 @@ Then, we need a <code>AppDatabase</code> class to hold the database that defines
 </div>
 </div>
 </div>
-<div id="outline-container-orgc748586" class="outline-4">
-<h4 id="orgc748586"><span class="section-number-4">1.3.4.</span> Usage</h4>
+<div id="outline-container-orga653598" class="outline-4">
+<h4 id="orga653598"><span class="section-number-4">1.3.4.</span> Usage</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 To use the DB, we first create an instance of the DB:

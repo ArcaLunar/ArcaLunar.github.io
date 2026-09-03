@@ -206,27 +206,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc085d79"><code>SharedPreferences</code></a>
+<li><a href="#org28423ee"><code>SharedPreferences</code></a>
 <ul>
-<li><a href="#org0f71fbe">How to Use?</a>
+<li><a href="#org55a97a7">How to Use?</a>
 <ul>
-<li><a href="#org4c010d4">Retrieval</a></li>
-<li><a href="#org53813b5">Writing Data</a></li>
-<li><a href="#org0a4a73d">Reading Data</a></li>
+<li><a href="#orgad8ca3f">Retrieval</a></li>
+<li><a href="#org523702d">Writing Data</a></li>
+<li><a href="#org04b626d">Reading Data</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9cafec7"><code>EncryptedSharedPreferences</code></a></li>
+<li><a href="#org9e72258"><code>EncryptedSharedPreferences</code></a></li>
 </ul>
 </div>
 </div>
 <p>
 We have several data storage solutions for Android app development.
 </p>
-<div id="outline-container-orgc085d79" class="outline-2">
-<h2 id="orgc085d79"><code>SharedPreferences</code></h2>
-<div class="outline-text-2" id="text-orgc085d79">
+<div id="outline-container-org28423ee" class="outline-2">
+<h2 id="org28423ee"><code>SharedPreferences</code></h2>
+<div class="outline-text-2" id="text-org28423ee">
 <p>
 <code>SharedPreferences</code> is a light-weight storage for Android to read and store key-value pairs, which is suitable for simple data like <i>app configs</i>, <i>user preferences</i>, <i>login state</i>.
 </p>
@@ -235,13 +235,13 @@ We have several data storage solutions for Android app development.
 <code>SharedPreferences</code> is, in essence, an <code>.xml</code> file under app-private folder <code>/data/data/&lt;package_name&gt;/shared_prefs</code>.
 </p>
 </div>
-<div id="outline-container-org0f71fbe" class="outline-3">
-<h3 id="org0f71fbe">How to Use?</h3>
-<div class="outline-text-3" id="text-org0f71fbe">
+<div id="outline-container-org55a97a7" class="outline-3">
+<h3 id="org55a97a7">How to Use?</h3>
+<div class="outline-text-3" id="text-org55a97a7">
 </div>
-<div id="outline-container-org4c010d4" class="outline-4">
-<h4 id="org4c010d4">Retrieval</h4>
-<div class="outline-text-4" id="text-org4c010d4">
+<div id="outline-container-orgad8ca3f" class="outline-4">
+<h4 id="orgad8ca3f">Retrieval</h4>
+<div class="outline-text-4" id="text-orgad8ca3f">
 <p>
 We mainly have 2 ways to retrieve the <code>SharedPreferences</code> object.
 </p>
@@ -283,9 +283,9 @@ This method is only suitable for preference configs <i>within same activity</i>.
 </ol>
 </div>
 </div>
-<div id="outline-container-org53813b5" class="outline-4">
-<h4 id="org53813b5">Writing Data</h4>
-<div class="outline-text-4" id="text-org53813b5">
+<div id="outline-container-org523702d" class="outline-4">
+<h4 id="org523702d">Writing Data</h4>
+<div class="outline-text-4" id="text-org523702d">
 <p>
 Writing data is proxied by <code>SharedPreferences.Editor</code> object and follows 3 steps.
 </p>
@@ -368,9 +368,9 @@ In most cases, we should use <code>apply()</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org0a4a73d" class="outline-4">
-<h4 id="org0a4a73d">Reading Data</h4>
-<div class="outline-text-4" id="text-org0a4a73d">
+<div id="outline-container-org04b626d" class="outline-4">
+<h4 id="org04b626d">Reading Data</h4>
+<div class="outline-text-4" id="text-org04b626d">
 <p>
 We just simply invoke <code>getXXX()</code> of <code>SharedPreferences</code> objects.
 </p>
@@ -378,9 +378,9 @@ We just simply invoke <code>getXXX()</code> of <code>SharedPreferences</code> ob
 </div>
 </div>
 </div>
-<div id="outline-container-org9cafec7" class="outline-2">
-<h2 id="org9cafec7"><code>EncryptedSharedPreferences</code></h2>
-<div class="outline-text-2" id="text-org9cafec7">
+<div id="outline-container-org9e72258" class="outline-2">
+<h2 id="org9e72258"><code>EncryptedSharedPreferences</code></h2>
+<div class="outline-text-2" id="text-org9e72258">
 <p>
 Standard <code>SharedPreferences</code> stores data in bear xml files. If we want to store passwords, tokens, we should use <code>EncryptedSharedPreferences</code>, which automatically encrypts keys and values.
 </p>

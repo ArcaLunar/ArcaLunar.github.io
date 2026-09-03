@@ -210,63 +210,63 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4f971ca">1. Preliminary Definitions of RL Modeling for LRMs</a>
+<li><a href="#orge5613ac">1. Preliminary Definitions of RL Modeling for LRMs</a>
 <ul>
-<li><a href="#org1881d6b">1.1. Reinforcement Learning</a></li>
-<li><a href="#orgd1fda80">1.2. Frontier Models</a></li>
+<li><a href="#org3bd755b">1.1. Reinforcement Learning</a></li>
+<li><a href="#org037fe2b">1.2. Frontier Models</a></li>
 </ul>
 </li>
-<li><a href="#orge09fd88">2. Foundational Components of RL for LRMs</a>
+<li><a href="#orgeae4b1a">2. Foundational Components of RL for LRMs</a>
 <ul>
-<li><a href="#org0ab946e">2.1. Reward Design</a>
+<li><a href="#org5f27730">2.1. Reward Design</a>
 <ul>
-<li><a href="#orgb4a7e96">2.1.1. Verifiable Rewards</a></li>
-<li><a href="#org5f07e30">2.1.2. Generative Rewards</a></li>
-<li><a href="#orgabd12dc">2.1.3. Dense Rewards</a></li>
-<li><a href="#org85c2bb4">2.1.4. Unsupervised Rewards</a></li>
-<li><a href="#org262e92a">2.1.5. Reward Shaping</a></li>
+<li><a href="#org7fd6826">2.1.1. Verifiable Rewards</a></li>
+<li><a href="#org81a0ac9">2.1.2. Generative Rewards</a></li>
+<li><a href="#orgf52daec">2.1.3. Dense Rewards</a></li>
+<li><a href="#orgb71c930">2.1.4. Unsupervised Rewards</a></li>
+<li><a href="#orgfaea7db">2.1.5. Reward Shaping</a></li>
 </ul>
 </li>
-<li><a href="#org0fac2ff">2.2. Policy Optimization</a>
+<li><a href="#org8711b99">2.2. Policy Optimization</a>
 <ul>
-<li><a href="#org5670f18">2.2.1. Policy Gradient Objective</a></li>
-<li><a href="#org9e2da05">2.2.2. Critic-based Algorithms</a></li>
-<li><a href="#org1e96fc2">2.2.3. Critic-Free Algorithms</a></li>
-<li><a href="#orgc7d0fb6">2.2.4. Off-Policy Optimization</a></li>
-<li><a href="#org7b6393b">2.2.5. Regularization Objectives</a></li>
+<li><a href="#orgdc019c9">2.2.1. Policy Gradient Objective</a></li>
+<li><a href="#orgd0d3e98">2.2.2. Critic-based Algorithms</a></li>
+<li><a href="#org64a817d">2.2.3. Critic-Free Algorithms</a></li>
+<li><a href="#org7eacc86">2.2.4. Off-Policy Optimization</a></li>
+<li><a href="#org873bc07">2.2.5. Regularization Objectives</a></li>
 </ul>
 </li>
-<li><a href="#orgc00dc8a">2.3. Sampling Strategies</a>
+<li><a href="#org38a12e4">2.3. Sampling Strategies</a>
 <ul>
-<li><a href="#org3b380a5">2.3.1. Dynamic and Structured Sampling</a></li>
-<li><a href="#orge647b0b">2.3.2. Sampling Hyper Parameters</a></li>
+<li><a href="#orged8bf6a">2.3.1. Dynamic and Structured Sampling</a></li>
+<li><a href="#orgfbf094a">2.3.2. Sampling Hyper Parameters</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org96ddac0">3. Problems in RL for LRMs</a>
+<li><a href="#org2e11e52">3. Problems in RL for LRMs</a>
 <ul>
-<li><a href="#orga515f3c">3.1. Role of RL</a></li>
-<li><a href="#org070a56a">3.2. RL vs. SFT</a></li>
-<li><a href="#org9f71acc">3.3. Model Priors</a></li>
-<li><a href="#org3b0721a">3.4. Training Recipes</a></li>
-<li><a href="#org52ba147">3.5. Reward Definitions</a></li>
+<li><a href="#org80ced1f">3.1. Role of RL</a></li>
+<li><a href="#org38c7232">3.2. RL vs. SFT</a></li>
+<li><a href="#orgf82390e">3.3. Model Priors</a></li>
+<li><a href="#org5f26223">3.4. Training Recipes</a></li>
+<li><a href="#orgca460d6">3.5. Reward Definitions</a></li>
 </ul>
 </li>
-<li><a href="#org645172a">4. Training Resources for RL</a>
+<li><a href="#org647414e">4. Training Resources for RL</a>
 <ul>
-<li><a href="#org139dc67">4.1. Static Corpus</a></li>
-<li><a href="#org7ae36ce">4.2. Dynamic Environments</a></li>
-<li><a href="#org8aff6a3">4.3. Training Infrastructure</a></li>
+<li><a href="#orgf44e99c">4.1. Static Corpus</a></li>
+<li><a href="#orgae0c095">4.2. Dynamic Environments</a></li>
+<li><a href="#orgd1d80d5">4.3. Training Infrastructure</a></li>
 </ul>
 </li>
-<li><a href="#orgba19259">5. Application of RL</a></li>
-<li><a href="#org3e9c354">6. Future Directions in RL for Language Models</a></li>
+<li><a href="#orga0b790c">5. Application of RL</a></li>
+<li><a href="#org90a07c6">6. Future Directions in RL for Language Models</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f971ca" class="outline-2">
-<h2 id="org4f971ca"><span class="section-number-2">1.</span> Preliminary Definitions of RL Modeling for LRMs</h2>
+<div id="outline-container-orge5613ac" class="outline-2">
+<h2 id="orge5613ac"><span class="section-number-2">1.</span> Preliminary Definitions of RL Modeling for LRMs</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We quickly go through the basic components of RL, and describe how language models can be adapted into the RL framework.
@@ -276,8 +276,8 @@ We quickly go through the basic components of RL, and describe how language mode
 <img src="/.assets/rl/rl-llm.png" alt="" />
 </p>
 </div>
-<div id="outline-container-org1881d6b" class="outline-3">
-<h3 id="org1881d6b"><span class="section-number-3">1.1.</span> Reinforcement Learning</h3>
+<div id="outline-container-org3bd755b" class="outline-3">
+<h3 id="org3bd755b"><span class="section-number-3">1.1.</span> Reinforcement Learning</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 RL is a general framework for <i>sequential decision making</i>, in which an <i>agent</i> interacts with an <i>environment</i> by taking <i>actions</i> to <i>maximize cumulative reward</i>. The main components include state space \(\mathcal{S}\), action space \(\mathcal{A}\), transition function \( \mathcal{P}:\mathcal{S}\times\mathcal{A}\mapsto\mathcal{S} \), reward function \( R:\mathcal{S}\times\mathcal{A}\mapsto \mathbb{R} \), and a discounting factor \( \gamma \in [0,1] \).
@@ -316,8 +316,8 @@ In practice, we usually have a reference policy \(\pi_{ref}\) for model regulari
 </p>
 </div>
 </div>
-<div id="outline-container-orgd1fda80" class="outline-3">
-<h3 id="orgd1fda80"><span class="section-number-3">1.2.</span> Frontier Models</h3>
+<div id="outline-container-org037fe2b" class="outline-3">
+<h3 id="org037fe2b"><span class="section-number-3">1.2.</span> Frontier Models</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 There are 3 major directions: LRMs, agentic LRMs and multimodal LRMs.
@@ -325,23 +325,23 @@ There are 3 major directions: LRMs, agentic LRMs and multimodal LRMs.
 </div>
 </div>
 </div>
-<div id="outline-container-orge09fd88" class="outline-2">
-<h2 id="orge09fd88"><span class="section-number-2">2.</span> Foundational Components of RL for LRMs</h2>
+<div id="outline-container-orgeae4b1a" class="outline-2">
+<h2 id="orgeae4b1a"><span class="section-number-2">2.</span> Foundational Components of RL for LRMs</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0ab946e" class="outline-3">
-<h3 id="org0ab946e"><span class="section-number-3">2.1.</span> Reward Design</h3>
+<div id="outline-container-org5f27730" class="outline-3">
+<h3 id="org5f27730"><span class="section-number-3">2.1.</span> Reward Design</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgb4a7e96" class="outline-4">
-<h4 id="orgb4a7e96"><span class="section-number-4">2.1.1.</span> Verifiable Rewards</h4>
+<div id="outline-container-org7fd6826" class="outline-4">
+<h4 id="org7fd6826"><span class="section-number-4">2.1.1.</span> Verifiable Rewards</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Only tasks <b>comparatively easy to verify</b> benefit from outcome-based RL algorithms. Tasks lacking fast or objective verification remain challenging for outcome-based RL.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org3e746b4"></a>Rule-based Rewards<br />
+<li><a id="org23bb532"></a>Rule-based Rewards<br />
 <div class="outline-text-5" id="text-2-1-1-1">
 <p>
 In rule-based rewards method, we usually have a programmatic verifier. They provide <b>binary and checkable</b> signals in domains with objectively verifiable outcomes, for example, coding and mathematics, thus improving models&rsquo; performance in these 2 fields through <b>accuracy and format checks</b>.
@@ -353,7 +353,7 @@ In rule-based rewards method, we usually have a programmatic verifier. They prov
 </ul>
 </div>
 </li>
-<li><a id="orgc9c4057"></a>Rule-based Verifiers<br />
+<li><a id="org894b9be"></a>Rule-based Verifiers<br />
 <div class="outline-text-5" id="text-2-1-1-2">
 <p>
 Usually rely on a large collection of predefined equivalent rules to check if the generated answer matches the ground truth.
@@ -362,8 +362,8 @@ Usually rely on a large collection of predefined equivalent rules to check if th
 </li>
 </ol>
 </div>
-<div id="outline-container-org5f07e30" class="outline-4">
-<h4 id="org5f07e30"><span class="section-number-4">2.1.2.</span> Generative Rewards</h4>
+<div id="outline-container-org81a0ac9" class="outline-4">
+<h4 id="org81a0ac9"><span class="section-number-4">2.1.2.</span> Generative Rewards</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <blockquote>
 <p>
@@ -372,14 +372,14 @@ Generative reward models (GenRMs) extend RL to <i>subjective, non-verifiable</i>
 </blockquote>
 </div>
 <ol class="org-ol">
-<li><a id="org1e9dce2"></a>Model-based Verifiers for Verifiable Tasks<br />
+<li><a id="org5cb05a2"></a>Model-based Verifiers for Verifiable Tasks<br />
 <div class="outline-text-5" id="text-2-1-2-1">
 <p>
 Use model to evaluate model&rsquo;s free-form output with reference answer. This technique is adopted in augmenting existing rule-based systems, as well as multi-domain veirifiers that handles diverse data types and reasoning tasks.
 </p>
 </div>
 </li>
-<li><a id="org70a701c"></a>Generative Rewards for Non-Verifiable Tasks<br />
+<li><a id="org7e6e236"></a>Generative Rewards for Non-Verifiable Tasks<br />
 <div class="outline-text-5" id="text-2-1-2-2">
 <p>
 AKA <i>assessment-based GenRMs</i>, which can be roughly categorized into:
@@ -405,109 +405,109 @@ AKA <i>assessment-based GenRMs</i>, which can be roughly categorized into:
 </li>
 </ol>
 </div>
-<div id="outline-container-orgabd12dc" class="outline-4">
-<h4 id="orgabd12dc"><span class="section-number-4">2.1.3.</span> Dense Rewards</h4>
+<div id="outline-container-orgf52daec" class="outline-4">
+<h4 id="orgf52daec"><span class="section-number-4">2.1.3.</span> Dense Rewards</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 Dense rewards provide fine-grained credit assignment and improve training efficiency and optimization stability in RL. However, <i>scaling</i> remains challenging for open-domain tasks due to difficulty in defining dense rewards or using verifiers.
 </p>
 </div>
 </div>
-<div id="outline-container-org85c2bb4" class="outline-4">
-<h4 id="org85c2bb4"><span class="section-number-4">2.1.4.</span> Unsupervised Rewards</h4>
+<div id="outline-container-orgb71c930" class="outline-4">
+<h4 id="orgb71c930"><span class="section-number-4">2.1.4.</span> Unsupervised Rewards</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Unsupervised rewards eliminate human annotation bottleneck, making reward signal generation scalable. Main approaches either from <i>model&rsquo;s own processes</i> (output consistency, internal confidence, self-generated knowledge), or from <i>automated external sources</i> (heuristics, data corpora).
 </p>
 </div>
 </div>
-<div id="outline-container-org262e92a" class="outline-4">
-<h4 id="org262e92a"><span class="section-number-4">2.1.5.</span> Reward Shaping</h4>
+<div id="outline-container-orgfaea7db" class="outline-4">
+<h4 id="orgfaea7db"><span class="section-number-4">2.1.5.</span> Reward Shaping</h4>
 </div>
 </div>
-<div id="outline-container-org0fac2ff" class="outline-3">
-<h3 id="org0fac2ff"><span class="section-number-3">2.2.</span> Policy Optimization</h3>
+<div id="outline-container-org8711b99" class="outline-3">
+<h3 id="org8711b99"><span class="section-number-3">2.2.</span> Policy Optimization</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org5670f18" class="outline-4">
-<h4 id="org5670f18"><span class="section-number-4">2.2.1.</span> Policy Gradient Objective</h4>
+<div id="outline-container-orgdc019c9" class="outline-4">
+<h4 id="orgdc019c9"><span class="section-number-4">2.2.1.</span> Policy Gradient Objective</h4>
 </div>
 
-<div id="outline-container-org9e2da05" class="outline-4">
-<h4 id="org9e2da05"><span class="section-number-4">2.2.2.</span> Critic-based Algorithms</h4>
+<div id="outline-container-orgd0d3e98" class="outline-4">
+<h4 id="orgd0d3e98"><span class="section-number-4">2.2.2.</span> Critic-based Algorithms</h4>
 </div>
 
-<div id="outline-container-org1e96fc2" class="outline-4">
-<h4 id="org1e96fc2"><span class="section-number-4">2.2.3.</span> Critic-Free Algorithms</h4>
+<div id="outline-container-org64a817d" class="outline-4">
+<h4 id="org64a817d"><span class="section-number-4">2.2.3.</span> Critic-Free Algorithms</h4>
 </div>
 
-<div id="outline-container-orgc7d0fb6" class="outline-4">
-<h4 id="orgc7d0fb6"><span class="section-number-4">2.2.4.</span> Off-Policy Optimization</h4>
+<div id="outline-container-org7eacc86" class="outline-4">
+<h4 id="org7eacc86"><span class="section-number-4">2.2.4.</span> Off-Policy Optimization</h4>
 </div>
 
-<div id="outline-container-org7b6393b" class="outline-4">
-<h4 id="org7b6393b"><span class="section-number-4">2.2.5.</span> Regularization Objectives</h4>
+<div id="outline-container-org873bc07" class="outline-4">
+<h4 id="org873bc07"><span class="section-number-4">2.2.5.</span> Regularization Objectives</h4>
 </div>
 </div>
-<div id="outline-container-orgc00dc8a" class="outline-3">
-<h3 id="orgc00dc8a"><span class="section-number-3">2.3.</span> Sampling Strategies</h3>
+<div id="outline-container-org38a12e4" class="outline-3">
+<h3 id="org38a12e4"><span class="section-number-3">2.3.</span> Sampling Strategies</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org3b380a5" class="outline-4">
-<h4 id="org3b380a5"><span class="section-number-4">2.3.1.</span> Dynamic and Structured Sampling</h4>
+<div id="outline-container-orged8bf6a" class="outline-4">
+<h4 id="orged8bf6a"><span class="section-number-4">2.3.1.</span> Dynamic and Structured Sampling</h4>
 </div>
 
-<div id="outline-container-orge647b0b" class="outline-4">
-<h4 id="orge647b0b"><span class="section-number-4">2.3.2.</span> Sampling Hyper Parameters</h4>
+<div id="outline-container-orgfbf094a" class="outline-4">
+<h4 id="orgfbf094a"><span class="section-number-4">2.3.2.</span> Sampling Hyper Parameters</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org96ddac0" class="outline-2">
-<h2 id="org96ddac0"><span class="section-number-2">3.</span> Problems in RL for LRMs</h2>
+<div id="outline-container-org2e11e52" class="outline-2">
+<h2 id="org2e11e52"><span class="section-number-2">3.</span> Problems in RL for LRMs</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orga515f3c" class="outline-3">
-<h3 id="orga515f3c"><span class="section-number-3">3.1.</span> Role of RL</h3>
+<div id="outline-container-org80ced1f" class="outline-3">
+<h3 id="org80ced1f"><span class="section-number-3">3.1.</span> Role of RL</h3>
 </div>
 
-<div id="outline-container-org070a56a" class="outline-3">
-<h3 id="org070a56a"><span class="section-number-3">3.2.</span> RL vs. SFT</h3>
+<div id="outline-container-org38c7232" class="outline-3">
+<h3 id="org38c7232"><span class="section-number-3">3.2.</span> RL vs. SFT</h3>
 </div>
 
-<div id="outline-container-org9f71acc" class="outline-3">
-<h3 id="org9f71acc"><span class="section-number-3">3.3.</span> Model Priors</h3>
+<div id="outline-container-orgf82390e" class="outline-3">
+<h3 id="orgf82390e"><span class="section-number-3">3.3.</span> Model Priors</h3>
 </div>
 
-<div id="outline-container-org3b0721a" class="outline-3">
-<h3 id="org3b0721a"><span class="section-number-3">3.4.</span> Training Recipes</h3>
+<div id="outline-container-org5f26223" class="outline-3">
+<h3 id="org5f26223"><span class="section-number-3">3.4.</span> Training Recipes</h3>
 </div>
 
-<div id="outline-container-org52ba147" class="outline-3">
-<h3 id="org52ba147"><span class="section-number-3">3.5.</span> Reward Definitions</h3>
+<div id="outline-container-orgca460d6" class="outline-3">
+<h3 id="orgca460d6"><span class="section-number-3">3.5.</span> Reward Definitions</h3>
 </div>
 </div>
-<div id="outline-container-org645172a" class="outline-2">
-<h2 id="org645172a"><span class="section-number-2">4.</span> Training Resources for RL</h2>
+<div id="outline-container-org647414e" class="outline-2">
+<h2 id="org647414e"><span class="section-number-2">4.</span> Training Resources for RL</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org139dc67" class="outline-3">
-<h3 id="org139dc67"><span class="section-number-3">4.1.</span> Static Corpus</h3>
+<div id="outline-container-orgf44e99c" class="outline-3">
+<h3 id="orgf44e99c"><span class="section-number-3">4.1.</span> Static Corpus</h3>
 </div>
 
-<div id="outline-container-org7ae36ce" class="outline-3">
-<h3 id="org7ae36ce"><span class="section-number-3">4.2.</span> Dynamic Environments</h3>
+<div id="outline-container-orgae0c095" class="outline-3">
+<h3 id="orgae0c095"><span class="section-number-3">4.2.</span> Dynamic Environments</h3>
 </div>
 
-<div id="outline-container-org8aff6a3" class="outline-3">
-<h3 id="org8aff6a3"><span class="section-number-3">4.3.</span> Training Infrastructure</h3>
+<div id="outline-container-orgd1d80d5" class="outline-3">
+<h3 id="orgd1d80d5"><span class="section-number-3">4.3.</span> Training Infrastructure</h3>
 </div>
 </div>
-<div id="outline-container-orgba19259" class="outline-2">
-<h2 id="orgba19259"><span class="section-number-2">5.</span> Application of RL</h2>
+<div id="outline-container-orga0b790c" class="outline-2">
+<h2 id="orga0b790c"><span class="section-number-2">5.</span> Application of RL</h2>
 </div>
 
-<div id="outline-container-org3e9c354" class="outline-2">
-<h2 id="org3e9c354"><span class="section-number-2">6.</span> Future Directions in RL for Language Models</h2>
+<div id="outline-container-org90a07c6" class="outline-2">
+<h2 id="org90a07c6"><span class="section-number-2">6.</span> Future Directions in RL for Language Models</h2>
 <div class="outline-text-2" id="text-6">
 </div>
 </div>

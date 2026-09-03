@@ -211,26 +211,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org05b40b9">1. Overview of Paging</a>
+<li><a href="#orge35a402">1. Overview of Paging</a>
 <ul>
-<li><a href="#org4023410">1.1. Procedure of a Full Translation</a></li>
+<li><a href="#orgbf11595">1.1. Procedure of a Full Translation</a></li>
 </ul>
 </li>
-<li><a href="#org0511140">2. Page Table Entry</a></li>
-<li><a href="#orgc0e9a3e">3. Translation-Lookaside Buffer (TLB)</a>
+<li><a href="#org388c644">2. Page Table Entry</a></li>
+<li><a href="#orga062c13">3. Translation-Lookaside Buffer (TLB)</a>
 <ul>
-<li><a href="#orgacc544a">3.1. TLB Miss</a></li>
-<li><a href="#org815f92d">3.2. TLB at Context Switch</a></li>
+<li><a href="#org5e17e14">3.1. TLB Miss</a></li>
+<li><a href="#org22d3224">3.2. TLB at Context Switch</a></li>
 </ul>
 </li>
-<li><a href="#orgcf5832d">4. Multi-Level Page Tables</a></li>
-<li><a href="#org4631c65">5. Inverted Page Table</a></li>
-<li><a href="#org3e897b7">6. Swapping and Page Fault</a></li>
+<li><a href="#orgef593e9">4. Multi-Level Page Tables</a></li>
+<li><a href="#orgc924f0e">5. Inverted Page Table</a></li>
+<li><a href="#org5b63035">6. Swapping and Page Fault</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org05b40b9" class="outline-2">
-<h2 id="org05b40b9"><span class="section-number-2">1.</span> Overview of Paging</h2>
+<div id="outline-container-orge35a402" class="outline-2">
+<h2 id="orge35a402"><span class="section-number-2">1.</span> Overview of Paging</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Paging is built on top of the idea of segmentation. It breaks a virtual address space into fixed-size segments, called <b>pages</b>. For convenience of managing free space, the physical memory is also chopped up into segments of <b>same size as pages</b>, called <b>page frames</b>, or <b>frames</b>.
@@ -248,8 +248,8 @@ In the case of 4KB page size, if the system is byte-addressable, since 4KB = \(2
 The duty of address translation is to convert the VPN to PFN to get the physical address. Here, we need to help of <b>page tables</b> to help maintain the mapping from VPN to PFN. Also, to accelerate address translation, <b>translation-lookaside buffers (TLBs)</b> are introduced to cache the mapping.
 </p>
 </div>
-<div id="outline-container-org4023410" class="outline-3">
-<h3 id="org4023410"><span class="section-number-3">1.1.</span> Procedure of a Full Translation</h3>
+<div id="outline-container-orgbf11595" class="outline-3">
+<h3 id="orgbf11595"><span class="section-number-3">1.1.</span> Procedure of a Full Translation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Here, we include TLBs and multi-level page tables.
@@ -262,8 +262,8 @@ Here, we include TLBs and multi-level page tables.
 </div>
 </div>
 </div>
-<div id="outline-container-org0511140" class="outline-2">
-<h2 id="org0511140"><span class="section-number-2">2.</span> Page Table Entry</h2>
+<div id="outline-container-org388c644" class="outline-2">
+<h2 id="org388c644"><span class="section-number-2">2.</span> Page Table Entry</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A page table is a linear array of page table entries (PTEs), indexed by VPN. OS checks PTEs to find out PFN, given VPN. A page table usually fits a single page (frame), meaning their sizes are equal.
@@ -274,12 +274,12 @@ Each page table entry maintains PFN and extra bits that convey information.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc0e9a3e" class="outline-2">
-<h2 id="orgc0e9a3e"><span class="section-number-2">3.</span> Translation-Lookaside Buffer (TLB)</h2>
+<div id="outline-container-orga062c13" class="outline-2">
+<h2 id="orga062c13"><span class="section-number-2">3.</span> Translation-Lookaside Buffer (TLB)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgacc544a" class="outline-3">
-<h3 id="orgacc544a"><span class="section-number-3">3.1.</span> TLB Miss</h3>
+<div id="outline-container-org5e17e14" class="outline-3">
+<h3 id="org5e17e14"><span class="section-number-3">3.1.</span> TLB Miss</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 What happens when TLB miss occurs?
@@ -298,8 +298,8 @@ Thus, the return-from-trap should be different. Upon TLB miss, return-from-trap 
 </p>
 </div>
 </div>
-<div id="outline-container-org815f92d" class="outline-3">
-<h3 id="org815f92d"><span class="section-number-3">3.2.</span> TLB at Context Switch</h3>
+<div id="outline-container-org22d3224" class="outline-3">
+<h3 id="org22d3224"><span class="section-number-3">3.2.</span> TLB at Context Switch</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 TLB entries should only be valid for the current-running process. A simple solution is to simply <b>flush</b> by setting valid bits of all entries to \(0\).
@@ -315,8 +315,8 @@ Therefore, TLBs can store translation caches for multiple processes, as well as 
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf5832d" class="outline-2">
-<h2 id="orgcf5832d"><span class="section-number-2">4.</span> Multi-Level Page Tables</h2>
+<div id="outline-container-orgef593e9" class="outline-2">
+<h2 id="orgef593e9"><span class="section-number-2">4.</span> Multi-Level Page Tables</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Multi-level page tables are to reduce the size of page tables by further ignoring unallocated pages through breaking up page tables into pages. MLPT chops up a page table into page-sized units. If all entries in the unit are invalid (which means that, none of the pages are allocated), then we don&rsquo;t need to allocate memory to store these entries.
@@ -327,12 +327,12 @@ These units are called <b>page directory</b>, and each unit is called <b>page di
 </p>
 </div>
 </div>
-<div id="outline-container-org4631c65" class="outline-2">
-<h2 id="org4631c65"><span class="section-number-2">5.</span> Inverted Page Table</h2>
+<div id="outline-container-orgc924f0e" class="outline-2">
+<h2 id="orgc924f0e"><span class="section-number-2">5.</span> Inverted Page Table</h2>
 </div>
 
-<div id="outline-container-org3e897b7" class="outline-2">
-<h2 id="org3e897b7"><span class="section-number-2">6.</span> Swapping and Page Fault</h2>
+<div id="outline-container-org5b63035" class="outline-2">
+<h2 id="org5b63035"><span class="section-number-2">6.</span> Swapping and Page Fault</h2>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -207,22 +207,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdd50437">1. Adapter Design Pattern</a>
+<li><a href="#org65c5ccf">1. Adapter Design Pattern</a>
 <ul>
-<li><a href="#orga03adc1">1.1. How to Implement?</a>
+<li><a href="#org88fa39e">1.1. How to Implement?</a>
 <ul>
-<li><a href="#org439f37e">1.1.1. Object Adapter</a></li>
-<li><a href="#org9d56116">1.1.2. Class Adapter</a></li>
+<li><a href="#org8603d9b">1.1.1. Object Adapter</a></li>
+<li><a href="#org38e39dd">1.1.2. Class Adapter</a></li>
 </ul>
 </li>
-<li><a href="#org872ebe1">1.2. <span class="todo TODO">TODO</span> When to Use?</a></li>
+<li><a href="#org937d83c">1.2. <span class="todo TODO">TODO</span> When to Use?</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdd50437" class="outline-2">
-<h2 id="orgdd50437"><span class="section-number-2">1.</span> Adapter Design Pattern</h2>
+<div id="outline-container-org65c5ccf" class="outline-2">
+<h2 id="org65c5ccf"><span class="section-number-2">1.</span> Adapter Design Pattern</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <i>Adapter</i> is usually applied when endpoint processors cannot agree on the format of data, e.g., producers generates <code>.xml</code> files while consumers processes <code>.json</code> files.
@@ -232,12 +232,12 @@
 So we can create <i>adapters</i>, which converts the interface of one object so that other objects can understand it. The adapter also wraps the object to <i>hide</i> the complexity of conversion.
 </p>
 </div>
-<div id="outline-container-orga03adc1" class="outline-3">
-<h3 id="orga03adc1"><span class="section-number-3">1.1.</span> How to Implement?</h3>
+<div id="outline-container-org88fa39e" class="outline-3">
+<h3 id="org88fa39e"><span class="section-number-3">1.1.</span> How to Implement?</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org439f37e" class="outline-4">
-<h4 id="org439f37e"><span class="section-number-4">1.1.1.</span> Object Adapter</h4>
+<div id="outline-container-org8603d9b" class="outline-4">
+<h4 id="org8603d9b"><span class="section-number-4">1.1.1.</span> Object Adapter</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 We should have a <code>ClientInterface</code> that describes a protocol for other classes to follow, to be able to collaborate with the client code, say, the protocol is <code>invoke(data)</code> where <code>data</code> must follow a certain format. Also suppose some <code>Service</code> class with method <code>serve(data_json)</code> that requires special format.
@@ -248,8 +248,8 @@ The <code>Adapter</code> class implements the <code>ClientInterface</code> inter
 </p>
 </div>
 </div>
-<div id="outline-container-org9d56116" class="outline-4">
-<h4 id="org9d56116"><span class="section-number-4">1.1.2.</span> Class Adapter</h4>
+<div id="outline-container-org38e39dd" class="outline-4">
+<h4 id="org38e39dd"><span class="section-number-4">1.1.2.</span> Class Adapter</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 Similar to <i>Object Adapter</i>, the only difference is that <code>Adapter</code> class is also subclass of <code>Service</code> besides implementing <code>ClientInterface</code> interface.
@@ -257,8 +257,8 @@ Similar to <i>Object Adapter</i>, the only difference is that <code>Adapter</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org872ebe1" class="outline-3">
-<h3 id="org872ebe1"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> When to Use?</h3>
+<div id="outline-container-org937d83c" class="outline-3">
+<h3 id="org937d83c"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> When to Use?</h3>
 </div>
 </div>
 </div>

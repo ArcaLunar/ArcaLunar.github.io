@@ -206,19 +206,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1071e5a">1. Struct Definition</a></li>
-<li><a href="#org606ed28">2. Structs within Structs</a>
+<li><a href="#orgd0bda54">1. Struct Definition</a></li>
+<li><a href="#org995f7f8">2. Structs within Structs</a>
 <ul>
-<li><a href="#orgc6758c2">2.1. <code>using</code> on Struct Fields</a></li>
-<li><a href="#org91403e8">2.2. <code>using</code> Acts like Inheritance</a></li>
+<li><a href="#org011dcc9">2.1. <code>using</code> on Struct Fields</a></li>
+<li><a href="#orgb445f05">2.2. <code>using</code> Acts like Inheritance</a></li>
 </ul>
 </li>
-<li><a href="#orgc2b3532">3. Using Structs as Interfaces</a></li>
+<li><a href="#org82f2c14">3. Using Structs as Interfaces</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1071e5a" class="outline-2">
-<h2 id="org1071e5a"><span class="section-number-2">1.</span> Struct Definition</h2>
+<div id="outline-container-orgd0bda54" class="outline-2">
+<h2 id="orgd0bda54"><span class="section-number-2">1.</span> Struct Definition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The basic grammar for structs is similar to C.
@@ -251,8 +251,8 @@ Unmentioned fields will be automatically initialized to zero value.
 </p>
 </div>
 </div>
-<div id="outline-container-org606ed28" class="outline-2">
-<h2 id="org606ed28"><span class="section-number-2">2.</span> Structs within Structs</h2>
+<div id="outline-container-org995f7f8" class="outline-2">
+<h2 id="org995f7f8"><span class="section-number-2">2.</span> Structs within Structs</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Basically, since structs are types, so we can define fields of other structs within a struct.
@@ -288,8 +288,8 @@ We can then initialize <code>Person</code> instances in a nested way, as well as
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc6758c2" class="outline-3">
-<h3 id="orgc6758c2"><span class="section-number-3">2.1.</span> <code>using</code> on Struct Fields</h3>
+<div id="outline-container-org011dcc9" class="outline-3">
+<h3 id="org011dcc9"><span class="section-number-3">2.1.</span> <code>using</code> on Struct Fields</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 It&rsquo;s sometime too redundant to type <code>p.stats.age</code>. By <code>using</code> keyword, we can make <code>age</code> field directly available on <code>p</code>.
@@ -316,8 +316,8 @@ Not only we can access it directly, we can also initialize it directly.
 </div>
 </div>
 </div>
-<div id="outline-container-org91403e8" class="outline-3">
-<h3 id="org91403e8"><span class="section-number-3">2.2.</span> <code>using</code> Acts like Inheritance</h3>
+<div id="outline-container-orgb445f05" class="outline-3">
+<h3 id="orgb445f05"><span class="section-number-3">2.2.</span> <code>using</code> Acts like Inheritance</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The <code>using</code> keyword can play the role of inheritance to some extend. In this example, although <code>p</code> is of type <code>Person</code>, but since <code>Person</code> is <code>using</code> type <code>Entity</code>, calling <code>printposition</code> with <code>p</code> that requires an <code>Entity</code> argument still compiles.  
@@ -352,8 +352,8 @@ The <code>using</code> keyword can play the role of inheritance to some extend. 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2b3532" class="outline-2">
-<h2 id="orgc2b3532"><span class="section-number-2">3.</span> Using Structs as Interfaces</h2>
+<div id="outline-container-org82f2c14" class="outline-2">
+<h2 id="org82f2c14"><span class="section-number-2">3.</span> Using Structs as Interfaces</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Although we cannot define methods on structs, we can do something similar to <span class="underline">storing function pointers</span> in C to make a struct an interface.
