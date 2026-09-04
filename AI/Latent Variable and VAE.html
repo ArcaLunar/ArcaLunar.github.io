@@ -210,27 +210,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge9f09c1">1. Mixture of Gaussians</a></li>
-<li><a href="#orgfdbb3e9">2. Variational Autoencoder (VAE)</a>
+<li><a href="#org69fc4a2">1. Mixture of Gaussians</a></li>
+<li><a href="#org1e62292">2. Variational Autoencoder (VAE)</a>
 <ul>
-<li><a href="#org1536f55">2.1. Learning Directed Latent Variable Models</a>
+<li><a href="#orgce3bd99">2.1. Learning Directed Latent Variable Models</a>
 <ul>
-<li><a href="#org9355f42">2.1.1. Attempt 1: Maximize Log-Likelihood</a></li>
-<li><a href="#org08d8c5b">2.1.2. Attempt 2: Find a Lower Bound (Importance Sampling)</a></li>
+<li><a href="#org883d2a3">2.1.1. Attempt 1: Maximize Log-Likelihood</a></li>
+<li><a href="#org1b697f3">2.1.2. Attempt 2: Find a Lower Bound (Importance Sampling)</a></li>
 </ul>
 </li>
-<li><a href="#org745f07b">2.2. Variational Inference</a></li>
-<li><a href="#orga513263">2.3. Variational Learning</a>
+<li><a href="#org13fc147">2.2. Variational Inference</a></li>
+<li><a href="#orgdc031b6">2.3. Variational Learning</a>
 <ul>
-<li><a href="#org0a97884">2.3.1. Reparameterization: Gradient Estimation of ELBO</a></li>
-<li><a href="#org8c029c1">2.3.2. Black-Box Variational Inference</a></li>
-<li><a href="#orgb1a79ca">2.3.3. <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</a></li>
-<li><a href="#org70c2f76">2.3.4. Amortized Variational Inference</a></li>
+<li><a href="#org9d76def">2.3.1. Reparameterization: Gradient Estimation of ELBO</a></li>
+<li><a href="#org5a0fd6d">2.3.2. Black-Box Variational Inference</a></li>
+<li><a href="#org88d46f8">2.3.3. <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</a></li>
+<li><a href="#orgcd29855">2.3.4. Amortized Variational Inference</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org38b3afc">3. Summary of VAE</a></li>
+<li><a href="#org0ab69a0">3. Summary of VAE</a></li>
 </ul>
 </div>
 </div>
@@ -258,8 +258,8 @@ Lots of variability in images \(\mathbf{x}\) due to different features, but thes
 <p>
 Instead of learning images distribution \(p(\mathbf{x})\) directly, we learn the distribution of latent variables \( p(\mathbf{z}) \) and \( p(\mathbf{x}|\mathbf{z}) \).
 </p>
-<div id="outline-container-orge9f09c1" class="outline-2">
-<h2 id="orge9f09c1"><span class="section-number-2">1.</span> Mixture of Gaussians</h2>
+<div id="outline-container-org69fc4a2" class="outline-2">
+<h2 id="org69fc4a2"><span class="section-number-2">1.</span> Mixture of Gaussians</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The MoG assumes:
@@ -271,8 +271,8 @@ The MoG assumes:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfdbb3e9" class="outline-2">
-<h2 id="orgfdbb3e9"><span class="section-number-2">2.</span> Variational Autoencoder (VAE)</h2>
+<div id="outline-container-org1e62292" class="outline-2">
+<h2 id="org1e62292"><span class="section-number-2">2.</span> Variational Autoencoder (VAE)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We generalizes MoG into a mixture of <i>infinite</i> Gaussians, VAE assumes
@@ -293,8 +293,8 @@ where \( \mu_{\theta}, \Sigma_{\theta} \) are neural networks. The VAE model is 
 \]
 </p>
 </div>
-<div id="outline-container-org1536f55" class="outline-3">
-<h3 id="org1536f55"><span class="section-number-3">2.1.</span> Learning Directed Latent Variable Models</h3>
+<div id="outline-container-orgce3bd99" class="outline-3">
+<h3 id="orgce3bd99"><span class="section-number-3">2.1.</span> Learning Directed Latent Variable Models</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The dataset \(D\) only contains images \(\mathbf{x}\) but not \(\mathbf{z}\), so the dataset can only represent \( p(\mathbf{x}) \), however the VAE models \( p(\mathbf{x},\mathbf{z}) \), thus we have to use <b>marginal distribution</b> to express \( p(\mathbf{x}) \):
@@ -316,8 +316,8 @@ Then, the training objective is to minimize the KL divergence
 \]
 </p>
 </div>
-<div id="outline-container-org9355f42" class="outline-4">
-<h4 id="org9355f42"><span class="section-number-4">2.1.1.</span> Attempt 1: Maximize Log-Likelihood</h4>
+<div id="outline-container-org883d2a3" class="outline-4">
+<h4 id="org883d2a3"><span class="section-number-4">2.1.1.</span> Attempt 1: Maximize Log-Likelihood</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Equivalently, we maximize the log-likelihood
@@ -344,8 +344,8 @@ In practice, however, it suffers from high variance in gradient estimates.
 </p>
 </div>
 </div>
-<div id="outline-container-org08d8c5b" class="outline-4">
-<h4 id="org08d8c5b"><span class="section-number-4">2.1.2.</span> Attempt 2: Find a Lower Bound (Importance Sampling)</h4>
+<div id="outline-container-org1b697f3" class="outline-4">
+<h4 id="org1b697f3"><span class="section-number-4">2.1.2.</span> Attempt 2: Find a Lower Bound (Importance Sampling)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 We notice that the marginal likelihood \( p(\mathbf{x}) \) is at least as hard as evaluating the posterior \( p(\mathbf{z}|\mathbf{x}) \) since \( p(\mathbf{z}|\mathbf{x}) = p(\mathbf{x},\mathbf{z}) / p(\mathbf{x}) \)
@@ -387,8 +387,8 @@ The \( q_{\lambda}(\mathbf{z}) \) is called <b>encoder</b>, and the \( p_{\theta
 </div>
 </div>
 </div>
-<div id="outline-container-org745f07b" class="outline-3">
-<h3 id="org745f07b"><span class="section-number-3">2.2.</span> Variational Inference</h3>
+<div id="outline-container-org13fc147" class="outline-3">
+<h3 id="org13fc147"><span class="section-number-3">2.2.</span> Variational Inference</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 How should we choose \( q_{\lambda}(\mathbf{z}) \)? In general, we can show that
@@ -411,12 +411,12 @@ How to jointly optimize over \(\theta\) and \(\lambda\) to maximize ELBO over a 
 </div>
 </div>
 </div>
-<div id="outline-container-orga513263" class="outline-3">
-<h3 id="orga513263"><span class="section-number-3">2.3.</span> Variational Learning</h3>
+<div id="outline-container-orgdc031b6" class="outline-3">
+<h3 id="orgdc031b6"><span class="section-number-3">2.3.</span> Variational Learning</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org0a97884" class="outline-4">
-<h4 id="org0a97884"><span class="section-number-4">2.3.1.</span> Reparameterization: Gradient Estimation of ELBO</h4>
+<div id="outline-container-org9d76def" class="outline-4">
+<h4 id="org9d76def"><span class="section-number-4">2.3.1.</span> Reparameterization: Gradient Estimation of ELBO</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 We estimate gradient of ELBO w.r.t. \( \lambda^{(i)},\theta \) with <b>Monte Carlo</b> sampling.
@@ -444,8 +444,8 @@ is equivalent to sampling from \( q_{\lambda}(\mathbf{z}) \).
 </p>
 </div>
 </div>
-<div id="outline-container-org8c029c1" class="outline-4">
-<h4 id="org8c029c1"><span class="section-number-4">2.3.2.</span> Black-Box Variational Inference</h4>
+<div id="outline-container-org5a0fd6d" class="outline-4">
+<h4 id="org5a0fd6d"><span class="section-number-4">2.3.2.</span> Black-Box Variational Inference</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 A first-order stichastic gradient method for optimizing ELBO. This kind of technique allows us to sub-sample the dataset but requires differentiability of our objective functions.
@@ -461,8 +461,8 @@ In BBVI, for each mini-batch \( \mathcal{B}=\set{\mathbf{x}^{(1)}, \dots, \mathb
 \end{split}
 </div>
 </div>
-<div id="outline-container-orgb1a79ca" class="outline-4">
-<h4 id="orgb1a79ca"><span class="section-number-4">2.3.3.</span> <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</h4>
+<div id="outline-container-org88d46f8" class="outline-4">
+<h4 id="org88d46f8"><span class="section-number-4">2.3.3.</span> <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 For convenience, a popular distribution for \( p_{\theta}(\mathbf{z}) \) is unit Gaussian:
@@ -493,13 +493,13 @@ We specify \(g_{\theta}\) as deep neural network.
 </p>
 </div>
 </div>
-<div id="outline-container-org70c2f76" class="outline-4">
-<h4 id="org70c2f76"><span class="section-number-4">2.3.4.</span> Amortized Variational Inference</h4>
+<div id="outline-container-orgcd29855" class="outline-4">
+<h4 id="orgcd29855"><span class="section-number-4">2.3.4.</span> Amortized Variational Inference</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org38b3afc" class="outline-2">
-<h2 id="org38b3afc"><span class="section-number-2">3.</span> Summary of VAE<sup><a id="fnr.bilibili-VAE" class="footref" href="#fn.bilibili-VAE" role="doc-backlink">1</a></sup></h2>
+<div id="outline-container-org0ab69a0" class="outline-2">
+<h2 id="org0ab69a0"><span class="section-number-2">3.</span> Summary of VAE<sup><a id="fnr.bilibili-VAE" class="footref" href="#fn.bilibili-VAE" role="doc-backlink">1</a></sup></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In all, the core idea of VAE is that, encoder outputs a distribution of latent variable \( \mathbf{z} \), and the decoder samples from the distribution and outputs reconstructed images.

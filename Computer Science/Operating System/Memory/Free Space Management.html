@@ -210,14 +210,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org78109e3">1. Basic Strategies</a>
+<li><a href="#org2916a8a">1. Basic Strategies</a>
 <ul>
-<li><a href="#orgd0d9636">1.1. Best Fit</a></li>
-<li><a href="#org6d6ff0a">1.2. Worst Fit</a></li>
-<li><a href="#orgd02a946">1.3. First Fit</a></li>
-<li><a href="#org8618811">1.4. Next Fit</a></li>
-<li><a href="#org0e3d16e">1.5. Segregated Lists</a></li>
-<li><a href="#orgf61b2cd">1.6. Buddy Allocation</a></li>
+<li><a href="#orge1c3140">1.1. Best Fit</a></li>
+<li><a href="#org2b83695">1.2. Worst Fit</a></li>
+<li><a href="#org282e1be">1.3. First Fit</a></li>
+<li><a href="#orgfe9f16a">1.4. Next Fit</a></li>
+<li><a href="#org272433f">1.5. Segregated Lists</a></li>
+<li><a href="#org198781a">1.6. Buddy Allocation</a></li>
 </ul>
 </li>
 </ul>
@@ -227,7 +227,7 @@
 In <a href="Address Translation.html#ID-4b6a3661-4299-444a-9acd-f8e2a219c7c8">Address Translation: Segmentation</a>, we mentioned that segmentation introduces external fragmentation.
 </p>
 
-<div class="definition" id="org89f34bf">
+<div class="definition" id="org8f16faa">
 <dl class="org-dl">
 <dt>Splitting and Coalescing</dt><dd>A common technique used in allocators. Splitting is that, For example, to allocate for \(A\) bytes within a \(B\) bytes block, we will split this block into 2 parts \(A,B-A\). While coalescing is the contrast that it merges adjacent continuous blocks.</dd>
 
@@ -235,32 +235,32 @@ In <a href="Address Translation.html#ID-4b6a3661-4299-444a-9acd-f8e2a219c7c8">Ad
 </dl>
 
 </div>
-<div id="outline-container-org78109e3" class="outline-2">
-<h2 id="org78109e3"><span class="section-number-2">1.</span> Basic Strategies</h2>
+<div id="outline-container-org2916a8a" class="outline-2">
+<h2 id="org2916a8a"><span class="section-number-2">1.</span> Basic Strategies</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgd0d9636" class="outline-3">
-<h3 id="orgd0d9636"><span class="section-number-3">1.1.</span> Best Fit</h3>
+<div id="outline-container-orge1c3140" class="outline-3">
+<h3 id="orge1c3140"><span class="section-number-3">1.1.</span> Best Fit</h3>
 </div>
 
-<div id="outline-container-org6d6ff0a" class="outline-3">
-<h3 id="org6d6ff0a"><span class="section-number-3">1.2.</span> Worst Fit</h3>
+<div id="outline-container-org2b83695" class="outline-3">
+<h3 id="org2b83695"><span class="section-number-3">1.2.</span> Worst Fit</h3>
 </div>
 
-<div id="outline-container-orgd02a946" class="outline-3">
-<h3 id="orgd02a946"><span class="section-number-3">1.3.</span> First Fit</h3>
+<div id="outline-container-org282e1be" class="outline-3">
+<h3 id="org282e1be"><span class="section-number-3">1.3.</span> First Fit</h3>
 </div>
 
-<div id="outline-container-org8618811" class="outline-3">
-<h3 id="org8618811"><span class="section-number-3">1.4.</span> Next Fit</h3>
+<div id="outline-container-orgfe9f16a" class="outline-3">
+<h3 id="orgfe9f16a"><span class="section-number-3">1.4.</span> Next Fit</h3>
 </div>
 
-<div id="outline-container-org0e3d16e" class="outline-3">
-<h3 id="org0e3d16e"><span class="section-number-3">1.5.</span> Segregated Lists</h3>
+<div id="outline-container-org272433f" class="outline-3">
+<h3 id="org272433f"><span class="section-number-3">1.5.</span> Segregated Lists</h3>
 </div>
 
-<div id="outline-container-orgf61b2cd" class="outline-3">
-<h3 id="orgf61b2cd"><span class="section-number-3">1.6.</span> Buddy Allocation</h3>
+<div id="outline-container-org198781a" class="outline-3">
+<h3 id="org198781a"><span class="section-number-3">1.6.</span> Buddy Allocation</h3>
 </div>
 </div>
 </div>

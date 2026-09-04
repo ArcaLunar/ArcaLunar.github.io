@@ -206,11 +206,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc6f6916">1. Error Recovery</a>
+<li><a href="#org806a20d">1. Error Recovery</a>
 <ul>
-<li><a href="#org865f0e4">1.1. Panic Mode</a></li>
-<li><a href="#orgcf587c9">1.2. Error Productions</a></li>
-<li><a href="#org9236cd8">1.3. Error Corrections</a></li>
+<li><a href="#org670b7c7">1.1. Panic Mode</a></li>
+<li><a href="#orga003d25">1.2. Error Productions</a></li>
+<li><a href="#org1a8451c">1.3. Error Corrections</a></li>
 </ul>
 </li>
 </ul>
@@ -259,28 +259,28 @@
 </tr>
 </tbody>
 </table>
-<div id="outline-container-orgc6f6916" class="outline-2">
-<h2 id="orgc6f6916"><span class="section-number-2">1.</span> Error Recovery</h2>
+<div id="outline-container-org806a20d" class="outline-2">
+<h2 id="org806a20d"><span class="section-number-2">1.</span> Error Recovery</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org865f0e4" class="outline-3">
-<h3 id="org865f0e4"><span class="section-number-3">1.1.</span> Panic Mode</h3>
+<div id="outline-container-org670b7c7" class="outline-3">
+<h3 id="org670b7c7"><span class="section-number-3">1.1.</span> Panic Mode</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 When an error is detected, parser <i>discards tokens</i> until one with clear role is found and then starts parsing from here.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcf587c9" class="outline-3">
-<h3 id="orgcf587c9"><span class="section-number-3">1.2.</span> Error Productions</h3>
+<div id="outline-container-orga003d25" class="outline-3">
+<h3 id="orga003d25"><span class="section-number-3">1.2.</span> Error Productions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The idea is to speficy known common mistakes in the grammar. But it has the disadvantage that it complicates the grammar.
 </p>
 </div>
 </div>
-<div id="outline-container-org9236cd8" class="outline-3">
-<h3 id="org9236cd8"><span class="section-number-3">1.3.</span> Error Corrections</h3>
+<div id="outline-container-org1a8451c" class="outline-3">
+<h3 id="org1a8451c"><span class="section-number-3">1.3.</span> Error Corrections</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 To find a correct &ldquo;nearby&rdquo; program by trying token insertions and deletions, and exhaustive search.

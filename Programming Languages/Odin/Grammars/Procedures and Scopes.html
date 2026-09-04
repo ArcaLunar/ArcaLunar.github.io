@@ -206,25 +206,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge452e85">1. Default Parameters and Named Arguments</a>
+<li><a href="#orgb50c690">1. Default Parameters and Named Arguments</a>
 <ul>
-<li><a href="#org652cb67">1.1. Immutable Reference By Default</a></li>
+<li><a href="#org31d5292">1.1. Immutable Reference By Default</a></li>
 </ul>
 </li>
-<li><a href="#org299b30d">2. Multiple Return Values</a></li>
-<li><a href="#org42405f5">3. Named Return Values</a></li>
-<li><a href="#org54768af">4. Nested Procedures and Captured Variables</a>
+<li><a href="#org83e2489">2. Multiple Return Values</a></li>
+<li><a href="#orgea784bd">3. Named Return Values</a></li>
+<li><a href="#orgaf9cd56">4. Nested Procedures and Captured Variables</a>
 <ul>
-<li><a href="#org040d2fb">4.1. Static Variables within Procedures</a></li>
+<li><a href="#orgfc7230d">4.1. Static Variables within Procedures</a></li>
 </ul>
 </li>
-<li><a href="#org38cbde3">5. Explicit Overloading</a></li>
-<li><a href="#org2d4f684">6. Run Procedures at Startup and Shutdown</a></li>
+<li><a href="#org5fcc108">5. Explicit Overloading</a></li>
+<li><a href="#orgfa11ae8">6. Run Procedures at Startup and Shutdown</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge452e85" class="outline-2">
-<h2 id="orge452e85"><span class="section-number-2">1.</span> Default Parameters and Named Arguments</h2>
+<div id="outline-container-orgb50c690" class="outline-2">
+<h2 id="orgb50c690"><span class="section-number-2">1.</span> Default Parameters and Named Arguments</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can give default value to parameters.
@@ -264,8 +264,8 @@ Note, <span class="underline">parameters are immutable</span>. To modify paramet
 To modify the data, we can pass as pointer.
 </p>
 </div>
-<div id="outline-container-org652cb67" class="outline-3">
-<h3 id="org652cb67"><span class="section-number-3">1.1.</span> Immutable Reference By Default</h3>
+<div id="outline-container-org31d5292" class="outline-3">
+<h3 id="org31d5292"><span class="section-number-3">1.1.</span> Immutable Reference By Default</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Note: <span class="underline">A parameter that is larger than 16 bytes</span> will automatically be passed as an immutable reference.
@@ -273,8 +273,8 @@ Note: <span class="underline">A parameter that is larger than 16 bytes</span> wi
 </div>
 </div>
 </div>
-<div id="outline-container-org299b30d" class="outline-2">
-<h2 id="org299b30d"><span class="section-number-2">2.</span> Multiple Return Values</h2>
+<div id="outline-container-org83e2489" class="outline-2">
+<h2 id="org83e2489"><span class="section-number-2">2.</span> Multiple Return Values</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Return as a tuple.
@@ -300,8 +300,8 @@ By default, return values can be ignored. If you want to force users to handle r
 </div>
 </div>
 </div>
-<div id="outline-container-org42405f5" class="outline-2">
-<h2 id="org42405f5"><span class="section-number-2">3.</span> Named Return Values</h2>
+<div id="outline-container-orgea784bd" class="outline-2">
+<h2 id="orgea784bd"><span class="section-number-2">3.</span> Named Return Values</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We can give names to return values, they act like normal variables pre-declared.
@@ -321,15 +321,15 @@ We can give names to return values, they act like normal variables pre-declared.
 </div>
 </div>
 </div>
-<div id="outline-container-org54768af" class="outline-2">
-<h2 id="org54768af"><span class="section-number-2">4.</span> Nested Procedures and Captured Variables</h2>
+<div id="outline-container-orgaf9cd56" class="outline-2">
+<h2 id="orgaf9cd56"><span class="section-number-2">4.</span> Nested Procedures and Captured Variables</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can declare a procedure within a procedure. Such procedures can use <span class="underline">global variables and constants</span>, but not <span class="underline">variables declared locally in parental procedure</span>.
 </p>
 </div>
-<div id="outline-container-org040d2fb" class="outline-3">
-<h3 id="org040d2fb"><span class="section-number-3">4.1.</span> Static Variables within Procedures</h3>
+<div id="outline-container-orgfc7230d" class="outline-3">
+<h3 id="orgfc7230d"><span class="section-number-3">4.1.</span> Static Variables within Procedures</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We can declare static variables within procedures with <code>@static</code> tag.
@@ -346,8 +346,8 @@ A static variable bahaves like a global variable, but it&rsquo;s only accessible
 </div>
 </div>
 </div>
-<div id="outline-container-org38cbde3" class="outline-2">
-<h2 id="org38cbde3"><span class="section-number-2">5.</span> Explicit Overloading</h2>
+<div id="outline-container-org5fcc108" class="outline-2">
+<h2 id="org5fcc108"><span class="section-number-2">5.</span> Explicit Overloading</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 We can use explicit overloading to make 2 or more procedures exist under the same name. Note in the following example how <code>length</code> procedure is declared
@@ -370,8 +370,8 @@ We can use explicit overloading to make 2 or more procedures exist under the sam
 </div>
 </div>
 </div>
-<div id="outline-container-org2d4f684" class="outline-2">
-<h2 id="org2d4f684"><span class="section-number-2">6.</span> Run Procedures at Startup and Shutdown</h2>
+<div id="outline-container-orgfa11ae8" class="outline-2">
+<h2 id="orgfa11ae8"><span class="section-number-2">6.</span> Run Procedures at Startup and Shutdown</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Put <code>@init</code> before the startup procedure and <code>@fini</code> before ending procedure.

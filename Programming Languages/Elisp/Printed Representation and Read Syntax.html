@@ -207,9 +207,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org468295e">1. Special Read Syntax</a>
+<li><a href="#orgc28b2e1">1. Special Read Syntax</a>
 <ul>
-<li><a href="#org1091c3c">1.1. Characters, Control-Characters</a></li>
+<li><a href="#orge62376a">1.1. Characters, Control-Characters</a></li>
 </ul>
 </li>
 </ul>
@@ -227,10 +227,10 @@ However, some types may not have a read syntax. They are are printed in <b>hash 
 <p>
 When we evaluate an expression interactively, the Lisp interpreter first reads the textual representation of it, producing a Lisp object, and then evaluates the object.
 </p>
-<div id="outline-container-org468295e" class="outline-2">
-<h2 id="org468295e"><span class="section-number-2">1.</span> Special Read Syntax</h2>
+<div id="outline-container-orgc28b2e1" class="outline-2">
+<h2 id="orgc28b2e1"><span class="section-number-2">1.</span> Special Read Syntax</h2>
 <div class="outline-text-2" id="text-1">
-<div class="definition" id="orgfacd42a">
+<div class="definition" id="org5c021ac">
 <dl class="org-dl">
 <dt><code>#&lt; ... &gt;</code></dt><dd>Hash notation. Objects that have no read syntax are presented like this.</dd>
 <dt><code>##</code></dt><dd>The printed representation of an interned symbol whose name is an empty string.</dd>
@@ -241,8 +241,8 @@ When we evaluate an expression interactively, the Lisp interpreter first reads t
 
 </div>
 </div>
-<div id="outline-container-org1091c3c" class="outline-3">
-<h3 id="org1091c3c"><span class="section-number-3">1.1.</span> Characters, Control-Characters</h3>
+<div id="outline-container-orge62376a" class="outline-3">
+<h3 id="orge62376a"><span class="section-number-3">1.1.</span> Characters, Control-Characters</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 For character type (like <code>char</code> in other languages), <code>?&lt;char&gt;</code> is the read syntax, for example, <code>?A</code> evaluates to <code>65</code>, which is A&rsquo;s ASCII number.

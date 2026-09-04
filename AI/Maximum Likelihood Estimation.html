@@ -211,23 +211,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org80f86b9">1. Motivation</a></li>
-<li><a href="#org3e1699a">2. Derivation</a>
+<li><a href="#org0182b53">1. Motivation</a></li>
+<li><a href="#orgce3690e">2. Derivation</a>
 <ul>
-<li><a href="#orga066895">2.1. From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</a></li>
-<li><a href="#org0576911">2.2. Applying Monte Carlo Estimation</a></li>
-<li><a href="#org94873e5">2.3. Gradient Estimation</a></li>
+<li><a href="#org963dab8">2.1. From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</a></li>
+<li><a href="#orgece43ad">2.2. Applying Monte Carlo Estimation</a></li>
+<li><a href="#org1135823">2.3. Gradient Estimation</a></li>
 </ul>
 </li>
-<li><a href="#org035e5bf">3. Take-Away</a></li>
+<li><a href="#org0704840">3. Take-Away</a></li>
 </ul>
 </div>
 </div>
 <p>
 Suppose we a general generative model \( \mathcal{M} \). We want to learn the model given a dataset \( \mathcal{D} \) of \( m \) samples from \( p_{data} \). The standard assumption is that the data instances are <b>independent and identically distributed</b>.
 </p>
-<div id="outline-container-org80f86b9" class="outline-2">
-<h2 id="org80f86b9"><span class="section-number-2">1.</span> Motivation</h2>
+<div id="outline-container-org0182b53" class="outline-2">
+<h2 id="org0182b53"><span class="section-number-2">1.</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The goal of learning is to return a model \( p_{\theta} \) that <b>best</b> approximate the underlying distribution \( p_{data} \).
@@ -238,8 +238,8 @@ How can we define the &ldquo;best&rdquo;? It depends on our task. If our task is
 </p>
 </div>
 </div>
-<div id="outline-container-org3e1699a" class="outline-2">
-<h2 id="org3e1699a"><span class="section-number-2">2.</span> Derivation</h2>
+<div id="outline-container-orgce3690e" class="outline-2">
+<h2 id="orgce3690e"><span class="section-number-2">2.</span> Derivation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 How can we evaluate &ldquo;closeness&rdquo; between 2 distributions? One common approach is the <span class="underline">KL-divergence</span>, which is defined as
@@ -265,8 +265,8 @@ D(p_{data}\parallel p_{\theta}) = \mathbb{E}_{x\sim p_{data}}\left[ \log\frac{p_
 The key here is that, KL-divergence measures the &ldquo;compression loss&rdquo; of using \( p_{\theta} \) instead of \( p_{data} \), because we can only modify \( p_{\theta} \) through training parameters.
 </p>
 </div>
-<div id="outline-container-orga066895" class="outline-3">
-<h3 id="orga066895"><span class="section-number-3">2.1.</span> From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</h3>
+<div id="outline-container-org963dab8" class="outline-3">
+<h3 id="org963dab8"><span class="section-number-3">2.1.</span> From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can simplify the KL divergence
@@ -287,8 +287,8 @@ However, the problem nowhere is: we don&rsquo;t know \( p_{data} \), how can we 
 </p>
 </div>
 </div>
-<div id="outline-container-org0576911" class="outline-3">
-<h3 id="org0576911"><span class="section-number-3">2.2.</span> Applying Monte Carlo Estimation</h3>
+<div id="outline-container-orgece43ad" class="outline-3">
+<h3 id="orgece43ad"><span class="section-number-3">2.2.</span> Applying Monte Carlo Estimation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 We don&rsquo;t know \( p_{data} \), but we have dataset, which is assumed to be an unbiased sample from \( p_{data} \).
@@ -308,7 +308,7 @@ We can apply Monte Carlo Estimation on dataset
 <span class="underline">This can be regarded as the loss for training</span>, we denote it as \( \log L(\theta, \mathcal{D}) \). Then the rest is to figure out a expression of \( \log p_{\theta}(x) \) to train the model.
 </p>
 
-<div class="eg" id="org86a5654">
+<div class="eg" id="orgfe321a5">
 <p>
 A typical example is autoregressive LLM.
 </p>
@@ -316,8 +316,8 @@ A typical example is autoregressive LLM.
 </div>
 </div>
 </div>
-<div id="outline-container-org94873e5" class="outline-3">
-<h3 id="org94873e5"><span class="section-number-3">2.3.</span> Gradient Estimation</h3>
+<div id="outline-container-org1135823" class="outline-3">
+<h3 id="org1135823"><span class="section-number-3">2.3.</span> Gradient Estimation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 We may apply gradient descent with the loss, since \( \ell(\theta) = \log L(\theta, \mathcal{D}) \). Then the gradient can be computed by \( \nabla_{\theta}\ell(\theta) = \sum_{x\in\mathcal{D}} \nabla_{\theta} \log p_{\theta}(x) \).
@@ -325,8 +325,8 @@ We may apply gradient descent with the loss, since \( \ell(\theta) = \log L(\the
 </div>
 </div>
 </div>
-<div id="outline-container-org035e5bf" class="outline-2">
-<h2 id="org035e5bf"><span class="section-number-2">3.</span> Take-Away</h2>
+<div id="outline-container-org0704840" class="outline-2">
+<h2 id="org0704840"><span class="section-number-2">3.</span> Take-Away</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Under the framework of maximum likelihood estimation (MLE), the most important part is to <b>figure out a feasible form of \( p_{\theta}(x) \), as well as gradient \( \nabla_{\theta} \log p_{\theta}(x) \).</b> 

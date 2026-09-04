@@ -206,43 +206,43 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org583e1a4">1. Control Flows</a>
+<li><a href="#orgcdbd496">1. Control Flows</a>
 <ul>
-<li><a href="#org28ce456">1.1. <code>if</code> statement and <code>when</code> statement</a></li>
-<li><a href="#orgc03b93f">1.2. Switch Statement</a></li>
+<li><a href="#org003ea61">1.1. <code>if</code> statement and <code>when</code> statement</a></li>
+<li><a href="#orgd9b8973">1.2. Switch Statement</a></li>
 </ul>
 </li>
-<li><a href="#orgf398e90">2. Resource clean up with <code>defer</code></a></li>
-<li><a href="#org232932b">3. Parameters</a>
+<li><a href="#org7c06d22">2. Resource clean up with <code>defer</code></a></li>
+<li><a href="#orgb61242a">3. Parameters</a>
 <ul>
-<li><a href="#org06719fc">3.1. Variadic Parameters</a></li>
-<li><a href="#org1a6994f">3.2. Multiple Results</a></li>
-<li><a href="#orgf9b4e14">3.3. Named Results</a></li>
-<li><a href="#org10ecc20">3.4. Named Arguments</a></li>
+<li><a href="#org3d9b806">3.1. Variadic Parameters</a></li>
+<li><a href="#org0b855e3">3.2. Multiple Results</a></li>
+<li><a href="#org85f7aac">3.3. Named Results</a></li>
+<li><a href="#org19afaf5">3.4. Named Arguments</a></li>
 </ul>
 </li>
-<li><a href="#orgd41812e">4. Type Conversion</a>
+<li><a href="#orgc3e742a">4. Type Conversion</a>
 <ul>
-<li><a href="#org5aaa457">4.1. Addresses</a></li>
+<li><a href="#orgdb32f7a">4.1. Addresses</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org583e1a4" class="outline-2">
-<h2 id="org583e1a4"><span class="section-number-2">1.</span> Control Flows</h2>
+<div id="outline-container-orgcdbd496" class="outline-2">
+<h2 id="orgcdbd496"><span class="section-number-2">1.</span> Control Flows</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org28ce456" class="outline-3">
-<h3 id="org28ce456"><span class="section-number-3">1.1.</span> <code>if</code> statement and <code>when</code> statement</h3>
+<div id="outline-container-org003ea61" class="outline-3">
+<h3 id="org003ea61"><span class="section-number-3">1.1.</span> <code>if</code> statement and <code>when</code> statement</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <code>when</code> statement is <b>compile-time</b> <code>if</code> statement. Similar to <code>if constexpr</code> in C++.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc03b93f" class="outline-3">
-<h3 id="orgc03b93f"><span class="section-number-3">1.2.</span> Switch Statement</h3>
+<div id="outline-container-orgd9b8973" class="outline-3">
+<h3 id="orgd9b8973"><span class="section-number-3">1.2.</span> Switch Statement</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Unlike C++, Odin&rsquo;s <code>switch</code> only executes 1 branch, the selected branch.
@@ -250,8 +250,8 @@ Unlike C++, Odin&rsquo;s <code>switch</code> only executes 1 branch, the selecte
 </div>
 </div>
 </div>
-<div id="outline-container-orgf398e90" class="outline-2">
-<h2 id="orgf398e90"><span class="section-number-2">2.</span> Resource clean up with <code>defer</code></h2>
+<div id="outline-container-org7c06d22" class="outline-2">
+<h2 id="org7c06d22"><span class="section-number-2">2.</span> Resource clean up with <code>defer</code></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <code>defer</code> statement defers the execution of a statement until the end of the scope it is in. <code>defer</code> statement are executed in the reverse order that they were declared. In addition, we can also defer entire block or <code>if</code> statement.
@@ -274,8 +274,8 @@ The <code>defer</code> statement defers the execution of a statement until the e
 </div>
 </div>
 </div>
-<div id="outline-container-org232932b" class="outline-2">
-<h2 id="org232932b"><span class="section-number-2">3.</span> Parameters</h2>
+<div id="outline-container-orgb61242a" class="outline-2">
+<h2 id="orgb61242a"><span class="section-number-2">3.</span> Parameters</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The calling convention is the same as C, but
@@ -290,8 +290,8 @@ The calling convention is the same as C, but
 All parameters are <i>immutable</i>.
 </p>
 </div>
-<div id="outline-container-org06719fc" class="outline-3">
-<h3 id="org06719fc"><span class="section-number-3">3.1.</span> Variadic Parameters</h3>
+<div id="outline-container-org3d9b806" class="outline-3">
+<h3 id="org3d9b806"><span class="section-number-3">3.1.</span> Variadic Parameters</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-odin"><code><span class="org-function-name">sum</span> <span class="org-punctuation">::</span> <span class="org-keyword">proc</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">nums</span><span class="org-punctuation">:</span> <span class="org-punctuation">..</span><span class="org-type">int</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-punctuation">-&gt;</span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-variable-use">result</span><span class="org-punctuation">:</span> <span class="org-type">int</span><span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-punctuation"><span class="org-rainbow-delimiters-depth-1">{</span></span>
@@ -308,24 +308,24 @@ All parameters are <i>immutable</i>.
 </div>
 </div>
 </div>
-<div id="outline-container-org1a6994f" class="outline-3">
-<h3 id="org1a6994f"><span class="section-number-3">3.2.</span> Multiple Results</h3>
+<div id="outline-container-org0b855e3" class="outline-3">
+<h3 id="org0b855e3"><span class="section-number-3">3.2.</span> Multiple Results</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Results are returned in tuple-like syntax (<code>swap :: proc(x, y: int) -&gt; (int, int)</code>) and can be unpacked with <code>a,b := swap(1,2)</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgf9b4e14" class="outline-3">
-<h3 id="orgf9b4e14"><span class="section-number-3">3.3.</span> Named Results</h3>
+<div id="outline-container-org85f7aac" class="outline-3">
+<h3 id="org85f7aac"><span class="section-number-3">3.3.</span> Named Results</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Define the variable to return in declaration, not with <code>return</code> statement. Like in Solidity. It&rsquo;s also possible to give default value for returned value.
 </p>
 </div>
 </div>
-<div id="outline-container-org10ecc20" class="outline-3">
-<h3 id="org10ecc20"><span class="section-number-3">3.4.</span> Named Arguments</h3>
+<div id="outline-container-org19afaf5" class="outline-3">
+<h3 id="org19afaf5"><span class="section-number-3">3.4.</span> Named Arguments</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 As in Python, call the procedure with explicit argument <code>arg=value</code>.
@@ -333,8 +333,8 @@ As in Python, call the procedure with explicit argument <code>arg=value</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd41812e" class="outline-2">
-<h2 id="orgd41812e"><span class="section-number-2">4.</span> Type Conversion</h2>
+<div id="outline-container-orgc3e742a" class="outline-2">
+<h2 id="orgc3e742a"><span class="section-number-2">4.</span> Type Conversion</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can use <code>T(var)</code> or <code>cast(T) var</code> to convert <code>var</code> into type <code>T</code>, which can also be done with <code>auto_cast var</code> operator.
@@ -344,8 +344,8 @@ We can use <code>T(var)</code> or <code>cast(T) var</code> to convert <code>var<
 <code>transmute(T) var</code> is a bit cast conversion, similar to <code>reinterpret_cast&lt;T&gt;(var)</code>.
 </p>
 </div>
-<div id="outline-container-org5aaa457" class="outline-3">
-<h3 id="org5aaa457"><span class="section-number-3">4.1.</span> Addresses</h3>
+<div id="outline-container-orgdb32f7a" class="outline-3">
+<h3 id="orgdb32f7a"><span class="section-number-3">4.1.</span> Addresses</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <code>^T</code> denotes pointer type that points to a value of type <code>T</code>. <code>&amp;x</code> generates a pointer of <code>^T</code> to <code>x</code>. <code>x^</code> is dereferencing.

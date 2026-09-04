@@ -210,15 +210,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb8052ae">1. Overview&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></a>
+<li><a href="#orge861ff6">1. Overview&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></a>
 <ul>
-<li><a href="#org6e90e8f">1.1. FP8 GEMM Pipeline</a></li>
-<li><a href="#orgd60f7cf">1.2. Fine-grained FP8 GEMM Implementation</a></li>
-<li><a href="#org5f052e1">1.3. Accumulation Precision</a>
+<li><a href="#org54d14eb">1.1. FP8 GEMM Pipeline</a></li>
+<li><a href="#org70438b3">1.2. Fine-grained FP8 GEMM Implementation</a></li>
+<li><a href="#org59aebad">1.3. Accumulation Precision</a>
 <ul>
-<li><a href="#org410e5df">1.3.1. Pipeline Parallelism</a></li>
-<li><a href="#orgea1f294">1.3.2. Mantissa over Exponents</a></li>
-<li><a href="#org567faca">1.3.3. Online Quantization</a></li>
+<li><a href="#org5002c57">1.3.1. Pipeline Parallelism</a></li>
+<li><a href="#orga067713">1.3.2. Mantissa over Exponents</a></li>
+<li><a href="#orgf56939a">1.3.3. Online Quantization</a></li>
 </ul>
 </li>
 </ul>
@@ -226,12 +226,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb8052ae" class="outline-2">
-<h2 id="orgb8052ae"><span class="section-number-2">1.</span> Overview&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
+<div id="outline-container-orge861ff6" class="outline-2">
+<h2 id="orge861ff6"><span class="section-number-2">1.</span> Overview&nbsp;&nbsp;&nbsp<span class="tag"><span class="ATTACH">ATTACH</span></span></h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org6e90e8f" class="outline-3">
-<h3 id="org6e90e8f"><span class="section-number-3">1.1.</span> FP8 GEMM Pipeline</h3>
+<div id="outline-container-org54d14eb" class="outline-3">
+<h3 id="org54d14eb"><span class="section-number-3">1.1.</span> FP8 GEMM Pipeline</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 DeepSeek V3 implemented FP8 GEMM operator for training, i.e., keep params in FP8 during training. However, given that some operators require <i>full precision</i> to keep stability during computation, DeepSeek V3 maintains full precision or half precision (FP32 or BF16) on several operators: <span class="underline">Embedding layer, Output Head, MoE Gating, Normalization, Attention Module</span>. Only <span class="underline">linear layers</span> uses FP8 GEMM.
@@ -242,7 +242,7 @@ The overall training adopts <b>mixed precision schema</b>. Besides FP8 quantized
 </p>
 
 
-<div id="org3b2e8e0" class="figure">
+<div id="orgf499819" class="figure">
 <p><img src="../../../../.assets/deepseek-v3-fp8/image.41yk29axcd.webp" alt="image.41yk29axcd.webp" align="center" />
 </p>
 </div>
@@ -278,8 +278,8 @@ On the other side, to get the gradient of input:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd60f7cf" class="outline-3">
-<h3 id="orgd60f7cf"><span class="section-number-3">1.2.</span> Fine-grained FP8 GEMM Implementation</h3>
+<div id="outline-container-org70438b3" class="outline-3">
+<h3 id="org70438b3"><span class="section-number-3">1.2.</span> Fine-grained FP8 GEMM Implementation</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The challenge of implementing FP8 GEMM kernel includes
@@ -304,12 +304,12 @@ Why different grouping size for activition and weight? The paper says the reason
 </p>
 </div>
 </div>
-<div id="outline-container-org5f052e1" class="outline-3">
-<h3 id="org5f052e1"><span class="section-number-3">1.3.</span> Accumulation Precision</h3>
+<div id="outline-container-org59aebad" class="outline-3">
+<h3 id="org59aebad"><span class="section-number-3">1.3.</span> Accumulation Precision</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org410e5df" class="outline-4">
-<h4 id="org410e5df"><span class="section-number-4">1.3.1.</span> Pipeline Parallelism</h4>
+<div id="outline-container-org5002c57" class="outline-4">
+<h4 id="org5002c57"><span class="section-number-4">1.3.1.</span> Pipeline Parallelism</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 DeepSeek&rsquo;s FP8 GEMM involves 2 steps:
@@ -325,16 +325,16 @@ These 2 steps can benefit from <i>pipeline parallelism</i> for instruction overl
 </p>
 </div>
 </div>
-<div id="outline-container-orgea1f294" class="outline-4">
-<h4 id="orgea1f294"><span class="section-number-4">1.3.2.</span> Mantissa over Exponents</h4>
+<div id="outline-container-orga067713" class="outline-4">
+<h4 id="orga067713"><span class="section-number-4">1.3.2.</span> Mantissa over Exponents</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 Use FP8 E4M3 globally for more precision information. This is also important for fine-grained quantization, because exponents can be effectively shared within same small group.
 </p>
 </div>
 </div>
-<div id="outline-container-org567faca" class="outline-4">
-<h4 id="org567faca"><span class="section-number-4">1.3.3.</span> Online Quantization</h4>
+<div id="outline-container-orgf56939a" class="outline-4">
+<h4 id="orgf56939a"><span class="section-number-4">1.3.3.</span> Online Quantization</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 To cooperate with pipeline parallelism and reduce memory consumption, <code>absmax</code> required by quantization is computed online, as well as the quantization itself.

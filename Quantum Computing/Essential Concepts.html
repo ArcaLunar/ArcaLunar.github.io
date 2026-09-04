@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Essential Concepts</title>
+<title>Essential Concepts in Quantum Computing</title>
 <meta name="author" content="ArcaLunar" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,14 +196,101 @@
 <link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
 <link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
 <script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
 <div id="preamble" class="status">
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">Essential Concepts</h1>
+<h1 class="title">Essential Concepts in Quantum Computing</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge92ed56">1. Qubits</a></li>
+<li><a href="#orge2c86de">2. Measurement of Qubits</a></li>
+</ul>
 </div>
+</div>
+<div id="outline-container-orge92ed56" class="outline-2">
+<h2 id="orge92ed56"><span class="section-number-2">1.</span> Qubits</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The unit of computation is <b>qubit</b> (short for quantum bits). A qubit in a quantum computer consists of <span class="underline">two perfectly distinguishable statuses</span> of a (usually microscopic) quantum system. We usually use a unit vector to refer to the quantum state.
+</p>
+
+<div class="note" id="orgdbeae26">
+<p>
+<b>Notations in Quantum Computing</b>
+</p>
+
+<p>
+In quantum computing, vectors are denoted in bracket:
+</p>
+
+<ul class="org-ul">
+<li>\( \ket{a} \) means a <b>column</b> vector \(\vec{a} = \begin{pmatrix}x\\y\end{pmatrix}\)</li>
+<li>\( \bra{a} \) means the adjoint of <b>row</b> vector \( \vec{a} \), i.e., take conjugate<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> of each element \( a^{\dag} = \begin{pmatrix}x^{\star} & y^{\star}\end{pmatrix} \)</li>
+<li>\( \braket{a|b} \) means the <b>dot product</b> of these 2 vectors.</li>
+<li>\( \ket{a}\bra{b} \) means a 2-by-2 matrix.</li>
+</ul>
+
+<p>
+There exist 2 basis vectors: <b>ground state</b> \( \ket{0}=\begin{pmatrix}1\\0\end{pmatrix} \) and <b>excited state</b> \( \ket{1}=\begin{pmatrix}0\\1\end{pmatrix} \).
+</p>
+
+</div>
+
+<p>
+A qubit can be in other states than \( \ket{0} \) and \( \ket{1} \). In general, an arbitrary qubit state is
+</p>
+
+<p>
+\[
+\ket{\psi} = \alpha\ket{0}+\beta\ket{1} = \begin{pmatrix}\alpha\\\beta\end{pmatrix}, \text{ where } \alpha,\beta \in \mathbb{C}, |\alpha|^{2}+|\beta|^{2}=1
+\]
+</p>
+
+<p>
+The coefficients \(\alpha,\beta\) are called <b>amplitudes</b> of \( \ket{\psi} \).
+</p>
+</div>
+</div>
+<div id="outline-container-orge2c86de" class="outline-2">
+<h2 id="orge2c86de"><span class="section-number-2">2.</span> Measurement of Qubits</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The outcome of a qubit cannot be read directly. We must perform a measurement.
+</p>
+
+<dl class="org-dl">
+<dt>Measurement</dt><dd>Each measurement can only produce one outcome \( \ket{0} \) or \( \ket{1} \). Although a single measurement can only have one outcome, different measurement may have different outcomes. But, we can <b>statistically</b> figure out the state of the qubit after a large amount of measurements, that is the Born&rsquo;s Rule.</dd>
+</dl>
+
+<div class="highlight theorem" id="org19a120d">
+<p>
+<b>Born&rsquo;s Rule</b>
+</p>
+
+<p>
+The probability of getting the outcome \(x\) when measuring any quantum state \( \ket{\psi} \) in the computational basis is \[ \mathbb{P}(x) = | \braket{x|\psi} |^{2}, \quad x=0,1 \]
+</p>
+
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">The conjugate of a complex \( z = a + bi \) is \( z^{\star} = a - bi \).</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
 <p class="date">Date: 2026-09-01 Tue</p>
 <p class="author">Author: ArcaLunar</p>

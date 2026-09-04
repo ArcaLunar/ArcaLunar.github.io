@@ -207,14 +207,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org27632b0">1. Main Operations</a>
+<li><a href="#org8d62394">1. Main Operations</a>
 <ul>
-<li><a href="#org7726fb3">1.1. State Evaluation</a></li>
-<li><a href="#orgacb850c">1.2. <code>get</code> Function</a></li>
-<li><a href="#org82ad26a">1.3. <code>put</code> Function</a></li>
-<li><a href="#org84d9993">1.4. <code>modify</code> Function</a></li>
-<li><a href="#orgc61061f">1.5. <code>gets</code> Function</a></li>
-<li><a href="#org49b5f4e">1.6. <code>state</code> Function</a></li>
+<li><a href="#org1242cd7">1.1. State Evaluation</a></li>
+<li><a href="#org27b9f41">1.2. <code>get</code> Function</a></li>
+<li><a href="#org99e78d9">1.3. <code>put</code> Function</a></li>
+<li><a href="#orgcfd7f0c">1.4. <code>modify</code> Function</a></li>
+<li><a href="#org193fabf">1.5. <code>gets</code> Function</a></li>
+<li><a href="#orgabbe2ba">1.6. <code>state</code> Function</a></li>
 </ul>
 </li>
 </ul>
@@ -234,12 +234,12 @@ The <code>State</code> monad represents a computation that receives some state, 
 <p>
 So a stateful computation does not mutate a variable directly. Instead, it takes an old state and returns a new state.
 </p>
-<div id="outline-container-org27632b0" class="outline-2">
-<h2 id="org27632b0"><span class="section-number-2">1.</span> Main Operations</h2>
+<div id="outline-container-org8d62394" class="outline-2">
+<h2 id="org8d62394"><span class="section-number-2">1.</span> Main Operations</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7726fb3" class="outline-3">
-<h3 id="org7726fb3"><span class="section-number-3">1.1.</span> State Evaluation</h3>
+<div id="outline-container-org1242cd7" class="outline-3">
+<h3 id="org1242cd7"><span class="section-number-3">1.1.</span> State Evaluation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <code>runState</code> returns both the result and the final state; <code>evalState</code> only returns the result; <code>execState</code> only returns the state.
@@ -251,24 +251,24 @@ So a stateful computation does not mutate a variable directly. Instead, it takes
 </div>
 </div>
 </div>
-<div id="outline-container-orgacb850c" class="outline-3">
-<h3 id="orgacb850c"><span class="section-number-3">1.2.</span> <code>get</code> Function</h3>
+<div id="outline-container-org27b9f41" class="outline-3">
+<h3 id="org27b9f41"><span class="section-number-3">1.2.</span> <code>get</code> Function</h3>
 </div>
 
-<div id="outline-container-org82ad26a" class="outline-3">
-<h3 id="org82ad26a"><span class="section-number-3">1.3.</span> <code>put</code> Function</h3>
+<div id="outline-container-org99e78d9" class="outline-3">
+<h3 id="org99e78d9"><span class="section-number-3">1.3.</span> <code>put</code> Function</h3>
 </div>
 
-<div id="outline-container-org84d9993" class="outline-3">
-<h3 id="org84d9993"><span class="section-number-3">1.4.</span> <code>modify</code> Function</h3>
+<div id="outline-container-orgcfd7f0c" class="outline-3">
+<h3 id="orgcfd7f0c"><span class="section-number-3">1.4.</span> <code>modify</code> Function</h3>
 </div>
 
-<div id="outline-container-orgc61061f" class="outline-3">
-<h3 id="orgc61061f"><span class="section-number-3">1.5.</span> <code>gets</code> Function</h3>
+<div id="outline-container-org193fabf" class="outline-3">
+<h3 id="org193fabf"><span class="section-number-3">1.5.</span> <code>gets</code> Function</h3>
 </div>
 
-<div id="outline-container-org49b5f4e" class="outline-3">
-<h3 id="org49b5f4e"><span class="section-number-3">1.6.</span> <code>state</code> Function</h3>
+<div id="outline-container-orgabbe2ba" class="outline-3">
+<h3 id="orgabbe2ba"><span class="section-number-3">1.6.</span> <code>state</code> Function</h3>
 </div>
 </div>
 </div>

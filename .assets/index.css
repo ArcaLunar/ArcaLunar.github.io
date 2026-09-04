@@ -19,8 +19,8 @@
   --site-accent: #527d9a;
   --site-dim: #7c8a93;
   --site-mono-tint: #eef1f3;
-  --site-serif: ui-serif, "Anthropic Serif Text", "Georgia", "Iowan Old Style", "Palatino Linotype", serif;
-  --site-mono: ui-monospace, "Anthropic Mono Web", "JetBrains Mono", "Cascadia Code",
+  --site-serif: ui-serif, "Anthropic Serif Text", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  --site-mono: ui-monospace, "Anthropic Mono Web", "SFMono-Regular", "JetBrains Mono", "Cascadia Code",
     Menlo, Consolas, monospace;
 }
 
@@ -292,6 +292,29 @@ body {
 #table-of-contents {
   top: 4rem;
   max-height: calc(100vh - 5rem);
+
+  background: var(--site-paper);
+  border: none;
+  box-shadow: 0 1px 2px rgba(27, 31, 35, 0.05), 0 6px 20px rgba(27, 31, 35, 0.08);
+}
+
+#table-of-contents > h2 {
+  font-family: var(--site-serif);
+  color: var(--site-ink);
+}
+
+#table-of-contents > h2::before {
+  color: var(--site-accent);
+}
+
+#text-table-of-contents a {
+  font-family: var(--site-serif);
+  color: var(--site-dim);
+}
+
+#text-table-of-contents a:hover {
+  background: var(--site-mono-tint);
+  color: var(--site-accent);
 }
 
 /* === Blog homepage (body.site-home) ===
