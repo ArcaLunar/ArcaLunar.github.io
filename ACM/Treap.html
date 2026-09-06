@@ -210,25 +210,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb5866f5">1. Split Operation</a>
+<li><a href="#org5777d6d">1. Split Operation</a>
 <ul>
-<li><a href="#org07d6f82">1.1. By Value</a></li>
-<li><a href="#org54d4ab4">1.2. By Size/Rank</a></li>
+<li><a href="#org6e6753e">1.1. By Value</a></li>
+<li><a href="#orgaeadb58">1.2. By Size/Rank</a></li>
 </ul>
 </li>
-<li><a href="#org4eeb6d3">2. Merging</a></li>
+<li><a href="#orgfb5a4d0">2. Merging</a></li>
 </ul>
 </div>
 </div>
 <p>
 Non-rotational treap (FHQ Treap) can be used to maintain sequence operations and balanced tree.
 </p>
-<div id="outline-container-orgb5866f5" class="outline-2">
-<h2 id="orgb5866f5"><span class="section-number-2">1.</span> Split Operation</h2>
+<div id="outline-container-org5777d6d" class="outline-2">
+<h2 id="org5777d6d"><span class="section-number-2">1.</span> Split Operation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org07d6f82" class="outline-3">
-<h3 id="org07d6f82"><span class="section-number-3">1.1.</span> By Value</h3>
+<div id="outline-container-org6e6753e" class="outline-3">
+<h3 id="org6e6753e"><span class="section-number-3">1.1.</span> By Value</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose treap root <code>cur</code> and key value <code>key</code>, and we want to split treap into 2 parts \(\le key\) (treap A) and \(\gt key\) (treap B). Also, we assume the treap is already in order.
@@ -239,8 +239,8 @@ Consider the current root. If <code>cur</code> has value smaller than <code>key<
 </p>
 </div>
 </div>
-<div id="outline-container-org54d4ab4" class="outline-3">
-<h3 id="org54d4ab4"><span class="section-number-3">1.2.</span> By Size/Rank</h3>
+<div id="outline-container-orgaeadb58" class="outline-3">
+<h3 id="orgaeadb58"><span class="section-number-3">1.2.</span> By Size/Rank</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 If we want to split by size or rank, we only need to know the <i>size</i> information.
@@ -248,8 +248,8 @@ If we want to split by size or rank, we only need to know the <i>size</i> inform
 </div>
 </div>
 </div>
-<div id="outline-container-org4eeb6d3" class="outline-2">
-<h2 id="org4eeb6d3"><span class="section-number-2">2.</span> Merging</h2>
+<div id="outline-container-orgfb5a4d0" class="outline-2">
+<h2 id="orgfb5a4d0"><span class="section-number-2">2.</span> Merging</h2>
 </div>
 </div>
 <div id="postamble" class="status">

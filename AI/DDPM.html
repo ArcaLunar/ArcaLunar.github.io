@@ -210,45 +210,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1bf0e6d">1. Make Simpler (DDPM): Only Predict Noise</a>
+<li><a href="#orgb0a5bf0">1. Make Simpler (DDPM): Only Predict Noise</a>
 <ul>
-<li><a href="#org302c645">1.1. Forward Process Simplification</a></li>
-<li><a href="#org82ae352">1.2. Backward Process Simplification</a></li>
-<li><a href="#org2984fb5">1.3. DDPM Training</a>
+<li><a href="#org0c4620d">1.1. Forward Process Simplification</a></li>
+<li><a href="#org3e29fec">1.2. Backward Process Simplification</a></li>
+<li><a href="#org2f7f151">1.3. DDPM Training</a>
 <ul>
-<li><a href="#orgfa354b7">1.3.1. Reparameterization of \( \mathbf{x}_{t} \)</a></li>
-<li><a href="#org212c92a">1.3.2. Derivation</a></li>
-<li><a href="#org3b1704b">1.3.3. Training Algorithm</a></li>
+<li><a href="#orgfc1a925">1.3.1. Reparameterization of \( \mathbf{x}_{t} \)</a></li>
+<li><a href="#orgfb16288">1.3.2. Derivation</a></li>
+<li><a href="#orgb4286b2">1.3.3. Training Algorithm</a></li>
 </ul>
 </li>
-<li><a href="#org762b0fd">1.4. DDPM Sampling</a>
+<li><a href="#orga4a6dba">1.4. DDPM Sampling</a>
 <ul>
-<li><a href="#orgeedf7c6">1.4.1. Sampling Algorithm</a></li>
+<li><a href="#org69c0166">1.4.1. Sampling Algorithm</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd596290">2. Noise Schedule and Signal-to-Noise Ratio</a></li>
-<li><a href="#org047aa46">3. Network Parameterization</a></li>
-<li><a href="#org9673e8d">4. Connection to Denoising Score Matching</a></li>
-<li><a href="#org169271b">5. Practical Details and Limitations</a></li>
-<li><a href="#org6b60c70">6. Beyond the Original DDPM</a></li>
-<li><a href="#org352b02d">7. References</a></li>
+<li><a href="#org328e4f8">2. Noise Schedule and Signal-to-Noise Ratio</a></li>
+<li><a href="#org8424830">3. Network Parameterization</a></li>
+<li><a href="#org8238c51">4. Connection to Denoising Score Matching</a></li>
+<li><a href="#org8c1bd85">5. Practical Details and Limitations</a></li>
+<li><a href="#org04b4455">6. Beyond the Original DDPM</a></li>
+<li><a href="#org7df6d35">7. References</a></li>
 </ul>
 </div>
 </div>
 <p>
 The prerequisite for this article is <a href="General Diffusion Models.html#ID-83cdc6ea-c230-4e77-bc2a-e2ae34e5a50e">Diffusion Models</a>
 </p>
-<div id="outline-container-org1bf0e6d" class="outline-2">
-<h2 id="org1bf0e6d"><span class="section-number-2">1.</span> Make Simpler (DDPM): Only Predict Noise</h2>
+<div id="outline-container-orgb0a5bf0" class="outline-2">
+<h2 id="orgb0a5bf0"><span class="section-number-2">1.</span> Make Simpler (DDPM): Only Predict Noise</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 DDPM parameterizes the reverse-process mean through a network that predicts the noise added to \(\mathbf{x}_{0}\). Predicting noise is not the definition of a diffusion probabilistic model—one could instead predict \(\mathbf{x}_{0}\) or the reverse mean directly—but it gives the particularly simple and effective DDPM training objective.
 </p>
 </div>
-<div id="outline-container-org302c645" class="outline-3">
-<h3 id="org302c645"><span class="section-number-3">1.1.</span> Forward Process Simplification</h3>
+<div id="outline-container-org0c4620d" class="outline-3">
+<h3 id="org0c4620d"><span class="section-number-3">1.1.</span> Forward Process Simplification</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Let \(\alpha_{t}:=1-\beta_{t}\) and \( \bar{\alpha}_{t} := \prod_{s=1}^{t} \alpha_{s} \), then we can prove mathematically that the following holds
@@ -278,7 +278,7 @@ where <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a><
 \]
 </p>
 
-<div class="note" id="orgeab5896">
+<div class="note" id="orga4e85be">
 <p>
 Let derive \( q(\mathbf{x}_{t}\mid \mathbf{x}_{0}) \). First, let&rsquo;s represent \( \mathbf{x}_{2} \) with \( \mathbf{x}_{0} \). By \( \mathbf{x}_{2} = \sqrt{\alpha_{2}} \mathbf{x}_{1} + \sqrt{1-\alpha_{2}}\epsilon_{2} \) and \( \mathbf{x}_{1} = \sqrt{\alpha_{1}} \mathbf{x}_{0} + \sqrt{1-\alpha_{1}}\epsilon_{1} \) 
 </p>
@@ -313,7 +313,7 @@ And since <span class="underline">the linear combination of Gaussians is also Ga
 
 </div>
 
-<div class="note" id="org5aaf0f2">
+<div class="note" id="orgb03d5f0">
 <p>
 Let&rsquo;s drive the posterior \( q(\mathbf{x}_{t-1}\mid \mathbf{x}_{t}, \mathbf{x}_{0}) \). By Bayes&rsquo; Rule,
 </p>
@@ -355,8 +355,8 @@ The prior is chosen as \(p(\mathbf{x}_{T})=\mathcal{N}(0,\mathbf{I})\). With a s
 </p>
 </div>
 </div>
-<div id="outline-container-org82ae352" class="outline-3">
-<h3 id="org82ae352"><span class="section-number-3">1.2.</span> Backward Process Simplification</h3>
+<div id="outline-container-org3e29fec" class="outline-3">
+<h3 id="org3e29fec"><span class="section-number-3">1.2.</span> Backward Process Simplification</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In the original DDPM, the <b>reverse-process variance is fixed</b> rather than learned:
@@ -383,12 +383,12 @@ L_{t-1} = \mathbb{E}_{q}\left[ \frac{1}{2\sigma_{t}^{2}} \| \tilde{\boldsymbol{\
 </p>
 </div>
 </div>
-<div id="outline-container-org2984fb5" class="outline-3">
-<h3 id="org2984fb5"><span class="section-number-3">1.3.</span> DDPM Training</h3>
+<div id="outline-container-org2f7f151" class="outline-3">
+<h3 id="org2f7f151"><span class="section-number-3">1.3.</span> DDPM Training</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orgfa354b7" class="outline-4">
-<h4 id="orgfa354b7"><span class="section-number-4">1.3.1.</span> Reparameterization of \( \mathbf{x}_{t} \)</h4>
+<div id="outline-container-orgfc1a925" class="outline-4">
+<h4 id="orgfc1a925"><span class="section-number-4">1.3.1.</span> Reparameterization of \( \mathbf{x}_{t} \)</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Since \( q(\mathbf{x}_{t}\mid\mathbf{x}_{0}) = \mathcal{N}(\mathbf{x}_{t}; \sqrt{\bar{\alpha}_{t}} \mathbf{x}_{0}, (1-\bar{\alpha}_{t})\mathbf{I}) \), we apply the reparameterization trick to sample \( \mathbf{x}_{t} \) within one step:
@@ -401,8 +401,8 @@ Since \( q(\mathbf{x}_{t}\mid\mathbf{x}_{0}) = \mathcal{N}(\mathbf{x}_{t}; \sqrt
 </p>
 </div>
 </div>
-<div id="outline-container-org212c92a" class="outline-4">
-<h4 id="org212c92a"><span class="section-number-4">1.3.2.</span> Derivation</h4>
+<div id="outline-container-orgfb16288" class="outline-4">
+<h4 id="orgfb16288"><span class="section-number-4">1.3.2.</span> Derivation</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 We insert \( \mathbf{x}_{0} = \frac{\mathbf{x}_{t}-\sqrt{1-\bar{\alpha}_{t}}\boldsymbol{\epsilon}}{\sqrt{\bar{\alpha}_{t}}} \) into \(\tilde{\boldsymbol{\mu}}_{t}\):
@@ -455,7 +455,7 @@ L_{\text{simple}} = \mathbb{E}_{t,\mathbf{x}_{0}, \boldsymbol{\epsilon}}\left[ \
 </p>
 
 <p>
-Here \(t\sim\operatorname{Uniform}\{1,\ldots,T\}\), \(\mathbf{x}_{0}\sim q_{\mathrm{data}}\), \(\boldsymbol{\epsilon}\sim\mathcal{N}(0,\mathbf{I})\), and \(\mathbf{x}_{t}\) is obtained with the <a href="#org03a0fd3">reparameterization formula</a>. This is a reweighted version of the ELBO terms governing the mean, not the exact negative log-likelihood. In particular, it does not train a learned reverse variance.
+Here \(t\sim\operatorname{Uniform}\{1,\ldots,T\}\), \(\mathbf{x}_{0}\sim q_{\mathrm{data}}\), \(\boldsymbol{\epsilon}\sim\mathcal{N}(0,\mathbf{I})\), and \(\mathbf{x}_{t}\) is obtained with the <a href="#orga4890e7">reparameterization formula</a>. This is a reweighted version of the ELBO terms governing the mean, not the exact negative log-likelihood. In particular, it does not train a learned reverse variance.
 </p>
 
 <p>
@@ -463,8 +463,8 @@ The closed form for \(q(\mathbf{x}_{t}\mid\mathbf{x}_{0})\) is crucial: training
 </p>
 </div>
 </div>
-<div id="outline-container-org3b1704b" class="outline-4">
-<h4 id="org3b1704b"><span class="section-number-4">1.3.3.</span> Training Algorithm</h4>
+<div id="outline-container-orgb4286b2" class="outline-4">
+<h4 id="orgb4286b2"><span class="section-number-4">1.3.3.</span> Training Algorithm</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 For each optimization step:
@@ -480,11 +480,11 @@ For each optimization step:
 </div>
 </div>
 </div>
-<div id="outline-container-org762b0fd" class="outline-3">
-<h3 id="org762b0fd"><span class="section-number-3">1.4.</span> DDPM Sampling</h3>
+<div id="outline-container-orga4a6dba" class="outline-3">
+<h3 id="orga4a6dba"><span class="section-number-3">1.4.</span> DDPM Sampling</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
-Start from \(\mathbf{x}_{T}\sim\mathcal{N}(0,\mathbf{I})\). At each reverse step, sample from <a href="#org37627a4">the reverse transition</a>
+Start from \(\mathbf{x}_{T}\sim\mathcal{N}(0,\mathbf{I})\). At each reverse step, sample from <a href="#org4cc8c1c">the reverse transition</a>
 </p>
 
 <p>
@@ -507,8 +507,8 @@ and we plug in the definition of \( \boldsymbol{\mu}_{\theta} \):
 where \(\mathbf{z}\sim\mathcal{N}(0,\mathbf{I})\) for \(t>1\), and \(\mathbf{z}=0\) for \(t=1\) so that noise is not added to the final sample.
 </p>
 </div>
-<div id="outline-container-orgeedf7c6" class="outline-4">
-<h4 id="orgeedf7c6"><span class="section-number-4">1.4.1.</span> Sampling Algorithm</h4>
+<div id="outline-container-org69c0166" class="outline-4">
+<h4 id="org69c0166"><span class="section-number-4">1.4.1.</span> Sampling Algorithm</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ol class="org-ol">
 <li>Sample \(\mathbf{x}_{T}\sim\mathcal{N}(0,\mathbf{I})\).</li>
@@ -527,8 +527,8 @@ Unlike training, ancestral DDPM sampling is sequential and normally requires hun
 </div>
 </div>
 </div>
-<div id="outline-container-orgd596290" class="outline-2">
-<h2 id="orgd596290"><span class="section-number-2">2.</span> Noise Schedule and Signal-to-Noise Ratio</h2>
+<div id="outline-container-org328e4f8" class="outline-2">
+<h2 id="org328e4f8"><span class="section-number-2">2.</span> Noise Schedule and Signal-to-Noise Ratio</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The schedule \(\{\beta_t\}_{t=1}^{T}\) controls how quickly information is destroyed. It must satisfy \(0<\beta_t<1\), and is chosen so that \(\bar{\alpha}_{T}\) is close to zero. The original DDPM used a linear \(\beta_t\) schedule; Improved DDPM introduced a cosine schedule for \(\bar{\alpha}_t\).
@@ -549,8 +549,8 @@ Early timesteps have high SNR and mostly preserve the data; late timesteps have 
 </p>
 </div>
 </div>
-<div id="outline-container-org047aa46" class="outline-2">
-<h2 id="org047aa46"><span class="section-number-2">3.</span> Network Parameterization</h2>
+<div id="outline-container-org8424830" class="outline-2">
+<h2 id="org8424830"><span class="section-number-2">3.</span> Network Parameterization</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 One neural network is shared across all timesteps. It must therefore receive both the noisy sample \(\mathbf{x}_{t}\) and a representation of \(t\) (or equivalently the noise level). The original image DDPM uses a U-Net-like architecture with sinusoidal timestep embeddings injected into its residual blocks, along with attention at selected resolutions.
@@ -571,8 +571,8 @@ These parameterizations contain equivalent information in the idealized setting 
 </p>
 </div>
 </div>
-<div id="outline-container-org9673e8d" class="outline-2">
-<h2 id="org9673e8d"><span class="section-number-2">4.</span> Connection to Denoising Score Matching</h2>
+<div id="outline-container-org8238c51" class="outline-2">
+<h2 id="org8238c51"><span class="section-number-2">4.</span> Connection to Denoising Score Matching</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The <i>score</i> of the noisy marginal is \(\nabla_{\mathbf{x}_{t}}\log q_t(\mathbf{x}_{t})\). For the conditional Gaussian corruption,
@@ -602,8 +602,8 @@ Minimizing the noise-prediction MSE is therefore equivalent, up to timestep-depe
 </p>
 </div>
 </div>
-<div id="outline-container-org169271b" class="outline-2">
-<h2 id="org169271b"><span class="section-number-2">5.</span> Practical Details and Limitations</h2>
+<div id="outline-container-org8c1bd85" class="outline-2">
+<h2 id="org8c1bd85"><span class="section-number-2">5.</span> Practical Details and Limitations</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Image values are usually scaled to a fixed range such as \([-1,1]\).</li>
@@ -614,8 +614,8 @@ Minimizing the noise-prediction MSE is therefore equivalent, up to timestep-depe
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b60c70" class="outline-2">
-<h2 id="org6b60c70"><span class="section-number-2">6.</span> Beyond the Original DDPM</h2>
+<div id="outline-container-org04b4455" class="outline-2">
+<h2 id="org04b4455"><span class="section-number-2">6.</span> Beyond the Original DDPM</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><i>Improved DDPM</i> learns the reverse variance, introduces a cosine schedule, and improves likelihood and sampling efficiency.</li>
@@ -626,8 +626,8 @@ Minimizing the noise-prediction MSE is therefore equivalent, up to timestep-depe
 </ul>
 </div>
 </div>
-<div id="outline-container-org352b02d" class="outline-2">
-<h2 id="org352b02d"><span class="section-number-2">7.</span> References</h2>
+<div id="outline-container-org7df6d35" class="outline-2">
+<h2 id="org7df6d35"><span class="section-number-2">7.</span> References</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Jonathan Ho, Ajay Jain, Pieter Abbeel. <i>Denoising Diffusion Probabilistic Models</i>. NeurIPS 2020. <a href="https://arxiv.org/abs/2006.11239">https://arxiv.org/abs/2006.11239</a></li>

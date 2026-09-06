@@ -210,22 +210,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2a57f90">1. Challenge</a>
+<li><a href="#org693dcc2">1. Challenge</a>
 <ul>
-<li><a href="#org4ee9142">1.1. Gradient Coupling</a></li>
-<li><a href="#org8a189bf">1.2. Compounded Noise Amplification</a></li>
-<li><a href="#org585e0be">1.3. Sharpness of Global Aggregated Model in the Parameter Space</a></li>
+<li><a href="#org67b98c6">1.1. Gradient Coupling</a></li>
+<li><a href="#org3f81661">1.2. Compounded Noise Amplification</a></li>
+<li><a href="#org948f020">1.3. Sharpness of Global Aggregated Model in the Parameter Space</a></li>
 </ul>
 </li>
-<li><a href="#org62b9367">2. Solution: Local Alternating LoRA</a>
+<li><a href="#org6f67a60">2. Solution: Local Alternating LoRA</a>
 <ul>
-<li><a href="#org4d77e25">2.1. Local Alternating Update Strategy</a></li>
-<li><a href="#org4cd0a5a">2.2. Smoothing with Low-Pass Filter</a></li>
+<li><a href="#org8fdf48f">2.1. Local Alternating Update Strategy</a></li>
+<li><a href="#org7b688a7">2.2. Smoothing with Low-Pass Filter</a></li>
 </ul>
 </li>
-<li><a href="#orgf7b7089">3. Analysis</a></li>
-<li><a href="#org20f0f57">4. Experiments</a></li>
-<li><a href="#org2689867">5. <span class="todo TODO">TODO</span> Future Exploration&nbsp;&nbsp;&nbsp<span class="tag"><span class="idea">idea</span></span></a></li>
+<li><a href="#org860a8b7">3. Analysis</a></li>
+<li><a href="#org7b96c31">4. Experiments</a></li>
+<li><a href="#orgd24d0b2">5. <span class="todo TODO">TODO</span> Future Exploration&nbsp;&nbsp;&nbsp<span class="tag"><span class="idea">idea</span></span></a></li>
 </ul>
 </div>
 </div>
@@ -240,31 +240,31 @@ This work aims at <span class="underline">sample-level privacy</span> with diffe
 <p>
 Thus, the following LoRA adopts the paradigm that <span class="underline">adding DP noise at every local training step</span>.
 </p>
-<div id="outline-container-org2a57f90" class="outline-2">
-<h2 id="org2a57f90"><span class="section-number-2">1.</span> Challenge</h2>
+<div id="outline-container-org693dcc2" class="outline-2">
+<h2 id="org693dcc2"><span class="section-number-2">1.</span> Challenge</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org4ee9142" class="outline-3">
-<h3 id="org4ee9142"><span class="section-number-3">1.1.</span> Gradient Coupling</h3>
+<div id="outline-container-org67b98c6" class="outline-3">
+<h3 id="org67b98c6"><span class="section-number-3">1.1.</span> Gradient Coupling</h3>
 </div>
 
-<div id="outline-container-org8a189bf" class="outline-3">
-<h3 id="org8a189bf"><span class="section-number-3">1.2.</span> Compounded Noise Amplification</h3>
+<div id="outline-container-org3f81661" class="outline-3">
+<h3 id="org3f81661"><span class="section-number-3">1.2.</span> Compounded Noise Amplification</h3>
 </div>
 
-<div id="outline-container-org585e0be" class="outline-3">
-<h3 id="org585e0be"><span class="section-number-3">1.3.</span> Sharpness of Global Aggregated Model in the Parameter Space</h3>
+<div id="outline-container-org948f020" class="outline-3">
+<h3 id="org948f020"><span class="section-number-3">1.3.</span> Sharpness of Global Aggregated Model in the Parameter Space</h3>
 </div>
 </div>
-<div id="outline-container-org62b9367" class="outline-2">
-<h2 id="org62b9367"><span class="section-number-2">2.</span> Solution: Local Alternating LoRA</h2>
+<div id="outline-container-org6f67a60" class="outline-2">
+<h2 id="org6f67a60"><span class="section-number-2">2.</span> Solution: Local Alternating LoRA</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 At <span class="underline">optimization</span> level, <b>local alternating update strategy</b> is proposed to break the dependency between the 2 LoRA matrices to decouple gradient. At <span class="underline">pre-aggregation</span> level, <b>optional Gaussian Low-Pass Filter</b> is proposed to suppress residual variance by filtering out high-frequency components of DP perturbations on each client <i>before aggregation</i>.
 </p>
 </div>
-<div id="outline-container-org4d77e25" class="outline-3">
-<h3 id="org4d77e25"><span class="section-number-3">2.1.</span> Local Alternating Update Strategy</h3>
+<div id="outline-container-org8fdf48f" class="outline-3">
+<h3 id="org8fdf48f"><span class="section-number-3">2.1.</span> Local Alternating Update Strategy</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 LoRA consists of matrices \( A,B \). LA-LoRA adopts an alternating scheme that 2 matrices are updated in turn.
@@ -299,8 +299,8 @@ Here, \( W_{0} \) is the server-side frozen backbone; \( \mathcal{L}_{i} \) is t
 </p>
 </div>
 </div>
-<div id="outline-container-org4cd0a5a" class="outline-3">
-<h3 id="org4cd0a5a"><span class="section-number-3">2.2.</span> Smoothing with Low-Pass Filter</h3>
+<div id="outline-container-org7b688a7" class="outline-3">
+<h3 id="org7b688a7"><span class="section-number-3">2.2.</span> Smoothing with Low-Pass Filter</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 DP noise often manifests itself as high-frequency perturbations which de-stabilize local updates and amplify sharpness in global aggregation.
@@ -316,16 +316,16 @@ This filtering is applied to LoRA gradients before aggregation.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7b7089" class="outline-2">
-<h2 id="orgf7b7089"><span class="section-number-2">3.</span> Analysis</h2>
+<div id="outline-container-org860a8b7" class="outline-2">
+<h2 id="org860a8b7"><span class="section-number-2">3.</span> Analysis</h2>
 </div>
 
-<div id="outline-container-org20f0f57" class="outline-2">
-<h2 id="org20f0f57"><span class="section-number-2">4.</span> Experiments</h2>
+<div id="outline-container-org7b96c31" class="outline-2">
+<h2 id="org7b96c31"><span class="section-number-2">4.</span> Experiments</h2>
 </div>
 
-<div id="outline-container-org2689867" class="outline-2">
-<h2 id="org2689867"><span class="section-number-2">5.</span> <span class="todo TODO">TODO</span> Future Exploration&nbsp;&nbsp;&nbsp<span class="tag"><span class="idea">idea</span></span></h2>
+<div id="outline-container-orgd24d0b2" class="outline-2">
+<h2 id="orgd24d0b2"><span class="section-number-2">5.</span> <span class="todo TODO">TODO</span> Future Exploration&nbsp;&nbsp;&nbsp<span class="tag"><span class="idea">idea</span></span></h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Output/Update perturbations</b>. Instead of adding DP noise at every local training step, how about just adding DP noise before gradient loading on \( A,B \)?

@@ -210,35 +210,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf92fb8d">1. Order of Group &amp; Finite Groups</a></li>
-<li><a href="#org1d649f5">2. Subgroups</a>
+<li><a href="#orgb112cb1">1. Order of Group &amp; Finite Groups</a></li>
+<li><a href="#orgb4e1b78">2. Subgroups</a>
 <ul>
-<li><a href="#orga3b9f0b">2.1. Subgroup Tests</a></li>
-<li><a href="#org60eb01a">2.2. Special Class of Subgroups</a>
+<li><a href="#orgaa3060d">2.1. Subgroup Tests</a></li>
+<li><a href="#orgf1d85b4">2.2. Special Class of Subgroups</a>
 <ul>
-<li><a href="#orga24fca3">2.2.1. Center of Group</a></li>
-<li><a href="#orga4edbe3">2.2.2. Centralizer of Element</a></li>
-<li><a href="#org1a9a00c">2.2.3. Centralizer of Subgroup</a></li>
-<li><a href="#org13398a3">2.2.4. Conjugate of Subgroup</a></li>
-<li><a href="#org76b60ae">2.2.5. Normalizer of Subgroup</a></li>
-<li><a href="#org0930570">2.2.6. Cyclic Subgroup</a></li>
+<li><a href="#org076cdd4">2.2.1. Center of Group</a></li>
+<li><a href="#org59c1850">2.2.2. Centralizer of Element</a></li>
+<li><a href="#org2081797">2.2.3. Centralizer of Subgroup</a></li>
+<li><a href="#org79b7ebf">2.2.4. Conjugate of Subgroup</a></li>
+<li><a href="#orgcaa87a1">2.2.5. Normalizer of Subgroup</a></li>
+<li><a href="#org1e4388a">2.2.6. Cyclic Subgroup</a></li>
 </ul>
 </li>
-<li><a href="#org2da0b83">2.3. Intersection and Union of Subgroups</a></li>
-<li><a href="#org932929e">2.4. Product of Two Subgroups</a></li>
+<li><a href="#org472e3e4">2.3. Intersection and Union of Subgroups</a></li>
+<li><a href="#orgb60a5fe">2.4. Product of Two Subgroups</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf92fb8d" class="outline-2">
-<h2 id="orgf92fb8d"><span class="section-number-2">1.</span> Order of Group &amp; Finite Groups</h2>
+<div id="outline-container-orgb112cb1" class="outline-2">
+<h2 id="orgb112cb1"><span class="section-number-2">1.</span> Order of Group &amp; Finite Groups</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We first define the order of a group, as well as the order of an element of a group.
 </p>
 
-<div class="definition" id="org91274d3">
+<div class="definition" id="orga08ae98">
 <p>
 The <b>order of the group</b> is defined as <span class="underline">the number of elements in a group</span>, denoted by \( |G| \) or \( o(G) \).
 </p>
@@ -253,7 +253,7 @@ The <b>order of an element \( a \) in a group \( G \)</b> is the <span class="un
 If the group is defined under addition, then the order of an element is defined as the least positive integer to make \( na=0 \). Moverover, the order of an element might be <i>infinite</i>.
 </p>
 
-<div class="proposition" id="orgdcd690a">
+<div class="proposition" id="orgb9a0384">
 <p>
 Some useful results:
 </p>
@@ -269,28 +269,28 @@ Some useful results:
 
 </div>
 
-<div class="math-solution" id="orgb296d25">
+<div class="math-solution" id="orgfb3acf2">
 <p>
 <b>Proof of (1)</b>.
 </p>
 
 </div>
 
-<div class="problem" id="orgb7a18dd">
+<div class="problem" id="orgbdab561">
 <p>
 If in a group \( G \), we have \( a^{5}=e, aba^{-1}=b^{2} \) for all \( a,b\in G \), then show that \( o(b)=31 \)
 </p>
 
 </div>
 
-<div class="math-solution" id="orgb9adb7c">
+<div class="math-solution" id="org2341da7">
 <p>
 Since the group is not abelian, we cannot use the property that \( (ab)^{n}=a^{n}b^{n} \).
 </p>
 
 </div>
 
-<div class="problem" id="orgd0a4e86">
+<div class="problem" id="orgb6c0f88">
 <p>
 Prove that if a group \( G \) has order \(4\), then it must be abelian.
 </p>
@@ -298,10 +298,10 @@ Prove that if a group \( G \) has order \(4\), then it must be abelian.
 </div>
 </div>
 </div>
-<div id="outline-container-org1d649f5" class="outline-2">
-<h2 id="org1d649f5"><span class="section-number-2">2.</span> Subgroups</h2>
+<div id="outline-container-orgb4e1b78" class="outline-2">
+<h2 id="orgb4e1b78"><span class="section-number-2">2.</span> Subgroups</h2>
 <div class="outline-text-2" id="text-2">
-<div class="definition" id="orge9faf14">
+<div class="definition" id="org040657b">
 <dl class="org-dl">
 <dt>Subgroup</dt><dd>A non-empty subset \( H \) of a group \( G \) is said to be a <span class="underline">subgroup</span> of \( G \) if \( H \) itself is a group under the operations of \( G \). We write \( H\le G \)</dd>
 <dt>Proper Subgroup</dt><dd>If \( H \) is a subgroup of \( G \) but not equal to \( G \) itself, then \( H \) is called a <span class="underline">proper subgroup</span> of \( G \), written as \( H\lt G \)</dd>
@@ -317,14 +317,14 @@ Prove that if a group \( G \) has order \(4\), then it must be abelian.
 When checking subgroups, we mainly focus on <span class="underline">closure, identity and inverse existence</span>, because <span class="underline">associativity</span> is already guaranteed.
 </p>
 </div>
-<div id="outline-container-orga3b9f0b" class="outline-3">
-<h3 id="orga3b9f0b"><span class="section-number-3">2.1.</span> Subgroup Tests</h3>
+<div id="outline-container-orgaa3060d" class="outline-3">
+<h3 id="orgaa3060d"><span class="section-number-3">2.1.</span> Subgroup Tests</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The following tests can simplify the procedure of checking whether a subset is a subgroup.
 </p>
 
-<div class="theorem" id="orgdd981a7">
+<div class="theorem" id="org1dcb68c">
 <p>
 <b>Subgroup Test</b>
 </p>
@@ -348,14 +348,14 @@ The following tests can simplify the procedure of checking whether a subset is a
 
 </div>
 
-<div class="problem" id="org0cdcb28">
+<div class="problem" id="orge9bb377">
 <p>
 Prove: A group of order \( 6 \) cannot have a subgroup of order \( 4 \).
 </p>
 
 </div>
 
-<div class="math-solution" id="orgcdb8a55">
+<div class="math-solution" id="orgfab7f46">
 <p>
 Let \( o(G) = 6 \) and \( H\lt G, o(H) = 4 \). Suppose \( H = \{ h_{1}, h_{2}, h_{3}, h_{4} \} \) and \( x\in G, x\not\in H \).
 </p>
@@ -375,14 +375,14 @@ Thus, there&rsquo;s no common element between \( H, xH \). So \( o(G) \ge 8 \), 
 </div>
 </div>
 </div>
-<div id="outline-container-org60eb01a" class="outline-3">
-<h3 id="org60eb01a"><span class="section-number-3">2.2.</span> Special Class of Subgroups</h3>
+<div id="outline-container-orgf1d85b4" class="outline-3">
+<h3 id="orgf1d85b4"><span class="section-number-3">2.2.</span> Special Class of Subgroups</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-orga24fca3" class="outline-4">
-<h4 id="orga24fca3"><span class="section-number-4">2.2.1.</span> Center of Group</h4>
+<div id="outline-container-org076cdd4" class="outline-4">
+<h4 id="org076cdd4"><span class="section-number-4">2.2.1.</span> Center of Group</h4>
 <div class="outline-text-4" id="text-2-2-1">
-<div class="definition" id="org30881c4">
+<div class="definition" id="org952b13e">
 <dl class="org-dl">
 <dt>Center of Group</dt><dd><p>
 The center of a group \( G \) is the set of all those elements in \( G \) that commute with every element of \( G \), denoted by \( Z(G) \). i.e.
@@ -395,7 +395,7 @@ The center of a group \( G \) is the set of all those elements in \( G \) that c
 
 </div>
 
-<div class="theorem" id="orgb0a3846">
+<div class="theorem" id="orgffc7d09">
 <p>
 The center of a group \( G \) is a subgroup of \( G \).
 </p>
@@ -403,10 +403,10 @@ The center of a group \( G \) is a subgroup of \( G \).
 </div>
 </div>
 </div>
-<div id="outline-container-orga4edbe3" class="outline-4">
-<h4 id="orga4edbe3"><span class="section-number-4">2.2.2.</span> Centralizer of Element</h4>
+<div id="outline-container-org59c1850" class="outline-4">
+<h4 id="org59c1850"><span class="section-number-4">2.2.2.</span> Centralizer of Element</h4>
 <div class="outline-text-4" id="text-2-2-2">
-<div class="definition" id="org6b009c3">
+<div class="definition" id="org4bd1548">
 <dl class="org-dl">
 <dt>Centralizer</dt><dd><p>
 Let \( a \) be a fixed element of a group \( G \). The <b>centralizer of \( a \) in \( G \)</b> is the set of all those elements in \( G \) that commute with \( a \), denoted by \( C_{G}(a) \)
@@ -419,7 +419,7 @@ Let \( a \) be a fixed element of a group \( G \). The <b>centralizer of \( a \)
 
 </div>
 
-<div class="theorem" id="orgcc172fd">
+<div class="theorem" id="org3d642bf">
 <p>
 For each \( a \) in a group \( G \), the centralizer of \( a \) is a subgroup of \( G \).
 </p>
@@ -427,10 +427,10 @@ For each \( a \) in a group \( G \), the centralizer of \( a \) is a subgroup of
 </div>
 </div>
 </div>
-<div id="outline-container-org1a9a00c" class="outline-4">
-<h4 id="org1a9a00c"><span class="section-number-4">2.2.3.</span> Centralizer of Subgroup</h4>
+<div id="outline-container-org2081797" class="outline-4">
+<h4 id="org2081797"><span class="section-number-4">2.2.3.</span> Centralizer of Subgroup</h4>
 <div class="outline-text-4" id="text-2-2-3">
-<div class="definition" id="org252c110">
+<div class="definition" id="orgb110acd">
 <dl class="org-dl">
 <dt>Centralizer of Subgroup</dt><dd><p>
 Let \(G\) be a group and let \(H\) be a subgroup of \(G\). Then the <b>centralizer of subgroup \(H\)</b> is defined as the set of all those elements of \(G\) which commute with every element of \(H\).
@@ -443,7 +443,7 @@ Let \(G\) be a group and let \(H\) be a subgroup of \(G\). Then the <b>centraliz
 
 </div>
 
-<div class="theorem" id="org0d46e45">
+<div class="theorem" id="org79be2e5">
 <p>
 For any subgroup \(H\) of a group \(G\), \(C_{G}(H)\) is a subgroup of \(G\).
 </p>
@@ -451,10 +451,10 @@ For any subgroup \(H\) of a group \(G\), \(C_{G}(H)\) is a subgroup of \(G\).
 </div>
 </div>
 </div>
-<div id="outline-container-org13398a3" class="outline-4">
-<h4 id="org13398a3"><span class="section-number-4">2.2.4.</span> Conjugate of Subgroup</h4>
+<div id="outline-container-org79b7ebf" class="outline-4">
+<h4 id="org79b7ebf"><span class="section-number-4">2.2.4.</span> Conjugate of Subgroup</h4>
 <div class="outline-text-4" id="text-2-2-4">
-<div class="definition" id="org1081ffb">
+<div class="definition" id="orgb758d58">
 <dl class="org-dl">
 <dt>Conjugate of Subgroup</dt><dd><p>
 Let \( G \) be a group. Let \( H \) be a subgroup of \( G \) and \( x\in G \), then <b>conjugate of the subgroup \( H \)</b> is defined as
@@ -467,7 +467,7 @@ Let \( G \) be a group. Let \( H \) be a subgroup of \( G \) and \( x\in G \), t
 
 </div>
 
-<div class="theorem" id="org08a7df3">
+<div class="theorem" id="org437753c">
 <p>
 Let \( H \) be a subgroup of group \( G \), \( x\in G \). Then, \( xHx^{-1} \) is a subgroup of \( G \).
 </p>
@@ -475,10 +475,10 @@ Let \( H \) be a subgroup of group \( G \), \( x\in G \). Then, \( xHx^{-1} \) i
 </div>
 </div>
 </div>
-<div id="outline-container-org76b60ae" class="outline-4">
-<h4 id="org76b60ae"><span class="section-number-4">2.2.5.</span> Normalizer of Subgroup</h4>
+<div id="outline-container-orgcaa87a1" class="outline-4">
+<h4 id="orgcaa87a1"><span class="section-number-4">2.2.5.</span> Normalizer of Subgroup</h4>
 <div class="outline-text-4" id="text-2-2-5">
-<div class="definition" id="orgda4fe70">
+<div class="definition" id="org0ba0088">
 <dl class="org-dl">
 <dt>Normalizer of Subgroup</dt><dd><p>
 Let \(G\) be a group and let \(H\) be a subgroup of \(G\). Then, normalizer of subgroup \(H\) in \(G\) is defined as
@@ -491,7 +491,7 @@ Let \(G\) be a group and let \(H\) be a subgroup of \(G\). Then, normalizer of s
 
 </div>
 
-<div class="theorem" id="org21069e0">
+<div class="theorem" id="org00636b6">
 <p>
 For any subgroup \(H\) of a group \(G\), \(N_{G}(H)\) is a subgroup of \(G\).
 </p>
@@ -499,8 +499,8 @@ For any subgroup \(H\) of a group \(G\), \(N_{G}(H)\) is a subgroup of \(G\).
 </div>
 </div>
 </div>
-<div id="outline-container-org0930570" class="outline-4">
-<h4 id="org0930570"><span class="section-number-4">2.2.6.</span> Cyclic Subgroup</h4>
+<div id="outline-container-org1e4388a" class="outline-4">
+<h4 id="org1e4388a"><span class="section-number-4">2.2.6.</span> Cyclic Subgroup</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <p>
 Let \(G\) be a group and let \(a\in G\), Let \(\lang a \rang = \{ a^{n}:n\in \mathbb{Z} \}\). Then \(\lang a \rang\) is called <b>cyclic subgroup of the group \(G\) generated by \(a\)</b>. \(a\) is called the <b>generator</b>.
@@ -508,17 +508,17 @@ Let \(G\) be a group and let \(a\in G\), Let \(\lang a \rang = \{ a^{n}:n\in \ma
 </div>
 </div>
 </div>
-<div id="outline-container-org2da0b83" class="outline-3">
-<h3 id="org2da0b83"><span class="section-number-3">2.3.</span> Intersection and Union of Subgroups</h3>
+<div id="outline-container-org472e3e4" class="outline-3">
+<h3 id="org472e3e4"><span class="section-number-3">2.3.</span> Intersection and Union of Subgroups</h3>
 <div class="outline-text-3" id="text-2-3">
-<div class="theorem" id="orgd5fabc9">
+<div class="theorem" id="orgf186269">
 <p>
 The intersection of a <span class="underline">finite</span> class of subgroups is also a subgroup.
 </p>
 
 </div>
 
-<div class="theorem" id="org07afdba">
+<div class="theorem" id="orgf091be7">
 <p>
 If \(A\) and \(B\) are subgroups of \(G\), then \(A \cup B\) is a subgroup of \(G\) if and only if \(A \sube B\) or \(B \sube A\).
 </p>
@@ -526,8 +526,8 @@ If \(A\) and \(B\) are subgroups of \(G\), then \(A \cup B\) is a subgroup of \(
 </div>
 </div>
 </div>
-<div id="outline-container-org932929e" class="outline-3">
-<h3 id="org932929e"><span class="section-number-3">2.4.</span> Product of Two Subgroups</h3>
+<div id="outline-container-orgb60a5fe" class="outline-3">
+<h3 id="orgb60a5fe"><span class="section-number-3">2.4.</span> Product of Two Subgroups</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Let \(H,K\) be 2 subgroups of a group \(G\), we define
@@ -549,7 +549,7 @@ KH = \{ kh : k \in K \land h \in H \}
 \]
 </p>
 
-<div class="lemma" id="orgdd80750">
+<div class="lemma" id="org3381bc4">
 <p>
 Let \(H,K\) be 2 subgroups of a group \(G\), then
 </p>
@@ -562,7 +562,7 @@ x \in HK \iff x^{-1} \in KH
 
 </div>
 
-<div class="theorem" id="org0658563">
+<div class="theorem" id="org47d0f8a">
 <p>
 Let \(H,K\) be subgroups of \(G\). \(HK\) is a subgroup of \(G\) if and only if \(HK=KH\).
 </p>

@@ -209,28 +209,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8bcdb6f">1. Introduction to RL and MDP</a></li>
-<li><a href="#org13b5a81">2. Solving MDPs</a>
+<li><a href="#org8aa2cb3">1. Introduction to RL and MDP</a></li>
+<li><a href="#org06e1254">2. Solving MDPs</a>
 <ul>
-<li><a href="#orgf0ac7b4">2.1. Utility of State Sequences</a></li>
-<li><a href="#orgb8e79c4">2.2. Optimal Quantities</a></li>
-<li><a href="#org8dacea7">2.3. Solving Optimal Policy</a>
+<li><a href="#orgba340ad">2.1. Utility of State Sequences</a></li>
+<li><a href="#orgf7988d8">2.2. Optimal Quantities</a></li>
+<li><a href="#orge3c45cd">2.3. Solving Optimal Policy</a>
 <ul>
-<li><a href="#orgfc5764d">2.3.1. Value Iteration</a></li>
-<li><a href="#org435ce5a">2.3.2. Q-Value Iteration</a></li>
-<li><a href="#org7135133">2.3.3. Policy Iteration</a></li>
+<li><a href="#org845b12a">2.3.1. Value Iteration</a></li>
+<li><a href="#org4e62f9e">2.3.2. Q-Value Iteration</a></li>
+<li><a href="#org23815b9">2.3.3. Policy Iteration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org10ae4ac">3. Reinforcement Learning</a>
+<li><a href="#orgb60a6fa">3. Reinforcement Learning</a>
 <ul>
-<li><a href="#org8ae0e02">3.1. Model-Based Learning</a></li>
-<li><a href="#org618c6c9">3.2. Model-Free Learning</a>
+<li><a href="#orgb3636d3">3.1. Model-Based Learning</a></li>
+<li><a href="#org13f299a">3.2. Model-Free Learning</a>
 <ul>
-<li><a href="#org4d3bbb8">3.2.1. Direct Evaluation</a></li>
-<li><a href="#orgf3ffeed">3.2.2. Temporal Difference Learning</a></li>
-<li><a href="#org4a6ff45">3.2.3. Q-Learning</a></li>
+<li><a href="#orgd4cdee6">3.2.1. Direct Evaluation</a></li>
+<li><a href="#orgf6705f4">3.2.2. Temporal Difference Learning</a></li>
+<li><a href="#orgc4f3723">3.2.3. Q-Learning</a></li>
 </ul>
 </li>
 </ul>
@@ -238,8 +238,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org8bcdb6f" class="outline-2">
-<h2 id="org8bcdb6f"><span class="section-number-2">1.</span> Introduction to RL and MDP</h2>
+<div id="outline-container-org8aa2cb3" class="outline-2">
+<h2 id="org8aa2cb3"><span class="section-number-2">1.</span> Introduction to RL and MDP</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In RL, the world and the agent is modeled by <i>world state</i> \(s_t\in S\) and <i>agent action</i> \(a_t\in A\), where the subscript \(t\) models the <i>time</i>, \(A\) models the action space and \(S\) models the world state space. The transition of world can be modeled by
@@ -274,8 +274,8 @@ A significant difference is that, MDPs have a <b>fixed environment</b> that tran
 </p>
 </div>
 </div>
-<div id="outline-container-org13b5a81" class="outline-2">
-<h2 id="org13b5a81"><span class="section-number-2">2.</span> Solving MDPs</h2>
+<div id="outline-container-org06e1254" class="outline-2">
+<h2 id="org06e1254"><span class="section-number-2">2.</span> Solving MDPs</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt>Policy</dt><dd>Given the current state, the policy tells which action should be taken. We use \(\pi(s):\mathcal{S}\to \mathcal{A}\) to model <i>policy</i> that produces an action recommended by the policy given the state \(s\).</dd>
@@ -285,7 +285,7 @@ A significant difference is that, MDPs have a <b>fixed environment</b> that tran
 Starting from initial state \(s_0\), we can alternatively explore actions, state transition and then states again.
 </p>
 
-<pre class="example" id="org1b970e0">
+<pre class="example" id="orgd849ad7">
 state --(take action)--&gt; (s,a) --(transition)--&gt; state'
 </pre>
 
@@ -293,8 +293,8 @@ state --(take action)--&gt; (s,a) --(transition)--&gt; state'
 Here, the \((s,a)\) is an <i>intermediate state</i>: the agent has taken action and is waiting for the world state to transit, aka <b>Q-state</b>, computed by \(Q(s,a)\).
 </p>
 </div>
-<div id="outline-container-orgf0ac7b4" class="outline-3">
-<h3 id="orgf0ac7b4"><span class="section-number-3">2.1.</span> Utility of State Sequences</h3>
+<div id="outline-container-orgba340ad" class="outline-3">
+<h3 id="orgba340ad"><span class="section-number-3">2.1.</span> Utility of State Sequences</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The agent produces a sequence of alternating states and actions, and we can compute a sequence of rewards. The <b>utility</b> of the state sequence can model the <b>&ldquo;goodness&rdquo; of action sequence</b>. Higher utility can mean better performance of the agent.
@@ -305,8 +305,8 @@ We may also involve <b>discounting</b> here. Discounting means that rewards decr
 </p>
 </div>
 </div>
-<div id="outline-container-orgb8e79c4" class="outline-3">
-<h3 id="orgb8e79c4"><span class="section-number-3">2.2.</span> Optimal Quantities</h3>
+<div id="outline-container-orgf7988d8" class="outline-3">
+<h3 id="orgf7988d8"><span class="section-number-3">2.2.</span> Optimal Quantities</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 We use \(V(s)\) to model the utility of a state \(s\), short for <b>expected utility starting from \(s\) and acting optimally</b>. Also use similarly \(Q(s,a)\) to the model the <b>expected utility starting from \(s\), taking action \(a\) and then acting optimally</b>.
@@ -324,12 +324,12 @@ Q^\ast(s,a) &= \sum_{s'} T(s,a,s')\cdot \Big[ R(s,a,s') + \gamma V^\ast(s') \Big
 \end{equation}
 </div>
 </div>
-<div id="outline-container-org8dacea7" class="outline-3">
-<h3 id="org8dacea7"><span class="section-number-3">2.3.</span> Solving Optimal Policy</h3>
+<div id="outline-container-orge3c45cd" class="outline-3">
+<h3 id="orge3c45cd"><span class="section-number-3">2.3.</span> Solving Optimal Policy</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgfc5764d" class="outline-4">
-<h4 id="orgfc5764d"><span class="section-number-4">2.3.1.</span> Value Iteration</h4>
+<div id="outline-container-org845b12a" class="outline-4">
+<h4 id="org845b12a"><span class="section-number-4">2.3.1.</span> Value Iteration</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 We update the value \(V(s)\) for \(k\) rounds to approximate the optimal. i.e.
@@ -352,8 +352,8 @@ V_{k+1}(s) \gets \max_a \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V_k(s') \Big]
 </p>
 </div>
 </div>
-<div id="outline-container-org435ce5a" class="outline-4">
-<h4 id="org435ce5a"><span class="section-number-4">2.3.2.</span> Q-Value Iteration</h4>
+<div id="outline-container-org4e62f9e" class="outline-4">
+<h4 id="org4e62f9e"><span class="section-number-4">2.3.2.</span> Q-Value Iteration</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 We start with \(Q_0(s,a)=0\), and iteratively update \(Q\)-values.
@@ -376,8 +376,8 @@ Policy extraction for Q-value iteration is very easy
 </p>
 </div>
 </div>
-<div id="outline-container-org7135133" class="outline-4">
-<h4 id="org7135133"><span class="section-number-4">2.3.3.</span> Policy Iteration</h4>
+<div id="outline-container-org23815b9" class="outline-4">
+<h4 id="org23815b9"><span class="section-number-4">2.3.3.</span> Policy Iteration</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 An alternative approach for value iteration. It can be divided into 2 phases.
@@ -405,44 +405,44 @@ Then, we improve our policy with computed value:
 </div>
 </div>
 </div>
-<div id="outline-container-org10ae4ac" class="outline-2">
-<h2 id="org10ae4ac"><span class="section-number-2">3.</span> Reinforcement Learning</h2>
+<div id="outline-container-orgb60a6fa" class="outline-2">
+<h2 id="orgb60a6fa"><span class="section-number-2">3.</span> Reinforcement Learning</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org8ae0e02" class="outline-3">
-<h3 id="org8ae0e02"><span class="section-number-3">3.1.</span> Model-Based Learning</h3>
+<div id="outline-container-orgb3636d3" class="outline-3">
+<h3 id="orgb3636d3"><span class="section-number-3">3.1.</span> Model-Based Learning</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Its idea to learn an approximate model based on experience and use this model to solve for values. We first build transition model \(T^e(s,a,s')\) from history and discover each \(R^e(s,a,s')\), where \(e\) stands for <i>empirical</i>. Then with the transition model and reward model, we can solve the RL problem as MDP problem.
 </p>
 </div>
 </div>
-<div id="outline-container-org618c6c9" class="outline-3">
-<h3 id="org618c6c9"><span class="section-number-3">3.2.</span> Model-Free Learning</h3>
+<div id="outline-container-org13f299a" class="outline-3">
+<h3 id="org13f299a"><span class="section-number-3">3.2.</span> Model-Free Learning</h3>
 <div class="outline-text-3" id="text-3-2">
 <dl class="org-dl">
 <dt>Passive RL</dt><dd>An agent is given a policy to follow and learns the value of states under that policy as it experiences episodes, which is exactly what is done by policy evaluation for MDPs when \(T,R\) are known.</dd>
 <dt>Acitve RL</dt><dd>During active RL, agent can use the feedback it receives to iteratively update it policy while learning until eventually determining the optimal policy after sufficient exploration.</dd>
 </dl>
 </div>
-<div id="outline-container-org4d3bbb8" class="outline-4">
-<h4 id="org4d3bbb8"><span class="section-number-4">3.2.1.</span> Direct Evaluation</h4>
+<div id="outline-container-orgd4cdee6" class="outline-4">
+<h4 id="orgd4cdee6"><span class="section-number-4">3.2.1.</span> Direct Evaluation</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 An algorithm under passive RL. We fix some policy \(\pi\) and have the agent experience several episodes while following \(\pi\). As the agent collects samples through these episodes, it maintains counts of the total utilities obtained from each state and the number of times it visited each state. So then, we can compute the estimated value of any state \(s\) by dividing the total utility obtained from \(s\) by the number of times \(s\) was visited.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf3ffeed" class="outline-4">
-<h4 id="orgf3ffeed"><span class="section-number-4">3.2.2.</span> Temporal Difference Learning</h4>
+<div id="outline-container-orgf6705f4" class="outline-4">
+<h4 id="orgf6705f4"><span class="section-number-4">3.2.2.</span> Temporal Difference Learning</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 Read: [BROKEN LINK: c5478523-4571-4c44-8459-8e65b7a40b8b]
 </p>
 </div>
 </div>
-<div id="outline-container-org4a6ff45" class="outline-4">
-<h4 id="org4a6ff45"><span class="section-number-4">3.2.3.</span> Q-Learning</h4>
+<div id="outline-container-orgc4f3723" class="outline-4">
+<h4 id="orgc4f3723"><span class="section-number-4">3.2.3.</span> Q-Learning</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Read: [BROKEN LINK: 33e3ca5d-e240-4e85-b718-caa69ab19d5f]

@@ -206,13 +206,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9a56bb8">1. <code>std::this_thread</code> namespace</a></li>
-<li><a href="#org16e2af7">2. <code>std::jthread</code></a></li>
+<li><a href="#orgeee5fa4">1. <code>std::this_thread</code> namespace</a></li>
+<li><a href="#orgb9c5864">2. <code>std::jthread</code></a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9a56bb8" class="outline-2">
-<h2 id="org9a56bb8"><span class="section-number-2">1.</span> <code>std::this_thread</code> namespace</h2>
+<div id="outline-container-orgeee5fa4" class="outline-2">
+<h2 id="orgeee5fa4"><span class="section-number-2">1.</span> <code>std::this_thread</code> namespace</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>this_thread</code> provides functions for accessing the current executing thread.
@@ -225,8 +225,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org16e2af7" class="outline-2">
-<h2 id="org16e2af7"><span class="section-number-2">2.</span> <code>std::jthread</code></h2>
+<div id="outline-container-orgb9c5864" class="outline-2">
+<h2 id="orgb9c5864"><span class="section-number-2">2.</span> <code>std::jthread</code></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Threads begin execution <i>immediately</i> upon construction of the associated thread object, starting from the function (top-level function) provided as constructor argument. The returned value of top-level function is ignored. If it terminates by <i>throwing an exception</i>, <code>std::terminate()</code> is called. The top-level function may also communicate its returned value or an exception to the caller via <code>std::promise</code> or by modifying shared variables.

@@ -210,12 +210,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5edb74c">1. Challenge</a></li>
-<li><a href="#orgb684051">2. Problem Formulation</a></li>
-<li><a href="#orge1e9826">3. <span class="todo TODO">TODO</span> Solution</a>
+<li><a href="#org630e075">1. Challenge</a></li>
+<li><a href="#org1695621">2. Problem Formulation</a></li>
+<li><a href="#org35a3f1f">3. <span class="todo TODO">TODO</span> Solution</a>
 <ul>
-<li><a href="#org9e0843d">3.1. Domain Bias Elimination (DBE)</a></li>
-<li><a href="#org4f2580c">3.2. Global Bias Elimination (GBE)</a></li>
+<li><a href="#org8baef62">3.1. Domain Bias Elimination (DBE)</a></li>
+<li><a href="#orgd028779">3.2. Global Bias Elimination (GBE)</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +224,8 @@
 <p>
 FeDaL focuses on training time series foundation models (TSFMs) under federated settings. In short, FeDaL decomposes heterogeneous TS datasets into shared generalized knowledge and preserved personalized knowledge; it mitigates local and global biases through bias elimination. FeDaL also shows how data volume, client count and join rate affect model performance under decentralization.
 </p>
-<div id="outline-container-org5edb74c" class="outline-2">
-<h2 id="org5edb74c"><span class="section-number-2">1.</span> Challenge</h2>
+<div id="outline-container-org630e075" class="outline-2">
+<h2 id="org630e075"><span class="section-number-2">1.</span> Challenge</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The challenge that FeDaL is trying to handle is the conflict between general-purpose foundation model for time series and <i>heterogeneous and private</i> datasets.
@@ -242,8 +242,8 @@ The heterogeneity consists of:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb684051" class="outline-2">
-<h2 id="orgb684051"><span class="section-number-2">2.</span> Problem Formulation</h2>
+<div id="outline-container-org1695621" class="outline-2">
+<h2 id="org1695621"><span class="section-number-2">2.</span> Problem Formulation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The problem can be formulated as follow: consider a federated foundation model settings with \(1\) server and \(N\) clients, where each client \(i\) holds a local time series dataset \(D_i\). These \(D_{i}\) are heterogeneous due to difference in sampling resolution, physical constraints and temporal dynamics.
@@ -264,23 +264,23 @@ where \(F_{i}\) denotes the local loss, \(n_i,n\) denotes local and total sample
 </p>
 </div>
 </div>
-<div id="outline-container-orge1e9826" class="outline-2">
-<h2 id="orge1e9826"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> Solution</h2>
+<div id="outline-container-org35a3f1f" class="outline-2">
+<h2 id="org35a3f1f"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> Solution</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The core of FEDAL consists of <b>client-side Domain Bias Elimination</b> and <b>server-side Global Bias Elimination</b>.
 </p>
 </div>
-<div id="outline-container-org9e0843d" class="outline-3">
-<h3 id="org9e0843d"><span class="section-number-3">3.1.</span> Domain Bias Elimination (DBE)</h3>
+<div id="outline-container-org8baef62" class="outline-3">
+<h3 id="org8baef62"><span class="section-number-3">3.1.</span> Domain Bias Elimination (DBE)</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 DBE decomposes <b>latent representations</b> of masked input patches into <span class="underline">trend and seasonal</span> components, from which a <b>trainable bias vector</b> is learned. This vector is injected back during reconstruction, to suppress dataset-specific artifacts. Moreover, a <b>regularization term</b> aligns it with a global bias reference to disentangle non-transferable local patterns from generalizable temporal structures.
 </p>
 </div>
 </div>
-<div id="outline-container-org4f2580c" class="outline-3">
-<h3 id="org4f2580c"><span class="section-number-3">3.2.</span> Global Bias Elimination (GBE)</h3>
+<div id="outline-container-orgd028779" class="outline-3">
+<h3 id="orgd028779"><span class="section-number-3">3.2.</span> Global Bias Elimination (GBE)</h3>
 </div>
 </div>
 </div>

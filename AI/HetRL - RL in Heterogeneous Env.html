@@ -5,8 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Natural Numbers and Integers</title>
+<title>HetRL: Efficient RL in Heterogeneous Environments</title>
 <meta name="author" content="ArcaLunar" />
+<meta name="description" content="HetRL is proposed for efficient RL post-training in compute-heterogeneous environments. HetRL forms the RL infrastructure as a joint optimization problem and proposes 2 scheduling algorithms (near-optimal based, and integer lineaer programming based) for RL infra." />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -193,55 +194,45 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
+<script src="../.assets/index.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">Natural Numbers and Integers</h1>
-<div class="axiom" id="orgc1153a4">
-<dl class="org-dl">
-<dt>Axiom of Induction</dt><dd><p>
-Suppose \(S\) is a subset of \(\mathbb{N}\) that satisfies
-</p>
-
-<ol class="org-ol">
-<li>\(0 \in S\)</li>
-<li>If \(n\in S\), then \(n+1 \in S\)</li>
-</ol>
-
-<p>
-Then \(S = \mathbb{N}\)
-</p></dd>
-</dl>
-
-<p>
-The addition here is defined by &ldquo;successor&rdquo;. This axiom is the principle of the commonly used <b>mathematical induction</b>.
-</p>
-
+<h1 class="title">HetRL: Efficient RL in Heterogeneous Environments</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3a06dfa">1. Motivation</a></li>
+<li><a href="#orgcc1235e">2. Challenge</a></li>
+<li><a href="#org9dd5fb4">3. Methodology</a></li>
+<li><a href="#org37ffbd9">4. Experiments</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3a06dfa" class="outline-2">
+<h2 id="org3a06dfa"><span class="section-number-2">1.</span> Motivation</h2>
 </div>
 
-<p>
-With axiom of induction, we can prove least-number principle and greatest number principle.
-</p>
+<div id="outline-container-orgcc1235e" class="outline-2">
+<h2 id="orgcc1235e"><span class="section-number-2">2.</span> Challenge</h2>
+</div>
 
-<div class="theorem" id="org465bcf1">
-<dl class="org-dl">
-<dt>Least-Number Principle</dt><dd>Suppose \(T\) is a <b>non-empty</b> subset of \(\mathbb{N}\), then, \(\exists t_{0}\in T\) such that \(\forall t\in T, t_{0}\le t\).</dd>
-<dt>Greatest-Number Principle</dt><dd>Suppose \(M\) is a <b>non-empty</b> subset of \(\mathbb{N}\). If \(M\) has an upperbound, i.e., \(\exists a \in \mathbb{N}\) such that \(\forall m\in M, m \le a\). Then, there \(\exists m_{0}\in M\) such that \(\forall m\in M, m\le m_{0}\).</dd>
-</dl>
+<div id="outline-container-org9dd5fb4" class="outline-2">
+<h2 id="org9dd5fb4"><span class="section-number-2">3.</span> Methodology</h2>
+</div>
 
+<div id="outline-container-org37ffbd9" class="outline-2">
+<h2 id="org37ffbd9"><span class="section-number-2">4.</span> Experiments</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2026-08-14 Fri</p>
+<p class="date">Date: 2026-09-05 Sat</p>
 <p class="author">Author: ArcaLunar</p>
 </div>
 </body>

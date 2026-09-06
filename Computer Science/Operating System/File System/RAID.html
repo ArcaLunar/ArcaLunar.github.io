@@ -208,14 +208,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2a96e14">1. Interface and RAID Internals</a></li>
-<li><a href="#org5873384">2. Fault Model</a></li>
-<li><a href="#org860a44c">3. RAID</a>
+<li><a href="#orgb2c4671">1. Interface and RAID Internals</a></li>
+<li><a href="#org79c402b">2. Fault Model</a></li>
+<li><a href="#orgdf61314">3. RAID</a>
 <ul>
-<li><a href="#org7e46338">3.1. RAID 0: Striping</a></li>
-<li><a href="#org53f5cc8">3.2. RAID 1: Mirroring</a></li>
-<li><a href="#org7aa9e79">3.3. RAID 4: Saving Space with Parity</a></li>
-<li><a href="#org3838455">3.4. RAID 5: Rotating Parity</a></li>
+<li><a href="#org9597d6f">3.1. RAID 0: Striping</a></li>
+<li><a href="#orgb823439">3.2. RAID 1: Mirroring</a></li>
+<li><a href="#orge6a0da6">3.3. RAID 4: Saving Space with Parity</a></li>
+<li><a href="#org2e6fdd4">3.4. RAID 5: Rotating Parity</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +224,8 @@
 <p>
 Redundant Array of Inexpensive Disks (RAID) is a technology to build a faster, bigger, and more reliable disk system.
 </p>
-<div id="outline-container-org2a96e14" class="outline-2">
-<h2 id="org2a96e14"><span class="section-number-2">1.</span> Interface and RAID Internals</h2>
+<div id="outline-container-orgb2c4671" class="outline-2">
+<h2 id="orgb2c4671"><span class="section-number-2">1.</span> Interface and RAID Internals</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 RAID provides transparent interfaces to external users. When a file system issues a <i>logical IO</i> request to RAID, the RAID must compute which disk(s) to access, and may issue one or more <i>physical IOs</i>.
@@ -236,28 +236,28 @@ A RAID system is often built as a separate hardware box, with a standard connect
 </p>
 </div>
 </div>
-<div id="outline-container-org5873384" class="outline-2">
-<h2 id="org5873384"><span class="section-number-2">2.</span> Fault Model</h2>
+<div id="outline-container-org79c402b" class="outline-2">
+<h2 id="org79c402b"><span class="section-number-2">2.</span> Fault Model</h2>
 </div>
 
-<div id="outline-container-org860a44c" class="outline-2">
-<h2 id="org860a44c"><span class="section-number-2">3.</span> RAID</h2>
+<div id="outline-container-orgdf61314" class="outline-2">
+<h2 id="orgdf61314"><span class="section-number-2">3.</span> RAID</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org7e46338" class="outline-3">
-<h3 id="org7e46338"><span class="section-number-3">3.1.</span> RAID 0: Striping</h3>
+<div id="outline-container-org9597d6f" class="outline-3">
+<h3 id="org9597d6f"><span class="section-number-3">3.1.</span> RAID 0: Striping</h3>
 </div>
 
-<div id="outline-container-org53f5cc8" class="outline-3">
-<h3 id="org53f5cc8"><span class="section-number-3">3.2.</span> RAID 1: Mirroring</h3>
+<div id="outline-container-orgb823439" class="outline-3">
+<h3 id="orgb823439"><span class="section-number-3">3.2.</span> RAID 1: Mirroring</h3>
 </div>
 
-<div id="outline-container-org7aa9e79" class="outline-3">
-<h3 id="org7aa9e79"><span class="section-number-3">3.3.</span> RAID 4: Saving Space with Parity</h3>
+<div id="outline-container-orge6a0da6" class="outline-3">
+<h3 id="orge6a0da6"><span class="section-number-3">3.3.</span> RAID 4: Saving Space with Parity</h3>
 </div>
 
-<div id="outline-container-org3838455" class="outline-3">
-<h3 id="org3838455"><span class="section-number-3">3.4.</span> RAID 5: Rotating Parity</h3>
+<div id="outline-container-org2e6fdd4" class="outline-3">
+<h3 id="org2e6fdd4"><span class="section-number-3">3.4.</span> RAID 5: Rotating Parity</h3>
 </div>
 </div>
 </div>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ZeRO - Zero Redundancy Optimizer</title>
+<title>ZeRO: Zero Redundancy Optimizer</title>
 <meta name="author" content="ArcaLunar" />
 <meta name="description" content="ZeRO adopts different levels of distributed strategy to remove redundancy in memory, at the cost of more communication. This work also gives birth to FSDP, a widely used distributed training schema." />
 <meta name="generator" content="Org Mode" />
@@ -197,13 +197,58 @@
 <link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
 <link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
 <script src="../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
 <div id="preamble" class="status">
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">ZeRO - Zero Redundancy Optimizer</h1>
+<h1 class="title">ZeRO: Zero Redundancy Optimizer</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc8f2dd2">1. GPU Memory Breakdown</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc8f2dd2" class="outline-2">
+<h2 id="orgc8f2dd2"><span class="section-number-2">1.</span> GPU Memory Breakdown</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+When training a model on GPU, the GPU memory can be divided into 6 parts.
+</p>
+
+<ul class="org-ul">
+<li>Model parameters</li>
+<li>Gradients</li>
+<li>Optimizer states</li>
+<li>Activations, e.g., the mean and std required for <code>Layernorm</code>&rsquo;s backprop</li>
+<li>Temporary buffers, workspace</li>
+<li>Fragmentation</li>
+</ul>
+
+<div class="eg" id="org2913ad8">
+<p>
+For example, training a 7B model in FP16 (2 bytes).
+</p>
+
+<ul class="org-ul">
+<li>Memory for parameters is \(7B \times 2\) bytes</li>
+<li>Gradients of parameters are \(7B \times 2\) bytes</li>
+<li>Suppose we use Adam optimizer, for each weight, we need to store a FP32 copy of the weight (for numerical stability), and \(m,v\) in FP32. That is \(7B \times (4+4+4)\) bytes</li>
+</ul>
+
+<p>
+Even if we have already ignored activations and all other consumptions, training a 7B model already consumes \(112\) GB memory.
+</p>
+
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2026-08-31 Mon</p>

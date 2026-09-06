@@ -19,6 +19,7 @@
   --site-accent: #527d9a;
   --site-dim: #7c8a93;
   --site-mono-tint: #eef1f3;
+  --site-sans: ui-sans, "Anthropic Sans Text", "Fira Sans", sans;
   --site-serif: ui-serif, "Anthropic Serif Text", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
   --site-mono: ui-monospace, "Anthropic Mono Web", "SFMono-Regular", "JetBrains Mono", "Cascadia Code",
     Menlo, Consolas, monospace;
@@ -308,7 +309,8 @@ body {
 }
 
 #text-table-of-contents a {
-  font-family: var(--site-serif);
+    font-family: var(--site-sans);
+    font-size: 0.9rem;
   color: var(--site-dim);
 }
 
