@@ -209,31 +209,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8dc529c">1. Problem Settings</a></li>
-<li><a href="#org325d8e4">2. TimeXer Solution</a>
+<li><a href="#org8cbf7aa">1. Problem Settings</a></li>
+<li><a href="#org7ea0845">2. TimeXer Solution</a>
 <ul>
-<li><a href="#org0af728a">2.1. Endogenous Embedding</a></li>
-<li><a href="#orgf86046a">2.2. Exogenous Embedding</a></li>
-<li><a href="#org91807fb">2.3. Inter- and Intra-Attention</a>
+<li><a href="#org9280e69">2.1. Endogenous Embedding</a></li>
+<li><a href="#orgc9d8660">2.2. Exogenous Embedding</a></li>
+<li><a href="#org92363c8">2.3. Inter- and Intra-Attention</a>
 <ul>
-<li><a href="#org2e985fd">2.3.1. Endogenous Self-Attention</a></li>
-<li><a href="#orgdf617ff">2.3.2. Exogenous-Endogenous Cross-Attention</a></li>
+<li><a href="#org0874199">2.3.1. Endogenous Self-Attention</a></li>
+<li><a href="#orgc58ebc0">2.3.2. Exogenous-Endogenous Cross-Attention</a></li>
 </ul>
 </li>
-<li><a href="#orgb961292">2.4. Forecasting Loss</a></li>
-<li><a href="#orgee282ad">2.5. Parallel Multivariate Forecasting</a></li>
+<li><a href="#org6fed9a0">2.4. Forecasting Loss</a></li>
+<li><a href="#orgcceb16b">2.5. Parallel Multivariate Forecasting</a></li>
 </ul>
 </li>
-<li><a href="#orgf03f021">3. Experiments</a>
+<li><a href="#org7207abe">3. Experiments</a>
 <ul>
-<li><a href="#orgf3644b1">3.1. Alternative Embedding Approach</a></li>
+<li><a href="#orga95cb45">3.1. Alternative Embedding Approach</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8dc529c" class="outline-2">
-<h2 id="org8dc529c"><span class="section-number-2">1.</span> Problem Settings</h2>
+<div id="outline-container-org8cbf7aa" class="outline-2">
+<h2 id="org8cbf7aa"><span class="section-number-2">1.</span> Problem Settings</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Suppose endogenous time series \( \mathbf{x}_{1:T} = \set{\mathbf{x}_{1}, \mathbf{x}_{2},\dots,\mathbf{x}_{T}} \) where \( \mathbf{x}_{i} \) denotes the value at \(i\)-th time point and \(T\) is the <i>look back window length</i> of the endogenous variable.
@@ -254,15 +254,15 @@ The goal of a <b>forecasting</b> model \(\mathcal{F}_{\theta}\) is to predict th
 </p>
 </div>
 </div>
-<div id="outline-container-org325d8e4" class="outline-2">
-<h2 id="org325d8e4"><span class="section-number-2">2.</span> TimeXer Solution</h2>
+<div id="outline-container-org7ea0845" class="outline-2">
+<h2 id="org7ea0845"><span class="section-number-2">2.</span> TimeXer Solution</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 TimeXer utilizes Transformers and uses self-attention and cross-attention to capture temporal-wise and variate-wise dependencies.
 </p>
 </div>
-<div id="outline-container-org0af728a" class="outline-3">
-<h3 id="org0af728a"><span class="section-number-3">2.1.</span> Endogenous Embedding</h3>
+<div id="outline-container-org9280e69" class="outline-3">
+<h3 id="org9280e69"><span class="section-number-3">2.1.</span> Endogenous Embedding</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 TimeXer uses <b>non-overlapping patch-wise</b> representation.
@@ -285,11 +285,11 @@ Suppose \(P\) is patch length and \(N = \lfloor \frac{T}{P} \rfloor\) number of 
 </p>
 </div>
 </div>
-<div id="outline-container-orgf86046a" class="outline-3">
-<h3 id="orgf86046a"><span class="section-number-3">2.2.</span> Exogenous Embedding</h3>
+<div id="outline-container-orgc9d8660" class="outline-3">
+<h3 id="orgc9d8660"><span class="section-number-3">2.2.</span> Exogenous Embedding</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Interaction of different variables can be captured more naturally by variate-level representations, which are adaptive to common issues, <a href="#orgf3644b1">see Alternative Embedding Approach</a>.
+Interaction of different variables can be captured more naturally by variate-level representations, which are adaptive to common issues, <a href="#orga95cb45">see Alternative Embedding Approach</a>.
 </p>
 
 <p>
@@ -303,15 +303,15 @@ Here, \(\mathrm{VariateEmbed}:\mathbb{R}^{T_{ex}} \mapsto \mathbb{R}^{D}\) is a 
 </p>
 </div>
 </div>
-<div id="outline-container-org91807fb" class="outline-3">
-<h3 id="org91807fb"><span class="section-number-3">2.3.</span> Inter- and Intra-Attention</h3>
+<div id="outline-container-org92363c8" class="outline-3">
+<h3 id="org92363c8"><span class="section-number-3">2.3.</span> Inter- and Intra-Attention</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 TimeXer developed distinct attention mechanism for learning endogenous and exogenous relationships.
 </p>
 </div>
-<div id="outline-container-org2e985fd" class="outline-4">
-<h4 id="org2e985fd"><span class="section-number-4">2.3.1.</span> Endogenous Self-Attention</h4>
+<div id="outline-container-org0874199" class="outline-4">
+<h4 id="org0874199"><span class="section-number-4">2.3.1.</span> Endogenous Self-Attention</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 TimeXer learns the relationships between endogenous variables through 3 approaches:
@@ -338,8 +338,8 @@ Here, \(\ell\in\set{0,\cdots, L-1}\) denotes the \(\ell\)-th TimeXer block and \
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf617ff" class="outline-4">
-<h4 id="orgdf617ff"><span class="section-number-4">2.3.2.</span> Exogenous-Endogenous Cross-Attention</h4>
+<div id="outline-container-orgc58ebc0" class="outline-4">
+<h4 id="orgc58ebc0"><span class="section-number-4">2.3.2.</span> Exogenous-Endogenous Cross-Attention</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Cross-attention is popular in multi-modal learning to capture token-wise dependencies between different modailties.
@@ -350,7 +350,7 @@ Cross-attention layers in TimeXer uses <span class="underline">endogenous global
 </p>
 
 \begin{equation}
-\label{org73157c2}
+\label{org6559e7e}
 \widehat{\mathbf{G}}_{en, upd}^{\ell} = \mathrm{LayerNorm}(\widehat{\mathbf{G}}_{en}^{\ell} + \mathrm{CrossAttn}(\widehat{\mathbf{G}}_{en}^{\ell}, \mathbf{V}_{ex}))
 \end{equation}
 
@@ -359,7 +359,7 @@ Then, we&rsquo;ll transform all temporal tokens \(\mathbf{P}_{en}^{\ell}\) and l
 </p>
 
 \begin{equation}
-\label{orgd501bb6}
+\label{orgf27effa}
 \begin{split}
 \mathbf{P}^{\ell+1}_{en} &= \mathrm{FFN}(\widehat{\mathbf{P}}^{\ell}_{en}) \\
 \mathbf{G}_{en}^{\ell+1} &= \mathrm{FFN}(\widehat{\mathbf{G}}^{\ell}_{en})
@@ -372,8 +372,8 @@ We write the above Transformer block [BROKEN LINK: eqref:crossattn] and [BROKEN 
 </div>
 </div>
 </div>
-<div id="outline-container-orgb961292" class="outline-3">
-<h3 id="orgb961292"><span class="section-number-3">2.4.</span> Forecasting Loss</h3>
+<div id="outline-container-org6fed9a0" class="outline-3">
+<h3 id="org6fed9a0"><span class="section-number-3">2.4.</span> Forecasting Loss</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Since exogenous variables are not required to be predicted, TimeXer directly applies a <b>linear projector</b> on the output endogenous embedding of last layer \( [\mathbf{P}_{en}^{L}, \mathbf{G}_{en}^{L}] \). The loss is measured by <span class="underline">L2 squared loss</span> between prediction and ground truth.
@@ -386,8 +386,8 @@ Since exogenous variables are not required to be predicted, TimeXer directly app
 </p>
 </div>
 </div>
-<div id="outline-container-orgee282ad" class="outline-3">
-<h3 id="orgee282ad"><span class="section-number-3">2.5.</span> Parallel Multivariate Forecasting</h3>
+<div id="outline-container-orgcceb16b" class="outline-3">
+<h3 id="orgcceb16b"><span class="section-number-3">2.5.</span> Parallel Multivariate Forecasting</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Multivariate forecasting can be viewed as predicting each variable, with all other variables treated as exogenous variables. So we can assume the <i>independence</i>, and apply TimeXer multiple times for multivariate prediction.
@@ -395,12 +395,12 @@ Multivariate forecasting can be viewed as predicting each variable, with all oth
 </div>
 </div>
 </div>
-<div id="outline-container-orgf03f021" class="outline-2">
-<h2 id="orgf03f021"><span class="section-number-2">3.</span> Experiments</h2>
+<div id="outline-container-org7207abe" class="outline-2">
+<h2 id="org7207abe"><span class="section-number-2">3.</span> Experiments</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgf3644b1" class="outline-3">
-<h3 id="orgf3644b1"><span class="section-number-3">3.1.</span> Alternative Embedding Approach</h3>
+<div id="outline-container-orga95cb45" class="outline-3">
+<h3 id="orga95cb45"><span class="section-number-3">3.1.</span> Alternative Embedding Approach</h3>
 </div>
 </div>
 </div>

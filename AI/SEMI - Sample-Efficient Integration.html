@@ -211,15 +211,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2118e7e">1. Sample-Efficient Modality Integration (SEMI)</a>
+<li><a href="#orgb45bfaa">1. Sample-Efficient Modality Integration (SEMI)</a>
 <ul>
-<li><a href="#org9036272">1.1. Train a Shared MLP Projector</a></li>
-<li><a href="#org9b541eb">1.2. Train the HyperNetwork</a></li>
-<li><a href="#org6b61cca">1.3. Few-Shot Adaptation to New Modalities</a></li>
-<li><a href="#org4aa60d9">1.4. Integrating Arbitrary Dimensionality Encoders</a></li>
+<li><a href="#org30cc5e2">1.1. Train a Shared MLP Projector</a></li>
+<li><a href="#org2718710">1.2. Train the HyperNetwork</a></li>
+<li><a href="#org962ee91">1.3. Few-Shot Adaptation to New Modalities</a></li>
+<li><a href="#orga8e72d1">1.4. Integrating Arbitrary Dimensionality Encoders</a></li>
 </ul>
 </li>
-<li><a href="#org94b1835">2. Experiment</a></li>
+<li><a href="#org527c2fb">2. Experiment</a></li>
 </ul>
 </div>
 </div>
@@ -230,15 +230,15 @@ When we talk about &ldquo;integrating&rdquo; new modalities into LLMs, the commo
 <p>
 <b>Fast adaptation</b> asks whether we can integrate other modalities while leveraging the power of LLM with as little computation as possible. Moreover, <b>fast adaptation</b> wants to handle the problem of variable-sized input.
 </p>
-<div id="outline-container-org2118e7e" class="outline-2">
-<h2 id="org2118e7e"><span class="section-number-2">1.</span> Sample-Efficient Modality Integration (SEMI)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h2>
+<div id="outline-container-orgb45bfaa" class="outline-2">
+<h2 id="orgb45bfaa"><span class="section-number-2">1.</span> Sample-Efficient Modality Integration (SEMI)<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This paper proposed <i>SEMI</i>, a three-stage integration. The method aims to utilize pretrained modality encoders.
 </p>
 </div>
-<div id="outline-container-org9036272" class="outline-3">
-<h3 id="org9036272"><span class="section-number-3">1.1.</span> Train a Shared MLP Projector</h3>
+<div id="outline-container-org30cc5e2" class="outline-3">
+<h3 id="org30cc5e2"><span class="section-number-3">1.1.</span> Train a Shared MLP Projector</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose we have \(M\) encoders \(\mathrm{enc}_{i}, i\in[1,M]\) for high-resource<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> modalities, and a decoder LLM (hereafter, <i>decoder</i>).
@@ -257,8 +257,8 @@ on paired raw data from high-resource modalities. The projector is parameterized
 </p>
 </div>
 </div>
-<div id="outline-container-org9b541eb" class="outline-3">
-<h3 id="org9b541eb"><span class="section-number-3">1.2.</span> Train the HyperNetwork</h3>
+<div id="outline-container-org2718710" class="outline-3">
+<h3 id="org2718710"><span class="section-number-3">1.2.</span> Train the HyperNetwork</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The job of the hypernetwork is to <span class="underline">generate a modality-specific adapter</span>, to <span class="underline">be composed with the shared projector</span> given only a few data samples.
@@ -280,7 +280,7 @@ where \(\oplus\) denotes concatenation, and generates LoRA adapters \(\delta\).
 Then, the LoRA adapter is plugged into the projector, yielding \( \mathrm{proj}_{\phi+\delta}(\mathbf{x}_{m}) \). The plugged projector, along with the instruction, is fed into the <i>decoder</i> to train the hypernetwork.
 </p>
 
-<div class="note" id="orgb7db617">
+<div class="note" id="orgcd2e372">
 <p>
 <b>Emulating encoders</b>
 </p>
@@ -291,7 +291,7 @@ Since there&rsquo;re not many modality encoders, this hypernetwork might overfit
 
 </div>
 
-<div class="note" id="org39b328a">
+<div class="note" id="org42e4e46">
 <p>
 <b>Text grounding</b>
 </p>
@@ -303,16 +303,16 @@ The hypernetwork is instructed with both text embeddings (label and instruction)
 </div>
 </div>
 </div>
-<div id="outline-container-org6b61cca" class="outline-3">
-<h3 id="org6b61cca"><span class="section-number-3">1.3.</span> Few-Shot Adaptation to New Modalities</h3>
+<div id="outline-container-org962ee91" class="outline-3">
+<h3 id="org962ee91"><span class="section-number-3">1.3.</span> Few-Shot Adaptation to New Modalities</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 During adaptation, the hypernetwork, the LLM decoder, and the modality encoder is frozen. The training data is partitioned into batches, for each of which, we generate an adapter. At the end, adapters are <span class="underline">averaged and then merged</span> with the pretrained projector. Finally, this updated projector is finetuned on the low-resource modality&rsquo;s few-shot samples.
 </p>
 </div>
 </div>
-<div id="outline-container-org4aa60d9" class="outline-3">
-<h3 id="org4aa60d9"><span class="section-number-3">1.4.</span> Integrating Arbitrary Dimensionality Encoders</h3>
+<div id="outline-container-orga8e72d1" class="outline-3">
+<h3 id="orga8e72d1"><span class="section-number-3">1.4.</span> Integrating Arbitrary Dimensionality Encoders</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 For encoders with smaller output dimensions than the projector input, the pre-trained projector weights are pruned to match the dimension.
@@ -324,8 +324,8 @@ For encoders with larger output dimensions than the projector input, the paper u
 </div>
 </div>
 </div>
-<div id="outline-container-org94b1835" class="outline-2">
-<h2 id="org94b1835"><span class="section-number-2">2.</span> Experiment</h2>
+<div id="outline-container-org527c2fb" class="outline-2">
+<h2 id="org527c2fb"><span class="section-number-2">2.</span> Experiment</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>

@@ -19,6 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
   enhanceHomeIndex();
   enhanceHomeTabs();
   enhanceRecentList();
+  enhanceArticleDescription();
+
+  function enhanceArticleDescription() {
+    if (document.body.classList.contains('site-home')) return;
+
+    var meta = document.querySelector('meta[name="description"]');
+    var description = meta && meta.getAttribute('content');
+    var title = document.querySelector('#content > h1.title');
+
+    if (!description) return;
+
+    description = description.trim();
+    if (!description || !title) return;
+
+    var desc = document.createElement('p');
+    desc.className = 'article-desc';
+    desc.textContent = description;
+    title.insertAdjacentElement('afterend', desc);
+  }
 
   function enhanceRecentList() {
     var BATCH_SIZE = 8;

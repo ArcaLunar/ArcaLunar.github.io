@@ -210,28 +210,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org817cfed">1. Challenge</a></li>
-<li><a href="#org0810745">2. The Ferret Algorithm</a>
+<li><a href="#orga8ff0e3">1. Challenge</a></li>
+<li><a href="#org78185c0">2. The Ferret Algorithm</a>
 <ul>
-<li><a href="#orgff05f03">2.1. Local Updates</a></li>
-<li><a href="#org1a33aed">2.2. Projected Updates</a>
+<li><a href="#orgbb58c1b">2.1. Local Updates</a></li>
+<li><a href="#orgcfd5323">2.2. Projected Updates</a>
 <ul>
-<li><a href="#org572b926">2.2.1. Reconstruction with Inversion</a></li>
-<li><a href="#orgb98d589">2.2.2. Reconstruction without Inversion</a></li>
-<li><a href="#org7a40c23">2.2.3. Block-wise Reconstruction</a></li>
+<li><a href="#orgf8e5334">2.2.1. Reconstruction with Inversion</a></li>
+<li><a href="#org27ef7d6">2.2.2. Reconstruction without Inversion</a></li>
+<li><a href="#orgcd096a7">2.2.3. Block-wise Reconstruction</a></li>
 </ul>
 </li>
-<li><a href="#org566b4db">2.3. Global Aggregation</a></li>
+<li><a href="#orgf5f4ab6">2.3. Global Aggregation</a></li>
 </ul>
 </li>
-<li><a href="#orgc56c7e4">3. Theoretical Analysis</a>
+<li><a href="#org333dc88">3. Theoretical Analysis</a>
 <ul>
-<li><a href="#org9a8c257">3.1. Reconstruction Analysis</a></li>
-<li><a href="#orga801c66">3.2. Convergence Analysis</a></li>
-<li><a href="#org3da001c">3.3. Scalability</a></li>
+<li><a href="#org3156271">3.1. Reconstruction Analysis</a></li>
+<li><a href="#org748a3c9">3.2. Convergence Analysis</a></li>
+<li><a href="#orgdc67f6c">3.3. Scalability</a></li>
 </ul>
 </li>
-<li><a href="#org77601f1">4. Experiments</a></li>
+<li><a href="#org334547c">4. Experiments</a></li>
 </ul>
 </div>
 </div>
@@ -252,16 +252,16 @@ The <i>contribution</i> can be summarized as:
 <p>
 <b>Notice</b>: this paper is based on <i>federated learning</i> setups, not <i>split federated learning</i>.
 </p>
-<div id="outline-container-org817cfed" class="outline-2">
-<h2 id="org817cfed"><span class="section-number-2">1.</span> Challenge</h2>
+<div id="outline-container-orga8ff0e3" class="outline-2">
+<h2 id="orga8ff0e3"><span class="section-number-2">1.</span> Challenge</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The problem is <i>full-parameter finetuning</i>. Naive full-parameter finetuning guarantees the convergence speed but suffers from <i>communication overheads</i>. Existing first order methods incur \(O(d)\) communication overheads, due to the need to transmit the whole model parameter, where \(d\) denotes the model size. Zero-th order methods can transmit less data in each communication round, but often incur more computational cost to <span class="underline">compensate the accuracy loss due to missing gradient</span>.
 </p>
 </div>
 </div>
-<div id="outline-container-org0810745" class="outline-2">
-<h2 id="org0810745"><span class="section-number-2">2.</span> The Ferret Algorithm</h2>
+<div id="outline-container-org78185c0" class="outline-2">
+<h2 id="org78185c0"><span class="section-number-2">2.</span> The Ferret Algorithm</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Ferret operates by repeatedly running 3 sequential steps over many communication rounds \(r\in[R]\) where \(R\) denotes the total number of rounds.
@@ -271,8 +271,8 @@ Ferret operates by repeatedly running 3 sequential steps over many communication
 At the beginning of the first round, each client initializes its local parameters with pretrained model parameters, i.e., \( \mathbf{w}_{1} \gets \mathbf{w}_{0} \).
 </p>
 </div>
-<div id="outline-container-orgff05f03" class="outline-3">
-<h3 id="orgff05f03"><span class="section-number-3">2.1.</span> Local Updates</h3>
+<div id="outline-container-orgbb58c1b" class="outline-3">
+<h3 id="orgbb58c1b"><span class="section-number-3">2.1.</span> Local Updates</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Each client performs \(T\) iterations of first-order optimization on its local loss function with optimizers like SGD, Adam, etc. Suppose \( \mathbf{w}_{r,0} := \mathbf{w}_{r} \) denoting the first local iteration starts from sync-ed model parameters at the beginning of \(r\)-th round. Then for SGD, each iteration can be expressed as
@@ -295,8 +295,8 @@ where \( \mathbf{x} \) denotes local dataset. Then, we&rsquo;re able to compute 
 </p>
 </div>
 </div>
-<div id="outline-container-org1a33aed" class="outline-3">
-<h3 id="org1a33aed"><span class="section-number-3">2.2.</span> Projected Updates</h3>
+<div id="outline-container-orgcfd5323" class="outline-3">
+<h3 id="orgcfd5323"><span class="section-number-3">2.2.</span> Projected Updates</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 After completing local updates, each client \(j\) randomly chooses a seed \( s^{(j)} \) to generate \(K\) new random bases, where \(K \ll d\) for the sake of communication efficiency. Each base \( \mathbf{v}_{r}^{(j)} \in \mathbb{R}^{d} \).
@@ -310,8 +310,8 @@ Then, we project \( \Delta_{r}^{(j)} \in \mathbb{R}^{d} \) into a \(K\)-dimensio
 The design of <i>seed</i> is to utilize its <b>pseudo-randomness</b> property to avoid transmitting the random bases.
 </p>
 </div>
-<div id="outline-container-org572b926" class="outline-4">
-<h4 id="org572b926"><span class="section-number-4">2.2.1.</span> Reconstruction with Inversion</h4>
+<div id="outline-container-orgf8e5334" class="outline-4">
+<h4 id="orgf8e5334"><span class="section-number-4">2.2.1.</span> Reconstruction with Inversion</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Let \( \Delta\in\mathbb{R}^{d} \) be the local update, and matrix \( \mathbf{V}=[\mathbf{v}_{1}\, \mathbf{v}_{2}\, \dots\, \mathbf{v}_{K}] \in \mathbb{R}^{d\times K} \) denotes the \(K\) random bases. Then we can form the <b>convex optimization problem</b> to determine the \(K\)-dimensional vector \(\gamma\).
@@ -335,8 +335,8 @@ which has a closed form, given the \( \mathbf{V} \) is singular with \( K \ll d 
 \end{equation}
 </div>
 </div>
-<div id="outline-container-orgb98d589" class="outline-4">
-<h4 id="orgb98d589"><span class="section-number-4">2.2.2.</span> Reconstruction without Inversion</h4>
+<div id="outline-container-org27ef7d6" class="outline-4">
+<h4 id="org27ef7d6"><span class="section-number-4">2.2.2.</span> Reconstruction without Inversion</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 The above closed form requires computing inversion of a matrix. The total complexity will raise to \( O(K^{2}d + K^{3}) \) for time complexity and \( O(Kd) \) for memory complexity for solely \( M=\mathbf{V}^{\top}\mathbf{V} \).
@@ -355,12 +355,12 @@ where \( \rho:= 1-\frac{2\phi(1/\sqrt{d})/\sqrt{d}}{2\Phi(1/\sqrt{d})-1} \), \( 
 </p>
 </div>
 </div>
-<div id="outline-container-org7a40c23" class="outline-4">
-<h4 id="org7a40c23"><span class="section-number-4">2.2.3.</span> Block-wise Reconstruction</h4>
+<div id="outline-container-orgcd096a7" class="outline-4">
+<h4 id="orgcd096a7"><span class="section-number-4">2.2.3.</span> Block-wise Reconstruction</h4>
 </div>
 </div>
-<div id="outline-container-org566b4db" class="outline-3">
-<h3 id="org566b4db"><span class="section-number-3">2.3.</span> Global Aggregation</h3>
+<div id="outline-container-orgf5f4ab6" class="outline-3">
+<h3 id="orgf5f4ab6"><span class="section-number-3">2.3.</span> Global Aggregation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 For global aggregation, we might have <b>ring allgather</b> or with a <b>centralized fed server</b>. But after all, one server (either fed server or each client) will have full information about the random seed \( s^{(j)} \) and corresponding projected local updates \( \mathbf{\gamma}^{(j)}_{r} \). We first reconstruct full-parameters updates \( \tilde{\Delta}_{r}^{(j)} \) from \( \gamma^{(j)}_{r} \)
@@ -384,12 +384,12 @@ Then, we compute the average of reconstructed updates, and apply it to <i>previo
 </div>
 </div>
 </div>
-<div id="outline-container-orgc56c7e4" class="outline-2">
-<h2 id="orgc56c7e4"><span class="section-number-2">3.</span> Theoretical Analysis</h2>
+<div id="outline-container-org333dc88" class="outline-2">
+<h2 id="org333dc88"><span class="section-number-2">3.</span> Theoretical Analysis</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9a8c257" class="outline-3">
-<h3 id="org9a8c257"><span class="section-number-3">3.1.</span> Reconstruction Analysis</h3>
+<div id="outline-container-org3156271" class="outline-3">
+<h3 id="org3156271"><span class="section-number-3">3.1.</span> Reconstruction Analysis</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 From equation (2), the reconstruction satisfies that
@@ -402,16 +402,16 @@ From equation (2), the reconstruction satisfies that
 </p>
 </div>
 </div>
-<div id="outline-container-orga801c66" class="outline-3">
-<h3 id="orga801c66"><span class="section-number-3">3.2.</span> Convergence Analysis</h3>
+<div id="outline-container-org748a3c9" class="outline-3">
+<h3 id="org748a3c9"><span class="section-number-3">3.2.</span> Convergence Analysis</h3>
 </div>
 
-<div id="outline-container-org3da001c" class="outline-3">
-<h3 id="org3da001c"><span class="section-number-3">3.3.</span> Scalability</h3>
+<div id="outline-container-orgdc67f6c" class="outline-3">
+<h3 id="orgdc67f6c"><span class="section-number-3">3.3.</span> Scalability</h3>
 </div>
 </div>
-<div id="outline-container-org77601f1" class="outline-2">
-<h2 id="org77601f1"><span class="section-number-2">4.</span> Experiments</h2>
+<div id="outline-container-org334547c" class="outline-2">
+<h2 id="org334547c"><span class="section-number-2">4.</span> Experiments</h2>
 </div>
 </div>
 <div id="postamble" class="status">

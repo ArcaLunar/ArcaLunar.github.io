@@ -207,13 +207,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5153723">1. Creating Hash Table</a></li>
-<li><a href="#org57a1ee8">2. Useful Operations</a>
+<li><a href="#org6219c94">1. Creating Hash Table</a></li>
+<li><a href="#org51714a8">2. Useful Operations</a>
 <ul>
-<li><a href="#orgce18d2b">2.1. Length</a></li>
-<li><a href="#orge292237">2.2. Modification</a></li>
-<li><a href="#orgcb5dc90">2.3. Transformation</a></li>
-<li><a href="#orgdf6c059">2.4. Retrieval</a></li>
+<li><a href="#org08612ea">2.1. Length</a></li>
+<li><a href="#orga49d5c8">2.2. Modification</a></li>
+<li><a href="#org40f750f">2.3. Transformation</a></li>
+<li><a href="#org7278056">2.4. Retrieval</a></li>
 </ul>
 </li>
 </ul>
@@ -222,8 +222,8 @@
 <p>
 Elisp has 2 types of KV collections. Hash table is <i>unordered set</i> of KV pairs with no duplicate keys and constant access time; Association list is <i>ordered set</i> of KV pairs with possibly repeated keys.
 </p>
-<div id="outline-container-org5153723" class="outline-2">
-<h2 id="org5153723"><span class="section-number-2">1.</span> Creating Hash Table</h2>
+<div id="outline-container-org6219c94" class="outline-2">
+<h2 id="org6219c94"><span class="section-number-2">1.</span> Creating Hash Table</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">make-hash-table</span> <span class="org-builtin">:test</span> <span class="org-highlight-quoted-quote">'</span><span class="org-highlight-quoted-symbol">OPTION</span><span class="org-rainbow-delimiters-depth-1">)</span>
@@ -239,12 +239,12 @@ Usually, for <span class="underline">strings</span>, use <code>'equal</code>; fo
 </p>
 </div>
 </div>
-<div id="outline-container-org57a1ee8" class="outline-2">
-<h2 id="org57a1ee8"><span class="section-number-2">2.</span> Useful Operations</h2>
+<div id="outline-container-org51714a8" class="outline-2">
+<h2 id="org51714a8"><span class="section-number-2">2.</span> Useful Operations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgce18d2b" class="outline-3">
-<h3 id="orgce18d2b"><span class="section-number-3">2.1.</span> Length</h3>
+<div id="outline-container-org08612ea" class="outline-3">
+<h3 id="org08612ea"><span class="section-number-3">2.1.</span> Length</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Use <code>hash-table-count</code> function.
@@ -256,8 +256,8 @@ Use <code>hash-table-count</code> function.
 </div>
 </div>
 </div>
-<div id="outline-container-orge292237" class="outline-3">
-<h3 id="orge292237"><span class="section-number-3">2.2.</span> Modification</h3>
+<div id="outline-container-orga49d5c8" class="outline-3">
+<h3 id="orga49d5c8"><span class="section-number-3">2.2.</span> Modification</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 <b>Add entries</b>. Use <code>puthash</code> function.
@@ -287,8 +287,8 @@ Use <code>hash-table-count</code> function.
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb5dc90" class="outline-3">
-<h3 id="orgcb5dc90"><span class="section-number-3">2.3.</span> Transformation</h3>
+<div id="outline-container-org40f750f" class="outline-3">
+<h3 id="org40f750f"><span class="section-number-3">2.3.</span> Transformation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 We use invoke <code>maphash</code> to apply a function to all entries in a hash table. The function must take 2 arguments.
@@ -307,8 +307,8 @@ We use invoke <code>maphash</code> to apply a function to all entries in a hash 
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf6c059" class="outline-3">
-<h3 id="orgdf6c059"><span class="section-number-3">2.4.</span> Retrieval</h3>
+<div id="outline-container-org7278056" class="outline-3">
+<h3 id="org7278056"><span class="section-number-3">2.4.</span> Retrieval</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 <b>Get single item</b>. Use <code>gethash</code> to get value from hash table or optional default value. <code>gethash</code> can also be used to <span class="underline">check key existence</span>.

@@ -319,6 +319,19 @@ body {
   color: var(--site-accent);
 }
 
+/* Article description, mirrored from .site-desc on the homepage list —
+ * injected under the title by index.js from the page's meta description.
+ */
+#content > .article-desc {
+  max-width: 40rem;
+  margin: -0.3em auto 2rem;
+  padding: 0 1.5rem;
+  color: var(--site-dim);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
 /* === Blog homepage (body.site-home) ===
  * A tighter, left-aligned index layout on top of the shared look above —
  * scoped so it never touches the ordinary bullet lists or wider reading

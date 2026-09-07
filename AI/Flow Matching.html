@@ -209,16 +209,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfd46af8">1. Introduction of Flow Matching</a></li>
-<li><a href="#org6bdd67d">2. Probability Flow and Continuity Equation</a></li>
-<li><a href="#org9683a86">3. Flow Matching Objective</a></li>
-<li><a href="#org5c7c5fc">4. Conditional Flow Matching</a></li>
-<li><a href="#org13444c0">5. <span class="todo TODO">TODO</span> Fixup</a></li>
+<li><a href="#orgb4386ac">1. Introduction of Flow Matching</a></li>
+<li><a href="#org49ad058">2. Probability Flow and Continuity Equation</a></li>
+<li><a href="#orgfedabd7">3. Flow Matching Objective</a></li>
+<li><a href="#org567879b">4. Conditional Flow Matching</a></li>
+<li><a href="#org1745991">5. <span class="todo TODO">TODO</span> Fixup</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfd46af8" class="outline-2">
-<h2 id="orgfd46af8"><span class="section-number-2">1.</span> Introduction of Flow Matching</h2>
+<div id="outline-container-orgb4386ac" class="outline-2">
+<h2 id="orgb4386ac"><span class="section-number-2">1.</span> Introduction of Flow Matching</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Let \( p_{\text{data}}(\mathbf{x}) \) be the distribution of real images on \( \mathbb{R}^{d} \). Flow matching models learn a <b>time-dependent</b> vector field
@@ -270,15 +270,15 @@ And the sampling paradigm is:
 </ol>
 </div>
 </div>
-<div id="outline-container-org6bdd67d" class="outline-2">
-<h2 id="org6bdd67d"><span class="section-number-2">2.</span> Probability Flow and Continuity Equation</h2>
+<div id="outline-container-org49ad058" class="outline-2">
+<h2 id="org49ad058"><span class="section-number-2">2.</span> Probability Flow and Continuity Equation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Suppose in the system, particles evolve by the ODE \( \frac{dX_{t}}{dt} = v(t,X_{t}) \). Let \( p_{t}(x) \) be the density of \( X_{t} \). <b>Conversation of probability mass</b> gives the <span class="underline">continuity equation</span>:
 </p>
 
 \begin{equation}
-\label{org2b29017}
+\label{orgfddcee7}
 \nabla_{t} p_{t}(x) + \nabla \cdot \left( p_{t}\left( x \right) v \left( t,x \right) \right) = 0
 \end{equation}
 
@@ -291,15 +291,15 @@ Now the core of problem is to learn a vector field \( v_{\theta} \) that matches
 </p>
 </div>
 </div>
-<div id="outline-container-org9683a86" class="outline-2">
-<h2 id="org9683a86"><span class="section-number-2">3.</span> Flow Matching Objective</h2>
+<div id="outline-container-orgfedabd7" class="outline-2">
+<h2 id="orgfedabd7"><span class="section-number-2">3.</span> Flow Matching Objective</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Since we want to match the velocity field, a natural objective is the L2 norm between velocities. Suppose there exists a target velocity field \( u_{t}(x) \) at time \( t \) satisfies the continuity equation.
 </p>
 
 \begin{equation}
-\label{orgc6b67c8}
+\label{org65bc8b6}
 \mathcal{L}_{FM}(\theta) = \mathbb{E}_{t\sim\mathcal{U}(0,1), x\sim p_{t}}\left[ \left\| v_{\theta}\left( t,x \right) - u_{t}\left( x \right) \right\|^{2} \right]
 \end{equation}
 
@@ -308,8 +308,8 @@ The issue is that the marginal velocity \( u_{t}(x) \) is usually not directly a
 </p>
 </div>
 </div>
-<div id="outline-container-org5c7c5fc" class="outline-2">
-<h2 id="org5c7c5fc"><span class="section-number-2">4.</span> Conditional Flow Matching</h2>
+<div id="outline-container-org567879b" class="outline-2">
+<h2 id="org567879b"><span class="section-number-2">4.</span> Conditional Flow Matching</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Instead of defining \( p_{t}(x) \) directly, we define <b>conditional paths</b> \( p_{t}(x\mid z) \), then the marginal distribution is
@@ -343,8 +343,8 @@ u_{t}(x) &= \int u_{t}(x\mid z)q(z\mid x,t)\,dz\\
 \end{equation}
 </div>
 </div>
-<div id="outline-container-org13444c0" class="outline-2">
-<h2 id="org13444c0"><span class="section-number-2">5.</span> <span class="todo TODO">TODO</span> Fixup</h2>
+<div id="outline-container-org1745991" class="outline-2">
+<h2 id="org1745991"><span class="section-number-2">5.</span> <span class="todo TODO">TODO</span> Fixup</h2>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -210,27 +210,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgeb471b1">1. Challenge</a></li>
-<li><a href="#org70f57cb">2. SDFT Solution</a>
+<li><a href="#org08b5754">1. Challenge</a></li>
+<li><a href="#orgcef4351">2. SDFT Solution</a>
 <ul>
-<li><a href="#org8e4c107">2.1. From The Perspective of Inverse RL</a></li>
-<li><a href="#orgd2de414">2.2. In-Context Learning Assumption</a>
+<li><a href="#orgc97e5f8">2.1. From The Perspective of Inverse RL</a></li>
+<li><a href="#orgec5d16b">2.2. In-Context Learning Assumption</a>
 <ul>
-<li><a href="#org41dfe23">2.2.1. Empirical Validation of Assumption</a></li>
+<li><a href="#orgcdaf9a6">2.2.1. Empirical Validation of Assumption</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9b557b2">3. Experiments</a>
+<li><a href="#org2894b97">3. Experiments</a>
 <ul>
-<li><a href="#org416bce4">3.1. Effect of Model Size</a></li>
-<li><a href="#org3ba384c">3.2. Training Reasoning Models w/o Reasoning Data</a></li>
-<li><a href="#orgb703201">3.3. What Drives the Improvement in Performance?</a></li>
+<li><a href="#org151d262">3.1. Effect of Model Size</a></li>
+<li><a href="#orge78f693">3.2. Training Reasoning Models w/o Reasoning Data</a></li>
+<li><a href="#org52439ee">3.3. What Drives the Improvement in Performance?</a></li>
 </ul>
 </li>
-<li><a href="#orga028bb6">4. Ablation Studies</a>
+<li><a href="#org594d5a3">4. Ablation Studies</a>
 <ul>
-<li><a href="#orga04cae1">4.1. What to Demonstrate?</a></li>
+<li><a href="#org10ee7b5">4.1. What to Demonstrate?</a></li>
 </ul>
 </li>
 </ul>
@@ -239,12 +239,12 @@
 <p>
 The paper proposes Self-Distillation Fine-Tuning (SDFT) that aims to handle the problem of <span class="underline">continual learning</span>: keep learning new skills while not forgetting old skills.
 </p>
-<div id="outline-container-orgeb471b1" class="outline-2">
-<h2 id="orgeb471b1"><span class="section-number-2">1.</span> Challenge</h2>
+<div id="outline-container-org08b5754" class="outline-2">
+<h2 id="org08b5754"><span class="section-number-2">1.</span> Challenge</h2>
 </div>
 
-<div id="outline-container-org70f57cb" class="outline-2">
-<h2 id="org70f57cb"><span class="section-number-2">2.</span> SDFT Solution</h2>
+<div id="outline-container-orgcef4351" class="outline-2">
+<h2 id="orgcef4351"><span class="section-number-2">2.</span> SDFT Solution</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SDFT uses <b>same</b> model as both teacher and student. Given a foundation model with policy \(\pi\), the teacher is conditioned with <span class="underline">task description</span> \(x\) and <span class="underline">expert demonstration</span> \(c\), denoted by \(\pi(\cdot | x,c)\); while the student is solely conditioned by <span class="underline">task description</span> \(x\), denoted by \(\pi_{\theta}(\cdot | x)\)
@@ -270,12 +270,12 @@ Since LLMs are autoregressive, we can rewrite the objective into <b>token-level 
 For the teacher model, SDFT uses Exponential Moving Average (EMA) of the student parameters.
 </p>
 </div>
-<div id="outline-container-org8e4c107" class="outline-3">
-<h3 id="org8e4c107"><span class="section-number-3">2.1.</span> From The Perspective of Inverse RL</h3>
+<div id="outline-container-orgc97e5f8" class="outline-3">
+<h3 id="orgc97e5f8"><span class="section-number-3">2.1.</span> From The Perspective of Inverse RL</h3>
 </div>
 
-<div id="outline-container-orgd2de414" class="outline-3">
-<h3 id="orgd2de414"><span class="section-number-3">2.2.</span> In-Context Learning Assumption</h3>
+<div id="outline-container-orgec5d16b" class="outline-3">
+<h3 id="orgec5d16b"><span class="section-number-3">2.2.</span> In-Context Learning Assumption</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The ICL Assumption tells that, the optimal policy for the task can be approximated by \(\pi^{\ast}_{k+1}(y | x) \approx \pi(y | x,c)\) and therefore is a good teacher. The quality of this approximation depends on 2 conditions:
@@ -286,29 +286,29 @@ The ICL Assumption tells that, the optimal policy for the task can be approximat
 <li><b>Minimal deviation</b>.</li>
 </ol>
 </div>
-<div id="outline-container-org41dfe23" class="outline-4">
-<h4 id="org41dfe23"><span class="section-number-4">2.2.1.</span> Empirical Validation of Assumption</h4>
+<div id="outline-container-orgcdaf9a6" class="outline-4">
+<h4 id="orgcdaf9a6"><span class="section-number-4">2.2.1.</span> Empirical Validation of Assumption</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org9b557b2" class="outline-2">
-<h2 id="org9b557b2"><span class="section-number-2">3.</span> Experiments</h2>
+<div id="outline-container-org2894b97" class="outline-2">
+<h2 id="org2894b97"><span class="section-number-2">3.</span> Experiments</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org416bce4" class="outline-3">
-<h3 id="org416bce4"><span class="section-number-3">3.1.</span> Effect of Model Size</h3>
+<div id="outline-container-org151d262" class="outline-3">
+<h3 id="org151d262"><span class="section-number-3">3.1.</span> Effect of Model Size</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Model size may influence model&rsquo;s in-context learning ability, thus influencing performance of SDFT. Larger model size results in better in-context learning ability.
 </p>
 </div>
 </div>
-<div id="outline-container-org3ba384c" class="outline-3">
-<h3 id="org3ba384c"><span class="section-number-3">3.2.</span> Training Reasoning Models w/o Reasoning Data</h3>
+<div id="outline-container-orge78f693" class="outline-3">
+<h3 id="orge78f693"><span class="section-number-3">3.2.</span> Training Reasoning Models w/o Reasoning Data</h3>
 </div>
 
-<div id="outline-container-orgb703201" class="outline-3">
-<h3 id="orgb703201"><span class="section-number-3">3.3.</span> What Drives the Improvement in Performance?</h3>
+<div id="outline-container-org52439ee" class="outline-3">
+<h3 id="org52439ee"><span class="section-number-3">3.3.</span> What Drives the Improvement in Performance?</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Paper tested 3 variants of student models for evaluating:
@@ -326,12 +326,12 @@ The results shows that SDFT always outperforms SFT and offline distillation.
 </div>
 </div>
 </div>
-<div id="outline-container-orga028bb6" class="outline-2">
-<h2 id="orga028bb6"><span class="section-number-2">4.</span> Ablation Studies</h2>
+<div id="outline-container-org594d5a3" class="outline-2">
+<h2 id="org594d5a3"><span class="section-number-2">4.</span> Ablation Studies</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orga04cae1" class="outline-3">
-<h3 id="orga04cae1"><span class="section-number-3">4.1.</span> What to Demonstrate?</h3>
+<div id="outline-container-org10ee7b5" class="outline-3">
+<h3 id="org10ee7b5"><span class="section-number-3">4.1.</span> What to Demonstrate?</h3>
 </div>
 </div>
 </div>

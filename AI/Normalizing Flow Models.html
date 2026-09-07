@@ -210,12 +210,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf2b7bf8">1. Motivation</a></li>
-<li><a href="#orgbb4f911">2. Flow Model</a>
+<li><a href="#orgd4f18ae">1. Motivation</a></li>
+<li><a href="#orgd66786a">2. Flow Model</a>
 <ul>
-<li><a href="#orgc0b88ba">2.1. Learning via Maximum Likelihood over Dataset</a></li>
-<li><a href="#org1375f7d">2.2. Choice of Transformation</a></li>
-<li><a href="#orgedf6f48">2.3. Case Study: Planar Flows</a></li>
+<li><a href="#org734e4d3">2.1. Learning via Maximum Likelihood over Dataset</a></li>
+<li><a href="#orga4e29db">2.2. Choice of Transformation</a></li>
+<li><a href="#orgc2ae41e">2.3. Case Study: Planar Flows</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +224,8 @@
 <p>
 Autoregressive models provide tractable likelihoods but no direct mechanism for learning features, while VAEs can learn feature representations via latent variables but have intractable marginal likelihoods.
 </p>
-<div id="outline-container-orgf2b7bf8" class="outline-2">
-<h2 id="orgf2b7bf8"><span class="section-number-2">1.</span> Motivation</h2>
+<div id="outline-container-orgd4f18ae" class="outline-2">
+<h2 id="orgd4f18ae"><span class="section-number-2">1.</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We want to design a latent variable model with tractable likelihoods. Desirable properties of model distribution \( p_{\theta}(\mathbf{x}) \) include easy-to-evaluate (closed form density) which is useful for training and easy-to-sample which is useful for generation.
@@ -236,8 +236,8 @@ Many simple distributions satisfy the above property, but true data distribution
 </p>
 </div>
 </div>
-<div id="outline-container-orgbb4f911" class="outline-2">
-<h2 id="orgbb4f911"><span class="section-number-2">2.</span> Flow Model</h2>
+<div id="outline-container-orgd66786a" class="outline-2">
+<h2 id="orgd66786a"><span class="section-number-2">2.</span> Flow Model</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Similar to VAE, we start from a simple prior: \( \mathbf{z} \sim \mathcal{N}(0,I)=p(\mathbf{z}) \), then we transform via \( p(\mathbf{x}|\mathbf{z})=\mathcal{N}(\mu_{\theta}(\mathbf{z}), \Sigma_{\theta}(\mathbf{z})) \)
@@ -274,8 +274,8 @@ From the above formula, &ldquo;normalizing&rdquo; - change of variables gives a 
 <dt>Latent representations</dt><dd>To represent the latent variable, it&rsquo;s also straightforward to use inverse transformation \( \mathbf{z} = \mathbf{f}^{-1}_{\theta}(\mathbf{x}) \)</dd>
 </dl>
 </div>
-<div id="outline-container-orgc0b88ba" class="outline-3">
-<h3 id="orgc0b88ba"><span class="section-number-3">2.1.</span> Learning via Maximum Likelihood over Dataset</h3>
+<div id="outline-container-org734e4d3" class="outline-3">
+<h3 id="org734e4d3"><span class="section-number-3">2.1.</span> Learning via Maximum Likelihood over Dataset</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can learn \( \mathbf{f}_{\theta} \) through maximum likelihood.
@@ -288,8 +288,8 @@ We can learn \( \mathbf{f}_{\theta} \) through maximum likelihood.
 </p>
 </div>
 </div>
-<div id="outline-container-org1375f7d" class="outline-3">
-<h3 id="org1375f7d"><span class="section-number-3">2.2.</span> Choice of Transformation</h3>
+<div id="outline-container-orga4e29db" class="outline-3">
+<h3 id="orga4e29db"><span class="section-number-3">2.2.</span> Choice of Transformation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Since we have to compute the determinant of the Jacobian, the time complexity is \( O(n^{3}) \). Suppose
@@ -306,8 +306,8 @@ If \( x_{i} = f_{i}(\mathbf{z}) \) only depends on \( \mathbf{z}_{\le i} \), the
 </p>
 </div>
 </div>
-<div id="outline-container-orgedf6f48" class="outline-3">
-<h3 id="orgedf6f48"><span class="section-number-3">2.3.</span> Case Study: Planar Flows</h3>
+<div id="outline-container-orgc2ae41e" class="outline-3">
+<h3 id="orgc2ae41e"><span class="section-number-3">2.3.</span> Case Study: Planar Flows</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Planar flow assumes the transformation to be

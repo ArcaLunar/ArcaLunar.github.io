@@ -211,12 +211,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc8f2dd2">1. GPU Memory Breakdown</a></li>
+<li><a href="#org56e1aca">1. GPU Memory Breakdown</a></li>
+<li><a href="#orgd759b17">2. Methodology</a>
+<ul>
+<li><a href="#org7655759">2.1. ZeRO-1: Optimizer States Sharding</a></li>
+<li><a href="#org0e5bae6">2.2. ZeRO-2: Gradients Sharding</a></li>
+<li><a href="#org0b0c0b4">2.3. ZeRO-3: Parameters Sharding</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc8f2dd2" class="outline-2">
-<h2 id="orgc8f2dd2"><span class="section-number-2">1.</span> GPU Memory Breakdown</h2>
+<div id="outline-container-org56e1aca" class="outline-2">
+<h2 id="org56e1aca"><span class="section-number-2">1.</span> GPU Memory Breakdown</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 When training a model on GPU, the GPU memory can be divided into 6 parts.
@@ -231,7 +238,7 @@ When training a model on GPU, the GPU memory can be divided into 6 parts.
 <li>Fragmentation</li>
 </ul>
 
-<div class="eg" id="org2913ad8">
+<div class="eg" id="org7e7a044">
 <p>
 For example, training a 7B model in FP16 (2 bytes).
 </p>
@@ -247,6 +254,47 @@ Even if we have already ignored activations and all other consumptions, training
 </p>
 
 </div>
+</div>
+</div>
+<div id="outline-container-orgd759b17" class="outline-2">
+<h2 id="orgd759b17"><span class="section-number-2">2.</span> Methodology</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In classic distributed data parallelism (DDP), each GPU has a <b>full copy</b> of the model and processes a fraction of data. After each step of backprop, gradients are <code>allreduce</code>-ed for updating the parameters. Each rank in DDP have a full and identical copy of parameters, gradients and optimizer states.
+</p>
+
+<p>
+ZeRO handles the redundancy problem in DDP by eliminating redundant copies of parameters, gradients, and optimizer states at the cost of communication.
+</p>
+
+<p>
+ZeRO can be divided into 3 levels, based on aggressiveness of elimination.
+</p>
+
+<ul class="org-ul">
+<li>ZeRO-1. Only cut optimizer states.</li>
+<li>ZeRO-2. Optimizer states + gradients.</li>
+<li>ZeRO-3. Optimizer states + gradients + parameters.</li>
+</ul>
+
+<p>
+It&rsquo;s worth noticing that FSDP is PyTorch&rsquo;s implementation of ZeRO-3.
+</p>
+</div>
+<div id="outline-container-org7655759" class="outline-3">
+<h3 id="org7655759"><span class="section-number-3">2.1.</span> ZeRO-1: Optimizer States Sharding</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+ZeRO-1 shards optimizer states by DP size. On each rank, the parameters and gradients are still full copy, but optimizer states are sharded.
+</p>
+</div>
+</div>
+<div id="outline-container-org0e5bae6" class="outline-3">
+<h3 id="org0e5bae6"><span class="section-number-3">2.2.</span> ZeRO-2: Gradients Sharding</h3>
+</div>
+
+<div id="outline-container-org0b0c0b4" class="outline-3">
+<h3 id="org0b0c0b4"><span class="section-number-3">2.3.</span> ZeRO-3: Parameters Sharding</h3>
 </div>
 </div>
 </div>

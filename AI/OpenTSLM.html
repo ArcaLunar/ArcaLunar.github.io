@@ -211,26 +211,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org168617e">1. Solution</a>
+<li><a href="#orgd4ad304">1. Solution</a>
 <ul>
-<li><a href="#orge587dea">1.1. Time-Series Encoder</a></li>
-<li><a href="#orgaec64de">1.2. OpenTSLM-SP</a></li>
-<li><a href="#org390083e">1.3. OpenTSLM-Flamingo</a></li>
+<li><a href="#orgad0727a">1.1. Time-Series Encoder</a></li>
+<li><a href="#orgd20185e">1.2. OpenTSLM-SP</a></li>
+<li><a href="#org14d0a99">1.3. OpenTSLM-Flamingo</a></li>
 </ul>
 </li>
-<li><a href="#orgb8fca39">2. Dataset Construction</a></li>
+<li><a href="#org0462f90">2. Dataset Construction</a></li>
 </ul>
 </div>
 </div>
 <p>
 This paper proposes 2 architectures for TSLMs, namely OpenTSLM-SP and OpenTSLM-Flamingo.
 </p>
-<div id="outline-container-org168617e" class="outline-2">
-<h2 id="org168617e"><span class="section-number-2">1.</span> Solution</h2>
+<div id="outline-container-orgd4ad304" class="outline-2">
+<h2 id="orgd4ad304"><span class="section-number-2">1.</span> Solution</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge587dea" class="outline-3">
-<h3 id="orge587dea"><span class="section-number-3">1.1.</span> Time-Series Encoder</h3>
+<div id="outline-container-orgad0727a" class="outline-3">
+<h3 id="orgad0727a"><span class="section-number-3">1.1.</span> Time-Series Encoder</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The time series encoder is adopted among OpenTSLM&rsquo;s different architecture. OpenTSLM can either <span class="underline">train an encoder from scratch</span> (e.g., using PatchTST architecture), or <span class="underline">using pretrained TSFMs</span> (e.g., Chronos-2).
@@ -241,8 +241,8 @@ When trained from scratch, the encoder is trained with the backbone models; whil
 </p>
 </div>
 </div>
-<div id="outline-container-orgaec64de" class="outline-3">
-<h3 id="orgaec64de"><span class="section-number-3">1.2.</span> OpenTSLM-SP</h3>
+<div id="outline-container-orgd20185e" class="outline-3">
+<h3 id="orgd20185e"><span class="section-number-3">1.2.</span> OpenTSLM-SP</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Built on Time-Series Encoder, OpenTSLM tries to leverage a pretrained LLM. It adds an <span class="underline">extra projection layer</span> mapping TS embeddings to LLM hidden space. Then, it finetunes the LLM with LoRA.
@@ -273,8 +273,8 @@ The OpenTSLM-SP then finetunes the backbone (with LoRA) and the MLP.
 </p>
 </div>
 </div>
-<div id="outline-container-org390083e" class="outline-3">
-<h3 id="org390083e"><span class="section-number-3">1.3.</span> OpenTSLM-Flamingo</h3>
+<div id="outline-container-org14d0a99" class="outline-3">
+<h3 id="org14d0a99"><span class="section-number-3">1.3.</span> OpenTSLM-Flamingo</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Inspired by Flamingo (the VLM architecture), OpenTSLM-Flamingo uses a time-series encoder and <span class="underline">adapt the cross-attention mechanism</span>. The model consists of (1) time series patch encoder, as in Section 1.1; (2) Perceiver Resampler; (3) gated cross-attention layers integrated into the LLM; (4) the frozen LLM backbone.
@@ -306,8 +306,8 @@ After that, following OpenFlamingo, OpenTSLM-Flamingo has to <span class="underl
 </div>
 </div>
 </div>
-<div id="outline-container-orgb8fca39" class="outline-2">
-<h2 id="orgb8fca39"><span class="section-number-2">2.</span> Dataset Construction</h2>
+<div id="outline-container-org0462f90" class="outline-2">
+<h2 id="org0462f90"><span class="section-number-2">2.</span> Dataset Construction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 OpenTSLM also shippes 3 domain-specific <b>Chain-of-Thought</b> datasets on medicine, focusing on human activity recognition (HAR-CoT), sleep stage classification (SleepEDF-CoT), and electrocardiogram question answering (ECG-QA-CoT).

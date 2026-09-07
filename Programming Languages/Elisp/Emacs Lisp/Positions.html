@@ -206,16 +206,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org714a035">1. Point</a></li>
-<li><a href="#org3ac19fc">2. Motion</a>
+<li><a href="#org390e798">1. Point</a></li>
+<li><a href="#org6d0adc2">2. Motion</a>
 <ul>
-<li><a href="#orgf6a2264">2.1. Motion by Characters</a></li>
-<li><a href="#org991ee26">2.2. Motion by Words</a></li>
-<li><a href="#org4914982">2.3. Motion to an End of the Buffer</a></li>
-<li><a href="#orgd802afb">2.4. Motion by Text Lines</a></li>
-<li><a href="#org64d2432">2.5. Motion by Screen Lines</a></li>
-<li><a href="#orga4d4dd5">2.6. Motion over Balanced Expressions</a></li>
-<li><a href="#org50bd810">2.7. Skipping Characters</a></li>
+<li><a href="#orgcfc85df">2.1. Motion by Characters</a></li>
+<li><a href="#org99f2e1b">2.2. Motion by Words</a></li>
+<li><a href="#orgd9ad0f0">2.3. Motion to an End of the Buffer</a></li>
+<li><a href="#org2b0d7f7">2.4. Motion by Text Lines</a></li>
+<li><a href="#org71311f7">2.5. Motion by Screen Lines</a></li>
+<li><a href="#orge540315">2.6. Motion over Balanced Expressions</a></li>
+<li><a href="#orgf5e4478">2.7. Skipping Characters</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +224,8 @@
 <p>
 A <i>position</i> is the index <span class="underline">between 2 characters or before the 1st character</span> in the text of a buffer. It starts from 1 (which is before the 1st characer). Positions can also be represented by <i>markers</i>, special objects that relocate automatically when text is inserted or deleted.
 </p>
-<div id="outline-container-org714a035" class="outline-2">
-<h2 id="org714a035"><span class="section-number-2">1.</span> Point</h2>
+<div id="outline-container-org390e798" class="outline-2">
+<h2 id="org390e798"><span class="section-number-2">1.</span> Point</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Commands move point through texts to allow editing and insertion at different places.
@@ -252,15 +252,15 @@ Each window also have a value of point, which is independent of the value of poi
 </dl>
 </div>
 </div>
-<div id="outline-container-org3ac19fc" class="outline-2">
-<h2 id="org3ac19fc"><span class="section-number-2">2.</span> Motion</h2>
+<div id="outline-container-org6d0adc2" class="outline-2">
+<h2 id="org6d0adc2"><span class="section-number-2">2.</span> Motion</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Motion functions change the value of point.
 </p>
 </div>
-<div id="outline-container-orgf6a2264" class="outline-3">
-<h3 id="orgf6a2264"><span class="section-number-3">2.1.</span> Motion by Characters</h3>
+<div id="outline-container-orgcfc85df" class="outline-3">
+<h3 id="orgcfc85df"><span class="section-number-3">2.1.</span> Motion by Characters</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt><code>goto-char POSITION</code></dt><dd><p>
@@ -291,8 +291,8 @@ In an <span class="underline">interactive</span> call, <code>COUNT</code> is the
 </dl>
 </div>
 </div>
-<div id="outline-container-org991ee26" class="outline-3">
-<h3 id="org991ee26"><span class="section-number-3">2.2.</span> Motion by Words</h3>
+<div id="outline-container-org99f2e1b" class="outline-3">
+<h3 id="org99f2e1b"><span class="section-number-3">2.2.</span> Motion by Words</h3>
 <div class="outline-text-3" id="text-2-2">
 <dl class="org-dl">
 <dt><code>forward-word &amp;optional COUNT</code></dt><dd></dd>
@@ -311,24 +311,24 @@ In an <span class="underline">interactive</span> call, <code>COUNT</code> is the
 </dl>
 </div>
 </div>
-<div id="outline-container-org4914982" class="outline-3">
-<h3 id="org4914982"><span class="section-number-3">2.3.</span> Motion to an End of the Buffer</h3>
+<div id="outline-container-orgd9ad0f0" class="outline-3">
+<h3 id="orgd9ad0f0"><span class="section-number-3">2.3.</span> Motion to an End of the Buffer</h3>
 </div>
 
-<div id="outline-container-orgd802afb" class="outline-3">
-<h3 id="orgd802afb"><span class="section-number-3">2.4.</span> Motion by Text Lines</h3>
+<div id="outline-container-org2b0d7f7" class="outline-3">
+<h3 id="org2b0d7f7"><span class="section-number-3">2.4.</span> Motion by Text Lines</h3>
 </div>
 
-<div id="outline-container-org64d2432" class="outline-3">
-<h3 id="org64d2432"><span class="section-number-3">2.5.</span> Motion by Screen Lines</h3>
+<div id="outline-container-org71311f7" class="outline-3">
+<h3 id="org71311f7"><span class="section-number-3">2.5.</span> Motion by Screen Lines</h3>
 </div>
 
-<div id="outline-container-orga4d4dd5" class="outline-3">
-<h3 id="orga4d4dd5"><span class="section-number-3">2.6.</span> Motion over Balanced Expressions</h3>
+<div id="outline-container-orge540315" class="outline-3">
+<h3 id="orge540315"><span class="section-number-3">2.6.</span> Motion over Balanced Expressions</h3>
 </div>
 
-<div id="outline-container-org50bd810" class="outline-3">
-<h3 id="org50bd810"><span class="section-number-3">2.7.</span> Skipping Characters</h3>
+<div id="outline-container-orgf5e4478" class="outline-3">
+<h3 id="orgf5e4478"><span class="section-number-3">2.7.</span> Skipping Characters</h3>
 </div>
 </div>
 </div>
