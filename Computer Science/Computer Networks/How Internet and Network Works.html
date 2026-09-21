@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,54 +220,54 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2180a68">1. Protocol</a></li>
-<li><a href="#orgc897581">2. What Happens at Network Edge?</a>
+<li><a href="#orgcedb11b">1. Protocol</a></li>
+<li><a href="#org7b8c2ee">2. What Happens at Network Edge?</a>
 <ul>
-<li><a href="#org71d7a4f">2.1. <span class="todo TODO">TODO</span> Access Networks</a>
+<li><a href="#orgcd34e86">2.1. <span class="todo TODO">TODO</span> Access Networks</a>
 <ul>
-<li><a href="#org0451fe5">2.1.1. Cable-Based Access Networks</a></li>
-<li><a href="#org45e22b2">2.1.2. Digital Subscriber Line (DSL)</a></li>
-<li><a href="#org32d68c0">2.1.3. Home Networks</a></li>
-<li><a href="#orga7fa050">2.1.4. Wireless Access Networks</a></li>
-<li><a href="#orgf78539e">2.1.5. Data Center Networks</a></li>
-<li><a href="#org6365124">2.1.6. Enterprise Networks</a></li>
+<li><a href="#orgcab35ea">2.1.1. Cable-Based Access Networks</a></li>
+<li><a href="#orgd001449">2.1.2. Digital Subscriber Line (DSL)</a></li>
+<li><a href="#orge304671">2.1.3. Home Networks</a></li>
+<li><a href="#org1014ed3">2.1.4. Wireless Access Networks</a></li>
+<li><a href="#org20e48db">2.1.5. Data Center Networks</a></li>
+<li><a href="#org286664f">2.1.6. Enterprise Networks</a></li>
 </ul>
 </li>
-<li><a href="#orgcab12a7">2.2. Links: Physical Media</a></li>
+<li><a href="#orgf744eb7">2.2. Links: Physical Media</a></li>
 </ul>
 </li>
-<li><a href="#org3b5b3bc">3. What Happens at Network Core?</a>
+<li><a href="#org37ec0ca">3. What Happens at Network Core?</a>
 <ul>
-<li><a href="#org52f149b">3.1. Packet Forwarding at Router</a></li>
-<li><a href="#orgd54b6e4">3.2. Circuit Switching</a></li>
+<li><a href="#org92370f5">3.1. Packet Forwarding at Router</a></li>
+<li><a href="#org195a8f3">3.2. Circuit Switching</a></li>
 </ul>
 </li>
-<li><a href="#org1bf7f55">4. Network of Networks</a></li>
-<li><a href="#org7cb92f0">5. Performance: Loss, Delay, Throughput</a>
+<li><a href="#org636fb49">4. Network of Networks</a></li>
+<li><a href="#org5968b61">5. Performance: Loss, Delay, Throughput</a>
 <ul>
-<li><a href="#org084517c">5.1. Packet Delay</a></li>
-<li><a href="#orge5a7323">5.2. Queuing Delay</a></li>
-<li><a href="#org832ed8d">5.3. Throughput</a></li>
+<li><a href="#orge0e80c6">5.1. Packet Delay</a></li>
+<li><a href="#org4f667d2">5.2. Queuing Delay</a></li>
+<li><a href="#org7b90a5b">5.3. Throughput</a></li>
 </ul>
 </li>
-<li><a href="#orgb55adb9">6. <span class="todo TODO">TODO</span> Security</a></li>
+<li><a href="#org9e572e6">6. <span class="todo TODO">TODO</span> Security</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2180a68" class="outline-2">
-<h2 id="org2180a68"><span class="section-number-2">1.</span> Protocol</h2>
+<div id="outline-container-orgcedb11b" class="outline-2">
+<h2 id="orgcedb11b"><span class="section-number-2">1.</span> Protocol</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The networks is developed on top of <b>protocol</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc897581" class="outline-2">
-<h2 id="orgc897581"><span class="section-number-2">2.</span> What Happens at Network Edge?</h2>
+<div id="outline-container-org7b8c2ee" class="outline-2">
+<h2 id="org7b8c2ee"><span class="section-number-2">2.</span> What Happens at Network Edge?</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org71d7a4f" class="outline-3">
-<h3 id="org71d7a4f"><span class="section-number-3">2.1.</span> <span class="todo TODO">TODO</span> Access Networks</h3>
+<div id="outline-container-orgcd34e86" class="outline-3">
+<h3 id="orgcd34e86"><span class="section-number-3">2.1.</span> <span class="todo TODO">TODO</span> Access Networks</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Internet structure consists of three parts: <b>network edge</b>, including hosts and servers; <b>access networks</b> including wired or wireless communication links; <b>network core</b> including routers and network of networks.
@@ -270,8 +281,8 @@ There are 3 ways to connect end systems to edge router: residential access nets,
 Hosts&rsquo; sending function takes application message, breaks it into smaller chunks (<b>packets</b>) of length \(L\) bits and <span class="underline">transmits packet into access network</span> at transmission rate \(R\) (or link transmission rate, link capacity, link bandwidth).
 </p>
 </div>
-<div id="outline-container-org0451fe5" class="outline-4">
-<h4 id="org0451fe5"><span class="section-number-4">2.1.1.</span> Cable-Based Access Networks</h4>
+<div id="outline-container-orgcab35ea" class="outline-4">
+<h4 id="orgcab35ea"><span class="section-number-4">2.1.1.</span> Cable-Based Access Networks</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <b>Frequency division multiplexing</b>.
@@ -286,16 +297,16 @@ Hosts&rsquo; sending function takes application message, breaks it into smaller 
 </p>
 </div>
 </div>
-<div id="outline-container-org45e22b2" class="outline-4">
-<h4 id="org45e22b2"><span class="section-number-4">2.1.2.</span> Digital Subscriber Line (DSL)</h4>
+<div id="outline-container-orgd001449" class="outline-4">
+<h4 id="orgd001449"><span class="section-number-4">2.1.2.</span> Digital Subscriber Line (DSL)</h4>
 </div>
 
-<div id="outline-container-org32d68c0" class="outline-4">
-<h4 id="org32d68c0"><span class="section-number-4">2.1.3.</span> Home Networks</h4>
+<div id="outline-container-orge304671" class="outline-4">
+<h4 id="orge304671"><span class="section-number-4">2.1.3.</span> Home Networks</h4>
 </div>
 
-<div id="outline-container-orga7fa050" class="outline-4">
-<h4 id="orga7fa050"><span class="section-number-4">2.1.4.</span> Wireless Access Networks</h4>
+<div id="outline-container-org1014ed3" class="outline-4">
+<h4 id="org1014ed3"><span class="section-number-4">2.1.4.</span> Wireless Access Networks</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Shared wireless access networks connects end system to router via base station aka &ldquo;<i>access point</i>&rdquo;.
@@ -307,16 +318,16 @@ Shared wireless access networks connects end system to router via base station a
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf78539e" class="outline-4">
-<h4 id="orgf78539e"><span class="section-number-4">2.1.5.</span> Data Center Networks</h4>
+<div id="outline-container-org20e48db" class="outline-4">
+<h4 id="org20e48db"><span class="section-number-4">2.1.5.</span> Data Center Networks</h4>
 </div>
 
-<div id="outline-container-org6365124" class="outline-4">
-<h4 id="org6365124"><span class="section-number-4">2.1.6.</span> Enterprise Networks</h4>
+<div id="outline-container-org286664f" class="outline-4">
+<h4 id="org286664f"><span class="section-number-4">2.1.6.</span> Enterprise Networks</h4>
 </div>
 </div>
-<div id="outline-container-orgcab12a7" class="outline-3">
-<h3 id="orgcab12a7"><span class="section-number-3">2.2.</span> Links: Physical Media</h3>
+<div id="outline-container-orgf744eb7" class="outline-3">
+<h3 id="orgf744eb7"><span class="section-number-3">2.2.</span> Links: Physical Media</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 <b>Physical links</b> lie between transmitter and receiver that transmits bits. Links can have different types. We may roughly categorize them into 2 classes: <b>guided media</b> and <b>unguided media</b>.
@@ -328,8 +339,8 @@ Typical media include <i>twisted pair (TP)</i>, <i>coaxial cable</i>, <i>fiber o
 </div>
 </div>
 </div>
-<div id="outline-container-org3b5b3bc" class="outline-2">
-<h2 id="org3b5b3bc"><span class="section-number-2">3.</span> What Happens at Network Core?</h2>
+<div id="outline-container-org37ec0ca" class="outline-2">
+<h2 id="org37ec0ca"><span class="section-number-2">3.</span> What Happens at Network Core?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The network core is mesh of interconnected routers. The most important operation is <b>packet switching</b>.
@@ -349,8 +360,8 @@ Packet switching involves 2 core operations:
 <li><b>routing</b>, <i>global</i> aciton that determine source destination paths taken by packets.</li>
 </ul>
 </div>
-<div id="outline-container-org52f149b" class="outline-3">
-<h3 id="org52f149b"><span class="section-number-3">3.1.</span> Packet Forwarding at Router</h3>
+<div id="outline-container-org92370f5" class="outline-3">
+<h3 id="org92370f5"><span class="section-number-3">3.1.</span> Packet Forwarding at Router</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <b>Store-and-forward</b>. entire packet must arrive at router before it can be transmitted on next link.
@@ -361,8 +372,8 @@ Packet switching involves 2 core operations:
 </p>
 </div>
 </div>
-<div id="outline-container-orgd54b6e4" class="outline-3">
-<h3 id="orgd54b6e4"><span class="section-number-3">3.2.</span> Circuit Switching</h3>
+<div id="outline-container-org195a8f3" class="outline-3">
+<h3 id="org195a8f3"><span class="section-number-3">3.2.</span> Circuit Switching</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 May cause inefficiency.
@@ -374,8 +385,8 @@ Frequency/time division multiplexing.
 </div>
 </div>
 </div>
-<div id="outline-container-org1bf7f55" class="outline-2">
-<h2 id="org1bf7f55"><span class="section-number-2">4.</span> Network of Networks</h2>
+<div id="outline-container-org636fb49" class="outline-2">
+<h2 id="org636fb49"><span class="section-number-2">4.</span> Network of Networks</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Hosts connect to Internet via access Internet Service Providers (ISP).
@@ -386,15 +397,15 @@ Internet exchange point (IXP) connects different ISPs.
 </p>
 </div>
 </div>
-<div id="outline-container-org7cb92f0" class="outline-2">
-<h2 id="org7cb92f0"><span class="section-number-2">5.</span> Performance: Loss, Delay, Throughput</h2>
+<div id="outline-container-org5968b61" class="outline-2">
+<h2 id="org5968b61"><span class="section-number-2">5.</span> Performance: Loss, Delay, Throughput</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Packet loss comes from queue overflow in routers.
 </p>
 </div>
-<div id="outline-container-org084517c" class="outline-3">
-<h3 id="org084517c"><span class="section-number-3">5.1.</span> Packet Delay</h3>
+<div id="outline-container-orge0e80c6" class="outline-3">
+<h3 id="orge0e80c6"><span class="section-number-3">5.1.</span> Packet Delay</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Delay consists of
@@ -408,16 +419,16 @@ Delay consists of
 </ul>
 </div>
 </div>
-<div id="outline-container-orge5a7323" class="outline-3">
-<h3 id="orge5a7323"><span class="section-number-3">5.2.</span> Queuing Delay</h3>
+<div id="outline-container-org4f667d2" class="outline-3">
+<h3 id="org4f667d2"><span class="section-number-3">5.2.</span> Queuing Delay</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 <b>traffic intensity</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-org832ed8d" class="outline-3">
-<h3 id="org832ed8d"><span class="section-number-3">5.3.</span> Throughput</h3>
+<div id="outline-container-org7b90a5b" class="outline-3">
+<h3 id="org7b90a5b"><span class="section-number-3">5.3.</span> Throughput</h3>
 <div class="outline-text-3" id="text-5-3">
 <dl class="org-dl">
 <dt>Throughput</dt><dd>Rate at which bits are being sent from sender to receiver.</dd>
@@ -425,8 +436,8 @@ Delay consists of
 </div>
 </div>
 </div>
-<div id="outline-container-orgb55adb9" class="outline-2">
-<h2 id="orgb55adb9"><span class="section-number-2">6.</span> <span class="todo TODO">TODO</span> Security</h2>
+<div id="outline-container-org9e572e6" class="outline-2">
+<h2 id="org9e572e6"><span class="section-number-2">6.</span> <span class="todo TODO">TODO</span> Security</h2>
 </div>
 </div>
 <div id="postamble" class="status">

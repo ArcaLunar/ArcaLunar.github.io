@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,17 +217,18 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Predictive Parsing</h1>
+<p class="article-desc">Like recursive rescent parsing, but parser can &ldquo;predict&rdquo; which production to use next, by looking at the next few tokens (which requires restricted grammars) and no backtracking.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge1c91d6">1. Left-Factoring the Grammars</a>
+<li><a href="#org7268883">1. Left-Factoring the Grammars</a>
 <ul>
-<li><a href="#org7a27b83">1.1. Parsing table</a></li>
-<li><a href="#org98874dd">1.2. Stack</a></li>
+<li><a href="#orge3ea7f5">1.1. Parsing table</a></li>
+<li><a href="#orgd91e22e">1.2. Stack</a></li>
 </ul>
 </li>
-<li><a href="#org3c503e7">2. First Sets</a></li>
+<li><a href="#org38477c3">2. First Sets</a></li>
 </ul>
 </div>
 </div>
@@ -227,8 +239,8 @@ Like recursive rescent parsing, but parser can &ldquo;predict&rdquo; which produ
 <p>
 Predictive parsers accept \(LL(k)\) grammars, which means &ldquo;left-to-right&rdquo;, &ldquo;left-most derivation&rdquo; and &ldquo;\(k\)-tokens to lookahead&rdquo;. <b>In \(LL(k)\), at each step, only one choice of production.</b>
 </p>
-<div id="outline-container-orge1c91d6" class="outline-2">
-<h2 id="orge1c91d6"><span class="section-number-2">1.</span> Left-Factoring the Grammars</h2>
+<div id="outline-container-org7268883" class="outline-2">
+<h2 id="org7268883"><span class="section-number-2">1.</span> Left-Factoring the Grammars</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The goal is to eliminate common prefixes of terminals, by <b>extracting common prefixes to a production</b>. e.g., the following production
@@ -249,16 +261,16 @@ E &\to T\, X \\
 X &\to +E\, |\, \epsilon
 \end{split}
 </div>
-<div id="outline-container-org7a27b83" class="outline-3">
-<h3 id="org7a27b83"><span class="section-number-3">1.1.</span> Parsing table</h3>
+<div id="outline-container-orge3ea7f5" class="outline-3">
+<h3 id="orge3ea7f5"><span class="section-number-3">1.1.</span> Parsing table</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The \(LL(1)\) parsing table has rows representing <i>current non-terminal</i> and columns representing <i>next token</i>, and the cell tells <i>which production to use for parsing</i>.
 </p>
 </div>
 </div>
-<div id="outline-container-org98874dd" class="outline-3">
-<h3 id="org98874dd"><span class="section-number-3">1.2.</span> Stack</h3>
+<div id="outline-container-orgd91e22e" class="outline-3">
+<h3 id="orgd91e22e"><span class="section-number-3">1.2.</span> Stack</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We may also need a <i>stack</i> to record frontier of the parse tree, including <i>non-terminals</i> that have yet to be expanded, <i>terminals</i> that have yet to matched against the input. Top of stack always tells the leftmost pending terminal or non-terminal.
@@ -296,8 +308,8 @@ And we reject on reaching error state, accept on end of input and empty stack.
 </div>
 </div>
 </div>
-<div id="outline-container-org3c503e7" class="outline-2">
-<h2 id="org3c503e7"><span class="section-number-2">2.</span> First Sets</h2>
+<div id="outline-container-org38477c3" class="outline-2">
+<h2 id="org38477c3"><span class="section-number-2">2.</span> First Sets</h2>
 </div>
 </div>
 <div id="postamble" class="status">

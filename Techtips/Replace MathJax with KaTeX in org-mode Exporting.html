@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -207,13 +218,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgac8bff1">1. Use KaTeX as MathJax Alternative</a></li>
-<li><a href="#org55970bc">2. Update: 2026 July</a></li>
+<li><a href="#orgd496f51">1. Use KaTeX as MathJax Alternative</a></li>
+<li><a href="#org9bc8a17">2. Update: 2026 July</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac8bff1" class="outline-2">
-<h2 id="orgac8bff1"><span class="section-number-2">1.</span> Use KaTeX as MathJax Alternative</h2>
+<div id="outline-container-orgd496f51" class="outline-2">
+<h2 id="orgd496f51"><span class="section-number-2">1.</span> Use KaTeX as MathJax Alternative</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In MathJax, some characters cannot be rendered, I guess due to some font issues. While KaTeX can render correctly, and it&rsquo;s faster in loading when exported into HTML. So I decided to replace MathJax with KaTeX. With just one single line of configuration<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
@@ -228,8 +239,8 @@ In MathJax, some characters cannot be rendered, I guess due to some font issues.
 </div>
 </div>
 </div>
-<div id="outline-container-org55970bc" class="outline-2">
-<h2 id="org55970bc"><span class="section-number-2">2.</span> Update: 2026 July</h2>
+<div id="outline-container-org9bc8a17" class="outline-2">
+<h2 id="org9bc8a17"><span class="section-number-2">2.</span> Update: 2026 July</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The above script may cause some render issues, like the <code>\ne</code> sign may not be correctly rendered. That&rsquo;s due to a bug in 0.10.0 version in katex.js and css.

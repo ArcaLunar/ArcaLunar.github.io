@@ -1,0 +1,29 @@
+/* Design tokens shared by every stylesheet below: brand colors/fonts
+ * (--site-*) and the footnote-presentation switch (--org-footnote-*, see
+ * footnotes.css). Load this file first — everything else reads these
+ * custom properties via var(...). */
+
+/*
+ * Org footnote presentation.
+ *
+ * Change only this value to switch the preferred presentation:
+ *   sidenote — margin notes on wide screens, cards on narrow screens
+ *   card     — floating cards on every screen
+ */
+:root {
+  --org-footnote-style: sidenote;
+  --org-footnote-accent: #527d9a;
+  --org-footnote-card-background: #fff;
+  --org-footnote-card-foreground: #333;
+
+  --site-ink: #1b1f23;
+  --site-paper: #fbfaf7;
+  --site-rule: #d6dce1;
+  --site-accent: #527d9a;
+  --site-dim: #7c8a93;
+  --site-mono-tint: #eef1f3;
+  --site-sans: ui-sans, "Anthropic Sans Text", "Fira Sans", sans;
+  --site-serif: ui-serif, "Anthropic Serif Text", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  --site-mono: ui-monospace, "JetBrains Mono", "Cascadia Code",
+    Menlo, Consolas, monospace;
+}

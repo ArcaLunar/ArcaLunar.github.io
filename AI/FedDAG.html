@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,21 +220,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge4151fe">1. Solution</a>
+<li><a href="#org61c92d2">1. Solution</a>
 <ul>
-<li><a href="#org5381117">1.1. Gradient-Based Similarity</a></li>
-<li><a href="#org8d0dd38">1.2. Weighted Class-wise Data-Based Similarity</a></li>
+<li><a href="#org739d1fb">1.1. Gradient-Based Similarity</a></li>
+<li><a href="#org6013f03">1.2. Weighted Class-wise Data-Based Similarity</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge4151fe" class="outline-2">
-<h2 id="orge4151fe"><span class="section-number-2">1.</span> Solution</h2>
+<div id="outline-container-org61c92d2" class="outline-2">
+<h2 id="org61c92d2"><span class="section-number-2">1.</span> Solution</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5381117" class="outline-3">
-<h3 id="org5381117"><span class="section-number-3">1.1.</span> Gradient-Based Similarity</h3>
+<div id="outline-container-org739d1fb" class="outline-3">
+<h3 id="org739d1fb"><span class="section-number-3">1.1.</span> Gradient-Based Similarity</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Each client \(i\) is initialized with random parameters \( \theta_{i}^{0} \) and performs local training on local dataset \( D_{i} \) for \( t_{g} = 2 \) rounds to obtain a local gradient update \( \Delta^{i} \).
@@ -240,8 +251,8 @@ The local gradient update is <span class="underline">\(k\)-sparsified</span> tha
 </p>
 </div>
 </div>
-<div id="outline-container-org8d0dd38" class="outline-3">
-<h3 id="org8d0dd38"><span class="section-number-3">1.2.</span> Weighted Class-wise Data-Based Similarity</h3>
+<div id="outline-container-org6013f03" class="outline-3">
+<h3 id="org6013f03"><span class="section-number-3">1.2.</span> Weighted Class-wise Data-Based Similarity</h3>
 </div>
 </div>
 </div>

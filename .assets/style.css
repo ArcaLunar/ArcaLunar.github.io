@@ -302,10 +302,20 @@ div.corollary .katex-display {
  * generic label with that name instead — see further down for the
  * `:has()` rule that wires this up.
  *
+ * Theorems are the one environment that's auto-numbered, via a CSS counter
+ * reset on `body` — so each exported page starts its own "Theorem 1" fresh,
+ * independently of every other page. A named theorem still increments the
+ * counter (so IDs stay in sequence around it) but shows its name instead of
+ * the number, per the `:has()` rule below.
+ *
  * To make a specific statement stand out (e.g. citing a theorem in a
  * solution), add `#+attr_html: :class highlight` above the block in Org;
  * see the `.highlight` rules below for the emphasized, boxed treatment.
  */
+body {
+  counter-reset: theorem;
+}
+
 div.definition,
 div.axiom,
 div.proposition,
@@ -319,6 +329,10 @@ div.corollary {
   padding-left: 1rem;
 
   border-left: 3px solid var(--statement-accent);
+}
+
+div.theorem {
+  counter-increment: theorem;
 }
 
 div.definition::before,
@@ -348,7 +362,7 @@ div.proposition::before {
 }
 
 div.theorem::before {
-  content: "Theorem.";
+  content: "Theorem " counter(theorem) ".";
 }
 
 div.lemma::before {

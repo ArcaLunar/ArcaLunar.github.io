@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,20 +217,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1c27e2c">1. Recursive Segtree</a>
+<li><a href="#orgff3a390">1. Recursive Segtree</a>
 <ul>
-<li><a href="#org5ad6608">1.1. Range Modification and Lazy Tags</a></li>
+<li><a href="#org58a6e63">1.1. Range Modification and Lazy Tags</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1c27e2c" class="outline-2">
-<h2 id="org1c27e2c"><span class="section-number-2">1.</span> Recursive Segtree</h2>
+<div id="outline-container-orgff3a390" class="outline-2">
+<h2 id="orgff3a390"><span class="section-number-2">1.</span> Recursive Segtree</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5ad6608" class="outline-3">
-<h3 id="org5ad6608"><span class="section-number-3">1.1.</span> Range Modification and Lazy Tags</h3>
+<div id="outline-container-org58a6e63" class="outline-3">
+<h3 id="org58a6e63"><span class="section-number-3">1.1.</span> Range Modification and Lazy Tags</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 In order to do range modifications, we usually have 2 ways: <i>tag persistence</i> or <i>lazy tag</i>. The difference is that, the former does not push down tags to nodes as the latter does, instead, it maintains the tags separately, and only accumulates the tags during queries.

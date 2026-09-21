@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,29 +217,30 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Treap</h1>
+<p class="article-desc">Non-rotational treap (FHQ Treap) can be used to maintain sequence operations and balanced tree.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org11a9c6e">1. Split Operation</a>
+<li><a href="#org6e5f51b">1. Split Operation</a>
 <ul>
-<li><a href="#org1aa0392">1.1. By Value</a></li>
-<li><a href="#org2be1447">1.2. By Size/Rank</a></li>
+<li><a href="#org3bd16be">1.1. By Value</a></li>
+<li><a href="#org4770c66">1.2. By Size/Rank</a></li>
 </ul>
 </li>
-<li><a href="#orgaaea878">2. Merging</a></li>
+<li><a href="#org88dd5fd">2. Merging</a></li>
 </ul>
 </div>
 </div>
 <p>
 Non-rotational treap (FHQ Treap) can be used to maintain sequence operations and balanced tree.
 </p>
-<div id="outline-container-org11a9c6e" class="outline-2">
-<h2 id="org11a9c6e"><span class="section-number-2">1.</span> Split Operation</h2>
+<div id="outline-container-org6e5f51b" class="outline-2">
+<h2 id="org6e5f51b"><span class="section-number-2">1.</span> Split Operation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1aa0392" class="outline-3">
-<h3 id="org1aa0392"><span class="section-number-3">1.1.</span> By Value</h3>
+<div id="outline-container-org3bd16be" class="outline-3">
+<h3 id="org3bd16be"><span class="section-number-3">1.1.</span> By Value</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose treap root <code>cur</code> and key value <code>key</code>, and we want to split treap into 2 parts \(\le key\) (treap A) and \(\gt key\) (treap B). Also, we assume the treap is already in order.
@@ -239,8 +251,8 @@ Consider the current root. If <code>cur</code> has value smaller than <code>key<
 </p>
 </div>
 </div>
-<div id="outline-container-org2be1447" class="outline-3">
-<h3 id="org2be1447"><span class="section-number-3">1.2.</span> By Size/Rank</h3>
+<div id="outline-container-org4770c66" class="outline-3">
+<h3 id="org4770c66"><span class="section-number-3">1.2.</span> By Size/Rank</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 If we want to split by size or rank, we only need to know the <i>size</i> information.
@@ -248,8 +260,8 @@ If we want to split by size or rank, we only need to know the <i>size</i> inform
 </div>
 </div>
 </div>
-<div id="outline-container-orgaaea878" class="outline-2">
-<h2 id="orgaaea878"><span class="section-number-2">2.</span> Merging</h2>
+<div id="outline-container-org88dd5fd" class="outline-2">
+<h2 id="org88dd5fd"><span class="section-number-2">2.</span> Merging</h2>
 </div>
 </div>
 <div id="postamble" class="status">

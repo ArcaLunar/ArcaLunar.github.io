@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,25 +217,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb717374">1. Array Programming</a>
+<li><a href="#orgef9cb1a">1. Array Programming</a>
 <ul>
-<li><a href="#org220e7e0">1.1. Array Arithmetics</a></li>
+<li><a href="#org605132e">1.1. Array Arithmetics</a></li>
 </ul>
 </li>
-<li><a href="#org6b28b2c">2. Advanced Features of Arrays</a>
+<li><a href="#org98f8cd7">2. Advanced Features of Arrays</a>
 <ul>
-<li><a href="#orgd3ec729">2.1. Array as Vector</a></li>
+<li><a href="#orga6731ec">2.1. Array as Vector</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb717374" class="outline-2">
-<h2 id="orgb717374"><span class="section-number-2">1.</span> Array Programming</h2>
+<div id="outline-container-orgef9cb1a" class="outline-2">
+<h2 id="orgef9cb1a"><span class="section-number-2">1.</span> Array Programming</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org220e7e0" class="outline-3">
-<h3 id="org220e7e0"><span class="section-number-3">1.1.</span> Array Arithmetics</h3>
+<div id="outline-container-org605132e" class="outline-3">
+<h3 id="org605132e"><span class="section-number-3">1.1.</span> Array Arithmetics</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can perform arithmetics directly on vectors, thanks to Odin built-ins. For example, addition or subtraction if the 2 arrays have same dimensions, as well as <i>scalar multiplication</i> and element-wise multiplication.
@@ -232,12 +243,12 @@ We can perform arithmetics directly on vectors, thanks to Odin built-ins. For ex
 </div>
 </div>
 </div>
-<div id="outline-container-org6b28b2c" class="outline-2">
-<h2 id="org6b28b2c"><span class="section-number-2">2.</span> Advanced Features of Arrays</h2>
+<div id="outline-container-org98f8cd7" class="outline-2">
+<h2 id="org98f8cd7"><span class="section-number-2">2.</span> Advanced Features of Arrays</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd3ec729" class="outline-3">
-<h3 id="orgd3ec729"><span class="section-number-3">2.1.</span> Array as Vector</h3>
+<div id="outline-container-orga6731ec" class="outline-3">
+<h3 id="orga6731ec"><span class="section-number-3">2.1.</span> Array as Vector</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 When an array is declared with 4 or less elements, we can use <code>.x, .y, .z, .w</code> to indicate <code>[0], [1], [2], [3]</code>. And we can arbitrarily combine them together. <code>.xyzw</code> can also be replaced by <code>.rgba</code>

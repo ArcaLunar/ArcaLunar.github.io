@@ -35,8 +35,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var desc = document.createElement('p');
     desc.className = 'article-desc';
-    desc.textContent = description;
+    renderOrgLinks(description, desc);
     title.insertAdjacentElement('afterend', desc);
+
+    typesetDescriptionMath(desc, description);
+  }
+
+  // #+DESCRIPTION is plain text that Org never scans for LaTeX fragments,
+  // so unlike the article body, KaTeX may not be on this page at all —
+  // even when the description itself contains math (e.g. an article whose
+  // body has no formulas but whose description does). And even when KaTeX
+  // IS already on the page, its one-time auto-render pass runs via a
+  // deferred <script onload>, which fires before DOMContentLoaded — before
+  // this node exists — so it needs its own pass either way.
+  function typesetDescriptionMath(node, text) {
+    if (!/\\\(|\\\[|\$\$/.test(text)) return;
+
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(node);
+      return;
+    }
+
+    loadKatex(function () {
+      renderMathInElement(node);
+    });
+  }
+
+  function loadKatex(onReady) {
+    var KATEX_BASE = 'https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/';
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = KATEX_BASE + 'katex.min.css';
+    link.integrity = 'sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1';
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+
+    var core = document.createElement('script');
+    core.src = KATEX_BASE + 'katex.min.js';
+    core.integrity = 'sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7';
+    core.crossOrigin = 'anonymous';
+    core.onload = function () {
+      var autoRender = document.createElement('script');
+      autoRender.src = KATEX_BASE + 'contrib/auto-render.min.js';
+      autoRender.integrity = 'sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz';
+      autoRender.crossOrigin = 'anonymous';
+      autoRender.onload = onReady;
+      document.head.appendChild(autoRender);
+    };
+    document.head.appendChild(core);
+  }
+
+  // #+DESCRIPTION is a plain-text keyword, so Org never expands
+  // [[url][text]] links inside it — do that ourselves before display.
+  function renderOrgLinks(text, container) {
+    var re = /\[\[([^\]]+?)\](?:\[([^\]]+?)\])?\]/g;
+    var lastIndex = 0;
+    var match;
+
+    while ((match = re.exec(text))) {
+      if (match.index > lastIndex) {
+        container.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+      }
+
+      var a = document.createElement('a');
+      a.href = match[1];
+      a.textContent = match[2] || match[1];
+      container.appendChild(a);
+
+      lastIndex = re.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      container.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
   }
 
   function enhanceRecentList() {

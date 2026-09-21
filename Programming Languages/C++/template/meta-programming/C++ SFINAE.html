@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,16 +214,17 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">C++ Type Traits in SFINAE</h1>
+<p class="article-desc">SFINAE with type traits is equivalent to C++20 concepts.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4f5ce3c">1. <code>std::enable_if_t</code></a></li>
+<li><a href="#orgcaf0149">1. <code>std::enable_if_t</code></a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f5ce3c" class="outline-2">
-<h2 id="org4f5ce3c"><span class="section-number-2">1.</span> <code>std::enable_if_t</code></h2>
+<div id="outline-container-orgcaf0149" class="outline-2">
+<h2 id="orgcaf0149"><span class="section-number-2">1.</span> <code>std::enable_if_t</code></h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>std::enable_if_t</code> can pose restrictions on types. The following example only allows integers to invoke.

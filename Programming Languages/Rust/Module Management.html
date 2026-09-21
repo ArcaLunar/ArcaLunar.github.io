@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,22 +214,23 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Module Management in Rust</h1>
+<p class="article-desc">packages, crates, modules, workspaces</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf6c11df">1. Package</a></li>
-<li><a href="#org24ccc0a">2. Crate</a></li>
-<li><a href="#org6caf5c8">3. Module</a>
+<li><a href="#org1637fc5">1. Package</a></li>
+<li><a href="#orgeced4d8">2. Crate</a></li>
+<li><a href="#org0fe7ac7">3. Module</a>
 <ul>
-<li><a href="#org0d2b9a0">3.1. Decoupling Modules and Files</a></li>
+<li><a href="#org4a14ec0">3.1. Decoupling Modules and Files</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf6c11df" class="outline-2">
-<h2 id="orgf6c11df"><span class="section-number-2">1.</span> Package</h2>
+<div id="outline-container-org1637fc5" class="outline-2">
+<h2 id="org1637fc5"><span class="section-number-2">1.</span> Package</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A package is just a project that contains a <code>Cargo.toml</code> file. A package can only have one library crate, but multiple binary crates.
@@ -229,23 +241,23 @@ Library should be exposed in <code>lib.rs</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org24ccc0a" class="outline-2">
-<h2 id="org24ccc0a"><span class="section-number-2">2.</span> Crate</h2>
+<div id="outline-container-orgeced4d8" class="outline-2">
+<h2 id="orgeced4d8"><span class="section-number-2">2.</span> Crate</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A crate is equivalent to a package in JS, which is a collection of multiple modules.
 </p>
 </div>
 </div>
-<div id="outline-container-org6caf5c8" class="outline-2">
-<h2 id="org6caf5c8"><span class="section-number-2">3.</span> Module</h2>
+<div id="outline-container-org0fe7ac7" class="outline-2">
+<h2 id="org0fe7ac7"><span class="section-number-2">3.</span> Module</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Rust, we can use <i>path</i> to import modules.
 </p>
 </div>
-<div id="outline-container-org0d2b9a0" class="outline-3">
-<h3 id="org0d2b9a0"><span class="section-number-3">3.1.</span> Decoupling Modules and Files</h3>
+<div id="outline-container-org4a14ec0" class="outline-3">
+<h3 id="org4a14ec0"><span class="section-number-3">3.1.</span> Decoupling Modules and Files</h3>
 </div>
 </div>
 </div>

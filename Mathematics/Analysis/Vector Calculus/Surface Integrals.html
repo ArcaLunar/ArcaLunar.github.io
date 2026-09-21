@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,22 +220,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdea616c">1. Surfaces</a>
+<li><a href="#org0ee016d">1. Surfaces</a>
 <ul>
-<li><a href="#orgae99590">1.1. Area of Surface</a></li>
+<li><a href="#org338230e">1.1. Area of Surface</a></li>
 </ul>
 </li>
-<li><a href="#orgbf318f9">2. Surface Integrals</a>
+<li><a href="#org84418cb">2. Surface Integrals</a>
 <ul>
-<li><a href="#org9f43804">2.1. Scalar Surface Integral</a></li>
-<li><a href="#orgff86015">2.2. Vector Surface Integral</a></li>
+<li><a href="#org65b779f">2.1. Scalar Surface Integral</a></li>
+<li><a href="#org0a20007">2.2. Vector Surface Integral</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdea616c" class="outline-2">
-<h2 id="orgdea616c"><span class="section-number-2">1.</span> Surfaces</h2>
+<div id="outline-container-org0ee016d" class="outline-2">
+<h2 id="org0ee016d"><span class="section-number-2">1.</span> Surfaces</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt>Connected</dt><dd>A subset \( D \) is <i>connected</i> if every 2 points in \( D \) can be joined by a <i>path</i> in \( D \).</dd>
@@ -249,8 +260,8 @@ Here, \( \mathbf{T}_{s} = \frac{\partial \Phi}{\partial s}(s, b) \) and \( \math
 We say that the surface \( S=\Phi(D) \) is <b>smooth</b> at the point \( \Phi(a,b) \) if \( \mathbf{N}(a,b)\ne 0 \). If \( S \) is smooth at every point, then it&rsquo;s said to be <b>smooth</b>.
 </p>
 </div>
-<div id="outline-container-orgae99590" class="outline-3">
-<h3 id="orgae99590"><span class="section-number-3">1.1.</span> Area of Surface</h3>
+<div id="outline-container-org338230e" class="outline-3">
+<h3 id="org338230e"><span class="section-number-3">1.1.</span> Area of Surface</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Let \( \Phi:D\mapsto\mathbb{R}^{3} \) be a <i>smooth</i> parameterized surface of class \( C^{1} \) where \( D\subset\mathbb{R}^{2} \). Then, the surface area of \( S=\Phi(D) \) is
@@ -264,12 +275,12 @@ Let \( \Phi:D\mapsto\mathbb{R}^{3} \) be a <i>smooth</i> parameterized surface o
 </div>
 </div>
 </div>
-<div id="outline-container-orgbf318f9" class="outline-2">
-<h2 id="orgbf318f9"><span class="section-number-2">2.</span> Surface Integrals</h2>
+<div id="outline-container-org84418cb" class="outline-2">
+<h2 id="org84418cb"><span class="section-number-2">2.</span> Surface Integrals</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org9f43804" class="outline-3">
-<h3 id="org9f43804"><span class="section-number-3">2.1.</span> Scalar Surface Integral</h3>
+<div id="outline-container-org65b779f" class="outline-3">
+<h3 id="org65b779f"><span class="section-number-3">2.1.</span> Scalar Surface Integral</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Let \( \Phi:D\mapsto\mathbb{R}^{3} \) be a smooth parameterized surface where \( D\subset\mathbb{R}^{2} \). Let \( f:S\mapsto\mathbb{R} \) be a continuous function where \( S = \Phi(D) \). The <i>scalar surface integral</i> of \( f \) along \( \Phi \) is defined by
@@ -282,8 +293,8 @@ Let \( \Phi:D\mapsto\mathbb{R}^{3} \) be a smooth parameterized surface where \(
 </p>
 </div>
 </div>
-<div id="outline-container-orgff86015" class="outline-3">
-<h3 id="orgff86015"><span class="section-number-3">2.2.</span> Vector Surface Integral</h3>
+<div id="outline-container-org0a20007" class="outline-3">
+<h3 id="org0a20007"><span class="section-number-3">2.2.</span> Vector Surface Integral</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Let \( \Phi:D\mapsto\mathbb{R}^{3} \) be a smooth parameterized surface where \( D\subset\mathbb{R}^{2} \). Let \( \mathbf{F}:S\mapsto\mathbb{R}^{3} \) be a continuous function where \( S = \Phi(D) \). The <i>vector surface integral</i> of \( \mathbf{F} \) along \( \Phi \) is defined by

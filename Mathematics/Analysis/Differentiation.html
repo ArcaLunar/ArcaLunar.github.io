@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,18 +220,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6c28fe0">1. Partial Derivative</a></li>
-<li><a href="#org3e12dcf">2. Differentiable</a>
+<li><a href="#orgd11cf17">1. Partial Derivative</a></li>
+<li><a href="#orgcb508b2">2. Differentiable</a>
 <ul>
-<li><a href="#org87700b2">2.1. Vector-Valued Functions</a></li>
+<li><a href="#org51474b3">2.1. Vector-Valued Functions</a></li>
 </ul>
 </li>
-<li><a href="#orgda1cf6c">3. Directional Derivative</a></li>
+<li><a href="#org4b8d461">3. Directional Derivative</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6c28fe0" class="outline-2">
-<h2 id="org6c28fe0"><span class="section-number-2">1.</span> Partial Derivative</h2>
+<div id="outline-container-orgd11cf17" class="outline-2">
+<h2 id="orgd11cf17"><span class="section-number-2">1.</span> Partial Derivative</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 \[
@@ -229,8 +240,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org3e12dcf" class="outline-2">
-<h2 id="org3e12dcf"><span class="section-number-2">2.</span> Differentiable</h2>
+<div id="outline-container-orgcb508b2" class="outline-2">
+<h2 id="orgcb508b2"><span class="section-number-2">2.</span> Differentiable</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Let \(f:X\mapsto\mathbb{R}\) be a function where \( X\subset \mathbb{R}^{n} \) is open. Suppose \( f_{x_{j}}(\mathbf{a}) \) exists for \( j=1,2,\dots,n \) where \( \mathbf{a}\in X \). Define
@@ -268,8 +279,8 @@ Intuitively, we can interpret <i>differentiability</i> as <span class="underline
 <b>Proposition</b>. If \(f\) is differentiable at \(\mathbf{a}\), then \(f\) is continous at \(\mathbf{a}\).
 </p>
 </div>
-<div id="outline-container-org87700b2" class="outline-3">
-<h3 id="org87700b2"><span class="section-number-3">2.1.</span> Vector-Valued Functions</h3>
+<div id="outline-container-org51474b3" class="outline-3">
+<h3 id="org51474b3"><span class="section-number-3">2.1.</span> Vector-Valued Functions</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Let \( \mathbf{f}:X\mapsto\mathbf{R}^{m} \) be a function where \( X\subset\mathbb{R} \) is open. Suppose the Jacobian \(D\mathbf{f}(\mathbf{a})\) exists where \( \mathbf{a}\in X \). Define
@@ -293,8 +304,8 @@ We say \( \mathbf{f} \) is <b>differentiable</b> at \(\mathbf{a}\) if
 </div>
 </div>
 </div>
-<div id="outline-container-orgda1cf6c" class="outline-2">
-<h2 id="orgda1cf6c"><span class="section-number-2">3.</span> Directional Derivative</h2>
+<div id="outline-container-org4b8d461" class="outline-2">
+<h2 id="org4b8d461"><span class="section-number-2">3.</span> Directional Derivative</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Let \( f:X\mapsto\mathbb{R} \) be a function where \( X\subset\mathbb{R}^{n} \), and let \( \mathbf{a} \) be an interior point of \( X \). Let \( \mathbf{u} \) be a <b>unit vector</b> in \( \mathbb{R}^{n} \). The directional derivative of \( f \) at \( \mathbf{a} \) in the direction of \( \mathbf{u} \) is defined by

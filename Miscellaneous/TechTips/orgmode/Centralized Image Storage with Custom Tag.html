@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,19 +214,20 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Centralized Image Storage with Custom Tag</h1>
+<p class="article-desc">I implemented a feature to centrally organize my images under <code>.assets/</code> folder that supports image preview and exporting to HTML with correct path.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org13a0783">1. Detailed Code</a></li>
+<li><a href="#org9cdba65">1. Detailed Code</a></li>
 </ul>
 </div>
 </div>
 <p>
 I implemented a feature to centrally organize my images under <code>.assets/</code> folder that supports image preview and exporting to HTML with correct path.
 </p>
-<div id="outline-container-org13a0783" class="outline-2">
-<h2 id="org13a0783"><span class="section-number-2">1.</span> Detailed Code</h2>
+<div id="outline-container-org9cdba65" class="outline-2">
+<h2 id="org9cdba65"><span class="section-number-2">1.</span> Detailed Code</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code><span class="org-comment-delimiter">;;; </span><span class="org-comment">image-storage.el --- sets up a centralized storage for images -*- lexical-binding:t -*-

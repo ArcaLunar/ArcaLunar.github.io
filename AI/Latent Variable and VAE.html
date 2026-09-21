@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,31 +217,32 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Latent Variable Models: VAEs</h1>
+<p class="article-desc">VAE extends the idea of variational inference to use neural networks to model both encoder and decoder. For encoder, it uses neural network (e.g. CNN) to study distribution \( q_{\lambda}(\mathbf{z}|\mathbf{x}) \) and outputs a distribution of \( \mathbf{z} \). For decoder, we sample from the distribution \( p(\mathbf{z}) \) and generates images from it through decoder that have learnt \( p(\mathbf{x}|\mathbf{z}) \) from dataset.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb5d027d">1. Mixture of Gaussians</a></li>
-<li><a href="#orga87efc4">2. Variational Autoencoder (VAE)</a>
+<li><a href="#orgc49ecc5">1. Mixture of Gaussians</a></li>
+<li><a href="#org0e3cc25">2. Variational Autoencoder (VAE)</a>
 <ul>
-<li><a href="#orgc1bcf19">2.1. Learning Directed Latent Variable Models</a>
+<li><a href="#org9fa422d">2.1. Learning Directed Latent Variable Models</a>
 <ul>
-<li><a href="#orgad617e2">2.1.1. Attempt 1: Maximize Log-Likelihood</a></li>
-<li><a href="#org8145a31">2.1.2. Attempt 2: Find a Lower Bound (Importance Sampling)</a></li>
+<li><a href="#org1be2b77">2.1.1. Attempt 1: Maximize Log-Likelihood</a></li>
+<li><a href="#orge3b9597">2.1.2. Attempt 2: Find a Lower Bound (Importance Sampling)</a></li>
 </ul>
 </li>
-<li><a href="#orgadacd62">2.2. Variational Inference</a></li>
-<li><a href="#org635e659">2.3. Variational Learning</a>
+<li><a href="#org51dbce4">2.2. Variational Inference</a></li>
+<li><a href="#org753601c">2.3. Variational Learning</a>
 <ul>
-<li><a href="#org06f1871">2.3.1. Reparameterization: Gradient Estimation of ELBO</a></li>
-<li><a href="#org696022c">2.3.2. Black-Box Variational Inference</a></li>
-<li><a href="#orgbd42c24">2.3.3. <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</a></li>
-<li><a href="#orgea59726">2.3.4. Amortized Variational Inference</a></li>
+<li><a href="#org2628eea">2.3.1. Reparameterization: Gradient Estimation of ELBO</a></li>
+<li><a href="#org9f8e998">2.3.2. Black-Box Variational Inference</a></li>
+<li><a href="#orgffffe12">2.3.3. <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</a></li>
+<li><a href="#orgd39fd0f">2.3.4. Amortized Variational Inference</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgdbd2d90">3. Summary of VAE</a></li>
+<li><a href="#orgccf5ee6">3. Summary of VAE</a></li>
 </ul>
 </div>
 </div>
@@ -258,8 +270,8 @@ Lots of variability in images \(\mathbf{x}\) due to different features, but thes
 <p>
 Instead of learning images distribution \(p(\mathbf{x})\) directly, we learn the distribution of latent variables \( p(\mathbf{z}) \) and \( p(\mathbf{x}|\mathbf{z}) \).
 </p>
-<div id="outline-container-orgb5d027d" class="outline-2">
-<h2 id="orgb5d027d"><span class="section-number-2">1.</span> Mixture of Gaussians</h2>
+<div id="outline-container-orgc49ecc5" class="outline-2">
+<h2 id="orgc49ecc5"><span class="section-number-2">1.</span> Mixture of Gaussians</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The MoG assumes:
@@ -271,8 +283,8 @@ The MoG assumes:
 </ul>
 </div>
 </div>
-<div id="outline-container-orga87efc4" class="outline-2">
-<h2 id="orga87efc4"><span class="section-number-2">2.</span> Variational Autoencoder (VAE)</h2>
+<div id="outline-container-org0e3cc25" class="outline-2">
+<h2 id="org0e3cc25"><span class="section-number-2">2.</span> Variational Autoencoder (VAE)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We generalizes MoG into a mixture of <i>infinite</i> Gaussians, VAE assumes
@@ -293,8 +305,8 @@ where \( \mu_{\theta}, \Sigma_{\theta} \) are neural networks. The VAE model is 
 \]
 </p>
 </div>
-<div id="outline-container-orgc1bcf19" class="outline-3">
-<h3 id="orgc1bcf19"><span class="section-number-3">2.1.</span> Learning Directed Latent Variable Models</h3>
+<div id="outline-container-org9fa422d" class="outline-3">
+<h3 id="org9fa422d"><span class="section-number-3">2.1.</span> Learning Directed Latent Variable Models</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The dataset \(D\) only contains images \(\mathbf{x}\) but not \(\mathbf{z}\), so the dataset can only represent \( p(\mathbf{x}) \), however the VAE models \( p(\mathbf{x},\mathbf{z}) \), thus we have to use <b>marginal distribution</b> to express \( p(\mathbf{x}) \):
@@ -316,8 +328,8 @@ Then, the training objective is to minimize the KL divergence
 \]
 </p>
 </div>
-<div id="outline-container-orgad617e2" class="outline-4">
-<h4 id="orgad617e2"><span class="section-number-4">2.1.1.</span> Attempt 1: Maximize Log-Likelihood</h4>
+<div id="outline-container-org1be2b77" class="outline-4">
+<h4 id="org1be2b77"><span class="section-number-4">2.1.1.</span> Attempt 1: Maximize Log-Likelihood</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Equivalently, we maximize the log-likelihood
@@ -344,8 +356,8 @@ In practice, however, it suffers from high variance in gradient estimates.
 </p>
 </div>
 </div>
-<div id="outline-container-org8145a31" class="outline-4">
-<h4 id="org8145a31"><span class="section-number-4">2.1.2.</span> Attempt 2: Find a Lower Bound (Importance Sampling)</h4>
+<div id="outline-container-orge3b9597" class="outline-4">
+<h4 id="orge3b9597"><span class="section-number-4">2.1.2.</span> Attempt 2: Find a Lower Bound (Importance Sampling)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 We notice that the marginal likelihood \( p(\mathbf{x}) \) is at least as hard as evaluating the posterior \( p(\mathbf{z}|\mathbf{x}) \) since \( p(\mathbf{z}|\mathbf{x}) = p(\mathbf{x},\mathbf{z}) / p(\mathbf{x}) \)
@@ -387,8 +399,8 @@ The \( q_{\lambda}(\mathbf{z}) \) is called <b>encoder</b>, and the \( p_{\theta
 </div>
 </div>
 </div>
-<div id="outline-container-orgadacd62" class="outline-3">
-<h3 id="orgadacd62"><span class="section-number-3">2.2.</span> Variational Inference</h3>
+<div id="outline-container-org51dbce4" class="outline-3">
+<h3 id="org51dbce4"><span class="section-number-3">2.2.</span> Variational Inference</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 How should we choose \( q_{\lambda}(\mathbf{z}) \)? In general, we can show that
@@ -411,12 +423,12 @@ How to jointly optimize over \(\theta\) and \(\lambda\) to maximize ELBO over a 
 </div>
 </div>
 </div>
-<div id="outline-container-org635e659" class="outline-3">
-<h3 id="org635e659"><span class="section-number-3">2.3.</span> Variational Learning</h3>
+<div id="outline-container-org753601c" class="outline-3">
+<h3 id="org753601c"><span class="section-number-3">2.3.</span> Variational Learning</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org06f1871" class="outline-4">
-<h4 id="org06f1871"><span class="section-number-4">2.3.1.</span> Reparameterization: Gradient Estimation of ELBO</h4>
+<div id="outline-container-org2628eea" class="outline-4">
+<h4 id="org2628eea"><span class="section-number-4">2.3.1.</span> Reparameterization: Gradient Estimation of ELBO</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 We estimate gradient of ELBO w.r.t. \( \lambda^{(i)},\theta \) with <b>Monte Carlo</b> sampling.
@@ -444,8 +456,8 @@ is equivalent to sampling from \( q_{\lambda}(\mathbf{z}) \).
 </p>
 </div>
 </div>
-<div id="outline-container-org696022c" class="outline-4">
-<h4 id="org696022c"><span class="section-number-4">2.3.2.</span> Black-Box Variational Inference</h4>
+<div id="outline-container-org9f8e998" class="outline-4">
+<h4 id="org9f8e998"><span class="section-number-4">2.3.2.</span> Black-Box Variational Inference</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 A first-order stichastic gradient method for optimizing ELBO. This kind of technique allows us to sub-sample the dataset but requires differentiability of our objective functions.
@@ -461,8 +473,8 @@ In BBVI, for each mini-batch \( \mathcal{B}=\set{\mathbf{x}^{(1)}, \dots, \mathb
 \end{split}
 </div>
 </div>
-<div id="outline-container-orgbd42c24" class="outline-4">
-<h4 id="orgbd42c24"><span class="section-number-4">2.3.3.</span> <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</h4>
+<div id="outline-container-orgffffe12" class="outline-4">
+<h4 id="orgffffe12"><span class="section-number-4">2.3.3.</span> <span class="todo TODO">TODO</span> Parameterizing Distributions via Deep Neural Networks</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 For convenience, a popular distribution for \( p_{\theta}(\mathbf{z}) \) is unit Gaussian:
@@ -493,13 +505,13 @@ We specify \(g_{\theta}\) as deep neural network.
 </p>
 </div>
 </div>
-<div id="outline-container-orgea59726" class="outline-4">
-<h4 id="orgea59726"><span class="section-number-4">2.3.4.</span> Amortized Variational Inference</h4>
+<div id="outline-container-orgd39fd0f" class="outline-4">
+<h4 id="orgd39fd0f"><span class="section-number-4">2.3.4.</span> Amortized Variational Inference</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdbd2d90" class="outline-2">
-<h2 id="orgdbd2d90"><span class="section-number-2">3.</span> Summary of VAE<sup><a id="fnr.bilibili-VAE" class="footref" href="#fn.bilibili-VAE" role="doc-backlink">1</a></sup></h2>
+<div id="outline-container-orgccf5ee6" class="outline-2">
+<h2 id="orgccf5ee6"><span class="section-number-2">3.</span> Summary of VAE<sup><a id="fnr.bilibili-VAE" class="footref" href="#fn.bilibili-VAE" role="doc-backlink">1</a></sup></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In all, the core idea of VAE is that, encoder outputs a distribution of latent variable \( \mathbf{z} \), and the decoder samples from the distribution and outputs reconstructed images.

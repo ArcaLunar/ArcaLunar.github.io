@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,34 +214,35 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Migrate to jujutsu VCS</h1>
+<p class="article-desc">jujutsu is a modern version control system that auto-records file edits.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org092bac7">1. Basic Commands</a></li>
-<li><a href="#org35e3346">2. Confirm Changes and Commit</a></li>
-<li><a href="#org665c7e8">3. Check What Has Been Modified</a></li>
+<li><a href="#orgd06d996">1. Basic Commands</a></li>
+<li><a href="#org723b3b9">2. Confirm Changes and Commit</a></li>
+<li><a href="#orgfb5039f">3. Check What Has Been Modified</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org092bac7" class="outline-2">
-<h2 id="org092bac7"><span class="section-number-2">1.</span> Basic Commands</h2>
+<div id="outline-container-orgd06d996" class="outline-2">
+<h2 id="orgd06d996"><span class="section-number-2">1.</span> Basic Commands</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Directly typing <code>jj</code> shows the full commit log as a tree.
 </p>
 </div>
 </div>
-<div id="outline-container-org35e3346" class="outline-2">
-<h2 id="org35e3346"><span class="section-number-2">2.</span> Confirm Changes and Commit</h2>
+<div id="outline-container-org723b3b9" class="outline-2">
+<h2 id="org723b3b9"><span class="section-number-2">2.</span> Confirm Changes and Commit</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt><code>jj commit -m "messages"</code></dt><dd>Commit <b>all</b> changes in the current project.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org665c7e8" class="outline-2">
-<h2 id="org665c7e8"><span class="section-number-2">3.</span> Check What Has Been Modified</h2>
+<div id="outline-container-orgfb5039f" class="outline-2">
+<h2 id="orgfb5039f"><span class="section-number-2">3.</span> Check What Has Been Modified</h2>
 <div class="outline-text-2" id="text-3">
 <dl class="org-dl">
 <dt><code>jj diff --revisions &lt;set&gt;</code></dt><dd>Display revisions made in <code>&lt;set&gt;</code></dd>

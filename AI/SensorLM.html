@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,19 +217,20 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">SensorLM: Learning the Language of Wearable Sensors</h1>
+<p class="article-desc">SensorLM is a family of foundation models that enable <i>wearable sensor data</i> understanding with natural language.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org76d2884">1. Challenges</a></li>
-<li><a href="#org22a2b01">2. Solution</a>
+<li><a href="#orgdf9978f">1. Challenges</a></li>
+<li><a href="#org32b9884">2. Solution</a>
 <ul>
-<li><a href="#org5a0b363">2.1. Dataset Construction</a></li>
-<li><a href="#orgd662af8">2.2. Hierarchical Sensor Caption Generation</a></li>
-<li><a href="#orgbd41047">2.3. SensorLM</a>
+<li><a href="#orge108793">2.1. Dataset Construction</a></li>
+<li><a href="#org640ff62">2.2. Hierarchical Sensor Caption Generation</a></li>
+<li><a href="#org4740446">2.3. SensorLM</a>
 <ul>
-<li><a href="#orgffe815b">2.3.1. Model Architecture</a></li>
-<li><a href="#org7e86526">2.3.2. Pretraining Objective</a></li>
+<li><a href="#org69f8db8">2.3.1. Model Architecture</a></li>
+<li><a href="#orgd70275d">2.3.2. Pretraining Objective</a></li>
 </ul>
 </li>
 </ul>
@@ -226,8 +238,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org76d2884" class="outline-2">
-<h2 id="org76d2884"><span class="section-number-2">1.</span> Challenges</h2>
+<div id="outline-container-orgdf9978f" class="outline-2">
+<h2 id="orgdf9978f"><span class="section-number-2">1.</span> Challenges</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>LLMs are unable to handle <i>high-dimensional, continuous, and temporal extensive</i> sensor data, which can easily exceed context length.</li>
@@ -245,20 +257,20 @@ Thus, this work contributes to
 </ol>
 </div>
 </div>
-<div id="outline-container-org22a2b01" class="outline-2">
-<h2 id="org22a2b01"><span class="section-number-2">2.</span> Solution</h2>
+<div id="outline-container-org32b9884" class="outline-2">
+<h2 id="org32b9884"><span class="section-number-2">2.</span> Solution</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5a0b363" class="outline-3">
-<h3 id="org5a0b363"><span class="section-number-3">2.1.</span> Dataset Construction</h3>
+<div id="outline-container-orge108793" class="outline-3">
+<h3 id="orge108793"><span class="section-number-3">2.1.</span> Dataset Construction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Data are collected from wrist-worn wearable sensor data, raw data include time series signals.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd662af8" class="outline-3">
-<h3 id="orgd662af8"><span class="section-number-3">2.2.</span> Hierarchical Sensor Caption Generation</h3>
+<div id="outline-container-org640ff62" class="outline-3">
+<h3 id="org640ff62"><span class="section-number-3">2.2.</span> Hierarchical Sensor Caption Generation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Captions are generated at 3 distinct levels:
@@ -283,23 +295,23 @@ Captions are generated at 3 distinct levels:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd41047" class="outline-3">
-<h3 id="orgbd41047"><span class="section-number-3">2.3.</span> SensorLM</h3>
+<div id="outline-container-org4740446" class="outline-3">
+<h3 id="org4740446"><span class="section-number-3">2.3.</span> SensorLM</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 SensorLM uses a <i>sensor encoder</i> (ViT), text encoder and multimodal text decoder.
 </p>
 </div>
-<div id="outline-container-orgffe815b" class="outline-4">
-<h4 id="orgffe815b"><span class="section-number-4">2.3.1.</span> Model Architecture</h4>
+<div id="outline-container-org69f8db8" class="outline-4">
+<h4 id="org69f8db8"><span class="section-number-4">2.3.1.</span> Model Architecture</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 The sensor encoder adaopts a ViT that <span class="underline">segment the sequence into patches, apply linear embeddings and process them through Transformer blocks</span> to local and long-range temporal dependencies. The text encoder is similar that encode text into unimodal representations. The multimodal text decoder is a casaully masked transformer that integrates both sensor embeddings (via cross-attention) and text features.
 </p>
 </div>
 </div>
-<div id="outline-container-org7e86526" class="outline-4">
-<h4 id="org7e86526"><span class="section-number-4">2.3.2.</span> Pretraining Objective</h4>
+<div id="outline-container-orgd70275d" class="outline-4">
+<h4 id="orgd70275d"><span class="section-number-4">2.3.2.</span> Pretraining Objective</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 SensorLM combines both <i>contrastive</i> (as in CLIP) and <i>generative</i> (as in Cap) objectives. Given a batch of \( N \) sensor-language pairs \( \{ (x_{n}, y_{n}) \}_{n\in[N]} \), the <i>contrastive loss</i> \( \mathcal{L}_{con} \) is applied to <span class="underline">normalized unimodal text embeddings \( v_{i} \) from the text encoder</span> and <span class="underline">sensor embeddings \( s_{i} \) from the sensor encoder</span> via a <b>symmetric cross-modal objective</b>

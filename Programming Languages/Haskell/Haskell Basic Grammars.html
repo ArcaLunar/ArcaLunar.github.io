@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,19 +217,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2606e7b">1. Scoped Variables</a></li>
-<li><a href="#org5492cf0">2. Pattern Matching</a>
+<li><a href="#org7042b4d">1. Scoped Variables</a></li>
+<li><a href="#orga3be065">2. Pattern Matching</a>
 <ul>
-<li><a href="#orgb53d458">2.1. Enumeration Matching</a></li>
-<li><a href="#orgef0a75c">2.2. Condition Guards</a></li>
-<li><a href="#org1f581ab">2.3. <code>case of</code></a></li>
+<li><a href="#orgb35fe17">2.1. Enumeration Matching</a></li>
+<li><a href="#orge6ad90d">2.2. Condition Guards</a></li>
+<li><a href="#org8a01828">2.3. <code>case of</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2606e7b" class="outline-2">
-<h2 id="org2606e7b"><span class="section-number-2">1.</span> Scoped Variables</h2>
+<div id="outline-container-org7042b4d" class="outline-2">
+<h2 id="org7042b4d"><span class="section-number-2">1.</span> Scoped Variables</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can use <code>let ... in</code> or <code>where ...</code> to bind temporary variables or functions, <code>where</code> statement can be positioned after body whilst <code>let in</code> should be positioned before the body.
@@ -240,12 +251,12 @@ We can use <code>let ... in</code> or <code>where ...</code> to bind temporary v
 </div>
 </div>
 </div>
-<div id="outline-container-org5492cf0" class="outline-2">
-<h2 id="org5492cf0"><span class="section-number-2">2.</span> Pattern Matching</h2>
+<div id="outline-container-orga3be065" class="outline-2">
+<h2 id="orga3be065"><span class="section-number-2">2.</span> Pattern Matching</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb53d458" class="outline-3">
-<h3 id="orgb53d458"><span class="section-number-3">2.1.</span> Enumeration Matching</h3>
+<div id="outline-container-orgb35fe17" class="outline-3">
+<h3 id="orgb35fe17"><span class="section-number-3">2.1.</span> Enumeration Matching</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Use <code>_</code> to indicate match all cases but ignore their value.
@@ -261,8 +272,8 @@ Use <code>_</code> to indicate match all cases but ignore their value.
 </div>
 </div>
 </div>
-<div id="outline-container-orgef0a75c" class="outline-3">
-<h3 id="orgef0a75c"><span class="section-number-3">2.2.</span> Condition Guards</h3>
+<div id="outline-container-orge6ad90d" class="outline-3">
+<h3 id="orge6ad90d"><span class="section-number-3">2.2.</span> Condition Guards</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 By adding <code>| &lt;condition&gt;</code> after a variable while pattern matching, we can do filtering. Use <code>otherwise</code> to represent all other conditions.
@@ -283,8 +294,8 @@ We may also combine condition guards with enumeration matching.
 </p>
 </div>
 </div>
-<div id="outline-container-org1f581ab" class="outline-3">
-<h3 id="org1f581ab"><span class="section-number-3">2.3.</span> <code>case of</code></h3>
+<div id="outline-container-org8a01828" class="outline-3">
+<h3 id="org8a01828"><span class="section-number-3">2.3.</span> <code>case of</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>case of</code> also pattern matching based on value.

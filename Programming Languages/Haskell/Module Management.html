@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,21 +217,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org028ade1">1. Module Management and Interface</a></li>
-<li><a href="#org8306143">2. Module Architecture</a></li>
-<li><a href="#orge7c3eb3">3. Importing Module</a>
+<li><a href="#org86eb30d">1. Module Management and Interface</a></li>
+<li><a href="#org2b1563d">2. Module Architecture</a></li>
+<li><a href="#org0793f0c">3. Importing Module</a>
 <ul>
-<li><a href="#orge58a827">3.1. Import to Global Namespace</a></li>
-<li><a href="#org52f3bc4">3.2. Import Namespaced</a></li>
-<li><a href="#org47f6121">3.3. Import with Aliases</a></li>
-<li><a href="#org0320ad6">3.4. Selective Import</a></li>
+<li><a href="#orgf7e261d">3.1. Import to Global Namespace</a></li>
+<li><a href="#orgc049a04">3.2. Import Namespaced</a></li>
+<li><a href="#orgbc56669">3.3. Import with Aliases</a></li>
+<li><a href="#org50060e1">3.4. Selective Import</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org028ade1" class="outline-2">
-<h2 id="org028ade1"><span class="section-number-2">1.</span> Module Management and Interface</h2>
+<div id="outline-container-org86eb30d" class="outline-2">
+<h2 id="org86eb30d"><span class="section-number-2">1.</span> Module Management and Interface</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can control what to expose in the brackets after module name. For example,
@@ -232,8 +243,8 @@ We can control what to expose in the brackets after module name. For example,
 </div>
 </div>
 </div>
-<div id="outline-container-org8306143" class="outline-2">
-<h2 id="org8306143"><span class="section-number-2">2.</span> Module Architecture</h2>
+<div id="outline-container-org2b1563d" class="outline-2">
+<h2 id="org2b1563d"><span class="section-number-2">2.</span> Module Architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Module names usually have their first letter capitalized, e.g., <code>Data.List</code>. The dots in the module names refer to <span class="underline">folder architecture</span>.
@@ -244,15 +255,15 @@ The root directory of modules can be configured in cabal as <code>hs-source-dirs
 </p>
 </div>
 </div>
-<div id="outline-container-orge7c3eb3" class="outline-2">
-<h2 id="orge7c3eb3"><span class="section-number-2">3.</span> Importing Module</h2>
+<div id="outline-container-org0793f0c" class="outline-2">
+<h2 id="org0793f0c"><span class="section-number-2">3.</span> Importing Module</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Suppose in <code>Module</code>, we have functions <code>foo, bar</code> and datatype <code>Maybe</code> with constrcutors <code>Just, Nothing</code>.
 </p>
 </div>
-<div id="outline-container-orge58a827" class="outline-3">
-<h3 id="orge58a827"><span class="section-number-3">3.1.</span> Import to Global Namespace</h3>
+<div id="outline-container-orgf7e261d" class="outline-3">
+<h3 id="orgf7e261d"><span class="section-number-3">3.1.</span> Import to Global Namespace</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can directly import, this will import all symbols to the global namespace, which may cause issues.
@@ -267,8 +278,8 @@ We can directly import, this will import all symbols to the global namespace, wh
 </div>
 </div>
 </div>
-<div id="outline-container-org52f3bc4" class="outline-3">
-<h3 id="org52f3bc4"><span class="section-number-3">3.2.</span> Import Namespaced</h3>
+<div id="outline-container-orgc049a04" class="outline-3">
+<h3 id="orgc049a04"><span class="section-number-3">3.2.</span> Import Namespaced</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 We can import with namespace isolation, using <code>qualified</code> keyword.
@@ -283,8 +294,8 @@ We can import with namespace isolation, using <code>qualified</code> keyword.
 </div>
 </div>
 </div>
-<div id="outline-container-org47f6121" class="outline-3">
-<h3 id="org47f6121"><span class="section-number-3">3.3.</span> Import with Aliases</h3>
+<div id="outline-container-orgbc56669" class="outline-3">
+<h3 id="orgbc56669"><span class="section-number-3">3.3.</span> Import with Aliases</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Even with qualified, we can use <code>as</code> keyword to give it an alias for convenience.
@@ -299,8 +310,8 @@ Even with qualified, we can use <code>as</code> keyword to give it an alias for 
 </div>
 </div>
 </div>
-<div id="outline-container-org0320ad6" class="outline-3">
-<h3 id="org0320ad6"><span class="section-number-3">3.4.</span> Selective Import</h3>
+<div id="outline-container-org50060e1" class="outline-3">
+<h3 id="org50060e1"><span class="section-number-3">3.4.</span> Selective Import</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can import only part of the module.

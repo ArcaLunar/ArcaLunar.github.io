@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,18 +215,19 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">RAID</h1>
+<p class="article-desc">Redundant Array of Inexpensive Disks (RAID) is a technology to build a faster, bigger, and more reliable disk system.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org89b3a32">1. Interface and RAID Internals</a></li>
-<li><a href="#orga9aa28b">2. Fault Model</a></li>
-<li><a href="#org67b8f55">3. RAID</a>
+<li><a href="#org428fe49">1. Interface and RAID Internals</a></li>
+<li><a href="#org940b9da">2. Fault Model</a></li>
+<li><a href="#orgafd51f1">3. RAID</a>
 <ul>
-<li><a href="#org55fc1d0">3.1. RAID 0: Striping</a></li>
-<li><a href="#org38dd0ca">3.2. RAID 1: Mirroring</a></li>
-<li><a href="#org34fa797">3.3. RAID 4: Saving Space with Parity</a></li>
-<li><a href="#orgac20708">3.4. RAID 5: Rotating Parity</a></li>
+<li><a href="#orgaa7ad86">3.1. RAID 0: Striping</a></li>
+<li><a href="#org3b7ac33">3.2. RAID 1: Mirroring</a></li>
+<li><a href="#orgb8f828a">3.3. RAID 4: Saving Space with Parity</a></li>
+<li><a href="#org3f1723b">3.4. RAID 5: Rotating Parity</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +236,8 @@
 <p>
 Redundant Array of Inexpensive Disks (RAID) is a technology to build a faster, bigger, and more reliable disk system.
 </p>
-<div id="outline-container-org89b3a32" class="outline-2">
-<h2 id="org89b3a32"><span class="section-number-2">1.</span> Interface and RAID Internals</h2>
+<div id="outline-container-org428fe49" class="outline-2">
+<h2 id="org428fe49"><span class="section-number-2">1.</span> Interface and RAID Internals</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 RAID provides transparent interfaces to external users. When a file system issues a <i>logical IO</i> request to RAID, the RAID must compute which disk(s) to access, and may issue one or more <i>physical IOs</i>.
@@ -236,28 +248,28 @@ A RAID system is often built as a separate hardware box, with a standard connect
 </p>
 </div>
 </div>
-<div id="outline-container-orga9aa28b" class="outline-2">
-<h2 id="orga9aa28b"><span class="section-number-2">2.</span> Fault Model</h2>
+<div id="outline-container-org940b9da" class="outline-2">
+<h2 id="org940b9da"><span class="section-number-2">2.</span> Fault Model</h2>
 </div>
 
-<div id="outline-container-org67b8f55" class="outline-2">
-<h2 id="org67b8f55"><span class="section-number-2">3.</span> RAID</h2>
+<div id="outline-container-orgafd51f1" class="outline-2">
+<h2 id="orgafd51f1"><span class="section-number-2">3.</span> RAID</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org55fc1d0" class="outline-3">
-<h3 id="org55fc1d0"><span class="section-number-3">3.1.</span> RAID 0: Striping</h3>
+<div id="outline-container-orgaa7ad86" class="outline-3">
+<h3 id="orgaa7ad86"><span class="section-number-3">3.1.</span> RAID 0: Striping</h3>
 </div>
 
-<div id="outline-container-org38dd0ca" class="outline-3">
-<h3 id="org38dd0ca"><span class="section-number-3">3.2.</span> RAID 1: Mirroring</h3>
+<div id="outline-container-org3b7ac33" class="outline-3">
+<h3 id="org3b7ac33"><span class="section-number-3">3.2.</span> RAID 1: Mirroring</h3>
 </div>
 
-<div id="outline-container-org34fa797" class="outline-3">
-<h3 id="org34fa797"><span class="section-number-3">3.3.</span> RAID 4: Saving Space with Parity</h3>
+<div id="outline-container-orgb8f828a" class="outline-3">
+<h3 id="orgb8f828a"><span class="section-number-3">3.3.</span> RAID 4: Saving Space with Parity</h3>
 </div>
 
-<div id="outline-container-orgac20708" class="outline-3">
-<h3 id="orgac20708"><span class="section-number-3">3.4.</span> RAID 5: Rotating Parity</h3>
+<div id="outline-container-org3f1723b" class="outline-3">
+<h3 id="org3f1723b"><span class="section-number-3">3.4.</span> RAID 5: Rotating Parity</h3>
 </div>
 </div>
 </div>

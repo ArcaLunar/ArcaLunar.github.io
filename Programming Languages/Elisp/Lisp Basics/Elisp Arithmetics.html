@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,15 +217,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc3dc52f">1. Truncate, Round, Ceiling, Floor</a></li>
-<li><a href="#orgeb87494">2. Test If a Number is Integer or Float</a></li>
-<li><a href="#org579475f">3. Conversion between Numbers and Strings</a></li>
-<li><a href="#org42b05e3">4. Equality</a></li>
+<li><a href="#org6a014e8">1. Truncate, Round, Ceiling, Floor</a></li>
+<li><a href="#org07619f2">2. Test If a Number is Integer or Float</a></li>
+<li><a href="#org48063d7">3. Conversion between Numbers and Strings</a></li>
+<li><a href="#orgc118f33">4. Equality</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc3dc52f" class="outline-2">
-<h2 id="orgc3dc52f"><span class="section-number-2">1.</span> Truncate, Round, Ceiling, Floor</h2>
+<div id="outline-container-org6a014e8" class="outline-2">
+<h2 id="org6a014e8"><span class="section-number-2">1.</span> Truncate, Round, Ceiling, Floor</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-comment-delimiter">;; </span><span class="org-comment">to int
@@ -229,8 +240,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb87494" class="outline-2">
-<h2 id="orgeb87494"><span class="section-number-2">2.</span> Test If a Number is Integer or Float</h2>
+<div id="outline-container-org07619f2" class="outline-2">
+<h2 id="org07619f2"><span class="section-number-2">2.</span> Test If a Number is Integer or Float</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Returns <code>t</code> if yes, <code>nil</code> if not.
@@ -248,8 +259,8 @@ Returns <code>t</code> if yes, <code>nil</code> if not.
 </div>
 </div>
 </div>
-<div id="outline-container-org579475f" class="outline-2">
-<h2 id="org579475f"><span class="section-number-2">3.</span> Conversion between Numbers and Strings</h2>
+<div id="outline-container-org48063d7" class="outline-2">
+<h2 id="org48063d7"><span class="section-number-2">3.</span> Conversion between Numbers and Strings</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">number-to-string</span> 3<span class="org-rainbow-delimiters-depth-1">)</span> <span class="org-comment-delimiter">; </span><span class="org-comment">=&gt; "3"
@@ -258,8 +269,8 @@ Returns <code>t</code> if yes, <code>nil</code> if not.
 </div>
 </div>
 </div>
-<div id="outline-container-org42b05e3" class="outline-2">
-<h2 id="org42b05e3"><span class="section-number-2">4.</span> Equality</h2>
+<div id="outline-container-orgc118f33" class="outline-2">
+<h2 id="orgc118f33"><span class="section-number-2">4.</span> Equality</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We use <code>=</code> equal sign to evaluate equality, arguments can be integers and flaots. We use <code>/=</code> to evaluate inequality.

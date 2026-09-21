@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,19 +214,20 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Elisp Data Structures: Lists</h1>
+<p class="article-desc">Lisp Lists are implemented as <b>linked lists</b>. Each element can be any type and need not to be of same type.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org665e55f">1. Cons Cell and List Types</a></li>
+<li><a href="#org5c67804">1. Cons Cell and List Types</a></li>
 </ul>
 </div>
 </div>
 <p>
 Lisp Lists are implemented as <b>linked lists</b>. Each element can be any type and need not to be of same type.
 </p>
-<div id="outline-container-org665e55f" class="outline-2">
-<h2 id="org665e55f"><span class="section-number-2">1.</span> Cons Cell and List Types</h2>
+<div id="outline-container-org5c67804" class="outline-2">
+<h2 id="org5c67804"><span class="section-number-2">1.</span> Cons Cell and List Types</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>cons cell</b> is an object consisting of 2 slots, the <code>car</code> slot and the <code>cdr</code> slot. A <b>list</b> is a series of cons cells, linked together so that the <code>cdr</code> of previous cons cell either holds the next cell or the empty list. The <code>car</code> slot stores the actual object.

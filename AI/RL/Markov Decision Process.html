@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fundamental Concepts in Markov Decision Process and Reinforcement Learning</title>
+<meta name="author" content="ArcaLunar" />
+<meta name="description" content="This post roughtly covers (1) the setups in MDP/RL, (2) value function, (3) Q-state, (4) discounting, (5) advantage, (6) Bellman Equation (7) the difference between on- and off-policy. In addition, this post tries to provide an intuition beyond formula." />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
+<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
+</div>
+<div id="content" class="content">
+<h1 class="title">Fundamental Concepts in Markov Decision Process and Reinforcement Learning</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcbad7d1">1. Introduction</a></li>
+<li><a href="#org924dd53">2. Discounting, Values, Q-Values, and Advantage</a></li>
+<li><a href="#org8418cfd">3. Bellman Equation</a></li>
+<li><a href="#org6a1ae1e">4. On-Policy and Off-Policy</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcbad7d1" class="outline-2">
+<h2 id="orgcbad7d1"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+MDP is a way to model the world dynamics. We have an agent in an environment and we want the agent to interact with the environment in a desired manner. The following image illustrates the environment setup of RL and MDP.
+</p>
+
+<p>
+<img src="/.assets/rl/mdp-rl-env.png" alt="Environment Setup" />
+</p>
+
+<p>
+The agent observes the current <b>world state</b> \(s_{t}\), and performs an <b>action</b> \(a_{t}\) based on the state observed and a <b>policy</b> \(\pi(a|s)\), which basically tells which action to perform at some state. Moreover, the policy is usually <i>stochastic</i>, meaning the policy \(\pi(a|s)\) is a distribution over <b>action space</b> \(A\) conditioned by state \(s_{t}\).
+</p>
+
+<p>
+The environment is also <i>stochastic</i>. Given the current world state and what the agent has done (i.e., the state and action), the world changes correspondingly. The world state of time \(t+1\) is sampled from the distribution \(T(s'|s,a)\), called <b>transition</b>. Besides world transition, we also have a <b>reward function</b> \(R(s,a,s')\) that judges whether this action is good or not.
+</p>
+
+<dl class="org-dl">
+<dt>Trajectory</dt><dd><p>
+In MDP/RL settings, we usually called an alternating sequence of \(s,a,r\) a <b>trajectory</b>, denoted by \(\tau\):
+</p>
+
+<p>
+\[ \tau = (s_{0},a_{0},r_{0},s_{1},a_{1},r_{1},\dots) \]
+</p></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org924dd53" class="outline-2">
+<h2 id="org924dd53"><span class="section-number-2">2.</span> Discounting, Values, Q-Values, and Advantage</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+To measure the &ldquo;goodness&rdquo; of a trajectory, we can just accumulate the rewards. We also introduce <b>discounting</b> here, because intuitively, we should encourage early beneficial actions. We call this discounting cumulative rewards \(G_{t}\). The subscript means, we start from step \(t\).
+</p>
+
+<p>
+\[
+G_{t} = \sum_{k=0}^{\infin} \gamma^{k} r_{t+k}
+\]
+</p>
+
+<p>
+The <b>state value</b> of \(s_{t}\) refers to the <b>expected reward</b> \(G_{t}\) starting from it and we perform according to the policy \(\pi\) (we are computing expectation over the distribution of the action space)
+</p>
+
+<p>
+\[ V^{\pi}(s_{t}) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s_{t} \right] \]
+</p>
+
+<p>
+The <b>action value</b> of a state-action pair (called <b>Q-state</b>) \((s_{t},a_{t})\) refers to thet <b>expected reward</b> \(G_{t}\) starting from \(s_{t}\) and our first action is \(a_{t}\), and then we perform according to the policy \(\pi\).
+</p>
+
+<p>
+\[ Q^{\pi}(s_{t},a_{t}) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s_{t}, A_{t}=a_{t} \right] \]
+</p>
+
+<p>
+In some cases, when the reward function is mal-defined, e.g., whatever action results in a positive reward, the discounted cumulative reward \(G_{t}\) is always positive. This will lead to some trouble during training (any action will be encouraged, because the reward is positive, causing the training unstable). Therefore, we use <b>advantage</b> to describe the extent to which an action is better than the average (the expectation).
+</p>
+
+<p>
+\[ A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s) \]
+</p>
+</div>
+</div>
+<div id="outline-container-org8418cfd" class="outline-2">
+<h2 id="org8418cfd"><span class="section-number-2">3.</span> Bellman Equation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+From the definition of state value and action value, we can infer their relationship.
+</p>
+
+<p>
+\[\begin{aligned}
+V^{\pi}(s)   &= \sum_{a} \pi(a|s) Q^{\pi}(s,a) \newline
+Q^{\pi}(s,a) &= \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma V^{\pi}(s') \right]
+\end{aligned}\]
+</p>
+
+<p>
+By plugging \(Q^{\pi}, V^{\pi}\) back into equations, we can get the Bellman Equation.
+</p>
+
+\begin{equation}
+\boxed{
+\begin{split}
+V^{\pi}(s)   &= \sum_{a} \pi(a|s) \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma V^{\pi}(s') \right] \\
+Q^{\pi}(s,a) &= \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma \sum_{a} \pi(a|s) Q^{\pi}(s,a) \right]
+\end{split}
+}
+\end{equation}
+</div>
+</div>
+<div id="outline-container-org6a1ae1e" class="outline-2">
+<h2 id="org6a1ae1e"><span class="section-number-2">4.</span> On-Policy and Off-Policy</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Let&rsquo;s call the policy that is used to generate trajectories <b>behaviour policy</b> \(\mu\) and the policy that is to be optimized <b>target policy</b> \(\pi\). <b>On-policy</b> means that these two policies are the same, i.e., \(\mu=\pi\), we&rsquo;re using our data to train ourselves. In contrast, <b>off-policy</b> means that these two policies are not the same, \(\mu \ne \pi\), we&rsquo;re using data generated by others to train our policy.
+</p>
+
+<div class="note" id="orgbe79fa9">
+<p>
+<b>The Difference between Rollout and Trajectory</b>
+</p>
+
+<p>
+Both rollout and trajectory refer to concept of generating an alternating sequence of state, action, and reward. The difference is that: rollout highlights the dynamic process of <span class="underline">generation</span> itself, while trajectory emphasizes the <span class="underline">data</span> generated at last.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-09-13 Sun</p>
+<p class="author">Author: ArcaLunar</p>
+</div>
+</body>
+</html>

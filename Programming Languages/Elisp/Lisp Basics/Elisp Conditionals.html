@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,19 +217,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3c2e986">1. <code>progn</code> Function</a></li>
-<li><a href="#org61428a4">2. Common Conditional Flows</a>
+<li><a href="#org98420e3">1. <code>progn</code> Function</a></li>
+<li><a href="#org6c1eb93">2. Common Conditional Flows</a>
 <ul>
-<li><a href="#org0cdb8ef">2.1. If, Then, Else</a></li>
-<li><a href="#org9977744">2.2. When</a></li>
-<li><a href="#org6d63a3b">2.3. <code>cond</code> as Switch</a></li>
+<li><a href="#org7a67b7c">2.1. If, Then, Else</a></li>
+<li><a href="#org282bc21">2.2. When</a></li>
+<li><a href="#org94ea10b">2.3. <code>cond</code> as Switch</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3c2e986" class="outline-2">
-<h2 id="org3c2e986"><span class="section-number-2">1.</span> <code>progn</code> Function</h2>
+<div id="outline-container-org98420e3" class="outline-2">
+<h2 id="org98420e3"><span class="section-number-2">1.</span> <code>progn</code> Function</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Sometimes, we need to group multiple expressions together as one single expression. We can use <code>progn</code>. It returns the last expression.
@@ -248,12 +259,12 @@ Similarly, <code>prog1</code>, <code>prog2</code> do the same job, but they retu
 </div>
 </div>
 </div>
-<div id="outline-container-org61428a4" class="outline-2">
-<h2 id="org61428a4"><span class="section-number-2">2.</span> Common Conditional Flows</h2>
+<div id="outline-container-org6c1eb93" class="outline-2">
+<h2 id="org6c1eb93"><span class="section-number-2">2.</span> Common Conditional Flows</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0cdb8ef" class="outline-3">
-<h3 id="org0cdb8ef"><span class="section-number-3">2.1.</span> If, Then, Else</h3>
+<div id="outline-container-org7a67b7c" class="outline-3">
+<h3 id="org7a67b7c"><span class="section-number-3">2.1.</span> If, Then, Else</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-keyword">if</span> test body<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -267,8 +278,8 @@ Note that, we should use <code>progn</code> if we want to have multiple statemen
 </p>
 </div>
 </div>
-<div id="outline-container-org9977744" class="outline-3">
-<h3 id="org9977744"><span class="section-number-3">2.2.</span> When</h3>
+<div id="outline-container-org282bc21" class="outline-3">
+<h3 id="org282bc21"><span class="section-number-3">2.2.</span> When</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 If we don&rsquo;t need else part, we can use <code>when</code>:
@@ -287,8 +298,8 @@ When using <code>when</code>, we don&rsquo;t need <code>progn</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d63a3b" class="outline-3">
-<h3 id="org6d63a3b"><span class="section-number-3">2.3.</span> <code>cond</code> as Switch</h3>
+<div id="outline-container-org94ea10b" class="outline-3">
+<h3 id="org94ea10b"><span class="section-number-3">2.3.</span> <code>cond</code> as Switch</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <code>cond</code> function tests each clause. If true, it runs that branch and exits.

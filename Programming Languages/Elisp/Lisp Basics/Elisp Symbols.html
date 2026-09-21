@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,17 +217,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org53bee35">1. Symbol Type</a>
+<li><a href="#org177a350">1. Symbol Type</a>
 <ul>
-<li><a href="#org42234fc">1.1. Common Methods</a></li>
-<li><a href="#org37e2903">1.2. Quoting Symbol</a></li>
+<li><a href="#orgac1acbf">1.1. Common Methods</a></li>
+<li><a href="#org6694868">1.2. Quoting Symbol</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org53bee35" class="outline-2">
-<h2 id="org53bee35"><span class="section-number-2">1.</span> Symbol Type</h2>
+<div id="outline-container-org177a350" class="outline-2">
+<h2 id="org177a350"><span class="section-number-2">1.</span> Symbol Type</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Symbols is used for variables or function names, aka <b>identifiers</b>; symbols can be held unevaluated. <span class="underline">A symbol can be both function name, variable name, and/or font-face name</span>.
@@ -226,8 +237,8 @@ Symbols is used for variables or function names, aka <b>identifiers</b>; symbols
 Symbols whose name starts with a <code>:</code> is called a <b>keyword symbol</b>. These symbols automatically act as constants, and are normally used only by comparing an unknown symbol with a few specific alternatives.
 </p>
 </div>
-<div id="outline-container-org42234fc" class="outline-3">
-<h3 id="org42234fc"><span class="section-number-3">1.1.</span> Common Methods</h3>
+<div id="outline-container-orgac1acbf" class="outline-3">
+<h3 id="orgac1acbf"><span class="section-number-3">1.1.</span> Common Methods</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>Convert Symbol to String</b>. Use <code>symbol-name</code> + <code>quote</code>
@@ -239,8 +250,8 @@ Symbols whose name starts with a <code>:</code> is called a <b>keyword symbol</b
 </div>
 </div>
 </div>
-<div id="outline-container-org37e2903" class="outline-3">
-<h3 id="org37e2903"><span class="section-number-3">1.2.</span> Quoting Symbol</h3>
+<div id="outline-container-org6694868" class="outline-3">
+<h3 id="org6694868"><span class="section-number-3">1.2.</span> Quoting Symbol</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Return the argument without evaluating it. It has 2 forms

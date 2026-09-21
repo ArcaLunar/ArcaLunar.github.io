@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/index.css"/>
-<script src="../../../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../../../.assets/home.js"></script>
+<script src="../../../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,27 +217,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaa97dcc"><code>SharedPreferences</code></a>
+<li><a href="#org79bb5da"><code>SharedPreferences</code></a>
 <ul>
-<li><a href="#org139bbc5">How to Use?</a>
+<li><a href="#org1caec24">How to Use?</a>
 <ul>
-<li><a href="#org0f8c938">Retrieval</a></li>
-<li><a href="#orgfecf121">Writing Data</a></li>
-<li><a href="#org8fa8caf">Reading Data</a></li>
+<li><a href="#org3a3ec20">Retrieval</a></li>
+<li><a href="#org514b829">Writing Data</a></li>
+<li><a href="#orgcf8ea02">Reading Data</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orge421b1e"><code>EncryptedSharedPreferences</code></a></li>
+<li><a href="#org38b8372"><code>EncryptedSharedPreferences</code></a></li>
 </ul>
 </div>
 </div>
 <p>
 We have several data storage solutions for Android app development.
 </p>
-<div id="outline-container-orgaa97dcc" class="outline-2">
-<h2 id="orgaa97dcc"><code>SharedPreferences</code></h2>
-<div class="outline-text-2" id="text-orgaa97dcc">
+<div id="outline-container-org79bb5da" class="outline-2">
+<h2 id="org79bb5da"><code>SharedPreferences</code></h2>
+<div class="outline-text-2" id="text-org79bb5da">
 <p>
 <code>SharedPreferences</code> is a light-weight storage for Android to read and store key-value pairs, which is suitable for simple data like <i>app configs</i>, <i>user preferences</i>, <i>login state</i>.
 </p>
@@ -235,13 +246,13 @@ We have several data storage solutions for Android app development.
 <code>SharedPreferences</code> is, in essence, an <code>.xml</code> file under app-private folder <code>/data/data/&lt;package_name&gt;/shared_prefs</code>.
 </p>
 </div>
-<div id="outline-container-org139bbc5" class="outline-3">
-<h3 id="org139bbc5">How to Use?</h3>
-<div class="outline-text-3" id="text-org139bbc5">
+<div id="outline-container-org1caec24" class="outline-3">
+<h3 id="org1caec24">How to Use?</h3>
+<div class="outline-text-3" id="text-org1caec24">
 </div>
-<div id="outline-container-org0f8c938" class="outline-4">
-<h4 id="org0f8c938">Retrieval</h4>
-<div class="outline-text-4" id="text-org0f8c938">
+<div id="outline-container-org3a3ec20" class="outline-4">
+<h4 id="org3a3ec20">Retrieval</h4>
+<div class="outline-text-4" id="text-org3a3ec20">
 <p>
 We mainly have 2 ways to retrieve the <code>SharedPreferences</code> object.
 </p>
@@ -283,9 +294,9 @@ This method is only suitable for preference configs <i>within same activity</i>.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgfecf121" class="outline-4">
-<h4 id="orgfecf121">Writing Data</h4>
-<div class="outline-text-4" id="text-orgfecf121">
+<div id="outline-container-org514b829" class="outline-4">
+<h4 id="org514b829">Writing Data</h4>
+<div class="outline-text-4" id="text-org514b829">
 <p>
 Writing data is proxied by <code>SharedPreferences.Editor</code> object and follows 3 steps.
 </p>
@@ -368,9 +379,9 @@ In most cases, we should use <code>apply()</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org8fa8caf" class="outline-4">
-<h4 id="org8fa8caf">Reading Data</h4>
-<div class="outline-text-4" id="text-org8fa8caf">
+<div id="outline-container-orgcf8ea02" class="outline-4">
+<h4 id="orgcf8ea02">Reading Data</h4>
+<div class="outline-text-4" id="text-orgcf8ea02">
 <p>
 We just simply invoke <code>getXXX()</code> of <code>SharedPreferences</code> objects.
 </p>
@@ -378,9 +389,9 @@ We just simply invoke <code>getXXX()</code> of <code>SharedPreferences</code> ob
 </div>
 </div>
 </div>
-<div id="outline-container-orge421b1e" class="outline-2">
-<h2 id="orge421b1e"><code>EncryptedSharedPreferences</code></h2>
-<div class="outline-text-2" id="text-orge421b1e">
+<div id="outline-container-org38b8372" class="outline-2">
+<h2 id="org38b8372"><code>EncryptedSharedPreferences</code></h2>
+<div class="outline-text-2" id="text-org38b8372">
 <p>
 Standard <code>SharedPreferences</code> stores data in bear xml files. If we want to store passwords, tokens, we should use <code>EncryptedSharedPreferences</code>, which automatically encrypts keys and values.
 </p>

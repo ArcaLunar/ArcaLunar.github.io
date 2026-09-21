@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,12 +215,13 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Lists</h1>
+<p class="article-desc">Lists are the most important data type in Emacs Lisp.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcd064c2">1. Predicates on Lists</a></li>
-<li><a href="#orge377983">2. Accessing Elements of Lists</a></li>
+<li><a href="#org0b02ee0">1. Predicates on Lists</a></li>
+<li><a href="#org34b248f">2. Accessing Elements of Lists</a></li>
 </ul>
 </div>
 </div>
@@ -222,8 +234,8 @@ Lists are built up from <b>cons cells</b>, which is a data object consisting of 
 <dt>Dotted lists</dt><dd>Dotted lists refer to the lists whose last cons cell&rsquo;s <code>cdr</code> is not <code>nil</code>.</dd>
 <dt>Circular lists</dt><dd>&hellip; whose last cons cell&rsquo;s <code>cdr</code> point to one of the previous cons cell in the list.</dd>
 </dl>
-<div id="outline-container-orgcd064c2" class="outline-2">
-<h2 id="orgcd064c2"><span class="section-number-2">1.</span> Predicates on Lists</h2>
+<div id="outline-container-org0b02ee0" class="outline-2">
+<h2 id="org0b02ee0"><span class="section-number-2">1.</span> Predicates on Lists</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt><code>consp obj</code></dt><dd>Checks if the object is cons cell.</dd>
@@ -234,8 +246,8 @@ Lists are built up from <b>cons cells</b>, which is a data object consisting of 
 </dl>
 </div>
 </div>
-<div id="outline-container-orge377983" class="outline-2">
-<h2 id="orge377983"><span class="section-number-2">2.</span> Accessing Elements of Lists</h2>
+<div id="outline-container-org34b248f" class="outline-2">
+<h2 id="org34b248f"><span class="section-number-2">2.</span> Accessing Elements of Lists</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt><code>car cons-cell</code></dt><dd>Return the value of <code>car</code> of cons cell. Or the first element in the list.</dd>

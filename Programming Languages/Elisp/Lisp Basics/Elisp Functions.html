@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,29 +217,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd19f404">1. Define Functions</a>
+<li><a href="#org9b28a13">1. Define Functions</a>
 <ul>
-<li><a href="#org9409a11">1.1. Optional Parameters</a></li>
-<li><a href="#org407006d">1.2. Rest Parameters</a></li>
+<li><a href="#org0304763">1.1. Optional Parameters</a></li>
+<li><a href="#org075ee24">1.2. Rest Parameters</a></li>
 </ul>
 </li>
-<li><a href="#org478ccef">2. Lambda Functions</a></li>
-<li><a href="#org4047cd8">3. Higher-Order Functions</a>
+<li><a href="#orgead6122">2. Lambda Functions</a></li>
+<li><a href="#orgd05f8b1">3. Higher-Order Functions</a>
 <ul>
-<li><a href="#org35264e6">3.1. <code>apply</code></a></li>
-<li><a href="#org869c353">3.2. <code>funcall</code></a></li>
-<li><a href="#org554eb83">3.3. <code>identity</code></a></li>
-<li><a href="#org1725235">3.4. <code>ignore</code></a></li>
-<li><a href="#orgc0501a3">3.5. <code>always</code></a></li>
+<li><a href="#orgf846963">3.1. <code>apply</code></a></li>
+<li><a href="#org6a663ed">3.2. <code>funcall</code></a></li>
+<li><a href="#orgbb151dd">3.3. <code>identity</code></a></li>
+<li><a href="#org8f69343">3.4. <code>ignore</code></a></li>
+<li><a href="#org40c3b56">3.5. <code>always</code></a></li>
 </ul>
 </li>
-<li><a href="#orgdeae2f4">4. Function Types</a></li>
-<li><a href="#orgf696180">5. Docstring Markup</a></li>
+<li><a href="#org7801cc0">4. Function Types</a></li>
+<li><a href="#orga0c34b0">5. Docstring Markup</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd19f404" class="outline-2">
-<h2 id="orgd19f404"><span class="section-number-2">1.</span> Define Functions</h2>
+<div id="outline-container-org9b28a13" class="outline-2">
+<h2 id="org9b28a13"><span class="section-number-2">1.</span> Define Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Basic function definition has the form
@@ -245,16 +256,16 @@ Basic function definition has the form
 When a function is called, the last expression in the function&rsquo;s body is returned.
 </p>
 </div>
-<div id="outline-container-org9409a11" class="outline-3">
-<h3 id="org9409a11"><span class="section-number-3">1.1.</span> Optional Parameters</h3>
+<div id="outline-container-org0304763" class="outline-3">
+<h3 id="org0304763"><span class="section-number-3">1.1.</span> Optional Parameters</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Add <code>&amp;optional</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org407006d" class="outline-3">
-<h3 id="org407006d"><span class="section-number-3">1.2.</span> Rest Parameters</h3>
+<div id="outline-container-org075ee24" class="outline-3">
+<h3 id="org075ee24"><span class="section-number-3">1.2.</span> Rest Parameters</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Add <code>&amp;rest</code>, becomes a list.
@@ -262,16 +273,16 @@ Add <code>&amp;rest</code>, becomes a list.
 </div>
 </div>
 </div>
-<div id="outline-container-org478ccef" class="outline-2">
-<h2 id="org478ccef"><span class="section-number-2">2.</span> Lambda Functions</h2>
+<div id="outline-container-orgead6122" class="outline-2">
+<h2 id="orgead6122"><span class="section-number-2">2.</span> Lambda Functions</h2>
 </div>
 
-<div id="outline-container-org4047cd8" class="outline-2">
-<h2 id="org4047cd8"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
+<div id="outline-container-orgd05f8b1" class="outline-2">
+<h2 id="orgd05f8b1"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org35264e6" class="outline-3">
-<h3 id="org35264e6"><span class="section-number-3">3.1.</span> <code>apply</code></h3>
+<div id="outline-container-orgf846963" class="outline-3">
+<h3 id="orgf846963"><span class="section-number-3">3.1.</span> <code>apply</code></h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">apply</span> FUNCTION <span class="org-type">&amp;rest</span> args_or_list<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -283,8 +294,8 @@ Useful when we have a list and want to feed them as function parameters.
 </p>
 </div>
 </div>
-<div id="outline-container-org869c353" class="outline-3">
-<h3 id="org869c353"><span class="section-number-3">3.2.</span> <code>funcall</code></h3>
+<div id="outline-container-org6a663ed" class="outline-3">
+<h3 id="org6a663ed"><span class="section-number-3">3.2.</span> <code>funcall</code></h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">funcall</span> FUNCTION <span class="org-type">&amp;rest</span> args<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -296,8 +307,8 @@ Useful when function name is a variable, whose value is known only at runtime.
 </p>
 </div>
 </div>
-<div id="outline-container-org554eb83" class="outline-3">
-<h3 id="org554eb83"><span class="section-number-3">3.3.</span> <code>identity</code></h3>
+<div id="outline-container-orgbb151dd" class="outline-3">
+<h3 id="orgbb151dd"><span class="section-number-3">3.3.</span> <code>identity</code></h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">identity</span> ARGUMENT<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -309,8 +320,8 @@ Simply returns the ARGUMENT.
 </p>
 </div>
 </div>
-<div id="outline-container-org1725235" class="outline-3">
-<h3 id="org1725235"><span class="section-number-3">3.4.</span> <code>ignore</code></h3>
+<div id="outline-container-org8f69343" class="outline-3">
+<h3 id="org8f69343"><span class="section-number-3">3.4.</span> <code>ignore</code></h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">ignore</span> <span class="org-type">&amp;rest</span> ARGUMENTS<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -322,8 +333,8 @@ Ignore ARGUMENTS, and return <code>nil</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgc0501a3" class="outline-3">
-<h3 id="orgc0501a3"><span class="section-number-3">3.5.</span> <code>always</code></h3>
+<div id="outline-container-org40c3b56" class="outline-3">
+<h3 id="org40c3b56"><span class="section-number-3">3.5.</span> <code>always</code></h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">always</span> <span class="org-type">&amp;rest</span> ARGUMENTS<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -336,14 +347,14 @@ Ignore ARGUMENTS, do nothing and return <code>t</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-orgdeae2f4" class="outline-2">
-<h2 id="orgdeae2f4"><span class="section-number-2">4.</span> Function Types</h2>
+<div id="outline-container-org7801cc0" class="outline-2">
+<h2 id="org7801cc0"><span class="section-number-2">4.</span> Function Types</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
 </div>
 </div>
-<div id="outline-container-orgf696180" class="outline-2">
-<h2 id="orgf696180"><span class="section-number-2">5.</span> Docstring Markup</h2>
+<div id="outline-container-orga0c34b0" class="outline-2">
+<h2 id="orga0c34b0"><span class="section-number-2">5.</span> Docstring Markup</h2>
 </div>
 </div>
 <div id="postamble" class="status">

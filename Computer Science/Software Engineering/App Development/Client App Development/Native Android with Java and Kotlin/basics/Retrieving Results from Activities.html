@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/index.css"/>
-<script src="../../../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../../../.assets/home.js"></script>
+<script src="../../../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,20 +214,21 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Retrieving Results from Activities</h1>
+<p class="article-desc">Briefly covers how to get results from activities after closing it, e.g., get file path from file chooser activity.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1275691">1. Activity Result APIs</a>
+<li><a href="#org8ac8606">1. Activity Result APIs</a>
 <ul>
-<li><a href="#org579f5c5">1.1. Implementation Detail</a></li>
+<li><a href="#orgf281ef9">1.1. Implementation Detail</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1275691" class="outline-2">
-<h2 id="org1275691"><span class="section-number-2">1.</span> Activity Result APIs</h2>
+<div id="outline-container-org8ac8606" class="outline-2">
+<h2 id="org8ac8606"><span class="section-number-2">1.</span> Activity Result APIs</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The standard way to retrieve returned result is through <b>Activity Result API</b>. It&rsquo;s introduced to simplify the procedure of returning results and decouple components. The core includes
@@ -228,8 +240,8 @@ The standard way to retrieve returned result is through <b>Activity Result API</
 <dt><code>ActivityResultLauncher</code></dt><dd>We should first call <code>registerForActivityResult()</code> to register a contract and a callback to get this launcher. Then, we just need to invoke its <code>launch()</code> method to automatically start target activity and process returned data.</dd>
 </dl>
 </div>
-<div id="outline-container-org579f5c5" class="outline-3">
-<h3 id="org579f5c5"><span class="section-number-3">1.1.</span> Implementation Detail</h3>
+<div id="outline-container-orgf281ef9" class="outline-3">
+<h3 id="orgf281ef9"><span class="section-number-3">1.1.</span> Implementation Detail</h3>
 <div class="outline-text-3" id="text-1-1">
 <ol class="org-ol">
 <li><p>

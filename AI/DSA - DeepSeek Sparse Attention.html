@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,25 +217,26 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">DeepSeek Sparse Attention</h1>
+<p class="article-desc">DeepSeek Sparse Attention (DSA) is introduced along with the DeepSeek V3.2 technical report. It&rsquo;s designed to reduce computational complexity while preserving model performance in long context scenarios.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6ea1074">1. Prototype of DSA (DeepSeek V3.2)</a>
+<li><a href="#orgc11aabb">1. Prototype of DSA (DeepSeek V3.2)</a>
 <ul>
-<li><a href="#org4bdddec">1.1. Lightning Indexer</a></li>
-<li><a href="#org4e3235d">1.2. Fine-grained Token Selection Mechanism</a></li>
+<li><a href="#org330502b">1.1. Lightning Indexer</a></li>
+<li><a href="#orgc9f99a0">1.2. Fine-grained Token Selection Mechanism</a></li>
 </ul>
 </li>
-<li><a href="#org5ab5d72">2. <span class="todo TODO">TODO</span> Implementation of DSA</a></li>
+<li><a href="#org9c66a87">2. <span class="todo TODO">TODO</span> Implementation of DSA</a></li>
 </ul>
 </div>
 </div>
 <p>
 DeepSeek Sparse Attention (DSA) is introduced along with the DeepSeek V3.2 technical report. It&rsquo;s designed to reduce computational complexity while preserving model performance in long context scenarios.
 </p>
-<div id="outline-container-org6ea1074" class="outline-2">
-<h2 id="org6ea1074"><span class="section-number-2">1.</span> Prototype of DSA (DeepSeek V3.2)</h2>
+<div id="outline-container-orgc11aabb" class="outline-2">
+<h2 id="orgc11aabb"><span class="section-number-2">1.</span> Prototype of DSA (DeepSeek V3.2)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In vanilla attention, each input query is processed to compute attention score with <b>ALL</b> history KV tokens. Although dense matrix multiplication can be boosted with FlashAttention techniques, the complexity is still \( O(n^2) \) where \(n\) is the length of context.
@@ -238,8 +250,8 @@ Reviewing the attention scoring, we found that it&rsquo;s, in essense, selection
 The intuition here is that <span class="underline">there won&rsquo;t be too much relevant tokens as the context grows</span>. It means that only a few tokens have a meanful weight when performing \(O=PV\), while the weights of a majority of tokens are near \(0\). Thus we want some selector to find out the &ldquo;a few most relevant tokens&rdquo;. That is <b>lightning indexer</b>.
 </p>
 </div>
-<div id="outline-container-org4bdddec" class="outline-3">
-<h3 id="org4bdddec"><span class="section-number-3">1.1.</span> Lightning Indexer</h3>
+<div id="outline-container-org330502b" class="outline-3">
+<h3 id="org330502b"><span class="section-number-3">1.1.</span> Lightning Indexer</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Given a query token \(\mathbf{h}_t\in\mathbb{R}^d\). The lightning indexer computes the <i>index score</i> (which is another measure of <i>relevancy</i>) between the query token and <b>ALL</b> history keys. For some history token \(\mathbf{h}_s\in\mathbb{R}^d\), their <i>indexing score</i> \( I_{t,s} \) is given by
@@ -267,8 +279,8 @@ Other designs include:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4e3235d" class="outline-3">
-<h3 id="org4e3235d"><span class="section-number-3">1.2.</span> Fine-grained Token Selection Mechanism</h3>
+<div id="outline-container-orgc9f99a0" class="outline-3">
+<h3 id="orgc9f99a0"><span class="section-number-3">1.2.</span> Fine-grained Token Selection Mechanism</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Now that we have computed the index score for the query token against all history tokens, we next select key-value pairs of <b>top-k</b> history tokens. And apply the vanilla attention mechanism.
@@ -281,8 +293,8 @@ Now that we have computed the index score for the query token against all histor
 </div>
 </div>
 </div>
-<div id="outline-container-org5ab5d72" class="outline-2">
-<h2 id="org5ab5d72"><span class="section-number-2">2.</span> <span class="todo TODO">TODO</span> Implementation of DSA</h2>
+<div id="outline-container-org9c66a87" class="outline-2">
+<h2 id="org9c66a87"><span class="section-number-2">2.</span> <span class="todo TODO">TODO</span> Implementation of DSA</h2>
 </div>
 </div>
 <div id="postamble" class="status">

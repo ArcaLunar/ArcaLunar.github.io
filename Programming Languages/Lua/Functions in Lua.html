@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,13 +217,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc944145">1. Functions are First-Class Members</a></li>
-<li><a href="#org6cd3e16">2. Multiple Return Values</a>
+<li><a href="#org4d96bae">1. Functions are First-Class Members</a></li>
+<li><a href="#orgc7415e5">2. Multiple Return Values</a>
 <ul>
-<li><a href="#orge85153c">2.1. Result Adjustment</a></li>
+<li><a href="#org753f9b3">2.1. Result Adjustment</a></li>
 </ul>
 </li>
-<li><a href="#org3799861">3. Variadic Functions</a></li>
+<li><a href="#orgd3707c1">3. Variadic Functions</a></li>
 </ul>
 </div>
 </div>
@@ -228,8 +239,8 @@ The basic definition of function uses the <code>function</code> keyword.
   <span class="org-builtin">print</span><span class="org-rainbow-delimiters-depth-1">(</span>add<span class="org-rainbow-delimiters-depth-2">(</span>10, 20<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </code></pre>
 </div>
-<div id="outline-container-orgc944145" class="outline-2">
-<h2 id="orgc944145"><span class="section-number-2">1.</span> Functions are First-Class Members</h2>
+<div id="outline-container-org4d96bae" class="outline-2">
+<h2 id="org4d96bae"><span class="section-number-2">1.</span> Functions are First-Class Members</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Anonymous functions</b>. Functions are ordinary values, they can be placed in tables or passed to other functions.
@@ -253,8 +264,8 @@ The basic definition of function uses the <code>function</code> keyword.
 </p>
 </div>
 </div>
-<div id="outline-container-org6cd3e16" class="outline-2">
-<h2 id="org6cd3e16"><span class="section-number-2">2.</span> Multiple Return Values</h2>
+<div id="outline-container-orgc7415e5" class="outline-2">
+<h2 id="orgc7415e5"><span class="section-number-2">2.</span> Multiple Return Values</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Lua functions can return several values. We can unpack the results
@@ -269,8 +280,8 @@ Lua functions can return several values. We can unpack the results
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orge85153c" class="outline-3">
-<h3 id="orge85153c"><span class="section-number-3">2.1.</span> Result Adjustment</h3>
+<div id="outline-container-org753f9b3" class="outline-3">
+<h3 id="org753f9b3"><span class="section-number-3">2.1.</span> Result Adjustment</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Parentheses around function calls force <b>only one</b> result (first one)
@@ -284,8 +295,8 @@ Parentheses around function calls force <b>only one</b> result (first one)
 </div>
 </div>
 </div>
-<div id="outline-container-org3799861" class="outline-2">
-<h2 id="org3799861"><span class="section-number-2">3.</span> Variadic Functions</h2>
+<div id="outline-container-orgd3707c1" class="outline-2">
+<h2 id="orgd3707c1"><span class="section-number-2">3.</span> Variadic Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A variadic function accepts extra arguments through <code>...</code>, and we can convert arguments into a table when necessary.

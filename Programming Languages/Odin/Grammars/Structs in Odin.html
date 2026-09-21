@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,19 +217,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7976c5a">1. Struct Definition</a></li>
-<li><a href="#orgfc0e660">2. Structs within Structs</a>
+<li><a href="#org6010f2c">1. Struct Definition</a></li>
+<li><a href="#orgaadfa30">2. Structs within Structs</a>
 <ul>
-<li><a href="#org1a652a6">2.1. <code>using</code> on Struct Fields</a></li>
-<li><a href="#orgbaabe53">2.2. <code>using</code> Acts like Inheritance</a></li>
+<li><a href="#org9b9a0dd">2.1. <code>using</code> on Struct Fields</a></li>
+<li><a href="#org2ec30df">2.2. <code>using</code> Acts like Inheritance</a></li>
 </ul>
 </li>
-<li><a href="#org484c09b">3. Using Structs as Interfaces</a></li>
+<li><a href="#org0607b76">3. Using Structs as Interfaces</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7976c5a" class="outline-2">
-<h2 id="org7976c5a"><span class="section-number-2">1.</span> Struct Definition</h2>
+<div id="outline-container-org6010f2c" class="outline-2">
+<h2 id="org6010f2c"><span class="section-number-2">1.</span> Struct Definition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The basic grammar for structs is similar to C.
@@ -251,8 +262,8 @@ Unmentioned fields will be automatically initialized to zero value.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc0e660" class="outline-2">
-<h2 id="orgfc0e660"><span class="section-number-2">2.</span> Structs within Structs</h2>
+<div id="outline-container-orgaadfa30" class="outline-2">
+<h2 id="orgaadfa30"><span class="section-number-2">2.</span> Structs within Structs</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Basically, since structs are types, so we can define fields of other structs within a struct.
@@ -288,8 +299,8 @@ We can then initialize <code>Person</code> instances in a nested way, as well as
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org1a652a6" class="outline-3">
-<h3 id="org1a652a6"><span class="section-number-3">2.1.</span> <code>using</code> on Struct Fields</h3>
+<div id="outline-container-org9b9a0dd" class="outline-3">
+<h3 id="org9b9a0dd"><span class="section-number-3">2.1.</span> <code>using</code> on Struct Fields</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 It&rsquo;s sometime too redundant to type <code>p.stats.age</code>. By <code>using</code> keyword, we can make <code>age</code> field directly available on <code>p</code>.
@@ -316,8 +327,8 @@ Not only we can access it directly, we can also initialize it directly.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbaabe53" class="outline-3">
-<h3 id="orgbaabe53"><span class="section-number-3">2.2.</span> <code>using</code> Acts like Inheritance</h3>
+<div id="outline-container-org2ec30df" class="outline-3">
+<h3 id="org2ec30df"><span class="section-number-3">2.2.</span> <code>using</code> Acts like Inheritance</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The <code>using</code> keyword can play the role of inheritance to some extend. In this example, although <code>p</code> is of type <code>Person</code>, but since <code>Person</code> is <code>using</code> type <code>Entity</code>, calling <code>printposition</code> with <code>p</code> that requires an <code>Entity</code> argument still compiles.  
@@ -352,8 +363,8 @@ The <code>using</code> keyword can play the role of inheritance to some extend. 
 </div>
 </div>
 </div>
-<div id="outline-container-org484c09b" class="outline-2">
-<h2 id="org484c09b"><span class="section-number-2">3.</span> Using Structs as Interfaces</h2>
+<div id="outline-container-org0607b76" class="outline-2">
+<h2 id="org0607b76"><span class="section-number-2">3.</span> Using Structs as Interfaces</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Although we cannot define methods on structs, we can do something similar to <span class="underline">storing function pointers</span> in C to make a struct an interface.

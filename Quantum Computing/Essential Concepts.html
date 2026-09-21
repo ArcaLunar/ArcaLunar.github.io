@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -210,19 +221,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9df317e">1. Qubits</a></li>
-<li><a href="#org6e4963d">2. Measurement of Qubits</a></li>
+<li><a href="#org07fc377">1. Qubits</a></li>
+<li><a href="#orgfaf19b6">2. Measurement of Qubits</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9df317e" class="outline-2">
-<h2 id="org9df317e"><span class="section-number-2">1.</span> Qubits</h2>
+<div id="outline-container-org07fc377" class="outline-2">
+<h2 id="org07fc377"><span class="section-number-2">1.</span> Qubits</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The unit of computation is <b>qubit</b> (short for quantum bits). A qubit in a quantum computer consists of <span class="underline">two perfectly distinguishable statuses</span> of a (usually microscopic) quantum system. We usually use a unit vector to refer to the quantum state.
 </p>
 
-<div class="note" id="org1a7b62b">
+<div class="note" id="orga7c853d">
 <p>
 <b>Notations in Quantum Computing</b>
 </p>
@@ -259,8 +270,8 @@ The coefficients \(\alpha,\beta\) are called <b>amplitudes</b> of \( \ket{\psi} 
 </p>
 </div>
 </div>
-<div id="outline-container-org6e4963d" class="outline-2">
-<h2 id="org6e4963d"><span class="section-number-2">2.</span> Measurement of Qubits</h2>
+<div id="outline-container-orgfaf19b6" class="outline-2">
+<h2 id="orgfaf19b6"><span class="section-number-2">2.</span> Measurement of Qubits</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The outcome of a qubit cannot be read directly. We must perform a measurement.
@@ -270,7 +281,7 @@ The outcome of a qubit cannot be read directly. We must perform a measurement.
 <dt>Measurement</dt><dd>Each measurement can only produce one outcome \( \ket{0} \) or \( \ket{1} \). Although a single measurement can only have one outcome, different measurement may have different outcomes. But, we can <b>statistically</b> figure out the state of the qubit after a large amount of measurements, that is the Born&rsquo;s Rule.</dd>
 </dl>
 
-<div class="highlight theorem" id="org0b81afc">
+<div class="theorem">
 <p>
 <b>Born&rsquo;s Rule</b>
 </p>

@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RL and Markov Decision Process</title>
+<title>Fundamental Concepts in Markov Decision Process and Reinforcement Learning</title>
+<meta name="author" content="ArcaLunar" />
+<meta name="description" content="This post roughtly covers (1) the setups in MDP/RL, (2) value function, (3) Q-state, (4) discounting, (5) advantage, (6) Bellman Equation (7) the difference between on- and off-policy. In addition, this post tries to provide an intuition beyond formula." />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -192,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -204,256 +217,142 @@
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">RL and Markov Decision Process</h1>
+<h1 class="title">Fundamental Concepts in Markov Decision Process and Reinforcement Learning</h1>
+<p class="article-desc">This post roughtly covers (1) the setups in MDP/RL, (2) value function, (3) Q-state, (4) discounting, (5) advantage, (6) Bellman Equation (7) the difference between on- and off-policy. In addition, this post tries to provide an intuition beyond formula.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6573c9a">1. Introduction to RL and MDP</a></li>
-<li><a href="#org39b4b1a">2. Solving MDPs</a>
-<ul>
-<li><a href="#org7367ab1">2.1. Utility of State Sequences</a></li>
-<li><a href="#org848eb32">2.2. Optimal Quantities</a></li>
-<li><a href="#org833ebe2">2.3. Solving Optimal Policy</a>
-<ul>
-<li><a href="#org6db760a">2.3.1. Value Iteration</a></li>
-<li><a href="#org5000161">2.3.2. Q-Value Iteration</a></li>
-<li><a href="#org7477c51">2.3.3. Policy Iteration</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgfee062b">3. Reinforcement Learning</a>
-<ul>
-<li><a href="#org7b17553">3.1. Model-Based Learning</a></li>
-<li><a href="#orgf19203a">3.2. Model-Free Learning</a>
-<ul>
-<li><a href="#orgfeb836f">3.2.1. Direct Evaluation</a></li>
-<li><a href="#org7ce25f8">3.2.2. Temporal Difference Learning</a></li>
-<li><a href="#org1c7615b">3.2.3. Q-Learning</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#org9de30b4">1. Introduction</a></li>
+<li><a href="#org2a78268">2. Discounting, Values, Q-Values, and Advantage</a></li>
+<li><a href="#org859b0ea">3. Bellman Equation</a></li>
+<li><a href="#org72eb00b">4. On-Policy and Off-Policy</a></li>
+<li><a href="#org5694ba3">5. Monte-Carlo (MC) and Temporal Difference (TD)</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6573c9a" class="outline-2">
-<h2 id="org6573c9a"><span class="section-number-2">1.</span> Introduction to RL and MDP</h2>
+<div id="outline-container-org9de30b4" class="outline-2">
+<h2 id="org9de30b4"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-In RL, the world and the agent is modeled by <i>world state</i> \(s_t\in S\) and <i>agent action</i> \(a_t\in A\), where the subscript \(t\) models the <i>time</i>, \(A\) models the action space and \(S\) models the world state space. The transition of world can be modeled by
+MDP is a way to model the world dynamics. We have an agent in an environment and we want the agent to interact with the environment in a desired manner. The following image illustrates the environment setup of RL and MDP.
 </p>
 
 <p>
-\[
-s_{t+1} \sim \mathbb{P}(s\mid s_0,a_0,\dots, s_t,a_t)
-\]
+<img src="/.assets/rl/mdp-rl-env.png" alt="Environment Setup" />
 </p>
 
 <p>
-In practical, we assume the transitions are <i>Markovian</i>, i.e., the probability of reaching \(s_{t+1}\) from \(s_t\) depends <b>only on</b> \(s_t\) and not on the history of earlier states. This tells
+The agent observes the current <b>world state</b> \(s_{t}\), and performs an <b>action</b> \(a_{t}\) based on the state observed and a <b>policy</b> \(\pi(a|s)\), which basically tells which action to perform at some state. Moreover, the policy is usually <i>stochastic</i>, meaning the policy \(\pi(a|s)\) is a distribution over <b>action space</b> \(A\) conditioned by state \(s_{t}\).
 </p>
 
 <p>
-\[
-\mathbb{P}(s=s_{t+1}\mid s_0,a_0,\dots,s_t,a_t) = \mathbb{P}(s=s_{t+1}\mid s_t,a_t)
-\]
-</p>
-
-<p>
-We model the transition as \(T(s_t,a_t,s_{t+1})=\mathbb{P}(s=s_{t+1}\mid s_t,a_t)\).
+The environment is also <i>stochastic</i>. Given the current world state and what the agent has done (i.e., the state and action), the world changes correspondingly. The world state of time \(t+1\) is sampled from the distribution \(T(s'|s,a)\), called <b>transition</b>. Besides world transition, we also have a <b>reward function</b> \(R(s,a,s')\) that judges whether this action is good or not.
 </p>
 
 <dl class="org-dl">
-<dt>Reward</dt><dd>Reward is also an important component. It acts as a criterion to tell agent if the move is good or not, therefore encouraging the agent to follow a certain pattern. We model the criterion as \(R(s_t,a_t,s_{t+1})\).</dd>
-</dl>
+<dt>Trajectory</dt><dd><p>
+In MDP/RL settings, we usually called an alternating sequence of \(s,a,r\) a <b>trajectory</b>, denoted by \(\tau\):
+</p>
 
 <p>
-A significant difference is that, MDPs have a <b>fixed environment</b> that transitions and rewards are known in advance. However, in RL, these two are unknown.
-</p>
+\[ \tau = (s_{0},a_{0},r_{0},s_{1},a_{1},r_{1},\dots) \]
+</p></dd>
+</dl>
 </div>
 </div>
-<div id="outline-container-org39b4b1a" class="outline-2">
-<h2 id="org39b4b1a"><span class="section-number-2">2.</span> Solving MDPs</h2>
+<div id="outline-container-org2a78268" class="outline-2">
+<h2 id="org2a78268"><span class="section-number-2">2.</span> Discounting, Values, Q-Values, and Advantage</h2>
 <div class="outline-text-2" id="text-2">
-<dl class="org-dl">
-<dt>Policy</dt><dd>Given the current state, the policy tells which action should be taken. We use \(\pi(s):\mathcal{S}\to \mathcal{A}\) to model <i>policy</i> that produces an action recommended by the policy given the state \(s\).</dd>
-</dl>
-
 <p>
-Starting from initial state \(s_0\), we can alternatively explore actions, state transition and then states again.
+To measure the &ldquo;goodness&rdquo; of a trajectory, we can just accumulate the rewards. We also introduce <b>discounting</b> here, because intuitively, we should encourage early beneficial actions. We call this discounting cumulative rewards \(G_{t}\). The subscript means, we start from step \(t\).
 </p>
 
-<pre class="example" id="org54a636c">
-state --(take action)--&gt; (s,a) --(transition)--&gt; state'
-</pre>
+<p>
+\[
+G_{t} = \sum_{k=0}^{\infin} \gamma^{k} r_{t+k}
+\]
+</p>
 
 <p>
-Here, the \((s,a)\) is an <i>intermediate state</i>: the agent has taken action and is waiting for the world state to transit, aka <b>Q-state</b>, computed by \(Q(s,a)\).
+The <b>state value</b> of \(s_{t}\) refers to the <b>expected reward</b> \(G_{t}\) starting from it and we perform according to the policy \(\pi\) (we are computing expectation over the distribution of the action space)
+</p>
+
+<p>
+\[ V^{\pi}(s_{t}) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s_{t} \right] \]
+</p>
+
+<p>
+The <b>action value</b> of a state-action pair (called <b>Q-state</b>) \((s_{t},a_{t})\) refers to thet <b>expected reward</b> \(G_{t}\) starting from \(s_{t}\) and our first action is \(a_{t}\), and then we perform according to the policy \(\pi\).
+</p>
+
+<p>
+\[ Q^{\pi}(s_{t},a_{t}) = \mathbb{E}_{\pi} \left[ G_{t} | S_{t}=s_{t}, A_{t}=a_{t} \right] \]
+</p>
+
+<p>
+In some cases, when the reward function is mal-defined, e.g., whatever action results in a positive reward, the discounted cumulative reward \(G_{t}\) is always positive. This will lead to some trouble during training (any action will be encouraged, because the reward is positive, causing the training unstable). Therefore, we use <b>advantage</b> to describe the extent to which an action is better than the average (the expectation).
+</p>
+
+<p>
+\[ A^{\pi}(s,a) = Q^{\pi}(s,a) - V^{\pi}(s) \]
 </p>
 </div>
-<div id="outline-container-org7367ab1" class="outline-3">
-<h3 id="org7367ab1"><span class="section-number-3">2.1.</span> Utility of State Sequences</h3>
-<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org859b0ea" class="outline-2">
+<h2 id="org859b0ea"><span class="section-number-2">3.</span> Bellman Equation</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-The agent produces a sequence of alternating states and actions, and we can compute a sequence of rewards. The <b>utility</b> of the state sequence can model the <b>&ldquo;goodness&rdquo; of action sequence</b>. Higher utility can mean better performance of the agent.
+From the definition of state value and action value, we can infer their relationship.
 </p>
 
 <p>
-We may also involve <b>discounting</b> here. Discounting means that rewards decrease by a multiplier \(\gamma\) as more steps are taken. This can be used to encourage performing useful steps earlier. Discounting also helps utility convergence.
-</p>
-</div>
-</div>
-<div id="outline-container-org848eb32" class="outline-3">
-<h3 id="org848eb32"><span class="section-number-3">2.2.</span> Optimal Quantities</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-We use \(V(s)\) to model the utility of a state \(s\), short for <b>expected utility starting from \(s\) and acting optimally</b>. Also use similarly \(Q(s,a)\) to the model the <b>expected utility starting from \(s\), taking action \(a\) and then acting optimally</b>.
+\[\begin{aligned}
+V^{\pi}(s)   &= \sum_{a} \pi(a|s) Q^{\pi}(s,a) \newline
+Q^{\pi}(s,a) &= \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma V^{\pi}(s') \right]
+\end{aligned}\]
 </p>
 
 <p>
-With the definition, we can infer their relationship:
+By plugging \(Q^{\pi}, V^{\pi}\) back into equations, we can get the Bellman Equation.
 </p>
 
 \begin{equation}
+\boxed{
 \begin{split}
-V^\ast(s)   &= \max_a Q^\ast (s,a) \\
-Q^\ast(s,a) &= \sum_{s'} T(s,a,s')\cdot \Big[ R(s,a,s') + \gamma V^\ast(s') \Big]
+V^{\pi}(s)   &= \sum_{a} \pi(a|s) \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma V^{\pi}(s') \right] \\
+Q^{\pi}(s,a) &= \sum_{s'} T(s'|s,a) \left[ R(s,a,s') + \gamma \sum_{a} \pi(a|s) Q^{\pi}(s,a) \right]
 \end{split}
+}
 \end{equation}
 </div>
 </div>
-<div id="outline-container-org833ebe2" class="outline-3">
-<h3 id="org833ebe2"><span class="section-number-3">2.3.</span> Solving Optimal Policy</h3>
-<div class="outline-text-3" id="text-2-3">
-</div>
-<div id="outline-container-org6db760a" class="outline-4">
-<h4 id="org6db760a"><span class="section-number-4">2.3.1.</span> Value Iteration</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-org72eb00b" class="outline-2">
+<h2 id="org72eb00b"><span class="section-number-2">4.</span> On-Policy and Off-Policy</h2>
+<div class="outline-text-2" id="text-4">
 <p>
-We update the value \(V(s)\) for \(k\) rounds to approximate the optimal. i.e.
+Let&rsquo;s call the policy that is used to generate trajectories <b>behaviour policy</b> \(\mu\) and the policy that is to be optimized <b>target policy</b> \(\pi\). <b>On-policy</b> means that these two policies are the same, i.e., \(\mu=\pi\), we&rsquo;re using our data to train ourselves. In contrast, <b>off-policy</b> means that these two policies are not the same, \(\mu \ne \pi\), we&rsquo;re using data generated by others to train our policy.
+</p>
+
+<div class="note" id="org9e5a04b">
+<p>
+<b>The Difference between Rollout and Trajectory</b>
 </p>
 
 <p>
-\[
-V_{k+1}(s) \gets \max_a \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V_k(s') \Big]
-\]
+Both rollout and trajectory refer to concept of generating an alternating sequence of state, action, and reward. The difference is that: rollout highlights the dynamic process of <span class="underline">generation</span> itself, while trajectory emphasizes the <span class="underline">data</span> generated at last.
 </p>
 
-<p>
-<i>Policy extraction</i>. We derive the optimal policy given values
-</p>
-
-<p>
-\[
-\pi^\ast(s)=\mathop{\text{argmax}}\limits_a \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V^\ast(s') \Big]
-\]
-</p>
-</div>
-</div>
-<div id="outline-container-org5000161" class="outline-4">
-<h4 id="org5000161"><span class="section-number-4">2.3.2.</span> Q-Value Iteration</h4>
-<div class="outline-text-4" id="text-2-3-2">
-<p>
-We start with \(Q_0(s,a)=0\), and iteratively update \(Q\)-values.
-</p>
-
-<p>
-\[
-Q_{k+1}(s,a) \gets \sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma \max_{a'} Q_k(s',a') \Big]
-\]
-</p>
-
-<p>
-Policy extraction for Q-value iteration is very easy
-</p>
-
-<p>
-\[
-\pi^\ast(s)=\mathop{\text{argmax}}\limits_a\, Q^\ast(s,a)
-\]
-</p>
-</div>
-</div>
-<div id="outline-container-org7477c51" class="outline-4">
-<h4 id="org7477c51"><span class="section-number-4">2.3.3.</span> Policy Iteration</h4>
-<div class="outline-text-4" id="text-2-3-3">
-<p>
-An alternative approach for value iteration. It can be divided into 2 phases.
-</p>
-
-<ol class="org-ol">
-<li><i>Policy evaluation</i>. calculate utilities for some fixed policy</li>
-<li><i>Policy improvement</i>. update policy using one-step look-ahead with resulting converged (but not optimal) utilities as future values.</li>
-</ol>
-
-<p>
-For evaluation with a <i>fixed policy \(\pi\)</i>, we can either use <i>iterative updates</i> \( V^\pi_{k+1}(s) \gets \sum_{s'} T(s,\pi(s),s')\Big[ R(s,\pi(s), s') + \gamma V^\pi_k(s') \Big] \), or treat Bellman equations as a linear system: \( V^\pi(s)=\sum_{s'} T(s,\pi(s),s')\Big[ R(s,\pi(s),s')+\gamma V^\pi(s') \Big] \)
-</p>
-
-<p>
-Then, we improve our policy with computed value:
-</p>
-
-<p>
-\[
-\pi_{k+1}(s)=\mathop{\text{argmax}}\limits_a\,\sum_{s'} T(s,a,s')\Big[ R(s,a,s')+\gamma V^{\pi_k}(s') \Big]
-\]
-</p>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-orgfee062b" class="outline-2">
-<h2 id="orgfee062b"><span class="section-number-2">3.</span> Reinforcement Learning</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org7b17553" class="outline-3">
-<h3 id="org7b17553"><span class="section-number-3">3.1.</span> Model-Based Learning</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-Its idea to learn an approximate model based on experience and use this model to solve for values. We first build transition model \(T^e(s,a,s')\) from history and discover each \(R^e(s,a,s')\), where \(e\) stands for <i>empirical</i>. Then with the transition model and reward model, we can solve the RL problem as MDP problem.
-</p>
-</div>
-</div>
-<div id="outline-container-orgf19203a" class="outline-3">
-<h3 id="orgf19203a"><span class="section-number-3">3.2.</span> Model-Free Learning</h3>
-<div class="outline-text-3" id="text-3-2">
-<dl class="org-dl">
-<dt>Passive RL</dt><dd>An agent is given a policy to follow and learns the value of states under that policy as it experiences episodes, which is exactly what is done by policy evaluation for MDPs when \(T,R\) are known.</dd>
-<dt>Acitve RL</dt><dd>During active RL, agent can use the feedback it receives to iteratively update it policy while learning until eventually determining the optimal policy after sufficient exploration.</dd>
-</dl>
-</div>
-<div id="outline-container-orgfeb836f" class="outline-4">
-<h4 id="orgfeb836f"><span class="section-number-4">3.2.1.</span> Direct Evaluation</h4>
-<div class="outline-text-4" id="text-3-2-1">
-<p>
-An algorithm under passive RL. We fix some policy \(\pi\) and have the agent experience several episodes while following \(\pi\). As the agent collects samples through these episodes, it maintains counts of the total utilities obtained from each state and the number of times it visited each state. So then, we can compute the estimated value of any state \(s\) by dividing the total utility obtained from \(s\) by the number of times \(s\) was visited.
-</p>
-</div>
-</div>
-<div id="outline-container-org7ce25f8" class="outline-4">
-<h4 id="org7ce25f8"><span class="section-number-4">3.2.2.</span> Temporal Difference Learning</h4>
-<div class="outline-text-4" id="text-3-2-2">
-<p>
-Read: [BROKEN LINK: c5478523-4571-4c44-8459-8e65b7a40b8b]
-</p>
-</div>
-</div>
-<div id="outline-container-org1c7615b" class="outline-4">
-<h4 id="org1c7615b"><span class="section-number-4">3.2.3.</span> Q-Learning</h4>
-<div class="outline-text-4" id="text-3-2-3">
-<p>
-Read: [BROKEN LINK: 33e3ca5d-e240-4e85-b718-caa69ab19d5f]
-</p>
-</div>
-</div>
-</div>
+<div id="outline-container-org5694ba3" class="outline-2">
+<h2 id="org5694ba3"><span class="section-number-2">5.</span> Monte-Carlo (MC) and Temporal Difference (TD)</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2026-06-15 Mon</p>
+<p class="date">Date: 2026-09-13 Sun</p>
+<p class="author">Author: ArcaLunar</p>
 </div>
 </body>
 </html>

@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,29 +217,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org59d1ed9">1. Loops</a>
+<li><a href="#org46eebff">1. Loops</a>
 <ul>
-<li><a href="#org84806fe">1.1. While Loop</a></li>
-<li><a href="#org79f433b">1.2. Loop for a Fixed Number of Times</a></li>
+<li><a href="#org358905a">1.1. While Loop</a></li>
+<li><a href="#orged704d3">1.2. Loop for a Fixed Number of Times</a></li>
 </ul>
 </li>
-<li><a href="#org352a047">2. Iteration over List</a></li>
-<li><a href="#org6040fe2">3. Exit Loops or Functions</a>
+<li><a href="#org931f1fe">2. Iteration over List</a></li>
+<li><a href="#org137cecd">3. Exit Loops or Functions</a>
 <ul>
-<li><a href="#org06dcf2d">3.1. Throw and Catch</a></li>
-<li><a href="#org3315508">3.2. Use <code>seq-some</code> or <code>seq-every-p</code></a></li>
-<li><a href="#org281223c">3.3. Use <code>error</code> or <code>user-error</code> to Signal Error and Exit Process</a></li>
+<li><a href="#org5420184">3.1. Throw and Catch</a></li>
+<li><a href="#orgc64ff41">3.2. Use <code>seq-some</code> or <code>seq-every-p</code></a></li>
+<li><a href="#org918d059">3.3. Use <code>error</code> or <code>user-error</code> to Signal Error and Exit Process</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org59d1ed9" class="outline-2">
-<h2 id="org59d1ed9"><span class="section-number-2">1.</span> Loops</h2>
+<div id="outline-container-org46eebff" class="outline-2">
+<h2 id="org46eebff"><span class="section-number-2">1.</span> Loops</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org84806fe" class="outline-3">
-<h3 id="org84806fe"><span class="section-number-3">1.1.</span> While Loop</h3>
+<div id="outline-container-org358905a" class="outline-3">
+<h3 id="org358905a"><span class="section-number-3">1.1.</span> While Loop</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-keyword">while</span> test body<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -240,8 +251,8 @@ where <code>body</code> is one or more lisp expressions. Usually, it&rsquo;s use
 </p>
 </div>
 </div>
-<div id="outline-container-org79f433b" class="outline-3">
-<h3 id="org79f433b"><span class="section-number-3">1.2.</span> Loop for a Fixed Number of Times</h3>
+<div id="outline-container-orged704d3" class="outline-3">
+<h3 id="orged704d3"><span class="section-number-3">1.2.</span> Loop for a Fixed Number of Times</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can use <code>dotimes</code> to loop for a fixed number of times. It has two formats.
@@ -270,8 +281,8 @@ Basically, it evaluate <code>BODY</code> with <code>VAR</code> bound to <i>succe
 </div>
 </div>
 </div>
-<div id="outline-container-org352a047" class="outline-2">
-<h2 id="org352a047"><span class="section-number-2">2.</span> Iteration over List</h2>
+<div id="outline-container-org931f1fe" class="outline-2">
+<h2 id="org931f1fe"><span class="section-number-2">2.</span> Iteration over List</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We use <code>dolist</code> to iterate over list.
@@ -288,15 +299,15 @@ Each time evaluate <code>BODY</code>, with <code>VAR</code> having value of an e
 </p>
 </div>
 </div>
-<div id="outline-container-org6040fe2" class="outline-2">
-<h2 id="org6040fe2"><span class="section-number-2">3.</span> Exit Loops or Functions</h2>
+<div id="outline-container-org137cecd" class="outline-2">
+<h2 id="org137cecd"><span class="section-number-2">3.</span> Exit Loops or Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 There&rsquo;s no <code>break</code>, <code>continue</code> or <code>return</code> keywords in Emacs Lisp. So we have other ways to achieve the same effect.
 </p>
 </div>
-<div id="outline-container-org06dcf2d" class="outline-3">
-<h3 id="org06dcf2d"><span class="section-number-3">3.1.</span> Throw and Catch</h3>
+<div id="outline-container-org5420184" class="outline-3">
+<h3 id="org5420184"><span class="section-number-3">3.1.</span> Throw and Catch</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-keyword">catch</span> <span class="org-constant">tag</span> body<span class="org-rainbow-delimiters-depth-1">)</span>
@@ -332,12 +343,12 @@ Evaluates <code>body</code> and returns <code>body</code>&rsquo;s last expressio
 </div>
 </div>
 </div>
-<div id="outline-container-org3315508" class="outline-3">
-<h3 id="org3315508"><span class="section-number-3">3.2.</span> Use <code>seq-some</code> or <code>seq-every-p</code></h3>
+<div id="outline-container-orgc64ff41" class="outline-3">
+<h3 id="orgc64ff41"><span class="section-number-3">3.2.</span> Use <code>seq-some</code> or <code>seq-every-p</code></h3>
 </div>
 
-<div id="outline-container-org281223c" class="outline-3">
-<h3 id="org281223c"><span class="section-number-3">3.3.</span> Use <code>error</code> or <code>user-error</code> to Signal Error and Exit Process</h3>
+<div id="outline-container-org918d059" class="outline-3">
+<h3 id="org918d059"><span class="section-number-3">3.3.</span> Use <code>error</code> or <code>user-error</code> to Signal Error and Exit Process</h3>
 </div>
 </div>
 </div>

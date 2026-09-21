@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -207,12 +218,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2d5c847">1. Command Line Interfaces</a></li>
+<li><a href="#org66f60ee">1. Command Line Interfaces</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d5c847" class="outline-2">
-<h2 id="org2d5c847"><span class="section-number-2">1.</span> Command Line Interfaces</h2>
+<div id="outline-container-org66f60ee" class="outline-2">
+<h2 id="org66f60ee"><span class="section-number-2">1.</span> Command Line Interfaces</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 CLI can be defined in <code>pyproject.toml</code> in <code>[project.scripts]</code> section, and can be executed with <code>uv run</code>. The LHS is the script name, and the RHS is a <span class="underline">function of a module</span>. If the module is nested in folders, we should follow Python convention to use dot <code>.</code> to represent folder hierarchy. Note that, RHS can <b>only</b> be Python modules.
@@ -223,11 +234,11 @@ The following example runs the <code>main</code> function of the <code>example</
 </p>
 
 <div class="org-src-container">
-<pre class="src src-toml"><code><span class="org-bracket">[</span><span class="org-type">project.script</span><span class="org-bracket">]</span>
-<span class="org-property-use">example</span> <span class="org-delimiter">=</span> <span class="org-string">"example:main"</span>
+<pre class="src src-toml"><code>[<span class="org-type">project.script</span>]
+<span class="org-variable-name">example</span> = <span class="org-string">"example:main"</span>
 
-<span class="org-comment"># Can be run by</span>
-<span class="org-comment">#       $ uv run example</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">Can be run by
+</span><span class="org-comment-delimiter">#       </span><span class="org-comment">$ uv run example</span>
 </code></pre>
 </div>
 </div>

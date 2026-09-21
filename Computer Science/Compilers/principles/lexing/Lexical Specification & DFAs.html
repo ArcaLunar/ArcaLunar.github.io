@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,16 +217,17 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Lexical Specification &amp; DFAs</h1>
+<p class="article-desc">Briefly discuss how to use regex to specify lexemes, also its implementation.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga935dd7">1. Lexing Procedure</a></li>
-<li><a href="#orge50eb2f">2. Finite Automata</a>
+<li><a href="#org4fac5c9">1. Lexing Procedure</a></li>
+<li><a href="#orgefdd150">2. Finite Automata</a>
 <ul>
-<li><a href="#org2589032">2.1. Converting Regex into NFAs</a></li>
-<li><a href="#orgf0ffe05">2.2. From NFAs to DFAs</a></li>
-<li><a href="#orgc460969">2.3. Implementation of Finite Automata</a></li>
+<li><a href="#org95ac4a9">2.1. Converting Regex into NFAs</a></li>
+<li><a href="#org72b2de3">2.2. From NFAs to DFAs</a></li>
+<li><a href="#org94ece89">2.3. Implementation of Finite Automata</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +236,8 @@
 <p>
 This part focuses on how to partition the input string into tokens.
 </p>
-<div id="outline-container-orga935dd7" class="outline-2">
-<h2 id="orga935dd7"><span class="section-number-2">1.</span> Lexing Procedure</h2>
+<div id="outline-container-org4fac5c9" class="outline-2">
+<h2 id="org4fac5c9"><span class="section-number-2">1.</span> Lexing Procedure</h2>
 <div class="outline-text-2" id="text-1">
 <ol class="org-ol">
 <li>we first write down the regex for each token class</li>
@@ -247,8 +259,8 @@ This part focuses on how to partition the input string into tokens.
 </p>
 </div>
 </div>
-<div id="outline-container-orge50eb2f" class="outline-2">
-<h2 id="orge50eb2f"><span class="section-number-2">2.</span> Finite Automata</h2>
+<div id="outline-container-orgefdd150" class="outline-2">
+<h2 id="orgefdd150"><span class="section-number-2">2.</span> Finite Automata</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Regular expressions = specification, while finite automata = implementation. A finite automata consists of input alphabet \(\Sigma\), a set of state \(S\), a start state \(n\), a set of accepting states \(F\subseteq S\) and a set of transitions \(\text{state} \overset{\text{input}}{\longrightarrow} \text{state}\).
@@ -264,8 +276,8 @@ Regular expressions = specification, while finite automata = implementation. A f
 DFAs are faster to execute, while NFAs are generally (exponentially) smaller.
 </p>
 </div>
-<div id="outline-container-org2589032" class="outline-3">
-<h3 id="org2589032"><span class="section-number-3">2.1.</span> Converting Regex into NFAs</h3>
+<div id="outline-container-org95ac4a9" class="outline-3">
+<h3 id="org95ac4a9"><span class="section-number-3">2.1.</span> Converting Regex into NFAs</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Practically, we use NFAs to implement regular expressions. Then we translate NFAs into DFAs, and finally use look-up tables to implement DFAs.
@@ -302,8 +314,8 @@ For iteration,
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0ffe05" class="outline-3">
-<h3 id="orgf0ffe05"><span class="section-number-3">2.2.</span> From NFAs to DFAs</h3>
+<div id="outline-container-org72b2de3" class="outline-3">
+<h3 id="org72b2de3"><span class="section-number-3">2.2.</span> From NFAs to DFAs</h3>
 <div class="outline-text-3" id="text-2-2">
 <dl class="org-dl">
 <dt>\(\epsilon\)-closure</dt><dd>A \(\epsilon\)-closure of a state \(S\), is the set of nodes that can be reached by only using \(\epsilon\)-moves zero or more times</dd>
@@ -383,8 +395,8 @@ For the equivalent DFA to the above NFA, we have
 </table>
 </div>
 </div>
-<div id="outline-container-orgc460969" class="outline-3">
-<h3 id="orgc460969"><span class="section-number-3">2.3.</span> Implementation of Finite Automata</h3>
+<div id="outline-container-org94ece89" class="outline-3">
+<h3 id="org94ece89"><span class="section-number-3">2.3.</span> Implementation of Finite Automata</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A DFA can be implemented by a 2D table T, with one dimension being states and the other dimension being input symbols. For every transition \( s_i \overset{a}{\to} s_j \), we set \( \texttt{T}[s_i, a]=s_j \).

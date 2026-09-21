@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,13 +217,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org25ec34f">1. Raw Unions as in C</a></li>
-<li><a href="#org0d6cae7">2. Unions as State Machines</a></li>
+<li><a href="#org140a64a">1. Raw Unions as in C</a></li>
+<li><a href="#org2e9d285">2. Unions as State Machines</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org25ec34f" class="outline-2">
-<h2 id="org25ec34f"><span class="section-number-2">1.</span> Raw Unions as in C</h2>
+<div id="outline-container-org140a64a" class="outline-2">
+<h2 id="org140a64a"><span class="section-number-2">1.</span> Raw Unions as in C</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 To mimic the unions in C, we should declare with <code>struct</code> keyword and <i>raw union</i> tags. Since in C, there&rsquo;s no auxiliary ways to track the variant, so we usually need to manually track.
@@ -229,8 +240,8 @@ To mimic the unions in C, we should declare with <code>struct</code> keyword and
 </div>
 </div>
 </div>
-<div id="outline-container-org0d6cae7" class="outline-2">
-<h2 id="org0d6cae7"><span class="section-number-2">2.</span> Unions as State Machines</h2>
+<div id="outline-container-org2e9d285" class="outline-2">
+<h2 id="org2e9d285"><span class="section-number-2">2.</span> Unions as State Machines</h2>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,50 +215,51 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Numbers</h1>
+<p class="article-desc">Briefly introduces basic operations related to numbers.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org545966f">1. Floating Points and Integers</a></li>
-<li><a href="#org5e95400">2. Type Predicates for Numbers</a></li>
-<li><a href="#orgdd57441">3. Numeric Conversions</a></li>
-<li><a href="#org2f70f5c">4. Arithmetics</a></li>
-<li><a href="#orgcdf66a6">5. Rounding</a></li>
-<li><a href="#org02e9787">6. Bitwise Operations</a></li>
-<li><a href="#org768caed">7. Random Numbers</a></li>
+<li><a href="#org13b045f">1. Floating Points and Integers</a></li>
+<li><a href="#orgbdf90ee">2. Type Predicates for Numbers</a></li>
+<li><a href="#org6befc6b">3. Numeric Conversions</a></li>
+<li><a href="#org2ef81a4">4. Arithmetics</a></li>
+<li><a href="#org33ec872">5. Rounding</a></li>
+<li><a href="#org78dcd39">6. Bitwise Operations</a></li>
+<li><a href="#org7b2e784">7. Random Numbers</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org545966f" class="outline-2">
-<h2 id="org545966f"><span class="section-number-2">1.</span> Floating Points and Integers</h2>
+<div id="outline-container-org13b045f" class="outline-2">
+<h2 id="org13b045f"><span class="section-number-2">1.</span> Floating Points and Integers</h2>
 </div>
 
-<div id="outline-container-org5e95400" class="outline-2">
-<h2 id="org5e95400"><span class="section-number-2">2.</span> Type Predicates for Numbers</h2>
+<div id="outline-container-orgbdf90ee" class="outline-2">
+<h2 id="orgbdf90ee"><span class="section-number-2">2.</span> Type Predicates for Numbers</h2>
 </div>
 
-<div id="outline-container-orgdd57441" class="outline-2">
-<h2 id="orgdd57441"><span class="section-number-2">3.</span> Numeric Conversions</h2>
+<div id="outline-container-org6befc6b" class="outline-2">
+<h2 id="org6befc6b"><span class="section-number-2">3.</span> Numeric Conversions</h2>
 </div>
 
-<div id="outline-container-org2f70f5c" class="outline-2">
-<h2 id="org2f70f5c"><span class="section-number-2">4.</span> Arithmetics</h2>
+<div id="outline-container-org2ef81a4" class="outline-2">
+<h2 id="org2ef81a4"><span class="section-number-2">4.</span> Arithmetics</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <code>mod dividend divisor</code> returns the value of dividend modulo divisor. The result has same sign as  divisor. This operator supports FP arguments, which rounds the quotient downward to an integer to compute the remainder.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcdf66a6" class="outline-2">
-<h2 id="orgcdf66a6"><span class="section-number-2">5.</span> Rounding</h2>
+<div id="outline-container-org33ec872" class="outline-2">
+<h2 id="org33ec872"><span class="section-number-2">5.</span> Rounding</h2>
 </div>
 
-<div id="outline-container-org02e9787" class="outline-2">
-<h2 id="org02e9787"><span class="section-number-2">6.</span> Bitwise Operations</h2>
+<div id="outline-container-org78dcd39" class="outline-2">
+<h2 id="org78dcd39"><span class="section-number-2">6.</span> Bitwise Operations</h2>
 </div>
 
-<div id="outline-container-org768caed" class="outline-2">
-<h2 id="org768caed"><span class="section-number-2">7.</span> Random Numbers</h2>
+<div id="outline-container-org7b2e784" class="outline-2">
+<h2 id="org7b2e784"><span class="section-number-2">7.</span> Random Numbers</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 We mainly use <code>random &amp;optional arg</code> function to generate pseudo-random numbers. To be more specific, <code>random</code> may have different behaviours dependent on the argument it accepts:

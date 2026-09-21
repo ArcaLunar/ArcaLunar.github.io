@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,20 +214,21 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Chain of Responsibility</h1>
+<p class="article-desc">Chain of responsibility is a behavioural design pattern that passes requests along a chain of handlers.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org721cadf">1. Chain of Responsibility</a>
+<li><a href="#org256c8d1">1. Chain of Responsibility</a>
 <ul>
-<li><a href="#org7d8a0eb">1.1. Scenarios</a></li>
+<li><a href="#orgcac59bf">1.1. Scenarios</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org721cadf" class="outline-2">
-<h2 id="org721cadf"><span class="section-number-2">1.</span> Chain of Responsibility</h2>
+<div id="outline-container-org256c8d1" class="outline-2">
+<h2 id="org256c8d1"><span class="section-number-2">1.</span> Chain of Responsibility</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Chain of responsibility is about <i>splitting</i> one large task with <i>sequential and complicated requirements</i> into <i>non-overlapping <b>handlers</b>.</i>
@@ -234,8 +246,8 @@ In addition to processing the request, handlers should <i>pass the request furth
 Another version of CoR is that, handlers check if they can process it, if yes, then ends here; otherwise, the request will be passed further. A typical scenario is UI interaction.
 </p>
 </div>
-<div id="outline-container-org7d8a0eb" class="outline-3">
-<h3 id="org7d8a0eb"><span class="section-number-3">1.1.</span> Scenarios</h3>
+<div id="outline-container-orgcac59bf" class="outline-3">
+<h3 id="orgcac59bf"><span class="section-number-3">1.1.</span> Scenarios</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Here, we cover some common scenarios that we can use chain of responsibility.

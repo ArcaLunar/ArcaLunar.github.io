@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,15 +217,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4ff7ebd">1. Abstract syntax tree</a></li>
+<li><a href="#org98274a6">1. Abstract syntax tree</a></li>
 </ul>
 </div>
 </div>
 <p>
 A parser traces the stream of tokens from a string, but the rest of compiler needs a <i>structural representation</i> of the program. And this is AST, abstract syntax tree, similar to parse tree but ignore some information.
 </p>
-<div id="outline-container-org4ff7ebd" class="outline-2">
-<h2 id="org4ff7ebd"><span class="section-number-2">1.</span> Abstract syntax tree</h2>
+<div id="outline-container-org98274a6" class="outline-2">
+<h2 id="org98274a6"><span class="section-number-2">1.</span> Abstract syntax tree</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In short, AST also captures the nesting structure, but <i>abstracts from the concrete syntax</i>.

@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,13 +220,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0054c00">1. Context-Free Grammars (CFGs)</a>
+<li><a href="#org64323dd">1. Context-Free Grammars (CFGs)</a>
 <ul>
-<li><a href="#org06b0504">1.1. Derivation</a></li>
-<li><a href="#orga5f98e3">1.2. Ambiguity</a></li>
+<li><a href="#orgb10c0d7">1.1. Derivation</a></li>
+<li><a href="#orgd648f26">1.2. Ambiguity</a></li>
 </ul>
 </li>
-<li><a href="#orgebd3f03">2. Parsing: Classic Methods</a></li>
+<li><a href="#orgdd831af">2. Parsing: Classic Methods</a></li>
 </ul>
 </div>
 </div>
@@ -250,8 +261,8 @@
 </tr>
 </tbody>
 </table>
-<div id="outline-container-org0054c00" class="outline-2">
-<h2 id="org0054c00"><span class="section-number-2">1.</span> Context-Free Grammars (CFGs)</h2>
+<div id="outline-container-org64323dd" class="outline-2">
+<h2 id="org64323dd"><span class="section-number-2">1.</span> Context-Free Grammars (CFGs)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 parsers must distinguish between valid and invalid strings of tokens. So we need <span class="underline">a language for describing valid string of tokens</span>, and <span class="underline">a method for distinguish valid from invalid strings of tokens</span>.
@@ -293,8 +304,8 @@ Let \(G\) be a context-free grammar with start symbol \(S\), then the language o
 \]
 </p>
 </div>
-<div id="outline-container-org06b0504" class="outline-3">
-<h3 id="org06b0504"><span class="section-number-3">1.1.</span> Derivation</h3>
+<div id="outline-container-orgb10c0d7" class="outline-3">
+<h3 id="orgb10c0d7"><span class="section-number-3">1.1.</span> Derivation</h3>
 <div class="outline-text-3" id="text-1-1">
 <dl class="org-dl">
 <dt>Derivation</dt><dd>A derivation is a sequence of productions.</dd>
@@ -306,8 +317,8 @@ Left-most and right-most derivations are equivalent.
 </p>
 </div>
 </div>
-<div id="outline-container-orga5f98e3" class="outline-3">
-<h3 id="orga5f98e3"><span class="section-number-3">1.2.</span> Ambiguity</h3>
+<div id="outline-container-orgd648f26" class="outline-3">
+<h3 id="orgd648f26"><span class="section-number-3">1.2.</span> Ambiguity</h3>
 <div class="outline-text-3" id="text-1-2">
 <dl class="org-dl">
 <dt>Ambiguity</dt><dd>A grammar is ambiguous if it has more than one parse tree for some string.</dd>
@@ -319,8 +330,8 @@ Solution: <i>precedence</i> and <i>associativity declaration</i>.
 </div>
 </div>
 </div>
-<div id="outline-container-orgebd3f03" class="outline-2">
-<h2 id="orgebd3f03"><span class="section-number-2">2.</span> Parsing: Classic Methods</h2>
+<div id="outline-container-orgdd831af" class="outline-2">
+<h2 id="orgdd831af"><span class="section-number-2">2.</span> Parsing: Classic Methods</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="Recursive Descent Parsing.html#ID-24f4e7f5-3d29-4de9-a32e-3cae5568cc98">Recursive Descent Parsing</a></li>

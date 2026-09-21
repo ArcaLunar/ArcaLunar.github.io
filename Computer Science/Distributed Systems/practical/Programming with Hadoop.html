@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,15 +217,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6ce0273">1. Two Core Operations</a>
+<li><a href="#orgb63bb6e">1. Two Core Operations</a>
 <ul>
-<li><a href="#orge8b74e3">1.1. Manipulating HDFS Files</a></li>
-<li><a href="#org6e1b0c9">1.2. <span class="todo TODO">TODO</span> <code>MapReduce</code> Paradigm to Program Computation Tasks</a>
+<li><a href="#org8fd226c">1.1. Manipulating HDFS Files</a></li>
+<li><a href="#orgdcd649f">1.2. <span class="todo TODO">TODO</span> <code>MapReduce</code> Paradigm to Program Computation Tasks</a>
 <ul>
-<li><a href="#orgdf15727">1.2.1. Mapping Stage</a></li>
-<li><a href="#org47063e9">1.2.2. Reducing Stage</a></li>
-<li><a href="#org0c673cf">1.2.3. Driver Stage</a></li>
-<li><a href="#org8701640">1.2.4. Framework Support</a></li>
+<li><a href="#org7039ac9">1.2.1. Mapping Stage</a></li>
+<li><a href="#org208054a">1.2.2. Reducing Stage</a></li>
+<li><a href="#orgf09d48d">1.2.3. Driver Stage</a></li>
+<li><a href="#org965e1df">1.2.4. Framework Support</a></li>
 </ul>
 </li>
 </ul>
@@ -225,12 +236,12 @@
 <p>
 Programming Hadoop with Java is indeed writing Java code to call Hadoop to perform operations.
 </p>
-<div id="outline-container-org6ce0273" class="outline-2">
-<h2 id="org6ce0273"><span class="section-number-2">1.</span> Two Core Operations</h2>
+<div id="outline-container-orgb63bb6e" class="outline-2">
+<h2 id="orgb63bb6e"><span class="section-number-2">1.</span> Two Core Operations</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge8b74e3" class="outline-3">
-<h3 id="orge8b74e3"><span class="section-number-3">1.1.</span> Manipulating HDFS Files</h3>
+<div id="outline-container-org8fd226c" class="outline-3">
+<h3 id="org8fd226c"><span class="section-number-3">1.1.</span> Manipulating HDFS Files</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 HDFS is Hadoop&rsquo;s storage system. Through Java APIs, we can perform file IOs as local files, including creation, read, write, deletion.
@@ -241,15 +252,15 @@ The core of manipulation is <code>Configuration</code> class and <code>FileSyste
 </p>
 </div>
 </div>
-<div id="outline-container-org6e1b0c9" class="outline-3">
-<h3 id="org6e1b0c9"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> <code>MapReduce</code> Paradigm to Program Computation Tasks</h3>
+<div id="outline-container-orgdcd649f" class="outline-3">
+<h3 id="orgdcd649f"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> <code>MapReduce</code> Paradigm to Program Computation Tasks</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Map-reduce is Hadoop&rsquo;s computation framework, which splits each task into <i>map</i> and <i>reduce</i>.
 </p>
 </div>
-<div id="outline-container-orgdf15727" class="outline-4">
-<h4 id="orgdf15727"><span class="section-number-4">1.2.1.</span> Mapping Stage</h4>
+<div id="outline-container-org7039ac9" class="outline-4">
+<h4 id="org7039ac9"><span class="section-number-4">1.2.1.</span> Mapping Stage</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 We should <i>override</i> the <code>map()</code> method of <code>Mapper&lt;KeyIn, ValueIn, IntermediateKeyOut, IntermediateValueOut&gt;</code> class to define how to produce intermediate key-value pairs.
@@ -280,8 +291,8 @@ And finally, the intermediate output is written through <code>context.write(KeyO
 </div>
 </div>
 </div>
-<div id="outline-container-org47063e9" class="outline-4">
-<h4 id="org47063e9"><span class="section-number-4">1.2.2.</span> Reducing Stage</h4>
+<div id="outline-container-org208054a" class="outline-4">
+<h4 id="org208054a"><span class="section-number-4">1.2.2.</span> Reducing Stage</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 We should <i>override</i> the <code>reduce()</code> method of <code>Reducer&lt;IntermediateKeyIn, IntermediateValueOut, FinalKeyOut, FinalValueOut&gt;</code> class to define how to reduce intermediate results.
@@ -292,8 +303,8 @@ The core class is <code>org.apache.hadoop.mapreduce.Reducer&lt;IntermediateKeyIn
 </p>
 </div>
 </div>
-<div id="outline-container-org0c673cf" class="outline-4">
-<h4 id="org0c673cf"><span class="section-number-4">1.2.3.</span> Driver Stage</h4>
+<div id="outline-container-orgf09d48d" class="outline-4">
+<h4 id="orgf09d48d"><span class="section-number-4">1.2.3.</span> Driver Stage</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 This is the entrance of the whole program and is responsible for linking all procedure, including
@@ -341,8 +352,8 @@ This is the entrance of the whole program and is responsible for linking all pro
 </div>
 </div>
 </div>
-<div id="outline-container-org8701640" class="outline-4">
-<h4 id="org8701640"><span class="section-number-4">1.2.4.</span> Framework Support</h4>
+<div id="outline-container-org965e1df" class="outline-4">
+<h4 id="org965e1df"><span class="section-number-4">1.2.4.</span> Framework Support</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 <i>Writable class and serialization</i>. <code>org.apache.hadoop.io.Writable</code> is responsible for serialization that all key, value types must extend this class.

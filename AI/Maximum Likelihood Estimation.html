@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -207,27 +218,28 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Maximum Likelihood Learning</h1>
+<p class="article-desc">Maximum likelihood learning is a practical approach to train generative models that adopts probabilistic modeling.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcea2263">1. Motivation</a></li>
-<li><a href="#orge89c25f">2. Derivation</a>
+<li><a href="#org3c66656">1. Motivation</a></li>
+<li><a href="#orgc36e0a0">2. Derivation</a>
 <ul>
-<li><a href="#org18815b6">2.1. From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</a></li>
-<li><a href="#org729878d">2.2. Applying Monte Carlo Estimation</a></li>
-<li><a href="#orgdcce596">2.3. Gradient Estimation</a></li>
+<li><a href="#org3ed9e8b">2.1. From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</a></li>
+<li><a href="#org7f14bf5">2.2. Applying Monte Carlo Estimation</a></li>
+<li><a href="#orgb993465">2.3. Gradient Estimation</a></li>
 </ul>
 </li>
-<li><a href="#orgea5d05c">3. Take-Away</a></li>
+<li><a href="#orgefede51">3. Take-Away</a></li>
 </ul>
 </div>
 </div>
 <p>
 Suppose we a general generative model \( \mathcal{M} \). We want to learn the model given a dataset \( \mathcal{D} \) of \( m \) samples from \( p_{data} \). The standard assumption is that the data instances are <b>independent and identically distributed</b>.
 </p>
-<div id="outline-container-orgcea2263" class="outline-2">
-<h2 id="orgcea2263"><span class="section-number-2">1.</span> Motivation</h2>
+<div id="outline-container-org3c66656" class="outline-2">
+<h2 id="org3c66656"><span class="section-number-2">1.</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The goal of learning is to return a model \( p_{\theta} \) that <b>best</b> approximate the underlying distribution \( p_{data} \).
@@ -238,8 +250,8 @@ How can we define the &ldquo;best&rdquo;? It depends on our task. If our task is
 </p>
 </div>
 </div>
-<div id="outline-container-orge89c25f" class="outline-2">
-<h2 id="orge89c25f"><span class="section-number-2">2.</span> Derivation</h2>
+<div id="outline-container-orgc36e0a0" class="outline-2">
+<h2 id="orgc36e0a0"><span class="section-number-2">2.</span> Derivation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 How can we evaluate &ldquo;closeness&rdquo; between 2 distributions? One common approach is the <span class="underline">KL-divergence</span>, which is defined as
@@ -265,8 +277,8 @@ D(p_{data}\parallel p_{\theta}) = \mathbb{E}_{x\sim p_{data}}\left[ \log\frac{p_
 The key here is that, KL-divergence measures the &ldquo;compression loss&rdquo; of using \( p_{\theta} \) instead of \( p_{data} \), because we can only modify \( p_{\theta} \) through training parameters.
 </p>
 </div>
-<div id="outline-container-org18815b6" class="outline-3">
-<h3 id="org18815b6"><span class="section-number-3">2.1.</span> From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</h3>
+<div id="outline-container-org3ed9e8b" class="outline-3">
+<h3 id="org3ed9e8b"><span class="section-number-3">2.1.</span> From Minimizing KL Divergence to Maximizing Expected Log-Likelihood</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can simplify the KL divergence
@@ -287,8 +299,8 @@ However, the problem nowhere is: we don&rsquo;t know \( p_{data} \), how can we 
 </p>
 </div>
 </div>
-<div id="outline-container-org729878d" class="outline-3">
-<h3 id="org729878d"><span class="section-number-3">2.2.</span> Applying Monte Carlo Estimation</h3>
+<div id="outline-container-org7f14bf5" class="outline-3">
+<h3 id="org7f14bf5"><span class="section-number-3">2.2.</span> Applying Monte Carlo Estimation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 We don&rsquo;t know \( p_{data} \), but we have dataset, which is assumed to be an unbiased sample from \( p_{data} \).
@@ -308,7 +320,7 @@ We can apply Monte Carlo Estimation on dataset
 <span class="underline">This can be regarded as the loss for training</span>, we denote it as \( \log L(\theta, \mathcal{D}) \). Then the rest is to figure out a expression of \( \log p_{\theta}(x) \) to train the model.
 </p>
 
-<div class="eg" id="org45d1508">
+<div class="eg" id="orgb7c6600">
 <p>
 A typical example is autoregressive LLM.
 </p>
@@ -316,8 +328,8 @@ A typical example is autoregressive LLM.
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcce596" class="outline-3">
-<h3 id="orgdcce596"><span class="section-number-3">2.3.</span> Gradient Estimation</h3>
+<div id="outline-container-orgb993465" class="outline-3">
+<h3 id="orgb993465"><span class="section-number-3">2.3.</span> Gradient Estimation</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 We may apply gradient descent with the loss, since \( \ell(\theta) = \log L(\theta, \mathcal{D}) \). Then the gradient can be computed by \( \nabla_{\theta}\ell(\theta) = \sum_{x\in\mathcal{D}} \nabla_{\theta} \log p_{\theta}(x) \).
@@ -325,8 +337,8 @@ We may apply gradient descent with the loss, since \( \ell(\theta) = \log L(\the
 </div>
 </div>
 </div>
-<div id="outline-container-orgea5d05c" class="outline-2">
-<h2 id="orgea5d05c"><span class="section-number-2">3.</span> Take-Away</h2>
+<div id="outline-container-orgefede51" class="outline-2">
+<h2 id="orgefede51"><span class="section-number-2">3.</span> Take-Away</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Under the framework of maximum likelihood estimation (MLE), the most important part is to <b>figure out a feasible form of \( p_{\theta}(x) \), as well as gradient \( \nabla_{\theta} \log p_{\theta}(x) \).</b> 

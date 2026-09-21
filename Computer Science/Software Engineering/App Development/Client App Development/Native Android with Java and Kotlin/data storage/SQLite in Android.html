@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../../../.assets/index.css"/>
-<script src="../../../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../../../.assets/home.js"></script>
+<script src="../../../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,17 +217,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8618d3f">1. <span class="todo TODO">TODO</span> SQLite</a>
+<li><a href="#orgdd3c791">1. <span class="todo TODO">TODO</span> SQLite</a>
 <ul>
-<li><a href="#org5348de3">1.1. How to Use?</a>
+<li><a href="#orgba36509">1.1. How to Use?</a>
 <ul>
-<li><a href="#org7f42bec">1.1.1. DB Creation</a></li>
-<li><a href="#orgd13d08c">1.1.2. DB Retrieval</a></li>
-<li><a href="#org9ecf648">1.1.3. Insert Data</a></li>
-<li><a href="#org1612e41">1.1.4. Queries</a></li>
-<li><a href="#orgba20f23">1.1.5. Update Data</a></li>
-<li><a href="#orgaaddd5d">1.1.6. Delete Data</a></li>
-<li><a href="#orgc37d9b3">1.1.7. Transactions</a></li>
+<li><a href="#org47a5780">1.1.1. DB Creation</a></li>
+<li><a href="#org2973c66">1.1.2. DB Retrieval</a></li>
+<li><a href="#orgeb9ed4d">1.1.3. Insert Data</a></li>
+<li><a href="#orgacc4eb2">1.1.4. Queries</a></li>
+<li><a href="#orgabfb6de">1.1.5. Update Data</a></li>
+<li><a href="#orgab8998b">1.1.6. Delete Data</a></li>
+<li><a href="#org85a295c">1.1.7. Transactions</a></li>
 </ul>
 </li>
 </ul>
@@ -224,15 +235,15 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org8618d3f" class="outline-2">
-<h2 id="org8618d3f"><span class="section-number-2">1.</span> <span class="todo TODO">TODO</span> SQLite</h2>
+<div id="outline-container-orgdd3c791" class="outline-2">
+<h2 id="orgdd3c791"><span class="section-number-2">1.</span> <span class="todo TODO">TODO</span> SQLite</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 When we need to store <i>massive</i> and <i>structural</i> data, as well as <i>complicated queries, sorting, filtering or transaction</i>, we should probably use <code>SQLite</code>. <code>SQLite</code> is built-in feature in Android.
 </p>
 </div>
-<div id="outline-container-org5348de3" class="outline-3">
-<h3 id="org5348de3"><span class="section-number-3">1.1.</span> How to Use?</h3>
+<div id="outline-container-orgba36509" class="outline-3">
+<h3 id="orgba36509"><span class="section-number-3">1.1.</span> How to Use?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The core class is <code>SQLiteOpenHelper</code> which abstracts away creation, update and downgrade.
@@ -248,32 +259,32 @@ The core class is <code>SQLiteOpenHelper</code> which abstracts away creation, u
 <b>About Storage</b>. The DB file is stored under <code>/data/data/&lt;package_name&gt;/databases/</code>.
 </p>
 </div>
-<div id="outline-container-org7f42bec" class="outline-4">
-<h4 id="org7f42bec"><span class="section-number-4">1.1.1.</span> DB Creation</h4>
+<div id="outline-container-org47a5780" class="outline-4">
+<h4 id="org47a5780"><span class="section-number-4">1.1.1.</span> DB Creation</h4>
 </div>
 
-<div id="outline-container-orgd13d08c" class="outline-4">
-<h4 id="orgd13d08c"><span class="section-number-4">1.1.2.</span> DB Retrieval</h4>
+<div id="outline-container-org2973c66" class="outline-4">
+<h4 id="org2973c66"><span class="section-number-4">1.1.2.</span> DB Retrieval</h4>
 </div>
 
-<div id="outline-container-org9ecf648" class="outline-4">
-<h4 id="org9ecf648"><span class="section-number-4">1.1.3.</span> Insert Data</h4>
+<div id="outline-container-orgeb9ed4d" class="outline-4">
+<h4 id="orgeb9ed4d"><span class="section-number-4">1.1.3.</span> Insert Data</h4>
 </div>
 
-<div id="outline-container-org1612e41" class="outline-4">
-<h4 id="org1612e41"><span class="section-number-4">1.1.4.</span> Queries</h4>
+<div id="outline-container-orgacc4eb2" class="outline-4">
+<h4 id="orgacc4eb2"><span class="section-number-4">1.1.4.</span> Queries</h4>
 </div>
 
-<div id="outline-container-orgba20f23" class="outline-4">
-<h4 id="orgba20f23"><span class="section-number-4">1.1.5.</span> Update Data</h4>
+<div id="outline-container-orgabfb6de" class="outline-4">
+<h4 id="orgabfb6de"><span class="section-number-4">1.1.5.</span> Update Data</h4>
 </div>
 
-<div id="outline-container-orgaaddd5d" class="outline-4">
-<h4 id="orgaaddd5d"><span class="section-number-4">1.1.6.</span> Delete Data</h4>
+<div id="outline-container-orgab8998b" class="outline-4">
+<h4 id="orgab8998b"><span class="section-number-4">1.1.6.</span> Delete Data</h4>
 </div>
 
-<div id="outline-container-orgc37d9b3" class="outline-4">
-<h4 id="orgc37d9b3"><span class="section-number-4">1.1.7.</span> Transactions</h4>
+<div id="outline-container-org85a295c" class="outline-4">
+<h4 id="org85a295c"><span class="section-number-4">1.1.7.</span> Transactions</h4>
 </div>
 </div>
 </div>

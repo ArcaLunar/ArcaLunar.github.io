@@ -1,0 +1,41 @@
+/* Generic collapsible nested lists (.org-ul li.has-subtree): the triangle
+ * indicator and expand/collapse transition. Used wherever a page has a
+ * nested list — the homepage's All Notes tree, and any plain nested list
+ * in an article. Toggled by index.js. */
+
+/* Foldable items: replace bullet with triangle, pointer cursor */
+.org-ul li.has-subtree {
+  cursor: pointer;
+  list-style-type: none;
+}
+
+/* Triangle indicator */
+.org-ul li.has-subtree::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 0.4em;
+  font-size: 0.8em;
+  line-height: 1;
+  transition: transform 0.25s ease;
+  vertical-align: middle;
+}
+
+/* Rotate triangle when expanded */
+.org-ul li.has-subtree.expanded::before {
+  transform: rotate(90deg);
+}
+
+/* Collapsed: hide child lists with transition */
+.org-ul li.has-subtree > ul {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+/* Expanded: reveal child lists */
+.org-ul li.has-subtree.expanded > ul {
+  max-height: 20000px;
+  opacity: 1;
+}
+

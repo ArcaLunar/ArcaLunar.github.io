@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../../.assets/index.css"/>
-<script src="../../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../../.assets/home.js"></script>
+<script src="../../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,29 +215,30 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Using <code>adb</code></h1>
+<p class="article-desc"><code>adb</code> is a useful tool for diagnosing Android phones, as well as running C++ programs on Android phones.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org349f4d5">1. Mental Model</a></li>
-<li><a href="#orgaf9cddb">2. Usage</a>
+<li><a href="#org8c70450">1. Mental Model</a></li>
+<li><a href="#org02e46e7">2. Usage</a>
 <ul>
-<li><a href="#orgc35065b">2.1. Important Filesystem Locations</a></li>
+<li><a href="#orgf18514a">2.1. Important Filesystem Locations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org349f4d5" class="outline-2">
-<h2 id="org349f4d5"><span class="section-number-2">1.</span> Mental Model</h2>
+<div id="outline-container-org8c70450" class="outline-2">
+<h2 id="org8c70450"><span class="section-number-2">1.</span> Mental Model</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Host-side <code>adb</code> interacts with the phone through a host-side <code>adb server</code> and a client-side <code>adbd daemon</code>. The daemon interacts with the server through either USB ot TCP.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaf9cddb" class="outline-2">
-<h2 id="orgaf9cddb"><span class="section-number-2">2.</span> Usage</h2>
+<div id="outline-container-org02e46e7" class="outline-2">
+<h2 id="org02e46e7"><span class="section-number-2">2.</span> Usage</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 First, connect the phone to computer through USB cables. Then running <code>adb devices</code> will list all connected devices. The <code>-l</code> argument lists more information.
@@ -269,8 +281,8 @@ $ adb pull &lt;remote&gt; &lt;local&gt;
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc35065b" class="outline-3">
-<h3 id="orgc35065b"><span class="section-number-3">2.1.</span> Important Filesystem Locations</h3>
+<div id="outline-container-orgf18514a" class="outline-3">
+<h3 id="orgf18514a"><span class="section-number-3">2.1.</span> Important Filesystem Locations</h3>
 </div>
 </div>
 </div>

@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,25 +215,26 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">ArchLinux Package Build Script</h1>
+<p class="article-desc">AUR is recently under attack, so it becomes important to be able to understand pkgbuild, the script to build packages in Arch Linux.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org83cafd4">1. Essential Variables </a>
+<li><a href="#orgbf53e98">1. Essential Variables </a>
 <ul>
-<li><a href="#orgb2c1007">1.1. Managing Dependencies</a></li>
-<li><a href="#org717390f">1.2. Package Relations</a></li>
+<li><a href="#org6755132">1.1. Managing Dependencies</a></li>
+<li><a href="#org428ab2b">1.2. Package Relations</a></li>
 </ul>
 </li>
-<li><a href="#org2587589">2. Makepkg Utility </a></li>
+<li><a href="#org67b18f7">2. Makepkg Utility </a></li>
 </ul>
 </div>
 </div>
 <p>
 A <code>PKGBUILD</code> is a Bash script containing the build information required by Arch Linux packages. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
 </p>
-<div id="outline-container-org83cafd4" class="outline-2">
-<h2 id="org83cafd4"><span class="section-number-2">1.</span> Essential Variables <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h2>
+<div id="outline-container-orgbf53e98" class="outline-2">
+<h2 id="orgbf53e98"><span class="section-number-2">1.</span> Essential Variables <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In order to name a package, these variables are important.
@@ -240,8 +252,8 @@ In order to name a package, these variables are important.
 <dt><code>license</code></dt><dd>The open-source license.</dd>
 </dl>
 </div>
-<div id="outline-container-orgb2c1007" class="outline-3">
-<h3 id="orgb2c1007"><span class="section-number-3">1.1.</span> Managing Dependencies</h3>
+<div id="outline-container-org6755132" class="outline-3">
+<h3 id="org6755132"><span class="section-number-3">1.1.</span> Managing Dependencies</h3>
 <div class="outline-text-3" id="text-1-1">
 <dl class="org-dl">
 <dt><code>depends</code></dt><dd><p>
@@ -260,8 +272,8 @@ Dependencies should normally include the requirements for building <b>all option
 </dl>
 </div>
 </div>
-<div id="outline-container-org717390f" class="outline-3">
-<h3 id="org717390f"><span class="section-number-3">1.2.</span> Package Relations</h3>
+<div id="outline-container-org428ab2b" class="outline-3">
+<h3 id="org428ab2b"><span class="section-number-3">1.2.</span> Package Relations</h3>
 <div class="outline-text-3" id="text-1-2">
 <dl class="org-dl">
 <dt><code>provides</code></dt><dd></dd>
@@ -269,8 +281,8 @@ Dependencies should normally include the requirements for building <b>all option
 </div>
 </div>
 </div>
-<div id="outline-container-org2587589" class="outline-2">
-<h2 id="org2587589"><span class="section-number-2">2.</span> Makepkg Utility <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></h2>
+<div id="outline-container-org67b18f7" class="outline-2">
+<h2 id="org67b18f7"><span class="section-number-2">2.</span> Makepkg Utility <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>

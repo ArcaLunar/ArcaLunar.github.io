@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Flow Matching</title>
+<title>FM: Generative Models via Flow Matching</title>
+<meta name="description" content="Flow matching is an amazingly simple algorithm for generative models. It has been widely adopted in image generation models." />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -192,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -204,147 +216,149 @@
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">Flow Matching</h1>
+<h1 class="title">FM: Generative Models via Flow Matching</h1>
+<p class="article-desc">Flow matching is an amazingly simple algorithm for generative models. It has been widely adopted in image generation models.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb4386ac">1. Introduction of Flow Matching</a></li>
-<li><a href="#org49ad058">2. Probability Flow and Continuity Equation</a></li>
-<li><a href="#orgfedabd7">3. Flow Matching Objective</a></li>
-<li><a href="#org567879b">4. Conditional Flow Matching</a></li>
-<li><a href="#org1745991">5. <span class="todo TODO">TODO</span> Fixup</a></li>
+<li><a href="#org68fbee5">1. Motivation</a></li>
+<li><a href="#orga37db02">2. Continuous Normalizing Flow</a></li>
+<li><a href="#orga717051">3. Condition Flow Matching (CFM)</a>
+<ul>
+<li><a href="#org153c6f8">3.1. Using Linear Interpolation to Simplify CFM</a></li>
+</ul>
+</li>
+<li><a href="#orgb5fa639">4. Flow Matching Algorithm</a>
+<ul>
+<li><a href="#orgc8959a5">4.1. Training</a></li>
+<li><a href="#org9d7de23">4.2. Inference</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb4386ac" class="outline-2">
-<h2 id="orgb4386ac"><span class="section-number-2">1.</span> Introduction of Flow Matching</h2>
+<div id="outline-container-org68fbee5" class="outline-2">
+<h2 id="org68fbee5"><span class="section-number-2">1.</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Let \( p_{\text{data}}(\mathbf{x}) \) be the distribution of real images on \( \mathbb{R}^{d} \). Flow matching models learn a <b>time-dependent</b> vector field
+In Diffusion models, we start from a sampled Gaussian noise, and then take multiple steps to gradually <b>denoise</b> to obtain a clean image.
 </p>
 
 <p>
-\[
-\mathbf{v}_{\theta}(t, \mathbf{x}):[0,1] \times \mathbb{R}^{d} \mapsto \mathbb{R}^{d}
-\]
+How about directly transforming a noise into a clean image? Can&rsquo;t we just interpolate linearly between noise and image? The answer is yes, and that&rsquo;s exactly the idea of flow matching. Flow matching (FM hereafter) directly learns the path from noise to data. More specifically, FM learns a velocity field \(v_{t}(\mathbf{x})\), the velocity (including speed and direction) of particle \(\mathbf{x}\) (i.e., the image) at timestamp \(t \in [0,1]\) and at position \(\mathbf{x}\). The velocity represents how the image is &ldquo;denoised&rdquo;. Here, \(t=0\) is the complete noise and \(t=1\) is the clean image. The inference (image generation process) is simple: we first sample a noise at \(t=0\), then integrate along \(v_{t}(\mathbf{x})\) over \(t\), and we&rsquo;ll obtain the image.
 </p>
-
-<p>
-whose ODE transports a simple base distribution \( p_{0} \), usually Gaussian, into the complicated data distribution \( p_{1} = p_{\text{data}} \):
-</p>
-
-<p>
-\[
-\frac{d\mathbf{x}}{dt} = \mathbf{v}_{\theta}(t, \mathbf{x}_{t})
-\]
-</p>
-
-<p>
-So the training paradigm is simply:
-</p>
-
-<ol class="org-ol">
-<li>Sample noise \( \mathbf{x}_{0}\sim\mathcal{N}(0,I) \)</li>
-<li>Sample data \( \mathbf{x}_{1}\sim p_{\text{data}} \)</li>
-<li>Uniformly sample time step \( t\sim \mathcal{U}(0,1) \)</li>
-<li>Compute noisy sample \( \mathbf{x}_{t} = t \mathbf{x}_{1} + (1-t)\mathbf{x}_{0} \)</li>
-<li>Compute velocity \( \mathbf{v} = \mathbf{x}_{1} - \mathbf{x}_{0} \)</li>
-<li>Learn to predict the velocity \( L(\theta) = \mathbb{E}[ \| \mathbf{v}_{\theta}(t, \mathbf{x}_{t}) - \mathbf{v} \|^{2} ] \)</li>
-</ol>
-
-<p>
-And the sampling paradigm is:
-</p>
-
-<ol class="org-ol">
-<li>Using step size \( \Delta t \), starting from \( t=0 \).</li>
-<li>Sample noise \( \mathbf{x}_{0} \sim \mathcal{N}(0,I) \)</li>
-<li>While \( t\lt 1 \), repeat:
-<ol class="org-ol">
-<li>\( \Delta \mathbf{x} = \mathbf{v}_{\theta}(\mathbf{x}_{t}, t) \Delta t \)</li>
-<li>\( \mathbf{x}_{t+\Delta t} \gets \mathbf{x}_{t} + \Delta \mathbf{x} \)</li>
-<li>\( t \gets t + \Delta t \)</li>
-</ol></li>
-<li>Output \( \mathbf{x}_{1} \)</li>
-</ol>
 </div>
 </div>
-<div id="outline-container-org49ad058" class="outline-2">
-<h2 id="org49ad058"><span class="section-number-2">2.</span> Probability Flow and Continuity Equation</h2>
+<div id="outline-container-orga37db02" class="outline-2">
+<h2 id="orga37db02"><span class="section-number-2">2.</span> Continuous Normalizing Flow</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Suppose in the system, particles evolve by the ODE \( \frac{dX_{t}}{dt} = v(t,X_{t}) \). Let \( p_{t}(x) \) be the density of \( X_{t} \). <b>Conversation of probability mass</b> gives the <span class="underline">continuity equation</span>:
-</p>
-
-\begin{equation}
-\label{orgfddcee7}
-\nabla_{t} p_{t}(x) + \nabla \cdot \left( p_{t}\left( x \right) v \left( t,x \right) \right) = 0
-\end{equation}
-
-<p>
-This equation says, the density changes because probability mass flows through space with velocity field \( v \). A vector field satisfying the above continuity equation is called a probability velocity field for the path of distributions \( \{ p_{t} \}_{t\in[0,1]} \)
+FM is built on continuous normalizing flow (CNF)
 </p>
 
 <p>
-Now the core of problem is to learn a vector field \( v_{\theta} \) that matches the true velocity field \( v \) such that we can transform \( p_{0} \to p_{1} = p_{\text{data}} \)
-</p>
-</div>
-</div>
-<div id="outline-container-orgfedabd7" class="outline-2">
-<h2 id="orgfedabd7"><span class="section-number-2">3.</span> Flow Matching Objective</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Since we want to match the velocity field, a natural objective is the L2 norm between velocities. Suppose there exists a target velocity field \( u_{t}(x) \) at time \( t \) satisfies the continuity equation.
-</p>
-
-\begin{equation}
-\label{org65bc8b6}
-\mathcal{L}_{FM}(\theta) = \mathbb{E}_{t\sim\mathcal{U}(0,1), x\sim p_{t}}\left[ \left\| v_{\theta}\left( t,x \right) - u_{t}\left( x \right) \right\|^{2} \right]
-\end{equation}
-
-<p>
-The issue is that the marginal velocity \( u_{t}(x) \) is usually not directly available. We will handle this with <b>conditional probability paths</b>.
-</p>
-</div>
-</div>
-<div id="outline-container-org567879b" class="outline-2">
-<h2 id="org567879b"><span class="section-number-2">4.</span> Conditional Flow Matching</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-Instead of defining \( p_{t}(x) \) directly, we define <b>conditional paths</b> \( p_{t}(x\mid z) \), then the marginal distribution is
+Ideally, if we have already obtained the <i>true</i> velocity field \(u_{t}(\mathbf{x})\), then we can simply do a regression:
 </p>
 
 <p>
 \[
-p_{t}(x) = \int p_{t}(x\mid z)q(z)\, dz
+\mathcal{L}_{FM}(\theta) = \mathop{\mathbb{E}}\limits_{\begin{subarray}{c}
+t \sim\mathcal{U}[0,1]\\
+x \sim p_{t}(x)
+\end{subarray}} \left[ \left\| v_{\theta}(x,t) - u_{t}(x) \right\|^{2} \right]
 \]
 </p>
 
 <p>
-The endpoint \( t=1 \) is constructed to make \( p_{1}(x) = p_{data}(x) \).
+The issue is that, we don&rsquo;t know \(u_{t}(x)\). It turns out that, we have an alternative: <b>conditioned flow matching</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orga717051" class="outline-2">
+<h2 id="orga717051"><span class="section-number-2">3.</span> Condition Flow Matching (CFM)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Since we don&rsquo;t know \(u_{t}(x)\), we can optimize using the conditioned version of velocity field \(u_{t}(x|x_{1})\) conditioned by ground truth \(x_{1}\). We define the CFM loss
 </p>
 
 <p>
-For each conditional path, assume we know a conditional velocity field \( u_{t}(x\mid z) \) satisfying the continuity equation \( \nabla_{t}p_{t}(x\mid z) + \nabla\cdot \left( p_{t}\left( x\mid z \right) u_{t}\left( x\mid z \right) \right) = 0 \).
+\[
+\mathcal{L}_{CFM}(\theta) = \mathop{\mathbb{E}}\limits_{\begin{subarray}{c}
+t\sim\mathcal{U}[0,1]\\
+x_{1}\sim p_{data}(x)\\
+x\sim p_{t}(x|x_{1})
+\end{subarray}} \left[ \left\| v_{\theta}(x,t) - u_{t}(x|x_{1}) \right\|^{2} \right]
+\]
 </p>
 
-\begin{equation}
-\begin{split}
-p_{t}(x) &= \int p_{t}(x\mid z)q(z)\, dz\\
-\implies \nabla_{t} p_{t}(x) &= \int \boxed{\nabla_{t}p_{t}(x\mid z)}q(z) \, dz\\
-\nabla_{t} p_{t}(x) &= \int \nabla\cdot (p_{t}(x\mid z)u_{t}(x\mid z)) q(z)\, dz\\
-\boxed{\nabla_{t} p_{t}(x)} &= \nabla\cdot \left[\int p_{t}(x\mid z)u_{t}(x\mid z) q(z)\, dz\right]\\
-\nabla\cdot \boxed{p_{t}(x)u_{t}(x)} &= \nabla\cdot \left[\int p_{t}(x\mid z)u_{t}(x\mid z) q(z)\, dz\right]\\
-u_{t}(x) &= \frac{\left[\int p_{t}(x\mid z)u_{t}(x\mid z) q(z)\, dz\right]}{p_{t}(x)}\\
-u_{t}(x) &= \int u_{t}(x\mid z)q(z\mid x,t)\,dz\\
-\implies u_{t} &= \mathbb{E}[u_{t}(x\mid z)]
-\end{split}
-\end{equation}
+<p>
+Indeed, we can mathematically prove that \(\nabla_{\theta} \mathcal{L}_{CFM} = \nabla_{\theta} \mathcal{L}_{FM}\). Therefore, at last, \(v_{\theta}\) learnt with CFM loss will converge to the correct \(u_{t}(x)\) one learnt with FM loss.
+</p>
+
+<div class="proof" id="org8f00b58">
+<p>
+We&rsquo;ll prove \(\nabla_{\theta} \mathcal{L}_{CFM}(\theta) = \nabla_{\theta} \mathcal{L}_{FM}(\theta)\).
+</p>
+
 </div>
 </div>
-<div id="outline-container-org1745991" class="outline-2">
-<h2 id="org1745991"><span class="section-number-2">5.</span> <span class="todo TODO">TODO</span> Fixup</h2>
+<div id="outline-container-org153c6f8" class="outline-3">
+<h3 id="org153c6f8"><span class="section-number-3">3.1.</span> Using Linear Interpolation to Simplify CFM</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The simplest path from noise to clear image is <b>linear path</b>, therefore
+</p>
+
+<p>
+\[
+u_{t}(x|x_{1}) = x_{1}-x_{0}=\frac{x_{1}-x_{t}}{1-t}, \quad t \in [0,1]
+\]
+</p>
+
+<p>
+Therefore, the CFM loss now becomes
+</p>
+
+<p>
+\[
+\mathcal{L}_{CFM}(\theta) = \mathbb{E}_{t,x_{0},x_{1}}\left[ \left\| v_{\theta}(x_{t}, t) - (x_{1} - x_{0}) \right\|^{2} \right]
+\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb5fa639" class="outline-2">
+<h2 id="orgb5fa639"><span class="section-number-2">4.</span> Flow Matching Algorithm</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+So now, we can describe the training and inference algorithm with flow matching.
+</p>
+</div>
+<div id="outline-container-orgc8959a5" class="outline-3">
+<h3 id="orgc8959a5"><span class="section-number-3">4.1.</span> Training</h3>
+<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li>Sample a ground truth \(x_{1}\) from dataset</li>
+<li>Sample a noise \(x_{0}\) from standard Gaussian</li>
+<li>Sample a timestamp \(t\) from \(\mathcal{U}[0,1]\)</li>
+<li>Construct the linear interpolation \(x_{t} = (1-t)x_{0} + tx_{1}\)</li>
+<li>Compute \(u_{t}(x|xe_{1})=x_{1}-x_{0}\)</li>
+<li>Compute loss \(\| v_{\theta}(x_{t}, t) - u_{t}(x|x_{1}) \|^{2}\) and update the parameters.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9d7de23" class="outline-3">
+<h3 id="org9d7de23"><span class="section-number-3">4.2.</span> Inference</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>Sample an initial noise \(x_{0}\)</li>
+<li>Use any <span class="underline">ODE solver</span> to integrate from \(t=0\) to \(t=1\)</li>
+<li>At each step, compute \(v_{\theta}(x_{t},t)\) to compute velocity and advance state</li>
+<li>The final \(x_{1}\) is the generated data</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,20 +215,21 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Grammars for Building Container Images</h1>
+<p class="article-desc">ContainerFile and DockerFile are almost the same, the difference between which is simply that the former is the default for <code>podman</code>, while the latter is the default for <code>docker</code>.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3d3d87c">1. Basic Structure of an Image Build</a></li>
-<li><a href="#orgb2e68e3">2. Essential Commands</a></li>
+<li><a href="#org8405dba">1. Basic Structure of an Image Build</a></li>
+<li><a href="#orgd2f2004">2. Essential Commands</a></li>
 </ul>
 </div>
 </div>
 <p>
 ContainerFile and DockerFile are almost the same, the difference between which is simply that the former is the default for <code>podman</code>, while the latter is the default for <code>docker</code>.
 </p>
-<div id="outline-container-org3d3d87c" class="outline-2">
-<h2 id="org3d3d87c"><span class="section-number-2">1.</span> Basic Structure of an Image Build</h2>
+<div id="outline-container-org8405dba" class="outline-2">
+<h2 id="org8405dba"><span class="section-number-2">1.</span> Basic Structure of an Image Build</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The container image is constructed within 5 stages: we start from <span class="underline">base image</span>, then <span class="underline">install packages</span> inside this image, <span class="underline">copy</span> application-specific files, <span class="underline">configuration</span> necessary environment (e.g., environment variables, settings up toolchains), and define the <span class="underline">startup</span> command.
@@ -228,8 +240,8 @@ Since we always start from base image, this design actually kind of defines a fi
 </p>
 </div>
 </div>
-<div id="outline-container-orgb2e68e3" class="outline-2">
-<h2 id="orgb2e68e3"><span class="section-number-2">2.</span> Essential Commands</h2>
+<div id="outline-container-orgd2f2004" class="outline-2">
+<h2 id="orgd2f2004"><span class="section-number-2">2.</span> Essential Commands</h2>
 <div class="outline-text-2" id="text-2">
 <dl class="org-dl">
 <dt><code>FROM &lt;image[:tag]&gt;</code></dt><dd><p>
@@ -243,7 +255,7 @@ Moreover, we can use multiple <code>FROM ... AS</code> statements, so that follo
 <dt><code>RUN &lt;command&gt;</code></dt><dd>Executes commands during build. If <code>&lt;command&gt;</code> is normal executable bash command, then it will be executed by <code>/bin/sh</code>; if <code>&lt;command&gt;</code> is a list of strings, then it will involve shell to execute.</dd>
 </dl>
 
-<div class="definition" id="orge5c4701">
+<div class="definition" id="org156d56a">
 <dl class="org-dl">
 <dt>Layer</dt><dd>Each statement creates a &ldquo;layer&rdquo; of the image. Docker images are a stack of <i>immutable</i> layers, each command &ldquo;transforms&rdquo; the previous layer into a new layer.</dd>
 </dl>

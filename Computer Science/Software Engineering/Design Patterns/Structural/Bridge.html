@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../../.assets/index.css"/>
-<script src="../../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../../.assets/foldable-lists.js"></script>
+<script src="../../../../.assets/home.js"></script>
+<script src="../../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -203,16 +214,17 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Design Pattern: Bridge</h1>
+<p class="article-desc">Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies - abstraction and implementation - which can be developed independently of each other.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgda928d4">1. Design Pattern: Bridge</a></li>
+<li><a href="#org47aead1">1. Design Pattern: Bridge</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgda928d4" class="outline-2">
-<h2 id="orgda928d4"><span class="section-number-2">1.</span> Design Pattern: Bridge</h2>
+<div id="outline-container-org47aead1" class="outline-2">
+<h2 id="org47aead1"><span class="section-number-2">1.</span> Design Pattern: Bridge</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Suppose the implementation is hard yet the functionality is urgent, we can first design proper <code>Abstraction</code> that have the features required (<code>feature1()</code>, <code>feature2()</code>, <code>feature3()</code>, etc.) and a member pointing to the actual <code>Implementation</code>. The thing is that, external clients invokes only the features of <code>Abstraction</code>; while the definition of these features consists of methods from <code>Implementation</code>.

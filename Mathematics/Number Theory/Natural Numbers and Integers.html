@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,7 +217,7 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Natural Numbers and Integers</h1>
-<div class="axiom" id="orgb01f3b4">
+<div class="axiom" id="orgfcdf0c4">
 <dl class="org-dl">
 <dt>Axiom of Induction</dt><dd><p>
 Suppose \(S\) is a subset of \(\mathbb{N}\) that satisfies
@@ -232,7 +243,7 @@ The addition here is defined by &ldquo;successor&rdquo;. This axiom is the princ
 With axiom of induction, we can prove least-number principle and greatest number principle.
 </p>
 
-<div class="theorem" id="org26c60a4">
+<div class="theorem">
 <dl class="org-dl">
 <dt>Least-Number Principle</dt><dd>Suppose \(T\) is a <b>non-empty</b> subset of \(\mathbb{N}\), then, \(\exists t_{0}\in T\) such that \(\forall t\in T, t_{0}\le t\).</dd>
 <dt>Greatest-Number Principle</dt><dd>Suppose \(M\) is a <b>non-empty</b> subset of \(\mathbb{N}\). If \(M\) has an upperbound, i.e., \(\exists a \in \mathbb{N}\) such that \(\forall m\in M, m \le a\). Then, there \(\exists m_{0}\in M\) such that \(\forall m\in M, m\le m_{0}\).</dd>

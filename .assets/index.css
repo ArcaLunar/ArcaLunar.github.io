@@ -332,6 +332,14 @@ body {
   text-align: center;
 }
 
+#content > .article-desc a {
+  color: var(--site-accent);
+}
+
+#content > .article-desc a:hover {
+  text-decoration: underline;
+}
+
 /* === Blog homepage (body.site-home) ===
  * A tighter, left-aligned index layout on top of the shared look above —
  * scoped so it never touches the ordinary bullet lists or wider reading

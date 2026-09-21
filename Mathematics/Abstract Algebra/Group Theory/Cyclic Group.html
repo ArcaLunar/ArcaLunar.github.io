@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -210,21 +221,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga5998b7">1. Generators of Cyclic Groups</a></li>
-<li><a href="#org999ad86">2. Subgroups of Cyclic Groups</a></li>
+<li><a href="#org9d58dc2">1. Generators of Cyclic Groups</a></li>
+<li><a href="#orgadfd048">2. Subgroups of Cyclic Groups</a></li>
 </ul>
 </div>
 </div>
-<div class="theorem" id="orgfa33390">
+<div class="theorem">
 <p>
 Every cyclic group is abelian.
 </p>
 
 </div>
-<div id="outline-container-orga5998b7" class="outline-2">
-<h2 id="orga5998b7"><span class="section-number-2">1.</span> Generators of Cyclic Groups</h2>
+<div id="outline-container-org9d58dc2" class="outline-2">
+<h2 id="org9d58dc2"><span class="section-number-2">1.</span> Generators of Cyclic Groups</h2>
 <div class="outline-text-2" id="text-1">
-<div class="theorem" id="org1454676">
+<div class="theorem">
 <p>
 Let \(G\) be a group and \(a \in G\)
 </p>
@@ -236,28 +247,28 @@ Let \(G\) be a group and \(a \in G\)
 
 </div>
 
-<div class="corollary" id="org1abc08f">
+<div class="corollary" id="orgbd911a5">
 <p>
 Let \(o(a) = n\), then \(a^{k}=e \implies n \mid k\)
 </p>
 
 </div>
 
-<div class="highlight theorem" id="orgbc560ab">
+<div class="theorem">
 <p>
 The order of a cyclic group is equal to the order of its generator.
 </p>
 
 </div>
 
-<div class="lemma" id="org69b67b6">
+<div class="lemma" id="orgaf1ce9b">
 <p>
 If \(a \in \lang a^{k} \rang\), then \(\lang a \rang \sube \lang a^{k} \rang\)
 </p>
 
 </div>
 
-<div class="theorem" id="orgb05f1e0">
+<div class="theorem">
 <p>
 Let \(G = \lang a \rang\) be a cyclic group of order \(n\). Then, \(G = \lang a^{k} \rang\) if and only if \(\gcd(k, n) = 1\).
 </p>
@@ -265,10 +276,10 @@ Let \(G = \lang a \rang\) be a cyclic group of order \(n\). Then, \(G = \lang a^
 </div>
 </div>
 </div>
-<div id="outline-container-org999ad86" class="outline-2">
-<h2 id="org999ad86"><span class="section-number-2">2.</span> Subgroups of Cyclic Groups</h2>
+<div id="outline-container-orgadfd048" class="outline-2">
+<h2 id="orgadfd048"><span class="section-number-2">2.</span> Subgroups of Cyclic Groups</h2>
 <div class="outline-text-2" id="text-2">
-<div class="theorem" id="orgcb6b488">
+<div class="theorem">
 <p>
 <b>Fundamental Theorem of Cyclic Groups</b>
 </p>
@@ -281,28 +292,28 @@ Let \(G = \lang a \rang\) be a cyclic group of order \(n\). Then, \(G = \lang a^
 
 </div>
 
-<div class="corollary" id="orgc6f6b13">
+<div class="corollary" id="org766f9d4">
 <p>
 Let \(G\) be a finite cyclic group. Then, the number of distinct subgroups of \(G\) is equal to the number of distinct factors of \(o(G)\).
 </p>
 
 </div>
 
-<div class="corollary" id="org6a5e0f8">
+<div class="corollary" id="org0121c7f">
 <p>
 For each positive divisor \(k\) of \(n\), the set \(\lang n/k \rang\) is the subgroup of \(\mathbb{Z}_{n}\) of order \(k\).
 </p>
 
 </div>
 
-<div class="theorem" id="orge2c94c7">
+<div class="theorem">
 <p>
 Number of generators of a finite cyclic group of order \(n\) is \(\phi(n)\).
 </p>
 
 </div>
 
-<div class="theorem" id="org70fe191">
+<div class="theorem">
 <p>
 If \(m\) is a positive divisor of \(n\), then the number of elements of order \(m\) in a cyclic group of order \(n\) is \(\phi(m)\).
 </p>
@@ -311,7 +322,7 @@ If \(m\) is a positive divisor of \(n\), then the number of elements of order \(
 
 <hr />
 
-<div class="note" id="org47a3ecf">
+<div class="note" id="org7723439">
 <p>
 <b>Solve Cyclic Group Related Questions</b>
 </p>
@@ -322,14 +333,14 @@ I find extended Euclidean theorem is always helpful in solving problems related 
 
 </div>
 
-<div class="problem" id="orgdedce2b">
+<div class="problem" id="org02f67d8">
 <p>
 If \(o(\lang a \rang)=n\), prove that \(\lang a^{k} \rang = \lang a^{\gcd(n,k)} \rang\)
 </p>
 
 </div>
 
-<div class="math-solution" id="orgf7c5ce3">
+<div class="math-solution" id="orgdf0ff9c">
 <p>
 Let \(\gcd(n,k) = d\), then \(k = df, n = dg, f \in \mathbb{Z}, g \in \mathbb{Z}\). And as \(o(\lang a \rang) = n\), so \(a^{n}=e\)
 </p>

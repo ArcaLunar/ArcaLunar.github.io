@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Double Buffering</title>
+<title>Double Buffering and Pipelining</title>
 <meta name="author" content="ArcaLunar" />
-<meta name="description" content="Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\)." />
+<meta name="description" content="Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). Pipelining is the genralized version of double buffering that splits tasks into three stages, and arranges stages to make them overlap to hide latency." />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,10 +217,28 @@
 <p class="site-nav"><a href="/">Blog</a> · <a href="/academic/">Academic</a></p>
 </div>
 <div id="content" class="content">
-<h1 class="title">Double Buffering</h1>
+<h1 class="title">Double Buffering and Pipelining</h1>
+<p class="article-desc">Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). Pipelining is the genralized version of double buffering that splits tasks into three stages, and arranges stages to make them overlap to hide latency.</p>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0748094">1. Introduction of Double Buffering</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0748094" class="outline-2">
+<h2 id="org0748094"><span class="section-number-2">1.</span> Introduction of Double Buffering</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\).
+Double buffering (a.k.a. pipelining) is a way to hide latency by using two copies of a buffer. Suppose a task can be split into two stages: load \(\ell_{i}\) and compute \(c_{i}\). What double buffering do is overlapping the load \(\ell_{i}\) of one task and the compute \(c_{j}\) of another task. In detail, when GPU computes on data in buffer A, it simultaneously loads the <b>next</b> chunk of data into buffer B. By doing, the latency introduced by load is hidden behind useful computations. The illustration shows how double buffering works.
 </p>
+
+<p>
+<img src="/.assets/cuda/double-buffer/double_buffering_timeline.svg" alt="Double Buffering" class="org-svg" />
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2026-08-14 Fri</p>

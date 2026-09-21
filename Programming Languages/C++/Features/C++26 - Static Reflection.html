@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,26 +217,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc85f740">1. What Is Reflection?</a></li>
-<li><a href="#orgcfefd2e">2. Everything As Value</a></li>
-<li><a href="#orgcfc3507">3. Meta Functions</a>
+<li><a href="#orgb0bd53a">1. What Is Reflection?</a></li>
+<li><a href="#orga4bad6a">2. Everything As Value</a></li>
+<li><a href="#orgdbe4e8d">3. Meta Functions</a>
 <ul>
-<li><a href="#orgcb6d9cf">3.1. Members</a></li>
+<li><a href="#org2205874">3.1. Members</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc85f740" class="outline-2">
-<h2 id="orgc85f740"><span class="section-number-2">1.</span> What Is Reflection?</h2>
+<div id="outline-container-orgb0bd53a" class="outline-2">
+<h2 id="orgb0bd53a"><span class="section-number-2">1.</span> What Is Reflection?</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Static reflection
 </p>
 </div>
 </div>
-<div id="outline-container-orgcfefd2e" class="outline-2">
-<h2 id="orgcfefd2e"><span class="section-number-2">2.</span> Everything As Value</h2>
+<div id="outline-container-orga4bad6a" class="outline-2">
+<h2 id="orga4bad6a"><span class="section-number-2">2.</span> Everything As Value</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 C++26 introduces two new operators. The reflection operator <code>^^</code> converts most name entity to <code>std::meta::info</code> type:
@@ -258,15 +269,15 @@ We can convert the meta info <b>back into</b> the name entity, by using <code>[:
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfc3507" class="outline-2">
-<h2 id="orgcfc3507"><span class="section-number-2">3.</span> Meta Functions</h2>
+<div id="outline-container-orgdbe4e8d" class="outline-2">
+<h2 id="orgdbe4e8d"><span class="section-number-2">3.</span> Meta Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We can do operations to retrieved meta info, such operations are called <b>meta functions</b>, which are defined in <code>&lt;meta&gt;</code> header.
 </p>
 </div>
-<div id="outline-container-orgcb6d9cf" class="outline-3">
-<h3 id="orgcb6d9cf"><span class="section-number-3">3.1.</span> Members</h3>
+<div id="outline-container-org2205874" class="outline-3">
+<h3 id="org2205874"><span class="section-number-3">3.1.</span> Members</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-cpp"><code>  <span class="org-keyword">namespace</span> <span class="org-constant">std</span>::<span class="org-constant">meta</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span>

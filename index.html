@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href=".assets/style.css"/>
-<link rel="stylesheet" type="text/css" href=".assets/index.css"/>
-<script src=".assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href=".assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/base.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/code.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/home.css"/>
+<link rel="stylesheet" type="text/css" href=".assets/legacy-emacs-faces.css"/>
+<script src=".assets/foldable-lists.js"></script>
+<script src=".assets/home.js"></script>
+<script src=".assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,11 +220,39 @@
 <p class="site-tagline">A running log of notes across ACM, AI/ML systems, math, and everything in between.</p>
 
 <section class="site-panel" data-panel="recent">
+<input id="site-search-recent" class="site-search" type="search" placeholder="Search notes… (title, description, or content)" autocomplete="off" spellcheck="false" aria-label="Search notes">
+
 <div class="site-recent">
 <ul class="org-ul">
+<li><a href="Miscellaneous/Diary/Thoughts about the JEV Model.html"><b>Thoughts about the JEV Model</b></a> <i>2026-09-21</i> <span class="site-desc"> The JEV has gone viral for a weird reason of cheap and fast, along with its &ldquo;Reinforcement Learning for Calibration Decision&rdquo; (RLCD). I want to comment some my questions and thoughts here. </span></li>
+<li><a href="Miscellaneous/TechTips/Skip wandb SSL Verification.html"><b>Skip <code>wandb</code> SSL Verification</b></a> <i>2026-09-21</i> <span class="site-desc"> <code>wandb</code> is a useful platform for auto recording information and visualizing for deep learning projects. This post documents how to sync wandb logs in brief. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Experiments/Training Stable Diffusion 3.5 Medium with DiffusionOPD on OCR Tasks.html"><b>Training Stable Diffusion 3.5 Medium with DiffusionOPD on OCR Tasks</b></a> <i>2026-09-21</i> <span class="site-desc"> I ran the experiment of post-training SD3.5 Medium with DiffusionOPD on OCR tasks, as documented in the docs. I post some results and figures here for my reference. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL/ReplayBuffer in verl.html"><b>Replay Buffer in <code>verl</code></b></a> <i>2026-09-21</i> <span class="site-desc"> Briefly analysis the <code>ReplayBuffer</code> class design in upstream <code>verl</code> and downstream <code>verl-omni</code>. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/How is DiffusionOPD implemented in verl-omni.html"><b>How is DiffusionOPD Implemented in <code>verl-omni</code></b></a> <i>2026-09-20</i> <span class="site-desc"> This post is more of coding aspect rather than of mathematical aspect. This post briefly discusses how <a href="AI/DiffusionOPD.html#ID-9004087a-b9a3-4f1e-8682-f9fb41551b2b">DiffusionOPD</a> is implemented in <code>verl-omni</code>. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Snippets/Preparing OPD Teacher by Merging LoRA weights in verl-omni.html"><b>Preparing OPD Teacher by Merging LoRA weights in verl-omni</b></a> <i>2026-09-18</i> <span class="site-desc"> Follow the <a href="https://verl-omni.readthedocs.io/en/latest/examples/diffusionopd_trainer.html">official tutorial for DiffusionOPD Trainer</a>. This post briefly describes how to merge LoRA weights into base model through Diffusers. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Metrics Recorded by verl-omni.html"><b>Metrics Recorded by verl-omni</b></a> <i>2026-09-18</i> <span class="site-desc"> This post briefly reviews all the metrics recorded by <code>verl-omni</code> during training. The metrics can be roughly categorized into several classes, hardware performance, time consumption, critic, actor, rollout correction, training, etc. </span></li>
+<li><a href="Systems &amp; Frameworks/Ray/Overview of Ray.html"><b>Overview of Ray</b></a> <i>2026-09-17</i> <span class="site-desc"> Ray is the underlying runtime for modern infrastructure like vllm, verl, etc. An attempt to understand how Ray works :) </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/v1 and v0 Engine in verl-omni.html"><b>The v1 and v0 Trainer in <code>verl-omni</code></b></a> <i>2026-09-17</i> <span class="site-desc"> Briefly introduce the v1 and v0 RL trainer in <code>verl-omni</code>. Instead, v0, v1 (sync/async) share the same underlying engine (vllm-omni for rollout engine and FSDP/VeOmni for actor engine), but differ in <span class="underline">dataflow and scheduler engine</span>. </span></li>
+<li><a href="Systems &amp; Frameworks/Hydra.html"><b>Hydra</b></a> <i>2026-09-17</i> <span class="site-desc"> Hydra is a Python framework for configuring complex applications. </span></li>
+<li><a href="AI/Overview/Roadmap of Generative Models.html"><b>Roadmap of Generative Models</b></a> <i>2026-09-14</i> <span class="site-desc"> A roadmap of understanding modern generative models, including VAE, GAN, diffusion, and flow matching. </span></li>
+<li><a href="AI/Overview/Roadmap of Reinforcement Learning.html"><b>Roadmap of Reinforcement Learning</b></a> <i>2026-09-14</i> <span class="site-desc"> A roadmap of study reinforcement learning. Posts are listed from basics to modern works. </span></li>
+<li><a href="AI/DPO - Direct Preference Optimization.html"><b>DPO: Direct Preference Optimization</b></a> <i>2026-09-14</i> <span class="site-desc"> DPO is an optimization that simplifies the two-stage pipeline containing reward model training in RLHF and PPO post-training into a single supervised loss function. </span></li>
+<li><a href="AI/Generative Models through Normalizing Flows.html"><b>Generative Models through Normalizing Flows</b></a> <i>2026-09-14</i> <span class="site-desc"> Normalizing flow (NF) refers to a family of generative models. Its paradigm is to transform a simple distribution into a complex distribution through a series of inversible functions. Therefore, we&rsquo;re able to compute the likelihood and apply maximum likelihood learning. Generation is done through sampling from the simple distribution and transforming it with the series of function. </span></li>
+<li><a href="AI/Policy Gradient.html"><b>Policy Gradient Theorem</b></a> <i>2026-09-14</i> <span class="site-desc"> Policy Gradient Theorem is an important topic in RL as it envisions many popular policy-gradient RL methods, including REINFORCE, Actor-Critic, A2C, PPO, GRPO, etc. </span></li>
+<li><a href="AI/RL Basics.html"><b>Fundamental Concepts in Markov Decision Process and Reinforcement Learning</b></a> <i>2026-09-13</i> <span class="site-desc"> This post roughtly covers (1) the setups in MDP/RL, (2) value function, (3) Q-state, (4) discounting, (5) advantage, (6) Bellman Equation (7) the difference between on- and off-policy. In addition, this post tries to provide an intuition beyond formula. </span></li>
+<li><a href="Programming Languages/Lisp Family/Scheme/Let Family in Scheme.html"><b><code>let</code> Family in Scheme</b></a> <i>2026-09-13</i> <span class="site-desc"> The <code>let</code> family in Scheme programming language. They are used to bind values to variables. </span></li>
+<li><a href="AI/Advantage Actor-Critic.html"><b>Advantage Actor-Critic</b></a> <i>2026-09-12</i> <span class="site-desc"> Advantage actor-critic (A2C) is an improvement of actor-critic. The introduce of advantage further stablizes the learning procedure of the critic model. </span></li>
+<li><a href="AI/PPO - Proximal Policy Optimization.html"><b>PPO: Proximal Policy Optimization</b></a> <i>2026-09-12</i> <span class="site-desc"> The idea of PPO can be summarized as: allow the policy to update, but constrain the policy from changing too much, in order to stablize training. Compared to prior work TRPO that uses second-order methods which requires massive computation, PPO uses first-order methods to achieve the same goal. </span></li>
+<li><a href="AI/TRPO - Trust Region Policy Optimization.html"><b>TRPO: Trust Region Policy Optimization</b></a> <i>2026-09-12</i></li>
+<li><a href="AI/Self-Evolving of AI.html"><b>Self-Evolving of AI</b></a> <i>2026-09-11</i> <span class="site-desc"> Self-Evolving has become a core concept in AI fields. </span></li>
+<li><a href="AI/DiffusionOPD.html"><b>DiffusionOPD</b></a> <i>2026-09-10</i> <span class="site-desc"> On-policy distillation for diffusion models. </span></li>
+<li><a href="AI/OPD - On-Policy Distillation.html"><b>OPD: On-Policy Distillation</b></a> <i>2026-09-10</i> <span class="site-desc"> On-policy distillation </span></li>
+<li><a href="AI/Actor-Critic.html"><b>Actor-Critic Methods in Reinforcement Learning</b></a> <i>2026-09-08</i> <span class="site-desc"> Actor-Critic is a RL method that combines value-based and policy-based methods to help stablize the training by reducing the variance through an actor controlling how agents behaves (policy-based) and a critic judging how well agents behave (value-based). </span></li>
+<li><a href="AI/GRPO - Group Relative Policy Optimization.html"><b>GRPO: Group Relative Policy Optimization</b></a> <i>2026-09-08</i> <span class="site-desc"> GRPO is a method introduced by DeepSeek Math, a variant of PPO that enhances mathematical reasoning abilities while concurrently optimizing the memory usage of PPO. </span></li>
+<li><a href="AI/Reinforce.html"><b>Reinforce</b></a> <i>2026-09-08</i> <span class="site-desc"> Reinforce is a policy-based method, but instead of obtaining policy from Q-states or values, it parameterizes the policy \(\pi:\mathcal{S}\mapsto\mathbb{P}(\mathcal{A})\) that outputs a distribution of actions and trains the policy through gradients. </span></li>
 <li><a href="AI/Overview/A Survey of 16 Open-Source RL Libraries.html"><b>A Survey of 16 Open-Source RL Libraries</b></a> <i>2026-09-07</i> <span class="site-desc"> As of 2026, among the 16 surveyed open-source RL libraries, the common points are that: (1) inference and training are disaggregated; (2) they are connected by a rollout buffer to temporarily store model outputs; (3) weights are transferred asynchronously. Other findings include: (1) Ray dominates orchestration; (2) NCCL broadcast is the default method for transferring model weights; (3) staleness management, referring to how to handle outdated data samples, ranges from least-recent method to advanced importance-sampling correction; (4) LoRA training is sparsely supported; (5) distributed MoE support is becoming trend. See more at <a href="https://huggingface.co/blog/async-rl-training-landscape">Huggingface Blog</a> </span></li>
 <li><a href="AI/LLDM - Large Language Diffusion Models.html"><b>LLaDA: Large Language Diffusion Models</b></a> <i>2026-09-06</i> <span class="site-desc"> LLaDA challenges the traditional autoregressive next-token prediction LLMs. It introduces LLaDA, a diffusion-based language model with masking. In short, tokens are progressively masked during training, and a bidirectional Transformer learns to predict all masked tokens simultaneously by optimizing a proper likelihood lower bound rather than a cross-entropy objective. </span></li>
-<li><a href="AI/Looped Transformer.html"><b>Looped Transformer</b></a> <i>2026-09-06</i> <span class="site-desc"> Looped Transformer goes viral recently along with the release of OpenAI&rsquo;s new models. Compared to traditional way of deepening new models by stacking up more layers, Looped Transformer does so by reusing middle layers cyclically. </span></li>
+<li><a href="AI/Loop Transformer.html"><b>Loop Transformer</b></a> <i>2026-09-06</i> <span class="site-desc"> Loop Transformer goes viral recently along with the release of OpenAI&rsquo;s new models. Compared to traditional way of deepening new models by stacking up more layers, Loop Transformer does so by reusing middle layers cyclically. </span></li>
 <li><a href="AI/DistFlow - Fully Distributed RL Framework.html"><b>DistFlow: A Fully Distributed RL Framework</b></a> <i>2026-09-05</i> <span class="site-desc"> DistFlow proposes a fully distributed <b>multi-controller</b> paradigm by decoupling data transfer and control dispatch. For control, DistFlow introduces DAG-based task scheduler for finegrained and independent execution. </span></li>
 <li><a href="AI/HetRL - RL in Heterogeneous Env.html"><b>HetRL: Efficient RL in Heterogeneous Environments</b></a> <i>2026-09-05</i> <span class="site-desc"> HetRL is proposed for efficient RL post-training in compute-heterogeneous environments. HetRL forms the RL infrastructure as a joint optimization problem and proposes 2 scheduling algorithms (near-optimal based, and integer lineaer programming based) for RL infra. </span></li>
 <li><a href="AI/HeteroRL-GEPO - Group Expectation Policy Optimization.html"><b>HeteroRL (GEPO): Group Expectation Policy Optimization</b></a> <i>2026-09-05</i> <span class="site-desc"> HeteroRL is an architecture to decouple rollout sampling and policy optimization, the core of which is GEPO, an algorithm proposed to alleviate high variance of importance weights and training instability caused by increased KL divergence resulting from high latency due to heterogeneity in compute resources. </span></li>
@@ -239,7 +278,7 @@
 <li><a href="AI/Tech Reports/DeepSeek/Thinking with Visual Primitives.html"><b>Thinking with Visual Primitives</b></a> <i>2026-08-17</i></li>
 <li><a href="AI/Tech Reports/Kimi/Kimi K3.html"><b>Kimi K3</b></a> <i>2026-08-14</i></li>
 <li><a href="Computer Science/Software Engineering/Design Patterns/Creational/Builder.html"><b>Builder</b></a> <i>2026-08-14</i></li>
-<li><a href="GPU Programming/Techniques/Double Buffering.html"><b>Double Buffering</b></a> <i>2026-08-14</i> <span class="site-desc"> Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). </span></li>
+<li><a href="GPU Programming/Techniques/Double Buffering.html"><b>Double Buffering and Pipelining</b></a> <i>2026-08-14</i> <span class="site-desc"> Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). Pipelining is the genralized version of double buffering that splits tasks into three stages, and arranges stages to make them overlap to hide latency. </span></li>
 <li><a href="GPU Programming/Techniques/Vectorization.html"><b>Vectorization</b></a> <i>2026-08-14</i></li>
 <li><a href="Mathematics/Number Theory/Natural Numbers and Integers.html"><b>Natural Numbers and Integers</b></a> <i>2026-08-14</i></li>
 <li><a href="Programming Languages/Lua/Iterators.html"><b>Iterators</b></a> <i>2026-08-14</i></li>
@@ -392,7 +431,7 @@
 <li><a href="Mathematics/Analysis/Vector Calculus/Divergence Theorem.html"><b>Divergence Theorem</b></a> <i>2026-07-04</i></li>
 <li><a href="Mathematics/Analysis/Vector Calculus/Green's Theorem.html"><b>Green&rsquo;s Theorem</b></a> <i>2026-07-04</i></li>
 <li><a href="Mathematics/Analysis/Vector Calculus/Line Integrals.html"><b>Line Integrals</b></a> <i>2026-07-04</i></li>
-<li><a href="AI/Flow Matching.html"><b>Flow Matching</b></a> <i>2026-07-03</i></li>
+<li><a href="AI/Flow Matching.html"><b>FM: Generative Models via Flow Matching</b></a> <i>2026-07-03</i> <span class="site-desc"> Flow matching is an amazingly simple algorithm for generative models. It has been widely adopted in image generation models. </span></li>
 <li><a href="AI/FlashMask.html"><b>FlashMask</b></a> <i>2026-07-02</i></li>
 <li><a href="Arts/Buddhist Impact on Chinese Culture/Basic Buddhist Teachings.html"><b>Basic Buddhist Teachings</b></a> <i>2026-07-01</i></li>
 <li><a href="Mathematics/Analysis/Vector Calculus/Differential Operators.html"><b>Differential Operators</b></a> <i>2026-06-30</i></li>
@@ -431,7 +470,6 @@
 <li><a href="Computer Science/Compilers/principles/parsing/Left Recursion.html"><b>Left Recursion</b></a> <i>2026-06-17</i></li>
 <li><a href="Computer Science/Compilers/principles/parsing/Predictive Parsing.html"><b>Predictive Parsing</b></a> <i>2026-06-17</i> <span class="site-desc"> Like recursive rescent parsing, but parser can &ldquo;predict&rdquo; which production to use next, by looking at the next few tokens (which requires restricted grammars) and no backtracking. </span></li>
 <li><a href="AI/Overview/Terms in RL Post-Training.html"><b>Terms in RL Post-Training</b></a> <i>2026-06-15</i> <span class="site-desc"> Explain terms frequently appearing in AI articles. </span></li>
-<li><a href="AI/RL Basics.html"><b>RL and Markov Decision Process</b></a> <i>2026-06-15</i></li>
 <li><a href="Mathematics/Probability/KL Divergence.html"><b>KL Divergence</b></a> <i>2026-06-15</i> <span class="site-desc"> KL disvergence measures </span></li>
 <li><a href="Programming Languages/Rust/Concurrency in Rust.html"><b>Concurrency in Rust</b></a> <i>2026-06-14</i></li>
 <li><a href="ACM/Euler Tour Tree.html"><b>Euler Tour Tree</b></a> <i>2026-06-13</i> <span class="site-desc"> Euler tour tree can be used to solve <i>dynamic tree</i> problem. It converts operations into range operations on DFS sequence. Compared to Link-Cut Tree, ETT is more suitable for maintaining subtree information. </span></li>
@@ -514,13 +552,16 @@
 </section>
 
 <section class="site-panel" data-panel="index" hidden>
-<input id="site-search" type="search" placeholder="Filter notes… (e.g. &quot;attention&quot;, &quot;raft&quot;)" autocomplete="off" spellcheck="false" aria-label="Filter notes">
+<input id="site-search-index" class="site-search" type="search" placeholder="Search notes… (title, description, or content)" autocomplete="off" spellcheck="false" aria-label="Search notes">
 
 <div class="site-index">
 <ul class="org-ul">
-<li><a href="Helpful Resources.html"><b>Helpful Resources</b></a> <i>2026-09-03</i> <span class="site-desc"> Lectures, Course URLs, Blogs, Papers, etc. useful for my study. </span></li>
 <li>ACM (13)
 <ul class="org-ul">
+<li>Contests (1)
+<ul class="org-ul">
+<li><a href="ACM/Contests/14th Chongqing CPC.html"><b>14th Chongqing CPC</b></a> <i>2026-08-07</i></li>
+</ul></li>
 <li><a href="ACM/Advanced Disjoint Set Union.html"><b>Advanced Disjoint Set Union</b></a> <i>2026-08-03</i></li>
 <li><a href="ACM/Cartesian Tree.html"><b>Cartesian Tree</b></a> <i>2026-06-09</i></li>
 <li><a href="ACM/Dynamic Segtree.html"><b>Dynamic Segtree</b></a> <i>2026-05-24</i></li>
@@ -533,75 +574,15 @@
 <li><a href="ACM/Splay Tree.html"><b>Splay Tree</b></a> <i>2026-08-03</i></li>
 <li><a href="ACM/Treap.html"><b>Treap</b></a> <i>2026-06-13</i> <span class="site-desc"> Non-rotational treap (FHQ Treap) can be used to maintain sequence operations and balanced tree. </span></li>
 <li><a href="ACM/WBLT.html"><b>WBLT</b></a> <i>2026-08-03</i></li>
-<li>Contests (1)
-<ul class="org-ul">
-<li><a href="ACM/Contests/14th Chongqing CPC.html"><b>14th Chongqing CPC</b></a> <i>2026-08-07</i></li>
 </ul></li>
-</ul></li>
-<li>AI (67)
+<li>AI (81)
 <ul class="org-ul">
-<li><a href="AI/A Taste of ExecuTorch.html"><b>A Taste of ExecuTorch</b></a> <i>2026-08-26</i> <span class="site-desc"> ExecuTorch is PyTorch&rsquo;s cutting-edge solution for on-edge model deployment, with limited support for training. </span></li>
-<li><a href="AI/Automatic Differentiation.html"><b>Automatic Differentiation (AutoGrad)</b></a> <i>2026-06-02</i></li>
-<li><a href="AI/CLIP.html"><b>CLIP</b></a> <i>2026-06-11</i> <span class="site-desc"> Pioneering algorithm for image understanding and image-text alignment. </span></li>
-<li><a href="AI/Clustered FL.html"><b>Clustered Federated Learning</b></a> <i>2026-07-16</i></li>
-<li><a href="AI/Common Metrics.html"><b>Common Metrics</b></a> <i>2026-08-31</i> <span class="site-desc"> Metrics are important in evaluating the quality of LLMs. Although nowadays, domain-specific datasets used for evaluating LLMs mainly treat metrics like task accuracy as the only golden standard, there are still general metrics for evaluation. </span></li>
-<li><a href="AI/DDPM.html"><b>DDPM: Denoising Diffusion Probabilistic Models</b></a> <i>2026-07-27</i></li>
-<li><a href="AI/DSA - DeepSeek Sparse Attention.html"><b>DeepSeek Sparse Attention</b></a> <i>2026-06-02</i> <span class="site-desc"> DeepSeek Sparse Attention (DSA) is introduced along with the DeepSeek V3.2 technical report. It&rsquo;s designed to reduce computational complexity while preserving model performance in long context scenarios. </span></li>
-<li><a href="AI/DSpark.html"><b>DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation</b></a> <i>2026-07-15</i> <span class="site-desc"> DSpark is a speculative decoding framework proposed by DeepSeek. Speculative decoding is an acceleration technique for LLM inference. </span></li>
-<li><a href="AI/DeepSeek FP8 Training Schema.html"><b>DeepSeek FP8 Training</b></a> <i>2026-06-06</i> <span class="site-desc"> Briefly introduces DeepSeek&rsquo;s FP8 training pipeline, as released in the DeepSeek V3 technical report. </span></li>
-<li><a href="AI/DiT — Scalable Diffusion Models with Transformers.html"><b>DiT: Scalable Diffusion Models with Transformers</b></a> <i>2026-07-27</i> <span class="site-desc"> DiT has a relatively simple idea that it replaces the U-Net in usual DDPM with Transformers (ViT). </span></li>
-<li><a href="AI/DistFlow - Fully Distributed RL Framework.html"><b>DistFlow: A Fully Distributed RL Framework</b></a> <i>2026-09-05</i> <span class="site-desc"> DistFlow proposes a fully distributed <b>multi-controller</b> paradigm by decoupling data transfer and control dispatch. For control, DistFlow introduces DAG-based task scheduler for finegrained and independent execution. </span></li>
-<li><a href="AI/FastMTP.html"><b>FastMTP: Accelerating LLM Inference with Enhanced Multi-Token Prediction</b></a> <i>2026-07-22</i></li>
-<li><a href="AI/FeDaL - Federated for Time Series Models.html"><b>FeDaL: Federated Dataset Learning for General Time Series Foundation Models</b></a> <i>2026-06-19</i> <span class="site-desc"> FeDaL focuses on training time series foundation models (TSFMs) under federated settings. In short, FeDaL decomposes heterogeneous TS datasets into shared generalized knowledge and preserved personalized knowledge; it mitigates local and global biases through bias elimination. FeDaL also shows how data volume, client count and join rate affect model performance under decentralization. </span></li>
-<li><a href="AI/FedDAG.html"><b>FedDAG: Clustered Federated Learning via Global Data and Gradient Integration for Heterogeneous Environments</b></a> <i>2026-07-16</i></li>
-<li><a href="AI/FedEx-LoRA.html"><b>FedEx-LoRA: Exact Aggregation for Federated and Efficient Finetuning of Foundation Models</b></a> <i>2026-05-31</i> <span class="site-desc"> Direct LoRA in federated settings causes inaccurate updates. FedEx-LoRA handles this by adding a residual error term to the pretrained frozen weight matrix, achieving exact updates. </span></li>
-<li><a href="AI/FedHera.html"><b>FedHera</b></a> <i>2026-08-26</i></li>
-<li><a href="AI/FedLWS - Adaptive Layerwise Weight Shrinking.html"><b>FedLWS: Federated Learning with Adaptive Layerwise Weight Shrinking</b></a> <i>2026-06-22</i></li>
-<li><a href="AI/Federated Inference.html"><b>Federated Inference: Towards Collaborative and Privacy-Preserving Inference over Edge Devices</b></a> <i>2026-07-21</i></li>
-<li><a href="AI/Ferret.html"><b>Ferret: Federated Full-Parameter Tuning at Scale for Large Language Models</b></a> <i>2026-06-18</i> <span class="site-desc"> Ferret uses first-order method with shared randomness to enable scalable full-parameter update. It also projects updates to a lower dimensional space to reduce communication overhead, and then reconstructs local updates from lower dimensional space with shared randomness for effective full-parameter global aggregation. </span></li>
-<li><a href="AI/Flamingo.html"><b>Flamingo: A Visual Language Model for Few-Shot Learning</b></a> <i>2026-07-26</i></li>
-<li><a href="AI/FlashMask.html"><b>FlashMask</b></a> <i>2026-07-02</i></li>
-<li><a href="AI/Flow Matching.html"><b>Flow Matching</b></a> <i>2026-07-03</i></li>
-<li><a href="AI/GDN - Gated Delta Network.html"><b>GDN - Gated Delta Network</b></a> <i>2026-08-29</i></li>
-<li><a href="AI/General Diffusion Models.html"><b>Diffusion Models</b></a> <i>2026-06-24</i> <span class="site-desc"> Diffusion models learn to reverse a gradual noising process, transforming a simple Gaussian prior into samples from a complex data distribution. </span></li>
-<li><a href="AI/HetRL - RL in Heterogeneous Env.html"><b>HetRL: Efficient RL in Heterogeneous Environments</b></a> <i>2026-09-05</i> <span class="site-desc"> HetRL is proposed for efficient RL post-training in compute-heterogeneous environments. HetRL forms the RL infrastructure as a joint optimization problem and proposes 2 scheduling algorithms (near-optimal based, and integer lineaer programming based) for RL infra. </span></li>
-<li><a href="AI/HeteroRL-GEPO - Group Expectation Policy Optimization.html"><b>HeteroRL (GEPO): Group Expectation Policy Optimization</b></a> <i>2026-09-05</i> <span class="site-desc"> HeteroRL is an architecture to decouple rollout sampling and policy optimization, the core of which is GEPO, an algorithm proposed to alleviate high variance of importance weights and training instability caused by increased KL divergence resulting from high latency due to heterogeneity in compute resources. </span></li>
-<li><a href="AI/LA-LoRA.html"><b>LA-LoRA: Rethinking LoRA for Privacy-Preserving Federated Learning in Large Models</b></a> <i>2026-07-09</i> <span class="site-desc"> This article reviews federated learning under <span class="underline">differential privacy federated learning</span> settings. </span></li>
-<li><a href="AI/LLDM - Large Language Diffusion Models.html"><b>LLaDA: Large Language Diffusion Models</b></a> <i>2026-09-06</i> <span class="site-desc"> LLaDA challenges the traditional autoregressive next-token prediction LLMs. It introduces LLaDA, a diffusion-based language model with masking. In short, tokens are progressively masked during training, and a bidirectional Transformer learns to predict all masked tokens simultaneously by optimizing a proper likelihood lower bound rather than a cross-entropy objective. </span></li>
-<li><a href="AI/Latent Variable and VAE.html"><b>Latent Variable Models: VAEs</b></a> <i>2026-06-21</i> <span class="site-desc"> VAE extends the idea of variational inference to use neural networks to model both encoder and decoder. For encoder, it uses neural network (e.g. CNN) to study distribution \( q_{\lambda}(\mathbf{z}|\mathbf{x}) \) and outputs a distribution of \( \mathbf{z} \). For decoder, we sample from the distribution \( p(\mathbf{z}) \) and generates images from it through decoder that have learnt \( p(\mathbf{x}|\mathbf{z}) \) from dataset. </span></li>
-<li><a href="AI/LoRA.html"><b>LoRA</b></a> <i>2026-06-06</i> <span class="site-desc"> LoRA has somehow become the standard method for finetuning LLMs. </span></li>
-<li><a href="AI/Looped Transformer.html"><b>Looped Transformer</b></a> <i>2026-09-06</i> <span class="site-desc"> Looped Transformer goes viral recently along with the release of OpenAI&rsquo;s new models. Compared to traditional way of deepening new models by stacking up more layers, Looped Transformer does so by reusing middle layers cyclically. </span></li>
-<li><a href="AI/MHA and GQA.html"><b>Multi-Head Attention and Grouped-Query Attention</b></a> <i>2026-08-31</i></li>
-<li><a href="AI/MPnP - Modality Plug-and-Play.html"><b>Modality Plug-and-Play</b></a> <i>2026-06-22</i></li>
-<li><a href="AI/MTP - Multi-Token Prediction.html"><b>MTP: Multi-Token Prediction</b></a> <i>2026-07-22</i> <span class="site-desc"> MTP is a <i>speculative decoding</i> method where the target model includes native multi-token prediction capability. Unlike draft-model-based methods, we don&rsquo;t need separate draft models. </span></li>
-<li><a href="AI/Maximum Likelihood Estimation.html"><b>Maximum Likelihood Learning</b></a> <i>2026-07-27</i> <span class="site-desc"> Maximum likelihood learning is a practical approach to train generative models that adopts probabilistic modeling. </span></li>
-<li><a href="AI/N-Gram Embedding.html"><b>N-Gram Embedding</b></a> <i>2026-08-29</i></li>
-<li><a href="AI/Normalizing Flow Models.html"><b>Normalizing Flow Models</b></a> <i>2026-06-21</i> <span class="site-desc"> Autoregressive models provide tractable likelihoods but no direct mechanism for learning features, while VAEs can learn feature representations via latent variables but have intractable marginal likelihoods. </span></li>
-<li><a href="AI/OpenTSLM.html"><b>OpenTSLM</b></a> <i>2026-08-01</i> <span class="site-desc"> OpenTSLM is a multimodal model that tries to integrate time series and textual data. </span></li>
-<li><a href="AI/PagedAttention.html"><b>PagedAttention</b></a> <i>2026-05-31</i></li>
-<li><a href="AI/PhaseFormer.html"><b>PhaseFormer: From Patches to Phases for Efficient And Effective Time Series Forecasting</b></a> <i>2026-07-22</i></li>
-<li><a href="AI/Prompt Tuning.html"><b>Prompt Tuning</b></a> <i>2026-07-26</i></li>
-<li><a href="AI/RL Basics.html"><b>RL and Markov Decision Process</b></a> <i>2026-06-15</i></li>
-<li><a href="AI/Radio - LLM Compression using Rate Distortion.html"><b>Radio - Rate Distortion Optimization for LLM Compression</b></a> <i>2026-06-06</i> <span class="site-desc"> Radio provides a novel view for quantization with optimization technique and rate-distortion theory, as well as a closed form for quantization bit. The drawback is that it does not consider hardware efficiency. </span></li>
-<li><a href="AI/Robust Federated Inference.html"><b>Robust Federated Inference</b></a> <i>2026-07-15</i> <span class="site-desc"> Federated inference is different from federated learning. Federated learning emphasizes the aggregation of models trained on on-edge data; while federated inference focuses on that aggregate the results from distributedly deployed models. This paper focuses on <b>robustness</b> of this paradigm with theoretical formulation and analysis. </span></li>
-<li><a href="AI/SDFT - Self-Distillation Fine-Tuning.html"><b>SDFT: Self-Distillation Enables Continual Learning</b></a> <i>2026-06-28</i> <span class="site-desc"> The paper proposes Self-Distillation Fine-Tuning (SDFT) that aims to handle the problem of <span class="underline">continual learning</span>: keep learning new skills while not forgetting old skills. </span></li>
-<li><a href="AI/SEMI - Sample-Efficient Integration.html"><b>Sample-Efficient Integration of New Modalities into LLMs</b></a> <i>2026-08-10</i> <span class="site-desc"> An interesting work that follows the idea of adopting a projector for modality adaptation, while leveraging a &ldquo;hypernetwork&rdquo; for generating LoRA weights from data samples to apply to the projector for adaptation. </span></li>
-<li><a href="AI/SFL - Split Federated Learning.html"><b>Split Federated Learning</b></a> <i>2026-06-03</i> <span class="site-desc"> Split federated learning is a cross-field of FL and split learning, which can be regarded as a subset of distributed learning with some special settings. </span></li>
-<li><a href="AI/SageAttention v2 — INT4 Scheme.html"><b>SageAttention v2 — INT4 Scheme</b></a> <i>2026-05-31</i></li>
-<li><a href="AI/SageAttention — INT8 Scheme for Inference.html"><b>SageAttention — INT8 Scheme for Inference</b></a> <i>2026-06-19</i></li>
-<li><a href="AI/Score-Based Models — Working Notes.html"><b>Score-Based Models — Working Notes</b></a> <i>2026-07-27</i></li>
-<li><a href="AI/SensorLM.html"><b>SensorLM: Learning the Language of Wearable Sensors</b></a> <i>2026-07-21</i> <span class="site-desc"> SensorLM is a family of foundation models that enable <i>wearable sensor data</i> understanding with natural language. </span></li>
-<li><a href="AI/SigLIP.html"><b>SigLIP: Sigmoid Loss for Language Image Pretraining</b></a> <i>2026-08-25</i> <span class="site-desc"> The advantage of SigLIP over CLIP is that SigLIP only relies on image-text pairs rather than global pairwise similarity, reducing computational cost from quadric to linear w.r.t. batch size. </span></li>
-<li><a href="AI/TimeXer.html"><b>TimeXer</b></a> <i>2026-06-26</i></li>
-<li><a href="AI/Vanilla Attention.html"><b>Vanilla Attention</b></a> <i>2026-06-01</i></li>
-<li><a href="AI/Variational Inference.html"><b>Variational Inference</b></a> <i>2026-06-21</i> <span class="site-desc"> Variational inference is the core math principle supporting modern generative models like VAE. </span></li>
-<li><a href="AI/ViT.html"><b>ViT: Vision Transformer</b></a> <i>2026-06-11</i> <span class="site-desc"> Vision transformer (ViT) unifies the architecture for vision tasks with transformer, enabling later VLM-related works. </span></li>
-<li><a href="AI/X-Fi - Modality-Invariant Foundation Model.html"><b>X-Fi: Modality-Invariant Foundation Model</b></a> <i>2026-08-11</i></li>
-<li><a href="AI/ZeRO - Zero Redundancy Optimizer.html"><b>ZeRO: Zero Redundancy Optimizer</b></a> <i>2026-08-31</i> <span class="site-desc"> ZeRO adopts different levels of distributed strategy to remove redundancy in memory, at the cost of more communication. This work also gives birth to FSDP, a widely used distributed training schema. </span></li>
-<li>Overview (4)
+<li>Overview (6)
 <ul class="org-ul">
 <li><a href="AI/Overview/A Survey of 16 Open-Source RL Libraries.html"><b>A Survey of 16 Open-Source RL Libraries</b></a> <i>2026-09-07</i> <span class="site-desc"> As of 2026, among the 16 surveyed open-source RL libraries, the common points are that: (1) inference and training are disaggregated; (2) they are connected by a rollout buffer to temporarily store model outputs; (3) weights are transferred asynchronously. Other findings include: (1) Ray dominates orchestration; (2) NCCL broadcast is the default method for transferring model weights; (3) staleness management, referring to how to handle outdated data samples, ranges from least-recent method to advanced importance-sampling correction; (4) LoRA training is sparsely supported; (5) distributed MoE support is becoming trend. See more at <a href="https://huggingface.co/blog/async-rl-training-landscape">Huggingface Blog</a> </span></li>
 <li><a href="AI/Overview/Overview — World Models.html"><b>Literature Review on World Models</b></a> <i>2026-06-13</i></li>
+<li><a href="AI/Overview/Roadmap of Generative Models.html"><b>Roadmap of Generative Models</b></a> <i>2026-09-14</i> <span class="site-desc"> A roadmap of understanding modern generative models, including VAE, GAN, diffusion, and flow matching. </span></li>
+<li><a href="AI/Overview/Roadmap of Reinforcement Learning.html"><b>Roadmap of Reinforcement Learning</b></a> <i>2026-09-14</i> <span class="site-desc"> A roadmap of study reinforcement learning. Posts are listed from basics to modern works. </span></li>
 <li><a href="AI/Overview/Survey of RL for LRMs.html"><b>Survey of RL for LRMs</b></a> <i>2026-06-18</i> <span class="site-desc"> RL has become an important part for Large Reasoning Models. This article briefly reviews a survey paper on RL for LRMs, focusing on LLMs&rsquo; reasoning ability </span></li>
 <li><a href="AI/Overview/Terms in RL Post-Training.html"><b>Terms in RL Post-Training</b></a> <i>2026-06-15</i> <span class="site-desc"> Explain terms frequently appearing in AI articles. </span></li>
 </ul></li>
@@ -622,6 +603,76 @@
 <li><a href="AI/Tech Reports/Qwen/Qwen2.5-VL — Technical Report.html"><b>Qwen2.5-VL Technical Report</b></a> <i>2026-07-18</i></li>
 </ul></li>
 </ul></li>
+<li><a href="AI/A Taste of ExecuTorch.html"><b>A Taste of ExecuTorch</b></a> <i>2026-08-26</i> <span class="site-desc"> ExecuTorch is PyTorch&rsquo;s cutting-edge solution for on-edge model deployment, with limited support for training. </span></li>
+<li><a href="AI/Actor-Critic.html"><b>Actor-Critic Methods in Reinforcement Learning</b></a> <i>2026-09-08</i> <span class="site-desc"> Actor-Critic is a RL method that combines value-based and policy-based methods to help stablize the training by reducing the variance through an actor controlling how agents behaves (policy-based) and a critic judging how well agents behave (value-based). </span></li>
+<li><a href="AI/Advantage Actor-Critic.html"><b>Advantage Actor-Critic</b></a> <i>2026-09-12</i> <span class="site-desc"> Advantage actor-critic (A2C) is an improvement of actor-critic. The introduce of advantage further stablizes the learning procedure of the critic model. </span></li>
+<li><a href="AI/Automatic Differentiation.html"><b>Automatic Differentiation (AutoGrad)</b></a> <i>2026-06-02</i></li>
+<li><a href="AI/CLIP.html"><b>CLIP</b></a> <i>2026-06-11</i> <span class="site-desc"> Pioneering algorithm for image understanding and image-text alignment. </span></li>
+<li><a href="AI/Clustered FL.html"><b>Clustered Federated Learning</b></a> <i>2026-07-16</i></li>
+<li><a href="AI/Common Metrics.html"><b>Common Metrics</b></a> <i>2026-08-31</i> <span class="site-desc"> Metrics are important in evaluating the quality of LLMs. Although nowadays, domain-specific datasets used for evaluating LLMs mainly treat metrics like task accuracy as the only golden standard, there are still general metrics for evaluation. </span></li>
+<li><a href="AI/DDPM.html"><b>DDPM: Denoising Diffusion Probabilistic Models</b></a> <i>2026-07-27</i></li>
+<li><a href="AI/DPO - Direct Preference Optimization.html"><b>DPO: Direct Preference Optimization</b></a> <i>2026-09-14</i> <span class="site-desc"> DPO is an optimization that simplifies the two-stage pipeline containing reward model training in RLHF and PPO post-training into a single supervised loss function. </span></li>
+<li><a href="AI/DSA - DeepSeek Sparse Attention.html"><b>DeepSeek Sparse Attention</b></a> <i>2026-06-02</i> <span class="site-desc"> DeepSeek Sparse Attention (DSA) is introduced along with the DeepSeek V3.2 technical report. It&rsquo;s designed to reduce computational complexity while preserving model performance in long context scenarios. </span></li>
+<li><a href="AI/DSpark.html"><b>DSpark: Confidence-Scheduled Speculative Decoding with Semi-Autoregressive Generation</b></a> <i>2026-07-15</i> <span class="site-desc"> DSpark is a speculative decoding framework proposed by DeepSeek. Speculative decoding is an acceleration technique for LLM inference. </span></li>
+<li><a href="AI/DeepSeek FP8 Training Schema.html"><b>DeepSeek FP8 Training</b></a> <i>2026-06-06</i> <span class="site-desc"> Briefly introduces DeepSeek&rsquo;s FP8 training pipeline, as released in the DeepSeek V3 technical report. </span></li>
+<li><a href="AI/DiT — Scalable Diffusion Models with Transformers.html"><b>DiT: Scalable Diffusion Models with Transformers</b></a> <i>2026-07-27</i> <span class="site-desc"> DiT has a relatively simple idea that it replaces the U-Net in usual DDPM with Transformers (ViT). </span></li>
+<li><a href="AI/DiffusionOPD.html"><b>DiffusionOPD</b></a> <i>2026-09-10</i> <span class="site-desc"> On-policy distillation for diffusion models. </span></li>
+<li><a href="AI/DistFlow - Fully Distributed RL Framework.html"><b>DistFlow: A Fully Distributed RL Framework</b></a> <i>2026-09-05</i> <span class="site-desc"> DistFlow proposes a fully distributed <b>multi-controller</b> paradigm by decoupling data transfer and control dispatch. For control, DistFlow introduces DAG-based task scheduler for finegrained and independent execution. </span></li>
+<li><a href="AI/FastMTP.html"><b>FastMTP: Accelerating LLM Inference with Enhanced Multi-Token Prediction</b></a> <i>2026-07-22</i></li>
+<li><a href="AI/FeDaL - Federated for Time Series Models.html"><b>FeDaL: Federated Dataset Learning for General Time Series Foundation Models</b></a> <i>2026-06-19</i> <span class="site-desc"> FeDaL focuses on training time series foundation models (TSFMs) under federated settings. In short, FeDaL decomposes heterogeneous TS datasets into shared generalized knowledge and preserved personalized knowledge; it mitigates local and global biases through bias elimination. FeDaL also shows how data volume, client count and join rate affect model performance under decentralization. </span></li>
+<li><a href="AI/FedDAG.html"><b>FedDAG: Clustered Federated Learning via Global Data and Gradient Integration for Heterogeneous Environments</b></a> <i>2026-07-16</i></li>
+<li><a href="AI/FedEx-LoRA.html"><b>FedEx-LoRA: Exact Aggregation for Federated and Efficient Finetuning of Foundation Models</b></a> <i>2026-05-31</i> <span class="site-desc"> Direct LoRA in federated settings causes inaccurate updates. FedEx-LoRA handles this by adding a residual error term to the pretrained frozen weight matrix, achieving exact updates. </span></li>
+<li><a href="AI/FedHera.html"><b>FedHera</b></a> <i>2026-08-26</i></li>
+<li><a href="AI/FedLWS - Adaptive Layerwise Weight Shrinking.html"><b>FedLWS: Federated Learning with Adaptive Layerwise Weight Shrinking</b></a> <i>2026-06-22</i></li>
+<li><a href="AI/Federated Inference.html"><b>Federated Inference: Towards Collaborative and Privacy-Preserving Inference over Edge Devices</b></a> <i>2026-07-21</i></li>
+<li><a href="AI/Ferret.html"><b>Ferret: Federated Full-Parameter Tuning at Scale for Large Language Models</b></a> <i>2026-06-18</i> <span class="site-desc"> Ferret uses first-order method with shared randomness to enable scalable full-parameter update. It also projects updates to a lower dimensional space to reduce communication overhead, and then reconstructs local updates from lower dimensional space with shared randomness for effective full-parameter global aggregation. </span></li>
+<li><a href="AI/Flamingo.html"><b>Flamingo: A Visual Language Model for Few-Shot Learning</b></a> <i>2026-07-26</i></li>
+<li><a href="AI/FlashMask.html"><b>FlashMask</b></a> <i>2026-07-02</i></li>
+<li><a href="AI/Flow Matching.html"><b>FM: Generative Models via Flow Matching</b></a> <i>2026-07-03</i> <span class="site-desc"> Flow matching is an amazingly simple algorithm for generative models. It has been widely adopted in image generation models. </span></li>
+<li><a href="AI/GDN - Gated Delta Network.html"><b>GDN - Gated Delta Network</b></a> <i>2026-08-29</i></li>
+<li><a href="AI/GRPO - Group Relative Policy Optimization.html"><b>GRPO: Group Relative Policy Optimization</b></a> <i>2026-09-08</i> <span class="site-desc"> GRPO is a method introduced by DeepSeek Math, a variant of PPO that enhances mathematical reasoning abilities while concurrently optimizing the memory usage of PPO. </span></li>
+<li><a href="AI/General Diffusion Models.html"><b>Diffusion Models</b></a> <i>2026-06-24</i> <span class="site-desc"> Diffusion models learn to reverse a gradual noising process, transforming a simple Gaussian prior into samples from a complex data distribution. </span></li>
+<li><a href="AI/Generative Models through Normalizing Flows.html"><b>Generative Models through Normalizing Flows</b></a> <i>2026-09-14</i> <span class="site-desc"> Normalizing flow (NF) refers to a family of generative models. Its paradigm is to transform a simple distribution into a complex distribution through a series of inversible functions. Therefore, we&rsquo;re able to compute the likelihood and apply maximum likelihood learning. Generation is done through sampling from the simple distribution and transforming it with the series of function. </span></li>
+<li><a href="AI/HetRL - RL in Heterogeneous Env.html"><b>HetRL: Efficient RL in Heterogeneous Environments</b></a> <i>2026-09-05</i> <span class="site-desc"> HetRL is proposed for efficient RL post-training in compute-heterogeneous environments. HetRL forms the RL infrastructure as a joint optimization problem and proposes 2 scheduling algorithms (near-optimal based, and integer lineaer programming based) for RL infra. </span></li>
+<li><a href="AI/HeteroRL-GEPO - Group Expectation Policy Optimization.html"><b>HeteroRL (GEPO): Group Expectation Policy Optimization</b></a> <i>2026-09-05</i> <span class="site-desc"> HeteroRL is an architecture to decouple rollout sampling and policy optimization, the core of which is GEPO, an algorithm proposed to alleviate high variance of importance weights and training instability caused by increased KL divergence resulting from high latency due to heterogeneity in compute resources. </span></li>
+<li><a href="AI/LA-LoRA.html"><b>LA-LoRA: Rethinking LoRA for Privacy-Preserving Federated Learning in Large Models</b></a> <i>2026-07-09</i> <span class="site-desc"> This article reviews federated learning under <span class="underline">differential privacy federated learning</span> settings. </span></li>
+<li><a href="AI/LLDM - Large Language Diffusion Models.html"><b>LLaDA: Large Language Diffusion Models</b></a> <i>2026-09-06</i> <span class="site-desc"> LLaDA challenges the traditional autoregressive next-token prediction LLMs. It introduces LLaDA, a diffusion-based language model with masking. In short, tokens are progressively masked during training, and a bidirectional Transformer learns to predict all masked tokens simultaneously by optimizing a proper likelihood lower bound rather than a cross-entropy objective. </span></li>
+<li><a href="AI/Latent Variable and VAE.html"><b>Latent Variable Models: VAEs</b></a> <i>2026-06-21</i> <span class="site-desc"> VAE extends the idea of variational inference to use neural networks to model both encoder and decoder. For encoder, it uses neural network (e.g. CNN) to study distribution \( q_{\lambda}(\mathbf{z}|\mathbf{x}) \) and outputs a distribution of \( \mathbf{z} \). For decoder, we sample from the distribution \( p(\mathbf{z}) \) and generates images from it through decoder that have learnt \( p(\mathbf{x}|\mathbf{z}) \) from dataset. </span></li>
+<li><a href="AI/LoRA.html"><b>LoRA</b></a> <i>2026-06-06</i> <span class="site-desc"> LoRA has somehow become the standard method for finetuning LLMs. </span></li>
+<li><a href="AI/Loop Transformer.html"><b>Loop Transformer</b></a> <i>2026-09-06</i> <span class="site-desc"> Loop Transformer goes viral recently along with the release of OpenAI&rsquo;s new models. Compared to traditional way of deepening new models by stacking up more layers, Loop Transformer does so by reusing middle layers cyclically. </span></li>
+<li><a href="AI/MHA and GQA.html"><b>Multi-Head Attention and Grouped-Query Attention</b></a> <i>2026-08-31</i></li>
+<li><a href="AI/MPnP - Modality Plug-and-Play.html"><b>Modality Plug-and-Play</b></a> <i>2026-06-22</i></li>
+<li><a href="AI/MTP - Multi-Token Prediction.html"><b>MTP: Multi-Token Prediction</b></a> <i>2026-07-22</i> <span class="site-desc"> MTP is a <i>speculative decoding</i> method where the target model includes native multi-token prediction capability. Unlike draft-model-based methods, we don&rsquo;t need separate draft models. </span></li>
+<li><a href="AI/Maximum Likelihood Estimation.html"><b>Maximum Likelihood Learning</b></a> <i>2026-07-27</i> <span class="site-desc"> Maximum likelihood learning is a practical approach to train generative models that adopts probabilistic modeling. </span></li>
+<li><a href="AI/N-Gram Embedding.html"><b>N-Gram Embedding</b></a> <i>2026-08-29</i></li>
+<li><a href="AI/Normalizing Flow Models.html"><b>Normalizing Flow Models</b></a> <i>2026-06-21</i> <span class="site-desc"> Autoregressive models provide tractable likelihoods but no direct mechanism for learning features, while VAEs can learn feature representations via latent variables but have intractable marginal likelihoods. </span></li>
+<li><a href="AI/OPD - On-Policy Distillation.html"><b>OPD: On-Policy Distillation</b></a> <i>2026-09-10</i> <span class="site-desc"> On-policy distillation </span></li>
+<li><a href="AI/OpenTSLM.html"><b>OpenTSLM</b></a> <i>2026-08-01</i> <span class="site-desc"> OpenTSLM is a multimodal model that tries to integrate time series and textual data. </span></li>
+<li><a href="AI/PPO - Proximal Policy Optimization.html"><b>PPO: Proximal Policy Optimization</b></a> <i>2026-09-12</i> <span class="site-desc"> The idea of PPO can be summarized as: allow the policy to update, but constrain the policy from changing too much, in order to stablize training. Compared to prior work TRPO that uses second-order methods which requires massive computation, PPO uses first-order methods to achieve the same goal. </span></li>
+<li><a href="AI/PagedAttention.html"><b>PagedAttention</b></a> <i>2026-05-31</i></li>
+<li><a href="AI/PhaseFormer.html"><b>PhaseFormer: From Patches to Phases for Efficient And Effective Time Series Forecasting</b></a> <i>2026-07-22</i></li>
+<li><a href="AI/Policy Gradient.html"><b>Policy Gradient Theorem</b></a> <i>2026-09-14</i> <span class="site-desc"> Policy Gradient Theorem is an important topic in RL as it envisions many popular policy-gradient RL methods, including REINFORCE, Actor-Critic, A2C, PPO, GRPO, etc. </span></li>
+<li><a href="AI/Prompt Tuning.html"><b>Prompt Tuning</b></a> <i>2026-07-26</i></li>
+<li><a href="AI/RL Basics.html"><b>Fundamental Concepts in Markov Decision Process and Reinforcement Learning</b></a> <i>2026-09-13</i> <span class="site-desc"> This post roughtly covers (1) the setups in MDP/RL, (2) value function, (3) Q-state, (4) discounting, (5) advantage, (6) Bellman Equation (7) the difference between on- and off-policy. In addition, this post tries to provide an intuition beyond formula. </span></li>
+<li><a href="AI/Radio - LLM Compression using Rate Distortion.html"><b>Radio - Rate Distortion Optimization for LLM Compression</b></a> <i>2026-06-06</i> <span class="site-desc"> Radio provides a novel view for quantization with optimization technique and rate-distortion theory, as well as a closed form for quantization bit. The drawback is that it does not consider hardware efficiency. </span></li>
+<li><a href="AI/Reinforce.html"><b>Reinforce</b></a> <i>2026-09-08</i> <span class="site-desc"> Reinforce is a policy-based method, but instead of obtaining policy from Q-states or values, it parameterizes the policy \(\pi:\mathcal{S}\mapsto\mathbb{P}(\mathcal{A})\) that outputs a distribution of actions and trains the policy through gradients. </span></li>
+<li><a href="AI/Robust Federated Inference.html"><b>Robust Federated Inference</b></a> <i>2026-07-15</i> <span class="site-desc"> Federated inference is different from federated learning. Federated learning emphasizes the aggregation of models trained on on-edge data; while federated inference focuses on that aggregate the results from distributedly deployed models. This paper focuses on <b>robustness</b> of this paradigm with theoretical formulation and analysis. </span></li>
+<li><a href="AI/SDFT - Self-Distillation Fine-Tuning.html"><b>SDFT: Self-Distillation Enables Continual Learning</b></a> <i>2026-06-28</i> <span class="site-desc"> The paper proposes Self-Distillation Fine-Tuning (SDFT) that aims to handle the problem of <span class="underline">continual learning</span>: keep learning new skills while not forgetting old skills. </span></li>
+<li><a href="AI/SEMI - Sample-Efficient Integration.html"><b>Sample-Efficient Integration of New Modalities into LLMs</b></a> <i>2026-08-10</i> <span class="site-desc"> An interesting work that follows the idea of adopting a projector for modality adaptation, while leveraging a &ldquo;hypernetwork&rdquo; for generating LoRA weights from data samples to apply to the projector for adaptation. </span></li>
+<li><a href="AI/SFL - Split Federated Learning.html"><b>Split Federated Learning</b></a> <i>2026-06-03</i> <span class="site-desc"> Split federated learning is a cross-field of FL and split learning, which can be regarded as a subset of distributed learning with some special settings. </span></li>
+<li><a href="AI/SageAttention v2 — INT4 Scheme.html"><b>SageAttention v2 — INT4 Scheme</b></a> <i>2026-05-31</i></li>
+<li><a href="AI/SageAttention — INT8 Scheme for Inference.html"><b>SageAttention — INT8 Scheme for Inference</b></a> <i>2026-06-19</i></li>
+<li><a href="AI/Score-Based Models — Working Notes.html"><b>Score-Based Models — Working Notes</b></a> <i>2026-07-27</i></li>
+<li><a href="AI/Self-Evolving of AI.html"><b>Self-Evolving of AI</b></a> <i>2026-09-11</i> <span class="site-desc"> Self-Evolving has become a core concept in AI fields. </span></li>
+<li><a href="AI/SensorLM.html"><b>SensorLM: Learning the Language of Wearable Sensors</b></a> <i>2026-07-21</i> <span class="site-desc"> SensorLM is a family of foundation models that enable <i>wearable sensor data</i> understanding with natural language. </span></li>
+<li><a href="AI/SigLIP.html"><b>SigLIP: Sigmoid Loss for Language Image Pretraining</b></a> <i>2026-08-25</i> <span class="site-desc"> The advantage of SigLIP over CLIP is that SigLIP only relies on image-text pairs rather than global pairwise similarity, reducing computational cost from quadric to linear w.r.t. batch size. </span></li>
+<li><a href="AI/TRPO - Trust Region Policy Optimization.html"><b>TRPO: Trust Region Policy Optimization</b></a> <i>2026-09-12</i></li>
+<li><a href="AI/TimeXer.html"><b>TimeXer</b></a> <i>2026-06-26</i></li>
+<li><a href="AI/Vanilla Attention.html"><b>Vanilla Attention</b></a> <i>2026-06-01</i></li>
+<li><a href="AI/Variational Inference.html"><b>Variational Inference</b></a> <i>2026-06-21</i> <span class="site-desc"> Variational inference is the core math principle supporting modern generative models like VAE. </span></li>
+<li><a href="AI/ViT.html"><b>ViT: Vision Transformer</b></a> <i>2026-06-11</i> <span class="site-desc"> Vision transformer (ViT) unifies the architecture for vision tasks with transformer, enabling later VLM-related works. </span></li>
+<li><a href="AI/X-Fi - Modality-Invariant Foundation Model.html"><b>X-Fi: Modality-Invariant Foundation Model</b></a> <i>2026-08-11</i></li>
+<li><a href="AI/ZeRO - Zero Redundancy Optimizer.html"><b>ZeRO: Zero Redundancy Optimizer</b></a> <i>2026-08-31</i> <span class="site-desc"> ZeRO adopts different levels of distributed strategy to remove redundancy in memory, at the cost of more communication. This work also gives birth to FSDP, a widely used distributed training schema. </span></li>
 </ul></li>
 <li>Arts (9)
 <ul class="org-ul">
@@ -654,15 +705,6 @@
 <ul class="org-ul">
 <li>principles (15)
 <ul class="org-ul">
-<li><a href="Computer Science/Compilers/principles/AST.html"><b>AST</b></a> <i>2026-06-13</i></li>
-<li><a href="Computer Science/Compilers/principles/Automatic Memory Management.html"><b>Automatic Memory Management</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Code Generation.html"><b>Code Generation</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Dataflow Analysis.html"><b>Dataflow Analysis</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Error Handling in Compilers.html"><b>Error Handling in Compilers</b></a> <i>2026-06-13</i></li>
-<li><a href="Computer Science/Compilers/principles/IR Optimization.html"><b>IR Optimization</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Register Allocation.html"><b>Register Allocation</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Runtime Management.html"><b>Runtime Management</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Compilers/principles/Semantic Analysis.html"><b>Semantic Analysis</b></a> <i>2026-08-03</i></li>
 <li>lexing (2)
 <ul class="org-ul">
 <li><a href="Computer Science/Compilers/principles/lexing/Lexical Analysis.html"><b>Lexical Analysis</b></a> <i>2026-06-09</i> <span class="site-desc"> Lexical analysis is about &ldquo;classify program substrings according to their role&rdquo; and then &ldquo;communicate tokens to the parser&rdquo; </span></li>
@@ -675,6 +717,15 @@
 <li><a href="Computer Science/Compilers/principles/parsing/Predictive Parsing.html"><b>Predictive Parsing</b></a> <i>2026-06-17</i> <span class="site-desc"> Like recursive rescent parsing, but parser can &ldquo;predict&rdquo; which production to use next, by looking at the next few tokens (which requires restricted grammars) and no backtracking. </span></li>
 <li><a href="Computer Science/Compilers/principles/parsing/Recursive Descent Parsing.html"><b>Recursive Descent Parsing</b></a> <i>2026-06-13</i> <span class="site-desc"> A top-down and left-to-right parsing algorithm that terminals are seens in order of appearance in the token stream. </span></li>
 </ul></li>
+<li><a href="Computer Science/Compilers/principles/AST.html"><b>AST</b></a> <i>2026-06-13</i></li>
+<li><a href="Computer Science/Compilers/principles/Automatic Memory Management.html"><b>Automatic Memory Management</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Code Generation.html"><b>Code Generation</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Dataflow Analysis.html"><b>Dataflow Analysis</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Error Handling in Compilers.html"><b>Error Handling in Compilers</b></a> <i>2026-06-13</i></li>
+<li><a href="Computer Science/Compilers/principles/IR Optimization.html"><b>IR Optimization</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Register Allocation.html"><b>Register Allocation</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Runtime Management.html"><b>Runtime Management</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Compilers/principles/Semantic Analysis.html"><b>Semantic Analysis</b></a> <i>2026-08-03</i></li>
 </ul></li>
 </ul></li>
 <li>Computer Graphics (1)
@@ -686,8 +737,6 @@
 </ul></li>
 <li>Computer Networks (8)
 <ul class="org-ul">
-<li><a href="Computer Science/Computer Networks/How Internet and Network Works.html"><b>Overview of Internet and Networks: How It Works?</b></a> <i>2026-06-09</i></li>
-<li><a href="Computer Science/Computer Networks/Protocol Layers.html"><b>Protocol Layers</b></a> <i>2026-06-09</i> <span class="site-desc"> Layering and encapsulation organizes the structure of network. </span></li>
 <li>Application Layer (6)
 <ul class="org-ul">
 <li><a href="Computer Science/Computer Networks/Application Layer/DNS.html"><b>DNS</b></a> <i>2026-08-03</i></li>
@@ -697,32 +746,34 @@
 <li><a href="Computer Science/Computer Networks/Application Layer/Video Streaming and CDN.html"><b>Video Streaming and CDN</b></a> <i>2026-08-03</i></li>
 <li><a href="Computer Science/Computer Networks/Application Layer/socket Programming.html"><b>socket Programming</b></a> <i>2026-08-03</i></li>
 </ul></li>
+<li><a href="Computer Science/Computer Networks/How Internet and Network Works.html"><b>Overview of Internet and Networks: How It Works?</b></a> <i>2026-06-09</i></li>
+<li><a href="Computer Science/Computer Networks/Protocol Layers.html"><b>Protocol Layers</b></a> <i>2026-06-09</i> <span class="site-desc"> Layering and encapsulation organizes the structure of network. </span></li>
 </ul></li>
 <li>Distributed Systems (7)
 <ul class="org-ul">
-<li><a href="Computer Science/Distributed Systems/Apache Spark.html"><b>Principle beyond Apache Spark</b></a> <i>2026-06-01</i></li>
-<li><a href="Computer Science/Distributed Systems/MapReduce.html"><b>MapReduce</b></a> <i>2026-06-18</i> <span class="site-desc"> MapReduce used to be a popular paradigm for processing big data. </span></li>
-<li><a href="Computer Science/Distributed Systems/Raft Consensus Protocol.html"><b>Raft Consensus Protocol</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Distributed Systems/Remote Procedure Call.html"><b>Remote Procedure Call</b></a> <i>2026-05-31</i></li>
-<li><a href="Computer Science/Distributed Systems/Two-Phase Commit.html"><b>Two-Phase Commit</b></a> <i>2026-08-03</i></li>
 <li>practical (2)
 <ul class="org-ul">
 <li><a href="Computer Science/Distributed Systems/practical/Programming with Apache Spark.html"><b>Programming with Apache Spark</b></a> <i>2026-05-28</i></li>
 <li><a href="Computer Science/Distributed Systems/practical/Programming with Hadoop.html"><b>Programming with Hadoop</b></a> <i>2026-05-28</i></li>
 </ul></li>
+<li><a href="Computer Science/Distributed Systems/Apache Spark.html"><b>Principle beyond Apache Spark</b></a> <i>2026-06-01</i></li>
+<li><a href="Computer Science/Distributed Systems/MapReduce.html"><b>MapReduce</b></a> <i>2026-06-18</i> <span class="site-desc"> MapReduce used to be a popular paradigm for processing big data. </span></li>
+<li><a href="Computer Science/Distributed Systems/Raft Consensus Protocol.html"><b>Raft Consensus Protocol</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Distributed Systems/Remote Procedure Call.html"><b>Remote Procedure Call</b></a> <i>2026-05-31</i></li>
+<li><a href="Computer Science/Distributed Systems/Two-Phase Commit.html"><b>Two-Phase Commit</b></a> <i>2026-08-03</i></li>
 </ul></li>
 <li>Operating System (11)
 <ul class="org-ul">
 <li>CPU (5)
 <ul class="org-ul">
-<li><a href="Computer Science/Operating System/CPU/Overview.html"><b>Overview</b></a> <i>2026-08-03</i></li>
-<li><a href="Computer Science/Operating System/CPU/Trap Mechanism.html"><b>Trap Mechanism and Context Switch</b></a> <i>2026-06-07</i></li>
 <li>scheduling (3)
 <ul class="org-ul">
 <li><a href="Computer Science/Operating System/CPU/scheduling/Completely Fair Scheduler in Linux.html"><b>Completely Fair Scheduler in Linux</b></a> <i>2026-06-01</i> <span class="site-desc"> Linux uses CFS as its process scheduler, apart from textbooks&rsquo; MLFQ </span></li>
 <li><a href="Computer Science/Operating System/CPU/scheduling/EEVDF.html"><b>EEVDF</b></a> <i>2026-08-03</i></li>
 <li><a href="Computer Science/Operating System/CPU/scheduling/Process Scheduling.html"><b>Process Scheduling</b></a> <i>2026-06-01</i></li>
 </ul></li>
+<li><a href="Computer Science/Operating System/CPU/Overview.html"><b>Overview</b></a> <i>2026-08-03</i></li>
+<li><a href="Computer Science/Operating System/CPU/Trap Mechanism.html"><b>Trap Mechanism and Context Switch</b></a> <i>2026-06-07</i></li>
 </ul></li>
 <li>File System (1)
 <ul class="org-ul">
@@ -742,16 +793,12 @@
 </ul></li>
 <li>Software Engineering (36)
 <ul class="org-ul">
-<li><a href="Computer Science/Software Engineering/MVVM.html"><b>MVVM</b></a> <i>2026-05-28</i></li>
 <li>App Development (12)
 <ul class="org-ul">
 <li>Client App Development (12)
 <ul class="org-ul">
 <li>Native Android with Java and Kotlin (12)
 <ul class="org-ul">
-<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Data Storage in Native Android - Overview.html"><b>Data Storage in Native Android: Overview</b></a> <i>2026-05-28</i></li>
-<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Resource Folder in Android Project.html"><b>Resource Folder in Android Project</b></a> <i>2026-05-29</i></li>
-<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Using adb.html"><b>Using <code>adb</code></b></a> <i>2026-08-26</i> <span class="site-desc"> <code>adb</code> is a useful tool for diagnosing Android phones, as well as running C++ programs on Android phones. </span></li>
 <li>basics (1)
 <ul class="org-ul">
 <li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/basics/Retrieving Results from Activities.html"><b>Retrieving Results from Activities</b></a> <i>2026-06-02</i> <span class="site-desc"> Briefly covers how to get results from activities after closing it, e.g., get file path from file chooser activity. </span></li>
@@ -773,12 +820,14 @@
 <li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/networking/Multi-Threading in Android.html"><b>MultiThreading in Android</b></a> <i>2026-05-31</i></li>
 <li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/networking/OkHttp Library.html"><b>OkHttp Library</b></a> <i>2026-05-31</i> <span class="site-desc"> OkHttp is an open-source library for network requests. It&rsquo;s simple, supports async, filtering, and is extensible, which makes it the standard for modern Android Apps. </span></li>
 </ul></li>
+<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Data Storage in Native Android - Overview.html"><b>Data Storage in Native Android: Overview</b></a> <i>2026-05-28</i></li>
+<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Resource Folder in Android Project.html"><b>Resource Folder in Android Project</b></a> <i>2026-05-29</i></li>
+<li><a href="Computer Science/Software Engineering/App Development/Client App Development/Native Android with Java and Kotlin/Using adb.html"><b>Using <code>adb</code></b></a> <i>2026-08-26</i> <span class="site-desc"> <code>adb</code> is a useful tool for diagnosing Android phones, as well as running C++ programs on Android phones. </span></li>
 </ul></li>
 </ul></li>
 </ul></li>
 <li>Design Patterns (23)
 <ul class="org-ul">
-<li><a href="Computer Science/Software Engineering/Design Patterns/SOLID Principles.html"><b>SOLID Principles</b></a> <i>2026-05-29</i></li>
 <li>Behavioural (10)
 <ul class="org-ul">
 <li><a href="Computer Science/Software Engineering/Design Patterns/Behavioural/Chain of Responsibility.html"><b>Chain of Responsibility</b></a> <i>2026-05-30</i> <span class="site-desc"> Chain of responsibility is a behavioural design pattern that passes requests along a chain of handlers. </span></li>
@@ -810,7 +859,9 @@
 <li><a href="Computer Science/Software Engineering/Design Patterns/Structural/Flyweight.html"><b>Flyweight</b></a> <i>2026-08-03</i></li>
 <li><a href="Computer Science/Software Engineering/Design Patterns/Structural/Proxy.html"><b>Proxy</b></a> <i>2026-08-03</i></li>
 </ul></li>
+<li><a href="Computer Science/Software Engineering/Design Patterns/SOLID Principles.html"><b>SOLID Principles</b></a> <i>2026-05-29</i></li>
 </ul></li>
+<li><a href="Computer Science/Software Engineering/MVVM.html"><b>MVVM</b></a> <i>2026-05-28</i></li>
 </ul></li>
 </ul></li>
 <li>Differential Privacy (2)
@@ -822,7 +873,7 @@
 <ul class="org-ul">
 <li>Techniques (2)
 <ul class="org-ul">
-<li><a href="GPU Programming/Techniques/Double Buffering.html"><b>Double Buffering</b></a> <i>2026-08-14</i> <span class="site-desc"> Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). </span></li>
+<li><a href="GPU Programming/Techniques/Double Buffering.html"><b>Double Buffering and Pipelining</b></a> <i>2026-08-14</i> <span class="site-desc"> Double buffering is a pipelining technique in GPU programming. It allocates two staging buffers and alternates between them, so that the data movement for iteration \(k+1\) can overlap computation for iteration \(k\). Pipelining is the genralized version of double buffering that splits tasks into three stages, and arranges stages to make them overlap to hide latency. </span></li>
 <li><a href="GPU Programming/Techniques/Vectorization.html"><b>Vectorization</b></a> <i>2026-08-14</i></li>
 </ul></li>
 </ul></li>
@@ -840,9 +891,6 @@
 </ul></li>
 <li>Analysis (11)
 <ul class="org-ul">
-<li><a href="Mathematics/Analysis/Continuity.html"><b>Continuity</b></a> <i>2026-06-30</i></li>
-<li><a href="Mathematics/Analysis/Differentiation.html"><b>Differentiation and Derivative</b></a> <i>2026-06-30</i></li>
-<li><a href="Mathematics/Analysis/Limit.html"><b>Limit</b></a> <i>2026-06-01</i></li>
 <li>Vector Calculus (8)
 <ul class="org-ul">
 <li><a href="Mathematics/Analysis/Vector Calculus/Differential Operators.html"><b>Differential Operators</b></a> <i>2026-06-30</i></li>
@@ -854,6 +902,9 @@
 <li><a href="Mathematics/Analysis/Vector Calculus/Surface Integrals.html"><b>Surface Integrals</b></a> <i>2026-07-21</i></li>
 <li><a href="Mathematics/Analysis/Vector Calculus/Triple Products.html"><b>Triple Products</b></a> <i>2026-05-28</i></li>
 </ul></li>
+<li><a href="Mathematics/Analysis/Continuity.html"><b>Continuity</b></a> <i>2026-06-30</i></li>
+<li><a href="Mathematics/Analysis/Differentiation.html"><b>Differentiation and Derivative</b></a> <i>2026-06-30</i></li>
+<li><a href="Mathematics/Analysis/Limit.html"><b>Limit</b></a> <i>2026-06-01</i></li>
 </ul></li>
 <li>Linear Algebra (6)
 <ul class="org-ul">
@@ -870,8 +921,6 @@
 </ul></li>
 <li>Optimization (7)
 <ul class="org-ul">
-<li><a href="Mathematics/Optimization/Convexity.html"><b>Convexity</b></a> <i>2026-06-19</i></li>
-<li><a href="Mathematics/Optimization/Overview of Optimization.html"><b>Overview of Optimization</b></a> <i>2026-06-19</i></li>
 <li>Convex (1)
 <ul class="org-ul">
 <li><a href="Mathematics/Optimization/Convex/Overview of Convex Optimization.html"><b>Overview of Convex Optimization</b></a> <i>2026-09-01</i> <span class="site-desc"> Convex optimization focuses on a subset of optimization problems, i.e., the objectives and constraints are convex, which means \( f(ax+by) \le a f(x) + b f(y) \). </span></li>
@@ -886,6 +935,8 @@
 <ul class="org-ul">
 <li><a href="Mathematics/Optimization/linear/Overview of Linear Programming.html"><b>Overview of Linear Programming</b></a> <i>2026-06-20</i> <span class="site-desc"> Linear Programming is a subset of optimization. This post discusses about general form of linear programming, convexity, and geometry of LP (which is simplex). </span></li>
 </ul></li>
+<li><a href="Mathematics/Optimization/Convexity.html"><b>Convexity</b></a> <i>2026-06-19</i></li>
+<li><a href="Mathematics/Optimization/Overview of Optimization.html"><b>Overview of Optimization</b></a> <i>2026-06-19</i></li>
 </ul></li>
 <li>Probability (2)
 <ul class="org-ul">
@@ -893,15 +944,14 @@
 <li><a href="Mathematics/Probability/KL Divergence.html"><b>KL Divergence</b></a> <i>2026-06-15</i> <span class="site-desc"> KL disvergence measures </span></li>
 </ul></li>
 </ul></li>
-<li>Miscellaneous (8)
+<li>Miscellaneous (10)
 <ul class="org-ul">
-<li><a href="Miscellaneous/How to Read A Paper.html"><b>How to Read A Paper: A Three-Pass Method</b></a> <i>2026-06-18</i> <span class="site-desc"> A three-pass method to read a paper. </span></li>
-<li>TechTips (7)
+<li>Diary (1)
 <ul class="org-ul">
-<li><a href="Miscellaneous/TechTips/Grammars for Building Container Images.html"><b>Grammars for Building Container Images</b></a> <i>2026-08-05</i> <span class="site-desc"> ContainerFile and DockerFile are almost the same, the difference between which is simply that the former is the default for <code>podman</code>, while the latter is the default for <code>docker</code>. </span></li>
-<li><a href="Miscellaneous/TechTips/Migrate to jujutsu VCS.html"><b>Migrate to jujutsu VCS</b></a> <i>2026-06-23</i> <span class="site-desc"> jujutsu is a modern version control system that auto-records file edits. </span></li>
-<li><a href="Miscellaneous/TechTips/The BTRFS Filesystem.html"><b>The BTRFS Filesystem</b></a> <i>2026-08-01</i></li>
-<li><a href="Miscellaneous/TechTips/Using jq.html"><b>Using <code>jq</code></b></a> <i>2026-08-29</i></li>
+<li><a href="Miscellaneous/Diary/Thoughts about the JEV Model.html"><b>Thoughts about the JEV Model</b></a> <i>2026-09-21</i> <span class="site-desc"> The JEV has gone viral for a weird reason of cheap and fast, along with its &ldquo;Reinforcement Learning for Calibration Decision&rdquo; (RLCD). I want to comment some my questions and thoughts here. </span></li>
+</ul></li>
+<li>TechTips (8)
+<ul class="org-ul">
 <li>orgmode (1)
 <ul class="org-ul">
 <li><a href="Miscellaneous/TechTips/orgmode/Centralized Image Storage with Custom Tag.html"><b>Centralized Image Storage with Custom Tag</b></a> <i>2026-06-26</i> <span class="site-desc"> I implemented a feature to centrally organize my images under <code>.assets/</code> folder that supports image preview and exporting to HTML with correct path. </span></li>
@@ -911,18 +961,22 @@
 <li><a href="Miscellaneous/TechTips/uv/Project Configuration.html"><b>Project Configuration</b></a> <i>2026-08-10</i></li>
 <li><a href="Miscellaneous/TechTips/uv/uv - Swiss Army Knife for Python.html"><b><code>uv</code>: Swiss Army Knife for Python Projects</b></a> <i>2026-08-10</i></li>
 </ul></li>
+<li><a href="Miscellaneous/TechTips/Grammars for Building Container Images.html"><b>Grammars for Building Container Images</b></a> <i>2026-08-05</i> <span class="site-desc"> ContainerFile and DockerFile are almost the same, the difference between which is simply that the former is the default for <code>podman</code>, while the latter is the default for <code>docker</code>. </span></li>
+<li><a href="Miscellaneous/TechTips/Migrate to jujutsu VCS.html"><b>Migrate to jujutsu VCS</b></a> <i>2026-06-23</i> <span class="site-desc"> jujutsu is a modern version control system that auto-records file edits. </span></li>
+<li><a href="Miscellaneous/TechTips/Skip wandb SSL Verification.html"><b>Skip <code>wandb</code> SSL Verification</b></a> <i>2026-09-21</i> <span class="site-desc"> <code>wandb</code> is a useful platform for auto recording information and visualizing for deep learning projects. This post documents how to sync wandb logs in brief. </span></li>
+<li><a href="Miscellaneous/TechTips/The BTRFS Filesystem.html"><b>The BTRFS Filesystem</b></a> <i>2026-08-01</i></li>
+<li><a href="Miscellaneous/TechTips/Using jq.html"><b>Using <code>jq</code></b></a> <i>2026-08-29</i></li>
 </ul></li>
+<li><a href="Miscellaneous/How to Read A Paper.html"><b>How to Read A Paper: A Three-Pass Method</b></a> <i>2026-06-18</i> <span class="site-desc"> A three-pass method to read a paper. </span></li>
 </ul></li>
-<li>Programming Languages (73)
+<li>Programming Languages (74)
 <ul class="org-ul">
-<li><a href="Programming Languages/Path to Fimiliarize Any PL.html"><b>Path to Familiarize with Any PL</b></a> <i>2026-06-13</i> <span class="site-desc"> Personal perspective on how to quickly familiarize with any programming language. Also a collection of introductory projects. </span></li>
 <li>Bash (1)
 <ul class="org-ul">
 <li><a href="Programming Languages/Bash/Associative Array.html"><b>Associative Array</b></a> <i>2026-08-03</i></li>
 </ul></li>
 <li>C++ (8)
 <ul class="org-ul">
-<li><a href="Programming Languages/C++/Effective Modern C++14.html"><b>Effective Modern C++14</b></a> <i>2026-06-12</i> <span class="site-desc"> Effective Modern C++14, Best practices in industry. </span></li>
 <li>Features (2)
 <ul class="org-ul">
 <li><a href="Programming Languages/C++/Features/C++26 - Contracts.html"><b>C++26 - Contracts</b></a> <i>2026-06-20</i> <span class="site-desc"> Contracts are function modifiers that conducts checks before function execution, similar to Solidity. </span></li>
@@ -935,18 +989,17 @@
 </ul></li>
 <li>template (3)
 <ul class="org-ul">
-<li><a href="Programming Languages/C++/template/C++20 Concepts.html"><b>C++20 Concepts</b></a> <i>2026-06-21</i> <span class="site-desc"> C++20 concepts provides compile-time checks of template arguments and perform functino dispatch based on properties of types. </span></li>
 <li>meta-programming (2)
 <ul class="org-ul">
 <li><a href="Programming Languages/C++/template/meta-programming/C++ SFINAE.html"><b>C++ Type Traits in SFINAE</b></a> <i>2026-06-21</i> <span class="site-desc"> SFINAE with type traits is equivalent to C++20 concepts. </span></li>
 <li><a href="Programming Languages/C++/template/meta-programming/C++ Type Traits.html"><b>C++ Type Traits</b></a> <i>2026-06-21</i> <span class="site-desc"> Type traits define compile-time template-based interfaces to query the properties of types. </span></li>
 </ul></li>
+<li><a href="Programming Languages/C++/template/C++20 Concepts.html"><b>C++20 Concepts</b></a> <i>2026-06-21</i> <span class="site-desc"> C++20 concepts provides compile-time checks of template arguments and perform functino dispatch based on properties of types. </span></li>
 </ul></li>
+<li><a href="Programming Languages/C++/Effective Modern C++14.html"><b>Effective Modern C++14</b></a> <i>2026-06-12</i> <span class="site-desc"> Effective Modern C++14, Best practices in industry. </span></li>
 </ul></li>
 <li>Elisp (16)
 <ul class="org-ul">
-<li><a href="Programming Languages/Elisp/Print and Output.html"><b>Print and Output with Elisp</b></a> <i>2026-07-21</i> <span class="site-desc"> We introduce basic methods in Elisp to output and print messages. </span></li>
-<li><a href="Programming Languages/Elisp/Printed Representation and Read Syntax.html"><b>Printed Representation and Read Syntax</b></a> <i>2026-08-11</i></li>
 <li>Emacs Lisp (2)
 <ul class="org-ul">
 <li><a href="Programming Languages/Elisp/Emacs Lisp/Positions.html"><b>Elisp: Positions</b></a> <i>2026-07-23</i></li>
@@ -954,6 +1007,12 @@
 </ul></li>
 <li>Lisp Basics (12)
 <ul class="org-ul">
+<li>Data Structure (3)
+<ul class="org-ul">
+<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Hash Tables.html"><b>Elisp Data Structures: Hash Tables</b></a> <i>2026-07-22</i> <span class="site-desc"> Elisp has 2 types of KV collections. Hash table is <i>unordered set</i> of KV pairs with no duplicate keys and constant access time; Association list is <i>ordered set</i> of KV pairs with possibly repeated keys. </span></li>
+<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Lists.html"><b>Elisp Data Structures: Lists</b></a> <i>2026-07-22</i> <span class="site-desc"> Lisp Lists are implemented as <b>linked lists</b>. Each element can be any type and need not to be of same type. </span></li>
+<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Vectors.html"><b>Elisp Data Structures: Vectors</b></a> <i>2026-07-22</i> <span class="site-desc"> Vector implements the <b>array</b> data structures with <b>fixed number of elements</b>. Element&rsquo;s value can be changed, but the number of elements cannot change. </span></li>
+</ul></li>
 <li><a href="Programming Languages/Elisp/Lisp Basics/Elisp Arithmetics.html"><b>Elisp Arithmetics</b></a> <i>2026-07-21</i></li>
 <li><a href="Programming Languages/Elisp/Lisp Basics/Elisp Boolean.html"><b>Elisp Boolean</b></a> <i>2026-07-21</i></li>
 <li><a href="Programming Languages/Elisp/Lisp Basics/Elisp Conditionals.html"><b>Elisp Conditionals</b></a> <i>2026-07-21</i></li>
@@ -963,18 +1022,12 @@
 <li><a href="Programming Languages/Elisp/Lisp Basics/Elisp Symbols.html"><b>Elisp Symbols</b></a> <i>2026-07-22</i></li>
 <li><a href="Programming Languages/Elisp/Lisp Basics/Elisp Variables.html"><b>Elisp Variables</b></a> <i>2026-07-21</i></li>
 <li><a href="Programming Languages/Elisp/Lisp Basics/Numbers.html"><b>Numbers in Emacs Lisp</b></a> <i>2026-08-11</i></li>
-<li>Data Structure (3)
-<ul class="org-ul">
-<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Hash Tables.html"><b>Elisp Data Structures: Hash Tables</b></a> <i>2026-07-22</i> <span class="site-desc"> Elisp has 2 types of KV collections. Hash table is <i>unordered set</i> of KV pairs with no duplicate keys and constant access time; Association list is <i>ordered set</i> of KV pairs with possibly repeated keys. </span></li>
-<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Lists.html"><b>Elisp Data Structures: Lists</b></a> <i>2026-07-22</i> <span class="site-desc"> Lisp Lists are implemented as <b>linked lists</b>. Each element can be any type and need not to be of same type. </span></li>
-<li><a href="Programming Languages/Elisp/Lisp Basics/Data Structure/Elisp Vectors.html"><b>Elisp Data Structures: Vectors</b></a> <i>2026-07-22</i> <span class="site-desc"> Vector implements the <b>array</b> data structures with <b>fixed number of elements</b>. Element&rsquo;s value can be changed, but the number of elements cannot change. </span></li>
 </ul></li>
-</ul></li>
+<li><a href="Programming Languages/Elisp/Print and Output.html"><b>Print and Output with Elisp</b></a> <i>2026-07-21</i> <span class="site-desc"> We introduce basic methods in Elisp to output and print messages. </span></li>
+<li><a href="Programming Languages/Elisp/Printed Representation and Read Syntax.html"><b>Printed Representation and Read Syntax</b></a> <i>2026-08-11</i></li>
 </ul></li>
 <li>Haskell (10)
 <ul class="org-ul">
-<li><a href="Programming Languages/Haskell/Haskell Basic Grammars.html"><b>Haskell Basic Grammars</b></a> <i>2026-06-07</i></li>
-<li><a href="Programming Languages/Haskell/Module Management.html"><b>Module Management in Haskell</b></a> <i>2026-05-29</i></li>
 <li>Modeling Effects (6)
 <ul class="org-ul">
 <li><a href="Programming Languages/Haskell/Modeling Effects/Foldable.html"><b>The Foldable Typeclass in Haskell</b></a> <i>2026-07-31</i></li>
@@ -989,6 +1042,8 @@
 <li><a href="Programming Languages/Haskell/Type System/Generalized ADT.html"><b>Generalized ADT</b></a> <i>2026-07-31</i></li>
 <li><a href="Programming Languages/Haskell/Type System/Rank-N Types.html"><b>Rank-N Types</b></a> <i>2026-08-01</i></li>
 </ul></li>
+<li><a href="Programming Languages/Haskell/Haskell Basic Grammars.html"><b>Haskell Basic Grammars</b></a> <i>2026-06-07</i></li>
+<li><a href="Programming Languages/Haskell/Module Management.html"><b>Module Management in Haskell</b></a> <i>2026-05-29</i></li>
 </ul></li>
 <li>Koka (1)
 <ul class="org-ul">
@@ -1001,7 +1056,7 @@
 <ul class="org-ul">
 <li><a href="Programming Languages/Kotlin/Kotlin Grammars.html"><b>Kotlin Grammars</b></a> <i>2026-05-29</i></li>
 </ul></li>
-<li>Lisp Family (3)
+<li>Lisp Family (4)
 <ul class="org-ul">
 <li>Emacs Lisp (3)
 <ul class="org-ul">
@@ -1009,9 +1064,18 @@
 <li><a href="Programming Languages/Lisp Family/Emacs Lisp/Numbers.html"><b>Numbers</b></a> <i>2026-08-11</i> <span class="site-desc"> Briefly introduces basic operations related to numbers. </span></li>
 <li><a href="Programming Languages/Lisp Family/Emacs Lisp/Strings.html"><b>Strings</b></a> <i>2026-08-11</i></li>
 </ul></li>
+<li>Scheme (1)
+<ul class="org-ul">
+<li><a href="Programming Languages/Lisp Family/Scheme/Let Family in Scheme.html"><b><code>let</code> Family in Scheme</b></a> <i>2026-09-13</i> <span class="site-desc"> The <code>let</code> family in Scheme programming language. They are used to bind values to variables. </span></li>
+</ul></li>
 </ul></li>
 <li>Lua (11)
 <ul class="org-ul">
+<li>Library (2)
+<ul class="org-ul">
+<li><a href="Programming Languages/Lua/Library/IO and OS.html"><b>IO and OS</b></a> <i>2026-08-12</i></li>
+<li><a href="Programming Languages/Lua/Library/String STL.html"><b>String STL</b></a> <i>2026-08-12</i></li>
+</ul></li>
 <li><a href="Programming Languages/Lua/Clojures in Lua.html"><b>Closures in Lua</b></a> <i>2026-07-24</i></li>
 <li><a href="Programming Languages/Lua/Coroutines in Lua.html"><b>Coroutines in Lua</b></a> <i>2026-08-12</i></li>
 <li><a href="Programming Languages/Lua/Crash Course of Lua.html"><b>Crash Course of Lua</b></a> <i>2026-08-11</i></li>
@@ -1021,27 +1085,17 @@
 <li><a href="Programming Languages/Lua/OOP Patterns.html"><b>OOP Patterns</b></a> <i>2026-08-12</i></li>
 <li><a href="Programming Languages/Lua/Results and Error Handling.html"><b>Results and Error Handling</b></a> <i>2026-08-14</i></li>
 <li><a href="Programming Languages/Lua/Tables in Lua.html"><b>Tables in Lua</b></a> <i>2026-08-12</i></li>
-<li>Library (2)
-<ul class="org-ul">
-<li><a href="Programming Languages/Lua/Library/IO and OS.html"><b>IO and OS</b></a> <i>2026-08-12</i></li>
-<li><a href="Programming Languages/Lua/Library/String STL.html"><b>String STL</b></a> <i>2026-08-12</i></li>
-</ul></li>
 </ul></li>
 <li>OCaml (2)
 <ul class="org-ul">
-<li><a href="Programming Languages/OCaml/Module Systems in OCaml.html"><b>Module Systems in OCaml</b></a> <i>2026-07-14</i></li>
 <li>Data Types (1)
 <ul class="org-ul">
 <li><a href="Programming Languages/OCaml/Data Types/Variants and ADT.html"><b>OCaml Variants and Algebraic Data Types</b></a> <i>2026-07-24</i></li>
 </ul></li>
+<li><a href="Programming Languages/OCaml/Module Systems in OCaml.html"><b>Module Systems in OCaml</b></a> <i>2026-07-14</i></li>
 </ul></li>
 <li>Odin (14)
 <ul class="org-ul">
-<li><a href="Programming Languages/Odin/Array Programming.html"><b>Array Programming</b></a> <i>2026-06-11</i></li>
-<li><a href="Programming Languages/Odin/Managing Memory.html"><b>Managing Memory in Odin</b></a> <i>2026-07-20</i></li>
-<li><a href="Programming Languages/Odin/Odin Basic Grammars.html"><b>Odin Basic Grammars</b></a> <i>2026-06-10</i></li>
-<li><a href="Programming Languages/Odin/Struct of Array Types.html"><b>Struct of Array Types</b></a> <i>2026-08-03</i></li>
-<li><a href="Programming Languages/Odin/Types.html"><b>Types</b></a> <i>2026-06-11</i></li>
 <li>Array Programming (2)
 <ul class="org-ul">
 <li><a href="Programming Languages/Odin/Array Programming/Arrays and Slices in Odin.html"><b>Arrays and Slices in Odin</b></a> <i>2026-07-18</i></li>
@@ -1060,6 +1114,11 @@
 <li><a href="Programming Languages/Odin/STL/Containers in Odin.html"><b>Containers in Odin</b></a> <i>2026-08-03</i></li>
 <li><a href="Programming Languages/Odin/STL/Maybe Type.html"><b>Maybe Type in Odin</b></a> <i>2026-07-17</i> <span class="site-desc"> <code>Maybe</code> type is a special union in Odin. Variables can either have <i>no value</i> or <i>some value</i>. </span></li>
 </ul></li>
+<li><a href="Programming Languages/Odin/Array Programming.html"><b>Array Programming</b></a> <i>2026-06-11</i></li>
+<li><a href="Programming Languages/Odin/Managing Memory.html"><b>Managing Memory in Odin</b></a> <i>2026-07-20</i></li>
+<li><a href="Programming Languages/Odin/Odin Basic Grammars.html"><b>Odin Basic Grammars</b></a> <i>2026-06-10</i></li>
+<li><a href="Programming Languages/Odin/Struct of Array Types.html"><b>Struct of Array Types</b></a> <i>2026-08-03</i></li>
+<li><a href="Programming Languages/Odin/Types.html"><b>Types</b></a> <i>2026-06-11</i></li>
 </ul></li>
 <li>Python (1)
 <ul class="org-ul">
@@ -1075,6 +1134,7 @@
 <ul class="org-ul">
 <li><a href="Programming Languages/Zig/zig Grammars.html"><b>zig Grammars</b></a> <i>2026-06-07</i></li>
 </ul></li>
+<li><a href="Programming Languages/Path to Fimiliarize Any PL.html"><b>Path to Familiarize with Any PL</b></a> <i>2026-06-13</i> <span class="site-desc"> Personal perspective on how to quickly familiarize with any programming language. Also a collection of introductory projects. </span></li>
 </ul></li>
 <li>Quantum Computing (1)
 <ul class="org-ul">
@@ -1092,9 +1152,34 @@
 <li><a href="Statistics/Linear Regression.html"><b>Linear Regression</b></a> <i>2026-08-03</i></li>
 <li><a href="Statistics/Sample Distribution Theory.html"><b>Sample Distribution Theory</b></a> <i>2026-08-03</i></li>
 </ul></li>
+<li>Systems &amp; Frameworks (8)
+<ul class="org-ul">
+<li>Ray (1)
+<ul class="org-ul">
+<li><a href="Systems &amp; Frameworks/Ray/Overview of Ray.html"><b>Overview of Ray</b></a> <i>2026-09-17</i> <span class="site-desc"> Ray is the underlying runtime for modern infrastructure like vllm, verl, etc. An attempt to understand how Ray works :) </span></li>
+</ul></li>
+<li>VeRL (1)
+<ul class="org-ul">
+<li><a href="Systems &amp; Frameworks/VeRL/ReplayBuffer in verl.html"><b>Replay Buffer in <code>verl</code></b></a> <i>2026-09-21</i> <span class="site-desc"> Briefly analysis the <code>ReplayBuffer</code> class design in upstream <code>verl</code> and downstream <code>verl-omni</code>. </span></li>
+</ul></li>
+<li>VeRL-Omni (5)
+<ul class="org-ul">
+<li>Experiments (1)
+<ul class="org-ul">
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Experiments/Training Stable Diffusion 3.5 Medium with DiffusionOPD on OCR Tasks.html"><b>Training Stable Diffusion 3.5 Medium with DiffusionOPD on OCR Tasks</b></a> <i>2026-09-21</i> <span class="site-desc"> I ran the experiment of post-training SD3.5 Medium with DiffusionOPD on OCR tasks, as documented in the docs. I post some results and figures here for my reference. </span></li>
+</ul></li>
+<li>Snippets (1)
+<ul class="org-ul">
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Snippets/Preparing OPD Teacher by Merging LoRA weights in verl-omni.html"><b>Preparing OPD Teacher by Merging LoRA weights in verl-omni</b></a> <i>2026-09-18</i> <span class="site-desc"> Follow the <a href="https://verl-omni.readthedocs.io/en/latest/examples/diffusionopd_trainer.html">official tutorial for DiffusionOPD Trainer</a>. This post briefly describes how to merge LoRA weights into base model through Diffusers. </span></li>
+</ul></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/How is DiffusionOPD implemented in verl-omni.html"><b>How is DiffusionOPD Implemented in <code>verl-omni</code></b></a> <i>2026-09-20</i> <span class="site-desc"> This post is more of coding aspect rather than of mathematical aspect. This post briefly discusses how <a href="AI/DiffusionOPD.html#ID-9004087a-b9a3-4f1e-8682-f9fb41551b2b">DiffusionOPD</a> is implemented in <code>verl-omni</code>. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/Metrics Recorded by verl-omni.html"><b>Metrics Recorded by verl-omni</b></a> <i>2026-09-18</i> <span class="site-desc"> This post briefly reviews all the metrics recorded by <code>verl-omni</code> during training. The metrics can be roughly categorized into several classes, hardware performance, time consumption, critic, actor, rollout correction, training, etc. </span></li>
+<li><a href="Systems &amp; Frameworks/VeRL-Omni/v1 and v0 Engine in verl-omni.html"><b>The v1 and v0 Trainer in <code>verl-omni</code></b></a> <i>2026-09-17</i> <span class="site-desc"> Briefly introduce the v1 and v0 RL trainer in <code>verl-omni</code>. Instead, v0, v1 (sync/async) share the same underlying engine (vllm-omni for rollout engine and FSDP/VeOmni for actor engine), but differ in <span class="underline">dataflow and scheduler engine</span>. </span></li>
+</ul></li>
+<li><a href="Systems &amp; Frameworks/Hydra.html"><b>Hydra</b></a> <i>2026-09-17</i> <span class="site-desc"> Hydra is a Python framework for configuring complex applications. </span></li>
+</ul></li>
 <li>Techtips (6)
 <ul class="org-ul">
-<li><a href="Techtips/Replace MathJax with KaTeX in org-mode Exporting.html"><b>Replace MathJax with KaTeX in org-mode Exporting</b></a> <i>2026-07-25</i></li>
 <li>Linux Tips (5)
 <ul class="org-ul">
 <li><a href="Techtips/Linux Tips/ArchLinux Connect to HKU Campus WiFi.html"><b>ArchLinux Connect to HKU Campus WiFi</b></a> <i>2026-08-03</i></li>
@@ -1103,7 +1188,9 @@
 <li><a href="Techtips/Linux Tips/Solution to Being Unable to Clear Screen.html"><b>Solution to Being Unable to Clear Screen</b></a> <i>2026-08-28</i></li>
 <li><a href="Techtips/Linux Tips/Use reflector to Select Best pacman Mirrors.html"><b>Use reflector to Select Best pacman Mirrors</b></a> <i>2026-08-06</i></li>
 </ul></li>
+<li><a href="Techtips/Replace MathJax with KaTeX in org-mode Exporting.html"><b>Replace MathJax with KaTeX in org-mode Exporting</b></a> <i>2026-07-25</i></li>
 </ul></li>
+<li><a href="Helpful Resources.html"><b>Helpful Resources</b></a> <i>2026-09-03</i> <span class="site-desc"> Lectures, Course URLs, Blogs, Papers, etc. useful for my study. </span></li>
 </ul>
 </div>
 </section>

@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -209,16 +220,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge312bf5">1. Vanilla Attention</a>
+<li><a href="#orgb66b8a6">1. Vanilla Attention</a>
 <ul>
-<li><a href="#orgeda563f">1.1. Scaled Dot-Product Attention</a></li>
+<li><a href="#org49e5c42">1.1. Scaled Dot-Product Attention</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge312bf5" class="outline-2">
-<h2 id="orge312bf5"><span class="section-number-2">1.</span> Vanilla Attention</h2>
+<div id="outline-container-orgb66b8a6" class="outline-2">
+<h2 id="orgb66b8a6"><span class="section-number-2">1.</span> Vanilla Attention</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The idea of attention is similar to the procedure of looking up a word in the dictionary. Suppose we want to look up for the word <code>xxxxness</code> and we have already known the meaning of <code>xxxx</code>. Then we may assume that the meaning of <code>xxxxness</code> has something to do with <code>xxxx</code>.
@@ -238,8 +249,8 @@ A=\sum_i \texttt{sim}(q,k_i)v_i
 So the question becomes: <i>how to compute the similarity between query and keys, reasonably?</i>
 </p>
 </div>
-<div id="outline-container-orgeda563f" class="outline-3">
-<h3 id="orgeda563f"><span class="section-number-3">1.1.</span> Scaled Dot-Product Attention</h3>
+<div id="outline-container-org49e5c42" class="outline-3">
+<h3 id="org49e5c42"><span class="section-number-3">1.1.</span> Scaled Dot-Product Attention</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 As introduced in the pioneering Transformer paper, we use softmax over cosine similarity between vectors as attention score. The cosine similarity is further extended to <b>matmul</b> for batch processing queries.

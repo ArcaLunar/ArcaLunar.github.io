@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -204,16 +215,17 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">A Survey of 16 Open-Source RL Libraries</h1>
+<p class="article-desc">As of 2026, among the 16 surveyed open-source RL libraries, the common points are that: (1) inference and training are disaggregated; (2) they are connected by a rollout buffer to temporarily store model outputs; (3) weights are transferred asynchronously. Other findings include: (1) Ray dominates orchestration; (2) NCCL broadcast is the default method for transferring model weights; (3) staleness management, referring to how to handle outdated data samples, ranges from least-recent method to advanced importance-sampling correction; (4) LoRA training is sparsely supported; (5) distributed MoE support is becoming trend. See more at <a href="https://huggingface.co/blog/async-rl-training-landscape">Huggingface Blog</a></p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfec2e96">1. Motivation: Moving from Synchronous to Asynchronous</a></li>
+<li><a href="#org86e07d6">1. Motivation: Moving from Synchronous to Asynchronous</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfec2e96" class="outline-2">
-<h2 id="orgfec2e96"><span class="section-number-2">1.</span> Motivation: Moving from Synchronous to Asynchronous</h2>
+<div id="outline-container-org86e07d6" class="outline-2">
+<h2 id="org86e07d6"><span class="section-number-2">1.</span> Motivation: Moving from Synchronous to Asynchronous</h2>
 </div>
 </div>
 <div id="postamble" class="status">

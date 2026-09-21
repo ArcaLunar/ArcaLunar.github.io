@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -207,30 +218,31 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">OpenTSLM</h1>
+<p class="article-desc">OpenTSLM is a multimodal model that tries to integrate time series and textual data.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd4ad304">1. Solution</a>
+<li><a href="#org0d59c25">1. Solution</a>
 <ul>
-<li><a href="#orgad0727a">1.1. Time-Series Encoder</a></li>
-<li><a href="#orgd20185e">1.2. OpenTSLM-SP</a></li>
-<li><a href="#org14d0a99">1.3. OpenTSLM-Flamingo</a></li>
+<li><a href="#org41a146d">1.1. Time-Series Encoder</a></li>
+<li><a href="#org5b7c6a3">1.2. OpenTSLM-SP</a></li>
+<li><a href="#org0a9ee88">1.3. OpenTSLM-Flamingo</a></li>
 </ul>
 </li>
-<li><a href="#org0462f90">2. Dataset Construction</a></li>
+<li><a href="#org7aa1333">2. Dataset Construction</a></li>
 </ul>
 </div>
 </div>
 <p>
 This paper proposes 2 architectures for TSLMs, namely OpenTSLM-SP and OpenTSLM-Flamingo.
 </p>
-<div id="outline-container-orgd4ad304" class="outline-2">
-<h2 id="orgd4ad304"><span class="section-number-2">1.</span> Solution</h2>
+<div id="outline-container-org0d59c25" class="outline-2">
+<h2 id="org0d59c25"><span class="section-number-2">1.</span> Solution</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgad0727a" class="outline-3">
-<h3 id="orgad0727a"><span class="section-number-3">1.1.</span> Time-Series Encoder</h3>
+<div id="outline-container-org41a146d" class="outline-3">
+<h3 id="org41a146d"><span class="section-number-3">1.1.</span> Time-Series Encoder</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The time series encoder is adopted among OpenTSLM&rsquo;s different architecture. OpenTSLM can either <span class="underline">train an encoder from scratch</span> (e.g., using PatchTST architecture), or <span class="underline">using pretrained TSFMs</span> (e.g., Chronos-2).
@@ -241,8 +253,8 @@ When trained from scratch, the encoder is trained with the backbone models; whil
 </p>
 </div>
 </div>
-<div id="outline-container-orgd20185e" class="outline-3">
-<h3 id="orgd20185e"><span class="section-number-3">1.2.</span> OpenTSLM-SP</h3>
+<div id="outline-container-org5b7c6a3" class="outline-3">
+<h3 id="org5b7c6a3"><span class="section-number-3">1.2.</span> OpenTSLM-SP</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Built on Time-Series Encoder, OpenTSLM tries to leverage a pretrained LLM. It adds an <span class="underline">extra projection layer</span> mapping TS embeddings to LLM hidden space. Then, it finetunes the LLM with LoRA.
@@ -273,8 +285,8 @@ The OpenTSLM-SP then finetunes the backbone (with LoRA) and the MLP.
 </p>
 </div>
 </div>
-<div id="outline-container-org14d0a99" class="outline-3">
-<h3 id="org14d0a99"><span class="section-number-3">1.3.</span> OpenTSLM-Flamingo</h3>
+<div id="outline-container-org0a9ee88" class="outline-3">
+<h3 id="org0a9ee88"><span class="section-number-3">1.3.</span> OpenTSLM-Flamingo</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Inspired by Flamingo (the VLM architecture), OpenTSLM-Flamingo uses a time-series encoder and <span class="underline">adapt the cross-attention mechanism</span>. The model consists of (1) time series patch encoder, as in Section 1.1; (2) Perceiver Resampler; (3) gated cross-attention layers integrated into the LLM; (4) the frozen LLM backbone.
@@ -306,8 +318,8 @@ After that, following OpenFlamingo, OpenTSLM-Flamingo has to <span class="underl
 </div>
 </div>
 </div>
-<div id="outline-container-org0462f90" class="outline-2">
-<h2 id="org0462f90"><span class="section-number-2">2.</span> Dataset Construction</h2>
+<div id="outline-container-org7aa1333" class="outline-2">
+<h2 id="org7aa1333"><span class="section-number-2">2.</span> Dataset Construction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 OpenTSLM also shippes 3 domain-specific <b>Chain-of-Thought</b> datasets on medicine, focusing on human activity recognition (HAR-CoT), sleep stage classification (SleepEDF-CoT), and electrocardiogram question answering (ECG-QA-CoT).

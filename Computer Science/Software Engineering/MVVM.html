@@ -192,9 +192,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../.assets/index.css"/>
-<script src="../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../.assets/legacy-emacs-faces.css"/>
+<script src="../../.assets/foldable-lists.js"></script>
+<script src="../../.assets/home.js"></script>
+<script src="../../.assets/article.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -206,17 +217,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb7ae271">1. Model Layer</a></li>
-<li><a href="#org2c9de83">2. View Layer</a></li>
-<li><a href="#orgc699e1d">3. Viewmodel Layer</a></li>
+<li><a href="#org07cac8b">1. Model Layer</a></li>
+<li><a href="#org3da71f1">2. View Layer</a></li>
+<li><a href="#org8580cd2">3. Viewmodel Layer</a></li>
 </ul>
 </div>
 </div>
 <p>
 Model-View-ViewModel (MVVM) is a UI architectural pattern designed to separate business data logic, presentation state and UI rendering into different <i>layers</i>. This separation makes code less coupled, easier to test and more scalable.
 </p>
-<div id="outline-container-orgb7ae271" class="outline-2">
-<h2 id="orgb7ae271"><span class="section-number-2">1.</span> Model Layer</h2>
+<div id="outline-container-org07cac8b" class="outline-2">
+<h2 id="org07cac8b"><span class="section-number-2">1.</span> Model Layer</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The model layer represents
@@ -234,16 +245,16 @@ and should have no knowledge about UI.
 </p>
 </div>
 </div>
-<div id="outline-container-org2c9de83" class="outline-2">
-<h2 id="org2c9de83"><span class="section-number-2">2.</span> View Layer</h2>
+<div id="outline-container-org3da71f1" class="outline-2">
+<h2 id="org3da71f1"><span class="section-number-2">2.</span> View Layer</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The view layer is the UI layer, which is responsible for rendering state, forwarding user interactions, and should have no knowledge about data logic.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc699e1d" class="outline-2">
-<h2 id="orgc699e1d"><span class="section-number-2">3.</span> Viewmodel Layer</h2>
+<div id="outline-container-org8580cd2" class="outline-2">
+<h2 id="org8580cd2"><span class="section-number-2">3.</span> Viewmodel Layer</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The viewmodel layer is indeed the <b>bridge</b> between models and views. It prepares data for display, manages UI state, handles user actions and coordinates async operations. It transforms raw domain data into UI-friendly state.

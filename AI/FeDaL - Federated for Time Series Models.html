@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,16 +217,17 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">FeDaL: Federated Dataset Learning for General Time Series Foundation Models</h1>
+<p class="article-desc">FeDaL focuses on training time series foundation models (TSFMs) under federated settings. In short, FeDaL decomposes heterogeneous TS datasets into shared generalized knowledge and preserved personalized knowledge; it mitigates local and global biases through bias elimination. FeDaL also shows how data volume, client count and join rate affect model performance under decentralization.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org22343eb">1. Challenge</a></li>
-<li><a href="#orgefdc037">2. Problem Formulation</a></li>
-<li><a href="#org4030a6d">3. <span class="todo TODO">TODO</span> Solution</a>
+<li><a href="#org844db27">1. Challenge</a></li>
+<li><a href="#org20dc89d">2. Problem Formulation</a></li>
+<li><a href="#org2f706e1">3. <span class="todo TODO">TODO</span> Solution</a>
 <ul>
-<li><a href="#orgcd278f6">3.1. Domain Bias Elimination (DBE)</a></li>
-<li><a href="#orgabbbc14">3.2. Global Bias Elimination (GBE)</a></li>
+<li><a href="#orgbbcb4f7">3.1. Domain Bias Elimination (DBE)</a></li>
+<li><a href="#orge83e090">3.2. Global Bias Elimination (GBE)</a></li>
 </ul>
 </li>
 </ul>
@@ -224,8 +236,8 @@
 <p>
 FeDaL focuses on training time series foundation models (TSFMs) under federated settings. In short, FeDaL decomposes heterogeneous TS datasets into shared generalized knowledge and preserved personalized knowledge; it mitigates local and global biases through bias elimination. FeDaL also shows how data volume, client count and join rate affect model performance under decentralization.
 </p>
-<div id="outline-container-org22343eb" class="outline-2">
-<h2 id="org22343eb"><span class="section-number-2">1.</span> Challenge</h2>
+<div id="outline-container-org844db27" class="outline-2">
+<h2 id="org844db27"><span class="section-number-2">1.</span> Challenge</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The challenge that FeDaL is trying to handle is the conflict between general-purpose foundation model for time series and <i>heterogeneous and private</i> datasets.
@@ -242,8 +254,8 @@ The heterogeneity consists of:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgefdc037" class="outline-2">
-<h2 id="orgefdc037"><span class="section-number-2">2.</span> Problem Formulation</h2>
+<div id="outline-container-org20dc89d" class="outline-2">
+<h2 id="org20dc89d"><span class="section-number-2">2.</span> Problem Formulation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The problem can be formulated as follow: consider a federated foundation model settings with \(1\) server and \(N\) clients, where each client \(i\) holds a local time series dataset \(D_i\). These \(D_{i}\) are heterogeneous due to difference in sampling resolution, physical constraints and temporal dynamics.
@@ -264,23 +276,23 @@ where \(F_{i}\) denotes the local loss, \(n_i,n\) denotes local and total sample
 </p>
 </div>
 </div>
-<div id="outline-container-org4030a6d" class="outline-2">
-<h2 id="org4030a6d"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> Solution</h2>
+<div id="outline-container-org2f706e1" class="outline-2">
+<h2 id="org2f706e1"><span class="section-number-2">3.</span> <span class="todo TODO">TODO</span> Solution</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The core of FEDAL consists of <b>client-side Domain Bias Elimination</b> and <b>server-side Global Bias Elimination</b>.
 </p>
 </div>
-<div id="outline-container-orgcd278f6" class="outline-3">
-<h3 id="orgcd278f6"><span class="section-number-3">3.1.</span> Domain Bias Elimination (DBE)</h3>
+<div id="outline-container-orgbbcb4f7" class="outline-3">
+<h3 id="orgbbcb4f7"><span class="section-number-3">3.1.</span> Domain Bias Elimination (DBE)</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 DBE decomposes <b>latent representations</b> of masked input patches into <span class="underline">trend and seasonal</span> components, from which a <b>trainable bias vector</b> is learned. This vector is injected back during reconstruction, to suppress dataset-specific artifacts. Moreover, a <b>regularization term</b> aligns it with a global bias reference to disentangle non-transferable local patterns from generalizable temporal structures.
 </p>
 </div>
 </div>
-<div id="outline-container-orgabbbc14" class="outline-3">
-<h3 id="orgabbbc14"><span class="section-number-3">3.2.</span> Global Bias Elimination (GBE)</h3>
+<div id="outline-container-orge83e090" class="outline-3">
+<h3 id="orge83e090"><span class="section-number-3">3.2.</span> Global Bias Elimination (GBE)</h3>
 </div>
 </div>
 </div>

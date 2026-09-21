@@ -1,0 +1,153 @@
+/* Everything about footnotes: the plain default rendering (#footnotes,
+ * .footpara, .footdef — used before JS enhances them, and in print) plus
+ * the JS-driven sidenote/floating-card system (see index.js) that replaces
+ * them on wide screens / on hover. */
+
+#footnotes {
+  font-size: 90%;
+}
+.footpara {
+  display: inline;
+  margin: 0.2em auto;
+}
+.footdef {
+  margin-bottom: 1em;
+}
+.footdef sup {
+  padding-right: 0.5em;
+}
+
+html[data-org-footnote-style="sidenote"] #content {
+  position: relative;
+  margin-bottom: var(--org-sidenote-overflow, 0);
+}
+
+.org-sidenote-layer {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+html[data-org-footnote-style="card"] .org-sidenote-layer {
+  display: none;
+}
+
+.org-sidenote {
+  position: absolute;
+  left: calc(100% + 1.35rem);
+  box-sizing: border-box;
+  width: clamp(10rem, calc((100vw - 900px) / 2 - 2rem), 14rem);
+  padding-left: 0.75rem;
+  color: #59636e;
+  border-left: 2px solid #d6dce1;
+  font-size: 0.78rem;
+  line-height: 1.38;
+  pointer-events: auto;
+}
+
+.org-sidenote-number {
+  margin-right: 0.35em;
+  color: var(--org-footnote-accent);
+  font-size: 0.85em;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+.org-sidenote .footpara,
+.org-sidenote p {
+  display: inline;
+  margin: 0;
+}
+
+.org-footnote-card {
+  position: fixed;
+  z-index: 1200;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: min(21rem, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 1.5rem);
+  padding: 0.8rem 0.95rem;
+  overflow: auto;
+
+  color: var(--org-footnote-card-foreground);
+  background: var(--org-footnote-card-background);
+  border: 1px solid #d7dce1;
+  border-radius: 0.65rem;
+  box-shadow: 0 0.65rem 1.8rem rgba(31, 41, 55, 0.18);
+
+  font-size: 0.84rem;
+  line-height: 1.45;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.35rem);
+  pointer-events: none;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    visibility 0s linear 150ms;
+}
+
+.org-footnote-card[data-placement="above"] {
+  transform: translateY(-0.35rem);
+}
+
+.org-footnote-card.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    visibility 0s linear;
+}
+
+.org-footnote-card .org-footnote-card-number {
+  margin-right: 0.4em;
+  color: var(--org-footnote-accent);
+  font-weight: 700;
+}
+
+.org-footnote-card .footpara,
+.org-footnote-card p {
+  display: inline;
+  margin: 0;
+}
+
+.footref[aria-expanded="true"] {
+  color: #035;
+  outline: 2px solid color-mix(in srgb, var(--org-footnote-accent) 35%, white);
+  outline-offset: 2px;
+  border-radius: 0.15rem;
+}
+
+html.org-footnotes-enhanced #footnotes {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .org-sidenote-layer {
+    display: none;
+  }
+}
+
+@media print {
+  .org-sidenote-layer,
+  .org-footnote-card {
+    display: none !important;
+  }
+
+  html.org-footnotes-enhanced #footnotes {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .org-footnote-card {
+    transition: none;
+  }
+}

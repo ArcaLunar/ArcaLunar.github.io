@@ -193,9 +193,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../.assets/index.css"/>
-<script src="../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../.assets/legacy-emacs-faces.css"/>
+<script src="../.assets/foldable-lists.js"></script>
+<script src="../.assets/home.js"></script>
+<script src="../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -206,14 +217,15 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Radio - Rate Distortion Optimization for LLM Compression</h1>
+<p class="article-desc">Radio provides a novel view for quantization with optimization technique and rate-distortion theory, as well as a closed form for quantization bit. The drawback is that it does not consider hardware efficiency.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaa68daa">1. RADIO Solution</a>
+<li><a href="#org8305fc2">1. RADIO Solution</a>
 <ul>
-<li><a href="#org454f731">1.1. <span class="todo TODO">TODO</span> Bit Depth Assignment</a></li>
-<li><a href="#org5e947fa">1.2. <span class="todo TODO">TODO</span> Quantization Step Size</a></li>
+<li><a href="#org99b019b">1.1. <span class="todo TODO">TODO</span> Bit Depth Assignment</a></li>
+<li><a href="#orgb917981">1.2. <span class="todo TODO">TODO</span> Quantization Step Size</a></li>
 </ul>
 </li>
 </ul>
@@ -226,8 +238,8 @@ Radio provides a novel view for quantization with optimization technique and rat
 <p>
 We model the next-token prediction as a single function: \(\mathbf{Z}=f(\mathbf{X}; \Theta_0, \Theta_1, \dots, \Theta_n, \Theta_{n+1})\). The model has \(n\) layers where \(\Theta_0\) is word embedding and \(\Theta_{n+1}\) is the prediction head.
 </p>
-<div id="outline-container-orgaa68daa" class="outline-2">
-<h2 id="orgaa68daa"><span class="section-number-2">1.</span> RADIO Solution</h2>
+<div id="outline-container-org8305fc2" class="outline-2">
+<h2 id="org8305fc2"><span class="section-number-2">1.</span> RADIO Solution</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We use the settings including next token prediction. We use follow quantization schema, suppose bit depth is \(B\) and step size is \(D\), the dequantization can be expressed as
@@ -243,8 +255,8 @@ We use the settings including next token prediction. We use follow quantization 
 In RADIO, we&rsquo;ll use one pair of \((B,D)\) to quantize a small group of weights.
 </p>
 </div>
-<div id="outline-container-org454f731" class="outline-3">
-<h3 id="org454f731"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Bit Depth Assignment</h3>
+<div id="outline-container-org99b019b" class="outline-3">
+<h3 id="org99b019b"><span class="section-number-3">1.1.</span> <span class="todo TODO">TODO</span> Bit Depth Assignment</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose we want to quantize matrix \(\Theta_n\) with \(P_n\) parameters. Following the intuition that <i>parameters that are more sensitive to output distortion should be allocated more bits</i>, we can formalize the optimization problem:
@@ -311,8 +323,8 @@ V &\gets V+\beta \Big( r(\set{B_n}) \Big)
 </ul>
 </div>
 </div>
-<div id="outline-container-org5e947fa" class="outline-3">
-<h3 id="org5e947fa"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> Quantization Step Size</h3>
+<div id="outline-container-orgb917981" class="outline-3">
+<h3 id="orgb917981"><span class="section-number-3">1.2.</span> <span class="todo TODO">TODO</span> Quantization Step Size</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
 </div>

@@ -194,9 +194,20 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../../../.assets/style.css"/>
-<link rel="stylesheet" type="text/css" href="../../../.assets/index.css"/>
-<script src="../../../.assets/index.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../.assets/variables.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/reset.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/fonts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/base.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/toc.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/callouts.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/footnotes.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/code.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/foldable-lists.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/home.css"/>
+<link rel="stylesheet" type="text/css" href="../../../.assets/legacy-emacs-faces.css"/>
+<script src="../../../.assets/foldable-lists.js"></script>
+<script src="../../../.assets/home.js"></script>
+<script src="../../../.assets/article.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css" integrity="sha384-1vdNCNel6Tx/NQa8IR1mGOGKsbGreCkOPfbtPPnUURJ5Tu2PRVfQ/7KLZC+Pi1p1" crossorigin="anonymous"/>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.js" integrity="sha384-ycJ6GAwiS15LoUPipwJOrWTvkUHl/YqELValBwI5I4awP1EeEQJYarj+w85ntcz7" crossorigin="anonymous"></script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -207,30 +218,31 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Paging, TLB and Page Tables</h1>
+<p class="article-desc">Introduction to paging mechanism.</p>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5ae0a25">1. Overview of Paging</a>
+<li><a href="#orga8d5697">1. Overview of Paging</a>
 <ul>
-<li><a href="#org4e16afe">1.1. Procedure of a Full Translation</a></li>
+<li><a href="#orgf714c40">1.1. Procedure of a Full Translation</a></li>
 </ul>
 </li>
-<li><a href="#orgdc4911e">2. Page Table Entry</a></li>
-<li><a href="#orgf06619a">3. Translation-Lookaside Buffer (TLB)</a>
+<li><a href="#org4b104a2">2. Page Table Entry</a></li>
+<li><a href="#orgf3a8623">3. Translation-Lookaside Buffer (TLB)</a>
 <ul>
-<li><a href="#orgd1fa70c">3.1. TLB Miss</a></li>
-<li><a href="#orgdcf53b7">3.2. TLB at Context Switch</a></li>
+<li><a href="#org81189f8">3.1. TLB Miss</a></li>
+<li><a href="#orgc4ddf2f">3.2. TLB at Context Switch</a></li>
 </ul>
 </li>
-<li><a href="#orgf9e4001">4. Multi-Level Page Tables</a></li>
-<li><a href="#orgb2589fd">5. Inverted Page Table</a></li>
-<li><a href="#org9c1e55b">6. Swapping and Page Fault</a></li>
+<li><a href="#org5070476">4. Multi-Level Page Tables</a></li>
+<li><a href="#org323302f">5. Inverted Page Table</a></li>
+<li><a href="#org0e77f51">6. Swapping and Page Fault</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5ae0a25" class="outline-2">
-<h2 id="org5ae0a25"><span class="section-number-2">1.</span> Overview of Paging</h2>
+<div id="outline-container-orga8d5697" class="outline-2">
+<h2 id="orga8d5697"><span class="section-number-2">1.</span> Overview of Paging</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Paging is built on top of the idea of segmentation. It breaks a virtual address space into fixed-size segments, called <b>pages</b>. For convenience of managing free space, the physical memory is also chopped up into segments of <b>same size as pages</b>, called <b>page frames</b>, or <b>frames</b>.
@@ -248,8 +260,8 @@ In the case of 4KB page size, if the system is byte-addressable, since 4KB = \(2
 The duty of address translation is to convert the VPN to PFN to get the physical address. Here, we need to help of <b>page tables</b> to help maintain the mapping from VPN to PFN. Also, to accelerate address translation, <b>translation-lookaside buffers (TLBs)</b> are introduced to cache the mapping.
 </p>
 </div>
-<div id="outline-container-org4e16afe" class="outline-3">
-<h3 id="org4e16afe"><span class="section-number-3">1.1.</span> Procedure of a Full Translation</h3>
+<div id="outline-container-orgf714c40" class="outline-3">
+<h3 id="orgf714c40"><span class="section-number-3">1.1.</span> Procedure of a Full Translation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Here, we include TLBs and multi-level page tables.
@@ -262,8 +274,8 @@ Here, we include TLBs and multi-level page tables.
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc4911e" class="outline-2">
-<h2 id="orgdc4911e"><span class="section-number-2">2.</span> Page Table Entry</h2>
+<div id="outline-container-org4b104a2" class="outline-2">
+<h2 id="org4b104a2"><span class="section-number-2">2.</span> Page Table Entry</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A page table is a linear array of page table entries (PTEs), indexed by VPN. OS checks PTEs to find out PFN, given VPN. A page table usually fits a single page (frame), meaning their sizes are equal.
@@ -274,12 +286,12 @@ Each page table entry maintains PFN and extra bits that convey information.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf06619a" class="outline-2">
-<h2 id="orgf06619a"><span class="section-number-2">3.</span> Translation-Lookaside Buffer (TLB)</h2>
+<div id="outline-container-orgf3a8623" class="outline-2">
+<h2 id="orgf3a8623"><span class="section-number-2">3.</span> Translation-Lookaside Buffer (TLB)</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgd1fa70c" class="outline-3">
-<h3 id="orgd1fa70c"><span class="section-number-3">3.1.</span> TLB Miss</h3>
+<div id="outline-container-org81189f8" class="outline-3">
+<h3 id="org81189f8"><span class="section-number-3">3.1.</span> TLB Miss</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 What happens when TLB miss occurs?
@@ -298,8 +310,8 @@ Thus, the return-from-trap should be different. Upon TLB miss, return-from-trap 
 </p>
 </div>
 </div>
-<div id="outline-container-orgdcf53b7" class="outline-3">
-<h3 id="orgdcf53b7"><span class="section-number-3">3.2.</span> TLB at Context Switch</h3>
+<div id="outline-container-orgc4ddf2f" class="outline-3">
+<h3 id="orgc4ddf2f"><span class="section-number-3">3.2.</span> TLB at Context Switch</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 TLB entries should only be valid for the current-running process. A simple solution is to simply <b>flush</b> by setting valid bits of all entries to \(0\).
@@ -315,8 +327,8 @@ Therefore, TLBs can store translation caches for multiple processes, as well as 
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9e4001" class="outline-2">
-<h2 id="orgf9e4001"><span class="section-number-2">4.</span> Multi-Level Page Tables</h2>
+<div id="outline-container-org5070476" class="outline-2">
+<h2 id="org5070476"><span class="section-number-2">4.</span> Multi-Level Page Tables</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Multi-level page tables are to reduce the size of page tables by further ignoring unallocated pages through breaking up page tables into pages. MLPT chops up a page table into page-sized units. If all entries in the unit are invalid (which means that, none of the pages are allocated), then we don&rsquo;t need to allocate memory to store these entries.
@@ -327,12 +339,12 @@ These units are called <b>page directory</b>, and each unit is called <b>page di
 </p>
 </div>
 </div>
-<div id="outline-container-orgb2589fd" class="outline-2">
-<h2 id="orgb2589fd"><span class="section-number-2">5.</span> Inverted Page Table</h2>
+<div id="outline-container-org323302f" class="outline-2">
+<h2 id="org323302f"><span class="section-number-2">5.</span> Inverted Page Table</h2>
 </div>
 
-<div id="outline-container-org9c1e55b" class="outline-2">
-<h2 id="org9c1e55b"><span class="section-number-2">6.</span> Swapping and Page Fault</h2>
+<div id="outline-container-org0e77f51" class="outline-2">
+<h2 id="org0e77f51"><span class="section-number-2">6.</span> Swapping and Page Fault</h2>
 </div>
 </div>
 <div id="postamble" class="status">
